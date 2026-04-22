@@ -1,0 +1,13 @@
+{
+  "max_tokens": 100,
+  "messages": [
+    {
+      "content": "You are a helpful assistant.",
+      "role": "system"
+    },
+    {
+      "content": "Say hello in one sentence.",
+      "role": "user"
+    }
+  ]
+}

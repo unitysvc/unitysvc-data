@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate manifest and run tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package and test deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e . pytest jinja2 ruff
+
+      - name: Validate manifest is up to date
+        run: python tools/build.py --check
+
+      - name: Ruff
+        run: ruff check src/ tests/ tools/
+
+      - name: Pytest
+        run: pytest -q
+
+  build-wheel:
+    name: Build wheel
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install build
+      - run: python -m build --wheel
+      - name: Verify wheel includes example files
+        run: |
+          wheel=$(ls dist/*.whl)
+          echo "Inspecting $wheel"
+          python -c "
+          import zipfile
+          with zipfile.ZipFile('$wheel') as z:
+              names = [n for n in z.namelist() if '/examples/' in n]
+          assert any(n.endswith('.j2') for n in names), 'wheel missing .j2 files'
+          assert any(n.endswith('_manifest.json') for n in z.namelist()), 'wheel missing _manifest.json'
+          print(f'wheel contains {len(names)} example file(s) + manifest')
+          "
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheel
+          path: dist/*.whl

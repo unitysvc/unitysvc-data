@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unitysvc-data"
+version = "0.1.0"
+description = "Standard examples and presets for UnitySVC data packages"
+readme = "README.md"
+authors = [{ name = "Bo Peng", email = "bo.peng@unitysvc.com" }]
+maintainers = [{ name = "Bo Peng", email = "bo.peng@unitysvc.com" }]
+license = "MIT"
+requires-python = ">=3.11"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Operating System :: OS Independent",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=7", "ruff"]
+
+[project.scripts]
+usvc_data = "unitysvc_data.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/unitysvc/unitysvc-data"
+Issues  = "https://github.com/unitysvc/unitysvc-sellers/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+unitysvc_data = ["examples/**/*", "_manifest.json", "py.typed"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"

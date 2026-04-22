@@ -1,0 +1,91 @@
+{
+  "aliases": {
+    "api_connectivity": "api_connectivity_v1",
+    "llm_request_template": "llm_request_template_v1",
+    "s3_code_example": "s3_code_example_v1",
+    "s3_connectivity": "s3_connectivity_v1",
+    "s3_description": "s3_description_v1",
+    "smtp_connectivity": "smtp_connectivity_v1"
+  },
+  "presets": {
+    "api_connectivity_v1": {
+      "category": "connectivity_test",
+      "description": "Verify HTTP endpoint is reachable and returns a healthy status",
+      "example_file": "api/connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "api_connectivity",
+      "source_readme": "api/connectivity/README.md",
+      "version": 1
+    },
+    "llm_request_template_v1": {
+      "category": "request_template",
+      "description": "Minimal OpenAI-compatible chat completion request body",
+      "example_file": "llm/request-template/request-template-v1.json",
+      "is_active": true,
+      "is_public": false,
+      "meta": {},
+      "mime_type": "json",
+      "preset_name": "llm_request_template",
+      "source_readme": "llm/request-template/README.md",
+      "version": 1
+    },
+    "s3_code_example_v1": {
+      "category": "usage_example",
+      "description": "Python example: list objects in an S3 bucket via boto3",
+      "example_file": "s3/code-example/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "python",
+      "preset_name": "s3_code_example",
+      "source_readme": "s3/code-example/README.md",
+      "version": 1
+    },
+    "s3_connectivity_v1": {
+      "category": "connectivity_test",
+      "description": "Verify S3 endpoint accepts the configured credentials",
+      "example_file": "s3/connectivity/connectivity-v1.py.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "python",
+      "preset_name": "s3_connectivity",
+      "source_readme": "s3/connectivity/README.md",
+      "version": 1
+    },
+    "s3_description_v1": {
+      "category": "description",
+      "description": "Customer-facing overview of the S3 gateway service",
+      "example_file": "s3/description/description-v1.md",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "markdown",
+      "preset_name": "s3_description",
+      "source_readme": "s3/description/README.md",
+      "version": 1
+    },
+    "smtp_connectivity_v1": {
+      "category": "connectivity_test",
+      "description": "Verify SMTP server returns a 220 greeting on connect",
+      "example_file": "smtp/connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "smtp_connectivity",
+      "source_readme": "smtp/connectivity/README.md",
+      "version": 1
+    }
+  },
+  "version": "1"
+}

@@ -1,0 +1,168 @@
+# unitysvc-data
+
+Standard examples and presets for UnitySVC — primary consumer is
+[unitysvc-sellers](https://github.com/unitysvc/unitysvc-sellers), but the
+same preset / manifest machinery is intended to serve other parts of the
+platform too.
+
+A data-first Python package that ships:
+
+- Example files (connectivity tests, usage snippets, descriptions)
+  organised under `src/unitysvc_data/examples/<gateway>/<family>/`.
+- A generated manifest (`_manifest.json`) mapping every preset name to
+  its metadata and bundled file.
+- Two primitives for consumers:
+  - `doc_preset(source, **overrides)` — returns a full document
+    record (category, description, mime_type, file_path, ...) ready
+    to drop into `listing.json`. This is the expansion the SDK
+    applies to `$preset` JSON sentinels at upload time.
+  - `file_preset(source)` — returns the raw UTF-8 content of the
+    preset's bundled file. Useful when the example isn't a listing
+    document (embed as snippet, feed to a test harness, etc.).
+
+Both accept either a bare name (`"s3_connectivity"`,
+`"s3_connectivity_v1"`) or a `{"$preset": "...", "$with": {...}}`
+sentinel, so the same function works from JSON walkers and from
+programmatic Python code.
+
+Sellers reference a preset from their `listing.json` like this:
+
+```json
+{
+  "documents": {
+    "Connectivity test": { "$preset": "s3_connectivity" },
+    "Usage (Python)":    { "$preset": "s3_code_example_v1",
+                           "$with": { "description": "Lists objects in our bucket" } }
+  }
+}
+```
+
+The SDK walks the parsed listing and calls `doc_preset(...)` on each
+sentinel, substituting the bundled file's absolute path into
+`file_path`, then feeds the result into the existing upload pipeline.
+No custom URL scheme, no extra render pass.
+
+## CLI
+
+Installing the package provides a `usvc_data` command for shell-level
+access to the same data:
+
+```bash
+usvc_data list                                       # every preset + aliases
+usvc_data list --json                                # machine-readable form
+
+usvc_data info s3_connectivity                       # README prose for a preset
+
+usvc_data doc-preset s3_connectivity                 # expanded JSON record
+usvc_data doc-preset s3_connectivity --with '{"description":"ours"}'
+usvc_data doc-preset s3_connectivity --compact       # single-line JSON
+
+usvc_data file-preset s3_connectivity                # raw file content to stdout
+usvc_data file-preset s3_connectivity > /tmp/s3.py   # pipe to file (raw template)
+```
+
+Note that `file-preset` returns the raw file content — `.j2` templates
+come through with Jinja2 markers intact. The sellers SDK renders them
+with per-listing context at upload time; if you pipe a `.j2` preset
+directly to an executable file you'll get a template, not a runnable
+script.
+
+`--with` accepts a JSON object whose keys are the overridable fields
+(`description`, `is_active`, `is_public`, `meta`). Forbidden keys and
+unknown preset names exit with status 1 and a message on stderr.
+
+## Layout
+
+```
+src/unitysvc_data/
+├── __init__.py              # example_path / read_example / list_examples
+├── presets.py               # doc_preset / file_preset / PRESETS / ALIASES
+├── cli.py                   # usvc_data entry point
+├── _manifest.json           # generated — committed — source of truth at runtime
+└── examples/
+    ├── api/                 # generic HTTP services
+    │   └── connectivity/
+    │       ├── README.md                 # front-matter + prose
+    │       └── connectivity-v1.sh.j2
+    ├── llm/                 # LLM gateway
+    │   └── request-template/
+    │       ├── README.md
+    │       └── request-template-v1.json
+    ├── s3/                  # S3-compatible storage gateway
+    │   ├── code-example/ ...
+    │   ├── connectivity/ ...
+    │   └── description/ ...
+    └── smtp/                # SMTP relay
+        └── connectivity/ ...
+
+tools/
+└── build.py                 # regenerate _manifest.json + MANIFEST.md
+```
+
+Each gateway holds one or more **preset families** (e.g. `s3/connectivity/`).
+A family directory contains:
+
+- `README.md` with TOML front-matter delimited by `+++` lines. The
+  front-matter has every piece of metadata for the family
+  (`preset_name`, `category`, `mime_type`, `file`, `description`,
+  `is_active`, `is_public`, `meta`). Prose under the front-matter
+  documents the example and any per-version differences.
+- One file per version, named `<stem>-v<N>.<suffix>` where stem and
+  suffix come from the `file` field — so `file = "connectivity.sh.j2"`
+  matches `connectivity-v1.sh.j2`, `connectivity-v2.sh.j2`, ....
+
+Versions are **discovered automatically** by scanning the family
+directory; authors never list them explicitly. Adding a new version
+is purely "drop a new `-v<N>.<ext>` file and rebuild."
+
+[`MANIFEST.md`](MANIFEST.md) at the repo root is the human-readable
+roster of every preset, also generated by `tools/build.py`.
+
+## Preset naming
+
+| Form                              | Resolves to                                | Use when             |
+|-----------------------------------|--------------------------------------------|----------------------|
+| `s3_connectivity_v1`              | version 1 of the `s3/connectivity` family  | pinning to an exact version |
+| `s3_connectivity` (alias)         | latest version of that family              | tracking the latest  |
+
+Seller data that pins to a versioned name stays byte-identical across
+`pip upgrade`s. Data that uses the alias tracks the newest version
+automatically.
+
+## Versioning discipline
+
+- Example files are **append-only**. `connectivity-v1.py.j2` is
+  frozen forever; fixes ship as `connectivity-v2.py.j2` dropped into
+  the same directory.
+- The version-less alias always points at the highest-`v` file in the
+  family. Landing a new version shifts the alias automatically the
+  next time `python tools/build.py` runs.
+- `preset_name` is globally unique across the whole tree — declaring
+  the same `preset_name` in two READMEs is a build error.
+- Package version bumps are additive (new version or new family →
+  minor bump; never mutate existing `_vN` → no breaking release).
+  Bump major only to remove a `_vN` (should be vanishingly rare).
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full walkthrough: how
+to add a new family, how to publish a new version, front-matter
+reference, filename conventions, and the pre-submission checklist.
+
+In one line: drop your file at
+`src/unitysvc_data/examples/<gateway>/<family>/<stem>-v<N>.<ext>[.j2]`,
+write the family's `README.md`, run `python tools/build.py`, open the PR.
+
+## Development
+
+```bash
+uv pip install -e '.[test]'
+pytest -q                      # runs tests + manifest-freshness check
+python tools/build.py          # regenerate manifest + roster
+python tools/build.py --check  # CI mode: non-zero exit if stale
+```
+
+CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs
+`tools/build.py --check`, `ruff`, `pytest` on Python 3.11 and 3.12,
+then builds a wheel and verifies it includes every example file and
+the manifest.
