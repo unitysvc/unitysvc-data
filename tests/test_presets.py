@@ -135,7 +135,7 @@ def test_doc_preset_sentinel_with_overrides():
     )
     assert record["description"] == "Custom desc"
     assert record["is_public"] is False
-    assert record["category"] == "usage_example"
+    assert record["category"] == "code_example"
 
 
 def test_doc_preset_deep_merges_meta():

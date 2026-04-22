@@ -35,7 +35,7 @@
       "version": 1
     },
     "s3_code_example_v1": {
-      "category": "usage_example",
+      "category": "code_example",
       "description": "Python example: list objects in an S3 bucket via boto3",
       "example_file": "s3/code-example/code-example-v1.py.j2",
       "is_active": true,
@@ -61,7 +61,7 @@
       "version": 1
     },
     "s3_description_v1": {
-      "category": "description",
+      "category": "getting_started",
       "description": "Customer-facing overview of the S3 gateway service",
       "example_file": "s3/description/description-v1.md",
       "is_active": true,

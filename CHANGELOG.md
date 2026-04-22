@@ -11,6 +11,25 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.2] — align preset categories with `DocumentCategoryEnum`
+
+### Fixed
+
+- `s3_code_example_v1.category` — `usage_example` → `code_example`
+  (matches `unitysvc_core.models.base.DocumentCategoryEnum`; the old
+  value was not a valid enum member and would have been rejected by
+  the backend schema validator).
+- `s3_description_v1.category` — `description` → `getting_started`
+  (same reason; `getting_started` is how the upstream template repo
+  catalogued the S3 overview markdown).
+
+### Note on append-only discipline
+
+v1 preset metadata is normally append-only — this release bends that
+rule because v1 as published was unusable (the categories were
+invalid). If you already reference these presets with overrides,
+review that nothing assumed the old category string.
+
 ## [0.1.1] — Python 3.11 import fix
 
 ### Fixed

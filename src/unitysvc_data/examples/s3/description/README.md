@@ -1,6 +1,6 @@
 +++
 preset_name = "s3_description"
-category = "description"
+category = "getting_started"
 mime_type = "markdown"
 file = "description.md"
 description = "Customer-facing overview of the S3 gateway service"

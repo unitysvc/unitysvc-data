@@ -1,6 +1,6 @@
 +++
 preset_name = "s3_code_example"
-category = "usage_example"
+category = "code_example"
 mime_type = "python"
 file = "code-example.py.j2"
 description = "Python example: list objects in an S3 bucket via boto3"
