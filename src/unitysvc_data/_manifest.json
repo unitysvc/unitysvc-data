@@ -40,7 +40,12 @@
       "example_file": "s3/code-example/code-example-v1.py.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "output_contains": "connectivity ok",
+        "requirements": [
+          "boto3"
+        ]
+      },
       "mime_type": "python",
       "preset_name": "s3_code_example",
       "source_readme": "s3/code-example/README.md",
@@ -53,7 +58,10 @@
       "is_active": true,
       "is_public": false,
       "meta": {
-        "output_contains": "connectivity ok"
+        "output_contains": "connectivity ok",
+        "requirements": [
+          "boto3"
+        ]
       },
       "mime_type": "python",
       "preset_name": "s3_connectivity",

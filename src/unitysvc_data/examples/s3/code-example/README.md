@@ -6,6 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: list objects in an S3 bucket via boto3"
 is_active = true
 is_public = true
+meta = { output_contains = "connectivity ok", requirements = ["boto3"] }
 +++
 
 # s3 / code-example — list objects via boto3
