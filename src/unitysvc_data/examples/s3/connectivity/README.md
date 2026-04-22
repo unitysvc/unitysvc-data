@@ -6,7 +6,7 @@ file = "connectivity.py.j2"
 description = "Verify S3 endpoint accepts the configured credentials"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok" }
+meta = { output_contains = "connectivity ok", requirements = ["boto3"] }
 +++
 
 # s3 / connectivity — S3 credential smoke test

@@ -11,6 +11,31 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.3] — absorb common meta overrides into the S3 preset defaults
+
+### Changed
+
+- `s3_connectivity_v1.meta` — added `requirements = ["boto3"]`. The
+  script requires boto3 to run, so every listing that embedded this
+  preset was repeating the same override.
+- `s3_code_example_v1.meta` — now defaults to
+  `{ output_contains = "connectivity ok", requirements = ["boto3"] }`.
+  Same reasoning: the bundled example prints `connectivity ok` on
+  success and requires boto3.
+
+Seller listings that used these presets and had been supplying those
+keys as `$with` overrides can drop the overrides entirely now —
+`{"$doc_preset": "s3_connectivity"}` / `{"$doc_preset": "s3_code_example"}`
+produce the same fully-populated record without any boilerplate.
+
+### Append-only caveat
+
+This release mutates published v1 metadata — normally append-only.
+The change is purely additive (new keys alongside the existing
+`output_contains`), so any listing that was already setting
+`requirements` explicitly continues to work via the flat-form
+override's deep-merge of `meta`.
+
 ## [0.1.2] — align preset categories with `DocumentCategoryEnum`
 
 ### Fixed

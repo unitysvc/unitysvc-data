@@ -116,7 +116,7 @@ def test_doc_preset_sentinel_versioned():
     record = doc_preset({"$preset": "s3_connectivity_v1"})
     assert record["category"] == "connectivity_test"
     assert record["mime_type"] == "python"
-    assert record["meta"] == {"output_contains": "connectivity ok"}
+    assert record["meta"] == {"output_contains": "connectivity ok", "requirements": ["boto3"]}
     assert Path(record["file_path"]).is_file()
 
 
