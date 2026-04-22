@@ -36,6 +36,8 @@ from importlib.resources import files as _files
 from pathlib import Path
 from typing import Any
 
+from ._registry import preset
+
 # Resolved once at import time. Duplicated with __init__ rather than
 # imported to avoid a circular import during package load. Use
 # ``__package__`` (the parent package, "unitysvc_data") rather than
@@ -177,6 +179,7 @@ def _lookup(name: str, pool: dict[str, Any], what: str) -> Any:
 # --- Public API ------------------------------------------------------------
 
 
+@preset
 def doc_preset(source: Any, **overrides: Any) -> dict[str, Any]:
     """Return a fully-populated document record for the named preset.
 
@@ -205,6 +208,7 @@ def doc_preset(source: Any, **overrides: Any) -> dict[str, Any]:
     return factory(**(sentinel_overrides or overrides))
 
 
+@preset
 def file_preset(source: Any) -> str:
     """Return the raw UTF-8 content of the preset's bundled file.
 

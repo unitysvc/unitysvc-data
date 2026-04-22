@@ -90,6 +90,11 @@ def list_examples() -> list[str]:
 
 # Imported last so presets.py can compute its own _EXAMPLES_ROOT without
 # reaching back into this module while __init__ is still loading.
+# The ``from .presets import ...`` line also runs the ``@preset``
+# decorators that populate :data:`PRESET_FNS` — so downstream consumers
+# (notably ``unitysvc_core.load_data_file``) can enumerate every
+# decorated preset without knowing their names ahead of time.
+from ._registry import PRESET_FNS, preset  # noqa: E402  (placement is deliberate)
 from .presets import (  # noqa: E402  (placement is deliberate)
     ALIASES,
     MANIFEST,
@@ -112,6 +117,10 @@ __all__ = [
     "MANIFEST",
     "OVERRIDABLE",
     "register_jinja_globals",
+    # Decorator-driven registry — downstream tools enumerate these to
+    # discover every preset type without hard-coding function names.
+    "preset",
+    "PRESET_FNS",
     # Low-level path-based API.
     "example_path",
     "read_example",

@@ -11,6 +11,30 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.4] — `@preset` decorator for dynamic discovery
+
+### Added
+
+- ``@preset`` decorator (imported from ``unitysvc_data``) that
+  registers the decorated function under its ``__name__`` in a
+  module-level ``PRESET_FNS`` mapping. The wrapper built by the
+  decorator also unpacks the seller-facing flat sentinel form
+  ``{"name": "<preset>", <override>: ...}`` into ``fn(name, **overrides)``
+  before calling, so individual preset functions no longer need to
+  handle that shape.
+- ``PRESET_FNS`` dict exported from the top-level ``unitysvc_data``
+  package. Downstream tools (notably ``unitysvc-core``'s
+  ``load_data_file``) enumerate this registry to discover every
+  sentinel key at runtime — adding a new preset type in future
+  versions is a one-line decorator addition in this package, no
+  change needed in any consumer.
+
+### Changed
+
+- ``doc_preset`` and ``file_preset`` are now decorated with
+  ``@preset``. Their public signatures are unchanged, so programmatic
+  callers are unaffected.
+
 ## [0.1.3] — absorb common meta overrides into the S3 preset defaults
 
 ### Changed
