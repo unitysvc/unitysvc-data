@@ -308,3 +308,83 @@ def test_manifest_is_up_to_date():
         f"stdout:\n{result.stdout}\n"
         f"stderr:\n{result.stderr}"
     )
+
+
+# ---------------------------------------------------------------------------
+# @preset decorator + PRESET_FNS registry
+# ---------------------------------------------------------------------------
+
+
+def test_preset_fns_registry_contains_doc_and_file():
+    from unitysvc_data import PRESET_FNS
+
+    assert "doc_preset" in PRESET_FNS
+    assert "file_preset" in PRESET_FNS
+    # Each registered entry is callable.
+    assert callable(PRESET_FNS["doc_preset"])
+    assert callable(PRESET_FNS["file_preset"])
+
+
+def test_preset_decorator_unpacks_flat_form():
+    """The wrapper auto-unpacks {"name": "<x>", ...} into fn("<x>", **rest)."""
+    from unitysvc_data import PRESET_FNS
+
+    # Flat form via the registered wrapper should equal direct call.
+    via_registry = PRESET_FNS["doc_preset"](
+        {"name": "s3_connectivity_v1", "is_public": True}
+    )
+    via_direct = doc_preset("s3_connectivity_v1", is_public=True)
+    assert via_registry == via_direct
+
+
+def test_preset_decorator_forwards_bare_string():
+    from unitysvc_data import PRESET_FNS
+
+    via_registry = PRESET_FNS["doc_preset"]("s3_connectivity_v1")
+    via_direct = doc_preset("s3_connectivity_v1")
+    assert via_registry == via_direct
+
+
+def test_preset_decorator_preserves_original_function_signature():
+    """@preset returns the undecorated function so programmatic callers
+    keep the original signature (`**overrides`, etc.)."""
+    import inspect
+
+    sig = inspect.signature(doc_preset)
+    # If @preset had replaced doc_preset with the single-arg wrapper,
+    # we would see just `source` here.
+    assert "overrides" in sig.parameters or any(
+        p.kind is inspect.Parameter.VAR_KEYWORD for p in sig.parameters.values()
+    )
+
+
+def test_preset_decorator_does_not_duplicate_across_reimports():
+    """Re-importing the module must not double-register any preset."""
+    import importlib
+
+    import unitysvc_data._registry as reg
+
+    before = dict(reg.PRESET_FNS)
+    importlib.reload(reg)
+    # After reload, each preset appears at most once in the new registry.
+    # (We can't easily re-decorate here without re-running presets.py, but
+    # we can at least confirm the registry isn't "leaking" entries.)
+    assert set(reg.PRESET_FNS) <= set(before) | {"doc_preset", "file_preset"}
+
+
+def test_preset_decorator_register_custom_function():
+    """Third-party code can register a new sentinel type with @preset."""
+    from unitysvc_data._registry import PRESET_FNS, preset
+
+    try:
+        @preset
+        def _custom_preset(source, **kwargs):
+            return {"source": source, "kwargs": kwargs}
+
+        assert "_custom_preset" in PRESET_FNS
+        assert PRESET_FNS["_custom_preset"]({"name": "x", "flag": True}) == {
+            "source": "x",
+            "kwargs": {"flag": True},
+        }
+    finally:
+        PRESET_FNS.pop("_custom_preset", None)
