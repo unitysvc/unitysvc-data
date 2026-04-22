@@ -37,8 +37,12 @@ from pathlib import Path
 from typing import Any
 
 # Resolved once at import time. Duplicated with __init__ rather than
-# imported to avoid a circular import during package load.
-_EXAMPLES_ROOT = _files(__name__).joinpath("examples")
+# imported to avoid a circular import during package load. Use
+# ``__package__`` (the parent package, "unitysvc_data") rather than
+# ``__name__`` (the module, "unitysvc_data.presets") — Python 3.11's
+# ``importlib.resources.files`` rejects module anchors; 3.12+ accepts
+# both, but the package anchor is portable.
+_EXAMPLES_ROOT = _files(__package__).joinpath("examples")
 
 __all__ = [
     "PRESETS",
@@ -58,7 +62,7 @@ OVERRIDABLE: frozenset[str] = frozenset({"description", "is_public", "is_active"
 
 
 def _load_manifest() -> dict[str, Any]:
-    manifest_bytes = _files(__name__).joinpath("_manifest.json").read_bytes()
+    manifest_bytes = _files(__package__).joinpath("_manifest.json").read_bytes()
     return json.loads(manifest_bytes)
 
 

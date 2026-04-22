@@ -11,6 +11,20 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.1] — Python 3.11 import fix
+
+### Fixed
+
+- Package failed to import on Python 3.11: `presets.py` used
+  `importlib.resources.files(__name__)` with the module-level
+  `__name__` (`"unitysvc_data.presets"`), which 3.11's
+  `importlib.resources` rejects as "not a package." Switched both
+  `_EXAMPLES_ROOT` and `_load_manifest` to `__package__`
+  (`"unitysvc_data"`), which works uniformly on 3.11 and 3.12.
+
+v0.1.0 remains on PyPI but is effectively Python-3.12-only. Users
+on 3.11 should pin to `>=0.1.1`.
+
 ## [0.1.0] — initial release
 
 Six preset families, one version each. Manifest schema version `1`.
