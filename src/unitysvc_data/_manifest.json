@@ -5,7 +5,7 @@
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
     "s3_description": "s3_description_v1",
-    "smtp_connectivity": "smtp_connectivity_v1"
+    "smtp_connectivity": "smtp_connectivity_v2"
   },
   "presets": {
     "api_connectivity_v1": {
@@ -93,6 +93,20 @@
       "preset_name": "smtp_connectivity",
       "source_readme": "smtp/connectivity/README.md",
       "version": 1
+    },
+    "smtp_connectivity_v2": {
+      "category": "connectivity_test",
+      "description": "Verify SMTP server returns a 220 greeting on connect",
+      "example_file": "smtp/connectivity/connectivity-v2.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "smtp_connectivity",
+      "source_readme": "smtp/connectivity/README.md",
+      "version": 2
     }
   },
   "version": "1"
