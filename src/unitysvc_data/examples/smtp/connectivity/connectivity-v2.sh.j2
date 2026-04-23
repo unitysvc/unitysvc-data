@@ -1,0 +1,45 @@
+#!/bin/bash
+# Connectivity test for SMTP services. A healthy mail server sends a
+# "220 ... ESMTP ..." greeting on connect; anything else (no response,
+# timeout, or other greeting code) is treated as failure.
+#
+# Env var layout the harness provides:
+#   local mode   — $HOST, $PORT, $TLS  (from upstream_access_config)
+#   online mode  — $SERVICE_BASE_URL   (smtp://host:port or smtps://host:port)
+# We branch on whichever is present so the same script works in both.
+set -o pipefail
+
+USE_TLS=false
+
+if [ -n "${HOST:-}" ]; then
+    PORT="${PORT:-587}"
+    [ "${TLS:-False}" = "True" ] && USE_TLS=true
+else
+    URL="${SERVICE_BASE_URL:?need HOST or SERVICE_BASE_URL}"
+    if [[ "$URL" == smtps://* ]]; then
+        USE_TLS=true
+        stripped="${URL#smtps://}"
+    else
+        stripped="${URL#smtp://}"
+    fi
+    HOST="${stripped%%:*}"
+    PORT="${stripped#*:}"
+    PORT="${PORT%%/*}"
+    PORT="${PORT:-587}"
+fi
+
+# Send QUIT so the server closes cleanly instead of timing out on us.
+# Use openssl s_client for implicit TLS (SMTPS); nc for plain SMTP.
+if [ "$USE_TLS" = "true" ]; then
+    greeting=$( (echo "QUIT"; sleep 1) | openssl s_client -connect "$HOST:$PORT" -quiet 2>/dev/null | head -1 )
+else
+    greeting=$( (echo "QUIT"; sleep 1) | nc -w 5 "$HOST" "$PORT" 2>/dev/null | head -1 )
+fi
+
+if [[ "$greeting" == "220 "* ]]; then
+    echo "connectivity ok ($greeting)"
+    exit 0
+fi
+
+echo "connectivity failed: expected '220 ...' greeting from ${HOST}:${PORT}, got: ${greeting:-<no response>}" >&2
+exit 1

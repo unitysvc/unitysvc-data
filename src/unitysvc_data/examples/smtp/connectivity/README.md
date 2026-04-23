@@ -45,6 +45,18 @@ The script picks the mode by looking at which env var is set — no
 
 ## Versions
 
+### v2 — TLS support
+
+- Reads `$TLS` env var (local mode) and detects `smtps://` scheme (online
+  mode) to select the transport.
+- When TLS is required, uses `openssl s_client -connect` instead of `nc`
+  so that implicit-TLS (SMTPS) upstreams complete the handshake before
+  the server sends the `220` banner.
+- When TLS is not required, behaviour is identical to v1.
+- Use v2 for any upstream with `tls: true` in `upstream_access_config`
+  or a `smtps://` gateway URL.
+
 ### v1 — initial release
 
 - Uses `nc -w 5`; sends `QUIT`; accepts any `220 ...` banner.
+- Plain SMTP only — does not handle implicit TLS (SMTPS).
