@@ -26,7 +26,7 @@ python tools/build.py --check
 
 ## Architecture
 
-This is a **data-first Python package** that ships versioned example files and preset factories for UnitySVC integrations. The primary consumer is `unitysvc-sellers`, which uses this package to expand `$preset` sentinels in `listing.json` into full document records at upload time.
+This is a **data-first Python package** that ships versioned example files and preset factories for UnitySVC integrations. The primary consumer is `unitysvc-sellers`, which uses this package to expand `$doc_preset` and `$file_preset` sentinels in `listing.json` into full document records at upload time.
 
 ### Core flow
 
@@ -52,9 +52,13 @@ This is a **data-first Python package** that ships versioned example files and p
 
 ### Two calling conventions
 
-Both are handled transparently by `doc_preset` and `file_preset`:
-1. **Bare string**: `"s3_connectivity"` or `"s3_connectivity_v1"`
-2. **JSON sentinel**: `{"$preset": "s3_connectivity", "$with": {"description": "custom"}}`
+In `listing.json` (seller-facing):
+1. **Bare string value**: `{"$doc_preset": "s3_connectivity"}` or `{"$doc_preset": "s3_connectivity_v1"}`
+2. **With overrides**: `{"$doc_preset": {"name": "s3_connectivity", "description": "custom"}}`
+
+In Python (internal, used by `doc_preset()` / `file_preset()`):
+1. **Bare string**: `doc_preset("s3_connectivity")`
+2. **Sentinel dict**: `doc_preset({"$preset": "s3_connectivity", "$with": {"description": "custom"}})`
 
 ### Adding a new preset
 
