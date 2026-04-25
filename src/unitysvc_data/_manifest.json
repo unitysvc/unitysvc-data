@@ -1,6 +1,9 @@
 {
   "aliases": {
     "api_connectivity": "api_connectivity_v1",
+    "llm_code_example_javascript": "llm_code_example_javascript_v1",
+    "llm_code_example_python": "llm_code_example_python_v1",
+    "llm_code_example_shell": "llm_code_example_shell_v1",
     "llm_request_template": "llm_request_template_v1",
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
@@ -20,6 +23,46 @@
       "mime_type": "bash",
       "preset_name": "api_connectivity",
       "source_readme": "api/connectivity/README.md",
+      "version": 1
+    },
+    "llm_code_example_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: send a chat completion request to an OpenAI-compatible LLM",
+      "example_file": "llm/code-example-javascript/code-example-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_javascript",
+      "source_readme": "llm/code-example-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_python_v1": {
+      "category": "code_example",
+      "description": "Python example: send a chat completion request to an OpenAI-compatible LLM",
+      "example_file": "llm/code-example-python/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_python",
+      "source_readme": "llm/code-example-python/README.md",
+      "version": 1
+    },
+    "llm_code_example_shell_v1": {
+      "category": "code_example",
+      "description": "Shell example: send a chat completion request to an OpenAI-compatible LLM via curl",
+      "example_file": "llm/code-example-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_shell",
+      "source_readme": "llm/code-example-shell/README.md",
       "version": 1
     },
     "llm_request_template_v1": {

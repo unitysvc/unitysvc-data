@@ -1,0 +1,23 @@
+#!/bin/bash
+# Chat completion request against an OpenAI-compatible LLM endpoint.
+#
+# Environment variables:
+#   SERVICE_BASE_URL — chat-completion endpoint (gateway or upstream)
+#   UNITYSVC_API_KEY — bearer token (customer key in gateway mode,
+#                      upstream key in local-testing mode)
+#   MODEL            — optional; defaults to the rendered offering name
+set -o pipefail
+
+curl -sS "${SERVICE_BASE_URL}" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d "$(cat <<EOF
+{
+  "model": "${MODEL:-{{ offering.name }}}",
+  "messages": [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Say this is a test"}
+  ]
+}
+EOF
+)"
