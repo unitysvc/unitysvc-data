@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_guard_python"
 category = "code_example"
 mime_type = "python"
-file = "code-example-guard.py.j2"
+file = "code-example-guard.py"
 description = "Python example: probe a Llama-Guard-style safety classifier with a borderline prompt"
 is_active = true
 is_public = true
@@ -17,11 +17,14 @@ HF safety models, etc.). Sends a deliberately unsafe prompt and
 prints the model's response so the caller can verify the classifier
 flags it.
 
-## Environment variables
+## Environment variables (all required)
 
 - `SERVICE_BASE_URL` — chat-completion endpoint.
 - `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — optional; defaults to `offering.name`.
+- `MODEL` — interface-specific model identifier. The script does not
+  fall back to `offering.name` because the model id is a routing
+  key and can differ between the gateway and the upstream — the
+  caller must supply the correct one for the access interface.
 
 ## Conventions
 
@@ -36,4 +39,6 @@ flags it.
 ### v1 — initial release
 
 - Chat-completion POST with a single jailbreak-shaped user message.
-- Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env.
+- Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env;
+  missing any of the three fails fast with `KeyError`.
+- Plain Python (no `.j2` suffix) — no Jinja2 expansion.

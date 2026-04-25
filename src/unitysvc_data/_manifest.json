@@ -115,7 +115,7 @@
     "llm_code_example_guard_python_v1": {
       "category": "code_example",
       "description": "Python example: probe a Llama-Guard-style safety classifier with a borderline prompt",
-      "example_file": "llm/code-example-guard-python/code-example-guard-v1.py.j2",
+      "example_file": "llm/code-example-guard-python/code-example-guard-v1.py",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -131,7 +131,7 @@
     "llm_code_example_image_python_v1": {
       "category": "code_example",
       "description": "Python example: generate an image from a text prompt via an OpenAI-compatible images endpoint",
-      "example_file": "llm/code-example-image-python/code-example-image-v1.py.j2",
+      "example_file": "llm/code-example-image-python/code-example-image-v1.py",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -207,7 +207,7 @@
     "llm_code_example_rerank_python_v1": {
       "category": "code_example",
       "description": "Python example: rerank a candidate document set against a query",
-      "example_file": "llm/code-example-rerank-python/code-example-rerank-v1.py.j2",
+      "example_file": "llm/code-example-rerank-python/code-example-rerank-v1.py",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -267,7 +267,7 @@
     "llm_code_example_transcription_python_v1": {
       "category": "code_example",
       "description": "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint",
-      "example_file": "llm/code-example-transcription-python/code-example-transcription-v1.py.j2",
+      "example_file": "llm/code-example-transcription-python/code-example-transcription-v1.py",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -283,7 +283,7 @@
     "llm_code_example_tts_python_v1": {
       "category": "code_example",
       "description": "Python example: synthesize speech from text using an OpenAI-compatible audio/speech endpoint",
-      "example_file": "llm/code-example-tts-python/code-example-tts-v1.py.j2",
+      "example_file": "llm/code-example-tts-python/code-example-tts-v1.py",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -299,7 +299,7 @@
     "llm_code_example_vision_python_v1": {
       "category": "code_example",
       "description": "Python example: ask a vision-capable LLM about a local image",
-      "example_file": "llm/code-example-vision-python/code-example-vision-v1.py.j2",
+      "example_file": "llm/code-example-vision-python/code-example-vision-v1.py",
       "is_active": true,
       "is_public": true,
       "meta": {
