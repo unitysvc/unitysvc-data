@@ -1,0 +1,22 @@
+const { OpenAI } = require("openai");
+
+const client = new OpenAI({
+  baseURL: process.env.SERVICE_BASE_URL,
+  apiKey: process.env.UNITYSVC_API_KEY,
+});
+
+async function main() {
+  const response = await client.chat.completions.create({
+    model: process.env.MODEL,
+    messages: [
+      { role: "system", content: "You are a helpful assistant." },
+      { role: "user", content: "Say this is a test" },
+    ],
+  });
+  console.log(response.choices[0].message.content);
+}
+
+main().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});
