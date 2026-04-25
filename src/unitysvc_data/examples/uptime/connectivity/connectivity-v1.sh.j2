@@ -1,0 +1,36 @@
+#!/bin/bash
+# Connectivity test for an uptime-monitoring bridge.
+#
+# Triggers a single uptime check via the bridge endpoint and verifies
+# the response is a JSON object with a `status` field.
+#
+# In gateway mode the bridge already knows the check parameters from
+# the enrollment, so the body is empty (`{}`). In local-testing mode
+# the harness injects the parameters from
+# `listing.service_options.ops_testing_parameters`.
+#
+# Environment variables:
+#   SERVICE_BASE_URL — bridge endpoint (gateway URL or upstream URL)
+#   UNITYSVC_API_KEY — UnitySVC bearer token
+set -e
+set -o pipefail
+
+{% if local_testing -%}
+body='{{ listing.service_options.ops_testing_parameters | tojson }}'
+{% else -%}
+body='{}'
+{% endif -%}
+response=$(curl -sS --max-time 10 -X POST "${SERVICE_BASE_URL}" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d "${body}")
+
+echo "$response"
+
+if echo "$response" | grep -q '"status"'; then
+  echo "connectivity ok"
+  exit 0
+fi
+
+echo "connectivity failed" >&2
+exit 1
