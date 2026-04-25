@@ -2,6 +2,10 @@
   "aliases": {
     "api_connectivity": "api_connectivity_v1",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
+    "llm_code_example_embed_javascript": "llm_code_example_embed_javascript_v1",
+    "llm_code_example_embed_python": "llm_code_example_embed_python_v1",
+    "llm_code_example_embed_shell": "llm_code_example_embed_shell_v1",
+    "llm_code_example_fc_python": "llm_code_example_fc_python_v1",
     "llm_code_example_javascript": "llm_code_example_javascript_v1",
     "llm_code_example_openai": "llm_code_example_openai_v1",
     "llm_code_example_openai_javascript": "llm_code_example_openai_javascript_v1",
@@ -44,6 +48,62 @@
       "mime_type": "python",
       "preset_name": "llm_code_example_anthropic",
       "source_readme": "llm/code-example-anthropic/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: request OpenAI-compatible embeddings via fetch",
+      "example_file": "llm/code-example-embed-javascript/code-example-embed-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_embed_javascript",
+      "source_readme": "llm/code-example-embed-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_python_v1": {
+      "category": "code_example",
+      "description": "Python example: request OpenAI-compatible embeddings for a list of inputs",
+      "example_file": "llm/code-example-embed-python/code-example-embed-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_embed_python",
+      "source_readme": "llm/code-example-embed-python/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_shell_v1": {
+      "category": "code_example",
+      "description": "Shell example: request OpenAI-compatible embeddings via curl",
+      "example_file": "llm/code-example-embed-shell/code-example-embed-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_embed_shell",
+      "source_readme": "llm/code-example-embed-shell/README.md",
+      "version": 1
+    },
+    "llm_code_example_fc_python_v1": {
+      "category": "code_example",
+      "description": "Python example: chat completion with function/tool calling on an OpenAI-compatible LLM",
+      "example_file": "llm/code-example-fc-python/code-example-fc-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_fc_python",
+      "source_readme": "llm/code-example-fc-python/README.md",
       "version": 1
     },
     "llm_code_example_javascript_v1": {
