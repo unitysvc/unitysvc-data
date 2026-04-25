@@ -8,25 +8,21 @@ MODEL = os.environ["MODEL"]
 VOICE = os.environ.get("VOICE", "alloy")
 OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "tts_output.wav")
 
-headers = {
-    "Authorization": f"Bearer {UNITYSVC_API_KEY}",
-    "Content-Type": "application/json",
-}
-
-payload = {
-    "model": MODEL,
-    "input": "I love building and shipping new features for our users!",
-    "voice": VOICE,
-    "response_format": "wav",
-}
-
-response = requests.post(SERVICE_BASE_URL, headers=headers, json=payload)
-
-if response.status_code != 200:
-    print(f"Error {response.status_code}: {response.text}")
-    raise SystemExit(1)
+response = requests.post(
+    SERVICE_BASE_URL,
+    headers={
+        "Authorization": f"Bearer {UNITYSVC_API_KEY}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "model": MODEL,
+        "input": "I love building and shipping new features for our users!",
+        "voice": VOICE,
+        "response_format": "wav",
+    },
+)
+response.raise_for_status()
 
 with open(OUTPUT_FILE, "wb") as f:
     f.write(response.content)
-
 print(f"Saved {OUTPUT_FILE}")
