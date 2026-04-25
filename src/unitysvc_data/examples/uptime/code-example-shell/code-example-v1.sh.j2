@@ -1,18 +1,15 @@
 #!/bin/bash
-# Trigger an uptime check via the bridge endpoint.
-#
-# Environment variables:
-#   SERVICE_BASE_URL — bridge endpoint
-#   UNITYSVC_API_KEY — UnitySVC bearer token
-set -e
-set -o pipefail
+set -e -o pipefail
+
+: "${SERVICE_BASE_URL:?SERVICE_BASE_URL is not set}"
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
 
 {% if local_testing -%}
 body='{{ listing.service_options.ops_testing_parameters | tojson }}'
 {% else -%}
 body='{}'
 {% endif -%}
-curl -sS -X POST "${SERVICE_BASE_URL}" \
+curl --fail-with-body -sS -X POST "${SERVICE_BASE_URL}" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
   -H "Content-Type: application/json" \
   -d "${body}"
