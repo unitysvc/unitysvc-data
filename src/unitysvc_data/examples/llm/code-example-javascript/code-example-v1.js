@@ -1,10 +1,4 @@
 const { UNITYSVC_API_KEY, SERVICE_BASE_URL, MODEL } = process.env;
-for (const name of ["UNITYSVC_API_KEY", "SERVICE_BASE_URL", "MODEL"]) {
-  if (!process.env[name]) {
-    console.error(`${name} is not set`);
-    process.exit(1);
-  }
-}
 
 async function main() {
   const response = await fetch(SERVICE_BASE_URL, {
@@ -21,18 +15,14 @@ async function main() {
       ],
     }),
   });
-
   if (!response.ok) {
-    const text = await response.text();
-    console.error(`Error ${response.status}: ${text}`);
-    process.exit(1);
+    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
   }
-
   const data = await response.json();
   console.log(data.choices[0].message.content);
 }
 
 main().catch((err) => {
-  console.error("API request failed:", err);
+  console.error(err.message);
   process.exit(1);
 });
