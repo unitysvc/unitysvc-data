@@ -6,26 +6,18 @@ UNITYSVC_API_KEY = os.environ["UNITYSVC_API_KEY"]
 SERVICE_BASE_URL = os.environ["SERVICE_BASE_URL"]
 MODEL = os.environ["MODEL"]
 
-headers = {
-    "Authorization": f"Bearer {UNITYSVC_API_KEY}",
-    "Content-Type": "application/json",
-}
+response = requests.post(
+    SERVICE_BASE_URL,
+    headers={
+        "Authorization": f"Bearer {UNITYSVC_API_KEY}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "model": MODEL,
+        "input": ["Embed this sentence.", "As well as this one."],
+    },
+)
+response.raise_for_status()
 
-payload = {
-    "model": MODEL,
-    "input": [
-        "Embed this sentence.",
-        "As well as this one.",
-    ],
-}
-
-response = requests.post(SERVICE_BASE_URL, headers=headers, json=payload)
-
-if response.status_code != 200:
-    print(f"Error {response.status_code}: {response.text}")
-    raise SystemExit(1)
-
-data = response.json()
-for item in data.get("data", []):
-    vec = item.get("embedding", [])
-    print(f"index={item.get('index')} dim={len(vec)} first3={vec[:3]}")
+embeddings = [item["embedding"] for item in response.json()["data"]]
+print(f"got {len(embeddings)} embeddings of dimension {len(embeddings[0])}")
