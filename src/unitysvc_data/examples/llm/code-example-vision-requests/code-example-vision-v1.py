@@ -1,4 +1,3 @@
-import base64
 import os
 
 import requests
@@ -6,11 +5,11 @@ import requests
 UNITYSVC_API_KEY = os.environ["UNITYSVC_API_KEY"]
 SERVICE_BASE_URL = os.environ["SERVICE_BASE_URL"]
 MODEL = os.environ["MODEL"]
-IMAGE_FILE = os.environ.get("IMAGE_FILE", "image.jpg")
+IMAGE_URL = os.environ.get(
+    "IMAGE_URL",
+    "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg",
+)
 PROMPT = os.environ.get("PROMPT", "Describe this image.")
-
-with open(IMAGE_FILE, "rb") as f:
-    image_b64 = base64.b64encode(f.read()).decode("ascii")
 
 response = requests.post(
     SERVICE_BASE_URL,
@@ -25,10 +24,7 @@ response = requests.post(
                 "role": "user",
                 "content": [
                     {"type": "text", "text": PROMPT},
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{image_b64}"},
-                    },
+                    {"type": "image_url", "image_url": {"url": IMAGE_URL}},
                 ],
             }
         ],

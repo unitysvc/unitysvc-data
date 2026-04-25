@@ -110,7 +110,7 @@
     },
     "llm_code_example_vision_requests_v1": {
       "category": "code_example",
-      "description": "Python example: ask a vision-capable LLM about a local image",
+      "description": "Python example: ask a vision-capable LLM about a publicly-hosted image",
       "example_file": "llm/code-example-vision-requests/code-example-vision-v1.py",
       "is_active": true,
       "is_public": true,
