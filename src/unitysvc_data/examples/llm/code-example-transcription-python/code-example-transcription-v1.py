@@ -7,17 +7,14 @@ SERVICE_BASE_URL = os.environ["SERVICE_BASE_URL"]
 MODEL = os.environ["MODEL"]
 AUDIO_FILE = os.environ.get("AUDIO_FILE", "audio.mp3")
 
-headers = {"Authorization": f"Bearer {UNITYSVC_API_KEY}"}
-
 with open(AUDIO_FILE, "rb") as f:
-    files = {
-        "file": (os.path.basename(AUDIO_FILE), f),
-        "model": (None, MODEL),
-    }
-    response = requests.post(SERVICE_BASE_URL, headers=headers, files=files)
-
-if response.status_code != 200:
-    print(f"Error {response.status_code}: {response.text}")
-    raise SystemExit(1)
-
-print(response.json().get("text", response.text))
+    response = requests.post(
+        SERVICE_BASE_URL,
+        headers={"Authorization": f"Bearer {UNITYSVC_API_KEY}"},
+        files={
+            "file": (os.path.basename(AUDIO_FILE), f),
+            "model": (None, MODEL),
+        },
+    )
+response.raise_for_status()
+print(response.json()["text"])
