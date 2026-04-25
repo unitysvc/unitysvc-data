@@ -8,7 +8,7 @@ set -e -o pipefail
 curl --fail-with-body -sS "${SERVICE_BASE_URL}" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
-  -d "$(cat <<EOF
+  -d @- <<EOF
 {
   "model": "${MODEL}",
   "messages": [
@@ -17,4 +17,3 @@ curl --fail-with-body -sS "${SERVICE_BASE_URL}" \
   ]
 }
 EOF
-)"
