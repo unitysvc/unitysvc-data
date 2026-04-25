@@ -1,5 +1,5 @@
 +++
-preset_name = "llm_code_example_vision_python"
+preset_name = "llm_code_example_vision_requests"
 category = "code_example"
 mime_type = "python"
 file = "code-example-vision.py"
@@ -9,7 +9,7 @@ is_public = true
 meta = { requirements = ["requests"] }
 +++
 
-# llm / code-example-vision-python — image understanding
+# llm / code-example-vision-requests — image understanding via `requests`
 
 Customer-facing Python example for vision-capable LLMs exposed
 through the OpenAI-compatible chat-completion route. The image is

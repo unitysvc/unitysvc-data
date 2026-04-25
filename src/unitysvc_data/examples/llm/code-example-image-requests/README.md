@@ -1,5 +1,5 @@
 +++
-preset_name = "llm_code_example_image_python"
+preset_name = "llm_code_example_image_requests"
 category = "code_example"
 mime_type = "python"
 file = "code-example-image.py"
@@ -9,7 +9,7 @@ is_public = true
 meta = { requirements = ["requests"] }
 +++
 
-# llm / code-example-image-python — text-to-image
+# llm / code-example-image-requests — text-to-image via `requests`
 
 Customer-facing Python example for OpenAI-compatible
 `/v1/images/generations`-shaped endpoints. Sends a prompt and saves
