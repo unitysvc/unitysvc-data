@@ -1,5 +1,5 @@
 +++
-preset_name = "llm_code_example_embed_python"
+preset_name = "llm_code_example_embed_requests"
 category = "code_example"
 mime_type = "python"
 file = "code-example-embed.py"
@@ -9,7 +9,7 @@ is_public = true
 meta = { requirements = ["requests"] }
 +++
 
-# llm / code-example-embed-python — embeddings via `requests`
+# llm / code-example-embed-requests — embeddings via `requests`
 
 Customer-facing Python example for OpenAI-compatible embedding
 endpoints (`/v1/embeddings`-shaped) routed through the UnitySVC LLM

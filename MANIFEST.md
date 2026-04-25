@@ -11,9 +11,9 @@ Schema version: `1`. Preset families: **18**. Concrete versions: **19**. Aliases
 | `api_connectivity_v1` | `api_connectivity` | v1 | `connectivity_test` | `bash` | no | [`api/connectivity/connectivity-v1.sh.j2`](src/unitysvc_data/examples/api/connectivity/connectivity-v1.sh.j2) | Verify HTTP endpoint is reachable and returns a healthy status |
 | `llm_code_example_anthropic_v1` | `llm_code_example_anthropic` | v1 | `code_example` | `python` | yes | [`llm/code-example-anthropic/code-example-v1.py`](src/unitysvc_data/examples/llm/code-example-anthropic/code-example-v1.py) | Python example: send a message to an Anthropic-API-compatible LLM using the anthropic SDK |
 | `llm_code_example_embed_javascript_v1` | `llm_code_example_embed_javascript` | v1 | `code_example` | `javascript` | yes | [`llm/code-example-embed-javascript/code-example-embed-v1.js`](src/unitysvc_data/examples/llm/code-example-embed-javascript/code-example-embed-v1.js) | JavaScript example: request OpenAI-compatible embeddings via fetch |
-| `llm_code_example_embed_python_v1` | `llm_code_example_embed_python` | v1 | `code_example` | `python` | yes | [`llm/code-example-embed-python/code-example-embed-v1.py`](src/unitysvc_data/examples/llm/code-example-embed-python/code-example-embed-v1.py) | Python example: request OpenAI-compatible embeddings for a list of inputs |
+| `llm_code_example_embed_requests_v1` | `llm_code_example_embed_requests` | v1 | `code_example` | `python` | yes | [`llm/code-example-embed-requests/code-example-embed-v1.py`](src/unitysvc_data/examples/llm/code-example-embed-requests/code-example-embed-v1.py) | Python example: request OpenAI-compatible embeddings for a list of inputs |
 | `llm_code_example_embed_shell_v1` | `llm_code_example_embed_shell` | v1 | `code_example` | `bash` | yes | [`llm/code-example-embed-shell/code-example-embed-v1.sh`](src/unitysvc_data/examples/llm/code-example-embed-shell/code-example-embed-v1.sh) | Shell example: request OpenAI-compatible embeddings via curl |
-| `llm_code_example_fc_python_v1` | `llm_code_example_fc_python` | v1 | `code_example` | `python` | yes | [`llm/code-example-fc-python/code-example-fc-v1.py`](src/unitysvc_data/examples/llm/code-example-fc-python/code-example-fc-v1.py) | Python example: chat completion with function/tool calling on an OpenAI-compatible LLM |
+| `llm_code_example_fc_requests_v1` | `llm_code_example_fc_requests` | v1 | `code_example` | `python` | yes | [`llm/code-example-fc-requests/code-example-fc-v1.py`](src/unitysvc_data/examples/llm/code-example-fc-requests/code-example-fc-v1.py) | Python example: chat completion with function/tool calling on an OpenAI-compatible LLM |
 | `llm_code_example_javascript_v1` | `llm_code_example_javascript` | v1 | `code_example` | `javascript` | yes | [`llm/code-example-javascript/code-example-v1.js`](src/unitysvc_data/examples/llm/code-example-javascript/code-example-v1.js) | JavaScript example: send a chat completion request to an OpenAI-compatible LLM |
 | `llm_code_example_openai_v1` | `llm_code_example_openai` | v1 | `code_example` | `python` | yes | [`llm/code-example-openai/code-example-v1.py`](src/unitysvc_data/examples/llm/code-example-openai/code-example-v1.py) | Python example: send a chat completion request to an OpenAI-compatible LLM using the openai SDK |
 | `llm_code_example_openai_javascript_v1` | `llm_code_example_openai_javascript` | v1 | `code_example` | `javascript` | yes | [`llm/code-example-openai-javascript/code-example-v1.js`](src/unitysvc_data/examples/llm/code-example-openai-javascript/code-example-v1.js) | JavaScript example: send a chat completion request to an OpenAI-compatible LLM using the openai SDK |
@@ -35,9 +35,9 @@ Schema version: `1`. Preset families: **18**. Concrete versions: **19**. Aliases
 | `api_connectivity` | `api_connectivity_v1` |
 | `llm_code_example_anthropic` | `llm_code_example_anthropic_v1` |
 | `llm_code_example_embed_javascript` | `llm_code_example_embed_javascript_v1` |
-| `llm_code_example_embed_python` | `llm_code_example_embed_python_v1` |
+| `llm_code_example_embed_requests` | `llm_code_example_embed_requests_v1` |
 | `llm_code_example_embed_shell` | `llm_code_example_embed_shell_v1` |
-| `llm_code_example_fc_python` | `llm_code_example_fc_python_v1` |
+| `llm_code_example_fc_requests` | `llm_code_example_fc_requests_v1` |
 | `llm_code_example_javascript` | `llm_code_example_javascript_v1` |
 | `llm_code_example_openai` | `llm_code_example_openai_v1` |
 | `llm_code_example_openai_javascript` | `llm_code_example_openai_javascript_v1` |

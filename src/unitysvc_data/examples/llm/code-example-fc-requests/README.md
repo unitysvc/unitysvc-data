@@ -1,5 +1,5 @@
 +++
-preset_name = "llm_code_example_fc_python"
+preset_name = "llm_code_example_fc_requests"
 category = "code_example"
 mime_type = "python"
 file = "code-example-fc.py"
@@ -9,7 +9,7 @@ is_public = true
 meta = { requirements = ["requests"] }
 +++
 
-# llm / code-example-fc-python — chat completion with function calling
+# llm / code-example-fc-requests — chat completion with function calling via `requests`
 
 Customer-facing Python example showing the modern OpenAI-style
 `tools` + `tool_choice` payload (not the deprecated `functions`
