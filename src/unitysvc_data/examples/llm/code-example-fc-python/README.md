@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_fc_python"
 category = "code_example"
 mime_type = "python"
-file = "code-example-fc.py.j2"
+file = "code-example-fc.py"
 description = "Python example: chat completion with function/tool calling on an OpenAI-compatible LLM"
 is_active = true
 is_public = true
@@ -17,11 +17,14 @@ parameter). The script declares a single tool, sends a prompt that
 should trigger it, and dispatches the model's `tool_calls` back to
 the local `echo_message` implementation.
 
-## Environment variables
+## Environment variables (all required)
 
 - `SERVICE_BASE_URL` — chat-completion endpoint.
 - `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — optional override; defaults to `offering.name`.
+- `MODEL` — interface-specific model identifier. The script does not
+  fall back to `offering.name` because the model id is a routing
+  key and can differ between the gateway and the upstream — the
+  caller must supply the correct one for the access interface.
 
 ## What this exercises
 
@@ -46,5 +49,7 @@ parity can still pass.
 ### v1 — initial release
 
 - Modern `tools` / `tool_choice: "auto"` payload.
-- Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env.
+- Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env;
+  missing any of the three fails fast with `KeyError`.
 - Single `echo_message` tool wired to a local function.
+- Plain Python (no `.j2` suffix) — no Jinja2 expansion.
