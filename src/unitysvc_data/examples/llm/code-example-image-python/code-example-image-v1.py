@@ -3,9 +3,9 @@ import os
 
 import requests
 
-UNITYSVC_API_KEY = os.environ.get("UNITYSVC_API_KEY")
-SERVICE_BASE_URL = os.environ.get("SERVICE_BASE_URL")
-MODEL = os.environ.get("MODEL", "{{ offering.name }}")
+UNITYSVC_API_KEY = os.environ["UNITYSVC_API_KEY"]
+SERVICE_BASE_URL = os.environ["SERVICE_BASE_URL"]
+MODEL = os.environ["MODEL"]
 PROMPT = os.environ.get("PROMPT", "An astronaut riding a horse on Mars")
 OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "image.png")
 

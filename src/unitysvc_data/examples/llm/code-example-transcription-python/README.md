@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_transcription_python"
 category = "code_example"
 mime_type = "python"
-file = "code-example-transcription.py.j2"
+file = "code-example-transcription.py"
 description = "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint"
 is_active = true
 is_public = true
@@ -18,12 +18,20 @@ transcribed text.
 
 ## Environment variables
 
+Required:
+
 - `SERVICE_BASE_URL` — transcription endpoint.
 - `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — optional; defaults to `offering.name`.
+- `MODEL` — interface-specific model identifier. The script does not
+  fall back to `offering.name` because the model id is a routing
+  key and can differ between the gateway and the upstream — the
+  caller must supply the correct one for the access interface.
+
+Optional:
+
 - `AUDIO_FILE` — path to a local audio file. Defaults to `audio.mp3`
-  in the working directory; sellers running this in CI usually drop a
-  short test clip alongside the script.
+  in the working directory; sellers running this in CI usually drop
+  a short test clip alongside the script.
 
 ## Conventions
 
@@ -39,4 +47,6 @@ transcribed text.
 
 - Multipart upload via `requests`, no SDK dependency.
 - Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL`, `AUDIO_FILE`
-  from env.
+  from env; the first three are required and missing any fails fast
+  with `KeyError`.
+- Plain Python (no `.j2` suffix) — no Jinja2 expansion.

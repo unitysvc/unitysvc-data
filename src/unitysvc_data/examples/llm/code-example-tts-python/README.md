@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_tts_python"
 category = "code_example"
 mime_type = "python"
-file = "code-example-tts.py.j2"
+file = "code-example-tts.py"
 description = "Python example: synthesize speech from text using an OpenAI-compatible audio/speech endpoint"
 is_active = true
 is_public = true
@@ -17,11 +17,19 @@ the returned audio to a `.wav` file.
 
 ## Environment variables
 
+Required:
+
 - `SERVICE_BASE_URL` — TTS endpoint.
 - `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — optional; defaults to `offering.name`.
-- `VOICE` — optional voice id. Defaults to `alloy` (a name shared by
-  several OpenAI-compatible upstreams). Override per provider.
+- `MODEL` — interface-specific model identifier. The script does not
+  fall back to `offering.name` because the model id is a routing
+  key and can differ between the gateway and the upstream — the
+  caller must supply the correct one for the access interface.
+
+Optional:
+
+- `VOICE` — voice id. Defaults to `alloy` (a name shared by several
+  OpenAI-compatible upstreams). Override per provider.
 - `OUTPUT_FILE` — destination path. Defaults to `tts_output.wav`.
 
 ## Conventions
@@ -37,3 +45,5 @@ the returned audio to a `.wav` file.
 
 - POST `model` + `input` + `voice` + `response_format=wav`.
 - No vendor SDK; `requests` only.
+- Required env vars fail fast with `KeyError` if missing.
+- Plain Python (no `.j2` suffix) — no Jinja2 expansion.

@@ -2,9 +2,9 @@ import os
 
 import requests
 
-UNITYSVC_API_KEY = os.environ.get("UNITYSVC_API_KEY")
-SERVICE_BASE_URL = os.environ.get("SERVICE_BASE_URL")
-MODEL = os.environ.get("MODEL", "{{ offering.name }}")
+UNITYSVC_API_KEY = os.environ["UNITYSVC_API_KEY"]
+SERVICE_BASE_URL = os.environ["SERVICE_BASE_URL"]
+MODEL = os.environ["MODEL"]
 VOICE = os.environ.get("VOICE", "alloy")
 OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "tts_output.wav")
 
