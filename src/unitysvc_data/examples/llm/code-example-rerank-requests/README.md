@@ -1,5 +1,5 @@
 +++
-preset_name = "llm_code_example_rerank_python"
+preset_name = "llm_code_example_rerank_requests"
 category = "code_example"
 mime_type = "python"
 file = "code-example-rerank.py"
@@ -9,7 +9,7 @@ is_public = true
 meta = { requirements = ["requests"] }
 +++
 
-# llm / code-example-rerank-python — rerank
+# llm / code-example-rerank-requests — rerank via `requests`
 
 Customer-facing Python example for rerank endpoints (Cohere-style
 `/v2/rerank` payload: `query` + `documents` → ranked indices with

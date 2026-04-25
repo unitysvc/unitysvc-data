@@ -1,5 +1,5 @@
 +++
-preset_name = "llm_code_example_guard_python"
+preset_name = "llm_code_example_guard_requests"
 category = "code_example"
 mime_type = "python"
 file = "code-example-guard.py"
@@ -9,7 +9,7 @@ is_public = true
 meta = { requirements = ["requests"] }
 +++
 
-# llm / code-example-guard-python — safety classifier probe
+# llm / code-example-guard-requests — safety classifier probe via `requests`
 
 Customer-facing Python example for safety classifiers exposed
 through the OpenAI-compatible chat-completion route (Llama Guard,

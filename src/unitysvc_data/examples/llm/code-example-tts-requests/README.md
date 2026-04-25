@@ -1,5 +1,5 @@
 +++
-preset_name = "llm_code_example_tts_python"
+preset_name = "llm_code_example_tts_requests"
 category = "code_example"
 mime_type = "python"
 file = "code-example-tts.py"
@@ -9,7 +9,7 @@ is_public = true
 meta = { requirements = ["requests"] }
 +++
 
-# llm / code-example-tts-python — text-to-speech
+# llm / code-example-tts-requests — text-to-speech via `requests`
 
 Customer-facing Python example for OpenAI-compatible
 `/v1/audio/speech`-shaped endpoints. Sends a short prompt, writes

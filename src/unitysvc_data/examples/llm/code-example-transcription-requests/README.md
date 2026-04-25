@@ -1,5 +1,5 @@
 +++
-preset_name = "llm_code_example_transcription_python"
+preset_name = "llm_code_example_transcription_requests"
 category = "code_example"
 mime_type = "python"
 file = "code-example-transcription.py"
@@ -9,7 +9,7 @@ is_public = true
 meta = { requirements = ["requests"] }
 +++
 
-# llm / code-example-transcription-python — audio transcription
+# llm / code-example-transcription-requests — audio transcription via `requests`
 
 Customer-facing Python example for OpenAI-compatible
 `/v1/audio/transcriptions`-shaped endpoints (Whisper-class models).
