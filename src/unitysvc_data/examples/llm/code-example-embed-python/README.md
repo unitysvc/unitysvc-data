@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_embed_python"
 category = "code_example"
 mime_type = "python"
-file = "code-example-embed.py.j2"
+file = "code-example-embed.py"
 description = "Python example: request OpenAI-compatible embeddings for a list of inputs"
 is_active = true
 is_public = true
@@ -15,13 +15,16 @@ Customer-facing Python example for OpenAI-compatible embedding
 endpoints (`/v1/embeddings`-shaped) routed through the UnitySVC LLM
 gateway.
 
-## Environment variables
+## Environment variables (all required)
 
 - `SERVICE_BASE_URL` — embeddings endpoint (gateway URL or upstream
   URL in local-testing mode). The gateway sets this to its own
   `/v1/embeddings` route.
 - `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — optional. Defaults to the listing's `offering.name`.
+- `MODEL` — interface-specific model identifier. The script does not
+  fall back to `offering.name` because the model id is a routing
+  key and can differ between the gateway and the upstream — the
+  caller must supply the correct one for the access interface.
 
 ## Conventions
 
@@ -37,4 +40,6 @@ gateway.
 ### v1 — initial release
 
 - `requests.post` against `SERVICE_BASE_URL` with `model` + `input`.
-- Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env.
+- Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env;
+  missing any of the three fails fast with `KeyError`.
+- Plain Python (no `.j2` suffix) — no Jinja2 expansion.
