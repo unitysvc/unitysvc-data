@@ -1,17 +1,12 @@
 #!/bin/bash
-# Submit feedback + fetch recommendations from a Gorse-shaped recommender.
-#
-# Environment variables:
-#   SERVICE_BASE_URL — recommender base URL
-#   USER_ID          — user id (default: demo-user)
-{% if local_testing -%}
-#   GORSE_API_KEY    — Gorse API key (sent as X-API-Key)
-{% else -%}
-#   UNITYSVC_API_KEY — UnitySVC bearer token
-{% endif -%}
-set -e
-set -o pipefail
+set -e -o pipefail
 
+: "${SERVICE_BASE_URL:?SERVICE_BASE_URL is not set}"
+{% if local_testing -%}
+: "${GORSE_API_KEY:?GORSE_API_KEY is not set}"
+{% else -%}
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+{% endif -%}
 USER_ID="${USER_ID:-demo-user}"
 
 {% if local_testing -%}
@@ -21,18 +16,13 @@ AUTH=("-H" "Authorization: Bearer ${UNITYSVC_API_KEY}")
 {% endif %}
 
 # Submit feedback.
-status=$(curl -sS -o /tmp/recommender_resp.txt -w "%{http_code}" \
-  -X POST "${SERVICE_BASE_URL}/api/feedback" \
+curl --fail-with-body -sS -X POST "${SERVICE_BASE_URL}/api/feedback" \
   "${AUTH[@]}" \
   -H "Content-Type: application/json" \
-  -d "[{\"UserId\":\"${USER_ID}\",\"ItemId\":\"item-1\",\"FeedbackType\":\"like\"}]")
-echo "Feedback: ${status}"
-cat /tmp/recommender_resp.txt; echo
-[ "$status" -eq 200 ] || exit 1
+  -d "[{\"UserId\":\"${USER_ID}\",\"ItemId\":\"item-1\",\"FeedbackType\":\"like\"}]"
+echo
 
 # Fetch recommendations.
-status=$(curl -sS -o /tmp/recommender_resp.txt -w "%{http_code}" \
-  -X GET "${SERVICE_BASE_URL}/api/recommend/${USER_ID}?n=5" \
-  "${AUTH[@]}")
-echo "Recommendations: $(cat /tmp/recommender_resp.txt)"
-[ "$status" -eq 200 ] || exit 1
+curl --fail-with-body -sS -X GET "${SERVICE_BASE_URL}/api/recommend/${USER_ID}?n=5" \
+  "${AUTH[@]}"
+echo

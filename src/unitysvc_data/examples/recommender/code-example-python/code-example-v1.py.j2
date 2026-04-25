@@ -1,5 +1,4 @@
 import os
-import sys
 
 import requests
 
@@ -13,21 +12,19 @@ headers = {"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"}
 {% endif %}
 
 # Submit feedback (positive signal for an item).
-feedback = [{"UserId": user_id, "ItemId": "item-1", "FeedbackType": "like"}]
-resp = requests.post(f"{base_url}/api/feedback", json=feedback, headers=headers)
-print(f"Feedback: {resp.status_code}")
-if resp.status_code != 200:
-    print(resp.text, file=sys.stderr)
-    sys.exit(1)
+resp = requests.post(
+    f"{base_url}/api/feedback",
+    headers=headers,
+    json=[{"UserId": user_id, "ItemId": "item-1", "FeedbackType": "like"}],
+)
+resp.raise_for_status()
+print(f"Feedback: {resp.json()}")
 
-# Get personalized recommendations.
+# Fetch personalized recommendations.
 resp = requests.get(
     f"{base_url}/api/recommend/{user_id}",
-    params={"n": 5},
     headers=headers,
+    params={"n": 5},
 )
-if resp.status_code != 200:
-    print(resp.text, file=sys.stderr)
-    sys.exit(1)
-
+resp.raise_for_status()
 print(f"Recommendations: {resp.json()}")
