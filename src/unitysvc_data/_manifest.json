@@ -28,7 +28,7 @@
     "llm_code_example_javascript_v1": {
       "category": "code_example",
       "description": "JavaScript example: send a chat completion request to an OpenAI-compatible LLM",
-      "example_file": "llm/code-example-javascript/code-example-v1.js.j2",
+      "example_file": "llm/code-example-javascript/code-example-v1.js",
       "is_active": true,
       "is_public": true,
       "meta": {},
@@ -40,7 +40,7 @@
     "llm_code_example_python_v1": {
       "category": "code_example",
       "description": "Python example: send a chat completion request to an OpenAI-compatible LLM",
-      "example_file": "llm/code-example-python/code-example-v1.py.j2",
+      "example_file": "llm/code-example-python/code-example-v1.py",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -56,7 +56,7 @@
     "llm_code_example_shell_v1": {
       "category": "code_example",
       "description": "Shell example: send a chat completion request to an OpenAI-compatible LLM via curl",
-      "example_file": "llm/code-example-shell/code-example-v1.sh.j2",
+      "example_file": "llm/code-example-shell/code-example-v1.sh",
       "is_active": true,
       "is_public": true,
       "meta": {},

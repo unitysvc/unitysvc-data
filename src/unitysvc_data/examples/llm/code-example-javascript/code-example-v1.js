@@ -1,6 +1,10 @@
-const UNITYSVC_API_KEY = process.env.UNITYSVC_API_KEY;
-const SERVICE_BASE_URL = process.env.SERVICE_BASE_URL;
-const MODEL = process.env.MODEL || "{{ offering.name }}";
+const { UNITYSVC_API_KEY, SERVICE_BASE_URL, MODEL } = process.env;
+for (const name of ["UNITYSVC_API_KEY", "SERVICE_BASE_URL", "MODEL"]) {
+  if (!process.env[name]) {
+    console.error(`${name} is not set`);
+    process.exit(1);
+  }
+}
 
 async function main() {
   const response = await fetch(SERVICE_BASE_URL, {
