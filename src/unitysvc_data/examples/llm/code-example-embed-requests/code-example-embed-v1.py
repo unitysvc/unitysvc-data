@@ -1,0 +1,23 @@
+import os
+
+import requests
+
+UNITYSVC_API_KEY = os.environ["UNITYSVC_API_KEY"]
+SERVICE_BASE_URL = os.environ["SERVICE_BASE_URL"]
+MODEL = os.environ["MODEL"]
+
+response = requests.post(
+    SERVICE_BASE_URL,
+    headers={
+        "Authorization": f"Bearer {UNITYSVC_API_KEY}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "model": MODEL,
+        "input": ["Embed this sentence.", "As well as this one."],
+    },
+)
+response.raise_for_status()
+
+embeddings = [item["embedding"] for item in response.json()["data"]]
+print(f"got {len(embeddings)} embeddings of dimension {len(embeddings[0])}")

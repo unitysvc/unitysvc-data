@@ -1,6 +1,10 @@
 {
   "aliases": {
     "api_connectivity": "api_connectivity_v1",
+    "llm_code_example_embed_javascript": "llm_code_example_embed_javascript_v1",
+    "llm_code_example_embed_requests": "llm_code_example_embed_requests_v1",
+    "llm_code_example_embed_shell": "llm_code_example_embed_shell_v1",
+    "llm_code_example_fc_requests": "llm_code_example_fc_requests_v1",
     "llm_request_template": "llm_request_template_v1",
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
@@ -20,6 +24,62 @@
       "mime_type": "bash",
       "preset_name": "api_connectivity",
       "source_readme": "api/connectivity/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: request OpenAI-compatible embeddings via fetch",
+      "example_file": "llm/code-example-embed-javascript/code-example-embed-v1.js",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_embed_javascript",
+      "source_readme": "llm/code-example-embed-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: request OpenAI-compatible embeddings for a list of inputs",
+      "example_file": "llm/code-example-embed-requests/code-example-embed-v1.py",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_embed_requests",
+      "source_readme": "llm/code-example-embed-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_shell_v1": {
+      "category": "code_example",
+      "description": "Shell example: request OpenAI-compatible embeddings via curl",
+      "example_file": "llm/code-example-embed-shell/code-example-embed-v1.sh",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_embed_shell",
+      "source_readme": "llm/code-example-embed-shell/README.md",
+      "version": 1
+    },
+    "llm_code_example_fc_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: chat completion with function/tool calling on an OpenAI-compatible LLM",
+      "example_file": "llm/code-example-fc-requests/code-example-fc-v1.py",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_fc_requests",
+      "source_readme": "llm/code-example-fc-requests/README.md",
       "version": 1
     },
     "llm_request_template_v1": {
