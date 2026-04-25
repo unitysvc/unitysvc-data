@@ -1,11 +1,15 @@
 {
   "aliases": {
     "api_connectivity": "api_connectivity_v1",
+    "llm_description": "llm_description_v1",
     "llm_request_template": "llm_request_template_v1",
+    "notification_description": "notification_description_v1",
+    "recommender_description": "recommender_description_v1",
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
     "s3_description": "s3_description_v1",
-    "smtp_connectivity": "smtp_connectivity_v2"
+    "smtp_connectivity": "smtp_connectivity_v2",
+    "uptime_description": "uptime_description_v1"
   },
   "presets": {
     "api_connectivity_v1": {
@@ -22,6 +26,18 @@
       "source_readme": "api/connectivity/README.md",
       "version": 1
     },
+    "llm_description_v1": {
+      "category": "getting_started",
+      "description": "Customer-facing overview of an OpenAI-compatible LLM gateway service",
+      "example_file": "llm/description/description-v1.md",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "markdown",
+      "preset_name": "llm_description",
+      "source_readme": "llm/description/README.md",
+      "version": 1
+    },
     "llm_request_template_v1": {
       "category": "request_template",
       "description": "Minimal OpenAI-compatible chat completion request body",
@@ -32,6 +48,30 @@
       "mime_type": "json",
       "preset_name": "llm_request_template",
       "source_readme": "llm/request-template/README.md",
+      "version": 1
+    },
+    "notification_description_v1": {
+      "category": "getting_started",
+      "description": "Customer-facing overview of a ntfy-shaped push-notification gateway service",
+      "example_file": "notification/description/description-v1.md",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "markdown",
+      "preset_name": "notification_description",
+      "source_readme": "notification/description/README.md",
+      "version": 1
+    },
+    "recommender_description_v1": {
+      "category": "getting_started",
+      "description": "Customer-facing overview of a Gorse-shaped recommender gateway service",
+      "example_file": "recommender/description/description-v1.md",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "markdown",
+      "preset_name": "recommender_description",
+      "source_readme": "recommender/description/README.md",
       "version": 1
     },
     "s3_code_example_v1": {
@@ -107,6 +147,18 @@
       "preset_name": "smtp_connectivity",
       "source_readme": "smtp/connectivity/README.md",
       "version": 2
+    },
+    "uptime_description_v1": {
+      "category": "getting_started",
+      "description": "Customer-facing overview of an uptime-monitoring bridge service",
+      "example_file": "uptime/description/description-v1.md",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "markdown",
+      "preset_name": "uptime_description",
+      "source_readme": "uptime/description/README.md",
+      "version": 1
     }
   },
   "version": "1"
