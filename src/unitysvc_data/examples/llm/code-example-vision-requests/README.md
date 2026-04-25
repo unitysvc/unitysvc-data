@@ -3,7 +3,7 @@ preset_name = "llm_code_example_vision_requests"
 category = "code_example"
 mime_type = "python"
 file = "code-example-vision.py"
-description = "Python example: ask a vision-capable LLM about a local image"
+description = "Python example: ask a vision-capable LLM about a publicly-hosted image"
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
@@ -12,9 +12,9 @@ meta = { requirements = ["requests"] }
 # llm / code-example-vision-requests — image understanding via `requests`
 
 Customer-facing Python example for vision-capable LLMs exposed
-through the OpenAI-compatible chat-completion route. The image is
-inlined as a base64 `data:` URL inside an `image_url` content block,
-which is the format every OpenAI-compatible vision model accepts.
+through the OpenAI-compatible chat-completion route. Sends an
+`image_url` content block referencing a publicly-hosted image, so
+the script runs standalone without any local fixture.
 
 ## Environment variables
 
@@ -22,29 +22,30 @@ Required:
 
 - `SERVICE_BASE_URL` — chat-completion endpoint.
 - `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — interface-specific model identifier. The script does not
-  fall back to `offering.name` because the model id is a routing
-  key and can differ between the gateway and the upstream — the
-  caller must supply the correct one for the access interface.
+- `MODEL` — interface-specific model identifier.
 
 Optional:
 
-- `IMAGE_FILE` — path to a local image. Defaults to `image.jpg`.
+- `IMAGE_URL` — public URL of the image. Defaults to a 280 KB cat
+  photo on Wikimedia Commons. Override with any publicly-reachable
+  jpeg / png / webp.
 - `PROMPT` — caption query. Defaults to "Describe this image."
 
 ## Conventions
 
-- Inlines the image rather than sending a public URL so the example
-  works in environments without outbound HTTP access for the second
-  hop.
-- Assumes JPEG (`image/jpeg`); update the `data:` MIME prefix if you
-  pass a PNG.
+- Sends the URL straight through in the `image_url` block. The
+  model server fetches it. This is the simplest path for most
+  customers.
+- Air-gapped or offline-first deployments where the model server
+  can't reach the public internet should base64-inline the image
+  instead — switch the `image_url` value to a `data:image/jpeg;base64,...`
+  string.
 
 ## Versions
 
 ### v1 — initial release
 
-- Chat-completion POST with multimodal `content` array (text +
-  image_url).
-- Required env vars fail fast with `KeyError` if missing.
-- Plain Python (no `.j2` suffix) — no Jinja2 expansion.
+- Chat-completion POST with a multimodal `content` array (text +
+  image_url referencing a public Wikimedia Commons photo by
+  default).
+- `response.raise_for_status()` so non-2xx exits non-zero.

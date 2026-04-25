@@ -13,8 +13,8 @@ meta = { requirements = ["requests"] }
 
 Customer-facing Python example for OpenAI-compatible
 `/v1/audio/transcriptions`-shaped endpoints (Whisper-class models).
-Uploads a local audio file as `multipart/form-data` and prints the
-transcribed text.
+Downloads an audio fixture from a public URL and uploads it as
+`multipart/form-data`, then prints the transcribed text.
 
 ## Environment variables
 
@@ -22,31 +22,29 @@ Required:
 
 - `SERVICE_BASE_URL` — transcription endpoint.
 - `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — interface-specific model identifier. The script does not
-  fall back to `offering.name` because the model id is a routing
-  key and can differ between the gateway and the upstream — the
-  caller must supply the correct one for the access interface.
+- `MODEL` — interface-specific model identifier.
 
 Optional:
 
-- `AUDIO_FILE` — path to a local audio file. Defaults to `audio.mp3`
-  in the working directory; sellers running this in CI usually drop
-  a short test clip alongside the script.
+- `AUDIO_URL` — public URL of the audio fixture to transcribe.
+  Defaults to JFK's "Ask not what your country can do for you"
+  inaugural quote (`tests/jfk.flac` from the openai/whisper repo,
+  ~1.1 MB flac). Override with any publicly-reachable
+  `mp3` / `wav` / `flac` / `m4a` URL.
 
 ## Conventions
 
-- Sends `multipart/form-data` with two fields: `file` (binary) and
-  `model`.
-- Reads the response's `text` field (OpenAI-compatible response
-  shape) and falls back to the raw body if the field is missing so
-  divergent providers still surface useful debugging output.
+- Pulls the audio over HTTP at script start so the example runs
+  standalone — no fixture file needs to exist on disk.
+- Filename used in the multipart upload is derived from the URL's
+  path basename, so providers that sniff format from the filename
+  see the right extension.
 
 ## Versions
 
 ### v1 — initial release
 
-- Multipart upload via `requests`, no SDK dependency.
-- Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL`, `AUDIO_FILE`
-  from env; the first three are required and missing any fails fast
-  with `KeyError`.
-- Plain Python (no `.j2` suffix) — no Jinja2 expansion.
+- `requests.get(AUDIO_URL)` then multipart `requests.post(...)` to
+  the transcription endpoint.
+- `raise_for_status()` on both calls so a download or upload
+  failure exits non-zero with a clear message.
