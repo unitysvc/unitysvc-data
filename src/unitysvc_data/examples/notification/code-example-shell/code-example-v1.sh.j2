@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${SERVICE_BASE_URL:?SERVICE_BASE_URL is not set}"
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+curl --fail-with-body -sS -X POST "${SERVICE_BASE_URL}" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -H "Title: Hello from ntfy" \
+  -H "Priority: default" \
+  -H "Tags: wave" \
+  -d "This is a test notification sent via cURL"

@@ -2,6 +2,9 @@
   "aliases": {
     "api_connectivity": "api_connectivity_v1",
     "llm_request_template": "llm_request_template_v1",
+    "notification_code_example_python": "notification_code_example_python_v1",
+    "notification_code_example_shell": "notification_code_example_shell_v1",
+    "notification_connectivity": "notification_connectivity_v1",
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
     "s3_description": "s3_description_v1",
@@ -32,6 +35,48 @@
       "mime_type": "json",
       "preset_name": "llm_request_template",
       "source_readme": "llm/request-template/README.md",
+      "version": 1
+    },
+    "notification_code_example_python_v1": {
+      "category": "code_example",
+      "description": "Python example: publish a push notification through a ntfy-shaped notification gateway",
+      "example_file": "notification/code-example-python/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "notification_code_example_python",
+      "source_readme": "notification/code-example-python/README.md",
+      "version": 1
+    },
+    "notification_code_example_shell_v1": {
+      "category": "code_example",
+      "description": "Shell example: publish a push notification through a ntfy-shaped notification gateway",
+      "example_file": "notification/code-example-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "notification_code_example_shell",
+      "source_readme": "notification/code-example-shell/README.md",
+      "version": 1
+    },
+    "notification_connectivity_v1": {
+      "category": "connectivity_test",
+      "description": "Verify a ntfy-shaped notification endpoint accepts a published message",
+      "example_file": "notification/connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "notification_connectivity",
+      "source_readme": "notification/connectivity/README.md",
       "version": 1
     },
     "s3_code_example_v1": {

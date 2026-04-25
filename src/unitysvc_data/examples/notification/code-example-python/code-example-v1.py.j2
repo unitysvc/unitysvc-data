@@ -1,0 +1,20 @@
+import os
+
+import requests
+
+base_url = os.environ["SERVICE_BASE_URL"]
+api_key = os.environ["UNITYSVC_API_KEY"]
+
+response = requests.post(
+    base_url,
+    headers={
+        "Authorization": f"Bearer {api_key}",
+        "Title": "Hello from ntfy",
+        "Priority": "default",
+        "Tags": "wave",
+    },
+    data="This is a test notification sent via Python",
+)
+
+response.raise_for_status()
+print(response.json())

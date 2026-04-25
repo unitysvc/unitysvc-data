@@ -1,0 +1,29 @@
+#!/bin/bash
+# Connectivity test for ntfy-shaped push-notification services.
+#
+# Publishes a single test message to the enrollment topic and asserts
+# the JSON response contains an `event` field — ntfy returns
+# `{"id":...,"event":"message",...}` on success.
+#
+# Environment variables:
+#   SERVICE_BASE_URL — full ntfy publish URL (includes the topic)
+#   UNITYSVC_API_KEY — UnitySVC bearer token
+set -e
+set -o pipefail
+
+: "${SERVICE_BASE_URL:?SERVICE_BASE_URL is not set}"
+
+response=$(curl -sS --max-time 5 -X POST "${SERVICE_BASE_URL}" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -H "Content-Type: text/plain" \
+  -d "unitysvc connectivity test")
+
+echo "$response"
+
+if echo "$response" | grep -q '"event"[[:space:]]*:[[:space:]]*"message"'; then
+  echo "connectivity ok"
+  exit 0
+fi
+
+echo "connectivity failed" >&2
+exit 1
