@@ -1,0 +1,15 @@
+#!/bin/bash
+# Publish a push notification through a ntfy-shaped notification gateway.
+#
+# Environment variables:
+#   SERVICE_BASE_URL — full publish URL including the topic
+#   UNITYSVC_API_KEY — UnitySVC bearer token
+set -e
+set -o pipefail
+
+curl -sS -X POST "${SERVICE_BASE_URL}" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -H "Title: Hello from ntfy" \
+  -H "Priority: default" \
+  -H "Tags: wave" \
+  -d "This is a test notification sent via cURL"
