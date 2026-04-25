@@ -1,0 +1,30 @@
+import os
+
+import requests
+
+base_url = os.environ["SERVICE_BASE_URL"]
+user_id = os.environ.get("USER_ID", "demo-user")
+
+{% if local_testing -%}
+headers = {"X-API-Key": os.environ["GORSE_API_KEY"]}
+{% else -%}
+headers = {"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"}
+{% endif %}
+
+# Submit feedback (positive signal for an item).
+resp = requests.post(
+    f"{base_url}/api/feedback",
+    headers=headers,
+    json=[{"UserId": user_id, "ItemId": "item-1", "FeedbackType": "like"}],
+)
+resp.raise_for_status()
+print(f"Feedback: {resp.json()}")
+
+# Fetch personalized recommendations.
+resp = requests.get(
+    f"{base_url}/api/recommend/{user_id}",
+    headers=headers,
+    params={"n": 5},
+)
+resp.raise_for_status()
+print(f"Recommendations: {resp.json()}")

@@ -1,0 +1,34 @@
+#!/bin/bash
+# Connectivity test for a Gorse-shaped recommender service.
+#
+# Hits the public `/api/recommend/<user>` endpoint with a throwaway
+# user id and asserts the response shape (a JSON array, possibly
+# empty for unknown users).
+#
+# Environment variables:
+#   SERVICE_BASE_URL — recommender base URL (gateway or upstream)
+{% if local_testing -%}
+#   GORSE_API_KEY    — Gorse API key (sent as X-API-Key)
+{% else -%}
+#   UNITYSVC_API_KEY — UnitySVC bearer token
+{% endif -%}
+set -o pipefail
+
+{% if local_testing -%}
+AUTH=("-H" "X-API-Key: ${GORSE_API_KEY}")
+{% else -%}
+AUTH=("-H" "Authorization: Bearer ${UNITYSVC_API_KEY}")
+{% endif -%}
+
+response=$(curl -sS --max-time 5 "${AUTH[@]}" \
+  "${SERVICE_BASE_URL}/api/recommend/connectivity-test?n=1" 2>/dev/null)
+
+echo "$response"
+
+if echo "$response" | grep -q '^\['; then
+  echo "connectivity ok"
+  exit 0
+fi
+
+echo "connectivity failed" >&2
+exit 1
