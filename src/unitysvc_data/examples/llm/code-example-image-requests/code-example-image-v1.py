@@ -10,7 +10,7 @@ PROMPT = os.environ.get("PROMPT", "An astronaut riding a horse on Mars")
 OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "image.png")
 
 response = requests.post(
-    SERVICE_BASE_URL,
+    f"{SERVICE_BASE_URL}/images/generations",
     headers={
         "Authorization": f"Bearer {UNITYSVC_API_KEY}",
         "Content-Type": "application/json",

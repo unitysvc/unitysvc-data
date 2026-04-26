@@ -1,7 +1,7 @@
 const { UNITYSVC_API_KEY, SERVICE_BASE_URL, MODEL } = process.env;
 
 async function main() {
-  const response = await fetch(SERVICE_BASE_URL, {
+  const response = await fetch(`${SERVICE_BASE_URL}/embeddings`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${UNITYSVC_API_KEY}`,

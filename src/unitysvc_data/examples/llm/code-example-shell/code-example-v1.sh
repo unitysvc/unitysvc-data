@@ -5,7 +5,7 @@ set -e -o pipefail
 : "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
 : "${MODEL:?MODEL is not set}"
 
-curl --fail-with-body -sS "${SERVICE_BASE_URL}" \
+curl --fail-with-body -sS "${SERVICE_BASE_URL}/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
   -d @- <<EOF

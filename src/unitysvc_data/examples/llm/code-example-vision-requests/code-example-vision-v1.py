@@ -12,7 +12,7 @@ IMAGE_URL = os.environ.get(
 PROMPT = os.environ.get("PROMPT", "Describe this image.")
 
 response = requests.post(
-    SERVICE_BASE_URL,
+    f"{SERVICE_BASE_URL}/chat/completions",
     headers={
         "Authorization": f"Bearer {UNITYSVC_API_KEY}",
         "Content-Type": "application/json",

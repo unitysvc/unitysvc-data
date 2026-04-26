@@ -22,8 +22,10 @@ for if they already have it installed.
 
 ## Environment variables (all required)
 
-- `SERVICE_BASE_URL` — chat-completion endpoint (gateway URL or
-  upstream URL in local-testing mode).
+- `SERVICE_BASE_URL` — OpenAI-compatible API base URL (e.g.
+  `https://api.openai.com/v1` or the gateway's `/v1`-equivalent). The
+  script appends `/chat/completions` to this base — same convention
+  the OpenAI Python SDK uses for its `base_url` argument.
 - `UNITYSVC_API_KEY` — sent as `Authorization: Bearer …`.
 - `MODEL` — interface-specific model identifier. The gateway's
   routing key and the upstream's native model id can differ for the
@@ -34,8 +36,8 @@ for if they already have it installed.
 
 ### v1 — initial release
 
-- `requests.post` against `SERVICE_BASE_URL` with `model` + two-message
-  `messages` array.
+- `requests.post` against `${SERVICE_BASE_URL}/chat/completions` with
+  `model` + two-message `messages` array.
 - `response.raise_for_status()` so non-2xx responses surface as a
   non-zero exit.
 - Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from the
