@@ -6,8 +6,6 @@
     "s3_connectivity": "s3_connectivity_v1",
     "s3_description": "s3_description_v1",
     "smtp_connectivity": "smtp_connectivity_v2",
-    "uptime_code_example_python": "uptime_code_example_python_v1",
-    "uptime_code_example_shell": "uptime_code_example_shell_v1",
     "uptime_connectivity": "uptime_connectivity_v1"
   },
   "presets": {
@@ -110,34 +108,6 @@
       "preset_name": "smtp_connectivity",
       "source_readme": "smtp/connectivity/README.md",
       "version": 2
-    },
-    "uptime_code_example_python_v1": {
-      "category": "code_example",
-      "description": "Python example: trigger an uptime check and read the bridge's status / response-time metrics",
-      "example_file": "uptime/code-example-python/code-example-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "requirements": [
-          "requests"
-        ]
-      },
-      "mime_type": "python",
-      "preset_name": "uptime_code_example_python",
-      "source_readme": "uptime/code-example-python/README.md",
-      "version": 1
-    },
-    "uptime_code_example_shell_v1": {
-      "category": "code_example",
-      "description": "Shell example: trigger an uptime check on the bridge endpoint via curl",
-      "example_file": "uptime/code-example-shell/code-example-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {},
-      "mime_type": "bash",
-      "preset_name": "uptime_code_example_shell",
-      "source_readme": "uptime/code-example-shell/README.md",
-      "version": 1
     },
     "uptime_connectivity_v1": {
       "category": "connectivity_test",
