@@ -9,7 +9,7 @@ VOICE = os.environ.get("VOICE", "alloy")
 OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "tts_output.wav")
 
 response = requests.post(
-    SERVICE_BASE_URL,
+    f"{SERVICE_BASE_URL}/audio/speech",
     headers={
         "Authorization": f"Bearer {UNITYSVC_API_KEY}",
         "Content-Type": "application/json",
