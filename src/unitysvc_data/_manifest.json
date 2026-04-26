@@ -6,13 +6,19 @@
     "llm_code_example_embed_requests": "llm_code_example_embed_requests_v1",
     "llm_code_example_embed_shell": "llm_code_example_embed_shell_v1",
     "llm_code_example_fc_requests": "llm_code_example_fc_requests_v1",
+    "llm_code_example_guard_requests": "llm_code_example_guard_requests_v1",
+    "llm_code_example_image_requests": "llm_code_example_image_requests_v1",
     "llm_code_example_javascript": "llm_code_example_javascript_v1",
     "llm_code_example_openai": "llm_code_example_openai_v1",
     "llm_code_example_openai_javascript": "llm_code_example_openai_javascript_v1",
     "llm_code_example_requests": "llm_code_example_requests_v1",
+    "llm_code_example_rerank_requests": "llm_code_example_rerank_requests_v1",
     "llm_code_example_shell": "llm_code_example_shell_v1",
     "llm_code_example_streaming_openai": "llm_code_example_streaming_openai_v1",
     "llm_code_example_streaming_openai_javascript": "llm_code_example_streaming_openai_javascript_v1",
+    "llm_code_example_transcription_requests": "llm_code_example_transcription_requests_v1",
+    "llm_code_example_tts_requests": "llm_code_example_tts_requests_v1",
+    "llm_code_example_vision_requests": "llm_code_example_vision_requests_v1",
     "llm_request_template": "llm_request_template_v1",
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
@@ -106,6 +112,38 @@
       "source_readme": "llm/code-example-fc-requests/README.md",
       "version": 1
     },
+    "llm_code_example_guard_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: probe a Llama-Guard-style safety classifier with a borderline prompt",
+      "example_file": "llm/code-example-guard-requests/code-example-guard-v1.py",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_guard_requests",
+      "source_readme": "llm/code-example-guard-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_image_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: generate an image from a text prompt via an OpenAI-compatible images endpoint",
+      "example_file": "llm/code-example-image-requests/code-example-image-v1.py",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_image_requests",
+      "source_readme": "llm/code-example-image-requests/README.md",
+      "version": 1
+    },
     "llm_code_example_javascript_v1": {
       "category": "code_example",
       "description": "JavaScript example: send a chat completion request to an OpenAI-compatible LLM",
@@ -166,6 +204,22 @@
       "source_readme": "llm/code-example-requests/README.md",
       "version": 1
     },
+    "llm_code_example_rerank_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: rerank a candidate document set against a query",
+      "example_file": "llm/code-example-rerank-requests/code-example-rerank-v1.py",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_rerank_requests",
+      "source_readme": "llm/code-example-rerank-requests/README.md",
+      "version": 1
+    },
     "llm_code_example_shell_v1": {
       "category": "code_example",
       "description": "Shell example: send a chat completion request to an OpenAI-compatible LLM via curl",
@@ -208,6 +262,54 @@
       "mime_type": "python",
       "preset_name": "llm_code_example_streaming_openai",
       "source_readme": "llm/code-example-streaming-openai/README.md",
+      "version": 1
+    },
+    "llm_code_example_transcription_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint",
+      "example_file": "llm/code-example-transcription-requests/code-example-transcription-v1.py",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_transcription_requests",
+      "source_readme": "llm/code-example-transcription-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_tts_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: synthesize speech from text using an OpenAI-compatible audio/speech endpoint",
+      "example_file": "llm/code-example-tts-requests/code-example-tts-v1.py",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_tts_requests",
+      "source_readme": "llm/code-example-tts-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_vision_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: ask a vision-capable LLM about a publicly-hosted image",
+      "example_file": "llm/code-example-vision-requests/code-example-vision-v1.py",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_vision_requests",
+      "source_readme": "llm/code-example-vision-requests/README.md",
       "version": 1
     },
     "llm_request_template_v1": {
