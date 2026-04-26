@@ -2,8 +2,6 @@
   "aliases": {
     "api_connectivity": "api_connectivity_v1",
     "llm_request_template": "llm_request_template_v1",
-    "recommender_code_example_python": "recommender_code_example_python_v1",
-    "recommender_code_example_shell": "recommender_code_example_shell_v1",
     "recommender_connectivity": "recommender_connectivity_v1",
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
@@ -35,34 +33,6 @@
       "mime_type": "json",
       "preset_name": "llm_request_template",
       "source_readme": "llm/request-template/README.md",
-      "version": 1
-    },
-    "recommender_code_example_python_v1": {
-      "category": "code_example",
-      "description": "Python example: submit feedback and fetch personalized recommendations from a Gorse-shaped recommender",
-      "example_file": "recommender/code-example-python/code-example-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "requirements": [
-          "requests"
-        ]
-      },
-      "mime_type": "python",
-      "preset_name": "recommender_code_example_python",
-      "source_readme": "recommender/code-example-python/README.md",
-      "version": 1
-    },
-    "recommender_code_example_shell_v1": {
-      "category": "code_example",
-      "description": "Shell example: submit feedback and fetch personalized recommendations from a Gorse-shaped recommender via curl",
-      "example_file": "recommender/code-example-shell/code-example-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {},
-      "mime_type": "bash",
-      "preset_name": "recommender_code_example_shell",
-      "source_readme": "recommender/code-example-shell/README.md",
       "version": 1
     },
     "recommender_connectivity_v1": {
