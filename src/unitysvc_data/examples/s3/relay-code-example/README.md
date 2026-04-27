@@ -33,7 +33,9 @@ gateway API key in customer-facing mode.
 
 ## Environment variables (gateway mode)
 
-- `SERVICE_BASE_URL` — `{endpoint}/{bucket}` form; split on last `/`.
+- `SERVICE_BASE_URL` — gateway URL, optionally with a path segment that
+  identifies the bucket or routing key (e.g. `https://gw/bucket`). When
+  the URL has no path (multi-enrollment services), the probe is skipped.
 - `UNITYSVC_API_KEY` — used as `aws_access_key_id`.
 
 ## Conventions
@@ -47,3 +49,12 @@ gateway API key in customer-facing mode.
 
 - Three-branch rendering on `local_testing` / `access_key`.
 - 403 AccessDenied is treated as "credentials accepted, list not permitted".
+
+### v2 — urlparse; skip multi-enrollment probe
+
+- Replaces `rsplit('/', 1)` with `urlparse` so the endpoint URL is
+  always valid (v1 produced `https:/` when `SERVICE_BASE_URL` had no
+  path component).
+- When the parsed path has no segments (multi-enrollment services whose
+  `SERVICE_BASE_URL` is just the gateway host), the S3 probe is skipped
+  and the script exits with `connectivity ok`.

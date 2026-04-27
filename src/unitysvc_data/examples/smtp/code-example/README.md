@@ -56,3 +56,11 @@ assumes a reachable SMTP server is available in the test environment.
 - Two-branch rendering on `local_testing`.
 - Detects implicit TLS from `smtps://` scheme and `use_ssl` env var.
 - Attempts STARTTLS when the server advertises support.
+
+### v2 — catch SMTPRecipientsRefused in gateway mode
+
+- In gateway mode, wraps `send_message` in a try/except that catches
+  `SMTPRecipientsRefused`. A 550 "Not Found" from the gateway means the
+  routing key has no active enrollment (service pending activation) —
+  connectivity is still confirmed, so the script continues to
+  `print("connectivity ok")`.
