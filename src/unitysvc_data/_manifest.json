@@ -1,6 +1,7 @@
 {
   "aliases": {
     "api_connectivity": "api_connectivity_v1",
+    "http_relay_connectivity": "http_relay_connectivity_v1",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
     "llm_code_example_embed_javascript": "llm_code_example_embed_javascript_v1",
     "llm_code_example_embed_requests": "llm_code_example_embed_requests_v1",
@@ -42,6 +43,20 @@
       "mime_type": "bash",
       "preset_name": "api_connectivity",
       "source_readme": "api/connectivity/README.md",
+      "version": 1
+    },
+    "http_relay_connectivity_v1": {
+      "category": "connectivity_test",
+      "description": "Verify HTTP relay endpoint is reachable and returns a healthy status",
+      "example_file": "http/connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "http_relay_connectivity",
+      "source_readme": "http/connectivity/README.md",
       "version": 1
     },
     "llm_code_example_anthropic_v1": {
