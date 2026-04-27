@@ -1,0 +1,12 @@
+#!/bin/bash
+# Test S3 relay endpoint connectivity
+{% if local_testing %}
+# Local testing: S3_ENDPOINT for multi-enrollment, SERVICE_BASE_URL for single-enrollment
+ENDPOINT="${S3_ENDPOINT:-${SERVICE_BASE_URL:-https://s3.staging.svcmarket.com}}"
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${ENDPOINT}")
+echo "${STATUS}" | grep -qE "^(200|301|403)$" && echo "connectivity ok"
+{% else %}
+# Gateway testing: any HTTP response means the gateway is up
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SERVICE_BASE_URL/")
+[ "$STATUS" -gt 0 ] 2>/dev/null && echo "connectivity ok"
+{% endif %}

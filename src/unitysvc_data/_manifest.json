@@ -1,7 +1,8 @@
 {
   "aliases": {
     "api_connectivity": "api_connectivity_v1",
-    "http_relay_connectivity": "http_relay_connectivity_v1",
+    "http_relay_code_example": "http_relay_code_example_v1",
+    "http_relay_connectivity": "http_relay_connectivity_v2",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
     "llm_code_example_embed_javascript": "llm_code_example_embed_javascript_v1",
     "llm_code_example_embed_requests": "llm_code_example_embed_requests_v1",
@@ -27,6 +28,9 @@
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
     "s3_description": "s3_description_v1",
+    "s3_relay_code_example": "s3_relay_code_example_v1",
+    "s3_relay_connectivity": "s3_relay_connectivity_v1",
+    "smtp_code_example": "smtp_code_example_v1",
     "smtp_connectivity": "smtp_connectivity_v2",
     "uptime_description": "uptime_description_v1"
   },
@@ -45,6 +49,23 @@
       "source_readme": "api/connectivity/README.md",
       "version": 1
     },
+    "http_relay_code_example_v1": {
+      "category": "code_example",
+      "description": "Python example: send an HTTP request through the relay using requests",
+      "example_file": "http/code-example/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok",
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "http_relay_code_example",
+      "source_readme": "http/code-example/README.md",
+      "version": 1
+    },
     "http_relay_connectivity_v1": {
       "category": "connectivity_test",
       "description": "Verify HTTP relay endpoint is reachable and returns a healthy status",
@@ -58,6 +79,20 @@
       "preset_name": "http_relay_connectivity",
       "source_readme": "http/connectivity/README.md",
       "version": 1
+    },
+    "http_relay_connectivity_v2": {
+      "category": "connectivity_test",
+      "description": "Verify HTTP relay endpoint is reachable and returns a healthy status",
+      "example_file": "http/connectivity/connectivity-v2.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "http_relay_connectivity",
+      "source_readme": "http/connectivity/README.md",
+      "version": 2
     },
     "llm_code_example_anthropic_v1": {
       "category": "code_example",
@@ -423,6 +458,51 @@
       "mime_type": "markdown",
       "preset_name": "s3_description",
       "source_readme": "s3/description/README.md",
+      "version": 1
+    },
+    "s3_relay_code_example_v1": {
+      "category": "code_example",
+      "description": "Python example: list and download objects via an S3 relay (BYOE bucket)",
+      "example_file": "s3/relay-code-example/relay-code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok",
+        "requirements": [
+          "boto3"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "s3_relay_code_example",
+      "source_readme": "s3/relay-code-example/README.md",
+      "version": 1
+    },
+    "s3_relay_connectivity_v1": {
+      "category": "connectivity_test",
+      "description": "Verify S3 relay endpoint is reachable via HTTP status check",
+      "example_file": "s3/relay-connectivity/relay-connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "s3_relay_connectivity",
+      "source_readme": "s3/relay-connectivity/README.md",
+      "version": 1
+    },
+    "smtp_code_example_v1": {
+      "category": "code_example",
+      "description": "Python example: send an email through the SMTP relay using smtplib",
+      "example_file": "smtp/code-example/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "python",
+      "preset_name": "smtp_code_example",
+      "source_readme": "smtp/code-example/README.md",
       "version": 1
     },
     "smtp_connectivity_v1": {

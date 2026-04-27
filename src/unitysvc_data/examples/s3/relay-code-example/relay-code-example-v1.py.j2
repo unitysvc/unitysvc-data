@@ -1,0 +1,55 @@
+import boto3
+import os
+from botocore.exceptions import ClientError
+
+{% if local_testing %}
+# Local testing: connect directly to upstream S3 endpoint
+# S3_ENDPOINT is set for multi-enrollment; SERVICE_BASE_URL is the fallback for single-enrollment
+s3_endpoint = os.environ.get('S3_ENDPOINT') or os.environ.get('SERVICE_BASE_URL', 'https://s3.staging.svcmarket.com')
+bucket = os.environ.get('BUCKET', 'test-relay')
+region = os.environ.get('REGION', 'us-east-1')
+access_key = os.environ.get('ACCESS_KEY', '')
+
+s3_kwargs = {
+    'endpoint_url': s3_endpoint,
+    'region_name': region,
+}
+if access_key:
+    s3_kwargs['aws_access_key_id'] = access_key
+    s3_kwargs['aws_secret_access_key'] = os.environ.get('SECRET_KEY', '')
+else:
+    from botocore import UNSIGNED
+    from botocore.config import Config
+    s3_kwargs['config'] = Config(signature_version=UNSIGNED)
+
+s3 = boto3.client('s3', **s3_kwargs)
+
+try:
+    response = s3.list_objects_v2(Bucket=bucket, MaxKeys=5)
+    for obj in response.get('Contents', []):
+        print(f"{obj['Key']}  ({obj['Size']} bytes)")
+except ClientError as e:
+    error_code = e.response['Error']['Code']
+    if error_code in ('403', 'AccessDenied'):
+        # Bucket is reachable — credentials required for full access
+        pass
+    else:
+        raise
+{% else %}
+# Access via UnitySVC S3 gateway
+service_url = os.environ['SERVICE_BASE_URL']
+endpoint_url = service_url.rsplit('/', 1)[0]
+bucket = service_url.rsplit('/', 1)[1]
+region = 'us-east-1'
+
+s3 = boto3.client('s3',
+    endpoint_url=endpoint_url,
+    aws_access_key_id=os.environ['UNITYSVC_API_KEY'],
+    aws_secret_access_key='not-used',
+    region_name=region,
+)
+response = s3.list_objects_v2(Bucket=bucket, MaxKeys=5)
+for obj in response.get('Contents', []):
+    print(f"{obj['Key']}  ({obj['Size']} bytes)")
+{% endif %}
+print("connectivity ok")

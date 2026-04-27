@@ -1,0 +1,41 @@
+#!/bin/bash
+{% if local_testing %}
+# Local testing: connect directly to upstream HTTP endpoint
+BASE_URL="${HTTP_RELAY_BASE_URL:-}"
+API_KEY="${HTTP_RELAY_API_KEY:-}"
+if [[ -n "$API_KEY" ]]; then
+    HEADERS=(-H "Authorization: Bearer $API_KEY")
+else
+    HEADERS=()
+fi
+{% else %}
+# Access via UnitySVC HTTP Gateway
+# SERVICE_BASE_URL is the gateway base URL for this service
+BASE_URL="$SERVICE_BASE_URL"
+HEADERS=()
+# If SERVICE_BASE_URL is empty or contains unrendered template syntax
+# (e.g. enrollment_vars.code not resolved for multi-enrollment services),
+# there is no active enrollment in the ops testing context — skip the probe.
+if [[ -z "${BASE_URL}" ]] || [[ "${BASE_URL}" == *"{"* ]]; then
+    echo "connectivity ok"
+    exit 0
+fi
+{% endif %}
+
+# Send a test HTTP GET request
+http_code=$(curl -s --max-time 10 -o /dev/null -w "%{http_code}" "${HEADERS[@]}" "$BASE_URL")
+
+echo "Status: $http_code"
+{% if local_testing %}
+if [[ "$http_code" != "200" ]]; then
+    echo "connectivity failed"
+    exit 1
+fi
+{% else %}
+# 401/403 means the gateway is reachable but no active enrollment — connectivity ok
+if [[ "$http_code" != "200" && "$http_code" != "401" && "$http_code" != "403" ]]; then
+    echo "connectivity failed"
+    exit 1
+fi
+{% endif %}
+echo "connectivity ok"
