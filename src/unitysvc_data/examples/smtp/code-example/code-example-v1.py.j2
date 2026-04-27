@@ -1,0 +1,47 @@
+import smtplib
+import os
+from email.mime.text import MIMEText
+
+{% if local_testing %}
+# Local testing: connect directly to upstream SMTP
+smtp_host = os.environ.get('HOST', 'localhost')
+smtp_port = int(os.environ.get('PORT', '587'))
+username = os.environ.get('USERNAME', '')
+password = os.environ.get('PASSWORD', '')
+use_ssl = False
+{% else %}
+# Access via UnitySVC SMTP gateway
+# SERVICE_BASE_URL is smtp://host:port or smtps://host:port
+# Username is the service name (routing_key), password is your API key
+from urllib.parse import urlparse
+parsed = urlparse(os.environ['SERVICE_BASE_URL'])
+smtp_host = parsed.hostname
+smtp_port = parsed.port or 587
+use_ssl = parsed.scheme == 'smtps'
+username = os.environ.get('USERNAME', '{{ offering.name }}')
+password = os.environ['UNITYSVC_API_KEY']
+{% endif %}
+
+# Compose a test email
+msg = MIMEText('Hello from UnitySVC SMTP Gateway!')
+msg['Subject'] = 'Test Email via SMTP Gateway'
+msg['From'] = 'test@example.com'
+msg['To'] = 'recipient@example.com'
+
+# Send via SMTP
+if use_ssl:
+    with smtplib.SMTP_SSL(smtp_host, smtp_port, timeout=10) as server:
+        if username and password:
+            server.login(username, password)
+        server.send_message(msg)
+else:
+    with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as server:
+        server.ehlo()
+        if server.has_extn('STARTTLS'):
+            server.starttls()
+            server.ehlo()
+        if username and password:
+            server.login(username, password)
+        server.send_message(msg)
+print('Email sent successfully')
+print('connectivity ok')
