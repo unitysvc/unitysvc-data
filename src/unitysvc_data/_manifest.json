@@ -1,6 +1,7 @@
 {
   "aliases": {
     "api_connectivity": "api_connectivity_v1",
+    "http_relay_code_example": "http_relay_code_example_v1",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
     "llm_code_example_embed_javascript": "llm_code_example_embed_javascript_v1",
     "llm_code_example_embed_requests": "llm_code_example_embed_requests_v1",
@@ -42,6 +43,23 @@
       "mime_type": "bash",
       "preset_name": "api_connectivity",
       "source_readme": "api/connectivity/README.md",
+      "version": 1
+    },
+    "http_relay_code_example_v1": {
+      "category": "code_example",
+      "description": "Python example: send an HTTP request through the relay using requests",
+      "example_file": "http/code-example/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok",
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "http_relay_code_example",
+      "source_readme": "http/code-example/README.md",
       "version": 1
     },
     "llm_code_example_anthropic_v1": {
