@@ -30,7 +30,7 @@
     "s3_description": "s3_description_v1",
     "s3_relay_code_example": "s3_relay_code_example_v2",
     "s3_relay_connectivity": "s3_relay_connectivity_v1",
-    "smtp_code_example": "smtp_code_example_v2",
+    "smtp_code_example": "smtp_code_example_v3",
     "smtp_connectivity": "smtp_connectivity_v2",
     "uptime_description": "uptime_description_v1"
   },
@@ -535,6 +535,20 @@
       "preset_name": "smtp_code_example",
       "source_readme": "smtp/code-example/README.md",
       "version": 2
+    },
+    "smtp_code_example_v3": {
+      "category": "code_example",
+      "description": "Python example: send an email through the SMTP relay using smtplib",
+      "example_file": "smtp/code-example/code-example-v3.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "python",
+      "preset_name": "smtp_code_example",
+      "source_readme": "smtp/code-example/README.md",
+      "version": 3
     },
     "smtp_connectivity_v1": {
       "category": "connectivity_test",

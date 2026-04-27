@@ -64,3 +64,9 @@ assumes a reachable SMTP server is available in the test environment.
   routing key has no active enrollment (service pending activation) —
   connectivity is still confirmed, so the script continues to
   `print("connectivity ok")`.
+
+### v3 — also catch SMTPSenderRefused
+
+- Extends v2: catches both `SMTPSenderRefused` and `SMTPRecipientsRefused`
+  in gateway mode. Some SMTP gateways raise the 550 "Not Found" error
+  at the MAIL FROM stage (`SMTPSenderRefused`) rather than RCPT TO.
