@@ -3,9 +3,10 @@
 # "220 ... ESMTP ..." greeting on connect; anything else (no response,
 # timeout, or other greeting code) is treated as failure.
 #
-# Env var layout the harness provides:
+# Layout the harness provides:
 #   local mode   — $HOST, $PORT, $TLS  (from upstream_access_config)
-#   online mode  — $SERVICE_BASE_URL   (smtp://host:port or smtps://host:port)
+#   online mode  — service_base_url rendered as smtp://host:port or
+#                  smtps://host:port
 # We branch on whichever is present so the same script works in both.
 set -o pipefail
 
@@ -15,7 +16,7 @@ if [ -n "${HOST:-}" ]; then
     PORT="${PORT:-587}"
     [ "${TLS:-False}" = "True" ] && USE_TLS=true
 else
-    URL="${SERVICE_BASE_URL:?need HOST or SERVICE_BASE_URL}"
+    URL="{{ service_base_url }}"
     if [[ "$URL" == smtps://* ]]; then
         USE_TLS=true
         stripped="${URL#smtps://}"

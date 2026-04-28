@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_embed_shell"
 category = "code_example"
 mime_type = "bash"
-file = "code-example-embed.sh"
+file = "code-example-embed.sh.j2"
 description = "Shell example: request OpenAI-compatible embeddings via curl"
 is_active = true
 is_public = true

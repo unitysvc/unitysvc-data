@@ -26,7 +26,7 @@ bucket = os.environ['BUCKET']
 prefix = os.environ.get('BASE_PATH', '')
 {% else %}
 # Access via UnitySVC S3 gateway
-service_url = os.environ['SERVICE_BASE_URL']
+service_url = "{{ service_base_url }}"
 endpoint_url = service_url.rsplit('/', 1)[0]
 bucket = service_url.rsplit('/', 1)[1]
 prefix = ''

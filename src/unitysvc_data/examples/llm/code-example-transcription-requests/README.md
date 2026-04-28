@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_transcription_requests"
 category = "code_example"
 mime_type = "python"
-file = "code-example-transcription.py"
+file = "code-example-transcription.py.j2"
 description = "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint"
 is_active = true
 is_public = true

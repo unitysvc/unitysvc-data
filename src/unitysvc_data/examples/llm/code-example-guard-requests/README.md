@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_guard_requests"
 category = "code_example"
 mime_type = "python"
-file = "code-example-guard.py"
+file = "code-example-guard.py.j2"
 description = "Python example: probe a Llama-Guard-style safety classifier with a borderline prompt"
 is_active = true
 is_public = true

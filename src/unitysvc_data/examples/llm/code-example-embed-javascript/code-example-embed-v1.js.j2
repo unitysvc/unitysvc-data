@@ -1,4 +1,6 @@
-const { UNITYSVC_API_KEY, SERVICE_BASE_URL, MODEL } = process.env;
+const SERVICE_BASE_URL = "{{ service_base_url }}";
+const MODEL = "{{ routing_key.model }}";
+const { UNITYSVC_API_KEY } = process.env;
 
 async function main() {
   const response = await fetch(`${SERVICE_BASE_URL}/embeddings`, {

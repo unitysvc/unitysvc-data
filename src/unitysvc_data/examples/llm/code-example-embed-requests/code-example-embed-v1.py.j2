@@ -3,8 +3,8 @@ import os
 import requests
 
 UNITYSVC_API_KEY = os.environ["UNITYSVC_API_KEY"]
-SERVICE_BASE_URL = os.environ["SERVICE_BASE_URL"]
-MODEL = os.environ["MODEL"]
+SERVICE_BASE_URL = "{{ service_base_url }}"
+MODEL = "{{ routing_key.model }}"
 
 response = requests.post(
     f"{SERVICE_BASE_URL}/embeddings",

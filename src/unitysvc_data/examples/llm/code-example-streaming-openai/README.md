@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_streaming_openai"
 category = "code_example"
 mime_type = "python"
-file = "code-example.py"
+file = "code-example.py.j2"
 description = "Python example: stream a chat completion from an OpenAI-compatible LLM using the openai SDK"
 is_active = true
 is_public = true

@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_image_requests"
 category = "code_example"
 mime_type = "python"
-file = "code-example-image.py"
+file = "code-example-image.py.j2"
 description = "Python example: generate an image from a text prompt via an OpenAI-compatible images endpoint"
 is_active = true
 is_public = true

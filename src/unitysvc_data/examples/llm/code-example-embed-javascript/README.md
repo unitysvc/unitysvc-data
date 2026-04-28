@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_embed_javascript"
 category = "code_example"
 mime_type = "javascript"
-file = "code-example-embed.js"
+file = "code-example-embed.js.j2"
 description = "JavaScript example: request OpenAI-compatible embeddings via fetch"
 is_active = true
 is_public = true
