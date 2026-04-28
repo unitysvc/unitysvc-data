@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_vision_requests"
 category = "code_example"
 mime_type = "python"
-file = "code-example-vision.py"
+file = "code-example-vision.py.j2"
 description = "Python example: ask a vision-capable LLM about a publicly-hosted image"
 is_active = true
 is_public = true

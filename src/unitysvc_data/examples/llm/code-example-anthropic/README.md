@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_anthropic"
 category = "code_example"
 mime_type = "python"
-file = "code-example.py"
+file = "code-example.py.j2"
 description = "Python example: send a message to an Anthropic-API-compatible LLM using the anthropic SDK"
 is_active = true
 is_public = true

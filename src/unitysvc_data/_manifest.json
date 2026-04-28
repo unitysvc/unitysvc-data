@@ -47,7 +47,7 @@
     "llm_code_example_anthropic_v1": {
       "category": "code_example",
       "description": "Python example: send a message to an Anthropic-API-compatible LLM using the anthropic SDK",
-      "example_file": "llm/code-example-anthropic/code-example-v1.py",
+      "example_file": "llm/code-example-anthropic/code-example-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -63,7 +63,7 @@
     "llm_code_example_embed_javascript_v1": {
       "category": "code_example",
       "description": "JavaScript example: request OpenAI-compatible embeddings via fetch",
-      "example_file": "llm/code-example-embed-javascript/code-example-embed-v1.js",
+      "example_file": "llm/code-example-embed-javascript/code-example-embed-v1.js.j2",
       "is_active": true,
       "is_public": true,
       "meta": {},
@@ -75,7 +75,7 @@
     "llm_code_example_embed_requests_v1": {
       "category": "code_example",
       "description": "Python example: request OpenAI-compatible embeddings for a list of inputs",
-      "example_file": "llm/code-example-embed-requests/code-example-embed-v1.py",
+      "example_file": "llm/code-example-embed-requests/code-example-embed-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -91,7 +91,7 @@
     "llm_code_example_embed_shell_v1": {
       "category": "code_example",
       "description": "Shell example: request OpenAI-compatible embeddings via curl",
-      "example_file": "llm/code-example-embed-shell/code-example-embed-v1.sh",
+      "example_file": "llm/code-example-embed-shell/code-example-embed-v1.sh.j2",
       "is_active": true,
       "is_public": true,
       "meta": {},
@@ -103,7 +103,7 @@
     "llm_code_example_fc_requests_v1": {
       "category": "code_example",
       "description": "Python example: chat completion with function/tool calling on an OpenAI-compatible LLM",
-      "example_file": "llm/code-example-fc-requests/code-example-fc-v1.py",
+      "example_file": "llm/code-example-fc-requests/code-example-fc-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -119,7 +119,7 @@
     "llm_code_example_guard_requests_v1": {
       "category": "code_example",
       "description": "Python example: probe a Llama-Guard-style safety classifier with a borderline prompt",
-      "example_file": "llm/code-example-guard-requests/code-example-guard-v1.py",
+      "example_file": "llm/code-example-guard-requests/code-example-guard-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -135,7 +135,7 @@
     "llm_code_example_image_requests_v1": {
       "category": "code_example",
       "description": "Python example: generate an image from a text prompt via an OpenAI-compatible images endpoint",
-      "example_file": "llm/code-example-image-requests/code-example-image-v1.py",
+      "example_file": "llm/code-example-image-requests/code-example-image-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -151,7 +151,7 @@
     "llm_code_example_javascript_v1": {
       "category": "code_example",
       "description": "JavaScript example: send a chat completion request to an OpenAI-compatible LLM",
-      "example_file": "llm/code-example-javascript/code-example-v1.js",
+      "example_file": "llm/code-example-javascript/code-example-v1.js.j2",
       "is_active": true,
       "is_public": true,
       "meta": {},
@@ -163,7 +163,7 @@
     "llm_code_example_openai_javascript_v1": {
       "category": "code_example",
       "description": "JavaScript example: send a chat completion request to an OpenAI-compatible LLM using the openai SDK",
-      "example_file": "llm/code-example-openai-javascript/code-example-v1.js",
+      "example_file": "llm/code-example-openai-javascript/code-example-v1.js.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -179,7 +179,7 @@
     "llm_code_example_openai_v1": {
       "category": "code_example",
       "description": "Python example: send a chat completion request to an OpenAI-compatible LLM using the openai SDK",
-      "example_file": "llm/code-example-openai/code-example-v1.py",
+      "example_file": "llm/code-example-openai/code-example-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -195,7 +195,7 @@
     "llm_code_example_requests_v1": {
       "category": "code_example",
       "description": "Python example: send a chat completion request to an OpenAI-compatible LLM using the requests library",
-      "example_file": "llm/code-example-requests/code-example-v1.py",
+      "example_file": "llm/code-example-requests/code-example-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -211,7 +211,7 @@
     "llm_code_example_rerank_requests_v1": {
       "category": "code_example",
       "description": "Python example: rerank a candidate document set against a query",
-      "example_file": "llm/code-example-rerank-requests/code-example-rerank-v1.py",
+      "example_file": "llm/code-example-rerank-requests/code-example-rerank-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -227,7 +227,7 @@
     "llm_code_example_shell_v1": {
       "category": "code_example",
       "description": "Shell example: send a chat completion request to an OpenAI-compatible LLM via curl",
-      "example_file": "llm/code-example-shell/code-example-v1.sh",
+      "example_file": "llm/code-example-shell/code-example-v1.sh.j2",
       "is_active": true,
       "is_public": true,
       "meta": {},
@@ -239,7 +239,7 @@
     "llm_code_example_streaming_openai_javascript_v1": {
       "category": "code_example",
       "description": "JavaScript example: stream a chat completion from an OpenAI-compatible LLM using the openai SDK",
-      "example_file": "llm/code-example-streaming-openai-javascript/code-example-v1.js",
+      "example_file": "llm/code-example-streaming-openai-javascript/code-example-v1.js.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -255,7 +255,7 @@
     "llm_code_example_streaming_openai_v1": {
       "category": "code_example",
       "description": "Python example: stream a chat completion from an OpenAI-compatible LLM using the openai SDK",
-      "example_file": "llm/code-example-streaming-openai/code-example-v1.py",
+      "example_file": "llm/code-example-streaming-openai/code-example-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -271,7 +271,7 @@
     "llm_code_example_transcription_requests_v1": {
       "category": "code_example",
       "description": "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint",
-      "example_file": "llm/code-example-transcription-requests/code-example-transcription-v1.py",
+      "example_file": "llm/code-example-transcription-requests/code-example-transcription-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -287,7 +287,7 @@
     "llm_code_example_tts_requests_v1": {
       "category": "code_example",
       "description": "Python example: synthesize speech from text using an OpenAI-compatible audio/speech endpoint",
-      "example_file": "llm/code-example-tts-requests/code-example-tts-v1.py",
+      "example_file": "llm/code-example-tts-requests/code-example-tts-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -303,7 +303,7 @@
     "llm_code_example_vision_requests_v1": {
       "category": "code_example",
       "description": "Python example: ask a vision-capable LLM about a publicly-hosted image",
-      "example_file": "llm/code-example-vision-requests/code-example-vision-v1.py",
+      "example_file": "llm/code-example-vision-requests/code-example-vision-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {

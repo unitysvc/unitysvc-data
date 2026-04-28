@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_fc_requests"
 category = "code_example"
 mime_type = "python"
-file = "code-example-fc.py"
+file = "code-example-fc.py.j2"
 description = "Python example: chat completion with function/tool calling on an OpenAI-compatible LLM"
 is_active = true
 is_public = true

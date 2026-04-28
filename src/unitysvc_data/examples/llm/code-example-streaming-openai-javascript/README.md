@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_streaming_openai_javascript"
 category = "code_example"
 mime_type = "javascript"
-file = "code-example.js"
+file = "code-example.js.j2"
 description = "JavaScript example: stream a chat completion from an OpenAI-compatible LLM using the openai SDK"
 is_active = true
 is_public = true

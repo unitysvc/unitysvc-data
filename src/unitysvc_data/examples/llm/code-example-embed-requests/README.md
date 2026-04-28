@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_embed_requests"
 category = "code_example"
 mime_type = "python"
-file = "code-example-embed.py"
+file = "code-example-embed.py.j2"
 description = "Python example: request OpenAI-compatible embeddings for a list of inputs"
 is_active = true
 is_public = true

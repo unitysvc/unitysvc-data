@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_rerank_requests"
 category = "code_example"
 mime_type = "python"
-file = "code-example-rerank.py"
+file = "code-example-rerank.py.j2"
 description = "Python example: rerank a candidate document set against a query"
 is_active = true
 is_public = true

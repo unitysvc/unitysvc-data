@@ -2,7 +2,7 @@
 preset_name = "llm_code_example_tts_requests"
 category = "code_example"
 mime_type = "python"
-file = "code-example-tts.py"
+file = "code-example-tts.py.j2"
 description = "Python example: synthesize speech from text using an OpenAI-compatible audio/speech endpoint"
 is_active = true
 is_public = true

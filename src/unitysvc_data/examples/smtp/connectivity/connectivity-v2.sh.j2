@@ -3,30 +3,30 @@
 # "220 ... ESMTP ..." greeting on connect; anything else (no response,
 # timeout, or other greeting code) is treated as failure.
 #
-# Env var layout the harness provides:
-#   local mode   — $HOST, $PORT, $TLS  (from upstream_access_config)
-#   online mode  — $SERVICE_BASE_URL   (smtp://host:port or smtps://host:port)
-# We branch on whichever is present so the same script works in both.
+# The renderer fills in either {host, port, tls} (local-mode probe
+# against the seller's upstream) or service_base_url (gateway mode,
+# where the URL's smtp:// vs smtps:// scheme determines TLS).
 set -o pipefail
 
 USE_TLS=false
 
-if [ -n "${HOST:-}" ]; then
-    PORT="${PORT:-587}"
-    [ "${TLS:-False}" = "True" ] && USE_TLS=true
+{% if local_testing %}
+HOST="{{ host }}"
+PORT="{{ port | default('587') }}"
+[ "{{ tls | default('False') }}" = "True" ] && USE_TLS=true
+{% else %}
+URL="{{ service_base_url }}"
+if [[ "$URL" == smtps://* ]]; then
+    USE_TLS=true
+    stripped="${URL#smtps://}"
 else
-    URL="${SERVICE_BASE_URL:?need HOST or SERVICE_BASE_URL}"
-    if [[ "$URL" == smtps://* ]]; then
-        USE_TLS=true
-        stripped="${URL#smtps://}"
-    else
-        stripped="${URL#smtp://}"
-    fi
-    HOST="${stripped%%:*}"
-    PORT="${stripped#*:}"
-    PORT="${PORT%%/*}"
-    PORT="${PORT:-587}"
+    stripped="${URL#smtp://}"
 fi
+HOST="${stripped%%:*}"
+PORT="${stripped#*:}"
+PORT="${PORT%%/*}"
+PORT="${PORT:-587}"
+{% endif %}
 
 # Send QUIT so the server closes cleanly instead of timing out on us.
 # Use openssl s_client for implicit TLS (SMTPS); nc for plain SMTP.
