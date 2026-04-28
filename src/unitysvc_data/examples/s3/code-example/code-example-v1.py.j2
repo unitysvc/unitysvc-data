@@ -1,16 +1,17 @@
 import boto3
 import os
 {% if local_testing %}
-{% if interface.get("access_key") %}
+{% if access_key %}
 # Local testing: access S3 with seller credentials
 s3_kwargs = {
-    'region_name': os.environ['REGION'],
-    'aws_access_key_id': os.environ['ACCESS_KEY'],
-    'aws_secret_access_key': os.environ['SECRET_KEY'],
+    'region_name': "{{ region }}",
+    'aws_access_key_id': "{{ access_key }}",
+    'aws_secret_access_key': "{{ secret_key }}",
 }
-# Use S3_ENDPOINT for non-AWS endpoints (DigitalOcean Spaces, MinIO, etc.)
-if os.environ.get('S3_ENDPOINT'):
-    s3_kwargs['endpoint_url'] = os.environ['S3_ENDPOINT']
+{% if s3_endpoint %}
+# Use s3_endpoint for non-AWS endpoints (DigitalOcean Spaces, MinIO, etc.)
+s3_kwargs['endpoint_url'] = "{{ s3_endpoint }}"
+{% endif %}
 s3 = boto3.client('s3', **s3_kwargs)
 {% else %}
 from botocore import UNSIGNED
@@ -18,12 +19,12 @@ from botocore.config import Config
 
 # Local testing: access public S3 bucket directly (no authentication needed)
 s3 = boto3.client('s3',
-    region_name=os.environ['REGION'],
+    region_name="{{ region }}",
     config=Config(signature_version=UNSIGNED),
 )
 {% endif %}
-bucket = os.environ['BUCKET']
-prefix = os.environ.get('BASE_PATH', '')
+bucket = "{{ bucket }}"
+prefix = "{{ base_path | default('') }}"
 {% else %}
 # Access via UnitySVC S3 gateway
 service_url = "{{ service_base_url }}"

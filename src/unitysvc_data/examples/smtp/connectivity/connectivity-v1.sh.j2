@@ -3,24 +3,23 @@
 # "220 ... ESMTP ..." greeting on connect; anything else (no response,
 # timeout, or other greeting code) is treated as failure.
 #
-# Layout the harness provides:
-#   local mode   — $HOST, $PORT  (from upstream_access_config)
-#   online mode  — service_base_url rendered as smtp://host:port or
-#                  smtps://host:port
-# We branch on whichever is present so the same script works in both.
+# The renderer fills in either {host, port} (local-mode probe against
+# the seller's upstream) or service_base_url (gateway mode, where the
+# URL is parsed for host/port) — never both at the same time.
 set -o pipefail
 
-if [ -n "${HOST:-}" ]; then
-    PORT="${PORT:-587}"
-else
-    URL="{{ service_base_url }}"
-    stripped="${URL#smtp://}"
-    stripped="${stripped#smtps://}"
-    HOST="${stripped%%:*}"
-    PORT="${stripped#*:}"
-    PORT="${PORT%%/*}"
-    PORT="${PORT:-587}"
-fi
+{% if local_testing %}
+HOST="{{ host }}"
+PORT="{{ port | default('587') }}"
+{% else %}
+URL="{{ service_base_url }}"
+stripped="${URL#smtp://}"
+stripped="${stripped#smtps://}"
+HOST="${stripped%%:*}"
+PORT="${stripped#*:}"
+PORT="${PORT%%/*}"
+PORT="${PORT:-587}"
+{% endif %}
 
 # `nc -w 5` caps both connect wait and idle-after-banner wait. Send QUIT
 # so the server closes cleanly instead of timing out on us.
