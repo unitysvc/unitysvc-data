@@ -2,29 +2,26 @@ import os
 
 import requests
 
-UNITYSVC_API_KEY = os.environ["UNITYSVC_API_KEY"]
-SERVICE_BASE_URL = "{{ service_base_url }}"
-MODEL = "{{ routing_key.model }}"
-IMAGE_URL = os.environ.get(
+image_url = os.environ.get(
     "IMAGE_URL",
     "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg",
 )
-PROMPT = os.environ.get("PROMPT", "Describe this image.")
+prompt = os.environ.get("PROMPT", "Describe this image.")
 
 response = requests.post(
-    f"{SERVICE_BASE_URL}/chat/completions",
+    "{{ service_base_url }}/chat/completions",
     headers={
-        "Authorization": f"Bearer {UNITYSVC_API_KEY}",
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
         "Content-Type": "application/json",
     },
     json={
-        "model": MODEL,
+        "model": "{{ routing_key.model }}",
         "messages": [
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": PROMPT},
-                    {"type": "image_url", "image_url": {"url": IMAGE_URL}},
+                    {"type": "text", "text": prompt},
+                    {"type": "image_url", "image_url": {"url": image_url}},
                 ],
             }
         ],

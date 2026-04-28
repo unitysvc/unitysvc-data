@@ -2,18 +2,14 @@ import os
 
 import requests
 
-UNITYSVC_API_KEY = os.environ["UNITYSVC_API_KEY"]
-SERVICE_BASE_URL = "{{ service_base_url }}"
-MODEL = "{{ routing_key.model }}"
-
 response = requests.post(
-    f"{SERVICE_BASE_URL}/rerank",
+    "{{ service_base_url }}/rerank",
     headers={
-        "Authorization": f"Bearer {UNITYSVC_API_KEY}",
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
         "Content-Type": "application/json",
     },
     json={
-        "model": MODEL,
+        "model": "{{ routing_key.model }}",
         "query": "What is the capital of the United States?",
         "top_n": 3,
         "documents": [

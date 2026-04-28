@@ -3,23 +3,19 @@ import os
 
 import requests
 
-UNITYSVC_API_KEY = os.environ["UNITYSVC_API_KEY"]
-SERVICE_BASE_URL = "{{ service_base_url }}"
-MODEL = "{{ routing_key.model }}"
-
 
 def echo_message(message: str) -> str:
     return f"Echo: {message}"
 
 
 response = requests.post(
-    f"{SERVICE_BASE_URL}/chat/completions",
+    "{{ service_base_url }}/chat/completions",
     headers={
-        "Authorization": f"Bearer {UNITYSVC_API_KEY}",
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
         "Content-Type": "application/json",
     },
     json={
-        "model": MODEL,
+        "model": "{{ routing_key.model }}",
         "messages": [
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": "Echo back: this is a test"},

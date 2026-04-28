@@ -2,27 +2,24 @@ import os
 
 import requests
 
-UNITYSVC_API_KEY = os.environ["UNITYSVC_API_KEY"]
-SERVICE_BASE_URL = "{{ service_base_url }}"
-MODEL = "{{ routing_key.model }}"
-VOICE = os.environ.get("VOICE", "alloy")
-OUTPUT_FILE = os.environ.get("OUTPUT_FILE", "tts_output.wav")
+voice = os.environ.get("VOICE", "alloy")
+output_file = os.environ.get("OUTPUT_FILE", "tts_output.wav")
 
 response = requests.post(
-    f"{SERVICE_BASE_URL}/audio/speech",
+    "{{ service_base_url }}/audio/speech",
     headers={
-        "Authorization": f"Bearer {UNITYSVC_API_KEY}",
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
         "Content-Type": "application/json",
     },
     json={
-        "model": MODEL,
+        "model": "{{ routing_key.model }}",
         "input": "I love building and shipping new features for our users!",
-        "voice": VOICE,
+        "voice": voice,
         "response_format": "wav",
     },
 )
 response.raise_for_status()
 
-with open(OUTPUT_FILE, "wb") as f:
+with open(output_file, "wb") as f:
     f.write(response.content)
-print(f"Saved {OUTPUT_FILE}")
+print(f"Saved {output_file}")
