@@ -11,18 +11,18 @@ meta = { requirements = ["requests"] }
 
 # llm / code-example-embed-image-requests — image embeddings via `requests`
 
-Customer-facing Python example for `/embed` endpoints
-that accept a base64 data-URI image (Cohere v2 / similar). Fetches
-a public test image, inlines it as a data URI, and posts to the
-gateway.
+Customer-facing Python example for `/embed` endpoints that accept a base64 data-URI image (Cohere v2 / similar). Fetches a public test image, inlines it as a data URI, and posts to the gateway.
 
-## Environment variables
+## Template variables (substituted by the platform at upload time)
+
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
 
 Required:
 
-- `SERVICE_BASE_URL` — embeddings endpoint.
-- `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — image-embedding model id.
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 Optional:
 

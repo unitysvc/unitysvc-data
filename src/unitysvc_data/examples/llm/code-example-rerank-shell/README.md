@@ -10,12 +10,18 @@ is_public = true
 
 # llm / code-example-rerank-shell — document reranking via `curl`
 
-Curl-based POST to `/rerank` with a small fixed
-query+documents list.
+Curl-based POST to `/rerank` with a small fixed query+documents list.
 
-## Environment variables (required)
+## Template variables (substituted by the platform at upload time)
 
-- `UNITYSVC_API_KEY` — bearer token.
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
+
+Required:
+
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 ## Versions
 

@@ -11,14 +11,18 @@ meta = { requirements = ["requests"] }
 
 # llm / code-example-ttv-requests — text-to-video via `requests`
 
-Customer-facing Python example for HuggingFace
-text-to-video endpoints. Writes the returned binary video to disk.
+Customer-facing Python example for HuggingFace text-to-video endpoints. Writes the returned binary video to disk.
 
-## Environment variables
+## Template variables (substituted by the platform at upload time)
+
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
 
 Required:
 
-- `SERVICE_BASE_URL`, `UNITYSVC_API_KEY`, `MODEL`.
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 Optional:
 

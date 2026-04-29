@@ -11,13 +11,18 @@ meta = { requirements = ["requests"] }
 
 # llm / code-example-sentencetransformers-requests — sentence similarity via `requests`
 
-Customer-facing Python example for HuggingFace
-sentence-transformers similarity endpoints (`source_sentence` +
-`sentences` payload). Returns a list of similarity scores.
+Customer-facing Python example for HuggingFace sentence-transformers similarity endpoints (`source_sentence` + `sentences` payload). Returns a list of similarity scores.
 
-## Environment variables (all required)
+## Template variables (substituted by the platform at upload time)
 
-- `SERVICE_BASE_URL`, `UNITYSVC_API_KEY`, `MODEL`.
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
+
+Required:
+
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 ## Versions
 

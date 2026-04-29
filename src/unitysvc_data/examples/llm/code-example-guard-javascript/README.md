@@ -10,16 +10,18 @@ is_public = true
 
 # llm / code-example-guard-javascript — safety guard probe via `fetch`
 
-Customer-facing Node.js example for guard/safety classifier
-models served behind an OpenAI-compatible `/chat/completions`
-endpoint. Sends a known-unsafe prompt so the response demonstrates
-the classifier's verdict.
+Customer-facing Node.js example for guard/safety classifier models served behind an OpenAI-compatible `/chat/completions` endpoint. Sends a known-unsafe prompt so the response demonstrates the classifier's verdict.
 
-## Environment variables (all required)
+## Template variables (substituted by the platform at upload time)
 
-- `SERVICE_BASE_URL` — chat completions endpoint.
-- `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — guard model id.
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
+
+Required:
+
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 ## Versions
 

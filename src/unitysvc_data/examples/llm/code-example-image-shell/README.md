@@ -10,15 +10,18 @@ is_public = true
 
 # llm / code-example-image-shell — image generation via `curl`
 
-Curl-based POST to `/images/generations`; uses an inline
-Python one-liner to base64-decode the result so the script does
-not depend on `jq`.
+Curl-based POST to `/images/generations`; uses an inline Python one-liner to base64-decode the result so the script does not depend on `jq`.
 
-## Environment variables
+## Template variables (substituted by the platform at upload time)
+
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
 
 Required:
 
-- `UNITYSVC_API_KEY` — bearer token.
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 Optional:
 

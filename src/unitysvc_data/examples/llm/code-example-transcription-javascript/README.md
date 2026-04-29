@@ -10,28 +10,25 @@ is_public = true
 
 # llm / code-example-transcription-javascript — audio transcription via `fetch`
 
-Customer-facing Node.js example for OpenAI-compatible
-`/audio/transcriptions` endpoints. Downloads a small sample audio
-file (Whisper's JFK clip) and posts it as multipart form data.
+Customer-facing Node.js example for OpenAI-compatible `/audio/transcriptions` endpoints. Downloads a small sample audio file (Whisper's JFK clip) and posts it as multipart form data.
 
-## Environment variables
+## Template variables (substituted by the platform at upload time)
+
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
 
 Required:
 
-- `SERVICE_BASE_URL` — transcription endpoint base URL.
-- `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — interface-specific model id (caller must provide).
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 Optional:
 
 - `AUDIO_URL` — alternate test audio URL.
 
-## Conventions
-
-- Uses native `fetch`, `FormData`, `Blob` — Node 18+, no extra deps.
-- Falls back to a public Whisper sample if `AUDIO_URL` is unset, so
-  the example is runnable out-of-the-box.
-
 ## Versions
 
-### v1 — initial release
+### v1 — - initial release
+- Native `fetch` / `FormData` / `Blob` (Node 18+, no extra deps).
+- Falls back to a public Whisper sample so the example runs out-of-the-box.
