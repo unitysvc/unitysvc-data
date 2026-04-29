@@ -1,0 +1,36 @@
+async function main() {
+  const imageUrl =
+    process.env.IMAGE_URL ||
+    "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg";
+
+  const imgResp = await fetch(imageUrl);
+  if (!imgResp.ok) throw new Error(`failed to fetch image: HTTP ${imgResp.status}`);
+  const buf = Buffer.from(await imgResp.arrayBuffer());
+  const mime = imgResp.headers.get("content-type") || "image/jpeg";
+  const dataUri = `data:${mime};base64,${buf.toString("base64")}`;
+
+  const response = await fetch("{{ service_base_url }}/embed", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "{{ routing_key.model }}",
+      input_type: "image",
+      embedding_types: ["float"],
+      images: [dataUri],
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+  }
+  const data = await response.json();
+  const embedding = data.embeddings.float[0];
+  console.log(`got embedding of dimension ${embedding.length}`);
+}
+
+main().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});

@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+curl --fail-with-body -sS "{{ service_base_url }}/models/{{ routing_key.model }}" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d '{
+    "inputs": {
+      "source_sentence": "I love machine learning",
+      "sentences": [
+        "I enjoy studying AI",
+        "The weather is nice today",
+        "Deep learning is fascinating"
+      ]
+    }
+  }'

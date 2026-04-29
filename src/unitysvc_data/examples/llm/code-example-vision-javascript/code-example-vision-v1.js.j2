@@ -1,0 +1,36 @@
+async function main() {
+  const imageUrl =
+    process.env.IMAGE_URL ||
+    "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg";
+  const prompt = process.env.PROMPT || "Describe this image.";
+
+  const response = await fetch("{{ service_base_url }}/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "{{ routing_key.model }}",
+      messages: [
+        {
+          role: "user",
+          content: [
+            { type: "text", text: prompt },
+            { type: "image_url", image_url: { url: imageUrl } },
+          ],
+        },
+      ],
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+  }
+  const data = await response.json();
+  console.log(data.choices[0].message.content);
+}
+
+main().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});

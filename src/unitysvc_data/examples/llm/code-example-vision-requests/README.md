@@ -16,13 +16,16 @@ through the OpenAI-compatible chat-completion route. Sends an
 `image_url` content block referencing a publicly-hosted image, so
 the script runs standalone without any local fixture.
 
-## Environment variables
+## Template variables (filled in by the platform when rendering for a given access interface)
+
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
 
 Required:
 
-- `SERVICE_BASE_URL` — chat-completion endpoint.
-- `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — interface-specific model identifier.
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 Optional:
 

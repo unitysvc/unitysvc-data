@@ -1,0 +1,31 @@
+async function main() {
+  const response = await fetch(
+    "{{ service_base_url }}/models/{{ routing_key.model }}",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        inputs: {
+          source_sentence: "I love machine learning",
+          sentences: [
+            "I enjoy studying AI",
+            "The weather is nice today",
+            "Deep learning is fascinating",
+          ],
+        },
+      }),
+    },
+  );
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+  }
+  console.log(await response.json());
+}
+
+main().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});

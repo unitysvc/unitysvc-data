@@ -21,12 +21,16 @@ rather than `choices[].message.content`. So Anthropic-shaped
 upstreams need their own preset rather than reusing
 `llm_code_example_openai`.
 
-## Environment variables (all required)
+## Template variables (filled in by the platform when rendering for a given access interface)
 
-- `SERVICE_BASE_URL` — Messages endpoint, passed as the SDK's
-  `base_url`.
-- `UNITYSVC_API_KEY` — passed as the SDK's `api_key`.
-- `MODEL` — interface-specific model identifier.
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
+
+Required:
+
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 ## Versions
 

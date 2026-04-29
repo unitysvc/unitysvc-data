@@ -2,23 +2,47 @@
   "aliases": {
     "api_connectivity": "api_connectivity_v1",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
+    "llm_code_example_embed_image_javascript": "llm_code_example_embed_image_javascript_v1",
+    "llm_code_example_embed_image_requests": "llm_code_example_embed_image_requests_v1",
+    "llm_code_example_embed_image_shell": "llm_code_example_embed_image_shell_v1",
     "llm_code_example_embed_javascript": "llm_code_example_embed_javascript_v1",
     "llm_code_example_embed_requests": "llm_code_example_embed_requests_v1",
     "llm_code_example_embed_shell": "llm_code_example_embed_shell_v1",
     "llm_code_example_fc_requests": "llm_code_example_fc_requests_v1",
+    "llm_code_example_guard_javascript": "llm_code_example_guard_javascript_v1",
     "llm_code_example_guard_requests": "llm_code_example_guard_requests_v1",
+    "llm_code_example_guard_shell": "llm_code_example_guard_shell_v1",
+    "llm_code_example_image_javascript": "llm_code_example_image_javascript_v1",
     "llm_code_example_image_requests": "llm_code_example_image_requests_v1",
+    "llm_code_example_image_shell": "llm_code_example_image_shell_v1",
+    "llm_code_example_imagetoimage_javascript": "llm_code_example_imagetoimage_javascript_v1",
+    "llm_code_example_imagetoimage_requests": "llm_code_example_imagetoimage_requests_v1",
+    "llm_code_example_imagetoimage_shell": "llm_code_example_imagetoimage_shell_v1",
     "llm_code_example_javascript": "llm_code_example_javascript_v1",
     "llm_code_example_openai": "llm_code_example_openai_v1",
     "llm_code_example_openai_javascript": "llm_code_example_openai_javascript_v1",
     "llm_code_example_requests": "llm_code_example_requests_v1",
+    "llm_code_example_rerank_javascript": "llm_code_example_rerank_javascript_v1",
     "llm_code_example_rerank_requests": "llm_code_example_rerank_requests_v1",
+    "llm_code_example_rerank_shell": "llm_code_example_rerank_shell_v1",
+    "llm_code_example_sentencetransformers_javascript": "llm_code_example_sentencetransformers_javascript_v1",
+    "llm_code_example_sentencetransformers_requests": "llm_code_example_sentencetransformers_requests_v1",
+    "llm_code_example_sentencetransformers_shell": "llm_code_example_sentencetransformers_shell_v1",
     "llm_code_example_shell": "llm_code_example_shell_v1",
     "llm_code_example_streaming_openai": "llm_code_example_streaming_openai_v1",
     "llm_code_example_streaming_openai_javascript": "llm_code_example_streaming_openai_javascript_v1",
+    "llm_code_example_transcription_javascript": "llm_code_example_transcription_javascript_v1",
     "llm_code_example_transcription_requests": "llm_code_example_transcription_requests_v1",
+    "llm_code_example_transcription_shell": "llm_code_example_transcription_shell_v1",
+    "llm_code_example_tts_javascript": "llm_code_example_tts_javascript_v1",
     "llm_code_example_tts_requests": "llm_code_example_tts_requests_v1",
+    "llm_code_example_tts_shell": "llm_code_example_tts_shell_v1",
+    "llm_code_example_ttv_javascript": "llm_code_example_ttv_javascript_v1",
+    "llm_code_example_ttv_requests": "llm_code_example_ttv_requests_v1",
+    "llm_code_example_ttv_shell": "llm_code_example_ttv_shell_v1",
+    "llm_code_example_vision_javascript": "llm_code_example_vision_javascript_v1",
     "llm_code_example_vision_requests": "llm_code_example_vision_requests_v1",
+    "llm_code_example_vision_shell": "llm_code_example_vision_shell_v1",
     "llm_description": "llm_description_v1",
     "llm_request_template": "llm_request_template_v1",
     "notification_description": "notification_description_v1",
@@ -58,6 +82,46 @@
       "mime_type": "python",
       "preset_name": "llm_code_example_anthropic",
       "source_readme": "llm/code-example-anthropic/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_image_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: embed an image via /embed (Cohere v2-style)",
+      "example_file": "llm/code-example-embed-image-javascript/code-example-embed-image-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_embed_image_javascript",
+      "source_readme": "llm/code-example-embed-image-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_image_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: embed an image via /embed (Cohere v2-style)",
+      "example_file": "llm/code-example-embed-image-requests/code-example-embed-image-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_embed_image_requests",
+      "source_readme": "llm/code-example-embed-image-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_image_shell_v1": {
+      "category": "code_example",
+      "description": "Bash example: embed an image via /embed (Cohere v2-style) using curl",
+      "example_file": "llm/code-example-embed-image-shell/code-example-embed-image-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_embed_image_shell",
+      "source_readme": "llm/code-example-embed-image-shell/README.md",
       "version": 1
     },
     "llm_code_example_embed_javascript_v1": {
@@ -116,6 +180,18 @@
       "source_readme": "llm/code-example-fc-requests/README.md",
       "version": 1
     },
+    "llm_code_example_guard_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: send an unsafe prompt to a guard/safety model via /chat/completions",
+      "example_file": "llm/code-example-guard-javascript/code-example-guard-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_guard_javascript",
+      "source_readme": "llm/code-example-guard-javascript/README.md",
+      "version": 1
+    },
     "llm_code_example_guard_requests_v1": {
       "category": "code_example",
       "description": "Python example: probe a Llama-Guard-style safety classifier with a borderline prompt",
@@ -132,6 +208,30 @@
       "source_readme": "llm/code-example-guard-requests/README.md",
       "version": 1
     },
+    "llm_code_example_guard_shell_v1": {
+      "category": "code_example",
+      "description": "Bash example: send an unsafe prompt to a guard/safety model via curl",
+      "example_file": "llm/code-example-guard-shell/code-example-guard-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_guard_shell",
+      "source_readme": "llm/code-example-guard-shell/README.md",
+      "version": 1
+    },
+    "llm_code_example_image_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: generate an image via OpenAI-compatible /images/generations",
+      "example_file": "llm/code-example-image-javascript/code-example-image-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_image_javascript",
+      "source_readme": "llm/code-example-image-javascript/README.md",
+      "version": 1
+    },
     "llm_code_example_image_requests_v1": {
       "category": "code_example",
       "description": "Python example: generate an image from a text prompt via an OpenAI-compatible images endpoint",
@@ -146,6 +246,58 @@
       "mime_type": "python",
       "preset_name": "llm_code_example_image_requests",
       "source_readme": "llm/code-example-image-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_image_shell_v1": {
+      "category": "code_example",
+      "description": "Bash example: generate an image via OpenAI-compatible /images/generations using curl",
+      "example_file": "llm/code-example-image-shell/code-example-image-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_image_shell",
+      "source_readme": "llm/code-example-image-shell/README.md",
+      "version": 1
+    },
+    "llm_code_example_imagetoimage_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: image-to-image transform via Hugging Face /models/<model>",
+      "example_file": "llm/code-example-imagetoimage-javascript/code-example-imagetoimage-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_imagetoimage_javascript",
+      "source_readme": "llm/code-example-imagetoimage-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_imagetoimage_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: image-to-image transform via Hugging Face /models/<model>",
+      "example_file": "llm/code-example-imagetoimage-requests/code-example-imagetoimage-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_imagetoimage_requests",
+      "source_readme": "llm/code-example-imagetoimage-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_imagetoimage_shell_v1": {
+      "category": "code_example",
+      "description": "Bash example: image-to-image transform via Hugging Face /models/<model> using curl",
+      "example_file": "llm/code-example-imagetoimage-shell/code-example-imagetoimage-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_imagetoimage_shell",
+      "source_readme": "llm/code-example-imagetoimage-shell/README.md",
       "version": 1
     },
     "llm_code_example_javascript_v1": {
@@ -208,6 +360,18 @@
       "source_readme": "llm/code-example-requests/README.md",
       "version": 1
     },
+    "llm_code_example_rerank_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: rerank documents via /rerank",
+      "example_file": "llm/code-example-rerank-javascript/code-example-rerank-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_rerank_javascript",
+      "source_readme": "llm/code-example-rerank-javascript/README.md",
+      "version": 1
+    },
     "llm_code_example_rerank_requests_v1": {
       "category": "code_example",
       "description": "Python example: rerank a candidate document set against a query",
@@ -222,6 +386,58 @@
       "mime_type": "python",
       "preset_name": "llm_code_example_rerank_requests",
       "source_readme": "llm/code-example-rerank-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_rerank_shell_v1": {
+      "category": "code_example",
+      "description": "Bash example: rerank documents via /rerank using curl",
+      "example_file": "llm/code-example-rerank-shell/code-example-rerank-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_rerank_shell",
+      "source_readme": "llm/code-example-rerank-shell/README.md",
+      "version": 1
+    },
+    "llm_code_example_sentencetransformers_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: sentence-similarity via HF sentence-transformers /models/<model>",
+      "example_file": "llm/code-example-sentencetransformers-javascript/code-example-sentencetransformers-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_sentencetransformers_javascript",
+      "source_readme": "llm/code-example-sentencetransformers-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_sentencetransformers_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: sentence-similarity via HF sentence-transformers /models/<model>",
+      "example_file": "llm/code-example-sentencetransformers-requests/code-example-sentencetransformers-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_sentencetransformers_requests",
+      "source_readme": "llm/code-example-sentencetransformers-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_sentencetransformers_shell_v1": {
+      "category": "code_example",
+      "description": "Bash example: sentence-similarity via HF sentence-transformers /models/<model> using curl",
+      "example_file": "llm/code-example-sentencetransformers-shell/code-example-sentencetransformers-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_sentencetransformers_shell",
+      "source_readme": "llm/code-example-sentencetransformers-shell/README.md",
       "version": 1
     },
     "llm_code_example_shell_v1": {
@@ -268,6 +484,18 @@
       "source_readme": "llm/code-example-streaming-openai/README.md",
       "version": 1
     },
+    "llm_code_example_transcription_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: transcribe audio via OpenAI-compatible /audio/transcriptions",
+      "example_file": "llm/code-example-transcription-javascript/code-example-transcription-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_transcription_javascript",
+      "source_readme": "llm/code-example-transcription-javascript/README.md",
+      "version": 1
+    },
     "llm_code_example_transcription_requests_v1": {
       "category": "code_example",
       "description": "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint",
@@ -282,6 +510,30 @@
       "mime_type": "python",
       "preset_name": "llm_code_example_transcription_requests",
       "source_readme": "llm/code-example-transcription-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_transcription_shell_v1": {
+      "category": "code_example",
+      "description": "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl",
+      "example_file": "llm/code-example-transcription-shell/code-example-transcription-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_transcription_shell",
+      "source_readme": "llm/code-example-transcription-shell/README.md",
+      "version": 1
+    },
+    "llm_code_example_tts_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: synthesize speech via OpenAI-compatible /audio/speech",
+      "example_file": "llm/code-example-tts-javascript/code-example-tts-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_tts_javascript",
+      "source_readme": "llm/code-example-tts-javascript/README.md",
       "version": 1
     },
     "llm_code_example_tts_requests_v1": {
@@ -300,6 +552,70 @@
       "source_readme": "llm/code-example-tts-requests/README.md",
       "version": 1
     },
+    "llm_code_example_tts_shell_v1": {
+      "category": "code_example",
+      "description": "Bash example: synthesize speech via OpenAI-compatible /audio/speech using curl",
+      "example_file": "llm/code-example-tts-shell/code-example-tts-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_tts_shell",
+      "source_readme": "llm/code-example-tts-shell/README.md",
+      "version": 1
+    },
+    "llm_code_example_ttv_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: text-to-video via HF /models/<model>",
+      "example_file": "llm/code-example-ttv-javascript/code-example-ttv-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_ttv_javascript",
+      "source_readme": "llm/code-example-ttv-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_ttv_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: text-to-video via HF /models/<model>",
+      "example_file": "llm/code-example-ttv-requests/code-example-ttv-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_ttv_requests",
+      "source_readme": "llm/code-example-ttv-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_ttv_shell_v1": {
+      "category": "code_example",
+      "description": "Bash example: text-to-video via HF /models/<model> using curl",
+      "example_file": "llm/code-example-ttv-shell/code-example-ttv-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_ttv_shell",
+      "source_readme": "llm/code-example-ttv-shell/README.md",
+      "version": 1
+    },
+    "llm_code_example_vision_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: describe an image via OpenAI-compatible /chat/completions vision messages",
+      "example_file": "llm/code-example-vision-javascript/code-example-vision-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_vision_javascript",
+      "source_readme": "llm/code-example-vision-javascript/README.md",
+      "version": 1
+    },
     "llm_code_example_vision_requests_v1": {
       "category": "code_example",
       "description": "Python example: ask a vision-capable LLM about a publicly-hosted image",
@@ -314,6 +630,18 @@
       "mime_type": "python",
       "preset_name": "llm_code_example_vision_requests",
       "source_readme": "llm/code-example-vision-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_vision_shell_v1": {
+      "category": "code_example",
+      "description": "Bash example: describe an image via OpenAI-compatible /chat/completions using curl",
+      "example_file": "llm/code-example-vision-shell/code-example-vision-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_vision_shell",
+      "source_readme": "llm/code-example-vision-shell/README.md",
       "version": 1
     },
     "llm_description_v1": {

@@ -15,16 +15,16 @@ Customer-facing Python example for OpenAI-compatible
 `/v1/images/generations`-shaped endpoints. Sends a prompt and saves
 the returned image to disk.
 
-## Environment variables
+## Template variables (filled in by the platform when rendering for a given access interface)
+
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
 
 Required:
 
-- `SERVICE_BASE_URL` — image-generation endpoint.
-- `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — interface-specific model identifier. The script does not
-  fall back to `offering.name` because the model id is a routing
-  key and can differ between the gateway and the upstream — the
-  caller must supply the correct one for the access interface.
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 Optional:
 
@@ -46,4 +46,3 @@ Optional:
 - POST `model` + `prompt` + `size=1024x1024` + `response_format=b64_json`.
 - Saves the decoded image to `OUTPUT_FILE`.
 - Required env vars fail fast with `KeyError` if missing.
-- Plain Python (no `.j2` suffix) — no Jinja2 expansion.

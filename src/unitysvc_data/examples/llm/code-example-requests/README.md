@@ -20,17 +20,16 @@ The companion preset `llm_code_example_openai` shows the same call
 using the `openai` Python SDK, which is what most users will reach
 for if they already have it installed.
 
-## Environment variables (all required)
+## Template variables (filled in by the platform when rendering for a given access interface)
 
-- `SERVICE_BASE_URL` — OpenAI-compatible API base URL (e.g.
-  `https://api.openai.com/v1` or the gateway's `/v1`-equivalent). The
-  script appends `/chat/completions` to this base — same convention
-  the OpenAI Python SDK uses for its `base_url` argument.
-- `UNITYSVC_API_KEY` — sent as `Authorization: Bearer …`.
-- `MODEL` — interface-specific model identifier. The gateway's
-  routing key and the upstream's native model id can differ for the
-  same logical offering, so the caller must pass the right one for
-  the access interface they're hitting.
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
+
+Required:
+
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 ## Versions
 

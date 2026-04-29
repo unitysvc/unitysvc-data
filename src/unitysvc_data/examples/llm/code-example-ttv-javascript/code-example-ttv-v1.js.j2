@@ -1,0 +1,30 @@
+import { writeFile } from "fs/promises";
+
+async function main() {
+  const prompt =
+    process.env.PROMPT ||
+    "A cinematic shot of a futuristic city at sunset, flying drones, ultra realistic";
+  const outputFile = process.env.OUTPUT_FILE || "output.mp4";
+
+  const response = await fetch(
+    "{{ service_base_url }}/models/{{ routing_key.model }}",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ inputs: prompt }),
+    },
+  );
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+  }
+  await writeFile(outputFile, Buffer.from(await response.arrayBuffer()));
+  console.log(`Saved ${outputFile}`);
+}
+
+main().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});

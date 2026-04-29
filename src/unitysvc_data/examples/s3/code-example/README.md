@@ -14,7 +14,7 @@ meta = { output_contains = "connectivity ok", requirements = ["boto3"] }
 Customer-facing primary example for S3 gateway services. Lists up to
 five objects from the bucket using `boto3` and prints their keys.
 
-## Branches (rendered at upload time with the listing context)
+## Branches (selected by the platform when rendering for a given access interface)
 
 | `local_testing` | `interface.access_key` | Behaviour |
 |-----------------|------------------------|-----------|

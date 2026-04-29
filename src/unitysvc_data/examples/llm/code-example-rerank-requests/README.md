@@ -15,14 +15,16 @@ Customer-facing Python example for rerank endpoints (Cohere-style
 `/v2/rerank` payload: `query` + `documents` → ranked indices with
 relevance scores).
 
-## Environment variables (all required)
+## Template variables (filled in by the platform when rendering for a given access interface)
 
-- `SERVICE_BASE_URL` — rerank endpoint.
-- `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — interface-specific model identifier. The script does not
-  fall back to `offering.name` because the model id is a routing
-  key and can differ between the gateway and the upstream — the
-  caller must supply the correct one for the access interface.
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
+
+Required:
+
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 ## Conventions
 
@@ -37,4 +39,3 @@ relevance scores).
 
 - POST `model` + `query` + `top_n` + `documents`.
 - Required env vars fail fast with `KeyError` if missing.
-- Plain Python (no `.j2` suffix) — no Jinja2 expansion.
