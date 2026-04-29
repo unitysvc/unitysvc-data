@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+prompt="${PROMPT:-An astronaut riding a horse on Mars}"
+output_file="${OUTPUT_FILE:-image.png}"
+
+response=$(curl --fail-with-body -sS "{{ service_base_url }}/images/generations" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d "{
+    \"model\": \"{{ routing_key.model }}\",
+    \"prompt\": \"${prompt}\",
+    \"n\": 1,
+    \"size\": \"1024x1024\",
+    \"response_format\": \"b64_json\"
+  }")
+
+# Extract b64 image with a tiny python helper to avoid jq dependency.
+python3 -c "
+import base64, json, sys
+data = json.loads(sys.stdin.read())
+with open('${output_file}', 'wb') as f:
+    f.write(base64.b64decode(data['data'][0]['b64_json']))
+" <<< "${response}"
+
+echo "Saved ${output_file}"

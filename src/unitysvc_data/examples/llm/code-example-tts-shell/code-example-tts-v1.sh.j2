@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+voice="${VOICE:-alloy}"
+output_file="${OUTPUT_FILE:-tts_output.wav}"
+
+curl --fail-with-body -sS "{{ service_base_url }}/audio/speech" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -o "${output_file}" \
+  -d "{
+    \"model\": \"{{ routing_key.model }}\",
+    \"input\": \"I love building and shipping new features for our users!\",
+    \"voice\": \"${voice}\",
+    \"response_format\": \"wav\"
+  }"
+
+echo "Saved ${output_file}"

@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+image_url="${IMAGE_URL:-https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg}"
+prompt="${PROMPT:-Describe this image.}"
+
+curl --fail-with-body -sS "{{ service_base_url }}/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d "{
+    \"model\": \"{{ routing_key.model }}\",
+    \"messages\": [
+      {
+        \"role\": \"user\",
+        \"content\": [
+          {\"type\": \"text\", \"text\": \"${prompt}\"},
+          {\"type\": \"image_url\", \"image_url\": {\"url\": \"${image_url}\"}}
+        ]
+      }
+    ]
+  }"

@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+image_url="${IMAGE_URL:-https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg}"
+prompt="${PROMPT:-Turn this into a cinematic cyberpunk scene}"
+strength="${STRENGTH:-0.6}"
+output_file="${OUTPUT_FILE:-output.png}"
+
+input_file="$(basename "${image_url%%\?*}")"
+[ -f "${input_file}" ] || curl -sSL --fail-with-body -o "${input_file}" "${image_url}"
+
+curl --fail-with-body -sS "{{ service_base_url }}/models/{{ routing_key.model }}" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -F "image=@${input_file}" \
+  -F "prompt=${prompt}" \
+  -F "strength=${strength}" \
+  -o "${output_file}"
+
+echo "Saved ${output_file}"

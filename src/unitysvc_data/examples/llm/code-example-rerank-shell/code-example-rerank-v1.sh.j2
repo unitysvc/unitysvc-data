@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+curl --fail-with-body -sS "{{ service_base_url }}/rerank" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d '{
+    "model": "{{ routing_key.model }}",
+    "query": "What is the capital of the United States?",
+    "top_n": 3,
+    "documents": [
+      "Carson City is the capital of Nevada.",
+      "Saipan is the capital of the Northern Mariana Islands.",
+      "Washington, D.C. is the capital of the United States.",
+      "Capitalization is the use of a capital letter at the start of a word.",
+      "Capital punishment has existed in the United States for centuries."
+    ]
+  }'

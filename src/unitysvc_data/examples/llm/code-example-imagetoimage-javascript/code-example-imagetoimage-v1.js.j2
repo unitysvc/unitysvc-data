@@ -1,0 +1,38 @@
+import { writeFile } from "fs/promises";
+
+async function main() {
+  const imageUrl =
+    process.env.IMAGE_URL ||
+    "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg";
+  const prompt = process.env.PROMPT || "Turn this into a cinematic cyberpunk scene";
+  const strength = process.env.STRENGTH || "0.6";
+  const outputFile = process.env.OUTPUT_FILE || "output.png";
+
+  const imgResp = await fetch(imageUrl);
+  if (!imgResp.ok) throw new Error(`failed to fetch image: HTTP ${imgResp.status}`);
+  const imageBytes = new Uint8Array(await imgResp.arrayBuffer());
+
+  const form = new FormData();
+  form.append("image", new Blob([imageBytes]), "input.png");
+  form.append("prompt", prompt);
+  form.append("strength", strength);
+
+  const response = await fetch(
+    "{{ service_base_url }}/models/{{ routing_key.model }}",
+    {
+      method: "POST",
+      headers: { Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}` },
+      body: form,
+    },
+  );
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+  }
+  await writeFile(outputFile, Buffer.from(await response.arrayBuffer()));
+  console.log(`Saved ${outputFile}`);
+}
+
+main().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});

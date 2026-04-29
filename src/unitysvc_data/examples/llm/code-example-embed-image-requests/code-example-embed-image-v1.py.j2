@@ -1,0 +1,38 @@
+import os
+import urllib.request
+
+import requests
+
+image_url = os.environ.get(
+    "IMAGE_URL",
+    "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg",
+)
+
+# Fetch the image and base64-inline it as a data URI; matches the Cohere
+# v2/embed payload shape.
+import base64
+import mimetypes
+
+with urllib.request.urlopen(image_url, timeout=30) as resp:
+    image_bytes = resp.read()
+mime, _ = mimetypes.guess_type(image_url)
+mime = mime or "image/jpeg"
+data_uri = f"data:{mime};base64,{base64.b64encode(image_bytes).decode()}"
+
+response = requests.post(
+    "{{ service_base_url }}/embed",
+    headers={
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "model": "{{ routing_key.model }}",
+        "input_type": "image",
+        "embedding_types": ["float"],
+        "images": [data_uri],
+    },
+)
+response.raise_for_status()
+data = response.json()
+embedding = data["embeddings"]["float"][0]
+print(f"got embedding of dimension {len(embedding)}")
