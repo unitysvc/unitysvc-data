@@ -16,7 +16,7 @@ endpoint. It does not try to access a specific bucket — the point is
 "can the user authenticate against the upstream", not "does bucket X
 exist" — so AccessDenied on a list call still counts as pass.
 
-## Branches (rendered at upload time with the listing context)
+## Branches (selected by the platform when rendering for a given access interface)
 
 | `local_testing` | `interface.access_key` | Behaviour |
 |-----------------|------------------------|-----------|

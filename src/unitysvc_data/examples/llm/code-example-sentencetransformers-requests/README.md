@@ -13,7 +13,7 @@ meta = { requirements = ["requests"] }
 
 Customer-facing Python example for HuggingFace sentence-transformers similarity endpoints (`source_sentence` + `sentences` payload). Returns a list of similarity scores.
 
-## Template variables (substituted by the platform at upload time)
+## Template variables (filled in by the platform when rendering for a given access interface)
 
 - `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
 - `{{ routing_key.model }}` — model id, taken from the access interface's routing key.

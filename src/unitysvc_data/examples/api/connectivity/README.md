@@ -25,15 +25,13 @@ proxy variants, any endpoint fronted by an HTTP gateway). The script
 | 5xx         | fail    | upstream broken |
 | 000         | fail    | connect / DNS / timeout |
 
-## Environment variables
+## Template variables (filled in by the platform when rendering for a given access interface)
 
-Provided identically by the test harness in both local and gateway
-modes, so the script does not branch on `local_testing`:
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
 
-- `SERVICE_BASE_URL` — upstream URL (local) or gateway URL (online).
-- `UNITYSVC_API_KEY` — optional. Seller's upstream api key if present
-  in `upstream_access_config` (local mode), or the customer's gateway
-  key (online mode). Sent as `Authorization: Bearer ...` when set.
+## Environment variables (read at runtime)
+
+- `UNITYSVC_API_KEY` — optional. Sent as `Authorization: Bearer ...` when set. Either the seller's upstream API key (local mode, when `upstream_access_config` carries one) or the customer's svcpass / BYOK secret (gateway mode).
 
 ## Versions
 

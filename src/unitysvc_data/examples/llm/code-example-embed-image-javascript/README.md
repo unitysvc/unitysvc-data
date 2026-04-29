@@ -12,7 +12,7 @@ is_public = true
 
 Customer-facing Node.js example for `/embed` endpoints that accept a base64 data-URI image. Inlines the image as a data URI before posting.
 
-## Template variables (substituted by the platform at upload time)
+## Template variables (filled in by the platform when rendering for a given access interface)
 
 - `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
 - `{{ routing_key.model }}` — model id, taken from the access interface's routing key.

@@ -13,7 +13,7 @@ meta = { requirements = ["requests"] }
 
 Customer-facing Python example for `/embed` endpoints that accept a base64 data-URI image (Cohere v2 / similar). Fetches a public test image, inlines it as a data URI, and posts to the gateway.
 
-## Template variables (substituted by the platform at upload time)
+## Template variables (filled in by the platform when rendering for a given access interface)
 
 - `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
 - `{{ routing_key.model }}` — model id, taken from the access interface's routing key.

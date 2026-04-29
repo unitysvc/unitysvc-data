@@ -15,16 +15,16 @@ Customer-facing Python example for OpenAI-compatible embedding
 endpoints (`/v1/embeddings`-shaped) routed through the UnitySVC LLM
 gateway.
 
-## Environment variables (all required)
+## Template variables (filled in by the platform when rendering for a given access interface)
 
-- `SERVICE_BASE_URL` — embeddings endpoint (gateway URL or upstream
-  URL in local-testing mode). The gateway sets this to its own
-  `/v1/embeddings` route.
-- `UNITYSVC_API_KEY` — bearer token.
-- `MODEL` — interface-specific model identifier. The script does not
-  fall back to `offering.name` because the model id is a routing
-  key and can differ between the gateway and the upstream — the
-  caller must supply the correct one for the access interface.
+- `{{ service_base_url }}` — endpoint base URL, taken from the listing's access interface.
+- `{{ routing_key.model }}` — model id, taken from the access interface's routing key.
+
+## Environment variables (read at runtime)
+
+Required:
+
+- `UNITYSVC_API_KEY` — bearer token: customer's svcpass for gateway access, or an upstream API key when the seller / customer wires it as a secret (BYOK).
 
 ## Conventions
 
@@ -42,4 +42,3 @@ gateway.
 - `requests.post` against `SERVICE_BASE_URL` with `model` + `input`.
 - Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env;
   missing any of the three fails fast with `KeyError`.
-- Plain Python (no `.j2` suffix) — no Jinja2 expansion.
