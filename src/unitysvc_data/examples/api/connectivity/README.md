@@ -5,7 +5,7 @@ mime_type = "bash"
 file = "connectivity.sh.j2"
 description = "Verify HTTP endpoint is reachable and returns a healthy status"
 is_active = true
-is_public = false
+is_public = true
 meta = { output_contains = "connectivity ok" }
 +++
 
