@@ -1,5 +1,7 @@
 {
   "aliases": {
+    "api_code_example_requests": "api_code_example_requests_v1",
+    "api_code_example_shell": "api_code_example_shell_v1",
     "api_connectivity": "api_connectivity_v1",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
     "llm_code_example_embed_image_javascript": "llm_code_example_embed_image_javascript_v1",
@@ -54,6 +56,37 @@
     "uptime_description": "uptime_description_v1"
   },
   "presets": {
+    "api_code_example_requests_v1": {
+      "category": "code_example",
+      "description": "Python example: GET an HTTP endpoint via the requests library and assert a 2xx response",
+      "example_file": "api/code-example-requests/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "ok",
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "api_code_example_requests",
+      "source_readme": "api/code-example-requests/README.md",
+      "version": 1
+    },
+    "api_code_example_shell_v1": {
+      "category": "code_example",
+      "description": "curl example: GET an HTTP endpoint and assert a 2xx response",
+      "example_file": "api/code-example-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "api_code_example_shell",
+      "source_readme": "api/code-example-shell/README.md",
+      "version": 1
+    },
     "api_connectivity_v1": {
       "category": "connectivity_test",
       "description": "Verify HTTP endpoint is reachable and returns a healthy status",

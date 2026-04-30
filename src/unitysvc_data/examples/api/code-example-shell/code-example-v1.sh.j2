@@ -1,0 +1,11 @@
+#!/bin/bash
+# Generic HTTP smoke test for any UnitySVC HTTP-fronted service.
+# `-f` makes curl exit non-zero on any non-2xx response.
+set -e
+
+if [ -n "${UNITYSVC_API_KEY:-}" ]; then
+    curl -fsS --max-time 5 -H "Authorization: Bearer ${UNITYSVC_API_KEY}" -o /dev/null "{{ service_base_url }}"
+else
+    curl -fsS --max-time 5 -o /dev/null "{{ service_base_url }}"
+fi
+echo "ok"
