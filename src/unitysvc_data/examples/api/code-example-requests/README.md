@@ -33,10 +33,7 @@ a customer who wants to wire the service into their own Python code.
 
 ### v1 — initial release
 
-- `GET {{ service_base_url }}` with optional bearer auth.
-- 5-second timeout.
-- Asserts `response.ok` (2xx); prints status + body preview on success,
-  prints status + body and exits non-zero on failure.
-- Output contains `ok` on success — paired with the
-  `output_contains = "ok"` meta so the platform's run-tests flow can
-  verify a real endpoint hit.
+- `GET {{ service_base_url }}` with optional bearer auth, 5-second timeout.
+- `raise_for_status()` raises on any non-2xx response (exit code ≠ 0).
+- Prints `ok` on success — paired with the `output_contains = "ok"` meta
+  so the platform's run-tests flow can confirm a real endpoint hit.

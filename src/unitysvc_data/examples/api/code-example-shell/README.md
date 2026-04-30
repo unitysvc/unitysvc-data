@@ -32,10 +32,7 @@ customer wiring the service into a shell script.
 
 ### v1 — initial release
 
-- `curl -fsS {{ service_base_url }}` with optional bearer auth.
-- 5-second timeout.
-- Prints `ok (HTTP <status>)` and a body preview on success; non-zero
-  exit + the curl error on failure.
-- Output contains `ok` on success — paired with the
-  `output_contains = "ok"` meta so the platform's run-tests flow can
-  verify a real endpoint hit.
+- `curl -fsS {{ service_base_url }}` with optional bearer auth, 5-second timeout.
+- `-f` makes curl exit non-zero on any non-2xx response.
+- Prints `ok` on success — paired with the `output_contains = "ok"` meta
+  so the platform's run-tests flow can confirm a real endpoint hit.
