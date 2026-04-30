@@ -5,7 +5,7 @@ mime_type = "python"
 file = "connectivity.py.j2"
 description = "Verify S3 endpoint accepts the configured credentials"
 is_active = true
-is_public = false
+is_public = true
 meta = { output_contains = "connectivity ok", requirements = ["boto3"] }
 +++
 

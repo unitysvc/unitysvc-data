@@ -5,7 +5,7 @@ mime_type = "json"
 file = "request-template.json"
 description = "Minimal OpenAI-compatible chat completion request body"
 is_active = true
-is_public = false
+is_public = true
 +++
 
 # llm / request-template — minimal chat completion payload

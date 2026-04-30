@@ -92,7 +92,7 @@
       "description": "Verify HTTP endpoint is reachable and returns a healthy status",
       "example_file": "api/connectivity/connectivity-v1.sh.j2",
       "is_active": true,
-      "is_public": false,
+      "is_public": true,
       "meta": {
         "output_contains": "connectivity ok"
       },
@@ -694,7 +694,7 @@
       "description": "Minimal OpenAI-compatible chat completion request body",
       "example_file": "llm/request-template/request-template-v1.json",
       "is_active": true,
-      "is_public": false,
+      "is_public": true,
       "meta": {},
       "mime_type": "json",
       "preset_name": "llm_request_template",
@@ -747,7 +747,7 @@
       "description": "Verify S3 endpoint accepts the configured credentials",
       "example_file": "s3/connectivity/connectivity-v1.py.j2",
       "is_active": true,
-      "is_public": false,
+      "is_public": true,
       "meta": {
         "output_contains": "connectivity ok",
         "requirements": [
@@ -776,7 +776,7 @@
       "description": "Verify SMTP server returns a 220 greeting on connect",
       "example_file": "smtp/connectivity/connectivity-v1.sh.j2",
       "is_active": true,
-      "is_public": false,
+      "is_public": true,
       "meta": {
         "output_contains": "connectivity ok"
       },
@@ -790,7 +790,7 @@
       "description": "Verify SMTP server returns a 220 greeting on connect",
       "example_file": "smtp/connectivity/connectivity-v2.sh.j2",
       "is_active": true,
-      "is_public": false,
+      "is_public": true,
       "meta": {
         "output_contains": "connectivity ok"
       },

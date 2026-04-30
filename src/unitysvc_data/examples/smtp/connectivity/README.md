@@ -5,7 +5,7 @@ mime_type = "bash"
 file = "connectivity.sh.j2"
 description = "Verify SMTP server returns a 220 greeting on connect"
 is_active = true
-is_public = false
+is_public = true
 meta = { output_contains = "connectivity ok" }
 +++
 
