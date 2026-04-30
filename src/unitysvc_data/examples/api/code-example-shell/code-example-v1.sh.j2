@@ -1,0 +1,42 @@
+#!/bin/bash
+# Generic HTTP smoke test for any UnitySVC HTTP-fronted service.
+#
+# GETs ``{{ service_base_url }}`` and asserts a 2xx response. Use
+# ``api_connectivity`` for broader liveness checks (2xx/3xx/401/403);
+# this preset is the customer-facing example, so we stick to the
+# stricter "request must succeed" rule.
+set -o pipefail
+
+URL="{{ service_base_url }}"
+
+# Split the curl invocation rather than expanding an empty array under
+# `set -u` (bash 3.2 on macOS errors on "${arr[@]}" when arr is empty).
+if [ -n "${UNITYSVC_API_KEY:-}" ]; then
+    response=$(curl -sS --max-time 5 \
+        -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+        -w "\n%{http_code}" "$URL" 2>&1)
+else
+    response=$(curl -sS --max-time 5 \
+        -w "\n%{http_code}" "$URL" 2>&1)
+fi
+exit_code=$?
+
+if [ $exit_code -ne 0 ]; then
+    echo "request failed: $response" >&2
+    exit 1
+fi
+
+status="${response##*$'\n'}"
+body="${response%$'\n'*}"
+
+case "$status" in
+  2??)
+    echo "ok (HTTP $status)"
+    printf '%s\n' "$body" | head -c 500
+    ;;
+  *)
+    echo "request failed: HTTP $status from $URL" >&2
+    printf '%s\n' "$body" | head -c 500 >&2
+    exit 1
+    ;;
+esac
