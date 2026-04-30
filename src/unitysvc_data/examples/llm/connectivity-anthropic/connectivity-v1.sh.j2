@@ -1,0 +1,16 @@
+#!/bin/bash
+# Anthropic Messages API connectivity probe: POST a one-token message
+# against the rendered model and assert the gateway returned a real
+# ``content`` array.  Cheap, non-zero exit on any 4xx/5xx, prints
+# "connectivity ok" on success.
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+curl --fail-with-body -sS "{{ service_base_url }}/v1/messages" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: ${UNITYSVC_API_KEY}" \
+  -H "anthropic-version: 2023-06-01" \
+  -d '{"model":"{{ routing_key.model }}","max_tokens":1,"messages":[{"role":"user","content":"ping"}]}' \
+  | grep -q '"content"'
+echo "connectivity ok"

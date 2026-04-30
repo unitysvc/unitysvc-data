@@ -1,0 +1,15 @@
+#!/bin/bash
+# LLM connectivity probe: POST a one-token chat completion against the
+# rendered model and assert the gateway returned a real ``choices``
+# array.  Cheap, non-zero exit on any 4xx / 5xx, prints "connectivity ok"
+# on success so output_contains can verify a real round-trip.
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+curl --fail-with-body -sS "{{ service_base_url }}/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d '{"model":"{{ routing_key.model }}","messages":[{"role":"user","content":"ping"}],"max_tokens":1}' \
+  | grep -q '"choices"'
+echo "connectivity ok"

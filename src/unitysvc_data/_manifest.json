@@ -45,6 +45,8 @@
     "llm_code_example_vision_javascript": "llm_code_example_vision_javascript_v1",
     "llm_code_example_vision_requests": "llm_code_example_vision_requests_v1",
     "llm_code_example_vision_shell": "llm_code_example_vision_shell_v1",
+    "llm_connectivity": "llm_connectivity_v1",
+    "llm_connectivity_anthropic": "llm_connectivity_anthropic_v1",
     "llm_description": "llm_description_v1",
     "llm_request_template": "llm_request_template_v1",
     "notification_description": "notification_description_v1",
@@ -676,6 +678,34 @@
       "mime_type": "bash",
       "preset_name": "llm_code_example_vision_shell",
       "source_readme": "llm/code-example-vision-shell/README.md",
+      "version": 1
+    },
+    "llm_connectivity_anthropic_v1": {
+      "category": "connectivity_test",
+      "description": "Verify an Anthropic-Messages-API LLM endpoint by issuing a tiny one-token message",
+      "example_file": "llm/connectivity-anthropic/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "llm_connectivity_anthropic",
+      "source_readme": "llm/connectivity-anthropic/README.md",
+      "version": 1
+    },
+    "llm_connectivity_v1": {
+      "category": "connectivity_test",
+      "description": "Verify an OpenAI-compatible LLM endpoint by issuing a tiny chat completion",
+      "example_file": "llm/connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "llm_connectivity",
+      "source_readme": "llm/connectivity/README.md",
       "version": 1
     },
     "llm_description_v1": {
