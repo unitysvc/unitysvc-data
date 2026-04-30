@@ -1,0 +1,24 @@
+#!/bin/bash
+# Connectivity test for notification gateway services.
+# Sends a test notification via POST /send to verify end-to-end delivery
+# through the notify worker.
+
+set -e
+
+: "${SERVICE_BASE_URL:?SERVICE_BASE_URL environment variable is required}"
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY environment variable is required}"
+
+response=$(curl -sf -X POST \
+  "${SERVICE_BASE_URL}/send" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{"target":"","message":"unitysvc connectivity test","format":"text"}')
+
+if echo "$response" | grep -q '"ok"'; then
+  echo "connectivity ok"
+  exit 0
+else
+  echo "connectivity failed"
+  echo "Response: $response"
+  exit 1
+fi

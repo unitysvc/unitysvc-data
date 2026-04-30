@@ -23,6 +23,8 @@
     "llm_code_example_vision_requests": "llm_code_example_vision_requests_v1",
     "llm_description": "llm_description_v1",
     "llm_request_template": "llm_request_template_v1",
+    "notification_code_example": "notification_code_example_v1",
+    "notification_connectivity": "notification_connectivity_v1",
     "notification_description": "notification_description_v1",
     "recommender_description": "recommender_description_v1",
     "s3_code_example": "s3_code_example_v1",
@@ -388,6 +390,38 @@
       "mime_type": "json",
       "preset_name": "llm_request_template",
       "source_readme": "llm/request-template/README.md",
+      "version": 1
+    },
+    "notification_code_example_v1": {
+      "category": "code_example",
+      "description": "Python example: send a notification through the UnitySVC notify gateway",
+      "example_file": "notification/code-example/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "test": {
+          "status": "skip"
+        }
+      },
+      "mime_type": "python",
+      "preset_name": "notification_code_example",
+      "source_readme": "notification/code-example/README.md",
+      "version": 1
+    },
+    "notification_connectivity_v1": {
+      "category": "connectivity_test",
+      "description": "Verify notification delivery via POST /send through the notify gateway",
+      "example_file": "notification/connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "test": {
+          "status": "skip"
+        }
+      },
+      "mime_type": "bash",
+      "preset_name": "notification_connectivity",
+      "source_readme": "notification/connectivity/README.md",
       "version": 1
     },
     "notification_description_v1": {

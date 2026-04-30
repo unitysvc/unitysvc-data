@@ -1,0 +1,21 @@
+import os
+import requests
+
+base_url = os.environ["SERVICE_BASE_URL"]
+api_key = os.environ["UNITYSVC_API_KEY"]
+
+response = requests.post(
+    f"{base_url}/send",
+    headers={
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "target": "",  # channel-specific: chat ID, phone number, room ID, etc.
+        "message": "Hello from UnitySVC!",
+        "format": "text",
+    },
+)
+
+print(response.status_code)
+print(response.json())
