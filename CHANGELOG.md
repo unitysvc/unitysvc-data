@@ -11,6 +11,25 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.10] — LLM connectivity presets + SMTP code-example preset
+
+### Added
+
+- `llm_connectivity_v1` — bash connectivity smoke test for OpenAI-compatible
+  LLM services: POSTs a one-token chat completion against
+  `{{ routing_key.model }}` and asserts the gateway returned a real `choices`
+  array. A step deeper than `api_connectivity` — verifies the model path works,
+  not just that the URL responds.
+- `llm_connectivity_anthropic_v1` — companion connectivity preset for
+  Anthropic-protocol services: POSTs to `/v1/messages`, uses `x-api-key`
+  header, sends `anthropic-version: 2023-06-01`, and asserts a `content` array.
+- `smtp_code_example_v1` — customer-facing Python send-email smoke test for
+  SMTP services (BYOK relay, multi-enrollment relay, mailpit-backed test
+  gateway). Dual-mode: local-testing mode inlines seller credentials; gateway
+  mode reads `service_base_url` + `UNITYSVC_API_KEY` from env.
+- Version-less aliases: `llm_connectivity`, `llm_connectivity_anthropic`,
+  `smtp_code_example`.
+
 ## [0.1.4] — `@preset` decorator for dynamic discovery
 
 ### Added
