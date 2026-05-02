@@ -1,0 +1,17 @@
+import os
+
+from cerebras.cloud.sdk import Cerebras
+
+client = Cerebras(
+    base_url="{{ service_base_url }}",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+
+response = client.chat.completions.create(
+    model="{{ routing_key.model }}",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Say this is a test"},
+    ],
+)
+print(response.choices[0].message.content)

@@ -4,6 +4,7 @@
     "api_code_example_shell": "api_code_example_shell_v1",
     "api_connectivity": "api_connectivity_v1",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
+    "llm_code_example_cerebras": "llm_code_example_cerebras_v1",
     "llm_code_example_embed_image_javascript": "llm_code_example_embed_image_javascript_v1",
     "llm_code_example_embed_image_requests": "llm_code_example_embed_image_requests_v1",
     "llm_code_example_embed_image_shell": "llm_code_example_embed_image_shell_v1",
@@ -118,6 +119,22 @@
       "mime_type": "python",
       "preset_name": "llm_code_example_anthropic",
       "source_readme": "llm/code-example-anthropic/README.md",
+      "version": 1
+    },
+    "llm_code_example_cerebras_v1": {
+      "category": "code_example",
+      "description": "Python example: send a chat completion request via the cerebras-cloud-sdk",
+      "example_file": "llm/code-example-cerebras/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "cerebras-cloud-sdk"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_cerebras",
+      "source_readme": "llm/code-example-cerebras/README.md",
       "version": 1
     },
     "llm_code_example_embed_image_javascript_v1": {
