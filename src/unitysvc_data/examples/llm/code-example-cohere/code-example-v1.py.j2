@@ -2,10 +2,6 @@ import os
 
 import cohere
 
-# Cohere's native v2 chat surface (``client.chat(...)``).  Sellers who
-# point the upstream at Cohere's OpenAI-compatibility layer can also
-# call this model via ``llm_code_example_openai`` — both routes hit the
-# same Cohere model.  This preset is the idiomatic Cohere-SDK call.
 client = cohere.ClientV2(
     base_url="{{ service_base_url }}",
     api_key=os.environ["UNITYSVC_API_KEY"],
