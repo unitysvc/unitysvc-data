@@ -30,8 +30,6 @@ response = client.messages.create(
     ],
 )
 
-# Anthropic returns content as an array of typed blocks; tool calls
-# are ``type=tool_use`` items rather than a top-level ``tool_calls``.
 for block in response.content:
     if block.type == "tool_use" and block.name == "echo_message":
         print(echo_message(block.input["message"]))
