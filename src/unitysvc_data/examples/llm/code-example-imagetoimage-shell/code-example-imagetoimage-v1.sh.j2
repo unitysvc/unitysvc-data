@@ -11,7 +11,7 @@ output_file="${OUTPUT_FILE:-output.png}"
 input_file="$(basename "${image_url%%\?*}")"
 [ -f "${input_file}" ] || curl -sSL --fail-with-body -o "${input_file}" "${image_url}"
 
-curl --fail-with-body -sS "{{ service_base_url }}/v1/models/{{ routing_key.model }}" \
+curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/models/{{ routing_key.model }}" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
   -F "image=@${input_file}" \
   -F "prompt=${prompt}" \

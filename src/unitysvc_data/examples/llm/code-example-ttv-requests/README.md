@@ -7,6 +7,7 @@ description = "Python example: text-to-video via HF /models/<model>"
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-ttv-requests — text-to-video via `requests`

@@ -4,7 +4,7 @@ async function main() {
   const prompt = process.env.PROMPT || "An astronaut riding a horse on Mars";
   const outputFile = process.env.OUTPUT_FILE || "image.png";
 
-  const response = await fetch("{{ service_base_url }}/v1/images/generations", {
+  const response = await fetch("{{ service_base_url }}${__version_prefix__}/images/generations", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,

@@ -7,7 +7,7 @@ audio_url="${AUDIO_URL:-https://raw.githubusercontent.com/openai/whisper/main/te
 audio_file="$(basename "${audio_url%%\?*}")"
 [ -f "${audio_file}" ] || curl -sSL --fail-with-body -o "${audio_file}" "${audio_url}"
 
-curl --fail-with-body -sS "{{ service_base_url }}/v1/audio/transcriptions" \
+curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/audio/transcriptions" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
   -F "file=@${audio_file}" \
   -F "model={{ routing_key.model }}"

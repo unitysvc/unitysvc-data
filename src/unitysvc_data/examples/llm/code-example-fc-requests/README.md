@@ -7,6 +7,7 @@ description = "Python example: chat completion with function/tool calling on an 
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-fc-requests — chat completion with function calling via `requests`

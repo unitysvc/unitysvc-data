@@ -7,6 +7,7 @@ description = "Python example: rerank a candidate document set against a query"
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-rerank-requests — rerank via `requests`

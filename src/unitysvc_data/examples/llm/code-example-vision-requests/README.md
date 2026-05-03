@@ -7,6 +7,7 @@ description = "Python example: ask a vision-capable LLM about a publicly-hosted 
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-vision-requests — image understanding via `requests`
