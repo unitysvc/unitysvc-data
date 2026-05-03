@@ -2,19 +2,12 @@ import smtplib
 from email.mime.text import MIMEText
 
 {% if local_testing %}
-# Seller ops-testing mode. The renderer inlines upstream host/port/credentials
-# from the offering's upstream_access_config (after substituting customer
-# secrets from ops_testing_parameters). The seller only ever sees their own
-# credentials, so inlining them is fine — this branch never reaches a customer.
 smtp_host = "{{ host }}"
 smtp_port = {{ port | default(587) }}
 use_ssl = "{{ tls | default(false) }}".lower() == "true"
 username = "{{ username | default('') }}"
 password = "{{ password | default('') }}"
 {% else %}
-# Gateway mode (customer-facing). The base URL is rendered inline; username
-# comes from the listing's routing_key. The API key stays as an env-var
-# lookup — keys are never inlined into rendered output, on any code path.
 import os
 from urllib.parse import urlparse
 
@@ -31,8 +24,6 @@ msg["Subject"] = "Test Email via SMTP Gateway"
 msg["From"] = "test@example.com"
 msg["To"] = "recipient@example.com"
 
-# Implicit TLS (port 465 / smtps://) → SMTP_SSL.
-# Plain TCP with optional STARTTLS upgrade (port 587 / smtp://) → SMTP.
 cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
 with cls(smtp_host, smtp_port, timeout=10) as server:
     if not use_ssl:

@@ -2,14 +2,12 @@ import boto3
 import os
 {% if local_testing %}
 {% if access_key %}
-# Local testing: access S3 with seller credentials
 s3_kwargs = {
     'region_name': "{{ region }}",
     'aws_access_key_id': "{{ access_key }}",
     'aws_secret_access_key': "{{ secret_key }}",
 }
 {% if s3_endpoint %}
-# Use s3_endpoint for non-AWS endpoints (DigitalOcean Spaces, MinIO, etc.)
 s3_kwargs['endpoint_url'] = "{{ s3_endpoint }}"
 {% endif %}
 s3 = boto3.client('s3', **s3_kwargs)
@@ -17,7 +15,6 @@ s3 = boto3.client('s3', **s3_kwargs)
 from botocore import UNSIGNED
 from botocore.config import Config
 
-# Local testing: access public S3 bucket directly (no authentication needed)
 s3 = boto3.client('s3',
     region_name="{{ region }}",
     config=Config(signature_version=UNSIGNED),
@@ -26,7 +23,6 @@ s3 = boto3.client('s3',
 bucket = "{{ bucket }}"
 prefix = "{{ base_path | default('') }}"
 {% else %}
-# Access via UnitySVC S3 gateway
 service_url = "{{ service_base_url }}"
 endpoint_url = service_url.rsplit('/', 1)[0]
 bucket = service_url.rsplit('/', 1)[1]
@@ -39,7 +35,6 @@ s3 = boto3.client('s3',
 )
 {% endif %}
 
-# List files in the bucket
 response = s3.list_objects_v2(Bucket=bucket, MaxKeys=5, Prefix=prefix)
 for obj in response.get('Contents', []):
     key = obj['Key']
