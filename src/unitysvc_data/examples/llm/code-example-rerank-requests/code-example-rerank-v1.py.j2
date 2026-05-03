@@ -3,7 +3,7 @@ import os
 import requests
 
 response = requests.post(
-    "{{ service_base_url }}/rerank",
+    "{{ service_base_url }}/v1/rerank",
     headers={
         "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
         "Content-Type": "application/json",

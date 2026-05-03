@@ -18,7 +18,7 @@ async function main() {
   form.append("strength", strength);
 
   const response = await fetch(
-    "{{ service_base_url }}/models/{{ routing_key.model }}",
+    "{{ service_base_url }}/v1/models/{{ routing_key.model }}",
     {
       method: "POST",
       headers: { Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}` },
