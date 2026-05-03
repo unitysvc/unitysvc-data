@@ -7,6 +7,7 @@ description = "Python example: sentence-similarity via HF sentence-transformers 
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-sentencetransformers-requests — sentence similarity via `requests`

@@ -6,6 +6,7 @@ file = "code-example-sentencetransformers.sh.j2"
 description = "Bash example: sentence-similarity via HF sentence-transformers /models/<model> using curl"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-sentencetransformers-shell — sentence similarity via `curl`

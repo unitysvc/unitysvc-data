@@ -6,6 +6,7 @@ file = "code-example-vision.js.j2"
 description = "JavaScript example: describe an image via OpenAI-compatible /chat/completions vision messages"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-vision-javascript — vision via `fetch`

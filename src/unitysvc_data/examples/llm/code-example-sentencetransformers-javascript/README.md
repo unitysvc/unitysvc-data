@@ -6,6 +6,7 @@ file = "code-example-sentencetransformers.js.j2"
 description = "JavaScript example: sentence-similarity via HF sentence-transformers /models/<model>"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-sentencetransformers-javascript — sentence similarity via `fetch`

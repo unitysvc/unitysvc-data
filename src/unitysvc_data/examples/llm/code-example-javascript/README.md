@@ -6,6 +6,7 @@ file = "code-example.js.j2"
 description = "JavaScript example: send a chat completion request to an OpenAI-compatible LLM"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-javascript — chat completion via `fetch`

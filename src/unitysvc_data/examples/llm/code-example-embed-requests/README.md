@@ -7,6 +7,7 @@ description = "Python example: request OpenAI-compatible embeddings for a list o
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-embed-requests — embeddings via `requests`

@@ -198,7 +198,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_embed_image_javascript",
       "source_readme": "llm/code-example-embed-image-javascript/README.md",
       "version": 1
@@ -215,7 +217,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_embed_image_requests",
       "source_readme": "llm/code-example-embed-image-requests/README.md",
       "version": 1
@@ -228,7 +232,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_embed_image_shell",
       "source_readme": "llm/code-example-embed-image-shell/README.md",
       "version": 1
@@ -241,7 +247,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_embed_javascript",
       "source_readme": "llm/code-example-embed-javascript/README.md",
       "version": 1
@@ -258,7 +266,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_embed_requests",
       "source_readme": "llm/code-example-embed-requests/README.md",
       "version": 1
@@ -271,7 +281,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_embed_shell",
       "source_readme": "llm/code-example-embed-shell/README.md",
       "version": 1
@@ -288,7 +300,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_fc_requests",
       "source_readme": "llm/code-example-fc-requests/README.md",
       "version": 1
@@ -301,7 +315,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_guard_javascript",
       "source_readme": "llm/code-example-guard-javascript/README.md",
       "version": 1
@@ -318,7 +334,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_guard_requests",
       "source_readme": "llm/code-example-guard-requests/README.md",
       "version": 1
@@ -331,7 +349,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_guard_shell",
       "source_readme": "llm/code-example-guard-shell/README.md",
       "version": 1
@@ -344,7 +364,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_image_javascript",
       "source_readme": "llm/code-example-image-javascript/README.md",
       "version": 1
@@ -361,7 +383,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_image_requests",
       "source_readme": "llm/code-example-image-requests/README.md",
       "version": 1
@@ -374,7 +398,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_image_shell",
       "source_readme": "llm/code-example-image-shell/README.md",
       "version": 1
@@ -387,7 +413,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_imagetoimage_javascript",
       "source_readme": "llm/code-example-imagetoimage-javascript/README.md",
       "version": 1
@@ -404,7 +432,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_imagetoimage_requests",
       "source_readme": "llm/code-example-imagetoimage-requests/README.md",
       "version": 1
@@ -417,7 +447,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_imagetoimage_shell",
       "source_readme": "llm/code-example-imagetoimage-shell/README.md",
       "version": 1
@@ -430,7 +462,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_javascript",
       "source_readme": "llm/code-example-javascript/README.md",
       "version": 1
@@ -447,7 +481,9 @@
         ]
       },
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_openai_javascript",
       "source_readme": "llm/code-example-openai-javascript/README.md",
       "version": 1
@@ -464,7 +500,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_openai",
       "source_readme": "llm/code-example-openai/README.md",
       "version": 1
@@ -481,7 +519,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_requests",
       "source_readme": "llm/code-example-requests/README.md",
       "version": 1
@@ -494,7 +534,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_rerank_javascript",
       "source_readme": "llm/code-example-rerank-javascript/README.md",
       "version": 1
@@ -511,7 +553,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_rerank_requests",
       "source_readme": "llm/code-example-rerank-requests/README.md",
       "version": 1
@@ -524,7 +568,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_rerank_shell",
       "source_readme": "llm/code-example-rerank-shell/README.md",
       "version": 1
@@ -537,7 +583,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_sentencetransformers_javascript",
       "source_readme": "llm/code-example-sentencetransformers-javascript/README.md",
       "version": 1
@@ -554,7 +602,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_sentencetransformers_requests",
       "source_readme": "llm/code-example-sentencetransformers-requests/README.md",
       "version": 1
@@ -567,7 +617,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_sentencetransformers_shell",
       "source_readme": "llm/code-example-sentencetransformers-shell/README.md",
       "version": 1
@@ -580,7 +632,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_shell",
       "source_readme": "llm/code-example-shell/README.md",
       "version": 1
@@ -597,7 +651,9 @@
         ]
       },
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_streaming_openai_javascript",
       "source_readme": "llm/code-example-streaming-openai-javascript/README.md",
       "version": 1
@@ -614,7 +670,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_streaming_openai",
       "source_readme": "llm/code-example-streaming-openai/README.md",
       "version": 1
@@ -627,7 +685,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_transcription_javascript",
       "source_readme": "llm/code-example-transcription-javascript/README.md",
       "version": 1
@@ -644,7 +704,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_transcription_requests",
       "source_readme": "llm/code-example-transcription-requests/README.md",
       "version": 1
@@ -657,7 +719,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_transcription_shell",
       "source_readme": "llm/code-example-transcription-shell/README.md",
       "version": 1
@@ -670,7 +734,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_tts_javascript",
       "source_readme": "llm/code-example-tts-javascript/README.md",
       "version": 1
@@ -687,7 +753,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_tts_requests",
       "source_readme": "llm/code-example-tts-requests/README.md",
       "version": 1
@@ -700,7 +768,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_tts_shell",
       "source_readme": "llm/code-example-tts-shell/README.md",
       "version": 1
@@ -713,7 +783,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_ttv_javascript",
       "source_readme": "llm/code-example-ttv-javascript/README.md",
       "version": 1
@@ -730,7 +802,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_ttv_requests",
       "source_readme": "llm/code-example-ttv-requests/README.md",
       "version": 1
@@ -743,7 +817,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_ttv_shell",
       "source_readme": "llm/code-example-ttv-shell/README.md",
       "version": 1
@@ -756,7 +832,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "javascript",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_vision_javascript",
       "source_readme": "llm/code-example-vision-javascript/README.md",
       "version": 1
@@ -773,7 +851,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_vision_requests",
       "source_readme": "llm/code-example-vision-requests/README.md",
       "version": 1
@@ -786,7 +866,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_vision_shell",
       "source_readme": "llm/code-example-vision-shell/README.md",
       "version": 1
@@ -816,7 +898,9 @@
         "output_contains": "connectivity ok"
       },
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_connectivity_embed",
       "source_readme": "llm/connectivity-embed/README.md",
       "version": 1
@@ -831,7 +915,9 @@
         "output_contains": "connectivity ok"
       },
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_connectivity",
       "source_readme": "llm/connectivity/README.md",
       "version": 1

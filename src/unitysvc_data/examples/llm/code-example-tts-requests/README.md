@@ -7,6 +7,7 @@ description = "Python example: synthesize speech from text using an OpenAI-compa
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-tts-requests — text-to-speech via `requests`

@@ -7,6 +7,7 @@ description = "Python example: image-to-image transform via Hugging Face /models
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-imagetoimage-requests — image-to-image via `requests`

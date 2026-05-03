@@ -6,6 +6,7 @@ file = "code-example-guard.sh.j2"
 description = "Bash example: send an unsafe prompt to a guard/safety model via curl"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-guard-shell — safety guard probe via `curl`

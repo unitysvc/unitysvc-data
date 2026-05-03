@@ -4,7 +4,7 @@ async function main() {
   const voice = process.env.VOICE || "alloy";
   const outputFile = process.env.OUTPUT_FILE || "tts_output.wav";
 
-  const response = await fetch("{{ service_base_url }}/v1/audio/speech", {
+  const response = await fetch("{{ service_base_url }}${__version_prefix__}/audio/speech", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,

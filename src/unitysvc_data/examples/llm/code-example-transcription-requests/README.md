@@ -7,6 +7,7 @@ description = "Python example: transcribe a pre-recorded audio file with an Open
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-transcription-requests — audio transcription via `requests`

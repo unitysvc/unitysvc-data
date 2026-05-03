@@ -9,7 +9,7 @@ def echo_message(message: str) -> str:
 
 
 response = requests.post(
-    "{{ service_base_url }}/v1/chat/completions",
+    "{{ service_base_url }}${__version_prefix__}/chat/completions",
     headers={
         "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
         "Content-Type": "application/json",
