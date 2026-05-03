@@ -1,11 +1,13 @@
 #!/bin/bash
 set -e -o pipefail
 
-: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
-
 response_file="${TMPDIR:-/tmp}/notification-connectivity-response.json"
+auth_args=()
+if [ -n "${UNITYSVC_API_KEY:-}" ]; then
+    auth_args=(-H "Authorization: Bearer ${UNITYSVC_API_KEY}")
+fi
 http_code=$(curl -sS -X POST "{{ service_base_url }}/send" \
-  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  "${auth_args[@]}" \
   -H "Content-Type: application/json" \
   -d '{"target":"","message":"unitysvc connectivity test","format":"text"}' \
   -o "${response_file}" \
