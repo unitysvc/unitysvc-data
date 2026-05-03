@@ -216,7 +216,7 @@ def test_doc_preset_rejects_bad_sentinel_types():
 
 
 def test_doc_preset_rejects_mixed_overrides():
-    with pytest.raises(ValueError, match="Cannot combine keyword overrides"):
+    with pytest.raises(ValueError, match="Cannot combine keyword arguments"):
         doc_preset(
             {"$preset": "s3_connectivity_v1", "$with": {"description": "a"}},
             description="b",
@@ -255,7 +255,7 @@ def test_file_preset_matches_doc_preset_file_path():
 
 
 def test_file_preset_rejects_with_block():
-    with pytest.raises(ValueError, match="does not support '\\$with'"):
+    with pytest.raises(ValueError, match="does not support metadata overrides"):
         file_preset({"$preset": "s3_connectivity_v1", "$with": {"description": "x"}})
 
 
@@ -388,3 +388,218 @@ def test_preset_decorator_register_custom_function():
         }
     finally:
         PRESET_FNS.pop("_custom_preset", None)
+
+
+# ---------------------------------------------------------------------------
+# Preset parameters — ${__name__} substitution at file_preset time
+# ---------------------------------------------------------------------------
+
+
+def test_existing_presets_with_param_refs_at_least_render_cleanly():
+    """Smoke test: every preset that has ``${__name__}`` in its body
+    successfully passes through ``file_preset`` with defaults.  Names
+    not declared in the family's parameters table render as their
+    literal source (best-effort substitution), which is fine."""
+    import re
+
+    pat = re.compile(r"\$\{__([A-Za-z_][A-Za-z0-9_]*)__\}")
+    for name, entry in MANIFEST["presets"].items():
+        body = example_path(entry["example_file"]).read_text(encoding="utf-8")
+        if not pat.search(body):
+            continue
+        # Default render must not raise.
+        rendered = file_preset(name)
+        # Any declared name must have been substituted (no literal left).
+        for declared_name in entry.get("parameters", {}):
+            assert "${__" + declared_name + "__}" not in rendered, (
+                f"{name}: declared parameter {declared_name!r} not substituted"
+            )
+
+
+def test_file_preset_no_parameters_returns_unchanged():
+    """Existing parameter-free presets pass through file content
+    untouched — fast path, no regex sub."""
+    raw = example_path(MANIFEST["presets"]["s3_connectivity_v1"]["example_file"]).read_text(
+        encoding="utf-8"
+    )
+    assert file_preset("s3_connectivity_v1") == raw
+
+
+def test_file_preset_rejects_unknown_param_kwarg():
+    with pytest.raises(ValueError, match="Unknown parameter"):
+        file_preset("s3_connectivity_v1", version_prefix="/x")
+
+
+def test_file_preset_rejects_non_string_param_kwarg():
+    with pytest.raises(ValueError, match="must be a string"):
+        # Use any preset; param value validation runs before declared-name
+        # check, so it doesn't matter that this preset has no parameters.
+        file_preset("s3_connectivity_v1", anything=123)
+
+
+def test_doc_preset_carries_no_params_field_when_unused():
+    """Existing presets get no ``_params`` key on the doc record — the
+    field is only added when params are actually supplied."""
+    record = doc_preset("s3_connectivity_v1")
+    assert "_params" not in record
+
+
+# ---------------------------------------------------------------------------
+# Flat-form auto-discrimination — the seller-facing public API
+# ---------------------------------------------------------------------------
+
+
+def test_doc_preset_flat_form_auto_discriminates_overrides_only(monkeypatch):
+    """Synthesize a preset with declared parameters, then verify the
+    flat form correctly sends overrides to the factory and parameters
+    to the record's ``_params`` field."""
+    from unitysvc_data import presets as p
+
+    # Inject a synthetic declaration on an existing preset so we don't
+    # have to author a whole new family for the test.
+    target = "s3_code_example_v1"
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
+    record = doc_preset(target, description="Custom", version_prefix="/v2")
+    assert record["description"] == "Custom"
+    assert record["_params"] == {"version_prefix": "/v2"}
+
+
+def test_doc_preset_flat_form_falls_back_to_default_for_unset_params(monkeypatch):
+    """A declared parameter not supplied by the caller is *not* added
+    to ``_params`` — defaults are applied at substitution time, not
+    record-construction time."""
+    from unitysvc_data import presets as p
+
+    target = "s3_code_example_v1"
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
+    record = doc_preset(target, description="X")
+    assert record["description"] == "X"
+    assert "_params" not in record
+
+
+def test_doc_preset_flat_form_unknown_key_rejected_via_factory(monkeypatch):
+    """A key that's neither a declared param nor in OVERRIDABLE goes
+    through the factory, which rejects it with the existing
+    ``Cannot override`` message."""
+    from unitysvc_data import presets as p
+
+    target = "s3_code_example_v1"
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
+    with pytest.raises(ValueError, match="Cannot override"):
+        doc_preset(target, totally_unknown_thing="x")
+
+
+def test_doc_preset_flat_form_param_value_must_be_string(monkeypatch):
+    from unitysvc_data import presets as p
+
+    target = "s3_code_example_v1"
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
+    with pytest.raises(ValueError, match="must be a string"):
+        doc_preset(target, version_prefix=123)
+
+
+def test_file_preset_flat_form_substitutes(monkeypatch, tmp_path):
+    """End-to-end flat-form substitution via file_preset: redirect a
+    preset's bundled file to a tmp-path body that uses the placeholder,
+    then verify the kwarg propagates."""
+    from unitysvc_data import presets as p
+
+    body_path = tmp_path / "param_body.sh"
+    body_path.write_text('echo "${__version_prefix__}/chat/completions"\n')
+
+    target = "s3_connectivity_v1"
+    monkeypatch.setitem(
+        p._PRESET_RECORDS[target], "file_path", str(body_path)
+    )
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
+    # Default: applies the declared default
+    assert file_preset(target) == 'echo "/v1/chat/completions"\n'
+
+    # Override: kwarg wins
+    assert (
+        file_preset(target, version_prefix="/compatibility/v1")
+        == 'echo "/compatibility/v1/chat/completions"\n'
+    )
+
+
+def test_substitute_params_replaces_default_when_no_override():
+    """White-box test on the substitution helper.  Uses the public
+    behaviour via a synthetic preset entry."""
+    from unitysvc_data.presets import _substitute_params
+
+    body = "url = ${__path__}/v1/messages"
+    out = _substitute_params(
+        body,
+        declared={"path": "/default"},
+        overrides={},
+        preset_name="synthetic",
+    )
+    assert out == "url = /default/v1/messages"
+
+
+def test_substitute_params_replaces_with_override_value():
+    from unitysvc_data.presets import _substitute_params
+
+    body = "url = ${__path__}/v1/messages"
+    out = _substitute_params(
+        body,
+        declared={"path": "/default"},
+        overrides={"path": "/compatibility"},
+        preset_name="synthetic",
+    )
+    assert out == "url = /compatibility/v1/messages"
+
+
+def test_substitute_params_handles_multiple_references():
+    from unitysvc_data.presets import _substitute_params
+
+    body = "${__a__} ${__b__} ${__a__}"
+    out = _substitute_params(
+        body,
+        declared={"a": "X", "b": "Y"},
+        overrides={"a": "1", "b": "2"},
+        preset_name="synthetic",
+    )
+    assert out == "1 2 1"
+
+
+def test_substitute_params_leaves_shell_var_references_alone():
+    """Single-underscore / no-underscore ${VAR} references must not
+    match — they're shell variables in .sh.j2 files, not preset
+    parameters."""
+    from unitysvc_data.presets import _substitute_params
+
+    body = 'echo "${TMPDIR:-/tmp}/${__suffix__}/${HOME}"'
+    out = _substitute_params(
+        body,
+        declared={"suffix": "out"},
+        overrides={},
+        preset_name="synthetic",
+    )
+    assert out == 'echo "${TMPDIR:-/tmp}/out/${HOME}"'
+
+
+def test_substitute_params_leaves_undeclared_references_alone():
+    """Best-effort substitution: undeclared ``${__name__}`` placeholders
+    pass through verbatim rather than raising.  Authors may have
+    literal placeholders for documentation, future parameters, etc."""
+    from unitysvc_data.presets import _substitute_params
+
+    out = _substitute_params(
+        "declared=${__path__} undeclared=${__missing__}",
+        declared={"path": "/default"},
+        overrides={},
+        preset_name="synthetic",
+    )
+    assert out == "declared=/default undeclared=${__missing__}"
+
+
+def test_parse_source_accepts_unknown_keys_message_lists_params():
+    """Sentinel parsing errors should mention $params is a valid key."""
+    with pytest.raises(ValueError, match=r"'\$params'"):
+        doc_preset({"$preset": "s3_connectivity_v1", "$nope": {}})
