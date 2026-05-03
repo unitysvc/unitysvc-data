@@ -268,8 +268,10 @@ def doc_preset(source: Any, **kwargs: Any) -> dict[str, Any]:
 
     - Names declared in the preset's front-matter ``parameters`` table
       are treated as substitution values for ``${__name__}`` references
-      in the example body; they ride alongside the returned record as
-      ``_params`` so downstream readers can apply them.
+      in the example body.  Substitution is applied eagerly: the
+      rendered body is materialised to a per-process tmp file and
+      ``file_path`` on the returned record points at it, so consumers
+      reading ``file_path`` get the substituted output transparently.
     - Everything else is a metadata override (``description``,
       ``is_public``, ``is_active``, ``meta``).  Anything that's neither
       a declared parameter nor an OVERRIDABLE field raises.
@@ -326,10 +328,10 @@ def doc_preset(source: Any, **kwargs: Any) -> dict[str, Any]:
             bundled_file_path=record["file_path"],
             params=params,
         )
-        # Keep ``_params`` on the record for visibility (debugging,
-        # introspection); functionally unused now that file_path points
-        # at the rendered body.
-        record["_params"] = dict(params)
+        # No ``_params`` on the record — the seller's listing-document
+        # schema validator rejects unknown fields, and now that
+        # ``file_path`` points at the rendered body, params have no
+        # downstream consumer anyway.
     return record
 
 

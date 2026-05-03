@@ -30,9 +30,16 @@ them exactly what the upstream said.
 
 | Condition | Verdict |
 |---|---|
-| HTTP 2xx with `"ok"` in the response body | pass |
-| HTTP 2xx without `"ok"` in the body | fail (probable upstream contract change) |
+| HTTP 2xx with non-empty response body | pass |
+| HTTP 2xx with empty body | fail (upstream returned no payload — protocol regression) |
 | HTTP non-2xx | fail |
+
+The check is intentionally loose on body content because notification
+upstreams differ widely in their response shape — ntfy returns a
+message receipt, the mock upstream echoes the request, the
+notification gateway wraps with its own envelope.  HTTP 2xx + non-zero
+body length is the lowest common denominator for "the upstream
+accepted and processed the request."
 
 ## Template variables (filled in by the platform when rendering for a given access interface)
 

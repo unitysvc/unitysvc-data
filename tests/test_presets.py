@@ -437,9 +437,10 @@ def test_file_preset_rejects_non_string_param_kwarg():
         file_preset("s3_connectivity_v1", anything=123)
 
 
-def test_doc_preset_carries_no_params_field_when_unused():
-    """Existing presets get no ``_params`` key on the doc record — the
-    field is only added when params are actually supplied."""
+def test_doc_preset_record_never_carries_params_field():
+    """The seller's listing-document schema validator rejects unknown
+    fields, so doc records never expose ``_params`` — substitution is
+    applied transparently via ``file_path`` redirection instead."""
     record = doc_preset("s3_connectivity_v1")
     assert "_params" not in record
 
@@ -452,7 +453,8 @@ def test_doc_preset_carries_no_params_field_when_unused():
 def test_doc_preset_flat_form_auto_discriminates_overrides_only(monkeypatch):
     """Synthesize a preset with declared parameters, then verify the
     flat form correctly sends overrides to the factory and parameters
-    to the record's ``_params`` field."""
+    are applied via ``file_path`` redirection (not surfaced on the
+    record)."""
     from unitysvc_data import presets as p
 
     # Inject a synthetic declaration on an existing preset so we don't
@@ -462,13 +464,16 @@ def test_doc_preset_flat_form_auto_discriminates_overrides_only(monkeypatch):
 
     record = doc_preset(target, description="Custom", version_prefix="/v2")
     assert record["description"] == "Custom"
-    assert record["_params"] == {"version_prefix": "/v2"}
+    # The schema-rejected ``_params`` field never appears on the record.
+    assert "_params" not in record
+    # ``file_path`` redirected to the substituted body.
+    assert "site-packages" not in record["file_path"]
+    assert "/src/unitysvc_data" not in record["file_path"]
 
 
 def test_doc_preset_flat_form_falls_back_to_default_for_unset_params(monkeypatch):
-    """A declared parameter not supplied by the caller is *not* added
-    to ``_params`` — defaults are applied at substitution time, not
-    record-construction time."""
+    """A declared parameter not supplied by the caller takes the
+    declared default — no ``_params`` field surfaces either way."""
     from unitysvc_data import presets as p
 
     target = "s3_code_example_v1"
