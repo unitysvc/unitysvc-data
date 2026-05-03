@@ -599,6 +599,96 @@ def test_substitute_params_leaves_undeclared_references_alone():
     assert out == "declared=/default undeclared=${__missing__}"
 
 
+# ---------------------------------------------------------------------------
+# doc_preset eager substitution — file_path redirects to tmp file
+# ---------------------------------------------------------------------------
+
+
+def test_doc_preset_no_params_returns_bundled_file_path(monkeypatch):
+    """Without parameters, ``file_path`` points at the bundled source —
+    no temp file created."""
+    from unitysvc_data import presets as p
+
+    target = "s3_code_example_v1"
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
+    record = doc_preset(target)
+    # No params → bundled file path, no tmp dir touched.
+    assert "site-packages" in record["file_path"] or "/src/" in record["file_path"]
+
+
+def test_doc_preset_with_params_redirects_file_path_to_tmp(monkeypatch, tmp_path):
+    """With parameters, ``file_path`` redirects at a tmp file containing
+    the substituted body.  Consumers reading file_path see the rendered
+    output without knowing parameters exist."""
+    from unitysvc_data import presets as p
+
+    body_path = tmp_path / "body.sh"
+    body_path.write_text('echo "${__version_prefix__}/chat/completions"\n')
+
+    target = "s3_connectivity_v1"
+    monkeypatch.setitem(p._PRESET_RECORDS[target], "file_path", str(body_path))
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
+    record = doc_preset(target, version_prefix="/compatibility/v1")
+    assert record["file_path"] != str(body_path)  # redirected
+    out = Path(record["file_path"]).read_text()
+    assert out == 'echo "/compatibility/v1/chat/completions"\n'
+
+
+def test_doc_preset_substituted_path_caches_identical_params(monkeypatch, tmp_path):
+    """Two doc_preset calls with the same (preset, params) reuse the
+    same tmp file.  Avoids accumulating byte-identical files when a
+    long-running consumer expands the same preset for many listings."""
+    from unitysvc_data import presets as p
+
+    body_path = tmp_path / "body.sh"
+    body_path.write_text('"${__x__}"')
+
+    target = "s3_connectivity_v1"
+    monkeypatch.setitem(p._PRESET_RECORDS[target], "file_path", str(body_path))
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"x": "default"})
+
+    a = doc_preset(target, x="custom")
+    b = doc_preset(target, x="custom")
+    assert a["file_path"] == b["file_path"]
+
+
+def test_doc_preset_substituted_path_distinct_per_param_value(monkeypatch, tmp_path):
+    """Different param values → different tmp files (content-addressed
+    by fingerprint of the resolved param map)."""
+    from unitysvc_data import presets as p
+
+    body_path = tmp_path / "body.sh"
+    body_path.write_text('"${__x__}"')
+
+    target = "s3_connectivity_v1"
+    monkeypatch.setitem(p._PRESET_RECORDS[target], "file_path", str(body_path))
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"x": "default"})
+
+    a = doc_preset(target, x="alpha")
+    b = doc_preset(target, x="beta")
+    assert a["file_path"] != b["file_path"]
+    assert Path(a["file_path"]).read_text() == '"alpha"'
+    assert Path(b["file_path"]).read_text() == '"beta"'
+
+
+def test_doc_preset_substituted_path_preserves_compound_suffix(monkeypatch, tmp_path):
+    """Tmp file keeps ``.py.j2`` / ``.sh.j2`` compound suffixes — some
+    consumers key on the suffix to decide how to render (Jinja2)."""
+    from unitysvc_data import presets as p
+
+    body_path = tmp_path / "body.py.j2"
+    body_path.write_text("x = '${__x__}'")
+
+    target = "s3_connectivity_v1"
+    monkeypatch.setitem(p._PRESET_RECORDS[target], "file_path", str(body_path))
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"x": "default"})
+
+    record = doc_preset(target, x="custom")
+    assert record["file_path"].endswith(".py.j2"), record["file_path"]
+
+
 def test_parse_source_accepts_unknown_keys_message_lists_params():
     """Sentinel parsing errors should mention $params is a valid key."""
     with pytest.raises(ValueError, match=r"'\$params'"):

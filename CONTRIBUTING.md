@@ -231,15 +231,25 @@ file_preset("llm_code_example_openai")
 # Override
 file_preset("llm_code_example_openai", version_prefix="/compatibility/v1")
 
-# doc_preset returns a record with both metadata and the param values
+# doc_preset returns a record where file_path already points at the
+# substituted body — consumers reading file_path get the rendered
+# output without needing to know parameters exist.
 record = doc_preset(
     "llm_code_example_openai",
     description="Cohere-compat chat",
     version_prefix="/compatibility/v1",
 )
 # record["description"] == "Cohere-compat chat"
-# record["_params"] == {"version_prefix": "/compatibility/v1"}
+# record["file_path"] → tmp file with substituted body
+# Path(record["file_path"]).read_text() returns the substituted content
 ```
+
+When parameters are supplied, `doc_preset` writes the substituted body
+to a per-process tmp file and points `file_path` at that — so the
+seller SDK, the upload pipeline, and the platform's Celery worker
+all read the rendered output transparently. Identical
+`(preset, params)` pairs reuse the same tmp file via a content-addressed
+filename; the tmp directory is cleaned up on interpreter exit.
 
 Parameter names and metadata-override names cannot collide —
 `tools/build.py` enforces that no parameter is declared with a name

@@ -30,13 +30,55 @@ See https://github.com/unitysvc/unitysvc-sellers/issues/25 for design.
 
 from __future__ import annotations
 
+import atexit
+import hashlib
 import json
+import os
+import tempfile
 from copy import deepcopy
 from importlib.resources import files as _files
 from pathlib import Path
 from typing import Any
 
 from ._registry import preset
+
+# Per-process directory for parameter-substituted preset bodies.  We
+# hash the (preset_name, params) tuple so identical substitutions reuse
+# the same file across calls — avoids accumulating thousands of
+# byte-identical temp files when a long-running consumer expands the
+# same preset for many listings.  The directory is registered for
+# atexit cleanup so short-lived CLI processes (``usvc_data`` /
+# ``usvc_seller``) don't leak.
+_SUBSTITUTED_DIR: Path | None = None
+
+
+def _substituted_dir() -> Path:
+    """Return the per-process tmp dir for substituted preset bodies,
+    creating it lazily on first use and registering atexit cleanup."""
+    global _SUBSTITUTED_DIR
+    if _SUBSTITUTED_DIR is None:
+        _SUBSTITUTED_DIR = Path(
+            tempfile.mkdtemp(prefix=f"unitysvc_data_{os.getpid()}_")
+        )
+        atexit.register(_cleanup_substituted_dir)
+    return _SUBSTITUTED_DIR
+
+
+def _cleanup_substituted_dir() -> None:
+    """Best-effort recursive removal of the substituted-bodies dir.
+    Called via atexit; swallow any error so we don't poison shutdown."""
+    global _SUBSTITUTED_DIR
+    if _SUBSTITUTED_DIR is None or not _SUBSTITUTED_DIR.is_dir():
+        return
+    try:
+        for child in _SUBSTITUTED_DIR.iterdir():
+            try:
+                child.unlink()
+            except OSError:
+                pass
+        _SUBSTITUTED_DIR.rmdir()
+    except OSError:
+        pass
 
 # Resolved once at import time. Duplicated with __init__ rather than
 # imported to avoid a circular import during package load. Use
@@ -272,11 +314,68 @@ def doc_preset(source: Any, **kwargs: Any) -> dict[str, Any]:
     factory = _lookup(name, PRESETS, "preset")
     record = factory(**metadata)
     if params:
-        # Carry params on the record so downstream consumers (upload
-        # pipeline, test runner) can pass them to file_preset() when
-        # materialising the body.
+        # Substitute eagerly and redirect ``file_path`` at the rendered
+        # output so consumers (upload pipeline, test runner) read the
+        # substituted body without needing to know parameters exist.
+        # The bundled source file remains untouched in the package; the
+        # rendered version lives in a per-process tmp dir cleaned up on
+        # interpreter exit.  Identical (preset, params) pairs reuse the
+        # same tmp file via a content-addressed name.
+        record["file_path"] = _materialise_substituted_body(
+            preset_name=name,
+            bundled_file_path=record["file_path"],
+            params=params,
+        )
+        # Keep ``_params`` on the record for visibility (debugging,
+        # introspection); functionally unused now that file_path points
+        # at the rendered body.
         record["_params"] = dict(params)
     return record
+
+
+def _materialise_substituted_body(
+    preset_name: str,
+    bundled_file_path: str,
+    params: dict[str, str],
+) -> str:
+    """Substitute ``params`` into the bundled preset body, write the
+    result to a per-process tmp file, and return the tmp file's path.
+
+    Uses a content-addressed filename so identical (preset, params)
+    pairs share a single tmp file — short-circuits the read+write+sub
+    on cache hit.  Preserves the original file's basename suffix so
+    consumers that key on the extension (`.j2`, `.py.j2`, etc.) keep
+    working.
+    """
+    declared = _PRESET_PARAMETERS.get(preset_name, {})
+    bundled = Path(bundled_file_path)
+
+    # Cache key: preset name + the params that survive after defaults
+    # are applied.  Two callers passing different overrides that
+    # resolve to the same effective values share a tmp file.
+    resolved = {**declared, **params}
+    fingerprint_src = json.dumps(
+        {"preset": preset_name, "resolved": resolved},
+        sort_keys=True,
+    ).encode("utf-8")
+    fingerprint = hashlib.sha256(fingerprint_src).hexdigest()[:16]
+
+    # Preserve compound suffixes like ``.py.j2``, ``.sh.j2`` — Path.suffix
+    # only returns the last segment so we slice manually.
+    name_dots = bundled.name.split(".", 1)
+    suffix = ("." + name_dots[1]) if len(name_dots) > 1 else ""
+    out_path = _substituted_dir() / f"{preset_name}-{fingerprint}{suffix}"
+    if out_path.is_file():
+        # Cache hit — content is content-addressed by fingerprint, so
+        # an existing file with this name is byte-identical to what
+        # we'd produce.
+        return str(out_path)
+
+    content = bundled.read_text(encoding="utf-8")
+    if declared:
+        content = _substitute_params(content, declared, params, preset_name)
+    out_path.write_text(content, encoding="utf-8")
+    return str(out_path)
 
 
 @preset
