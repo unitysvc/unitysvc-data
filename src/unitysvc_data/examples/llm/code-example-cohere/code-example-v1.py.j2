@@ -14,5 +14,4 @@ response = client.chat(
         {"role": "user", "content": "Say this is a test"},
     ],
 )
-# v2 returns content as a list of typed blocks.
 print("\n".join(b.text for b in response.message.content if b.type == "text"))

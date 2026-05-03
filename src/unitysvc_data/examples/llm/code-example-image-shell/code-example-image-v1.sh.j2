@@ -17,7 +17,6 @@ response=$(curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__
     \"response_format\": \"b64_json\"
   }")
 
-# Extract b64 image with a tiny python helper to avoid jq dependency.
 python3 -c "
 import base64, json, sys
 data = json.loads(sys.stdin.read())

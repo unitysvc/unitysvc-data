@@ -1,6 +1,4 @@
 #!/bin/bash
-# Generic HTTP smoke test for any UnitySVC HTTP-fronted service.
-# `-f` makes curl exit non-zero on any non-2xx response.
 set -e
 
 if [ -n "${UNITYSVC_API_KEY:-}" ]; then
