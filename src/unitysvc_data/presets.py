@@ -315,23 +315,21 @@ def doc_preset(source: Any, **kwargs: Any) -> dict[str, Any]:
 
     factory = _lookup(name, PRESETS, "preset")
     record = factory(**metadata)
-    if params:
-        # Substitute eagerly and redirect ``file_path`` at the rendered
-        # output so consumers (upload pipeline, test runner) read the
-        # substituted body without needing to know parameters exist.
-        # The bundled source file remains untouched in the package; the
-        # rendered version lives in a per-process tmp dir cleaned up on
-        # interpreter exit.  Identical (preset, params) pairs reuse the
-        # same tmp file via a content-addressed name.
+    # Substitute whenever the preset *declares* parameters — even if the
+    # caller supplied no overrides — so declared defaults get applied
+    # too.  Otherwise a preset like ``llm_code_example_openai`` (which
+    # declares ``version_prefix = "/v1"``) would render with the literal
+    # ``${__version_prefix__}`` placeholder when no override is passed.
+    # Identical (preset, resolved-params) pairs reuse the same tmp file
+    # via a content-addressed name, so this is cheap.
+    if _PRESET_PARAMETERS.get(name):
         record["file_path"] = _materialise_substituted_body(
             preset_name=name,
             bundled_file_path=record["file_path"],
             params=params,
         )
         # No ``_params`` on the record — the seller's listing-document
-        # schema validator rejects unknown fields, and now that
-        # ``file_path`` points at the rendered body, params have no
-        # downstream consumer anyway.
+        # schema validator rejects unknown fields.
     return record
 
 
