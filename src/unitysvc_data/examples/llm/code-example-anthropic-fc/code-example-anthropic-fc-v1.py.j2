@@ -1,0 +1,40 @@
+import os
+
+from anthropic import Anthropic
+
+
+def echo_message(message: str) -> str:
+    return f"Echo: {message}"
+
+
+client = Anthropic(
+    base_url="{{ service_base_url }}",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+
+response = client.messages.create(
+    model="{{ routing_key.model }}",
+    max_tokens=1024,
+    system="You are a helpful assistant.",
+    messages=[{"role": "user", "content": "Echo back: this is a test"}],
+    tools=[
+        {
+            "name": "echo_message",
+            "description": "Echoes back the given message",
+            "input_schema": {
+                "type": "object",
+                "properties": {"message": {"type": "string"}},
+                "required": ["message"],
+            },
+        }
+    ],
+)
+
+# Anthropic returns content as an array of typed blocks; tool calls
+# are ``type=tool_use`` items rather than a top-level ``tool_calls``.
+for block in response.content:
+    if block.type == "tool_use" and block.name == "echo_message":
+        print(echo_message(block.input["message"]))
+        break
+else:
+    print("\n".join(b.text for b in response.content if b.type == "text"))

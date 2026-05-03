@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+curl --fail-with-body -sS "{{ service_base_url }}/v1/messages" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: ${UNITYSVC_API_KEY}" \
+  -H "anthropic-version: 2023-06-01" \
+  -d '{
+    "model": "{{ routing_key.model }}",
+    "max_tokens": 1024,
+    "system": "You are a helpful assistant.",
+    "messages": [
+      {"role": "user", "content": "Say this is a test"}
+    ]
+  }'
