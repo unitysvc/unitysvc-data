@@ -1,0 +1,22 @@
+import os
+
+import cohere
+
+# Cohere's native v2 chat surface (``client.chat(...)``).  Sellers who
+# point the upstream at Cohere's OpenAI-compatibility layer can also
+# call this model via ``llm_code_example_openai`` — both routes hit the
+# same Cohere model.  This preset is the idiomatic Cohere-SDK call.
+client = cohere.ClientV2(
+    base_url="{{ service_base_url }}",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+
+response = client.chat(
+    model="{{ routing_key.model }}",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Say this is a test"},
+    ],
+)
+# v2 returns content as a list of typed blocks.
+print("\n".join(b.text for b in response.message.content if b.type == "text"))
