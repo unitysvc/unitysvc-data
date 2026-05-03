@@ -1,0 +1,40 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+image_url="${IMAGE_URL:-https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg}"
+image_file="${TMPDIR:-/tmp}/$(basename "${image_url%%\?*}")"
+[ -f "${image_file}" ] || curl -sSL --fail-with-body -o "${image_file}" "${image_url}"
+
+mime=$(file --mime-type -b "${image_file}" 2>/dev/null || echo "image/jpeg")
+data_uri="data:${mime};base64,$(base64 < "${image_file}" | tr -d '\n')"
+
+response_file="${TMPDIR:-/tmp}/embed-image-connectivity-response.json"
+http_code=$(curl -sS "{{ service_base_url }}${__version_prefix__}/embed" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d "{
+    \"model\": \"{{ routing_key.model }}\",
+    \"input_type\": \"image\",
+    \"embedding_types\": [\"float\"],
+    \"images\": [\"${data_uri}\"]
+  }" \
+  -o "${response_file}" \
+  -w "%{http_code}")
+
+case "$http_code" in
+  2??)
+    grep -q '"embeddings"' "${response_file}" || {
+      echo "HTTP 2xx but no embeddings in body:" >&2
+      cat "${response_file}" >&2
+      exit 1
+    }
+    ;;
+  *)
+    echo "HTTP $http_code from upstream:" >&2
+    cat "${response_file}" >&2
+    exit 1
+    ;;
+esac
+echo "connectivity ok"

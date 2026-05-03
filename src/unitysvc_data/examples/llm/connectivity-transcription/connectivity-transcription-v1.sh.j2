@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+audio_url="${AUDIO_URL:-https://raw.githubusercontent.com/openai/whisper/main/tests/jfk.flac}"
+audio_file="${TMPDIR:-/tmp}/$(basename "${audio_url%%\?*}")"
+[ -f "${audio_file}" ] || curl -sSL --fail-with-body -o "${audio_file}" "${audio_url}"
+
+response_file="${TMPDIR:-/tmp}/transcription-connectivity-response.json"
+http_code=$(curl -sS "{{ service_base_url }}${__version_prefix__}/audio/transcriptions" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -F "model={{ routing_key.model }}" \
+  -F "language=${__language__}" \
+  -F "file=@${audio_file}" \
+  -o "${response_file}" \
+  -w "%{http_code}")
+
+case "$http_code" in
+  2??)
+    grep -q '"text"' "${response_file}" || {
+      echo "HTTP 2xx but no text in body:" >&2
+      cat "${response_file}" >&2
+      exit 1
+    }
+    ;;
+  *)
+    echo "HTTP $http_code from upstream:" >&2
+    cat "${response_file}" >&2
+    exit 1
+    ;;
+esac
+echo "connectivity ok"

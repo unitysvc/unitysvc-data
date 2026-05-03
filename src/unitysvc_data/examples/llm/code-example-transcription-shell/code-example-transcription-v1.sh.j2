@@ -4,10 +4,11 @@ set -e -o pipefail
 : "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
 
 audio_url="${AUDIO_URL:-https://raw.githubusercontent.com/openai/whisper/main/tests/jfk.flac}"
-audio_file="$(basename "${audio_url%%\?*}")"
+audio_file="${TMPDIR:-/tmp}/$(basename "${audio_url%%\?*}")"
 [ -f "${audio_file}" ] || curl -sSL --fail-with-body -o "${audio_file}" "${audio_url}"
 
 curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/audio/transcriptions" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
-  -F "file=@${audio_file}" \
-  -F "model={{ routing_key.model }}"
+  -F "model={{ routing_key.model }}" \
+  -F "language=${__language__}" \
+  -F "file=@${audio_file}"
