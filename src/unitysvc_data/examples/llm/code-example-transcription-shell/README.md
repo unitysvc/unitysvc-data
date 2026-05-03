@@ -6,7 +6,7 @@ file = "code-example-transcription.sh.j2"
 description = "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl"
 is_active = true
 is_public = true
-parameters = { version_prefix = "/v1" }
+parameters = { version_prefix = "/v1", language = "en" }
 +++
 
 # llm / code-example-transcription-shell — audio transcription via `curl`

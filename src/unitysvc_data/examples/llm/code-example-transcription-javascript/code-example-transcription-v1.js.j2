@@ -11,8 +11,9 @@ async function main() {
   const filename = audioUrl.split("/").pop().split("?")[0] || "audio";
 
   const form = new FormData();
-  form.append("file", new Blob([audioBytes]), filename);
   form.append("model", "{{ routing_key.model }}");
+  form.append("language", "${__language__}");
+  form.append("file", new Blob([audioBytes]), filename);
 
   const response = await fetch("{{ service_base_url }}${__version_prefix__}/audio/transcriptions", {
     method: "POST",

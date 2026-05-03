@@ -7,7 +7,7 @@ description = "Verify an OpenAI-compatible audio-transcription endpoint by sendi
 is_active = true
 is_public = false
 meta = { output_contains = "connectivity ok" }
-parameters = { version_prefix = "/v1" }
+parameters = { version_prefix = "/v1", language = "en" }
 +++
 
 # llm / connectivity-transcription — audio transcription smoke test
