@@ -58,6 +58,8 @@
     "llm_description": "llm_description_v1",
     "llm_request_template": "llm_request_template_v1",
     "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
+    "notification_code_example": "notification_code_example_v1",
+    "notification_connectivity": "notification_connectivity_v1",
     "notification_description": "notification_description_v1",
     "recommender_description": "recommender_description_v1",
     "s3_code_example": "s3_code_example_v1",
@@ -1017,6 +1019,38 @@
       "parameters": {},
       "preset_name": "llm_request_template",
       "source_readme": "llm/request-template/README.md",
+      "version": 1
+    },
+    "notification_code_example_v1": {
+      "category": "code_example",
+      "description": "Python example: send a notification via the UnitySVC notify gateway",
+      "example_file": "notification/code-example/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "notification_code_example",
+      "source_readme": "notification/code-example/README.md",
+      "version": 1
+    },
+    "notification_connectivity_v1": {
+      "category": "connectivity_test",
+      "description": "Verify a notification gateway endpoint by issuing a tiny POST /send",
+      "example_file": "notification/connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "notification_connectivity",
+      "source_readme": "notification/connectivity/README.md",
       "version": 1
     },
     "notification_description_v1": {
