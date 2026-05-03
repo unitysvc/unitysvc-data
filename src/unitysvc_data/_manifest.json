@@ -4,6 +4,9 @@
     "api_code_example_shell": "api_code_example_shell_v1",
     "api_connectivity": "api_connectivity_v1",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
+    "llm_code_example_anthropic_fc": "llm_code_example_anthropic_fc_v1",
+    "llm_code_example_anthropic_javascript": "llm_code_example_anthropic_javascript_v1",
+    "llm_code_example_anthropic_shell": "llm_code_example_anthropic_shell_v1",
     "llm_code_example_cerebras": "llm_code_example_cerebras_v1",
     "llm_code_example_embed_image_javascript": "llm_code_example_embed_image_javascript_v1",
     "llm_code_example_embed_image_requests": "llm_code_example_embed_image_requests_v1",
@@ -48,8 +51,10 @@
     "llm_code_example_vision_shell": "llm_code_example_vision_shell_v1",
     "llm_connectivity": "llm_connectivity_v1",
     "llm_connectivity_anthropic": "llm_connectivity_anthropic_v1",
+    "llm_connectivity_embed": "llm_connectivity_embed_v1",
     "llm_description": "llm_description_v1",
     "llm_request_template": "llm_request_template_v1",
+    "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
     "notification_description": "notification_description_v1",
     "recommender_description": "recommender_description_v1",
     "s3_code_example": "s3_code_example_v1",
@@ -103,6 +108,46 @@
       "mime_type": "bash",
       "preset_name": "api_connectivity",
       "source_readme": "api/connectivity/README.md",
+      "version": 1
+    },
+    "llm_code_example_anthropic_fc_v1": {
+      "category": "code_example",
+      "description": "Python example: tool use against an Anthropic Messages API endpoint via the anthropic SDK",
+      "example_file": "llm/code-example-anthropic-fc/code-example-anthropic-fc-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "anthropic"
+        ]
+      },
+      "mime_type": "python",
+      "preset_name": "llm_code_example_anthropic_fc",
+      "source_readme": "llm/code-example-anthropic-fc/README.md",
+      "version": 1
+    },
+    "llm_code_example_anthropic_javascript_v1": {
+      "category": "code_example",
+      "description": "JavaScript example: send a message to an Anthropic Messages API endpoint via built-in fetch",
+      "example_file": "llm/code-example-anthropic-javascript/code-example-anthropic-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "javascript",
+      "preset_name": "llm_code_example_anthropic_javascript",
+      "source_readme": "llm/code-example-anthropic-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_anthropic_shell_v1": {
+      "category": "code_example",
+      "description": "curl example: POST a message to an Anthropic Messages API endpoint",
+      "example_file": "llm/code-example-anthropic-shell/code-example-anthropic-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "preset_name": "llm_code_example_anthropic_shell",
+      "source_readme": "llm/code-example-anthropic-shell/README.md",
       "version": 1
     },
     "llm_code_example_anthropic_v1": {
@@ -711,6 +756,20 @@
       "source_readme": "llm/connectivity-anthropic/README.md",
       "version": 1
     },
+    "llm_connectivity_embed_v1": {
+      "category": "connectivity_test",
+      "description": "Verify an OpenAI-compatible embeddings endpoint by issuing a tiny embed request",
+      "example_file": "llm/connectivity-embed/connectivity-embed-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "preset_name": "llm_connectivity_embed",
+      "source_readme": "llm/connectivity-embed/README.md",
+      "version": 1
+    },
     "llm_connectivity_v1": {
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible LLM endpoint by issuing a tiny chat completion",
@@ -735,6 +794,18 @@
       "mime_type": "markdown",
       "preset_name": "llm_description",
       "source_readme": "llm/description/README.md",
+      "version": 1
+    },
+    "llm_request_template_anthropic_v1": {
+      "category": "request_template",
+      "description": "Minimal Anthropic Messages API request body",
+      "example_file": "llm/request-template-anthropic/request-template-anthropic-v1.json",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "json",
+      "preset_name": "llm_request_template_anthropic",
+      "source_readme": "llm/request-template-anthropic/README.md",
       "version": 1
     },
     "llm_request_template_v1": {
