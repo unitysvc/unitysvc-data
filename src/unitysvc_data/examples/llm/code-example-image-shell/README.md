@@ -6,6 +6,7 @@ file = "code-example-image.sh.j2"
 description = "Bash example: generate an image via OpenAI-compatible /images/generations using curl"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-image-shell — image generation via `curl`

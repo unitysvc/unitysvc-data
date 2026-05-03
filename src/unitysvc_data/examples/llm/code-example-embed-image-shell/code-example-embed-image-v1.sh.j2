@@ -10,7 +10,7 @@ image_file="$(basename "${image_url%%\?*}")"
 mime=$(file --mime-type -b "${image_file}" 2>/dev/null || echo "image/jpeg")
 data_uri="data:${mime};base64,$(base64 < "${image_file}" | tr -d '\n')"
 
-curl --fail-with-body -sS "{{ service_base_url }}/v1/embed" \
+curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/embed" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
   -d "{

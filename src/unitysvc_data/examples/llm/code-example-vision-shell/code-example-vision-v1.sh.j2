@@ -6,7 +6,7 @@ set -e -o pipefail
 image_url="${IMAGE_URL:-https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg}"
 prompt="${PROMPT:-Describe this image.}"
 
-curl --fail-with-body -sS "{{ service_base_url }}/v1/chat/completions" \
+curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
   -d "{

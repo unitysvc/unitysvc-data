@@ -6,6 +6,7 @@ file = "code-example-ttv.sh.j2"
 description = "Bash example: text-to-video via HF /models/<model> using curl"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-ttv-shell — text-to-video via `curl`

@@ -1,5 +1,5 @@
 async function main() {
-  const response = await fetch("{{ service_base_url }}/v1/rerank", {
+  const response = await fetch("{{ service_base_url }}${__version_prefix__}/rerank", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,

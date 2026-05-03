@@ -1,7 +1,7 @@
 const { OpenAI } = require("openai");
 
 const client = new OpenAI({
-  baseURL: "{{ service_base_url }}/v1",
+  baseURL: "{{ service_base_url }}${__version_prefix__}",
   apiKey: process.env.UNITYSVC_API_KEY,
 });
 

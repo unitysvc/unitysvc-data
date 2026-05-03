@@ -7,6 +7,7 @@ description = "JavaScript example: send a chat completion request to an OpenAI-c
 is_active = true
 is_public = true
 meta = { requirements = ["openai"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-openai-javascript — chat completion via the `openai` Node.js SDK

@@ -6,6 +6,7 @@ file = "code-example-tts.js.j2"
 description = "JavaScript example: synthesize speech via OpenAI-compatible /audio/speech"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-tts-javascript — text-to-speech via `fetch`

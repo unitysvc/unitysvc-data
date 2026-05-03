@@ -6,7 +6,7 @@ set -e -o pipefail
 voice="${VOICE:-alloy}"
 output_file="${OUTPUT_FILE:-tts_output.wav}"
 
-curl --fail-with-body -sS "{{ service_base_url }}/v1/audio/speech" \
+curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/audio/speech" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
   -o "${output_file}" \

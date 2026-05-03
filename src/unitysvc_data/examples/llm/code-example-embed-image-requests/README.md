@@ -7,6 +7,7 @@ description = "Python example: embed an image via /embed (Cohere v2-style)"
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-embed-image-requests — image embeddings via `requests`

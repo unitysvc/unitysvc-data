@@ -7,6 +7,7 @@ description = "Verify an OpenAI-compatible embeddings endpoint by issuing a tiny
 is_active = true
 is_public = false
 meta = { output_contains = "connectivity ok" }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / connectivity-embed — embeddings smoke test

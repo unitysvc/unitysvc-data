@@ -6,6 +6,7 @@ file = "code-example-embed-image.js.j2"
 description = "JavaScript example: embed an image via /embed (Cohere v2-style)"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-embed-image-javascript — image embeddings via `fetch`
