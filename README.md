@@ -34,7 +34,7 @@ Sellers reference a preset from their `listing.json` like this:
     "Usage (Python)":    { "$preset": "s3_code_example_v1",
                            "$with":   { "description": "Lists objects in our bucket" } },
     "OpenAI-compat chat":{ "$preset": "llm_code_example_openai",
-                           "$params": { "path_prefix": "/compatibility" } }
+                           "$params": { "version_prefix": "/compatibility/v1" } }
   }
 }
 ```

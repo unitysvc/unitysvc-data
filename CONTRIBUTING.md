@@ -154,12 +154,12 @@ duplicating an entire preset (one per provider) just to change a few
 characters; with it, every provider points at the same preset and
 overrides only what differs.
 
-**1. Declare the parameter in front-matter**, with a string default
-(every parameter must have a default — there are no required-only
-parameters):
+**1. Declare the parameter in front-matter**, with a string default.
+The default is a real value — pick one that makes the preset render
+correctly without any override:
 
 ```toml
-parameters = { path_prefix = "" }
+parameters = { version_prefix = "/v1" }
 ```
 
 **2. Reference it in the example body** as `${__name__}` (note the
@@ -169,16 +169,20 @@ references are left alone so you can still write shell variables in
 
 ```python
 client = OpenAI(
-    base_url="{{ service_base_url }}${__path_prefix__}/v1",
+    base_url="{{ service_base_url }}${__version_prefix__}",
     api_key=os.environ["UNITYSVC_API_KEY"],
 )
 ```
 
-When the preset is fetched without an override, `${__path_prefix__}`
-becomes `""` (the default), so the URL renders as
-`{{ service_base_url }}/v1` — identical to the current preset
-behaviour. Every existing preset that doesn't declare any
-`parameters` is unaffected.
+The placeholder *is* the parameter — don't repeat what's already
+inside it. The default `/v1` already includes the leading slash and
+version segment, so writing `${__version_prefix__}/v1` in the body
+would produce `/v1/v1` on the default render.
+
+When fetched without an override, `${__version_prefix__}` becomes
+`/v1`, so the URL renders as `{{ service_base_url }}/v1` — identical
+to a preset that hard-codes the path. Existing presets without a
+`parameters` block render identically to before.
 
 **3. Override per-listing** by adding a `$params` block alongside the
 existing `$preset` reference in `listing.json`:
@@ -187,14 +191,14 @@ existing `$preset` reference in `listing.json`:
 {
   "Python code example": {
     "$preset": "llm_code_example_openai",
-    "$params": { "path_prefix": "/compatibility" }
+    "$params": { "version_prefix": "/compatibility/v1" }
   }
 }
 ```
 
-Now `${__path_prefix__}` substitutes to `/compatibility`, the URL
-becomes `{{ service_base_url }}/compatibility/v1`, and Cohere-style
-"OpenAI compatibility layer" wiring works without a Cohere-specific
+Now the URL becomes `{{ service_base_url }}/compatibility/v1`,
+matching Cohere's OpenAI-compatibility layer at
+`https://api.cohere.ai/compatibility/v1` — without a Cohere-specific
 preset.
 
 **Programmatic call sites** can pass overrides as kwargs:
@@ -202,16 +206,16 @@ preset.
 ```python
 from unitysvc_data import file_preset
 
-# Default: same behaviour as before parameters were a thing
+# Default: identical to a preset with /v1 hard-coded
 file_preset("llm_code_example_openai")
 
-# With override
-file_preset("llm_code_example_openai", path_prefix="/compatibility")
+# Override
+file_preset("llm_code_example_openai", version_prefix="/compatibility/v1")
 
 # Sentinel form (equivalent)
 file_preset({
     "$preset": "llm_code_example_openai",
-    "$params": {"path_prefix": "/compatibility"},
+    "$params": {"version_prefix": "/compatibility/v1"},
 })
 ```
 
@@ -223,10 +227,10 @@ file_preset({
   you may stage one for a future version.)
 - `file_preset(...)` rejects unknown parameter names at runtime; the
   defense is for stale manifests but normally you never see it.
-- Parameter defaults must be strings — `path_prefix = ""` is fine,
-  `max_tokens = 100` is rejected with "must be a string". If you need
-  a numeric value in the body, write the literal in the body and only
-  parameterise the parts that genuinely vary by string.
+- Parameter defaults must be strings — `version_prefix = "/v1"` is
+  fine, `max_tokens = 100` is rejected with "must be a string". If you
+  need a numeric value in the body, write the literal in the body and
+  only parameterise the parts that genuinely vary by string.
 
 **When NOT to use parameters**:
 
