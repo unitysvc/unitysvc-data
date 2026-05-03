@@ -2,12 +2,13 @@ import os
 
 import requests
 
+headers = {"Content-Type": "application/json"}
+if api_key := os.environ.get("UNITYSVC_API_KEY"):
+    headers["Authorization"] = f"Bearer {api_key}"
+
 response = requests.post(
     "{{ service_base_url }}/send",
-    headers={
-        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
-        "Content-Type": "application/json",
-    },
+    headers=headers,
     json={
         "target": "",
         "message": "Hello from UnitySVC!",
