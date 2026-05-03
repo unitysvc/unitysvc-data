@@ -9,7 +9,7 @@ async function main() {
   const mime = imgResp.headers.get("content-type") || "image/jpeg";
   const dataUri = `data:${mime};base64,${buf.toString("base64")}`;
 
-  const response = await fetch("{{ service_base_url }}/embed", {
+  const response = await fetch("{{ service_base_url }}/v1/embed", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,

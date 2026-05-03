@@ -12,7 +12,7 @@ audio.raise_for_status()
 filename = audio_url.rsplit("/", 1)[-1].split("?")[0] or "audio"
 
 response = requests.post(
-    "{{ service_base_url }}/audio/transcriptions",
+    "{{ service_base_url }}/v1/audio/transcriptions",
     headers={"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"},
     files={
         "file": (filename, audio.content),

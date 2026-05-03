@@ -1,6 +1,6 @@
 async function main() {
   const response = await fetch(
-    "{{ service_base_url }}/models/{{ routing_key.model }}",
+    "{{ service_base_url }}/v1/models/{{ routing_key.model }}",
     {
       method: "POST",
       headers: {
