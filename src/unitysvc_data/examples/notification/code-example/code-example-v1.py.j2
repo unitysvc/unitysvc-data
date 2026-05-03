@@ -1,0 +1,18 @@
+import os
+
+import requests
+
+response = requests.post(
+    "{{ service_base_url }}/send",
+    headers={
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "target": "",
+        "message": "Hello from UnitySVC!",
+        "format": "text",
+    },
+)
+response.raise_for_status()
+print(response.json())

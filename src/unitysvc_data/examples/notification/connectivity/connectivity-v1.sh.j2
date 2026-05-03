@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+response_file="${TMPDIR:-/tmp}/notification-connectivity-response.json"
+http_code=$(curl -sS -X POST "{{ service_base_url }}/send" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{"target":"","message":"unitysvc connectivity test","format":"text"}' \
+  -o "${response_file}" \
+  -w "%{http_code}")
+
+case "$http_code" in
+  2??)
+    grep -q '"ok"' "${response_file}" || {
+      echo "HTTP 2xx but body has no \"ok\" field:" >&2
+      cat "${response_file}" >&2
+      exit 1
+    }
+    ;;
+  *)
+    echo "HTTP $http_code from upstream:" >&2
+    cat "${response_file}" >&2
+    exit 1
+    ;;
+esac
+echo "connectivity ok"
