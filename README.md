@@ -32,10 +32,21 @@ Sellers reference a preset from their `listing.json` like this:
   "documents": {
     "Connectivity test": { "$preset": "s3_connectivity" },
     "Usage (Python)":    { "$preset": "s3_code_example_v1",
-                           "$with": { "description": "Lists objects in our bucket" } }
+                           "$with":   { "description": "Lists objects in our bucket" } },
+    "OpenAI-compat chat":{ "$preset": "llm_code_example_openai",
+                           "$params": { "path_prefix": "/compatibility" } }
   }
 }
 ```
+
+Three sentinel keys, each with a different role:
+
+- `$preset` — names the preset to expand.
+- `$with` — overrides metadata fields on the document (description,
+  is_public, is_active, meta) without touching the file content.
+- `$params` — substitutes `${__name__}` placeholders inside the file
+  content. Each parameter must be declared with a default in the
+  preset's front-matter. See [CONTRIBUTING.md](CONTRIBUTING.md#parameters--per-listing-customisation-of-the-example-body).
 
 The SDK walks the parsed listing and calls `doc_preset(...)` on each
 sentinel, substituting the bundled file's absolute path into

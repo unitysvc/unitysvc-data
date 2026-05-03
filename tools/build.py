@@ -72,7 +72,23 @@ OPTIONAL_FIELDS: dict[str, Any] = {
     "is_active": True,
     "is_public": False,
     "meta": {},
+    # ``parameters`` is a TOML table mapping parameter name → string
+    # default, e.g. ``parameters = { path_prefix = "" }``.  Each
+    # parameter is referenced in the example file as ``${__name__}`` and
+    # substituted at preset-fetch time (defaults if no override).  The
+    # double-underscore syntax avoids collision with shell-style
+    # ``${VAR}`` references in ``.sh.j2`` example files.
+    "parameters": {},
 }
+
+# Pattern that matches preset parameter references in example bodies.
+# Double underscores are required to disambiguate from shell ``${VAR}``
+# expansions in ``.sh.j2`` files — sellers writing literal shell vars
+# don't accidentally collide with the preset namespace.
+PARAM_REFERENCE_RE = re.compile(r"\$\{__([A-Za-z_][A-Za-z0-9_]*)__\}")
+
+# Pattern declared parameter names must match (Python-identifier-like).
+PARAM_NAME_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 FRONT_MATTER_RE = re.compile(r"^\+\+\+\s*\n(.*?)\n\+\+\+\s*\n", re.DOTALL)
 
@@ -104,6 +120,7 @@ class Preset:
     is_active: bool
     is_public: bool
     meta: dict[str, Any]
+    parameters: dict[str, str]     # name → default value (always string)
     example_file: str              # relative to examples/
     source_readme: str             # relative to examples/
 
@@ -117,6 +134,7 @@ class Preset:
             "is_active": self.is_active,
             "is_public": self.is_public,
             "meta": self.meta,
+            "parameters": self.parameters,
             "example_file": self.example_file,
             "source_readme": self.source_readme,
         }
@@ -317,8 +335,31 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
     is_public = bool(front.get("is_public", OPTIONAL_FIELDS["is_public"]))
     meta = dict(front.get("meta", {}))
 
+    parameters = _parse_parameters(readme_path, front, errors)
+    if parameters is None:
+        return []
+
     gateway = gateway_dir.name
     family_slug = family_dir.name
+
+    # Validate ${__name__} references in each version's body file.
+    # Build-time check catches typos before they ship — runtime callers
+    # of file_preset() will also error on unknown names, but earlier is
+    # better.
+    declared_names = set(parameters)
+    for v in sorted(matched):
+        file_path = matched[v]
+        body = file_path.read_text(encoding="utf-8")
+        used = set(PARAM_REFERENCE_RE.findall(body))
+        unknown = used - declared_names
+        if unknown:
+            errors.add(
+                file_path,
+                f"references undeclared parameter(s) {sorted(unknown)!r}. "
+                f"Declare in README front-matter under "
+                f"``parameters = {{ ... }}`` or remove the reference. "
+                f"Currently declared: {sorted(declared_names) or 'none'}.",
+            )
 
     out: list[Preset] = []
     for v in sorted(matched):
@@ -336,11 +377,58 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
                 is_active=is_active,
                 is_public=is_public,
                 meta=meta,
+                parameters=parameters,
                 example_file=str(file_path.relative_to(EXAMPLES_DIR).as_posix()),
                 source_readme=str(readme_path.relative_to(EXAMPLES_DIR).as_posix()),
             )
         )
     return out
+
+
+def _parse_parameters(
+    readme_path: Path,
+    front: dict[str, Any],
+    errors: BuildErrors,
+) -> dict[str, str] | None:
+    """Validate and normalise the ``parameters`` front-matter table.
+
+    Returns the parsed map ``{name: default}`` (string defaults only),
+    or ``None`` if a structural error was reported (caller should skip
+    the family).  Empty / missing front-matter table → empty dict, which
+    is the no-parameters case used by every existing preset.
+    """
+    raw = front.get("parameters", OPTIONAL_FIELDS["parameters"])
+    if not isinstance(raw, dict):
+        errors.add(
+            readme_path,
+            f"'parameters' front-matter must be a TOML table "
+            f"(got {type(raw).__name__})",
+        )
+        return None
+
+    parsed: dict[str, str] = {}
+    for name, default in raw.items():
+        if not isinstance(name, str) or not PARAM_NAME_RE.match(name):
+            errors.add(
+                readme_path,
+                f"parameter name {name!r} must be a Python-style "
+                "identifier (letters / digits / underscore; no leading digit)",
+            )
+            return None
+        if not isinstance(default, str):
+            # Per-design: every parameter has a string default.  Numeric
+            # / bool / list defaults get added later if a real use case
+            # appears; today's only consumer (URL-fragment substitution)
+            # is purely textual.
+            errors.add(
+                readme_path,
+                f"parameter {name!r} default must be a string "
+                f"(got {type(default).__name__}: {default!r}). "
+                "Quote it as TOML \"...\" if needed.",
+            )
+            return None
+        parsed[name] = default
+    return parsed
 
 
 # --- Rendering --------------------------------------------------------------

@@ -31,12 +31,19 @@ See https://github.com/unitysvc/unitysvc-sellers/issues/25 for design.
 from __future__ import annotations
 
 import json
+import re
 from copy import deepcopy
 from importlib.resources import files as _files
 from pathlib import Path
 from typing import Any
 
 from ._registry import preset
+
+# Match preset parameter references in example bodies.  Mirrors
+# ``PARAM_REFERENCE_RE`` in ``tools/build.py`` — keep them in sync.
+# Double underscores around the name are required so shell-style
+# ``${VAR}`` references in ``.sh.j2`` examples don't get caught.
+_PARAM_RE = re.compile(r"\$\{__([A-Za-z_][A-Za-z0-9_]*)__\}")
 
 # Resolved once at import time. Duplicated with __init__ rather than
 # imported to avoid a circular import during package load. Use
@@ -81,6 +88,12 @@ def _resolve_example_path(relative_file: str) -> str:
 MANIFEST: dict[str, Any] = _load_manifest()
 _PRESET_RECORDS: dict[str, dict[str, Any]] = {}
 
+# ``parameters`` is intentionally absent from ``_PRESET_RECORDS`` so it
+# never leaks into the document record returned by ``doc_preset`` (which
+# describes the listing-document, not the build-time substitution
+# inputs).  It's stored here separately and consumed by ``file_preset``.
+_PRESET_PARAMETERS: dict[str, dict[str, str]] = {}
+
 for _name, _entry in MANIFEST["presets"].items():
     _PRESET_RECORDS[_name] = {
         "category": _entry["category"],
@@ -91,6 +104,10 @@ for _name, _entry in MANIFEST["presets"].items():
         "meta": dict(_entry.get("meta", {})),
         "mime_type": _entry["mime_type"],
     }
+    # ``parameters`` was added in manifest schema v1.1 — older
+    # manifests (or hand-built ones) may not have the field, so default
+    # to no-parameters rather than raising.
+    _PRESET_PARAMETERS[_name] = dict(_entry.get("parameters", {}))
 
 # Alias entries share the same underlying record as their target. We
 # store the record under both names so a lookup of either resolves in
@@ -103,6 +120,7 @@ for _alias, _target in ALIASES.items():
             f"Rebuild with `python tools/build.py`."
         )
     _PRESET_RECORDS[_alias] = _PRESET_RECORDS[_target]
+    _PRESET_PARAMETERS[_alias] = _PRESET_PARAMETERS[_target]
 
 
 def _make_factory(record: dict[str, Any]):
@@ -130,15 +148,24 @@ PRESETS: dict[str, Any] = {name: _make_factory(record) for name, record in _PRES
 # --- Source parsing --------------------------------------------------------
 
 
-def _parse_source(source: Any) -> tuple[str, dict[str, Any]]:
-    """Normalise a preset reference to ``(name, overrides)``.
+def _parse_source(source: Any) -> tuple[str, dict[str, Any], dict[str, str]]:
+    """Normalise a preset reference to ``(name, overrides, params)``.
 
-    Accepts either a bare name string or a ``{"$preset": ..., "$with": ...}``
-    sentinel dict. Returns ``(name, {})`` for string sources since
-    bare-name callers supply overrides as kwargs instead.
+    Accepts either a bare name string or a sentinel dict
+    ``{"$preset": ..., "$with": ..., "$params": ...}``.
+
+    - ``$with`` carries metadata overrides for ``doc_preset`` (existing
+      behaviour: description / is_public / is_active / meta).
+    - ``$params`` carries substitution values for ``${__name__}``
+      placeholders in the example file body, consumed by
+      ``file_preset``.  Values must be strings; any name not declared
+      in the preset's front-matter is rejected at substitution time.
+
+    Returns ``(name, {}, {})`` for bare-string sources — callers supply
+    overrides / params via kwargs instead.
     """
     if isinstance(source, str):
-        return source, {}
+        return source, {}, {}
 
     if not isinstance(source, dict):
         raise TypeError(
@@ -149,11 +176,11 @@ def _parse_source(source: Any) -> tuple[str, dict[str, Any]]:
     if "$preset" not in source:
         raise ValueError(f"Node is not a preset sentinel (missing '$preset'): {source!r}")
 
-    unknown = set(source) - {"$preset", "$with"}
+    unknown = set(source) - {"$preset", "$with", "$params"}
     if unknown:
         raise ValueError(
             f"Unknown keys in preset sentinel: {sorted(unknown)!r}. "
-            f"Only '$preset' and '$with' are allowed."
+            f"Only '$preset', '$with', and '$params' are allowed."
         )
 
     name = source["$preset"]
@@ -164,7 +191,19 @@ def _parse_source(source: Any) -> tuple[str, dict[str, Any]]:
     if not isinstance(overrides, dict):
         raise ValueError(f"'$with' must be an object, got {type(overrides).__name__}")
 
-    return name, overrides
+    params = source.get("$params") or {}
+    if not isinstance(params, dict):
+        raise ValueError(f"'$params' must be an object, got {type(params).__name__}")
+    for k, v in params.items():
+        if not isinstance(k, str):
+            raise ValueError(f"'$params' key must be a string, got {type(k).__name__}: {k!r}")
+        if not isinstance(v, str):
+            raise ValueError(
+                f"'$params' value for {k!r} must be a string "
+                f"(got {type(v).__name__}: {v!r})"
+            )
+
+    return name, overrides, params
 
 
 def _lookup(name: str, pool: dict[str, Any], what: str) -> Any:
@@ -197,8 +236,13 @@ def doc_preset(source: Any, **overrides: Any) -> dict[str, Any]:
 
     The returned dict is a fresh copy on every call; callers may
     mutate it freely.
+
+    ``$params`` (preset parameter substitution) is parsed but **not
+    applied here** — ``doc_preset`` only describes the listing-document.
+    The substitution happens in :func:`file_preset` when the file
+    content is actually read.
     """
-    name, sentinel_overrides = _parse_source(source)
+    name, sentinel_overrides, _sentinel_params = _parse_source(source)
     if sentinel_overrides and overrides:
         raise ValueError(
             "Cannot combine keyword overrides with a $preset sentinel's '$with' block — "
@@ -209,35 +253,97 @@ def doc_preset(source: Any, **overrides: Any) -> dict[str, Any]:
 
 
 @preset
-def file_preset(source: Any) -> str:
-    """Return the raw UTF-8 content of the preset's bundled file.
+def file_preset(source: Any, **params: str) -> str:
+    """Return the UTF-8 content of the preset's bundled file, with
+    parameter substitution applied.
 
     ``source`` may be a bare preset name or a ``$preset`` sentinel.
-    Overrides are rejected because file content is immutable — use
-    :func:`doc_preset` if you need a document record with per-field
-    overrides.
+    Parameter values may come from the sentinel's ``$params`` block or
+    from keyword arguments — but not both at once.  Every
+    ``${__name__}`` reference in the body is substituted; for any
+    parameter the caller didn't supply, the preset's declared default
+    is used.
+
+    Metadata overrides (``$with`` / kwargs like ``description=...``)
+    are still rejected here because file content is immutable shape-wise
+    — use :func:`doc_preset` if you need a document record with
+    per-field metadata overrides.
 
     .. note::
 
        For Jinja2 templates (``.j2`` files), the returned string is
-       the **raw template source** — constructs like
-       ``{% if local_testing %}`` are preserved verbatim. Rendering
-       requires listing / interface / provider context that only the
-       calling SDK knows; the sellers SDK applies that rendering via
-       ``render_template_file`` at upload time. If you're piping the
-       content to a runnable file (e.g.
-       ``usvc_data file-preset ... > smoke.py``) and the preset
-       targets a ``.j2`` file, you'll get a template, not an
-       executable script.
+       the **raw template source after parameter substitution** —
+       constructs like ``{% if local_testing %}`` and ``{{ var }}`` are
+       preserved verbatim and rendered by the calling SDK at upload /
+       test time.  Parameter substitution happens *before* Jinja2 sees
+       the source, so ``${__name__}`` placeholders are pure text.
     """
-    name, sentinel_overrides = _parse_source(source)
+    name, sentinel_overrides, sentinel_params = _parse_source(source)
     if sentinel_overrides:
         raise ValueError(
             "file_preset does not support '$with' overrides — the file content is immutable. "
             "Use doc_preset() if you need a document record with per-field overrides."
         )
+    if sentinel_params and params:
+        raise ValueError(
+            "Cannot combine keyword parameters with a $preset sentinel's '$params' block — "
+            "pick one."
+        )
+    effective_params = sentinel_params or params
+    for k, v in effective_params.items():
+        if not isinstance(v, str):
+            raise ValueError(
+                f"Parameter {k!r} value must be a string "
+                f"(got {type(v).__name__}: {v!r})"
+            )
+
     record = _lookup(name, _PRESET_RECORDS, "preset")
-    return Path(record["file_path"]).read_text(encoding="utf-8")
+    declared = _PRESET_PARAMETERS.get(name, {})
+
+    unknown = set(effective_params) - set(declared)
+    if unknown:
+        raise ValueError(
+            f"Unknown parameter(s) {sorted(unknown)!r} for preset {name!r}. "
+            f"Declared parameters: {sorted(declared) or 'none'}."
+        )
+
+    content = Path(record["file_path"]).read_text(encoding="utf-8")
+    if not declared:
+        # Fast path: no parameters declared, no substitution needed.
+        # Avoids regex traversal on the >50 existing presets that don't
+        # use parameters.
+        return content
+
+    return _substitute_params(content, declared, effective_params, name)
+
+
+def _substitute_params(
+    content: str,
+    declared: dict[str, str],
+    overrides: dict[str, str],
+    preset_name: str,
+) -> str:
+    """Replace every ``${__name__}`` in ``content`` with the override
+    value (if supplied) or the declared default.
+
+    Names referenced in the body but not declared raise ``ValueError``
+    — this should be caught at build time by ``tools/build.py``, but
+    the runtime check is a defense against hand-built or stale
+    manifests.
+    """
+    def _replace(match: re.Match[str]) -> str:
+        param_name = match.group(1)
+        if param_name not in declared:
+            raise ValueError(
+                f"Preset {preset_name!r} body references undeclared "
+                f"parameter ${{__{param_name}__}}. "
+                f"Declared parameters: {sorted(declared) or 'none'}. "
+                "(This usually means the manifest is stale — rerun "
+                "`python tools/build.py`.)"
+            )
+        return overrides.get(param_name, declared[param_name])
+
+    return _PARAM_RE.sub(_replace, content)
 
 
 def list_presets() -> tuple[list[str], dict[str, str]]:

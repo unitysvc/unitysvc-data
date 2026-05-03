@@ -138,11 +138,111 @@ It has two parts:
 
 Optional fields (defaults shown):
 
-| Field       | Default  | Purpose                                    |
-|-------------|----------|--------------------------------------------|
-| `is_active` | `true`   | Document is active on the listing          |
-| `is_public` | `false`  | Document is customer-visible               |
-| `meta`      | `{}`     | Free-form metadata (e.g. `output_contains`)|
+| Field        | Default  | Purpose                                    |
+|--------------|----------|--------------------------------------------|
+| `is_active`  | `true`   | Document is active on the listing          |
+| `is_public`  | `false`  | Document is customer-visible               |
+| `meta`       | `{}`     | Free-form metadata (e.g. `output_contains`)|
+| `parameters` | `{}`     | Per-listing string params (see below)      |
+
+### Parameters — per-listing customisation of the example body
+
+Use `parameters` when a single example file needs to differ slightly
+between listings — for example a path fragment, a version suffix, or
+any other constant that varies per provider. Without this, you end up
+duplicating an entire preset (one per provider) just to change a few
+characters; with it, every provider points at the same preset and
+overrides only what differs.
+
+**1. Declare the parameter in front-matter**, with a string default
+(every parameter must have a default — there are no required-only
+parameters):
+
+```toml
+parameters = { path_prefix = "" }
+```
+
+**2. Reference it in the example body** as `${__name__}` (note the
+*double* underscores around the name — single-underscore `${VAR}`
+references are left alone so you can still write shell variables in
+`.sh.j2` examples without collision):
+
+```python
+client = OpenAI(
+    base_url="{{ service_base_url }}${__path_prefix__}/v1",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+```
+
+When the preset is fetched without an override, `${__path_prefix__}`
+becomes `""` (the default), so the URL renders as
+`{{ service_base_url }}/v1` — identical to the current preset
+behaviour. Every existing preset that doesn't declare any
+`parameters` is unaffected.
+
+**3. Override per-listing** by adding a `$params` block alongside the
+existing `$preset` reference in `listing.json`:
+
+```json
+{
+  "Python code example": {
+    "$preset": "llm_code_example_openai",
+    "$params": { "path_prefix": "/compatibility" }
+  }
+}
+```
+
+Now `${__path_prefix__}` substitutes to `/compatibility`, the URL
+becomes `{{ service_base_url }}/compatibility/v1`, and Cohere-style
+"OpenAI compatibility layer" wiring works without a Cohere-specific
+preset.
+
+**Programmatic call sites** can pass overrides as kwargs:
+
+```python
+from unitysvc_data import file_preset
+
+# Default: same behaviour as before parameters were a thing
+file_preset("llm_code_example_openai")
+
+# With override
+file_preset("llm_code_example_openai", path_prefix="/compatibility")
+
+# Sentinel form (equivalent)
+file_preset({
+    "$preset": "llm_code_example_openai",
+    "$params": {"path_prefix": "/compatibility"},
+})
+```
+
+**Validation**:
+
+- `tools/build.py` walks every example body for `${__name__}`
+  references and fails the build if any name isn't declared in the
+  family's front-matter. (Declared-but-unused parameters are fine —
+  you may stage one for a future version.)
+- `file_preset(...)` rejects unknown parameter names at runtime; the
+  defense is for stale manifests but normally you never see it.
+- Parameter defaults must be strings — `path_prefix = ""` is fine,
+  `max_tokens = 100` is rejected with "must be a string". If you need
+  a numeric value in the body, write the literal in the body and only
+  parameterise the parts that genuinely vary by string.
+
+**When NOT to use parameters**:
+
+- The varying piece is more than a small text fragment. If two
+  providers diverge by a whole code block (e.g. different SDK shapes),
+  ship a provider-flavoured preset instead — see
+  `llm_code_example_anthropic` / `llm_code_example_cerebras` /
+  `llm_code_example_cohere` as examples.
+- The variant only matters for one provider on a one-off basis. Inline
+  the value in a separate, narrowly-scoped preset rather than
+  parameterising a shared preset that 20+ providers consume.
+
+**Backwards compatibility**: presets without a `parameters` block (the
+overwhelming majority today) read no field, get an empty dict in the
+manifest, take the no-substitution fast path in `file_preset`, and
+behave exactly as before.
 
 **Prose** (Markdown, below the closing `+++`). What to cover:
 

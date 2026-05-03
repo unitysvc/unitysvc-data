@@ -388,3 +388,160 @@ def test_preset_decorator_register_custom_function():
         }
     finally:
         PRESET_FNS.pop("_custom_preset", None)
+
+
+# ---------------------------------------------------------------------------
+# Preset parameters — ${__name__} substitution at file_preset time
+# ---------------------------------------------------------------------------
+
+
+def test_existing_presets_have_no_parameter_references():
+    """Backwards compatibility: every preset that ships today declares
+    no parameters and uses no ${__name__} references in its body.
+    Any new preset that adds parameters must declare them in
+    front-matter (validated by tools/build.py)."""
+    import re
+
+    pat = re.compile(r"\$\{__([A-Za-z_][A-Za-z0-9_]*)__\}")
+    for name, entry in MANIFEST["presets"].items():
+        params = entry.get("parameters", {})
+        body = example_path(entry["example_file"]).read_text(encoding="utf-8")
+        used = set(pat.findall(body))
+        # Every used name must be declared.
+        assert used <= set(params), (
+            f"{name}: body references undeclared parameter(s) "
+            f"{sorted(used - set(params))!r}; declared {sorted(params)!r}"
+        )
+
+
+def test_file_preset_no_parameters_returns_unchanged():
+    """Existing parameter-free presets pass through file content
+    untouched — fast path, no regex sub."""
+    raw = example_path(MANIFEST["presets"]["s3_connectivity_v1"]["example_file"]).read_text(
+        encoding="utf-8"
+    )
+    assert file_preset("s3_connectivity_v1") == raw
+
+
+def test_file_preset_rejects_unknown_param_kwarg():
+    with pytest.raises(ValueError, match="Unknown parameter"):
+        file_preset("s3_connectivity_v1", path_prefix="/x")
+
+
+def test_file_preset_rejects_unknown_param_in_sentinel():
+    with pytest.raises(ValueError, match="Unknown parameter"):
+        file_preset({"$preset": "s3_connectivity_v1", "$params": {"path_prefix": "/x"}})
+
+
+def test_file_preset_rejects_non_string_param_kwarg():
+    with pytest.raises(ValueError, match="must be a string"):
+        # Use any preset; param value validation runs before declared-name
+        # check, so it doesn't matter that this preset has no parameters.
+        file_preset("s3_connectivity_v1", anything=123)
+
+
+def test_file_preset_rejects_non_string_param_in_sentinel():
+    with pytest.raises(ValueError, match="must be a string"):
+        file_preset({"$preset": "s3_connectivity_v1", "$params": {"x": 123}})
+
+
+def test_file_preset_rejects_mixed_param_sources():
+    with pytest.raises(ValueError, match="Cannot combine keyword parameters"):
+        file_preset(
+            {"$preset": "s3_connectivity_v1", "$params": {"x": "y"}},
+            other="z",
+        )
+
+
+def test_doc_preset_accepts_params_block_silently():
+    """``$params`` is parsed (validated) but doc_preset doesn't apply
+    it — documenting the listing-document's metadata is independent of
+    file-content substitution."""
+    record_with = doc_preset(
+        {"$preset": "s3_connectivity_v1", "$params": {}}
+    )
+    record_without = doc_preset({"$preset": "s3_connectivity_v1"})
+    assert record_with == record_without
+
+
+def test_doc_preset_rejects_bad_params_in_sentinel():
+    with pytest.raises(ValueError, match="'\\$params' must be an object"):
+        doc_preset({"$preset": "s3_connectivity_v1", "$params": "oops"})
+
+
+def test_substitute_params_replaces_default_when_no_override():
+    """White-box test on the substitution helper.  Uses the public
+    behaviour via a synthetic preset entry."""
+    from unitysvc_data.presets import _substitute_params
+
+    body = "url = ${__path__}/v1/messages"
+    out = _substitute_params(
+        body,
+        declared={"path": "/default"},
+        overrides={},
+        preset_name="synthetic",
+    )
+    assert out == "url = /default/v1/messages"
+
+
+def test_substitute_params_replaces_with_override_value():
+    from unitysvc_data.presets import _substitute_params
+
+    body = "url = ${__path__}/v1/messages"
+    out = _substitute_params(
+        body,
+        declared={"path": "/default"},
+        overrides={"path": "/compatibility"},
+        preset_name="synthetic",
+    )
+    assert out == "url = /compatibility/v1/messages"
+
+
+def test_substitute_params_handles_multiple_references():
+    from unitysvc_data.presets import _substitute_params
+
+    body = "${__a__} ${__b__} ${__a__}"
+    out = _substitute_params(
+        body,
+        declared={"a": "X", "b": "Y"},
+        overrides={"a": "1", "b": "2"},
+        preset_name="synthetic",
+    )
+    assert out == "1 2 1"
+
+
+def test_substitute_params_leaves_shell_var_references_alone():
+    """Single-underscore / no-underscore ${VAR} references must not
+    match — they're shell variables in .sh.j2 files, not preset
+    parameters."""
+    from unitysvc_data.presets import _substitute_params
+
+    body = 'echo "${TMPDIR:-/tmp}/${__suffix__}/${HOME}"'
+    out = _substitute_params(
+        body,
+        declared={"suffix": "out"},
+        overrides={},
+        preset_name="synthetic",
+    )
+    assert out == 'echo "${TMPDIR:-/tmp}/out/${HOME}"'
+
+
+def test_substitute_params_raises_on_undeclared_reference():
+    """Defense against stale manifests where the body and declared
+    names disagree.  Build-time check in tools/build.py is the
+    primary gate; this is the runtime fallback."""
+    from unitysvc_data.presets import _substitute_params
+
+    with pytest.raises(ValueError, match="undeclared parameter"):
+        _substitute_params(
+            "url = ${__missing__}/v1",
+            declared={"path": "/default"},
+            overrides={},
+            preset_name="synthetic",
+        )
+
+
+def test_parse_source_accepts_unknown_keys_message_lists_params():
+    """Sentinel parsing errors should mention $params is a valid key."""
+    with pytest.raises(ValueError, match=r"'\$params'"):
+        doc_preset({"$preset": "s3_connectivity_v1", "$nope": {}})

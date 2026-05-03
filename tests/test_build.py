@@ -327,3 +327,153 @@ def test_deterministic_ordering_in_manifest_json(tmp_path, monkeypatch):
     assert first == second
     # The output must be sorted by preset name.
     assert first.find('"aaa_earlier_v1"') < first.find('"zzz_later_v1"')
+
+
+# ---------------------------------------------------------------------------
+# Preset parameters — front-matter validation + body reference checks
+# ---------------------------------------------------------------------------
+
+
+def _front_matter_with_params(parameters_toml: str, preset_name: str = "api_param") -> str:
+    """Front-matter with a custom ``parameters = { ... }`` block."""
+    return (
+        "+++\n"
+        f'preset_name = "{preset_name}"\n'
+        'category = "connectivity_test"\n'
+        'mime_type = "bash"\n'
+        'file = "param.sh.j2"\n'
+        'description = "param test"\n'
+        f"parameters = {{ {parameters_toml} }}\n"
+        "+++\n\n# body\n"
+    )
+
+
+def test_no_parameters_field_defaults_to_empty(tmp_path, monkeypatch):
+    """Existing presets without ``parameters`` in front-matter still
+    parse, with an empty parameters dict in the manifest entry."""
+    root = _point_build_at(tmp_path, monkeypatch)
+    _family(
+        root,
+        "api",
+        "hello",
+        readme=_good_front_matter(),
+        files={"hello-v1.sh.j2": "no params here"},
+    )
+    errors = build.BuildErrors()
+    presets, _ = build.discover(errors)
+    assert not errors.messages
+    assert len(presets) == 1
+    assert presets[0].parameters == {}
+
+
+def test_parameters_string_default_accepted(tmp_path, monkeypatch):
+    root = _point_build_at(tmp_path, monkeypatch)
+    _family(
+        root,
+        "api",
+        "param",
+        readme=_front_matter_with_params('path_prefix = ""'),
+        files={"param-v1.sh.j2": 'echo "${__path_prefix__}/v1"'},
+    )
+    errors = build.BuildErrors()
+    presets, _ = build.discover(errors)
+    assert not errors.messages, errors.messages
+    assert presets[0].parameters == {"path_prefix": ""}
+
+
+def test_parameters_non_string_default_rejected(tmp_path, monkeypatch):
+    root = _point_build_at(tmp_path, monkeypatch)
+    _family(
+        root,
+        "api",
+        "param",
+        readme=_front_matter_with_params("max_tokens = 100"),
+        files={"param-v1.sh.j2": "echo hi"},
+    )
+    errors = build.BuildErrors()
+    build.discover(errors)
+    assert any("must be a string" in m for m in errors.messages), errors.messages
+
+
+def test_parameters_bad_name_rejected(tmp_path, monkeypatch):
+    root = _point_build_at(tmp_path, monkeypatch)
+    _family(
+        root,
+        "api",
+        "param",
+        readme=_front_matter_with_params('"bad-name" = ""'),
+        files={"param-v1.sh.j2": "echo hi"},
+    )
+    errors = build.BuildErrors()
+    build.discover(errors)
+    assert any("Python-style identifier" in m for m in errors.messages), errors.messages
+
+
+def test_undeclared_parameter_reference_in_body_rejected(tmp_path, monkeypatch):
+    root = _point_build_at(tmp_path, monkeypatch)
+    _family(
+        root,
+        "api",
+        "param",
+        readme=_front_matter_with_params('declared = "x"'),
+        files={"param-v1.sh.j2": "echo ${__declared__} ${__missing__}"},
+    )
+    errors = build.BuildErrors()
+    build.discover(errors)
+    assert any("undeclared parameter" in m and "missing" in m for m in errors.messages), (
+        errors.messages
+    )
+
+
+def test_shell_var_references_not_caught_as_parameters(tmp_path, monkeypatch):
+    """Single-underscore / no-underscore ``${VAR}`` references are
+    shell variables in ``.sh.j2`` files, not preset parameters — the
+    build validator must not flag them."""
+    root = _point_build_at(tmp_path, monkeypatch)
+    _family(
+        root,
+        "api",
+        "param",
+        readme=_good_front_matter(),  # declares no parameters
+        files={"hello-v1.sh.j2": 'echo "${TMPDIR:-/tmp}/${HOME}/${SHELL}"'},
+    )
+    errors = build.BuildErrors()
+    build.discover(errors)
+    assert not any("undeclared parameter" in m for m in errors.messages), errors.messages
+
+
+def test_declared_but_unused_parameters_allowed(tmp_path, monkeypatch):
+    """Declaring a parameter without referencing it isn't a build
+    error — sellers may stage params they intend to use in a future
+    version of the body."""
+    root = _point_build_at(tmp_path, monkeypatch)
+    _family(
+        root,
+        "api",
+        "param",
+        readme=_front_matter_with_params('unused = "default_value"'),
+        files={"param-v1.sh.j2": "no references"},
+    )
+    errors = build.BuildErrors()
+    presets, _ = build.discover(errors)
+    assert not errors.messages, errors.messages
+    assert presets[0].parameters == {"unused": "default_value"}
+
+
+def test_manifest_json_includes_parameters(tmp_path, monkeypatch):
+    root = _point_build_at(tmp_path, monkeypatch)
+    _family(
+        root,
+        "api",
+        "param",
+        readme=_front_matter_with_params('path_prefix = "/x"'),
+        files={"param-v1.sh.j2": 'echo "${__path_prefix__}"'},
+    )
+    errors = build.BuildErrors()
+    presets, aliases = build.discover(errors)
+    assert not errors.messages
+    rendered = build.render_manifest_json(presets, aliases)
+    import json
+
+    parsed = json.loads(rendered)
+    assert parsed["presets"]["api_param_v1"]["parameters"] == {"path_prefix": "/x"}
