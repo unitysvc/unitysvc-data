@@ -6,7 +6,7 @@ set -e -o pipefail
 prompt="${PROMPT:-A cinematic shot of a futuristic city at sunset, flying drones, ultra realistic}"
 output_file="${OUTPUT_FILE:-output.mp4}"
 
-curl --fail-with-body -sS "{{ service_base_url }}/v1/models/{{ routing_key.model }}" \
+curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/models/{{ routing_key.model }}" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
   -d "{\"inputs\": \"${prompt}\"}" \

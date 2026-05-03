@@ -7,6 +7,7 @@ description = "Python example: generate an image from a text prompt via an OpenA
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-image-requests — text-to-image via `requests`

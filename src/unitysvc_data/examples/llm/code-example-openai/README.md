@@ -7,6 +7,7 @@ description = "Python example: send a chat completion request to an OpenAI-compa
 is_active = true
 is_public = true
 meta = { requirements = ["openai"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-openai — chat completion via the `openai` SDK

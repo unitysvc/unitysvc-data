@@ -6,6 +6,7 @@ file = "code-example-ttv.js.j2"
 description = "JavaScript example: text-to-video via HF /models/<model>"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-ttv-javascript — text-to-video via `fetch`

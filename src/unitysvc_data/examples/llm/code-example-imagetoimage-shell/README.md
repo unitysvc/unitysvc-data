@@ -6,6 +6,7 @@ file = "code-example-imagetoimage.sh.j2"
 description = "Bash example: image-to-image transform via Hugging Face /models/<model> using curl"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-imagetoimage-shell — image-to-image via `curl`

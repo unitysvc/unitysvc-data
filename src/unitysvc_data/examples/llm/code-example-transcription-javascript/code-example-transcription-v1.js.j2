@@ -14,7 +14,7 @@ async function main() {
   form.append("file", new Blob([audioBytes]), filename);
   form.append("model", "{{ routing_key.model }}");
 
-  const response = await fetch("{{ service_base_url }}/v1/audio/transcriptions", {
+  const response = await fetch("{{ service_base_url }}${__version_prefix__}/audio/transcriptions", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,

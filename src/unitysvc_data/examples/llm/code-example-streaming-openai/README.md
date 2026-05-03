@@ -7,6 +7,7 @@ description = "Python example: stream a chat completion from an OpenAI-compatibl
 is_active = true
 is_public = true
 meta = { requirements = ["openai"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-streaming-openai — streaming chat completion via the `openai` SDK

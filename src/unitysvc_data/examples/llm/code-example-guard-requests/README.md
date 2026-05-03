@@ -7,6 +7,7 @@ description = "Python example: probe a Llama-Guard-style safety classifier with 
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-guard-requests — safety classifier probe via `requests`

@@ -6,6 +6,7 @@ file = "code-example-guard.js.j2"
 description = "JavaScript example: send an unsafe prompt to a guard/safety model via /chat/completions"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-guard-javascript — safety guard probe via `fetch`

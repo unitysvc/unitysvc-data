@@ -6,6 +6,7 @@ file = "code-example-embed.js.j2"
 description = "JavaScript example: request OpenAI-compatible embeddings via fetch"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-embed-javascript — embeddings via `fetch`

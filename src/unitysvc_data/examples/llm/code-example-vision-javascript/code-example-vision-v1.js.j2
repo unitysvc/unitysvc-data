@@ -4,7 +4,7 @@ async function main() {
     "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg";
   const prompt = process.env.PROMPT || "Describe this image.";
 
-  const response = await fetch("{{ service_base_url }}/v1/chat/completions", {
+  const response = await fetch("{{ service_base_url }}${__version_prefix__}/chat/completions", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,

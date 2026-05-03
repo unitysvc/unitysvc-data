@@ -6,6 +6,7 @@ file = "code-example-transcription.js.j2"
 description = "JavaScript example: transcribe audio via OpenAI-compatible /audio/transcriptions"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-transcription-javascript — audio transcription via `fetch`

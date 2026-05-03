@@ -6,6 +6,7 @@ file = "code-example-rerank.sh.j2"
 description = "Bash example: rerank documents via /rerank using curl"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-rerank-shell — document reranking via `curl`

@@ -6,6 +6,7 @@ file = "code-example-imagetoimage.js.j2"
 description = "JavaScript example: image-to-image transform via Hugging Face /models/<model>"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-imagetoimage-javascript — image-to-image via `fetch`
