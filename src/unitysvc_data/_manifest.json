@@ -53,6 +53,7 @@
     "llm_connectivity": "llm_connectivity_v1",
     "llm_connectivity_anthropic": "llm_connectivity_anthropic_v1",
     "llm_connectivity_embed": "llm_connectivity_embed_v1",
+    "llm_connectivity_transcription": "llm_connectivity_transcription_v1",
     "llm_description": "llm_description_v1",
     "llm_request_template": "llm_request_template_v1",
     "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
@@ -921,6 +922,23 @@
       },
       "preset_name": "llm_connectivity_embed",
       "source_readme": "llm/connectivity-embed/README.md",
+      "version": 1
+    },
+    "llm_connectivity_transcription_v1": {
+      "category": "connectivity_test",
+      "description": "Verify an OpenAI-compatible audio-transcription endpoint by sending a tiny known audio file",
+      "example_file": "llm/connectivity-transcription/connectivity-transcription-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_connectivity_transcription",
+      "source_readme": "llm/connectivity-transcription/README.md",
       "version": 1
     },
     "llm_connectivity_v1": {
