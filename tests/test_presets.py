@@ -395,23 +395,25 @@ def test_preset_decorator_register_custom_function():
 # ---------------------------------------------------------------------------
 
 
-def test_existing_presets_have_no_parameter_references():
-    """Backwards compatibility: every preset that ships today declares
-    no parameters and uses no ${__name__} references in its body.
-    Any new preset that adds parameters must declare them in
-    front-matter (validated by tools/build.py)."""
+def test_existing_presets_with_param_refs_at_least_render_cleanly():
+    """Smoke test: every preset that has ``${__name__}`` in its body
+    successfully passes through ``file_preset`` with defaults.  Names
+    not declared in the family's parameters table render as their
+    literal source (best-effort substitution), which is fine."""
     import re
 
     pat = re.compile(r"\$\{__([A-Za-z_][A-Za-z0-9_]*)__\}")
     for name, entry in MANIFEST["presets"].items():
-        params = entry.get("parameters", {})
         body = example_path(entry["example_file"]).read_text(encoding="utf-8")
-        used = set(pat.findall(body))
-        # Every used name must be declared.
-        assert used <= set(params), (
-            f"{name}: body references undeclared parameter(s) "
-            f"{sorted(used - set(params))!r}; declared {sorted(params)!r}"
-        )
+        if not pat.search(body):
+            continue
+        # Default render must not raise.
+        rendered = file_preset(name)
+        # Any declared name must have been substituted (no literal left).
+        for declared_name in entry.get("parameters", {}):
+            assert "${__" + declared_name + "__}" not in rendered, (
+                f"{name}: declared parameter {declared_name!r} not substituted"
+            )
 
 
 def test_file_preset_no_parameters_returns_unchanged():
@@ -582,19 +584,19 @@ def test_substitute_params_leaves_shell_var_references_alone():
     assert out == 'echo "${TMPDIR:-/tmp}/out/${HOME}"'
 
 
-def test_substitute_params_raises_on_undeclared_reference():
-    """Defense against stale manifests where the body and declared
-    names disagree.  Build-time check in tools/build.py is the
-    primary gate; this is the runtime fallback."""
+def test_substitute_params_leaves_undeclared_references_alone():
+    """Best-effort substitution: undeclared ``${__name__}`` placeholders
+    pass through verbatim rather than raising.  Authors may have
+    literal placeholders for documentation, future parameters, etc."""
     from unitysvc_data.presets import _substitute_params
 
-    with pytest.raises(ValueError, match="undeclared parameter"):
-        _substitute_params(
-            "url = ${__missing__}/v1",
-            declared={"path": "/default"},
-            overrides={},
-            preset_name="synthetic",
-        )
+    out = _substitute_params(
+        "declared=${__path__} undeclared=${__missing__}",
+        declared={"path": "/default"},
+        overrides={},
+        preset_name="synthetic",
+    )
+    assert out == "declared=/default undeclared=${__missing__}"
 
 
 def test_parse_source_accepts_unknown_keys_message_lists_params():

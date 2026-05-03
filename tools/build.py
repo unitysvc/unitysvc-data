@@ -81,12 +81,6 @@ OPTIONAL_FIELDS: dict[str, Any] = {
     "parameters": {},
 }
 
-# Pattern that matches preset parameter references in example bodies.
-# Double underscores are required to disambiguate from shell ``${VAR}``
-# expansions in ``.sh.j2`` files — sellers writing literal shell vars
-# don't accidentally collide with the preset namespace.
-PARAM_REFERENCE_RE = re.compile(r"\$\{__([A-Za-z_][A-Za-z0-9_]*)__\}")
-
 # Pattern declared parameter names must match (Python-identifier-like).
 PARAM_NAME_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
@@ -350,24 +344,14 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
     gateway = gateway_dir.name
     family_slug = family_dir.name
 
-    # Validate ${__name__} references in each version's body file.
-    # Build-time check catches typos before they ship — runtime callers
-    # of file_preset() will also error on unknown names, but earlier is
-    # better.
-    declared_names = set(parameters)
-    for v in sorted(matched):
-        file_path = matched[v]
-        body = file_path.read_text(encoding="utf-8")
-        used = set(PARAM_REFERENCE_RE.findall(body))
-        unknown = used - declared_names
-        if unknown:
-            errors.add(
-                file_path,
-                f"references undeclared parameter(s) {sorted(unknown)!r}. "
-                f"Declare in README front-matter under "
-                f"``parameters = {{ ... }}`` or remove the reference. "
-                f"Currently declared: {sorted(declared_names) or 'none'}.",
-            )
+    # ``${__name__}`` references in the body that aren't declared in
+    # front-matter ``parameters`` are intentionally left alone at
+    # substitution time, not flagged as build errors.  The strict-check
+    # alternative was rejected because it forbade legitimate uses
+    # (literal documentation strings, typos in test fixtures, params
+    # staged in a future version of the body before being declared).
+    # Substitution is best-effort: declared placeholders get replaced,
+    # everything else passes through verbatim.
 
     out: list[Preset] = []
     for v in sorted(matched):

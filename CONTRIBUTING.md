@@ -248,16 +248,20 @@ auto-discrimination is unambiguous.
 
 **Validation**:
 
-- `tools/build.py` walks every example body for `${__name__}`
-  references and fails the build if any name isn't declared in the
-  family's front-matter. (Declared-but-unused parameters are fine —
-  you may stage one for a future version.)
-- `file_preset(...)` rejects unknown parameter names at runtime; the
-  defense is for stale manifests but normally you never see it.
 - Parameter defaults must be strings — `version_prefix = "/v1"` is
   fine, `max_tokens = 100` is rejected with "must be a string". If you
   need a numeric value in the body, write the literal in the body and
   only parameterise the parts that genuinely vary by string.
+- Parameter names cannot collide with metadata override keys
+  (`description`, `is_public`, `is_active`, `meta`) — the flat-form
+  resolver discriminates by name, so a collision would be ambiguous.
+- `file_preset(...)` rejects unknown parameter names from the **caller
+  side** (typo protection — passing `version_prefix` to a preset that
+  declared `path_prefix` raises). It does **not** reject undeclared
+  `${__name__}` references in the **body** — those pass through
+  verbatim at substitution time. Authors may have literal placeholders
+  for documentation, future parameters, or any other reason; the
+  resolver only substitutes what's declared and leaves the rest alone.
 
 **When NOT to use parameters**:
 

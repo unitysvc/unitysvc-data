@@ -433,7 +433,11 @@ def test_parameters_collision_with_metadata_field_rejected(tmp_path, monkeypatch
         ), f"missing collision error for {forbidden!r}: {errors.messages}"
 
 
-def test_undeclared_parameter_reference_in_body_rejected(tmp_path, monkeypatch):
+def test_undeclared_parameter_reference_in_body_allowed(tmp_path, monkeypatch):
+    """Best-effort substitution: the build tolerates ``${__name__}``
+    placeholders in the body that aren't declared as parameters — they
+    pass through verbatim at substitution time.  Authors may have
+    literal placeholders for documentation, future parameters, etc."""
     root = _point_build_at(tmp_path, monkeypatch)
     _family(
         root,
@@ -443,10 +447,9 @@ def test_undeclared_parameter_reference_in_body_rejected(tmp_path, monkeypatch):
         files={"param-v1.sh.j2": "echo ${__declared__} ${__missing__}"},
     )
     errors = build.BuildErrors()
-    build.discover(errors)
-    assert any("undeclared parameter" in m and "missing" in m for m in errors.messages), (
-        errors.messages
-    )
+    presets, _ = build.discover(errors)
+    assert not errors.messages, errors.messages
+    assert presets[0].parameters == {"declared": "x"}
 
 
 def test_shell_var_references_not_caught_as_parameters(tmp_path, monkeypatch):

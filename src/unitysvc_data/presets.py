@@ -31,19 +31,12 @@ See https://github.com/unitysvc/unitysvc-sellers/issues/25 for design.
 from __future__ import annotations
 
 import json
-import re
 from copy import deepcopy
 from importlib.resources import files as _files
 from pathlib import Path
 from typing import Any
 
 from ._registry import preset
-
-# Match preset parameter references in example bodies.  Mirrors
-# ``PARAM_REFERENCE_RE`` in ``tools/build.py`` — keep them in sync.
-# Double underscores around the name are required so shell-style
-# ``${VAR}`` references in ``.sh.j2`` examples don't get caught.
-_PARAM_RE = re.compile(r"\$\{__([A-Za-z_][A-Za-z0-9_]*)__\}")
 
 # Resolved once at import time. Duplicated with __init__ rather than
 # imported to avoid a circular import during package load. Use
@@ -359,27 +352,26 @@ def _substitute_params(
     overrides: dict[str, str],
     preset_name: str,
 ) -> str:
-    """Replace every ``${__name__}`` in ``content`` with the override
-    value (if supplied) or the declared default.
+    """Substitute ``${__name__}`` placeholders for every declared
+    parameter, in three steps:
 
-    Names referenced in the body but not declared raise ``ValueError``
-    — this should be caught at build time by ``tools/build.py``, but
-    the runtime check is a defense against hand-built or stale
-    manifests.
+    1. Build the resolved value map: declared defaults overlaid with
+       caller-supplied overrides.
+    2. For each ``(name, value)`` in the resolved map, replace every
+       occurrence of ``${__name__}`` in the content with ``value``.
+    3. Anything else (``${__not_declared__}``, ``${VAR}`` shell vars,
+       ``{{ jinja }}`` markers) passes through verbatim — the loop
+       only touches names that exist in the declared map.
+
+    Best-effort by design.  Authors may have literal
+    ``${__something__}`` strings for documentation, future-staged
+    parameters, or any other reason; the resolver doesn't
+    second-guess them.
     """
-    def _replace(match: re.Match[str]) -> str:
-        param_name = match.group(1)
-        if param_name not in declared:
-            raise ValueError(
-                f"Preset {preset_name!r} body references undeclared "
-                f"parameter ${{__{param_name}__}}. "
-                f"Declared parameters: {sorted(declared) or 'none'}. "
-                "(This usually means the manifest is stale — rerun "
-                "`python tools/build.py`.)"
-            )
-        return overrides.get(param_name, declared[param_name])
-
-    return _PARAM_RE.sub(_replace, content)
+    resolved = {**declared, **overrides}
+    for name, value in resolved.items():
+        content = content.replace(f"${{__{name}__}}", value)
+    return content
 
 
 def list_presets() -> tuple[list[str], dict[str, str]]:
