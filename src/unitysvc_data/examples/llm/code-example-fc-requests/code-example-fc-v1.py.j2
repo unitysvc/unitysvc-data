@@ -39,15 +39,10 @@ response = requests.post(
         "tool_choice": "auto",
     },
 )
-# Surface the upstream body on 4xx / 5xx — the bare ``raise_for_status``
-# message ("400 Client Error") doesn't tell you whether the gateway
-# rejected the model, the upstream rejected the tools field, the auth
-# is wrong, etc.  Cheap, no behaviour change on success.
+# Surface the upstream body on 4xx / 5xx; ``raise_for_status`` alone
+# loses the gateway's reason ("400 Client Error" with no detail).
 if not response.ok:
-    raise SystemExit(
-        f"HTTP {response.status_code} from {response.url}\n"
-        f"Response body: {response.text}"
-    )
+    raise SystemExit(f"HTTP {response.status_code}: {response.text}")
 
 message = response.json()["choices"][0]["message"]
 tool_calls = message.get("tool_calls") or []

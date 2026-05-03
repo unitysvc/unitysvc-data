@@ -16,35 +16,25 @@ response = client.messages.create(
     model="{{ routing_key.model }}",
     max_tokens=1024,
     system="You are a helpful assistant.",
-    messages=[
-        {"role": "user", "content": "Echo back: this is a test"},
-    ],
+    messages=[{"role": "user", "content": "Echo back: this is a test"}],
     tools=[
         {
             "name": "echo_message",
             "description": "Echoes back the given message",
             "input_schema": {
                 "type": "object",
-                "properties": {
-                    "message": {
-                        "type": "string",
-                        "description": "The message to echo",
-                    },
-                },
+                "properties": {"message": {"type": "string"}},
                 "required": ["message"],
             },
         }
     ],
 )
 
-# Anthropic returns mixed content blocks; tool calls appear as
-# ``type=tool_use`` items rather than a top-level ``tool_calls`` field.
-tool_used = False
+# Anthropic returns content as an array of typed blocks; tool calls
+# are ``type=tool_use`` items rather than a top-level ``tool_calls``.
 for block in response.content:
     if block.type == "tool_use" and block.name == "echo_message":
         print(echo_message(block.input["message"]))
-        tool_used = True
-
-if not tool_used:
-    text_blocks = [b.text for b in response.content if b.type == "text"]
-    print("\n".join(text_blocks))
+        break
+else:
+    print("\n".join(b.text for b in response.content if b.type == "text"))

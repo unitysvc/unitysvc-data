@@ -19,11 +19,9 @@ async function main() {
     throw new Error(`HTTP ${response.status}: ${await response.text()}`);
   }
   const data = await response.json();
-  // Anthropic returns ``content`` as an array of typed blocks; print
-  // the concatenated text from any ``type=text`` blocks.
   const text = data.content
-    .filter((block) => block.type === "text")
-    .map((block) => block.text)
+    .filter((b) => b.type === "text")
+    .map((b) => b.text)
     .join("");
   console.log(text);
 }
