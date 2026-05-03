@@ -409,6 +409,30 @@ def test_parameters_bad_name_rejected(tmp_path, monkeypatch):
     assert any("Python-style identifier" in m for m in errors.messages), errors.messages
 
 
+def test_parameters_collision_with_metadata_field_rejected(tmp_path, monkeypatch):
+    """Parameter names cannot match the metadata override keys
+    (description / is_public / is_active / meta) — otherwise the
+    flat-form auto-discrimination in doc_preset would be ambiguous."""
+    root = _point_build_at(tmp_path, monkeypatch)
+    for forbidden in ("description", "is_public", "is_active", "meta"):
+        family_dir = root / "api" / f"param-{forbidden}"
+        family_dir.mkdir(parents=True)
+        (family_dir / "README.md").write_text(
+            _front_matter_with_params(
+                f'{forbidden} = "x"', preset_name=f"api_param_{forbidden}"
+            ),
+            encoding="utf-8",
+        )
+        (family_dir / "param-v1.sh.j2").write_text("echo hi", encoding="utf-8")
+    errors = build.BuildErrors()
+    build.discover(errors)
+    for forbidden in ("description", "is_public", "is_active", "meta"):
+        assert any(
+            f"parameter name '{forbidden}'" in m and "collides" in m
+            for m in errors.messages
+        ), f"missing collision error for {forbidden!r}: {errors.messages}"
+
+
 def test_undeclared_parameter_reference_in_body_rejected(tmp_path, monkeypatch):
     root = _point_build_at(tmp_path, monkeypatch)
     _family(

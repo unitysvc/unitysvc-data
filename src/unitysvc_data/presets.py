@@ -219,55 +219,91 @@ def _lookup(name: str, pool: dict[str, Any], what: str) -> Any:
 
 
 @preset
-def doc_preset(source: Any, **overrides: Any) -> dict[str, Any]:
+def doc_preset(source: Any, **kwargs: Any) -> dict[str, Any]:
     """Return a fully-populated document record for the named preset.
 
-    ``source`` may be a bare preset name (``"s3_connectivity_v1"`` or
-    the version-less alias ``"s3_connectivity"``) or a JSON sentinel
-    ``{"$preset": ..., "$with": {...}}`` as it appears in a parsed
-    ``listing.json``.
+    Seller-facing usage is the flat form, dispatched via ``$doc_preset``
+    in a parsed ``listing.json``::
 
-    Overrides (``description``, ``is_active``, ``is_public``, ``meta``)
-    may come from ``$with`` when using the sentinel form or from
-    keyword arguments when passing a bare name — but not both at once.
-    Attempting to override ``category``, ``mime_type``, or ``file_path``
-    raises :class:`ValueError` because those are tied to the bundled
-    file content.
+        {"$doc_preset": "preset_name"}                         # bare
+        {"$doc_preset": {"name": "x", "description": "..."}}   # flat overrides
+        {"$doc_preset": {"name": "x", "version_prefix": "/v1"}}# flat parameters
 
-    The returned dict is a fresh copy on every call; callers may
-    mutate it freely.
+    Keys other than ``name`` are auto-discriminated:
 
-    ``$params`` (preset parameter substitution) is parsed but **not
-    applied here** — ``doc_preset`` only describes the listing-document.
-    The substitution happens in :func:`file_preset` when the file
-    content is actually read.
+    - Names declared in the preset's front-matter ``parameters`` table
+      are treated as substitution values for ``${__name__}`` references
+      in the example body; they ride alongside the returned record as
+      ``_params`` so downstream readers can apply them.
+    - Everything else is a metadata override (``description``,
+      ``is_public``, ``is_active``, ``meta``).  Anything that's neither
+      a declared parameter nor an OVERRIDABLE field raises.
+
+    Build-time guarantees parameter names don't collide with metadata
+    field names, so the discrimination is unambiguous.
+
+    The returned dict is a fresh copy on every call; callers may mutate
+    it freely.
     """
-    name, sentinel_overrides, _sentinel_params = _parse_source(source)
-    if sentinel_overrides and overrides:
-        raise ValueError(
-            "Cannot combine keyword overrides with a $preset sentinel's '$with' block — "
-            "pick one."
-        )
+    name, sentinel_overrides, sentinel_params = _parse_source(source)
+
+    if sentinel_overrides or sentinel_params:
+        # Internal middle-layer sentinel form ({"$preset": ..., "$with":
+        # ..., "$params": ...}).  Not seller-facing; preserved for
+        # programmatic callers that prefer explicit separation.  Mixing
+        # with kwargs would be ambiguous — pick one.
+        if kwargs:
+            raise ValueError(
+                "Cannot combine keyword arguments with a sentinel-form "
+                "'$with' / '$params' block — pick one."
+            )
+        metadata = sentinel_overrides
+        params = sentinel_params
+    else:
+        # Flat form: split kwargs by checking each key against the
+        # preset's declared parameters.  Any key not matching a declared
+        # parameter falls through to the factory, which validates it
+        # against OVERRIDABLE.
+        declared = _PRESET_PARAMETERS.get(name, {})
+        params = {k: v for k, v in kwargs.items() if k in declared}
+        metadata = {k: v for k, v in kwargs.items() if k not in declared}
+
+    # Validate param values are strings (matches sentinel-form check).
+    for k, v in params.items():
+        if not isinstance(v, str):
+            raise ValueError(
+                f"Parameter {k!r} value must be a string "
+                f"(got {type(v).__name__}: {v!r})"
+            )
+
     factory = _lookup(name, PRESETS, "preset")
-    return factory(**(sentinel_overrides or overrides))
+    record = factory(**metadata)
+    if params:
+        # Carry params on the record so downstream consumers (upload
+        # pipeline, test runner) can pass them to file_preset() when
+        # materialising the body.
+        record["_params"] = dict(params)
+    return record
 
 
 @preset
-def file_preset(source: Any, **params: str) -> str:
+def file_preset(source: Any, **kwargs: Any) -> str:
     """Return the UTF-8 content of the preset's bundled file, with
     parameter substitution applied.
 
-    ``source`` may be a bare preset name or a ``$preset`` sentinel.
-    Parameter values may come from the sentinel's ``$params`` block or
-    from keyword arguments — but not both at once.  Every
-    ``${__name__}`` reference in the body is substituted; for any
-    parameter the caller didn't supply, the preset's declared default
-    is used.
+    Seller-facing usage matches :func:`doc_preset` — the flat form,
+    auto-discriminated against the preset's declared parameters::
 
-    Metadata overrides (``$with`` / kwargs like ``description=...``)
-    are still rejected here because file content is immutable shape-wise
-    — use :func:`doc_preset` if you need a document record with
-    per-field metadata overrides.
+        file_preset("preset_name")                              # bare
+        file_preset("preset_name", version_prefix="/v1")        # flat param
+
+    Every ``${__name__}`` reference in the body is substituted; for
+    any parameter the caller didn't supply, the preset's declared
+    default is used.
+
+    Unlike :func:`doc_preset`, ``file_preset`` does not accept metadata
+    overrides — the file content's shape is fixed by the bundled file.
+    Any kwarg that isn't a declared parameter raises.
 
     .. note::
 
@@ -281,24 +317,23 @@ def file_preset(source: Any, **params: str) -> str:
     name, sentinel_overrides, sentinel_params = _parse_source(source)
     if sentinel_overrides:
         raise ValueError(
-            "file_preset does not support '$with' overrides — the file content is immutable. "
+            "file_preset does not support metadata overrides — the file content is immutable. "
             "Use doc_preset() if you need a document record with per-field overrides."
         )
-    if sentinel_params and params:
+    if sentinel_params and kwargs:
         raise ValueError(
-            "Cannot combine keyword parameters with a $preset sentinel's '$params' block — "
+            "Cannot combine keyword parameters with a sentinel-form '$params' block — "
             "pick one."
         )
-    effective_params = sentinel_params or params
+
+    declared = _PRESET_PARAMETERS.get(name, {})
+    effective_params = dict(sentinel_params or kwargs)
     for k, v in effective_params.items():
         if not isinstance(v, str):
             raise ValueError(
                 f"Parameter {k!r} value must be a string "
                 f"(got {type(v).__name__}: {v!r})"
             )
-
-    record = _lookup(name, _PRESET_RECORDS, "preset")
-    declared = _PRESET_PARAMETERS.get(name, {})
 
     unknown = set(effective_params) - set(declared)
     if unknown:
@@ -307,6 +342,7 @@ def file_preset(source: Any, **params: str) -> str:
             f"Declared parameters: {sorted(declared) or 'none'}."
         )
 
+    record = _lookup(name, _PRESET_RECORDS, "preset")
     content = Path(record["file_path"]).read_text(encoding="utf-8")
     if not declared:
         # Fast path: no parameters declared, no substitution needed.

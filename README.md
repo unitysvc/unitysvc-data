@@ -30,23 +30,25 @@ Sellers reference a preset from their `listing.json` like this:
 ```json
 {
   "documents": {
-    "Connectivity test": { "$preset": "s3_connectivity" },
-    "Usage (Python)":    { "$preset": "s3_code_example_v1",
-                           "$with":   { "description": "Lists objects in our bucket" } },
-    "OpenAI-compat chat":{ "$preset": "llm_code_example_openai",
-                           "$params": { "version_prefix": "/compatibility/v1" } }
+    "Connectivity test":  { "$doc_preset": "s3_connectivity" },
+    "Usage (Python)":     { "$doc_preset": { "name": "s3_code_example_v1",
+                                             "description": "Lists objects in our bucket" } },
+    "OpenAI-compat chat": { "$doc_preset": { "name": "llm_code_example_openai",
+                                             "version_prefix": "/compatibility/v1" } }
   }
 }
 ```
 
-Three sentinel keys, each with a different role:
+Two forms, one mechanism:
 
-- `$preset` — names the preset to expand.
-- `$with` — overrides metadata fields on the document (description,
-  is_public, is_active, meta) without touching the file content.
-- `$params` — substitutes `${__name__}` placeholders inside the file
-  content. Each parameter must be declared with a default in the
-  preset's front-matter. See [CONTRIBUTING.md](CONTRIBUTING.md#parameters--per-listing-customisation-of-the-example-body).
+- **Bare string** — `{"$doc_preset": "preset_name"}` — expands the
+  preset with all defaults.
+- **Flat dict** — `{"$doc_preset": {"name": "...", "<key>": ...}}` —
+  expands and overrides. Keys whose names match the preset's declared
+  parameters substitute `${__name__}` placeholders in the file body
+  (see [CONTRIBUTING.md](CONTRIBUTING.md#parameters--per-listing-customisation-of-the-example-body)).
+  Other keys must be metadata fields (`description`, `is_public`,
+  `is_active`, `meta`); anything else raises.
 
 The SDK walks the parsed listing and calls `doc_preset(...)` on each
 sentinel, substituting the bundled file's absolute path into

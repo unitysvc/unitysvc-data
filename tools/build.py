@@ -90,6 +90,14 @@ PARAM_REFERENCE_RE = re.compile(r"\$\{__([A-Za-z_][A-Za-z0-9_]*)__\}")
 # Pattern declared parameter names must match (Python-identifier-like).
 PARAM_NAME_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
+# Parameter names that would collide with metadata override keys.  The
+# seller-facing flat form (``{"$doc_preset": {"name": "x", "<key>": ...}}``)
+# auto-discriminates by checking each key against the preset's declared
+# parameters; if a parameter shared a name with one of these metadata
+# fields, the discrimination would be ambiguous.  Forbid the collision
+# at build time so author intent is unambiguous.
+PARAM_NAME_FORBIDDEN = frozenset({"description", "is_public", "is_active", "meta"})
+
 FRONT_MATTER_RE = re.compile(r"^\+\+\+\s*\n(.*?)\n\+\+\+\s*\n", re.DOTALL)
 
 # mime_type → accepted file extensions (stripped of a trailing ``.j2``).
@@ -413,6 +421,18 @@ def _parse_parameters(
                 readme_path,
                 f"parameter name {name!r} must be a Python-style "
                 "identifier (letters / digits / underscore; no leading digit)",
+            )
+            return None
+        if name in PARAM_NAME_FORBIDDEN:
+            errors.add(
+                readme_path,
+                f"parameter name {name!r} collides with a metadata "
+                f"override key.  The flat-form listing dispatch "
+                f"(``{{\"$doc_preset\": {{\"name\": \"...\", "
+                f"\"{name}\": ...}}}}``) discriminates params from "
+                f"overrides by name, so parameters cannot be one of "
+                f"{sorted(PARAM_NAME_FORBIDDEN)!r}.  Pick a different "
+                "parameter name.",
             )
             return None
         if not isinstance(default, str):

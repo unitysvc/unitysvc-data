@@ -184,14 +184,19 @@ When fetched without an override, `${__version_prefix__}` becomes
 to a preset that hard-codes the path. Existing presets without a
 `parameters` block render identically to before.
 
-**3. Override per-listing** by adding a `$params` block alongside the
-existing `$preset` reference in `listing.json`:
+**3. Override per-listing** in `listing.json`. The flat dispatch form
+already accepts metadata overrides like `description` and `is_public`
+alongside the preset `name`; parameter overrides ride in the same
+shape — the resolver auto-discriminates by checking each key against
+the preset's declared parameters:
 
 ```json
 {
   "Python code example": {
-    "$preset": "llm_code_example_openai",
-    "$params": { "version_prefix": "/compatibility/v1" }
+    "$doc_preset": {
+      "name": "llm_code_example_openai",
+      "version_prefix": "/compatibility/v1"
+    }
   }
 }
 ```
@@ -201,10 +206,24 @@ matching Cohere's OpenAI-compatibility layer at
 `https://api.cohere.ai/compatibility/v1` — without a Cohere-specific
 preset.
 
-**Programmatic call sites** can pass overrides as kwargs:
+Mix overrides and parameters freely; the resolver routes each by name:
+
+```json
+{
+  "Python code example": {
+    "$doc_preset": {
+      "name": "llm_code_example_openai",
+      "description": "Cohere-compat chat",
+      "version_prefix": "/compatibility/v1"
+    }
+  }
+}
+```
+
+**Programmatic Python call sites** use the same pattern as kwargs:
 
 ```python
-from unitysvc_data import file_preset
+from unitysvc_data import doc_preset, file_preset
 
 # Default: identical to a preset with /v1 hard-coded
 file_preset("llm_code_example_openai")
@@ -212,12 +231,20 @@ file_preset("llm_code_example_openai")
 # Override
 file_preset("llm_code_example_openai", version_prefix="/compatibility/v1")
 
-# Sentinel form (equivalent)
-file_preset({
-    "$preset": "llm_code_example_openai",
-    "$params": {"version_prefix": "/compatibility/v1"},
-})
+# doc_preset returns a record with both metadata and the param values
+record = doc_preset(
+    "llm_code_example_openai",
+    description="Cohere-compat chat",
+    version_prefix="/compatibility/v1",
+)
+# record["description"] == "Cohere-compat chat"
+# record["_params"] == {"version_prefix": "/compatibility/v1"}
 ```
+
+Parameter names and metadata-override names cannot collide —
+`tools/build.py` enforces that no parameter is declared with a name
+matching `description` / `is_public` / `is_active` / `meta`. So the
+auto-discrimination is unambiguous.
 
 **Validation**:
 

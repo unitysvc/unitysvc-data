@@ -216,7 +216,7 @@ def test_doc_preset_rejects_bad_sentinel_types():
 
 
 def test_doc_preset_rejects_mixed_overrides():
-    with pytest.raises(ValueError, match="Cannot combine keyword overrides"):
+    with pytest.raises(ValueError, match="Cannot combine keyword arguments"):
         doc_preset(
             {"$preset": "s3_connectivity_v1", "$with": {"description": "a"}},
             description="b",
@@ -255,7 +255,7 @@ def test_file_preset_matches_doc_preset_file_path():
 
 
 def test_file_preset_rejects_with_block():
-    with pytest.raises(ValueError, match="does not support '\\$with'"):
+    with pytest.raises(ValueError, match="does not support metadata overrides"):
         file_preset({"$preset": "s3_connectivity_v1", "$with": {"description": "x"}})
 
 
@@ -425,12 +425,7 @@ def test_file_preset_no_parameters_returns_unchanged():
 
 def test_file_preset_rejects_unknown_param_kwarg():
     with pytest.raises(ValueError, match="Unknown parameter"):
-        file_preset("s3_connectivity_v1", path_prefix="/x")
-
-
-def test_file_preset_rejects_unknown_param_in_sentinel():
-    with pytest.raises(ValueError, match="Unknown parameter"):
-        file_preset({"$preset": "s3_connectivity_v1", "$params": {"path_prefix": "/x"}})
+        file_preset("s3_connectivity_v1", version_prefix="/x")
 
 
 def test_file_preset_rejects_non_string_param_kwarg():
@@ -440,33 +435,94 @@ def test_file_preset_rejects_non_string_param_kwarg():
         file_preset("s3_connectivity_v1", anything=123)
 
 
-def test_file_preset_rejects_non_string_param_in_sentinel():
+def test_doc_preset_carries_no_params_field_when_unused():
+    """Existing presets get no ``_params`` key on the doc record — the
+    field is only added when params are actually supplied."""
+    record = doc_preset("s3_connectivity_v1")
+    assert "_params" not in record
+
+
+# ---------------------------------------------------------------------------
+# Flat-form auto-discrimination — the seller-facing public API
+# ---------------------------------------------------------------------------
+
+
+def test_doc_preset_flat_form_auto_discriminates_overrides_only(monkeypatch):
+    """Synthesize a preset with declared parameters, then verify the
+    flat form correctly sends overrides to the factory and parameters
+    to the record's ``_params`` field."""
+    from unitysvc_data import presets as p
+
+    # Inject a synthetic declaration on an existing preset so we don't
+    # have to author a whole new family for the test.
+    target = "s3_code_example_v1"
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
+    record = doc_preset(target, description="Custom", version_prefix="/v2")
+    assert record["description"] == "Custom"
+    assert record["_params"] == {"version_prefix": "/v2"}
+
+
+def test_doc_preset_flat_form_falls_back_to_default_for_unset_params(monkeypatch):
+    """A declared parameter not supplied by the caller is *not* added
+    to ``_params`` — defaults are applied at substitution time, not
+    record-construction time."""
+    from unitysvc_data import presets as p
+
+    target = "s3_code_example_v1"
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
+    record = doc_preset(target, description="X")
+    assert record["description"] == "X"
+    assert "_params" not in record
+
+
+def test_doc_preset_flat_form_unknown_key_rejected_via_factory(monkeypatch):
+    """A key that's neither a declared param nor in OVERRIDABLE goes
+    through the factory, which rejects it with the existing
+    ``Cannot override`` message."""
+    from unitysvc_data import presets as p
+
+    target = "s3_code_example_v1"
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
+    with pytest.raises(ValueError, match="Cannot override"):
+        doc_preset(target, totally_unknown_thing="x")
+
+
+def test_doc_preset_flat_form_param_value_must_be_string(monkeypatch):
+    from unitysvc_data import presets as p
+
+    target = "s3_code_example_v1"
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
+
     with pytest.raises(ValueError, match="must be a string"):
-        file_preset({"$preset": "s3_connectivity_v1", "$params": {"x": 123}})
+        doc_preset(target, version_prefix=123)
 
 
-def test_file_preset_rejects_mixed_param_sources():
-    with pytest.raises(ValueError, match="Cannot combine keyword parameters"):
-        file_preset(
-            {"$preset": "s3_connectivity_v1", "$params": {"x": "y"}},
-            other="z",
-        )
+def test_file_preset_flat_form_substitutes(monkeypatch, tmp_path):
+    """End-to-end flat-form substitution via file_preset: redirect a
+    preset's bundled file to a tmp-path body that uses the placeholder,
+    then verify the kwarg propagates."""
+    from unitysvc_data import presets as p
 
+    body_path = tmp_path / "param_body.sh"
+    body_path.write_text('echo "${__version_prefix__}/chat/completions"\n')
 
-def test_doc_preset_accepts_params_block_silently():
-    """``$params`` is parsed (validated) but doc_preset doesn't apply
-    it — documenting the listing-document's metadata is independent of
-    file-content substitution."""
-    record_with = doc_preset(
-        {"$preset": "s3_connectivity_v1", "$params": {}}
+    target = "s3_connectivity_v1"
+    monkeypatch.setitem(
+        p._PRESET_RECORDS[target], "file_path", str(body_path)
     )
-    record_without = doc_preset({"$preset": "s3_connectivity_v1"})
-    assert record_with == record_without
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
 
+    # Default: applies the declared default
+    assert file_preset(target) == 'echo "/v1/chat/completions"\n'
 
-def test_doc_preset_rejects_bad_params_in_sentinel():
-    with pytest.raises(ValueError, match="'\\$params' must be an object"):
-        doc_preset({"$preset": "s3_connectivity_v1", "$params": "oops"})
+    # Override: kwarg wins
+    assert (
+        file_preset(target, version_prefix="/compatibility/v1")
+        == 'echo "/compatibility/v1/chat/completions"\n'
+    )
 
 
 def test_substitute_params_replaces_default_when_no_override():
