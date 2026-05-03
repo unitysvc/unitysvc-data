@@ -484,6 +484,29 @@ def test_doc_preset_flat_form_falls_back_to_default_for_unset_params(monkeypatch
     assert "_params" not in record
 
 
+def test_doc_preset_substitutes_defaults_when_caller_supplies_no_overrides(monkeypatch, tmp_path):
+    """Regression: a preset that *declares* parameters must substitute
+    defaults into the body even when the caller passes no overrides.
+    Before this fix, ``file_path`` pointed at the bundled source and
+    rendered scripts shipped with literal ``${__name__}`` placeholders
+    — a nasty footgun for the seller pipeline.
+    """
+    from unitysvc_data import presets as p
+
+    body_path = tmp_path / "body.sh"
+    body_path.write_text('echo "${__path__}/v1"\n')
+
+    target = "s3_connectivity_v1"
+    monkeypatch.setitem(p._PRESET_RECORDS[target], "file_path", str(body_path))
+    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"path": "/default"})
+
+    # No kwargs — defaults must still be applied.
+    record = doc_preset(target)
+    assert record["file_path"] != str(body_path)  # redirected to tmp
+    out = Path(record["file_path"]).read_text()
+    assert out == 'echo "/default/v1"\n', f"defaults not substituted: {out!r}"
+
+
 def test_doc_preset_flat_form_unknown_key_rejected_via_factory(monkeypatch):
     """A key that's neither a declared param nor in OVERRIDABLE goes
     through the factory, which rejects it with the existing
@@ -609,16 +632,13 @@ def test_substitute_params_leaves_undeclared_references_alone():
 # ---------------------------------------------------------------------------
 
 
-def test_doc_preset_no_params_returns_bundled_file_path(monkeypatch):
-    """Without parameters, ``file_path`` points at the bundled source —
-    no temp file created."""
-    from unitysvc_data import presets as p
-
-    target = "s3_code_example_v1"
-    monkeypatch.setitem(p._PRESET_PARAMETERS, target, {"version_prefix": "/v1"})
-
-    record = doc_preset(target)
-    # No params → bundled file path, no tmp dir touched.
+def test_doc_preset_preset_with_no_declared_params_returns_bundled_file_path():
+    """Presets that declare no ``parameters`` skip the substitution
+    pipeline entirely — ``file_path`` points at the bundled source.
+    Confirms the no-op fast path for the >40 existing parameter-free
+    presets (no tmp file is materialised)."""
+    record = doc_preset("s3_connectivity_v1")
+    # ``s3_connectivity`` has no ``parameters`` block in its README.
     assert "site-packages" in record["file_path"] or "/src/" in record["file_path"]
 
 
