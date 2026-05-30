@@ -1,55 +1,50 @@
 +++
-preset_name = "transform_notify_code_example_py"
+preset_name = "transform_notify_code_example_python"
 category = "code_example"
 mime_type = "python"
 file = "code-example.py.j2"
-description = "Python (httpx) code example for SMTP→notification transformer services"
+description = "Python (httpx) example for notification transformer services: local mode POSTs the upstream payload, gateway mode POSTs a canonical envelope"
 is_active = true
 is_public = true
 meta = { output_contains = "sent", requirements = ["httpx"] }
-parameters = { webhook_path = "/webhook", chat_id = "" }
+parameters = { webhook_path = "/webhook", upstream_body = '{"embeds":[{"title":"Hello from UnitySVC","description":"Notification delivered via transformer","footer":{"text":"from user@example.com"}}]}' }
 +++
 
-# transform-notify / code-example-py
+# transform-notify / code-example-py — notification transformer Python example
 
-Python (httpx) code examples for transformer services that convert SMTP messages
-into upstream notification payloads.  One variant file per upstream API shape;
-each variant becomes its own preset (e.g. `transform_notify_code_example_py_discord`).
+Dual-mode Python code example for services that accept a canonical notification
+envelope on the gateway side and deliver to a specific HTTP notification upstream
+(Discord, Slack, Telegram, ntfy, etc.).
 
-## Local mode
+## Local mode (`{% if local_testing %}`)
 
-Posts an upstream-format payload directly to the webhook, demonstrating
-the exact format the transformer delivers.
+`service_base_url` resolves to the upstream base URL.  The script POSTs the
+upstream-specific payload (`upstream_body`) to `service_base_url + webhook_path`.
 
 ## Gateway mode
 
-Posts a canonical `{"title", "body", "from"}` envelope to the HTTP gateway
-endpoint.  The transformer converts it and forwards the payload upstream.
+`service_base_url` resolves to the service's HTTP gateway endpoint.  The script
+POSTs a canonical notification envelope with a `Bearer` token via `httpx`.
 
 ## Parameters
 
-- `webhook_path` — path appended to `service_base_url` in local mode.
+- `webhook_path` (default: `/webhook`) — path appended to `service_base_url` in
+  **local mode only**.
+- `upstream_body` (default: Discord `embeds` message) — JSON body posted in local
+  mode.  Override per listing with the upstream-specific payload.
 
-## `upstream_body_type` reference
+## Template variables
 
-One variant per upstream API shape.  Use the variant whose suffix matches the
-upstream of the service being listed.
+- `{{ service_base_url }}` — upstream base URL (local) or HTTP gateway URL (gateway).
 
-| Preset suffix | Key body fields | Channels |
-|---|---|---|
-| `discord` | `embeds` / `content` / `file` | discord |
-| `slack` | `text` / `blocks` | slack, mattermost, rocketchat, gchat, flock, webex, join, groupme, notifico |
-| `telegram` | `chat_id`, `text` | telegram |
-| `msteams` | `@type`, `@context` | msteams (webhookb2) |
-| `matrix` | `msgtype`, `body` | matrix |
-| `ryver` | `body` | ryver |
-| `ntfy` | `message` | ntfy |
-| `gotify` | `message` | gotify |
-| `json` | `message` | json (generic sink) |
+## Environment variables
+
+- `UNITYSVC_API_KEY` — required in gateway mode (Bearer token).
 
 ## Versions
 
 ### v1 — initial release
 
-- Local: POST upstream-format payload via `httpx.post`; print `sent (HTTP <status>)`.
-- Gateway: POST canonical envelope with Bearer auth; print `sent (HTTP <status>)`.
+- Uses `httpx.post` (sync).
+- Local: POST parsed `upstream_body` JSON; prints `sent (HTTP <status>)`.
+- Gateway: POST canonical `{title, body, from}` with Bearer auth; prints `sent (HTTP <status>)`.

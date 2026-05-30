@@ -1,55 +1,54 @@
 +++
-preset_name = "transform_notify_code_example_sh"
+preset_name = "transform_notify_code_example_shell"
 category = "code_example"
 mime_type = "bash"
 file = "code-example.sh.j2"
-description = "cURL code example for SMTP→notification transformer services"
+description = "cURL example for notification transformer services: local mode POSTs the upstream payload, gateway mode POSTs a canonical envelope"
 is_active = true
 is_public = true
 meta = { output_contains = "sent" }
-parameters = { webhook_path = "/webhook", chat_id = "" }
+parameters = { webhook_path = "/webhook", upstream_body = '{"embeds":[{"title":"Hello from UnitySVC","description":"Notification delivered via transformer","footer":{"text":"from user@example.com"}}]}' }
 +++
 
-# transform-notify / code-example-sh
+# transform-notify / code-example-sh — notification transformer cURL example
 
-cURL code examples for transformer services that convert SMTP messages into
-upstream notification payloads.  One variant file per upstream API shape;
-each variant becomes its own preset (e.g. `transform_notify_code_example_sh_discord`).
+Dual-mode cURL code example for services that accept a canonical notification
+envelope on the gateway side and deliver to a specific HTTP notification upstream
+(Discord, Slack, Telegram, ntfy, etc.).
 
-## Local mode
+## Local mode (`{% if local_testing %}`)
 
-Posts an upstream-format payload directly to the webhook, demonstrating
-the exact format the transformer delivers.
+`service_base_url` resolves to the upstream base URL.  The script POSTs the
+upstream-specific payload (`upstream_body`) to `service_base_url + webhook_path`,
+demonstrating the exact format the transformer delivers to the upstream.
 
 ## Gateway mode
 
-Posts a canonical `{"title", "body", "from"}` envelope to the HTTP gateway
-endpoint.  The transformer converts it and forwards the payload upstream.
+`service_base_url` resolves to the service's HTTP gateway endpoint.  The script
+POSTs a canonical notification envelope `{"title", "body", "from"}` with a
+`Bearer` token — the same format an upstream caller sends when dispatching a
+notification through this service.
 
 ## Parameters
 
-- `webhook_path` — path appended to `service_base_url` in local mode.
+- `webhook_path` (default: `/webhook`) — path appended to `service_base_url` in
+  **local mode only**.  Override per listing to match the upstream webhook path.
+- `upstream_body` (default: Discord `embeds` message) — JSON body posted in local
+  mode.  Override per listing with the upstream-specific payload, e.g.
+  `{"text":"Hello from UnitySVC"}` for Slack,
+  `{"chat_id":"...","text":"Hello"}` for Telegram.
 
-## `upstream_body_type` reference
+## Template variables
 
-One variant per upstream API shape.  Use the variant whose suffix matches the
-upstream of the service being listed.
+- `{{ service_base_url }}` — upstream base URL (local) or HTTP gateway URL (gateway).
 
-| Preset suffix | Key body fields | Channels |
-|---|---|---|
-| `discord` | `embeds` / `content` / `file` | discord |
-| `slack` | `text` / `blocks` | slack, mattermost, rocketchat, gchat, flock, webex, join, groupme, notifico |
-| `telegram` | `chat_id`, `text` | telegram |
-| `msteams` | `@type`, `@context` | msteams (webhookb2) |
-| `matrix` | `msgtype`, `body` | matrix |
-| `ryver` | `body` | ryver |
-| `ntfy` | `message` | ntfy |
-| `gotify` | `message` | gotify |
-| `json` | `message` | json (generic sink) |
+## Environment variables
+
+- `UNITYSVC_API_KEY` — required in gateway mode (Bearer token).
 
 ## Versions
 
 ### v1 — initial release
 
-- Local: POST upstream-format payload; print HTTP status + `sent`.
-- Gateway: POST canonical envelope with Bearer auth; print HTTP status + `sent`.
+- Local: POST `upstream_body` to `service_base_url + webhook_path`; prints HTTP status + `sent`.
+- Gateway: POST `{"title":"Hello from UnitySVC","body":"Notification delivered via transformer.","from":"user@example.com"}` to `service_base_url`; prints HTTP status + `sent`.
