@@ -1,0 +1,24 @@
+#!/bin/bash
+# Send a Discord embeds payload directly to the webhook endpoint.
+# This shows the exact payload shape the transformer delivers after
+# reshaping an inbound SMTP notification.
+set -o pipefail
+
+WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
+
+curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+  "embeds": [
+    {
+      "title": "Hello from UnitySVC",
+      "description": "Notification delivered via transformer",
+      "footer": { "text": "from user@example.com" }
+    }
+  ]
+}' \
+    -o /dev/null -w "%{http_code}\n" \
+    "$WEBHOOK_URL"
+
+echo "sent"
