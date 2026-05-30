@@ -65,6 +65,7 @@
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
     "s3_description": "s3_description_v1",
+    "smtp_canonical_code_example_shell": "smtp_canonical_code_example_shell_v1",
     "smtp_code_example": "smtp_code_example_v1",
     "smtp_connectivity": "smtp_connectivity_v2",
     "uptime_description": "uptime_description_v1",
@@ -1128,6 +1129,21 @@
       "parameters": {},
       "preset_name": "s3_description",
       "source_readme": "s3/description/README.md",
+      "version": 1
+    },
+    "smtp_canonical_code_example_shell_v1": {
+      "category": "code_example",
+      "description": "cURL example: POST the canonical SMTP envelope to an SMTP\u2192HTTP transformer endpoint",
+      "example_file": "smtp/canonical-code-example-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "smtp_canonical_code_example_shell",
+      "source_readme": "smtp/canonical-code-example-shell/README.md",
       "version": 1
     },
     "smtp_code_example_v1": {
