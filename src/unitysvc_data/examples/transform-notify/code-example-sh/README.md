@@ -7,7 +7,7 @@ description = "cURL code example for SMTP→notification transformer services"
 is_active = true
 is_public = true
 meta = { output_contains = "sent" }
-parameters = { webhook_path = "/webhook" }
+parameters = { webhook_path = "/webhook", chat_id = "" }
 +++
 
 # transform-notify / code-example-sh
