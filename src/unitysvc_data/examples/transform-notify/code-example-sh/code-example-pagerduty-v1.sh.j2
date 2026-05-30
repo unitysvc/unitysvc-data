@@ -1,0 +1,29 @@
+#!/bin/bash
+# Code example for SMTP→PagerDuty transformer services.
+set -o pipefail
+
+{% if local_testing %}
+WEBHOOK_URL="{{ service_base_url }}${{'__webhook_path__'}}"
+
+curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"routing_key":"test_key","event_action":"trigger","payload":{"summary":"connectivity check","severity":"error","source":"test@example.com","custom_details":{"body":"ping"}}}' \
+    -w "\nHTTP %{http_code}\n" \
+    "$WEBHOOK_URL"
+
+echo "sent"
+
+{% else %}
+GATEWAY_URL="{{ service_base_url }}"
+
+curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+    -d '{"title":"connectivity check","body":"ping","from":"test@example.com"}' \
+    -w "\nHTTP %{http_code}\n" \
+    "$GATEWAY_URL"
+
+echo "sent"
+{% endif %}

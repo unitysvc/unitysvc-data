@@ -21,7 +21,7 @@ status=$(curl -sS --max-time 10 \
     "$WEBHOOK_URL" 2>/dev/null)
 
 case "$status" in
-  204) echo "sent"; exit 0 ;;
+  2??) echo "sent"; exit 0 ;;
   000) echo "request failed: could not connect to $WEBHOOK_URL" >&2; exit 1 ;;
   *)   echo "request failed: HTTP $status from $WEBHOOK_URL" >&2; exit 1 ;;
 esac

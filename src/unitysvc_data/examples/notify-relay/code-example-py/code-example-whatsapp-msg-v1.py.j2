@@ -1,0 +1,34 @@
+import os
+
+import httpx
+
+{% if local_testing %}
+# Local mode: POST WhatsApp payload directly to the upstream endpoint.
+WEBHOOK_URL = "{{ service_base_url }}${{'__webhook_path__'}}"
+
+response = httpx.post(
+    WEBHOOK_URL,
+    json={"messaging_product":"whatsapp","to":"1234567890","type":"text","text":{"body":"connectivity check"}},
+)
+response.raise_for_status()
+print(f"sent (HTTP {response.status_code})")
+
+{% else %}
+# Gateway mode: POST the notification payload to the UnitySVC gateway.
+GATEWAY_URL = "{{ service_base_url }}"
+
+response = httpx.post(
+    GATEWAY_URL,
+    headers={"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"},
+    json={
+            "messaging_product": "whatsapp",
+            "to": "1234567890",
+            "type": "text",
+            "text": {
+                "body": "connectivity check"
+            }
+        },
+)
+response.raise_for_status()
+print(f"sent (HTTP {response.status_code})")
+{% endif %}

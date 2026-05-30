@@ -1,16 +1,16 @@
 #!/bin/bash
-# Connectivity test for discord notification services.
-# Local mode: POST a discord ping directly to the upstream webhook.
-# Gateway mode: POST the same discord payload via the UnitySVC gateway (adds Bearer auth).
+# Connectivity test for SMTP→PagerTree transformer services.
+# Local mode: POST a PagerTree ping to the upstream endpoint.
+# Gateway mode: POST the PagerTree payload via the UnitySVC gateway.
 set -o pipefail
 
 {% if local_testing %}
-WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
+WEBHOOK_URL="{{ service_base_url }}${{'__webhook_path__'}}"
 
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"embeds":[{"title":"connectivity check","description":"ping"}]}' \
+    -d '{"alert":{"title":"connectivity check","description":"ping"}}' \
     -o /dev/null -w "%{http_code}" \
     "$WEBHOOK_URL" 2>/dev/null)
 
@@ -27,7 +27,7 @@ status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
-    -d '{"embeds":[{"title":"connectivity check","description":"ping"}]}' \
+    -d '{"title":"connectivity check","body":"ping","from":"test@example.com"}' \
     -o /dev/null -w "%{http_code}" \
     "$GATEWAY_URL" 2>/dev/null)
 
