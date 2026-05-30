@@ -1,5 +1,5 @@
 +++
-preset_name = "notification_code_example_py"
+preset_name = "notify_relay_code_example_py"
 category = "code_example"
 mime_type = "python"
 file = "code-example.py.j2"

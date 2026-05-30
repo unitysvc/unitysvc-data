@@ -1,5 +1,5 @@
 +++
-preset_name = "notification_description"
+preset_name = "notify_relay_description"
 category = "getting_started"
 mime_type = "markdown"
 file = "description.md"

@@ -1,28 +1,30 @@
 +++
-preset_name = "notification_code_example_sh"
-category = "code_example"
+preset_name = "notify_relay_connectivity"
+category = "connectivity_test"
 mime_type = "bash"
-file = "code-example.sh.j2"
-description = "cURL code example for pass-through HTTP notification services"
+file = "connectivity.sh.j2"
+description = "Connectivity test for pass-through HTTP notification services"
 is_active = true
 is_public = true
-meta = { output_contains = "sent" }
+meta = { output_contains = "connectivity ok" }
 parameters = { webhook_path = "/webhook", chat_id = "" }
 +++
 
-# notification / code-example-sh
+# notification / connectivity
 
-cURL code examples for pass-through notification services. One variant per
-upstream API shape; each becomes its own preset (e.g. `notification_code_example_sh_discord`).
+Connectivity test for pass-through notification services. One variant per
+upstream API shape; each becomes its own preset (e.g. `notification_connectivity_discord`).
 
 ## Local mode
 
-Posts an upstream-format payload directly to the webhook via curl.
+Posts a minimal upstream-format ping directly to the webhook at
+`service_base_url + webhook_path`. Asserts the upstream-specific success code.
 
 ## Gateway mode
 
-Posts the **same** upstream-format payload to the UnitySVC gateway.
-Only adds `Authorization: Bearer ${UNITYSVC_API_KEY}`.
+Posts the **same** upstream-format ping to the UnitySVC gateway endpoint.
+Only adds `Authorization: Bearer ${UNITYSVC_API_KEY}`. The gateway forwards
+the payload to the upstream unchanged.
 
 ## Parameters
 
@@ -47,5 +49,5 @@ Only adds `Authorization: Bearer ${UNITYSVC_API_KEY}`.
 
 ### v1 — initial release
 
-- Local: POST upstream-format payload; print HTTP status + `sent`.
-- Gateway: POST same payload with Bearer auth; print HTTP status + `sent`.
+- Local: POST upstream-format ping; assert upstream-specific success code.
+- Gateway: POST same ping with Bearer auth; assert HTTP 2xx.
