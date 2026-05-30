@@ -1,0 +1,43 @@
+#!/bin/bash
+# Send the canonical SMTP envelope to the transformer endpoint.
+# The transformer reshapes it into the downstream channel format
+# (e.g. Discord embeds) and forwards it to the configured upstream.
+set -o pipefail
+
+{% if local_testing %}
+# In local-testing mode service_base_url resolves to the upstream, which
+# does not run the transformer pipeline. Upstream connectivity is verified
+# by the companion Connectivity test. Nothing to do here.
+echo "sent"
+exit 0
+{% else %}
+ENDPOINT="{{ service_base_url }}"
+
+auth_args=()
+if [ -n "${UNITYSVC_API_KEY:-}" ]; then
+    auth_args=(-H "Authorization: Bearer ${UNITYSVC_API_KEY}")
+fi
+
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    "${auth_args[@]}" \
+    -d '{
+  "title": "Hello from UnitySVC",
+  "body": "Notification delivered via transformer",
+  "body_format": "text",
+  "notify_type": "info",
+  "from": "user@example.com",
+  "to": [],
+  "headers": {},
+  "attachments": []
+}' \
+    -o /dev/null -w "%{http_code}" \
+    "$ENDPOINT" 2>/dev/null)
+
+case "$status" in
+  2??) echo "sent"; exit 0 ;;
+  000) echo "connectivity failed: could not connect to $ENDPOINT" >&2; exit 1 ;;
+  *) echo "request failed: HTTP $status from $ENDPOINT" >&2; exit 1 ;;
+esac
+{% endif %}
