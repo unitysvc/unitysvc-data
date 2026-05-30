@@ -65,9 +65,9 @@
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
     "s3_description": "s3_description_v1",
-    "smtp_canonical_code_example_shell": "smtp_canonical_code_example_shell_v1",
     "smtp_code_example": "smtp_code_example_v1",
     "smtp_connectivity": "smtp_connectivity_v2",
+    "smtp_transformer_code_example_shell": "smtp_transformer_code_example_shell_v1",
     "uptime_description": "uptime_description_v1",
     "webhook_code_example_shell": "webhook_code_example_shell_v1",
     "webhook_connectivity": "webhook_connectivity_v1"
@@ -1131,21 +1131,6 @@
       "source_readme": "s3/description/README.md",
       "version": 1
     },
-    "smtp_canonical_code_example_shell_v1": {
-      "category": "code_example",
-      "description": "cURL example: POST the canonical SMTP envelope to an SMTP\u2192HTTP transformer endpoint",
-      "example_file": "smtp/canonical-code-example-shell/code-example-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {},
-      "preset_name": "smtp_canonical_code_example_shell",
-      "source_readme": "smtp/canonical-code-example-shell/README.md",
-      "version": 1
-    },
     "smtp_code_example_v1": {
       "category": "code_example",
       "description": "Python example: send a test email via the UnitySVC SMTP gateway",
@@ -1190,6 +1175,23 @@
       "preset_name": "smtp_connectivity",
       "source_readme": "smtp/connectivity/README.md",
       "version": 2
+    },
+    "smtp_transformer_code_example_shell_v1": {
+      "category": "code_example",
+      "description": "cURL example for SMTP\u2192HTTP transformer services: HTTP upstream in local mode, SMTP gateway in gateway mode",
+      "example_file": "smtp/transformer-code-example-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "smtp_transformer_code_example_shell",
+      "source_readme": "smtp/transformer-code-example-shell/README.md",
+      "version": 1
     },
     "uptime_description_v1": {
       "category": "getting_started",

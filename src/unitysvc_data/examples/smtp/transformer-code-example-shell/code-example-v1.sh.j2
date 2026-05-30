@@ -1,0 +1,77 @@
+#!/bin/bash
+# Code example for SMTP→HTTP transformer services.
+# Local mode: POST the transformer output format directly to the HTTP upstream.
+# Gateway mode: send an email via the SMTP gateway (customer-facing interface).
+set -o pipefail
+
+{% if local_testing %}
+# ------------------------------------------------------------------
+# Local mode: verify the HTTP upstream accepts the transformer output.
+# service_base_url resolves to the upstream base URL; we POST the
+# Discord embeds payload the transformer will deliver after reshaping
+# the inbound email.
+# ------------------------------------------------------------------
+WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
+
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+  "embeds": [
+    {
+      "title": "Hello from UnitySVC",
+      "description": "Notification delivered via transformer",
+      "footer": { "text": "from user@example.com" }
+    }
+  ]
+}' \
+    -o /dev/null -w "%{http_code}" \
+    "$WEBHOOK_URL" 2>/dev/null)
+
+case "$status" in
+  204) echo "sent"; exit 0 ;;
+  000) echo "connectivity failed: could not connect to $WEBHOOK_URL" >&2; exit 1 ;;
+  *) echo "request failed: HTTP $status from $WEBHOOK_URL" >&2; exit 1 ;;
+esac
+
+{% else %}
+# ------------------------------------------------------------------
+# Gateway mode: send an email via the SMTP gateway.
+# The gateway transformer reshapes it into the downstream format
+# (e.g. Discord embeds) and delivers it to the configured upstream.
+# ------------------------------------------------------------------
+URL="{{ service_base_url }}"
+if [[ "$URL" == smtps://* ]]; then
+    USE_TLS=true
+    stripped="${URL#smtps://}"
+else
+    USE_TLS=false
+    stripped="${URL#smtp://}"
+fi
+HOST="${stripped%%:*}"
+PORT="${stripped#*:}"; PORT="${PORT%%/*}"; PORT="${PORT:-587}"
+
+TMPMAIL=$(mktemp)
+trap "rm -f '$TMPMAIL'" EXIT
+
+cat > "$TMPMAIL" <<'EOF'
+From: user@example.com
+To: recipient@example.com
+Subject: Hello from UnitySVC
+
+Notification delivered via transformer.
+EOF
+
+PROTO="smtp"
+[ "$USE_TLS" = "true" ] && PROTO="smtps"
+
+curl -sS --max-time 15 \
+    "${PROTO}://${HOST}:${PORT}" \
+    --user "{{ routing_key.username }}:${UNITYSVC_API_KEY}" \
+    --mail-from "user@example.com" \
+    --mail-rcpt "recipient@example.com" \
+    -T "$TMPMAIL" 2>/dev/null \
+    || { echo "SMTP send failed" >&2; exit 1; }
+
+echo "sent"
+{% endif %}
