@@ -1,21 +1,21 @@
 +++
-preset_name = "smtp_transformer_code_example_shell"
+preset_name = "notification_transformer_code_example_shell"
 category = "code_example"
 mime_type = "bash"
 file = "code-example.sh.j2"
-description = "cURL example for SMTP→HTTP transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes"
+description = "cURL example for notification transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes"
 is_active = true
 is_public = true
 meta = { output_contains = "sent" }
 parameters = { webhook_path = "/webhook" }
 +++
 
-# smtp / transformer-code-example-shell — SMTP→HTTP transformer cURL example
+# notification / transformer-code-example-shell — notification transformer cURL example
 
-Code example for transformer services that accept mail via the SMTP gateway and
-forward a reshaped payload to an HTTP upstream (e.g. Discord webhook, Slack,
-Teams).  Both local and gateway modes POST Discord `embeds` directly to the HTTP
-upstream — the SMTP interface is not exercised here.
+Code example for transformer services that reshape inbound messages (e.g. email
+via SMTP) into an HTTP upstream notification payload (e.g. Discord `embeds`,
+Slack, Teams).  Both local and gateway modes POST Discord `embeds` directly to
+the HTTP upstream — the inbound transport interface is not exercised here.
 
 ## Both modes
 

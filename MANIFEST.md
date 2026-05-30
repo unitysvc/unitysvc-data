@@ -66,34 +66,11 @@ Schema version: `1`. Preset families: **72**. Concrete versions: **73**. Aliases
 | `llm_description_v1` | `llm_description` | v1 | `getting_started` | `markdown` | yes | [`llm/description/description-v1.md`](src/unitysvc_data/examples/llm/description/description-v1.md) | Customer-facing overview of an OpenAI-compatible LLM gateway service |
 | `llm_request_template_v1` | `llm_request_template` | v1 | `request_template` | `json` | yes | [`llm/request-template/request-template-v1.json`](src/unitysvc_data/examples/llm/request-template/request-template-v1.json) | Minimal OpenAI-compatible chat completion request body |
 | `llm_request_template_anthropic_v1` | `llm_request_template_anthropic` | v1 | `request_template` | `json` | yes | [`llm/request-template-anthropic/request-template-anthropic-v1.json`](src/unitysvc_data/examples/llm/request-template-anthropic/request-template-anthropic-v1.json) | Minimal Anthropic Messages API request body |
-| `notify_relay_code_example_py_discord_v1` | `notify_relay_code_example_py_discord` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-discord-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-discord-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
-| `notify_relay_code_example_py_gotify_v1` | `notify_relay_code_example_py_gotify` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-gotify-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-gotify-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
-| `notify_relay_code_example_py_json_v1` | `notify_relay_code_example_py_json` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-json-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-json-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
-| `notify_relay_code_example_py_matrix_v1` | `notify_relay_code_example_py_matrix` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-matrix-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-matrix-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
-| `notify_relay_code_example_py_msteams_v1` | `notify_relay_code_example_py_msteams` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-msteams-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-msteams-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
-| `notify_relay_code_example_py_ntfy_v1` | `notify_relay_code_example_py_ntfy` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-ntfy-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-ntfy-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
-| `notify_relay_code_example_py_ryver_v1` | `notify_relay_code_example_py_ryver` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-ryver-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-ryver-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
-| `notify_relay_code_example_py_slack_v1` | `notify_relay_code_example_py_slack` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-slack-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-slack-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
-| `notify_relay_code_example_py_telegram_v1` | `notify_relay_code_example_py_telegram` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-telegram-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-telegram-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
-| `notify_relay_code_example_sh_discord_v1` | `notify_relay_code_example_sh_discord` | v1 | `code_example` | `bash` | yes | [`notify-relay/code-example-sh/code-example-discord-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/code-example-sh/code-example-discord-v1.sh.j2) | cURL code example for pass-through HTTP notification services |
-| `notify_relay_code_example_sh_gotify_v1` | `notify_relay_code_example_sh_gotify` | v1 | `code_example` | `bash` | yes | [`notify-relay/code-example-sh/code-example-gotify-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/code-example-sh/code-example-gotify-v1.sh.j2) | cURL code example for pass-through HTTP notification services |
-| `notify_relay_code_example_sh_json_v1` | `notify_relay_code_example_sh_json` | v1 | `code_example` | `bash` | yes | [`notify-relay/code-example-sh/code-example-json-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/code-example-sh/code-example-json-v1.sh.j2) | cURL code example for pass-through HTTP notification services |
-| `notify_relay_code_example_sh_matrix_v1` | `notify_relay_code_example_sh_matrix` | v1 | `code_example` | `bash` | yes | [`notify-relay/code-example-sh/code-example-matrix-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/code-example-sh/code-example-matrix-v1.sh.j2) | cURL code example for pass-through HTTP notification services |
-| `notify_relay_code_example_sh_msteams_v1` | `notify_relay_code_example_sh_msteams` | v1 | `code_example` | `bash` | yes | [`notify-relay/code-example-sh/code-example-msteams-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/code-example-sh/code-example-msteams-v1.sh.j2) | cURL code example for pass-through HTTP notification services |
-| `notify_relay_code_example_sh_ntfy_v1` | `notify_relay_code_example_sh_ntfy` | v1 | `code_example` | `bash` | yes | [`notify-relay/code-example-sh/code-example-ntfy-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/code-example-sh/code-example-ntfy-v1.sh.j2) | cURL code example for pass-through HTTP notification services |
-| `notify_relay_code_example_sh_ryver_v1` | `notify_relay_code_example_sh_ryver` | v1 | `code_example` | `bash` | yes | [`notify-relay/code-example-sh/code-example-ryver-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/code-example-sh/code-example-ryver-v1.sh.j2) | cURL code example for pass-through HTTP notification services |
-| `notify_relay_code_example_sh_slack_v1` | `notify_relay_code_example_sh_slack` | v1 | `code_example` | `bash` | yes | [`notify-relay/code-example-sh/code-example-slack-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/code-example-sh/code-example-slack-v1.sh.j2) | cURL code example for pass-through HTTP notification services |
-| `notify_relay_code_example_sh_telegram_v1` | `notify_relay_code_example_sh_telegram` | v1 | `code_example` | `bash` | yes | [`notify-relay/code-example-sh/code-example-telegram-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/code-example-sh/code-example-telegram-v1.sh.j2) | cURL code example for pass-through HTTP notification services |
-| `notify_relay_connectivity_discord_v1` | `notify_relay_connectivity_discord` | v1 | `connectivity_test` | `bash` | yes | [`notify-relay/connectivity/connectivity-discord-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/connectivity/connectivity-discord-v1.sh.j2) | Connectivity test for pass-through HTTP notification services |
-| `notify_relay_connectivity_gotify_v1` | `notify_relay_connectivity_gotify` | v1 | `connectivity_test` | `bash` | yes | [`notify-relay/connectivity/connectivity-gotify-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/connectivity/connectivity-gotify-v1.sh.j2) | Connectivity test for pass-through HTTP notification services |
-| `notify_relay_connectivity_json_v1` | `notify_relay_connectivity_json` | v1 | `connectivity_test` | `bash` | yes | [`notify-relay/connectivity/connectivity-json-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/connectivity/connectivity-json-v1.sh.j2) | Connectivity test for pass-through HTTP notification services |
-| `notify_relay_connectivity_matrix_v1` | `notify_relay_connectivity_matrix` | v1 | `connectivity_test` | `bash` | yes | [`notify-relay/connectivity/connectivity-matrix-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/connectivity/connectivity-matrix-v1.sh.j2) | Connectivity test for pass-through HTTP notification services |
-| `notify_relay_connectivity_msteams_v1` | `notify_relay_connectivity_msteams` | v1 | `connectivity_test` | `bash` | yes | [`notify-relay/connectivity/connectivity-msteams-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/connectivity/connectivity-msteams-v1.sh.j2) | Connectivity test for pass-through HTTP notification services |
-| `notify_relay_connectivity_ntfy_v1` | `notify_relay_connectivity_ntfy` | v1 | `connectivity_test` | `bash` | yes | [`notify-relay/connectivity/connectivity-ntfy-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/connectivity/connectivity-ntfy-v1.sh.j2) | Connectivity test for pass-through HTTP notification services |
-| `notify_relay_connectivity_ryver_v1` | `notify_relay_connectivity_ryver` | v1 | `connectivity_test` | `bash` | yes | [`notify-relay/connectivity/connectivity-ryver-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/connectivity/connectivity-ryver-v1.sh.j2) | Connectivity test for pass-through HTTP notification services |
-| `notify_relay_connectivity_slack_v1` | `notify_relay_connectivity_slack` | v1 | `connectivity_test` | `bash` | yes | [`notify-relay/connectivity/connectivity-slack-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/connectivity/connectivity-slack-v1.sh.j2) | Connectivity test for pass-through HTTP notification services |
-| `notify_relay_connectivity_telegram_v1` | `notify_relay_connectivity_telegram` | v1 | `connectivity_test` | `bash` | yes | [`notify-relay/connectivity/connectivity-telegram-v1.sh.j2`](src/unitysvc_data/examples/notify-relay/connectivity/connectivity-telegram-v1.sh.j2) | Connectivity test for pass-through HTTP notification services |
-| `notify_relay_description_v1` | `notify_relay_description` | v1 | `getting_started` | `markdown` | yes | [`notify-relay/description/description-v1.md`](src/unitysvc_data/examples/notify-relay/description/description-v1.md) | Customer-facing overview of a ntfy-shaped push-notification gateway service |
+| `notification_code_example_v1` | `notification_code_example` | v1 | `code_example` | `python` | yes | [`notification/code-example/code-example-v1.py.j2`](src/unitysvc_data/examples/notification/code-example/code-example-v1.py.j2) | Python example: send a notification via the UnitySVC notify gateway |
+| `notification_connectivity_v1` | `notification_connectivity` | v1 | `connectivity_test` | `bash` | no | [`notification/connectivity/connectivity-v1.sh.j2`](src/unitysvc_data/examples/notification/connectivity/connectivity-v1.sh.j2) | Verify a notification gateway endpoint by issuing a tiny POST /send |
+| `notification_description_v1` | `notification_description` | v1 | `getting_started` | `markdown` | yes | [`notification/description/description-v1.md`](src/unitysvc_data/examples/notification/description/description-v1.md) | Customer-facing overview of a ntfy-shaped push-notification gateway service |
+| `notification_transformer_code_example_shell_v1` | `notification_transformer_code_example_shell` | v1 | `code_example` | `bash` | yes | [`notification/transformer-code-example-shell/code-example-v1.sh.j2`](src/unitysvc_data/examples/notification/transformer-code-example-shell/code-example-v1.sh.j2) | cURL example for notification transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes |
+| `notification_transformer_connectivity_shell_v1` | `notification_transformer_connectivity_shell` | v1 | `connectivity_test` | `bash` | yes | [`notification/transformer-connectivity-shell/connectivity-v1.sh.j2`](src/unitysvc_data/examples/notification/transformer-connectivity-shell/connectivity-v1.sh.j2) | Connectivity test for notification transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes |
 | `recommender_description_v1` | `recommender_description` | v1 | `getting_started` | `markdown` | yes | [`recommender/description/description-v1.md`](src/unitysvc_data/examples/recommender/description/description-v1.md) | Customer-facing overview of a Gorse-shaped recommender gateway service |
 | `s3_code_example_v1` | `s3_code_example` | v1 | `code_example` | `python` | yes | [`s3/code-example/code-example-v1.py.j2`](src/unitysvc_data/examples/s3/code-example/code-example-v1.py.j2) | Python example: list objects in an S3 bucket via boto3 |
 | `s3_connectivity_v1` | `s3_connectivity` | v1 | `connectivity_test` | `python` | yes | [`s3/connectivity/connectivity-v1.py.j2`](src/unitysvc_data/examples/s3/connectivity/connectivity-v1.py.j2) | Verify S3 endpoint accepts the configured credentials |
@@ -101,8 +78,6 @@ Schema version: `1`. Preset families: **72**. Concrete versions: **73**. Aliases
 | `smtp_code_example_v1` | `smtp_code_example` | v1 | `code_example` | `python` | yes | [`smtp/code-example/code-example-v1.py.j2`](src/unitysvc_data/examples/smtp/code-example/code-example-v1.py.j2) | Python example: send a test email via the UnitySVC SMTP gateway |
 | `smtp_connectivity_v1` | `smtp_connectivity` | v1 | `connectivity_test` | `bash` | yes | [`smtp/connectivity/connectivity-v1.sh.j2`](src/unitysvc_data/examples/smtp/connectivity/connectivity-v1.sh.j2) | Verify SMTP server returns a 220 greeting on connect |
 | `smtp_connectivity_v2` | `smtp_connectivity` | v2 | `connectivity_test` | `bash` | yes | [`smtp/connectivity/connectivity-v2.sh.j2`](src/unitysvc_data/examples/smtp/connectivity/connectivity-v2.sh.j2) | Verify SMTP server returns a 220 greeting on connect |
-| `smtp_transformer_code_example_shell_v1` | `smtp_transformer_code_example_shell` | v1 | `code_example` | `bash` | yes | [`smtp/transformer-code-example-shell/code-example-v1.sh.j2`](src/unitysvc_data/examples/smtp/transformer-code-example-shell/code-example-v1.sh.j2) | cURL example for SMTP→HTTP transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes |
-| `smtp_transformer_connectivity_shell_v1` | `smtp_transformer_connectivity_shell` | v1 | `connectivity_test` | `bash` | yes | [`smtp/transformer-connectivity-shell/connectivity-v1.sh.j2`](src/unitysvc_data/examples/smtp/transformer-connectivity-shell/connectivity-v1.sh.j2) | Connectivity test for SMTP→HTTP transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes |
 | `uptime_description_v1` | `uptime_description` | v1 | `getting_started` | `markdown` | yes | [`uptime/description/description-v1.md`](src/unitysvc_data/examples/uptime/description/description-v1.md) | Customer-facing overview of an uptime-monitoring bridge service |
 | `webhook_code_example_shell_v1` | `webhook_code_example_shell` | v1 | `code_example` | `bash` | yes | [`webhook/code-example-shell/code-example-v1.sh.j2`](src/unitysvc_data/examples/webhook/code-example-shell/code-example-v1.sh.j2) | cURL example: POST a Discord embeds payload directly to a webhook endpoint |
 | `webhook_connectivity_v1` | `webhook_connectivity` | v1 | `connectivity_test` | `bash` | no | [`webhook/connectivity/connectivity-v1.sh.j2`](src/unitysvc_data/examples/webhook/connectivity/connectivity-v1.sh.j2) | Verify a Discord-compatible webhook endpoint by POSTing a minimal embeds payload |
@@ -169,42 +144,17 @@ Schema version: `1`. Preset families: **72**. Concrete versions: **73**. Aliases
 | `llm_description` | `llm_description_v1` |
 | `llm_request_template` | `llm_request_template_v1` |
 | `llm_request_template_anthropic` | `llm_request_template_anthropic_v1` |
-| `notify_relay_code_example_py_discord` | `notify_relay_code_example_py_discord_v1` |
-| `notify_relay_code_example_py_gotify` | `notify_relay_code_example_py_gotify_v1` |
-| `notify_relay_code_example_py_json` | `notify_relay_code_example_py_json_v1` |
-| `notify_relay_code_example_py_matrix` | `notify_relay_code_example_py_matrix_v1` |
-| `notify_relay_code_example_py_msteams` | `notify_relay_code_example_py_msteams_v1` |
-| `notify_relay_code_example_py_ntfy` | `notify_relay_code_example_py_ntfy_v1` |
-| `notify_relay_code_example_py_ryver` | `notify_relay_code_example_py_ryver_v1` |
-| `notify_relay_code_example_py_slack` | `notify_relay_code_example_py_slack_v1` |
-| `notify_relay_code_example_py_telegram` | `notify_relay_code_example_py_telegram_v1` |
-| `notify_relay_code_example_sh_discord` | `notify_relay_code_example_sh_discord_v1` |
-| `notify_relay_code_example_sh_gotify` | `notify_relay_code_example_sh_gotify_v1` |
-| `notify_relay_code_example_sh_json` | `notify_relay_code_example_sh_json_v1` |
-| `notify_relay_code_example_sh_matrix` | `notify_relay_code_example_sh_matrix_v1` |
-| `notify_relay_code_example_sh_msteams` | `notify_relay_code_example_sh_msteams_v1` |
-| `notify_relay_code_example_sh_ntfy` | `notify_relay_code_example_sh_ntfy_v1` |
-| `notify_relay_code_example_sh_ryver` | `notify_relay_code_example_sh_ryver_v1` |
-| `notify_relay_code_example_sh_slack` | `notify_relay_code_example_sh_slack_v1` |
-| `notify_relay_code_example_sh_telegram` | `notify_relay_code_example_sh_telegram_v1` |
-| `notify_relay_connectivity_discord` | `notify_relay_connectivity_discord_v1` |
-| `notify_relay_connectivity_gotify` | `notify_relay_connectivity_gotify_v1` |
-| `notify_relay_connectivity_json` | `notify_relay_connectivity_json_v1` |
-| `notify_relay_connectivity_matrix` | `notify_relay_connectivity_matrix_v1` |
-| `notify_relay_connectivity_msteams` | `notify_relay_connectivity_msteams_v1` |
-| `notify_relay_connectivity_ntfy` | `notify_relay_connectivity_ntfy_v1` |
-| `notify_relay_connectivity_ryver` | `notify_relay_connectivity_ryver_v1` |
-| `notify_relay_connectivity_slack` | `notify_relay_connectivity_slack_v1` |
-| `notify_relay_connectivity_telegram` | `notify_relay_connectivity_telegram_v1` |
-| `notify_relay_description` | `notify_relay_description_v1` |
+| `notification_code_example` | `notification_code_example_v1` |
+| `notification_connectivity` | `notification_connectivity_v1` |
+| `notification_description` | `notification_description_v1` |
+| `notification_transformer_code_example_shell` | `notification_transformer_code_example_shell_v1` |
+| `notification_transformer_connectivity_shell` | `notification_transformer_connectivity_shell_v1` |
 | `recommender_description` | `recommender_description_v1` |
 | `s3_code_example` | `s3_code_example_v1` |
 | `s3_connectivity` | `s3_connectivity_v1` |
 | `s3_description` | `s3_description_v1` |
 | `smtp_code_example` | `smtp_code_example_v1` |
 | `smtp_connectivity` | `smtp_connectivity_v2` |
-| `smtp_transformer_code_example_shell` | `smtp_transformer_code_example_shell_v1` |
-| `smtp_transformer_connectivity_shell` | `smtp_transformer_connectivity_shell_v1` |
 | `uptime_description` | `uptime_description_v1` |
 | `webhook_code_example_shell` | `webhook_code_example_shell_v1` |
 | `webhook_connectivity` | `webhook_connectivity_v1` |

@@ -1,21 +1,21 @@
 +++
-preset_name = "smtp_transformer_connectivity_shell"
+preset_name = "notification_transformer_connectivity_shell"
 category = "connectivity_test"
 mime_type = "bash"
 file = "connectivity.sh.j2"
-description = "Connectivity test for SMTP→HTTP transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes"
+description = "Connectivity test for notification transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes"
 is_active = true
 is_public = true
 meta = { output_contains = "connectivity ok" }
 parameters = { webhook_path = "/webhook" }
 +++
 
-# smtp / transformer-connectivity-shell — SMTP→HTTP transformer connectivity test
+# notification / transformer-connectivity-shell — notification transformer connectivity test
 
-Connectivity test for transformer services that accept mail via the SMTP gateway
-and reshape it into an HTTP upstream payload.  Both local and gateway modes POST
-Discord `embeds` directly to the HTTP upstream — the SMTP interface is not
-exercised here.
+Connectivity test for transformer services that reshape inbound messages (e.g.
+email via SMTP) into an HTTP upstream notification payload (e.g. Discord
+`embeds`).  Both local and gateway modes POST Discord `embeds` directly to the
+HTTP upstream — the inbound transport interface is not exercised here.
 
 ## Both modes
 
