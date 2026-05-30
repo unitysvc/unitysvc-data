@@ -69,9 +69,9 @@
     "s3_description": "s3_description_v1",
     "smtp_code_example": "smtp_code_example_v1",
     "smtp_connectivity": "smtp_connectivity_v2",
-    "transform_notify_code_example_python": "transform_notify_code_example_python_v1",
-    "transform_notify_code_example_shell": "transform_notify_code_example_shell_v1",
-    "transform_notify_connectivity": "transform_notify_connectivity_v1",
+    "transform_notify_code_example_discord_python": "transform_notify_code_example_discord_python_v1",
+    "transform_notify_code_example_discord_shell": "transform_notify_code_example_discord_shell_v1",
+    "transform_notify_connectivity_discord": "transform_notify_connectivity_discord_v1",
     "uptime_description": "uptime_description_v1",
     "webhook_code_example_shell": "webhook_code_example_shell_v1",
     "webhook_connectivity": "webhook_connectivity_v1"
@@ -1695,10 +1695,10 @@
       "source_readme": "smtp/connectivity/README.md",
       "version": 2
     },
-    "transform_notify_code_example_python_v1": {
+    "transform_notify_code_example_discord_python_v1": {
       "category": "code_example",
-      "description": "Python (httpx) example for notification transformer services: local mode POSTs the upstream payload by type, gateway mode POSTs a canonical envelope",
-      "example_file": "transform-notify/code-example-py/code-example-v1.py.j2",
+      "description": "Python (httpx) example for SMTP\u2192Discord transformer services",
+      "example_file": "transform-notify/code-example-discord-py/code-example-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -1709,17 +1709,16 @@
       },
       "mime_type": "python",
       "parameters": {
-        "upstream_body_type": "discord",
         "webhook_path": "/webhook"
       },
-      "preset_name": "transform_notify_code_example_python",
-      "source_readme": "transform-notify/code-example-py/README.md",
+      "preset_name": "transform_notify_code_example_discord_python",
+      "source_readme": "transform-notify/code-example-discord-py/README.md",
       "version": 1
     },
-    "transform_notify_code_example_shell_v1": {
+    "transform_notify_code_example_discord_shell_v1": {
       "category": "code_example",
-      "description": "cURL example for notification transformer services: local mode POSTs the upstream payload by type, gateway mode POSTs a canonical envelope",
-      "example_file": "transform-notify/code-example-sh/code-example-v1.sh.j2",
+      "description": "cURL example for SMTP\u2192Discord transformer services",
+      "example_file": "transform-notify/code-example-discord-sh/code-example-v1.sh.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -1727,17 +1726,16 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "upstream_body_type": "discord",
         "webhook_path": "/webhook"
       },
-      "preset_name": "transform_notify_code_example_shell",
-      "source_readme": "transform-notify/code-example-sh/README.md",
+      "preset_name": "transform_notify_code_example_discord_shell",
+      "source_readme": "transform-notify/code-example-discord-sh/README.md",
       "version": 1
     },
-    "transform_notify_connectivity_v1": {
+    "transform_notify_connectivity_discord_v1": {
       "category": "connectivity_test",
-      "description": "Connectivity test for notification transformer services: local mode POSTs the upstream payload by type, gateway mode POSTs a canonical envelope",
-      "example_file": "transform-notify/connectivity/connectivity-v1.sh.j2",
+      "description": "Connectivity test for SMTP\u2192Discord transformer services",
+      "example_file": "transform-notify/connectivity-discord/connectivity-v1.sh.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
@@ -1745,11 +1743,10 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "upstream_body_type": "discord",
         "webhook_path": "/webhook"
       },
-      "preset_name": "transform_notify_connectivity",
-      "source_readme": "transform-notify/connectivity/README.md",
+      "preset_name": "transform_notify_connectivity_discord",
+      "source_readme": "transform-notify/connectivity-discord/README.md",
       "version": 1
     },
     "uptime_description_v1": {
