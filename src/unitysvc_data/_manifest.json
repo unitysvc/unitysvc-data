@@ -1216,7 +1216,7 @@
     },
     "transform_notify_code_example_python_v1": {
       "category": "code_example",
-      "description": "Python (httpx) example for notification transformer services: local mode POSTs the upstream payload, gateway mode POSTs a canonical envelope",
+      "description": "Python (httpx) example for notification transformer services: local mode POSTs the upstream payload by type, gateway mode POSTs a canonical envelope",
       "example_file": "transform-notify/code-example-py/code-example-v1.py.j2",
       "is_active": true,
       "is_public": true,
@@ -1228,7 +1228,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "upstream_body": "{\"embeds\":[{\"title\":\"Hello from UnitySVC\",\"description\":\"Notification delivered via transformer\",\"footer\":{\"text\":\"from user@example.com\"}}]}",
+        "upstream_body_type": "discord",
         "webhook_path": "/webhook"
       },
       "preset_name": "transform_notify_code_example_python",
@@ -1237,7 +1237,7 @@
     },
     "transform_notify_code_example_shell_v1": {
       "category": "code_example",
-      "description": "cURL example for notification transformer services: local mode POSTs the upstream payload, gateway mode POSTs a canonical envelope",
+      "description": "cURL example for notification transformer services: local mode POSTs the upstream payload by type, gateway mode POSTs a canonical envelope",
       "example_file": "transform-notify/code-example-sh/code-example-v1.sh.j2",
       "is_active": true,
       "is_public": true,
@@ -1246,7 +1246,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "upstream_body": "{\"embeds\":[{\"title\":\"Hello from UnitySVC\",\"description\":\"Notification delivered via transformer\",\"footer\":{\"text\":\"from user@example.com\"}}]}",
+        "upstream_body_type": "discord",
         "webhook_path": "/webhook"
       },
       "preset_name": "transform_notify_code_example_shell",
@@ -1255,7 +1255,7 @@
     },
     "transform_notify_connectivity_v1": {
       "category": "connectivity_test",
-      "description": "Connectivity test for notification transformer services: local mode POSTs the upstream payload, gateway mode POSTs a canonical envelope",
+      "description": "Connectivity test for notification transformer services: local mode POSTs the upstream payload by type, gateway mode POSTs a canonical envelope",
       "example_file": "transform-notify/connectivity/connectivity-v1.sh.j2",
       "is_active": true,
       "is_public": true,
@@ -1264,7 +1264,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "upstream_body": "{\"embeds\":[{\"title\":\"connectivity check\",\"description\":\"ping\"}]}",
+        "upstream_body_type": "discord",
         "webhook_path": "/webhook"
       },
       "preset_name": "transform_notify_connectivity",

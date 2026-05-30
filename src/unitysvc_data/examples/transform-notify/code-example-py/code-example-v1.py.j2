@@ -1,4 +1,3 @@
-import json
 import os
 
 import httpx
@@ -7,7 +6,32 @@ import httpx
 # Local mode: POST the upstream notification payload directly to the HTTP upstream.
 WEBHOOK_URL = "{{ service_base_url }}${__webhook_path__}"
 
-upstream_body = json.loads('${__upstream_body__}')
+_type = "${__upstream_body_type__}"
+
+if _type == "discord":
+    upstream_body = {
+        "embeds": [{
+            "title": "Hello from UnitySVC",
+            "description": "Notification delivered via transformer",
+            "footer": {"text": "from user@example.com"},
+        }]
+    }
+elif _type == "slack":
+    upstream_body = {"text": "Hello from UnitySVC: Notification delivered via transformer"}
+elif _type == "telegram":
+    upstream_body = {"chat_id": "@channel", "text": "Hello from UnitySVC: Notification delivered via transformer"}
+elif _type == "msteams":
+    upstream_body = {"type": "message", "text": "Hello from UnitySVC: Notification delivered via transformer"}
+elif _type == "matrix":
+    upstream_body = {"msgtype": "m.text", "body": "Hello from UnitySVC: Notification delivered via transformer"}
+elif _type == "ntfy":
+    upstream_body = {"message": "Notification delivered via transformer", "title": "Hello from UnitySVC"}
+elif _type == "gotify":
+    upstream_body = {"message": "Notification delivered via transformer", "title": "Hello from UnitySVC", "priority": 5}
+elif _type == "json":
+    upstream_body = {"title": "Hello from UnitySVC", "message": "Notification delivered via transformer"}
+else:
+    raise ValueError(f"unknown upstream_body_type: {_type!r}")
 
 response = httpx.post(WEBHOOK_URL, json=upstream_body)
 response.raise_for_status()
