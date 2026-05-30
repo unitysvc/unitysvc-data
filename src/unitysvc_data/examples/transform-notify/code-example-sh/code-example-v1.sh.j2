@@ -1,0 +1,42 @@
+#!/bin/bash
+# Code example for notification transformer services.
+# Local mode: POST the upstream notification payload directly to the HTTP upstream.
+# Gateway mode: POST a canonical message envelope to the HTTP gateway endpoint.
+set -o pipefail
+
+{% if local_testing %}
+# ------------------------------------------------------------------
+# Local mode: POST the upstream payload the transformer will deliver.
+# ------------------------------------------------------------------
+WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
+
+curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '${__upstream_body__}' \
+    -w "\nHTTP %{http_code}\n" \
+    "$WEBHOOK_URL"
+
+echo "sent"
+
+{% else %}
+# ------------------------------------------------------------------
+# Gateway mode: POST a canonical notification envelope.
+# The transformer converts it and forwards to the configured upstream.
+# ------------------------------------------------------------------
+GATEWAY_URL="{{ service_base_url }}"
+
+curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+    -d '{
+  "title": "Hello from UnitySVC",
+  "body": "Notification delivered via transformer.",
+  "from": "user@example.com"
+}' \
+    -w "\nHTTP %{http_code}\n" \
+    "$GATEWAY_URL"
+
+echo "sent"
+{% endif %}
