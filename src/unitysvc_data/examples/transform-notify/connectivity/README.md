@@ -7,7 +7,7 @@ description = "Connectivity test for SMTP→notification transformer services"
 is_active = true
 is_public = true
 meta = { output_contains = "connectivity ok" }
-parameters = { webhook_path = "/webhook" }
+parameters = { webhook_path = "/webhook", chat_id = "" }
 +++
 
 # transform-notify / connectivity
