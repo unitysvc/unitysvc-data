@@ -10,10 +10,46 @@ set -o pipefail
 # ------------------------------------------------------------------
 WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
 
+case "${__upstream_body_type__}" in
+  discord)
+    BODY='{
+  "embeds": [{
+    "title": "Hello from UnitySVC",
+    "description": "Notification delivered via transformer",
+    "footer": {"text": "from user@example.com"}
+  }]
+}'
+    ;;
+  slack)
+    BODY='{"text": "Hello from UnitySVC: Notification delivered via transformer"}'
+    ;;
+  telegram)
+    BODY='{"chat_id": "@channel", "text": "Hello from UnitySVC: Notification delivered via transformer"}'
+    ;;
+  msteams)
+    BODY='{"type": "message", "text": "Hello from UnitySVC: Notification delivered via transformer"}'
+    ;;
+  matrix)
+    BODY='{"msgtype": "m.text", "body": "Hello from UnitySVC: Notification delivered via transformer"}'
+    ;;
+  ntfy)
+    BODY='{"message": "Notification delivered via transformer", "title": "Hello from UnitySVC"}'
+    ;;
+  gotify)
+    BODY='{"message": "Notification delivered via transformer", "title": "Hello from UnitySVC", "priority": 5}'
+    ;;
+  json)
+    BODY='{"title": "Hello from UnitySVC", "message": "Notification delivered via transformer"}'
+    ;;
+  *)
+    echo "unknown upstream_body_type: ${__upstream_body_type__}" >&2; exit 1
+    ;;
+esac
+
 curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '${__upstream_body__}' \
+    -d "$BODY" \
     -w "\nHTTP %{http_code}\n" \
     "$WEBHOOK_URL"
 
