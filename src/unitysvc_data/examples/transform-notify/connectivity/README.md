@@ -1,24 +1,25 @@
 +++
-preset_name = "transform_notify_connectivity_discord"
+preset_name = "transform_notify_connectivity"
 category = "connectivity_test"
 mime_type = "bash"
 file = "connectivity.sh.j2"
-description = "Connectivity test for SMTP→Discord transformer services"
+description = "Connectivity test for SMTP→notification transformer services"
 is_active = true
 is_public = true
 meta = { output_contains = "connectivity ok" }
 parameters = { webhook_path = "/webhook" }
 +++
 
-# transform-notify / connectivity-discord
+# transform-notify / connectivity
 
-Connectivity test for transformer services whose upstream is a Discord-compatible
-webhook.
+Connectivity test for transformer services that convert SMTP messages into
+upstream notification payloads.  One variant file per upstream API shape;
+each variant becomes its own preset (e.g. `transform_notify_connectivity_discord`).
 
 ## Local mode
 
-`service_base_url` resolves to the upstream base URL.  Posts a minimal Discord
-`embeds` payload to `service_base_url + webhook_path` and asserts HTTP 204.
+`service_base_url` resolves to the upstream base URL.  Posts a minimal payload
+to `service_base_url + webhook_path` and asserts a successful HTTP status.
 
 ## Gateway mode
 
@@ -33,7 +34,7 @@ transformer path.
 
 ## `upstream_body_type` reference
 
-One preset per upstream API shape.  Use the preset whose suffix matches the
+One variant per upstream API shape.  Use the variant whose suffix matches the
 upstream of the service being listed.
 
 | Preset suffix | Key body fields | Channels |
@@ -52,5 +53,5 @@ upstream of the service being listed.
 
 ### v1 — initial release
 
-- Local: POST `{"embeds":[{"title":"connectivity check","description":"ping"}]}`; assert HTTP 204.
+- Local: POST upstream-format ping payload; assert success status code.
 - Gateway: POST `{"title":"connectivity check","body":"ping","from":"test@example.com"}`; assert HTTP 2xx.

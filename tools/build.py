@@ -8,12 +8,28 @@ Each preset family lives in
 ``src/unitysvc_data/examples/<gateway>/<family>/`` and contains:
 
 - ``README.md`` with TOML front-matter delimited by ``+++`` lines. The
-  front-matter supplies every piece of metadata for the family;
+  front-matter supplies metadata shared by all presets in the directory;
   per-version prose goes underneath the front-matter.
-- One file per version, named ``<stem>-v<N>.<suffix>`` where the stem
-  and suffix come from the ``file`` front-matter field
-  (``file = "connectivity.sh.j2"`` → ``connectivity-v1.sh.j2``,
-  ``connectivity-v2.sh.j2``, ...).
+- Versioned files named ``<stem>-v<N>.<suffix>`` or
+  ``<stem>-<variant>-v<N>.<suffix>``, where the stem and suffix come
+  from the ``file`` front-matter field.
+
+  ``file = "code-example.py.j2"`` discovers:
+
+  - ``code-example-v1.py.j2`` → registered as ``<preset_name>_v1``
+  - ``code-example-discord-v1.py.j2`` → ``<preset_name>_discord_v1``
+  - ``code-example-slack-v1.py.j2``   → ``<preset_name>_slack_v1``
+
+  Each variant becomes its own independent preset family, inheriting
+  all metadata (category, mime_type, is_active, …) from the shared
+  README.md. The variant slug is appended to the base ``preset_name``
+  with an underscore: ``<preset_name>_<variant>``.
+
+  Variant slugs must be lowercase ASCII letters and digits
+  (``[a-z][a-z0-9]*``).  Hyphens in the file name are converted to
+  underscores in the preset name
+  (``code-example-msteams-webhook-v1.py.j2`` →
+  ``<preset_name>_msteams_webhook_v1``).
 
 Front-matter fields
 -------------------
@@ -34,10 +50,8 @@ Optional (defaults shown):
 
 - ``is_active`` (``true``), ``is_public`` (``false``), ``meta`` (``{}``).
 
-Multi-document-per-folder (e.g. bundling a resource file with an
-example) is out of scope today; when we need it, we'll add an array of
-tables to the front-matter. For now, each family has exactly one
-``file`` pattern.
+A directory may contain only variant files (no bare ``<stem>-v<N>``
+base file).  The shared README.md is still required in that case.
 
 Outputs
 -------
@@ -211,32 +225,51 @@ def discover(errors: BuildErrors) -> tuple[list[Preset], dict[str, str]]:
 
     for gateway_dir in sorted(p for p in EXAMPLES_DIR.iterdir() if p.is_dir()):
         for family_dir in sorted(p for p in gateway_dir.iterdir() if p.is_dir()):
-            family_presets = _load_family(gateway_dir, family_dir, errors)
-            if not family_presets:
-                continue
+            all_families = _load_families(gateway_dir, family_dir, errors)
 
-            pname = family_presets[0].preset_name
-            if pname in seen_preset_names:
-                errors.add(
-                    family_dir,
-                    f"duplicate preset_name {pname!r} (also declared at "
-                    f"{seen_preset_names[pname].relative_to(ROOT)})",
-                )
-                continue
-            seen_preset_names[pname] = family_dir
+            for family_presets in all_families:
+                if not family_presets:
+                    continue
 
-            for preset in family_presets:
-                presets.append(preset)
-                if preset.version > latest_version.get(preset.preset_name, 0):
-                    latest_version[preset.preset_name] = preset.version
-                    latest_name[preset.preset_name] = preset.name
+                pname = family_presets[0].preset_name
+                if pname in seen_preset_names:
+                    errors.add(
+                        family_dir,
+                        f"duplicate preset_name {pname!r} (also declared at "
+                        f"{seen_preset_names[pname].relative_to(ROOT)})",
+                    )
+                    continue
+                seen_preset_names[pname] = family_dir
+
+                for preset in family_presets:
+                    presets.append(preset)
+                    if preset.version > latest_version.get(preset.preset_name, 0):
+                        latest_version[preset.preset_name] = preset.version
+                        latest_name[preset.preset_name] = preset.name
 
     presets.sort(key=lambda p: (p.preset_name, p.version))
     aliases = dict(sorted(latest_name.items()))
     return presets, aliases
 
 
-def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> list[Preset]:
+def _load_families(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> list[list[Preset]]:
+    """Load all preset families from *family_dir*.
+
+    A directory normally contains exactly one family (the base family whose
+    preset_name is declared in README.md).  When the directory also contains
+    *variant* files — named ``<stem>-<variant>-v<N>.<suffix>`` — each distinct
+    variant becomes an additional family whose preset_name is
+    ``<base_preset_name>_<variant_slug>`` (hyphens replaced with underscores).
+    Variant families inherit all metadata from the README except preset_name.
+
+    Returns a list of families, where each family is a list of Preset objects
+    (one per version).  Returns ``[[]]`` on fatal error so callers can detect
+    the failure without crashing.
+    """
+    return _load_family(gateway_dir, family_dir, errors)
+
+
+def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> list[list[Preset]]:
     readme_path = family_dir / "README.md"
     if not readme_path.is_file():
         errors.add(family_dir, "missing README.md (required metadata + description)")
@@ -299,38 +332,60 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
 
     # Discover versions on disk.
     version_pattern = re.compile(rf"^{re.escape(stem)}-v(\d+)\.{re.escape(suffix)}$")
+    # Variant pattern: <stem>-<variant>-v<N>.<suffix>
+    # Variant slug: lowercase letters/digits, segments separated by hyphens.
+    variant_pattern = re.compile(
+        rf"^{re.escape(stem)}-([a-z][a-z0-9]*(?:-[a-z][a-z0-9]*)*)-v(\d+)\.{re.escape(suffix)}$"
+    )
     content_files = {p.name: p for p in family_dir.iterdir() if p.is_file() and p.name != "README.md"}
     matched: dict[int, Path] = {}
+    # variant_files: variant_slug -> {version -> path}
+    variant_files: dict[str, dict[int, Path]] = {}
     orphans: list[str] = []
     for name, path in content_files.items():
         m = version_pattern.match(name)
-        if m is None:
-            orphans.append(name)
+        if m is not None:
+            v = int(m.group(1))
+            if v in matched:
+                errors.add(
+                    family_dir,
+                    f"duplicate version v={v} matches both {matched[v].name!r} and {name!r}",
+                )
+                continue
+            matched[v] = path
             continue
-        v = int(m.group(1))
-        if v in matched:
-            errors.add(
-                family_dir,
-                f"duplicate version v={v} matches both {matched[v].name!r} and {name!r}",
-            )
+        vm = variant_pattern.match(name)
+        if vm is not None:
+            variant_slug = vm.group(1)
+            v = int(vm.group(2))
+            vdict = variant_files.setdefault(variant_slug, {})
+            if v in vdict:
+                errors.add(
+                    family_dir,
+                    f"duplicate version v={v} for variant {variant_slug!r}: "
+                    f"{vdict[v].name!r} and {name!r}",
+                )
+                continue
+            vdict[v] = path
             continue
-        matched[v] = path
+        orphans.append(name)
 
     if orphans:
         errors.add(
             family_dir,
-            f"file(s) do not match version pattern '{stem}-v<N>.{suffix}': {sorted(orphans)}. "
+            f"file(s) do not match version pattern '{stem}-v<N>.{suffix}' or "
+            f"variant pattern '{stem}-<variant>-v<N>.{suffix}': {sorted(orphans)}. "
             "Rename, delete, or adjust the 'file' field.",
         )
         # Keep going — we still want to report other issues.
 
-    if not matched:
+    if not matched and not variant_files:
         errors.add(
             family_dir,
             f"no files matching '{stem}-v<N>.{suffix}' found. "
             "Add at least one versioned file (e.g. '{stem}-v1.{suffix}').".format(stem=stem, suffix=suffix),
         )
-        return []
+        return [[]]
 
     description = str(front["description"])
     is_active = bool(front.get("is_active", OPTIONAL_FIELDS["is_active"]))
@@ -339,10 +394,11 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
 
     parameters = _parse_parameters(readme_path, front, errors)
     if parameters is None:
-        return []
+        return [[]]
 
     gateway = gateway_dir.name
     family_slug = family_dir.name
+    category = str(front["category"])
 
     # ``${__name__}`` references in the body that aren't declared in
     # front-matter ``parameters`` are intentionally left alone at
@@ -353,28 +409,61 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
     # Substitution is best-effort: declared placeholders get replaced,
     # everything else passes through verbatim.
 
-    out: list[Preset] = []
-    for v in sorted(matched):
-        file_path = matched[v]
-        out.append(
-            Preset(
-                name=f"{preset_name}_v{v}",
-                preset_name=preset_name,
-                gateway=gateway,
-                family_slug=family_slug,
-                version=v,
-                category=str(front["category"]),
-                mime_type=mime_type,
-                description=description,
-                is_active=is_active,
-                is_public=is_public,
-                meta=meta,
-                parameters=parameters,
-                example_file=str(file_path.relative_to(EXAMPLES_DIR).as_posix()),
-                source_readme=str(readme_path.relative_to(EXAMPLES_DIR).as_posix()),
+    all_families: list[list[Preset]] = []
+
+    # Base family (files matching <stem>-v<N>.<suffix>).
+    if matched:
+        base_presets: list[Preset] = []
+        for v in sorted(matched):
+            file_path = matched[v]
+            base_presets.append(
+                Preset(
+                    name=f"{preset_name}_v{v}",
+                    preset_name=preset_name,
+                    gateway=gateway,
+                    family_slug=family_slug,
+                    version=v,
+                    category=category,
+                    mime_type=mime_type,
+                    description=description,
+                    is_active=is_active,
+                    is_public=is_public,
+                    meta=meta,
+                    parameters=parameters,
+                    example_file=str(file_path.relative_to(EXAMPLES_DIR).as_posix()),
+                    source_readme=str(readme_path.relative_to(EXAMPLES_DIR).as_posix()),
+                )
             )
-        )
-    return out
+        all_families.append(base_presets)
+
+    # Variant families (files matching <stem>-<variant>-v<N>.<suffix>).
+    for variant_slug in sorted(variant_files):
+        vdict = variant_files[variant_slug]
+        variant_preset_name = f"{preset_name}_{variant_slug.replace('-', '_')}"
+        variant_presets: list[Preset] = []
+        for v in sorted(vdict):
+            file_path = vdict[v]
+            variant_presets.append(
+                Preset(
+                    name=f"{variant_preset_name}_v{v}",
+                    preset_name=variant_preset_name,
+                    gateway=gateway,
+                    family_slug=family_slug,
+                    version=v,
+                    category=category,
+                    mime_type=mime_type,
+                    description=description,
+                    is_active=is_active,
+                    is_public=is_public,
+                    meta=meta,
+                    parameters=parameters,
+                    example_file=str(file_path.relative_to(EXAMPLES_DIR).as_posix()),
+                    source_readme=str(readme_path.relative_to(EXAMPLES_DIR).as_posix()),
+                )
+            )
+        all_families.append(variant_presets)
+
+    return all_families
 
 
 def _parse_parameters(
