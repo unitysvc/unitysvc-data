@@ -58,8 +58,33 @@
     "llm_description": "llm_description_v1",
     "llm_request_template": "llm_request_template_v1",
     "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
-    "notification_code_example": "notification_code_example_v1",
-    "notification_connectivity": "notification_connectivity_v1",
+    "notification_code_example_py_discord": "notification_code_example_py_discord_v1",
+    "notification_code_example_py_gotify": "notification_code_example_py_gotify_v1",
+    "notification_code_example_py_json": "notification_code_example_py_json_v1",
+    "notification_code_example_py_matrix": "notification_code_example_py_matrix_v1",
+    "notification_code_example_py_msteams": "notification_code_example_py_msteams_v1",
+    "notification_code_example_py_ntfy": "notification_code_example_py_ntfy_v1",
+    "notification_code_example_py_ryver": "notification_code_example_py_ryver_v1",
+    "notification_code_example_py_slack": "notification_code_example_py_slack_v1",
+    "notification_code_example_py_telegram": "notification_code_example_py_telegram_v1",
+    "notification_code_example_sh_discord": "notification_code_example_sh_discord_v1",
+    "notification_code_example_sh_gotify": "notification_code_example_sh_gotify_v1",
+    "notification_code_example_sh_json": "notification_code_example_sh_json_v1",
+    "notification_code_example_sh_matrix": "notification_code_example_sh_matrix_v1",
+    "notification_code_example_sh_msteams": "notification_code_example_sh_msteams_v1",
+    "notification_code_example_sh_ntfy": "notification_code_example_sh_ntfy_v1",
+    "notification_code_example_sh_ryver": "notification_code_example_sh_ryver_v1",
+    "notification_code_example_sh_slack": "notification_code_example_sh_slack_v1",
+    "notification_code_example_sh_telegram": "notification_code_example_sh_telegram_v1",
+    "notification_connectivity_discord": "notification_connectivity_discord_v1",
+    "notification_connectivity_gotify": "notification_connectivity_gotify_v1",
+    "notification_connectivity_json": "notification_connectivity_json_v1",
+    "notification_connectivity_matrix": "notification_connectivity_matrix_v1",
+    "notification_connectivity_msteams": "notification_connectivity_msteams_v1",
+    "notification_connectivity_ntfy": "notification_connectivity_ntfy_v1",
+    "notification_connectivity_ryver": "notification_connectivity_ryver_v1",
+    "notification_connectivity_slack": "notification_connectivity_slack_v1",
+    "notification_connectivity_telegram": "notification_connectivity_telegram_v1",
     "notification_description": "notification_description_v1",
     "notification_transformer_code_example_shell": "notification_transformer_code_example_shell_v1",
     "notification_transformer_connectivity_shell": "notification_transformer_connectivity_shell_v1",
@@ -1052,35 +1077,516 @@
       "source_readme": "llm/request-template/README.md",
       "version": 1
     },
-    "notification_code_example_v1": {
+    "notification_code_example_py_discord_v1": {
       "category": "code_example",
-      "description": "Python example: send a notification via the UnitySVC notify gateway",
-      "example_file": "notification/code-example/code-example-v1.py.j2",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-py/code-example-discord-v1.py.j2",
       "is_active": true,
       "is_public": true,
       "meta": {
+        "output_contains": "sent",
         "requirements": [
-          "requests"
+          "httpx"
         ]
       },
       "mime_type": "python",
-      "parameters": {},
-      "preset_name": "notification_code_example",
-      "source_readme": "notification/code-example/README.md",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_py_discord",
+      "source_readme": "notification/code-example-py/README.md",
       "version": 1
     },
-    "notification_connectivity_v1": {
-      "category": "connectivity_test",
-      "description": "Verify a notification gateway endpoint by issuing a tiny POST /send",
-      "example_file": "notification/connectivity/connectivity-v1.sh.j2",
+    "notification_code_example_py_gotify_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-py/code-example-gotify-v1.py.j2",
       "is_active": true,
-      "is_public": false,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_py_gotify",
+      "source_readme": "notification/code-example-py/README.md",
+      "version": 1
+    },
+    "notification_code_example_py_json_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-py/code-example-json-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_py_json",
+      "source_readme": "notification/code-example-py/README.md",
+      "version": 1
+    },
+    "notification_code_example_py_matrix_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-py/code-example-matrix-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_py_matrix",
+      "source_readme": "notification/code-example-py/README.md",
+      "version": 1
+    },
+    "notification_code_example_py_msteams_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-py/code-example-msteams-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_py_msteams",
+      "source_readme": "notification/code-example-py/README.md",
+      "version": 1
+    },
+    "notification_code_example_py_ntfy_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-py/code-example-ntfy-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_py_ntfy",
+      "source_readme": "notification/code-example-py/README.md",
+      "version": 1
+    },
+    "notification_code_example_py_ryver_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-py/code-example-ryver-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_py_ryver",
+      "source_readme": "notification/code-example-py/README.md",
+      "version": 1
+    },
+    "notification_code_example_py_slack_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-py/code-example-slack-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_py_slack",
+      "source_readme": "notification/code-example-py/README.md",
+      "version": 1
+    },
+    "notification_code_example_py_telegram_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-py/code-example-telegram-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_py_telegram",
+      "source_readme": "notification/code-example-py/README.md",
+      "version": 1
+    },
+    "notification_code_example_sh_discord_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-sh/code-example-discord-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_sh_discord",
+      "source_readme": "notification/code-example-sh/README.md",
+      "version": 1
+    },
+    "notification_code_example_sh_gotify_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-sh/code-example-gotify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_sh_gotify",
+      "source_readme": "notification/code-example-sh/README.md",
+      "version": 1
+    },
+    "notification_code_example_sh_json_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-sh/code-example-json-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_sh_json",
+      "source_readme": "notification/code-example-sh/README.md",
+      "version": 1
+    },
+    "notification_code_example_sh_matrix_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-sh/code-example-matrix-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_sh_matrix",
+      "source_readme": "notification/code-example-sh/README.md",
+      "version": 1
+    },
+    "notification_code_example_sh_msteams_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-sh/code-example-msteams-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_sh_msteams",
+      "source_readme": "notification/code-example-sh/README.md",
+      "version": 1
+    },
+    "notification_code_example_sh_ntfy_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-sh/code-example-ntfy-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_sh_ntfy",
+      "source_readme": "notification/code-example-sh/README.md",
+      "version": 1
+    },
+    "notification_code_example_sh_ryver_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-sh/code-example-ryver-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_sh_ryver",
+      "source_readme": "notification/code-example-sh/README.md",
+      "version": 1
+    },
+    "notification_code_example_sh_slack_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-sh/code-example-slack-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_sh_slack",
+      "source_readme": "notification/code-example-sh/README.md",
+      "version": 1
+    },
+    "notification_code_example_sh_telegram_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notification/code-example-sh/code-example-telegram-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_code_example_sh_telegram",
+      "source_readme": "notification/code-example-sh/README.md",
+      "version": 1
+    },
+    "notification_connectivity_discord_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notification/connectivity/connectivity-discord-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
       "meta": {
         "output_contains": "connectivity ok"
       },
       "mime_type": "bash",
-      "parameters": {},
-      "preset_name": "notification_connectivity",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_connectivity_discord",
+      "source_readme": "notification/connectivity/README.md",
+      "version": 1
+    },
+    "notification_connectivity_gotify_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notification/connectivity/connectivity-gotify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_connectivity_gotify",
+      "source_readme": "notification/connectivity/README.md",
+      "version": 1
+    },
+    "notification_connectivity_json_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notification/connectivity/connectivity-json-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_connectivity_json",
+      "source_readme": "notification/connectivity/README.md",
+      "version": 1
+    },
+    "notification_connectivity_matrix_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notification/connectivity/connectivity-matrix-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_connectivity_matrix",
+      "source_readme": "notification/connectivity/README.md",
+      "version": 1
+    },
+    "notification_connectivity_msteams_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notification/connectivity/connectivity-msteams-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_connectivity_msteams",
+      "source_readme": "notification/connectivity/README.md",
+      "version": 1
+    },
+    "notification_connectivity_ntfy_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notification/connectivity/connectivity-ntfy-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_connectivity_ntfy",
+      "source_readme": "notification/connectivity/README.md",
+      "version": 1
+    },
+    "notification_connectivity_ryver_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notification/connectivity/connectivity-ryver-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_connectivity_ryver",
+      "source_readme": "notification/connectivity/README.md",
+      "version": 1
+    },
+    "notification_connectivity_slack_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notification/connectivity/connectivity-slack-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_connectivity_slack",
+      "source_readme": "notification/connectivity/README.md",
+      "version": 1
+    },
+    "notification_connectivity_telegram_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notification/connectivity/connectivity-telegram-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_connectivity_telegram",
       "source_readme": "notification/connectivity/README.md",
       "version": 1
     },
