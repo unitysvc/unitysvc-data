@@ -5,22 +5,26 @@ set -o pipefail
 {% if local_testing %}
 WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
 
-curl -sS --max-time 10 \
+status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
   "chat_id": "${__chat_id__}",
   "text": "Hello from UnitySVC\nNotification delivered via transformer."
 }' \
-    -w "\nHTTP %{http_code}\n" \
-    "$WEBHOOK_URL"
+    -o /dev/null -w "%{http_code}" \
+    "$WEBHOOK_URL" 2>/dev/null)
 
-echo "sent"
+case "$status" in
+  2??) echo "sent"; exit 0 ;;
+  000) echo "request failed: could not connect to $WEBHOOK_URL" >&2; exit 1 ;;
+  *)   echo "request failed: HTTP $status from $WEBHOOK_URL" >&2; exit 1 ;;
+esac
 
 {% else %}
 GATEWAY_URL="{{ service_base_url }}"
 
-curl -sS --max-time 10 \
+status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
@@ -29,8 +33,12 @@ curl -sS --max-time 10 \
   "body": "Notification delivered via transformer.",
   "from": "user@example.com"
 }' \
-    -w "\nHTTP %{http_code}\n" \
-    "$GATEWAY_URL"
+    -o /dev/null -w "%{http_code}" \
+    "$GATEWAY_URL" 2>/dev/null)
 
-echo "sent"
+case "$status" in
+  2??) echo "sent"; exit 0 ;;
+  000) echo "request failed: could not connect to $GATEWAY_URL" >&2; exit 1 ;;
+  *)   echo "request failed: HTTP $status from $GATEWAY_URL" >&2; exit 1 ;;
+esac
 {% endif %}
