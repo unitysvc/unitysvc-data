@@ -69,6 +69,8 @@ Schema version: `1`. Preset families: **72**. Concrete versions: **73**. Aliases
 | `notification_code_example_v1` | `notification_code_example` | v1 | `code_example` | `python` | yes | [`notification/code-example/code-example-v1.py.j2`](src/unitysvc_data/examples/notification/code-example/code-example-v1.py.j2) | Python example: send a notification via the UnitySVC notify gateway |
 | `notification_connectivity_v1` | `notification_connectivity` | v1 | `connectivity_test` | `bash` | no | [`notification/connectivity/connectivity-v1.sh.j2`](src/unitysvc_data/examples/notification/connectivity/connectivity-v1.sh.j2) | Verify a notification gateway endpoint by issuing a tiny POST /send |
 | `notification_description_v1` | `notification_description` | v1 | `getting_started` | `markdown` | yes | [`notification/description/description-v1.md`](src/unitysvc_data/examples/notification/description/description-v1.md) | Customer-facing overview of a ntfy-shaped push-notification gateway service |
+| `notification_transformer_code_example_shell_v1` | `notification_transformer_code_example_shell` | v1 | `code_example` | `bash` | yes | [`notification/transformer-code-example-shell/code-example-v1.sh.j2`](src/unitysvc_data/examples/notification/transformer-code-example-shell/code-example-v1.sh.j2) | cURL example for notification transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes |
+| `notification_transformer_connectivity_shell_v1` | `notification_transformer_connectivity_shell` | v1 | `connectivity_test` | `bash` | yes | [`notification/transformer-connectivity-shell/connectivity-v1.sh.j2`](src/unitysvc_data/examples/notification/transformer-connectivity-shell/connectivity-v1.sh.j2) | Connectivity test for notification transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes |
 | `recommender_description_v1` | `recommender_description` | v1 | `getting_started` | `markdown` | yes | [`recommender/description/description-v1.md`](src/unitysvc_data/examples/recommender/description/description-v1.md) | Customer-facing overview of a Gorse-shaped recommender gateway service |
 | `s3_code_example_v1` | `s3_code_example` | v1 | `code_example` | `python` | yes | [`s3/code-example/code-example-v1.py.j2`](src/unitysvc_data/examples/s3/code-example/code-example-v1.py.j2) | Python example: list objects in an S3 bucket via boto3 |
 | `s3_connectivity_v1` | `s3_connectivity` | v1 | `connectivity_test` | `python` | yes | [`s3/connectivity/connectivity-v1.py.j2`](src/unitysvc_data/examples/s3/connectivity/connectivity-v1.py.j2) | Verify S3 endpoint accepts the configured credentials |
@@ -76,8 +78,6 @@ Schema version: `1`. Preset families: **72**. Concrete versions: **73**. Aliases
 | `smtp_code_example_v1` | `smtp_code_example` | v1 | `code_example` | `python` | yes | [`smtp/code-example/code-example-v1.py.j2`](src/unitysvc_data/examples/smtp/code-example/code-example-v1.py.j2) | Python example: send a test email via the UnitySVC SMTP gateway |
 | `smtp_connectivity_v1` | `smtp_connectivity` | v1 | `connectivity_test` | `bash` | yes | [`smtp/connectivity/connectivity-v1.sh.j2`](src/unitysvc_data/examples/smtp/connectivity/connectivity-v1.sh.j2) | Verify SMTP server returns a 220 greeting on connect |
 | `smtp_connectivity_v2` | `smtp_connectivity` | v2 | `connectivity_test` | `bash` | yes | [`smtp/connectivity/connectivity-v2.sh.j2`](src/unitysvc_data/examples/smtp/connectivity/connectivity-v2.sh.j2) | Verify SMTP server returns a 220 greeting on connect |
-| `smtp_transformer_code_example_shell_v1` | `smtp_transformer_code_example_shell` | v1 | `code_example` | `bash` | yes | [`smtp/transformer-code-example-shell/code-example-v1.sh.j2`](src/unitysvc_data/examples/smtp/transformer-code-example-shell/code-example-v1.sh.j2) | cURL example for SMTP→HTTP transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes |
-| `smtp_transformer_connectivity_shell_v1` | `smtp_transformer_connectivity_shell` | v1 | `connectivity_test` | `bash` | yes | [`smtp/transformer-connectivity-shell/connectivity-v1.sh.j2`](src/unitysvc_data/examples/smtp/transformer-connectivity-shell/connectivity-v1.sh.j2) | Connectivity test for SMTP→HTTP transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes |
 | `uptime_description_v1` | `uptime_description` | v1 | `getting_started` | `markdown` | yes | [`uptime/description/description-v1.md`](src/unitysvc_data/examples/uptime/description/description-v1.md) | Customer-facing overview of an uptime-monitoring bridge service |
 | `webhook_code_example_shell_v1` | `webhook_code_example_shell` | v1 | `code_example` | `bash` | yes | [`webhook/code-example-shell/code-example-v1.sh.j2`](src/unitysvc_data/examples/webhook/code-example-shell/code-example-v1.sh.j2) | cURL example: POST a Discord embeds payload directly to a webhook endpoint |
 | `webhook_connectivity_v1` | `webhook_connectivity` | v1 | `connectivity_test` | `bash` | no | [`webhook/connectivity/connectivity-v1.sh.j2`](src/unitysvc_data/examples/webhook/connectivity/connectivity-v1.sh.j2) | Verify a Discord-compatible webhook endpoint by POSTing a minimal embeds payload |
@@ -147,14 +147,14 @@ Schema version: `1`. Preset families: **72**. Concrete versions: **73**. Aliases
 | `notification_code_example` | `notification_code_example_v1` |
 | `notification_connectivity` | `notification_connectivity_v1` |
 | `notification_description` | `notification_description_v1` |
+| `notification_transformer_code_example_shell` | `notification_transformer_code_example_shell_v1` |
+| `notification_transformer_connectivity_shell` | `notification_transformer_connectivity_shell_v1` |
 | `recommender_description` | `recommender_description_v1` |
 | `s3_code_example` | `s3_code_example_v1` |
 | `s3_connectivity` | `s3_connectivity_v1` |
 | `s3_description` | `s3_description_v1` |
 | `smtp_code_example` | `smtp_code_example_v1` |
 | `smtp_connectivity` | `smtp_connectivity_v2` |
-| `smtp_transformer_code_example_shell` | `smtp_transformer_code_example_shell_v1` |
-| `smtp_transformer_connectivity_shell` | `smtp_transformer_connectivity_shell_v1` |
 | `uptime_description` | `uptime_description_v1` |
 | `webhook_code_example_shell` | `webhook_code_example_shell_v1` |
 | `webhook_connectivity` | `webhook_connectivity_v1` |

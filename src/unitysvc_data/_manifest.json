@@ -61,14 +61,14 @@
     "notification_code_example": "notification_code_example_v1",
     "notification_connectivity": "notification_connectivity_v1",
     "notification_description": "notification_description_v1",
+    "notification_transformer_code_example_shell": "notification_transformer_code_example_shell_v1",
+    "notification_transformer_connectivity_shell": "notification_transformer_connectivity_shell_v1",
     "recommender_description": "recommender_description_v1",
     "s3_code_example": "s3_code_example_v1",
     "s3_connectivity": "s3_connectivity_v1",
     "s3_description": "s3_description_v1",
     "smtp_code_example": "smtp_code_example_v1",
     "smtp_connectivity": "smtp_connectivity_v2",
-    "smtp_transformer_code_example_shell": "smtp_transformer_code_example_shell_v1",
-    "smtp_transformer_connectivity_shell": "smtp_transformer_connectivity_shell_v1",
     "uptime_description": "uptime_description_v1",
     "webhook_code_example_shell": "webhook_code_example_shell_v1",
     "webhook_connectivity": "webhook_connectivity_v1"
@@ -1070,6 +1070,40 @@
       "source_readme": "notification/description/README.md",
       "version": 1
     },
+    "notification_transformer_code_example_shell_v1": {
+      "category": "code_example",
+      "description": "cURL example for notification transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes",
+      "example_file": "notification/transformer-code-example-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_transformer_code_example_shell",
+      "source_readme": "notification/transformer-code-example-shell/README.md",
+      "version": 1
+    },
+    "notification_transformer_connectivity_shell_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for notification transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes",
+      "example_file": "notification/transformer-connectivity-shell/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notification_transformer_connectivity_shell",
+      "source_readme": "notification/transformer-connectivity-shell/README.md",
+      "version": 1
+    },
     "recommender_description_v1": {
       "category": "getting_started",
       "description": "Customer-facing overview of a Gorse-shaped recommender gateway service",
@@ -1176,40 +1210,6 @@
       "preset_name": "smtp_connectivity",
       "source_readme": "smtp/connectivity/README.md",
       "version": 2
-    },
-    "smtp_transformer_code_example_shell_v1": {
-      "category": "code_example",
-      "description": "cURL example for SMTP\u2192HTTP transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes",
-      "example_file": "smtp/transformer-code-example-shell/code-example-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "smtp_transformer_code_example_shell",
-      "source_readme": "smtp/transformer-code-example-shell/README.md",
-      "version": 1
-    },
-    "smtp_transformer_connectivity_shell_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for SMTP\u2192HTTP transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes",
-      "example_file": "smtp/transformer-connectivity-shell/connectivity-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "smtp_transformer_connectivity_shell",
-      "source_readme": "smtp/transformer-connectivity-shell/README.md",
-      "version": 1
     },
     "uptime_description_v1": {
       "category": "getting_started",
