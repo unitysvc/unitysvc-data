@@ -68,6 +68,7 @@
     "smtp_code_example": "smtp_code_example_v1",
     "smtp_connectivity": "smtp_connectivity_v2",
     "smtp_transformer_code_example_shell": "smtp_transformer_code_example_shell_v1",
+    "smtp_transformer_connectivity_shell": "smtp_transformer_connectivity_shell_v1",
     "uptime_description": "uptime_description_v1",
     "webhook_code_example_shell": "webhook_code_example_shell_v1",
     "webhook_connectivity": "webhook_connectivity_v1"
@@ -1178,7 +1179,7 @@
     },
     "smtp_transformer_code_example_shell_v1": {
       "category": "code_example",
-      "description": "cURL example for SMTP\u2192HTTP transformer services: HTTP upstream in local mode, SMTP gateway in gateway mode",
+      "description": "cURL example for SMTP\u2192HTTP transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes",
       "example_file": "smtp/transformer-code-example-shell/code-example-v1.sh.j2",
       "is_active": true,
       "is_public": true,
@@ -1191,6 +1192,23 @@
       },
       "preset_name": "smtp_transformer_code_example_shell",
       "source_readme": "smtp/transformer-code-example-shell/README.md",
+      "version": 1
+    },
+    "smtp_transformer_connectivity_shell_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192HTTP transformer services: POSTs Discord embeds to the HTTP upstream in both local and gateway modes",
+      "example_file": "smtp/transformer-connectivity-shell/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "smtp_transformer_connectivity_shell",
+      "source_readme": "smtp/transformer-connectivity-shell/README.md",
       "version": 1
     },
     "uptime_description_v1": {

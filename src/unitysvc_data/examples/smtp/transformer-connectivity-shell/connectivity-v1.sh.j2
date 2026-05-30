@@ -1,5 +1,5 @@
 #!/bin/bash
-# Code example for SMTP→HTTP transformer services.
+# Connectivity test for SMTP→HTTP transformer services.
 # POSTs the transformer output format (Discord embeds) directly to the HTTP
 # upstream in both local and gateway modes.
 set -o pipefail
@@ -9,20 +9,12 @@ WEBHOOK_URL="{{ offering.upstream_access_config.discord.base_url }}${__webhook_p
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{
-  "embeds": [
-    {
-      "title": "Hello from UnitySVC",
-      "description": "Notification delivered via transformer",
-      "footer": { "text": "from user@example.com" }
-    }
-  ]
-}' \
+    -d '{"embeds":[{"title":"connectivity check","description":"ping"}]}' \
     -o /dev/null -w "%{http_code}" \
     "$WEBHOOK_URL" 2>/dev/null)
 
 case "$status" in
-  204) echo "sent"; exit 0 ;;
+  204) echo "connectivity ok (HTTP $status)"; exit 0 ;;
   000) echo "connectivity failed: could not connect to $WEBHOOK_URL" >&2; exit 1 ;;
-  *) echo "request failed: HTTP $status from $WEBHOOK_URL" >&2; exit 1 ;;
+  *) echo "connectivity failed: HTTP $status from $WEBHOOK_URL" >&2; exit 1 ;;
 esac
