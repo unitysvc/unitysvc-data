@@ -1,5 +1,5 @@
 +++
-preset_name = "transform_notify_connectivity"
+preset_name = "apprise_notify_connectivity"
 category = "connectivity_test"
 mime_type = "bash"
 file = "connectivity.sh.j2"
@@ -10,11 +10,11 @@ meta = { output_contains = "connectivity ok" }
 parameters = { webhook_path = "/webhook", chat_id = "" }
 +++
 
-# transform-notify / connectivity
+# apprise-notify / connectivity
 
 Connectivity test for transformer services that convert SMTP messages into
 upstream notification payloads.  One variant file per upstream API shape;
-each variant becomes its own preset (e.g. `transform_notify_connectivity_discord`).
+each variant becomes its own preset (e.g. `apprise_notify_connectivity_discord`).
 
 ## Local mode
 
