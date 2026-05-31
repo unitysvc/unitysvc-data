@@ -8,7 +8,7 @@ GATEWAY_URL = os.path.expandvars("{{ service_base_url }}")
 
 response = httpx.post(
     GATEWAY_URL,
-    headers={"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"},
+    headers={"Authorization": f"Bearer {k}"} if (k := os.environ.get("UNITYSVC_API_KEY")) else {},
     json={
         "title": "Hello from UnitySVC",
         "body": "Notification delivered via transformer.",
