@@ -3,6 +3,111 @@
     "api_code_example_requests": "api_code_example_requests_v1",
     "api_code_example_shell": "api_code_example_shell_v1",
     "api_connectivity": "api_connectivity_v1",
+    "apprise_notify_code_example_py_bark": "apprise_notify_code_example_py_bark_v1",
+    "apprise_notify_code_example_py_brevo_email": "apprise_notify_code_example_py_brevo_email_v1",
+    "apprise_notify_code_example_py_discord": "apprise_notify_code_example_py_discord_v1",
+    "apprise_notify_code_example_py_feishu_msg": "apprise_notify_code_example_py_feishu_msg_v1",
+    "apprise_notify_code_example_py_gotify": "apprise_notify_code_example_py_gotify_v1",
+    "apprise_notify_code_example_py_groupme_msg": "apprise_notify_code_example_py_groupme_msg_v1",
+    "apprise_notify_code_example_py_json": "apprise_notify_code_example_py_json_v1",
+    "apprise_notify_code_example_py_line_msg": "apprise_notify_code_example_py_line_msg_v1",
+    "apprise_notify_code_example_py_matrix": "apprise_notify_code_example_py_matrix_v1",
+    "apprise_notify_code_example_py_messagebird_sms": "apprise_notify_code_example_py_messagebird_sms_v1",
+    "apprise_notify_code_example_py_msteams": "apprise_notify_code_example_py_msteams_v1",
+    "apprise_notify_code_example_py_ntfy": "apprise_notify_code_example_py_ntfy_v1",
+    "apprise_notify_code_example_py_onesignal": "apprise_notify_code_example_py_onesignal_v1",
+    "apprise_notify_code_example_py_opsgenie": "apprise_notify_code_example_py_opsgenie_v1",
+    "apprise_notify_code_example_py_pagerduty": "apprise_notify_code_example_py_pagerduty_v1",
+    "apprise_notify_code_example_py_pagertree": "apprise_notify_code_example_py_pagertree_v1",
+    "apprise_notify_code_example_py_postmark_email": "apprise_notify_code_example_py_postmark_email_v1",
+    "apprise_notify_code_example_py_pushbullet": "apprise_notify_code_example_py_pushbullet_v1",
+    "apprise_notify_code_example_py_pushjet": "apprise_notify_code_example_py_pushjet_v1",
+    "apprise_notify_code_example_py_pushover": "apprise_notify_code_example_py_pushover_v1",
+    "apprise_notify_code_example_py_resend_email": "apprise_notify_code_example_py_resend_email_v1",
+    "apprise_notify_code_example_py_ryver": "apprise_notify_code_example_py_ryver_v1",
+    "apprise_notify_code_example_py_sendgrid_email": "apprise_notify_code_example_py_sendgrid_email_v1",
+    "apprise_notify_code_example_py_serverchan": "apprise_notify_code_example_py_serverchan_v1",
+    "apprise_notify_code_example_py_signl4": "apprise_notify_code_example_py_signl4_v1",
+    "apprise_notify_code_example_py_simplepush": "apprise_notify_code_example_py_simplepush_v1",
+    "apprise_notify_code_example_py_slack": "apprise_notify_code_example_py_slack_v1",
+    "apprise_notify_code_example_py_smtp2go_email": "apprise_notify_code_example_py_smtp2go_email_v1",
+    "apprise_notify_code_example_py_sparkpost_email": "apprise_notify_code_example_py_sparkpost_email_v1",
+    "apprise_notify_code_example_py_spikesh": "apprise_notify_code_example_py_spikesh_v1",
+    "apprise_notify_code_example_py_telegram": "apprise_notify_code_example_py_telegram_v1",
+    "apprise_notify_code_example_py_victorops": "apprise_notify_code_example_py_victorops_v1",
+    "apprise_notify_code_example_py_wechat_work": "apprise_notify_code_example_py_wechat_work_v1",
+    "apprise_notify_code_example_py_whatsapp_msg": "apprise_notify_code_example_py_whatsapp_msg_v1",
+    "apprise_notify_code_example_py_wxpusher": "apprise_notify_code_example_py_wxpusher_v1",
+    "apprise_notify_code_example_sh_bark": "apprise_notify_code_example_sh_bark_v1",
+    "apprise_notify_code_example_sh_brevo_email": "apprise_notify_code_example_sh_brevo_email_v1",
+    "apprise_notify_code_example_sh_discord": "apprise_notify_code_example_sh_discord_v1",
+    "apprise_notify_code_example_sh_feishu_msg": "apprise_notify_code_example_sh_feishu_msg_v1",
+    "apprise_notify_code_example_sh_gotify": "apprise_notify_code_example_sh_gotify_v1",
+    "apprise_notify_code_example_sh_groupme_msg": "apprise_notify_code_example_sh_groupme_msg_v1",
+    "apprise_notify_code_example_sh_json": "apprise_notify_code_example_sh_json_v1",
+    "apprise_notify_code_example_sh_line_msg": "apprise_notify_code_example_sh_line_msg_v1",
+    "apprise_notify_code_example_sh_matrix": "apprise_notify_code_example_sh_matrix_v1",
+    "apprise_notify_code_example_sh_messagebird_sms": "apprise_notify_code_example_sh_messagebird_sms_v1",
+    "apprise_notify_code_example_sh_msteams": "apprise_notify_code_example_sh_msteams_v1",
+    "apprise_notify_code_example_sh_ntfy": "apprise_notify_code_example_sh_ntfy_v1",
+    "apprise_notify_code_example_sh_onesignal": "apprise_notify_code_example_sh_onesignal_v1",
+    "apprise_notify_code_example_sh_opsgenie": "apprise_notify_code_example_sh_opsgenie_v1",
+    "apprise_notify_code_example_sh_pagerduty": "apprise_notify_code_example_sh_pagerduty_v1",
+    "apprise_notify_code_example_sh_pagertree": "apprise_notify_code_example_sh_pagertree_v1",
+    "apprise_notify_code_example_sh_postmark_email": "apprise_notify_code_example_sh_postmark_email_v1",
+    "apprise_notify_code_example_sh_pushbullet": "apprise_notify_code_example_sh_pushbullet_v1",
+    "apprise_notify_code_example_sh_pushjet": "apprise_notify_code_example_sh_pushjet_v1",
+    "apprise_notify_code_example_sh_pushover": "apprise_notify_code_example_sh_pushover_v1",
+    "apprise_notify_code_example_sh_resend_email": "apprise_notify_code_example_sh_resend_email_v1",
+    "apprise_notify_code_example_sh_ryver": "apprise_notify_code_example_sh_ryver_v1",
+    "apprise_notify_code_example_sh_sendgrid_email": "apprise_notify_code_example_sh_sendgrid_email_v1",
+    "apprise_notify_code_example_sh_serverchan": "apprise_notify_code_example_sh_serverchan_v1",
+    "apprise_notify_code_example_sh_signl4": "apprise_notify_code_example_sh_signl4_v1",
+    "apprise_notify_code_example_sh_simplepush": "apprise_notify_code_example_sh_simplepush_v1",
+    "apprise_notify_code_example_sh_slack": "apprise_notify_code_example_sh_slack_v1",
+    "apprise_notify_code_example_sh_smtp2go_email": "apprise_notify_code_example_sh_smtp2go_email_v1",
+    "apprise_notify_code_example_sh_sparkpost_email": "apprise_notify_code_example_sh_sparkpost_email_v1",
+    "apprise_notify_code_example_sh_spikesh": "apprise_notify_code_example_sh_spikesh_v1",
+    "apprise_notify_code_example_sh_telegram": "apprise_notify_code_example_sh_telegram_v1",
+    "apprise_notify_code_example_sh_victorops": "apprise_notify_code_example_sh_victorops_v1",
+    "apprise_notify_code_example_sh_wechat_work": "apprise_notify_code_example_sh_wechat_work_v1",
+    "apprise_notify_code_example_sh_whatsapp_msg": "apprise_notify_code_example_sh_whatsapp_msg_v1",
+    "apprise_notify_code_example_sh_wxpusher": "apprise_notify_code_example_sh_wxpusher_v1",
+    "apprise_notify_connectivity_bark": "apprise_notify_connectivity_bark_v1",
+    "apprise_notify_connectivity_brevo_email": "apprise_notify_connectivity_brevo_email_v1",
+    "apprise_notify_connectivity_discord": "apprise_notify_connectivity_discord_v1",
+    "apprise_notify_connectivity_feishu_msg": "apprise_notify_connectivity_feishu_msg_v1",
+    "apprise_notify_connectivity_gotify": "apprise_notify_connectivity_gotify_v1",
+    "apprise_notify_connectivity_groupme_msg": "apprise_notify_connectivity_groupme_msg_v1",
+    "apprise_notify_connectivity_json": "apprise_notify_connectivity_json_v1",
+    "apprise_notify_connectivity_line_msg": "apprise_notify_connectivity_line_msg_v1",
+    "apprise_notify_connectivity_matrix": "apprise_notify_connectivity_matrix_v1",
+    "apprise_notify_connectivity_messagebird_sms": "apprise_notify_connectivity_messagebird_sms_v1",
+    "apprise_notify_connectivity_msteams": "apprise_notify_connectivity_msteams_v1",
+    "apprise_notify_connectivity_ntfy": "apprise_notify_connectivity_ntfy_v1",
+    "apprise_notify_connectivity_onesignal": "apprise_notify_connectivity_onesignal_v1",
+    "apprise_notify_connectivity_opsgenie": "apprise_notify_connectivity_opsgenie_v1",
+    "apprise_notify_connectivity_pagerduty": "apprise_notify_connectivity_pagerduty_v1",
+    "apprise_notify_connectivity_pagertree": "apprise_notify_connectivity_pagertree_v1",
+    "apprise_notify_connectivity_postmark_email": "apprise_notify_connectivity_postmark_email_v1",
+    "apprise_notify_connectivity_pushbullet": "apprise_notify_connectivity_pushbullet_v1",
+    "apprise_notify_connectivity_pushjet": "apprise_notify_connectivity_pushjet_v1",
+    "apprise_notify_connectivity_pushover": "apprise_notify_connectivity_pushover_v1",
+    "apprise_notify_connectivity_resend_email": "apprise_notify_connectivity_resend_email_v1",
+    "apprise_notify_connectivity_ryver": "apprise_notify_connectivity_ryver_v1",
+    "apprise_notify_connectivity_sendgrid_email": "apprise_notify_connectivity_sendgrid_email_v1",
+    "apprise_notify_connectivity_serverchan": "apprise_notify_connectivity_serverchan_v1",
+    "apprise_notify_connectivity_signl4": "apprise_notify_connectivity_signl4_v1",
+    "apprise_notify_connectivity_simplepush": "apprise_notify_connectivity_simplepush_v1",
+    "apprise_notify_connectivity_slack": "apprise_notify_connectivity_slack_v1",
+    "apprise_notify_connectivity_smtp2go_email": "apprise_notify_connectivity_smtp2go_email_v1",
+    "apprise_notify_connectivity_sparkpost_email": "apprise_notify_connectivity_sparkpost_email_v1",
+    "apprise_notify_connectivity_spikesh": "apprise_notify_connectivity_spikesh_v1",
+    "apprise_notify_connectivity_telegram": "apprise_notify_connectivity_telegram_v1",
+    "apprise_notify_connectivity_victorops": "apprise_notify_connectivity_victorops_v1",
+    "apprise_notify_connectivity_wechat_work": "apprise_notify_connectivity_wechat_work_v1",
+    "apprise_notify_connectivity_whatsapp_msg": "apprise_notify_connectivity_whatsapp_msg_v1",
+    "apprise_notify_connectivity_wxpusher": "apprise_notify_connectivity_wxpusher_v1",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
     "llm_code_example_anthropic_fc": "llm_code_example_anthropic_fc_v1",
     "llm_code_example_anthropic_javascript": "llm_code_example_anthropic_javascript_v1",
@@ -58,33 +163,111 @@
     "llm_description": "llm_description_v1",
     "llm_request_template": "llm_request_template_v1",
     "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
+    "notify_relay_code_example_py_bark": "notify_relay_code_example_py_bark_v1",
+    "notify_relay_code_example_py_brevo_email": "notify_relay_code_example_py_brevo_email_v1",
     "notify_relay_code_example_py_discord": "notify_relay_code_example_py_discord_v1",
+    "notify_relay_code_example_py_feishu_msg": "notify_relay_code_example_py_feishu_msg_v1",
     "notify_relay_code_example_py_gotify": "notify_relay_code_example_py_gotify_v1",
+    "notify_relay_code_example_py_groupme_msg": "notify_relay_code_example_py_groupme_msg_v1",
     "notify_relay_code_example_py_json": "notify_relay_code_example_py_json_v1",
+    "notify_relay_code_example_py_line_msg": "notify_relay_code_example_py_line_msg_v1",
     "notify_relay_code_example_py_matrix": "notify_relay_code_example_py_matrix_v1",
+    "notify_relay_code_example_py_messagebird_sms": "notify_relay_code_example_py_messagebird_sms_v1",
     "notify_relay_code_example_py_msteams": "notify_relay_code_example_py_msteams_v1",
     "notify_relay_code_example_py_ntfy": "notify_relay_code_example_py_ntfy_v1",
+    "notify_relay_code_example_py_onesignal": "notify_relay_code_example_py_onesignal_v1",
+    "notify_relay_code_example_py_opsgenie": "notify_relay_code_example_py_opsgenie_v1",
+    "notify_relay_code_example_py_pagerduty": "notify_relay_code_example_py_pagerduty_v1",
+    "notify_relay_code_example_py_pagertree": "notify_relay_code_example_py_pagertree_v1",
+    "notify_relay_code_example_py_postmark_email": "notify_relay_code_example_py_postmark_email_v1",
+    "notify_relay_code_example_py_pushbullet": "notify_relay_code_example_py_pushbullet_v1",
+    "notify_relay_code_example_py_pushjet": "notify_relay_code_example_py_pushjet_v1",
+    "notify_relay_code_example_py_pushover": "notify_relay_code_example_py_pushover_v1",
+    "notify_relay_code_example_py_resend_email": "notify_relay_code_example_py_resend_email_v1",
     "notify_relay_code_example_py_ryver": "notify_relay_code_example_py_ryver_v1",
+    "notify_relay_code_example_py_sendgrid_email": "notify_relay_code_example_py_sendgrid_email_v1",
+    "notify_relay_code_example_py_serverchan": "notify_relay_code_example_py_serverchan_v1",
+    "notify_relay_code_example_py_signl4": "notify_relay_code_example_py_signl4_v1",
+    "notify_relay_code_example_py_simplepush": "notify_relay_code_example_py_simplepush_v1",
     "notify_relay_code_example_py_slack": "notify_relay_code_example_py_slack_v1",
+    "notify_relay_code_example_py_smtp2go_email": "notify_relay_code_example_py_smtp2go_email_v1",
+    "notify_relay_code_example_py_sparkpost_email": "notify_relay_code_example_py_sparkpost_email_v1",
+    "notify_relay_code_example_py_spikesh": "notify_relay_code_example_py_spikesh_v1",
     "notify_relay_code_example_py_telegram": "notify_relay_code_example_py_telegram_v1",
+    "notify_relay_code_example_py_victorops": "notify_relay_code_example_py_victorops_v1",
+    "notify_relay_code_example_py_wechat_work": "notify_relay_code_example_py_wechat_work_v1",
+    "notify_relay_code_example_py_whatsapp_msg": "notify_relay_code_example_py_whatsapp_msg_v1",
+    "notify_relay_code_example_py_wxpusher": "notify_relay_code_example_py_wxpusher_v1",
+    "notify_relay_code_example_sh_bark": "notify_relay_code_example_sh_bark_v1",
+    "notify_relay_code_example_sh_brevo_email": "notify_relay_code_example_sh_brevo_email_v1",
     "notify_relay_code_example_sh_discord": "notify_relay_code_example_sh_discord_v1",
+    "notify_relay_code_example_sh_feishu_msg": "notify_relay_code_example_sh_feishu_msg_v1",
     "notify_relay_code_example_sh_gotify": "notify_relay_code_example_sh_gotify_v1",
+    "notify_relay_code_example_sh_groupme_msg": "notify_relay_code_example_sh_groupme_msg_v1",
     "notify_relay_code_example_sh_json": "notify_relay_code_example_sh_json_v1",
+    "notify_relay_code_example_sh_line_msg": "notify_relay_code_example_sh_line_msg_v1",
     "notify_relay_code_example_sh_matrix": "notify_relay_code_example_sh_matrix_v1",
+    "notify_relay_code_example_sh_messagebird_sms": "notify_relay_code_example_sh_messagebird_sms_v1",
     "notify_relay_code_example_sh_msteams": "notify_relay_code_example_sh_msteams_v1",
     "notify_relay_code_example_sh_ntfy": "notify_relay_code_example_sh_ntfy_v1",
+    "notify_relay_code_example_sh_onesignal": "notify_relay_code_example_sh_onesignal_v1",
+    "notify_relay_code_example_sh_opsgenie": "notify_relay_code_example_sh_opsgenie_v1",
+    "notify_relay_code_example_sh_pagerduty": "notify_relay_code_example_sh_pagerduty_v1",
+    "notify_relay_code_example_sh_pagertree": "notify_relay_code_example_sh_pagertree_v1",
+    "notify_relay_code_example_sh_postmark_email": "notify_relay_code_example_sh_postmark_email_v1",
+    "notify_relay_code_example_sh_pushbullet": "notify_relay_code_example_sh_pushbullet_v1",
+    "notify_relay_code_example_sh_pushjet": "notify_relay_code_example_sh_pushjet_v1",
+    "notify_relay_code_example_sh_pushover": "notify_relay_code_example_sh_pushover_v1",
+    "notify_relay_code_example_sh_resend_email": "notify_relay_code_example_sh_resend_email_v1",
     "notify_relay_code_example_sh_ryver": "notify_relay_code_example_sh_ryver_v1",
+    "notify_relay_code_example_sh_sendgrid_email": "notify_relay_code_example_sh_sendgrid_email_v1",
+    "notify_relay_code_example_sh_serverchan": "notify_relay_code_example_sh_serverchan_v1",
+    "notify_relay_code_example_sh_signl4": "notify_relay_code_example_sh_signl4_v1",
+    "notify_relay_code_example_sh_simplepush": "notify_relay_code_example_sh_simplepush_v1",
     "notify_relay_code_example_sh_slack": "notify_relay_code_example_sh_slack_v1",
+    "notify_relay_code_example_sh_smtp2go_email": "notify_relay_code_example_sh_smtp2go_email_v1",
+    "notify_relay_code_example_sh_sparkpost_email": "notify_relay_code_example_sh_sparkpost_email_v1",
+    "notify_relay_code_example_sh_spikesh": "notify_relay_code_example_sh_spikesh_v1",
     "notify_relay_code_example_sh_telegram": "notify_relay_code_example_sh_telegram_v1",
+    "notify_relay_code_example_sh_victorops": "notify_relay_code_example_sh_victorops_v1",
+    "notify_relay_code_example_sh_wechat_work": "notify_relay_code_example_sh_wechat_work_v1",
+    "notify_relay_code_example_sh_whatsapp_msg": "notify_relay_code_example_sh_whatsapp_msg_v1",
+    "notify_relay_code_example_sh_wxpusher": "notify_relay_code_example_sh_wxpusher_v1",
+    "notify_relay_connectivity_bark": "notify_relay_connectivity_bark_v1",
+    "notify_relay_connectivity_brevo_email": "notify_relay_connectivity_brevo_email_v1",
     "notify_relay_connectivity_discord": "notify_relay_connectivity_discord_v1",
+    "notify_relay_connectivity_feishu_msg": "notify_relay_connectivity_feishu_msg_v1",
     "notify_relay_connectivity_gotify": "notify_relay_connectivity_gotify_v1",
+    "notify_relay_connectivity_groupme_msg": "notify_relay_connectivity_groupme_msg_v1",
     "notify_relay_connectivity_json": "notify_relay_connectivity_json_v1",
+    "notify_relay_connectivity_line_msg": "notify_relay_connectivity_line_msg_v1",
     "notify_relay_connectivity_matrix": "notify_relay_connectivity_matrix_v1",
+    "notify_relay_connectivity_messagebird_sms": "notify_relay_connectivity_messagebird_sms_v1",
     "notify_relay_connectivity_msteams": "notify_relay_connectivity_msteams_v1",
     "notify_relay_connectivity_ntfy": "notify_relay_connectivity_ntfy_v1",
+    "notify_relay_connectivity_onesignal": "notify_relay_connectivity_onesignal_v1",
+    "notify_relay_connectivity_opsgenie": "notify_relay_connectivity_opsgenie_v1",
+    "notify_relay_connectivity_pagerduty": "notify_relay_connectivity_pagerduty_v1",
+    "notify_relay_connectivity_pagertree": "notify_relay_connectivity_pagertree_v1",
+    "notify_relay_connectivity_postmark_email": "notify_relay_connectivity_postmark_email_v1",
+    "notify_relay_connectivity_pushbullet": "notify_relay_connectivity_pushbullet_v1",
+    "notify_relay_connectivity_pushjet": "notify_relay_connectivity_pushjet_v1",
+    "notify_relay_connectivity_pushover": "notify_relay_connectivity_pushover_v1",
+    "notify_relay_connectivity_resend_email": "notify_relay_connectivity_resend_email_v1",
     "notify_relay_connectivity_ryver": "notify_relay_connectivity_ryver_v1",
+    "notify_relay_connectivity_sendgrid_email": "notify_relay_connectivity_sendgrid_email_v1",
+    "notify_relay_connectivity_serverchan": "notify_relay_connectivity_serverchan_v1",
+    "notify_relay_connectivity_signl4": "notify_relay_connectivity_signl4_v1",
+    "notify_relay_connectivity_simplepush": "notify_relay_connectivity_simplepush_v1",
     "notify_relay_connectivity_slack": "notify_relay_connectivity_slack_v1",
+    "notify_relay_connectivity_smtp2go_email": "notify_relay_connectivity_smtp2go_email_v1",
+    "notify_relay_connectivity_sparkpost_email": "notify_relay_connectivity_sparkpost_email_v1",
+    "notify_relay_connectivity_spikesh": "notify_relay_connectivity_spikesh_v1",
     "notify_relay_connectivity_telegram": "notify_relay_connectivity_telegram_v1",
+    "notify_relay_connectivity_victorops": "notify_relay_connectivity_victorops_v1",
+    "notify_relay_connectivity_wechat_work": "notify_relay_connectivity_wechat_work_v1",
+    "notify_relay_connectivity_whatsapp_msg": "notify_relay_connectivity_whatsapp_msg_v1",
+    "notify_relay_connectivity_wxpusher": "notify_relay_connectivity_wxpusher_v1",
     "notify_relay_description": "notify_relay_description_v1",
     "recommender_description": "recommender_description_v1",
     "s3_code_example": "s3_code_example_v1",
@@ -92,33 +275,6 @@
     "s3_description": "s3_description_v1",
     "smtp_code_example": "smtp_code_example_v1",
     "smtp_connectivity": "smtp_connectivity_v2",
-    "transform_notify_code_example_py_discord": "transform_notify_code_example_py_discord_v1",
-    "transform_notify_code_example_py_gotify": "transform_notify_code_example_py_gotify_v1",
-    "transform_notify_code_example_py_json": "transform_notify_code_example_py_json_v1",
-    "transform_notify_code_example_py_matrix": "transform_notify_code_example_py_matrix_v1",
-    "transform_notify_code_example_py_msteams": "transform_notify_code_example_py_msteams_v1",
-    "transform_notify_code_example_py_ntfy": "transform_notify_code_example_py_ntfy_v1",
-    "transform_notify_code_example_py_ryver": "transform_notify_code_example_py_ryver_v1",
-    "transform_notify_code_example_py_slack": "transform_notify_code_example_py_slack_v1",
-    "transform_notify_code_example_py_telegram": "transform_notify_code_example_py_telegram_v1",
-    "transform_notify_code_example_sh_discord": "transform_notify_code_example_sh_discord_v1",
-    "transform_notify_code_example_sh_gotify": "transform_notify_code_example_sh_gotify_v1",
-    "transform_notify_code_example_sh_json": "transform_notify_code_example_sh_json_v1",
-    "transform_notify_code_example_sh_matrix": "transform_notify_code_example_sh_matrix_v1",
-    "transform_notify_code_example_sh_msteams": "transform_notify_code_example_sh_msteams_v1",
-    "transform_notify_code_example_sh_ntfy": "transform_notify_code_example_sh_ntfy_v1",
-    "transform_notify_code_example_sh_ryver": "transform_notify_code_example_sh_ryver_v1",
-    "transform_notify_code_example_sh_slack": "transform_notify_code_example_sh_slack_v1",
-    "transform_notify_code_example_sh_telegram": "transform_notify_code_example_sh_telegram_v1",
-    "transform_notify_connectivity_discord": "transform_notify_connectivity_discord_v1",
-    "transform_notify_connectivity_gotify": "transform_notify_connectivity_gotify_v1",
-    "transform_notify_connectivity_json": "transform_notify_connectivity_json_v1",
-    "transform_notify_connectivity_matrix": "transform_notify_connectivity_matrix_v1",
-    "transform_notify_connectivity_msteams": "transform_notify_connectivity_msteams_v1",
-    "transform_notify_connectivity_ntfy": "transform_notify_connectivity_ntfy_v1",
-    "transform_notify_connectivity_ryver": "transform_notify_connectivity_ryver_v1",
-    "transform_notify_connectivity_slack": "transform_notify_connectivity_slack_v1",
-    "transform_notify_connectivity_telegram": "transform_notify_connectivity_telegram_v1",
     "uptime_description": "uptime_description_v1",
     "webhook_code_example_shell": "webhook_code_example_shell_v1",
     "webhook_connectivity": "webhook_connectivity_v1"
@@ -170,6 +326,2001 @@
       "parameters": {},
       "preset_name": "api_connectivity",
       "source_readme": "api/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_bark_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-bark-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_bark",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_brevo_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-brevo-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_brevo_email",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_discord_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-discord-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_discord",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_feishu_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-feishu-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_feishu_msg",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_gotify_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-gotify-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_gotify",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_groupme_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-groupme-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_groupme_msg",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_json_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-json-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_json",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_line_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-line-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_line_msg",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_matrix_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-matrix-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_matrix",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_messagebird_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-messagebird-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_messagebird_sms",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_msteams_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-msteams-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_msteams",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_ntfy_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-ntfy-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_ntfy",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_onesignal_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-onesignal-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_onesignal",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_opsgenie_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-opsgenie-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_opsgenie",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_pagerduty_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-pagerduty-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_pagerduty",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_pagertree_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-pagertree-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_pagertree",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_postmark_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-postmark-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_postmark_email",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_pushbullet_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-pushbullet-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_pushbullet",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_pushjet_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-pushjet-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_pushjet",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_pushover_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-pushover-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_pushover",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_resend_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-resend-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_resend_email",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_ryver_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-ryver-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_ryver",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_sendgrid_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-sendgrid-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_sendgrid_email",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_serverchan_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-serverchan-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_serverchan",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_signl4_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-signl4-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_signl4",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_simplepush_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-simplepush-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_simplepush",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_slack_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-slack-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_slack",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_smtp2go_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-smtp2go-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_smtp2go_email",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_sparkpost_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-sparkpost-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_sparkpost_email",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_spikesh_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-spikesh-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_spikesh",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_telegram_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-telegram-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_telegram",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_victorops_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-victorops-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_victorops",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_wechat_work_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-wechat-work-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_wechat_work",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_whatsapp_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-whatsapp-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_whatsapp_msg",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_py_wxpusher_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-py/code-example-wxpusher-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_py_wxpusher",
+      "source_readme": "apprise-notify/code-example-py/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_bark_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-bark-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_bark",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_brevo_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-brevo-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_brevo_email",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_discord_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-discord-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_discord",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_feishu_msg_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-feishu-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_feishu_msg",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_gotify_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-gotify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_gotify",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_groupme_msg_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-groupme-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_groupme_msg",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_json_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-json-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_json",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_line_msg_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-line-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_line_msg",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_matrix_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-matrix-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_matrix",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_messagebird_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-messagebird-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_messagebird_sms",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_msteams_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-msteams-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_msteams",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_ntfy_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-ntfy-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_ntfy",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_onesignal_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-onesignal-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_onesignal",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_opsgenie_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-opsgenie-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_opsgenie",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_pagerduty_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-pagerduty-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_pagerduty",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_pagertree_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-pagertree-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_pagertree",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_postmark_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-postmark-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_postmark_email",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_pushbullet_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-pushbullet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_pushbullet",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_pushjet_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-pushjet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_pushjet",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_pushover_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-pushover-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_pushover",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_resend_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-resend-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_resend_email",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_ryver_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-ryver-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_ryver",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_sendgrid_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-sendgrid-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_sendgrid_email",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_serverchan_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-serverchan-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_serverchan",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_signl4_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-signl4-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_signl4",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_simplepush_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-simplepush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_simplepush",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_slack_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-slack-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_slack",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_smtp2go_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-smtp2go-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_smtp2go_email",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_sparkpost_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-sparkpost-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_sparkpost_email",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_spikesh_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-spikesh-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_spikesh",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_telegram_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-telegram-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_telegram",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_victorops_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-victorops-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_victorops",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_wechat_work_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-wechat-work-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_wechat_work",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_whatsapp_msg_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-whatsapp-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_whatsapp_msg",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_code_example_sh_wxpusher_v1": {
+      "category": "code_example",
+      "description": "cURL code example for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/code-example-sh/code-example-wxpusher-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_code_example_sh_wxpusher",
+      "source_readme": "apprise-notify/code-example-sh/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_bark_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-bark-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_bark",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_brevo_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-brevo-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_brevo_email",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_discord_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-discord-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_discord",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_feishu_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-feishu-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_feishu_msg",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_gotify_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-gotify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_gotify",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_groupme_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-groupme-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_groupme_msg",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_json_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-json-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_json",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_line_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-line-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_line_msg",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_matrix_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-matrix-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_matrix",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_messagebird_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-messagebird-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_messagebird_sms",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_msteams_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-msteams-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_msteams",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_ntfy_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-ntfy-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_ntfy",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_onesignal_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-onesignal-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_onesignal",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_opsgenie_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-opsgenie-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_opsgenie",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_pagerduty_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-pagerduty-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_pagerduty",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_pagertree_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-pagertree-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_pagertree",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_postmark_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-postmark-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_postmark_email",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_pushbullet_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-pushbullet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_pushbullet",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_pushjet_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-pushjet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_pushjet",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_pushover_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-pushover-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_pushover",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_resend_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-resend-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_resend_email",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_ryver_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-ryver-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_ryver",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_sendgrid_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-sendgrid-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_sendgrid_email",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_serverchan_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-serverchan-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_serverchan",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_signl4_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-signl4-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_signl4",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_simplepush_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-simplepush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_simplepush",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_slack_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-slack-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_slack",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_smtp2go_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-smtp2go-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_smtp2go_email",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_sparkpost_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-sparkpost-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_sparkpost_email",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_spikesh_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-spikesh-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_spikesh",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_telegram_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-telegram-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_telegram",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_victorops_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-victorops-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_victorops",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_wechat_work_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-wechat-work-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_wechat_work",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_whatsapp_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-whatsapp-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_whatsapp_msg",
+      "source_readme": "apprise-notify/connectivity/README.md",
+      "version": 1
+    },
+    "apprise_notify_connectivity_wxpusher_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for SMTP\u2192notification transformer services",
+      "example_file": "apprise-notify/connectivity/connectivity-wxpusher-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "apprise_notify_connectivity_wxpusher",
+      "source_readme": "apprise-notify/connectivity/README.md",
       "version": 1
     },
     "llm_code_example_anthropic_fc_v1": {
@@ -1075,6 +3226,48 @@
       "source_readme": "llm/request-template/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_bark_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-bark-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_bark",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_brevo_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-brevo-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_brevo_email",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_discord_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1093,6 +3286,27 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_py_discord",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_feishu_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-feishu-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_feishu_msg",
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
@@ -1117,6 +3331,27 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_groupme_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-groupme-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_groupme_msg",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_json_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1138,6 +3373,27 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_line_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-line-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_line_msg",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_matrix_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1156,6 +3412,27 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_py_matrix",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_messagebird_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-messagebird-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_messagebird_sms",
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
@@ -1201,6 +3478,195 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_onesignal_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-onesignal-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_onesignal",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_opsgenie_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-opsgenie-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_opsgenie",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_pagerduty_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-pagerduty-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_pagerduty",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_pagertree_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-pagertree-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_pagertree",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_postmark_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-postmark-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_postmark_email",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_pushbullet_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-pushbullet-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_pushbullet",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_pushjet_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-pushjet-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_pushjet",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_pushover_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-pushover-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_pushover",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_resend_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-resend-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_resend_email",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_ryver_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1219,6 +3685,90 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_py_ryver",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_sendgrid_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-sendgrid-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_sendgrid_email",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_serverchan_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-serverchan-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_serverchan",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_signl4_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-signl4-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_signl4",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_simplepush_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-simplepush-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_simplepush",
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
@@ -1243,6 +3793,69 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_smtp2go_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-smtp2go-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_smtp2go_email",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_sparkpost_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-sparkpost-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_sparkpost_email",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_spikesh_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-spikesh-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_spikesh",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_telegram_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1264,6 +3877,126 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_victorops_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-victorops-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_victorops",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_wechat_work_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-wechat-work-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_wechat_work",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_whatsapp_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-whatsapp-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_whatsapp_msg",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_wxpusher_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-wxpusher-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_wxpusher",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_bark_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-bark-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_bark",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_brevo_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-brevo-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_brevo_email",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_discord_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -1279,6 +4012,24 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_sh_discord",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_feishu_msg_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-feishu-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_feishu_msg",
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
@@ -1300,6 +4051,24 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_groupme_msg_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-groupme-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_groupme_msg",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_json_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -1318,6 +4087,24 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_line_msg_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-line-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_line_msg",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_matrix_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -1333,6 +4120,24 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_sh_matrix",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_messagebird_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-messagebird-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_messagebird_sms",
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
@@ -1372,6 +4177,168 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_onesignal_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-onesignal-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_onesignal",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_opsgenie_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-opsgenie-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_opsgenie",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_pagerduty_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-pagerduty-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_pagerduty",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_pagertree_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-pagertree-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_pagertree",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_postmark_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-postmark-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_postmark_email",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_pushbullet_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-pushbullet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_pushbullet",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_pushjet_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-pushjet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_pushjet",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_pushover_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-pushover-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_pushover",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_resend_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-resend-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_resend_email",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_ryver_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -1387,6 +4354,78 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_sh_ryver",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_sendgrid_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-sendgrid-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_sendgrid_email",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_serverchan_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-serverchan-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_serverchan",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_signl4_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-signl4-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_signl4",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_simplepush_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-simplepush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_simplepush",
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
@@ -1408,6 +4447,60 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_smtp2go_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-smtp2go-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_smtp2go_email",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_sparkpost_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-sparkpost-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_sparkpost_email",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_spikesh_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-spikesh-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_spikesh",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_telegram_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -1426,6 +4519,114 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_victorops_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-victorops-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_victorops",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_wechat_work_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-wechat-work-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_wechat_work",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_whatsapp_msg_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-whatsapp-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_whatsapp_msg",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_wxpusher_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-wxpusher-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_wxpusher",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_bark_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-bark-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_bark",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_brevo_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-brevo-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_brevo_email",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_discord_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -1441,6 +4642,24 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_discord",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_feishu_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-feishu-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_feishu_msg",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -1462,6 +4681,24 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_groupme_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-groupme-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_groupme_msg",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_json_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -1480,6 +4717,24 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_line_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-line-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_line_msg",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_matrix_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -1495,6 +4750,24 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_matrix",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_messagebird_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-messagebird-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_messagebird_sms",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -1534,6 +4807,168 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_onesignal_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-onesignal-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_onesignal",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_opsgenie_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-opsgenie-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_opsgenie",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_pagerduty_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-pagerduty-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_pagerduty",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_pagertree_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-pagertree-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_pagertree",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_postmark_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-postmark-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_postmark_email",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_pushbullet_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-pushbullet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_pushbullet",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_pushjet_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-pushjet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_pushjet",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_pushover_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-pushover-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_pushover",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_resend_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-resend-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_resend_email",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_ryver_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -1549,6 +4984,78 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_ryver",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_sendgrid_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-sendgrid-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_sendgrid_email",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_serverchan_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-serverchan-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_serverchan",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_signl4_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-signl4-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_signl4",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_simplepush_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-simplepush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_simplepush",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -1570,6 +5077,60 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_smtp2go_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-smtp2go-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_smtp2go_email",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_sparkpost_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-sparkpost-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_sparkpost_email",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_spikesh_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-spikesh-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_spikesh",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_telegram_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -1585,6 +5146,78 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_telegram",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_victorops_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-victorops-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_victorops",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_wechat_work_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-wechat-work-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_wechat_work",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_whatsapp_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-whatsapp-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_whatsapp_msg",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_wxpusher_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-wxpusher-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_wxpusher",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -1707,519 +5340,6 @@
       "preset_name": "smtp_connectivity",
       "source_readme": "smtp/connectivity/README.md",
       "version": 2
-    },
-    "transform_notify_code_example_py_discord_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-py/code-example-discord-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_py_discord",
-      "source_readme": "transform-notify/code-example-py/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_py_gotify_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-py/code-example-gotify-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_py_gotify",
-      "source_readme": "transform-notify/code-example-py/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_py_json_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-py/code-example-json-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_py_json",
-      "source_readme": "transform-notify/code-example-py/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_py_matrix_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-py/code-example-matrix-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_py_matrix",
-      "source_readme": "transform-notify/code-example-py/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_py_msteams_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-py/code-example-msteams-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_py_msteams",
-      "source_readme": "transform-notify/code-example-py/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_py_ntfy_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-py/code-example-ntfy-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_py_ntfy",
-      "source_readme": "transform-notify/code-example-py/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_py_ryver_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-py/code-example-ryver-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_py_ryver",
-      "source_readme": "transform-notify/code-example-py/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_py_slack_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-py/code-example-slack-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_py_slack",
-      "source_readme": "transform-notify/code-example-py/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_py_telegram_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-py/code-example-telegram-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_py_telegram",
-      "source_readme": "transform-notify/code-example-py/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_sh_discord_v1": {
-      "category": "code_example",
-      "description": "cURL code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-sh/code-example-discord-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_sh_discord",
-      "source_readme": "transform-notify/code-example-sh/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_sh_gotify_v1": {
-      "category": "code_example",
-      "description": "cURL code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-sh/code-example-gotify-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_sh_gotify",
-      "source_readme": "transform-notify/code-example-sh/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_sh_json_v1": {
-      "category": "code_example",
-      "description": "cURL code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-sh/code-example-json-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_sh_json",
-      "source_readme": "transform-notify/code-example-sh/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_sh_matrix_v1": {
-      "category": "code_example",
-      "description": "cURL code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-sh/code-example-matrix-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_sh_matrix",
-      "source_readme": "transform-notify/code-example-sh/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_sh_msteams_v1": {
-      "category": "code_example",
-      "description": "cURL code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-sh/code-example-msteams-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_sh_msteams",
-      "source_readme": "transform-notify/code-example-sh/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_sh_ntfy_v1": {
-      "category": "code_example",
-      "description": "cURL code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-sh/code-example-ntfy-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_sh_ntfy",
-      "source_readme": "transform-notify/code-example-sh/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_sh_ryver_v1": {
-      "category": "code_example",
-      "description": "cURL code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-sh/code-example-ryver-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_sh_ryver",
-      "source_readme": "transform-notify/code-example-sh/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_sh_slack_v1": {
-      "category": "code_example",
-      "description": "cURL code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-sh/code-example-slack-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_sh_slack",
-      "source_readme": "transform-notify/code-example-sh/README.md",
-      "version": 1
-    },
-    "transform_notify_code_example_sh_telegram_v1": {
-      "category": "code_example",
-      "description": "cURL code example for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/code-example-sh/code-example-telegram-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_code_example_sh_telegram",
-      "source_readme": "transform-notify/code-example-sh/README.md",
-      "version": 1
-    },
-    "transform_notify_connectivity_discord_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/connectivity/connectivity-discord-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_connectivity_discord",
-      "source_readme": "transform-notify/connectivity/README.md",
-      "version": 1
-    },
-    "transform_notify_connectivity_gotify_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/connectivity/connectivity-gotify-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_connectivity_gotify",
-      "source_readme": "transform-notify/connectivity/README.md",
-      "version": 1
-    },
-    "transform_notify_connectivity_json_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/connectivity/connectivity-json-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_connectivity_json",
-      "source_readme": "transform-notify/connectivity/README.md",
-      "version": 1
-    },
-    "transform_notify_connectivity_matrix_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/connectivity/connectivity-matrix-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_connectivity_matrix",
-      "source_readme": "transform-notify/connectivity/README.md",
-      "version": 1
-    },
-    "transform_notify_connectivity_msteams_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/connectivity/connectivity-msteams-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_connectivity_msteams",
-      "source_readme": "transform-notify/connectivity/README.md",
-      "version": 1
-    },
-    "transform_notify_connectivity_ntfy_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/connectivity/connectivity-ntfy-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_connectivity_ntfy",
-      "source_readme": "transform-notify/connectivity/README.md",
-      "version": 1
-    },
-    "transform_notify_connectivity_ryver_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/connectivity/connectivity-ryver-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_connectivity_ryver",
-      "source_readme": "transform-notify/connectivity/README.md",
-      "version": 1
-    },
-    "transform_notify_connectivity_slack_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/connectivity/connectivity-slack-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_connectivity_slack",
-      "source_readme": "transform-notify/connectivity/README.md",
-      "version": 1
-    },
-    "transform_notify_connectivity_telegram_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for SMTP\u2192notification transformer services",
-      "example_file": "transform-notify/connectivity/connectivity-telegram-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
-      },
-      "preset_name": "transform_notify_connectivity_telegram",
-      "source_readme": "transform-notify/connectivity/README.md",
-      "version": 1
     },
     "uptime_description_v1": {
       "category": "getting_started",

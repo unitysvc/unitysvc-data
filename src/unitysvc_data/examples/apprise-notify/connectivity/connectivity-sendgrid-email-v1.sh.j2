@@ -1,0 +1,21 @@
+#!/bin/bash
+# Connectivity test for Notify→SendGrid transformer services.
+# POST a canonical notification envelope to the HTTP gateway endpoint.
+# The gateway transforms it and delivers to the configured upstream channel.
+set -o pipefail
+
+GATEWAY_URL="{{ listing.user_access_interfaces.http_gateway.base_url }}"
+
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+    -d '{"title":"connectivity check","body":"ping","from":"test@example.com"}' \
+    -o /dev/null -w "%{http_code}" \
+    "$GATEWAY_URL" 2>/dev/null)
+
+case "$status" in
+  2??) echo "connectivity ok (HTTP $status)"; exit 0 ;;
+  000) echo "connectivity failed: could not connect to $GATEWAY_URL" >&2; exit 1 ;;
+  *)   echo "connectivity failed: HTTP $status from $GATEWAY_URL" >&2; exit 1 ;;
+esac

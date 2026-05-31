@@ -1,22 +1,14 @@
 #!/bin/bash
-# Send a discord notification via pass-through service.
-# Local mode: POST discord embeds directly to the upstream webhook.
-# Gateway mode: POST the same discord payload via the UnitySVC gateway (adds Bearer auth).
+# Code example for VictorOps notification relay services.
 set -o pipefail
 
 {% if local_testing %}
-WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
+WEBHOOK_URL="{{ service_base_url }}${{'__webhook_path__'}}"
 
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{
-  "embeds": [{
-    "title": "Hello from UnitySVC",
-    "description": "Notification sent via pass-through service",
-    "footer": {"text": "from user@example.com"}
-  }]
-}' \
+    -d '{"message_type":"CRITICAL","entity_display_name":"connectivity check","state_message":"ping"}' \
     -o /dev/null -w "%{http_code}" \
     "$WEBHOOK_URL" 2>/dev/null)
 
@@ -33,13 +25,7 @@ status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
-    -d '{
-  "embeds": [{
-    "title": "Hello from UnitySVC",
-    "description": "Notification sent via pass-through service",
-    "footer": {"text": "from user@example.com"}
-  }]
-}' \
+    -d '{"message_type":"CRITICAL","entity_display_name":"connectivity check","state_message":"ping"}' \
     -o /dev/null -w "%{http_code}" \
     "$GATEWAY_URL" 2>/dev/null)
 
