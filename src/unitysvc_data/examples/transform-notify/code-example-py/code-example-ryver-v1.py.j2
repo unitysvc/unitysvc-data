@@ -2,21 +2,9 @@ import os
 
 import httpx
 
-{% if local_testing %}
-# Local mode: POST Ryver-format payload directly to the upstream webhook.
-WEBHOOK_URL = "{{ service_base_url }}${__webhook_path__}"
-
-response = httpx.post(
-    WEBHOOK_URL,
-    json={"body": "**Hello from UnitySVC**\nNotification delivered via transformer.", "avatar": "https://unitysvc.com/favicon.ico"},
-)
-response.raise_for_status()
-print(f"sent (HTTP {response.status_code})")
-
-{% else %}
-# Gateway mode: POST a canonical notification envelope.
-# The transformer converts it to Ryver format and forwards upstream.
-GATEWAY_URL = "{{ service_base_url }}"
+# POST a canonical notification envelope to the HTTP gateway endpoint.
+# The gateway transforms it and delivers to the configured upstream channel.
+GATEWAY_URL = os.path.expandvars("{{ listing.user_access_interfaces.http_gateway.base_url }}")
 
 response = httpx.post(
     GATEWAY_URL,
@@ -29,4 +17,3 @@ response = httpx.post(
 )
 response.raise_for_status()
 print(f"sent (HTTP {response.status_code})")
-{% endif %}

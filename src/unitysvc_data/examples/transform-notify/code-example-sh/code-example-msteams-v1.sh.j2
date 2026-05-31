@@ -1,31 +1,10 @@
 #!/bin/bash
-# Code example for SMTP→MS Teams (webhookb2) transformer services.
+# Code example for Notify→MS Teams (webhookb2) transformer services.
+# POST a canonical notification envelope to the HTTP gateway endpoint.
+# The gateway transforms it and delivers to the configured upstream channel.
 set -o pipefail
 
-{% if local_testing %}
-WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
-
-status=$(curl -sS --max-time 10 \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{
-  "@type": "MessageCard",
-  "@context": "https://schema.org/extensions",
-  "themeColor": "0076D7",
-  "text": "Hello from UnitySVC",
-  "sections": [{"activityText": "Notification delivered via transformer."}]
-}' \
-    -o /dev/null -w "%{http_code}" \
-    "$WEBHOOK_URL" 2>/dev/null)
-
-case "$status" in
-  2??) echo "sent"; exit 0 ;;
-  000) echo "request failed: could not connect to $WEBHOOK_URL" >&2; exit 1 ;;
-  *)   echo "request failed: HTTP $status from $WEBHOOK_URL" >&2; exit 1 ;;
-esac
-
-{% else %}
-GATEWAY_URL="{{ service_base_url }}"
+GATEWAY_URL="{{ listing.user_access_interfaces.http_gateway.base_url }}"
 
 status=$(curl -sS --max-time 10 \
     -X POST \
@@ -44,4 +23,3 @@ case "$status" in
   000) echo "request failed: could not connect to $GATEWAY_URL" >&2; exit 1 ;;
   *)   echo "request failed: HTTP $status from $GATEWAY_URL" >&2; exit 1 ;;
 esac
-{% endif %}
