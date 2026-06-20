@@ -1,5 +1,5 @@
 +++
-preset_name = "apprise_notify_code_example_py"
+preset_name = "msg_to_apprise_code_example_py"
 category = "code_example"
 mime_type = "python"
 file = "code-example.py.j2"
@@ -10,11 +10,11 @@ meta = { output_contains = "sent", requirements = ["httpx"] }
 parameters = { apprise_url = "" }
 +++
 
-# apprise-notify / code-example-py
+# msg-to-apprise / code-example-py
 
 Python (httpx) code examples for transformer services that convert SMTP messages
 into upstream notification payloads.  One variant file per upstream API shape;
-each variant becomes its own preset (e.g. `apprise_notify_code_example_py_discord`).
+each variant becomes its own preset (e.g. `msg_to_apprise_code_example_py_discord`).
 
 ## Local mode
 

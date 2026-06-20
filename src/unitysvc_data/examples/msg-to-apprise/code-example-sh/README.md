@@ -1,5 +1,5 @@
 +++
-preset_name = "apprise_notify_code_example_sh"
+preset_name = "msg_to_apprise_code_example_sh"
 category = "code_example"
 mime_type = "bash"
 file = "code-example.sh.j2"
@@ -10,11 +10,11 @@ meta = { output_contains = "sent" }
 parameters = { apprise_url = "" }
 +++
 
-# apprise-notify / code-example-sh
+# msg-to-apprise / code-example-sh
 
 cURL code examples for transformer services that convert SMTP messages into
 upstream notification payloads.  One variant file per upstream API shape;
-each variant becomes its own preset (e.g. `apprise_notify_code_example_sh_discord`).
+each variant becomes its own preset (e.g. `msg_to_apprise_code_example_sh_discord`).
 
 ## Local mode
 

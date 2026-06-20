@@ -1,5 +1,5 @@
 +++
-preset_name = "apprise_notify_connectivity"
+preset_name = "msg_to_apprise_connectivity"
 category = "connectivity_test"
 mime_type = "bash"
 file = "connectivity.sh.j2"
@@ -10,11 +10,11 @@ meta = { output_contains = "connectivity ok" }
 parameters = { apprise_url = "" }
 +++
 
-# apprise-notify / connectivity
+# msg-to-apprise / connectivity
 
 Connectivity test for transformer services that convert SMTP messages into
 upstream notification payloads.  One variant file per upstream API shape;
-each variant becomes its own preset (e.g. `apprise_notify_connectivity_discord`).
+each variant becomes its own preset (e.g. `msg_to_apprise_connectivity_discord`).
 
 ## Local mode
 
