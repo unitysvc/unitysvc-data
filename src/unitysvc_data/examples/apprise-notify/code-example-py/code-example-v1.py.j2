@@ -2,12 +2,26 @@ import os
 
 import httpx
 
-# POST a canonical notification envelope to the HTTP gateway endpoint.
-# The gateway transforms it and delivers to the configured upstream channel.
-GATEWAY_URL = os.path.expandvars("{{ service_base_url }}")
+# Code example for a UnitySVC Notify transformer (Apprise) service.
+#   local_testing : POST the COMPOSED apprise body straight to the apprise-api.
+#   gateway       : POST the canonical envelope; the gateway composes "urls".
+# The apprise_url parameter holds the per-channel test URL, e.g. discord://demo/demotoken.
+URL = "{{ service_base_url }}"
 
+{% if local_testing %}
 response = httpx.post(
-    GATEWAY_URL,
+    URL,
+    json={
+        "urls": "${__apprise_url__}",
+        "title": "Hello from UnitySVC",
+        "body": "Notification delivered via transformer.",
+        "type": "info",
+        "format": "text",
+    },
+)
+{% else %}
+response = httpx.post(
+    URL,
     headers={"Authorization": f"Bearer {k}"} if (k := os.environ.get("UNITYSVC_API_KEY")) else {},
     json={
         "title": "Hello from UnitySVC",
@@ -15,5 +29,6 @@ response = httpx.post(
         "from": "user@example.com",
     },
 )
+{% endif %}
 response.raise_for_status()
 print(f"sent (HTTP {response.status_code})")

@@ -7,7 +7,7 @@ description = "Python (httpx) code example for SMTP→notification transformer s
 is_active = true
 is_public = true
 meta = { output_contains = "sent", requirements = ["httpx"] }
-parameters = { webhook_path = "/webhook", chat_id = "" }
+parameters = { apprise_url = "" }
 +++
 
 # apprise-notify / code-example-py

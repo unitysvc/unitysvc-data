@@ -345,8 +345,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_bark",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -366,8 +365,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_brevo_email",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -387,8 +385,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_discord",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -408,8 +405,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_feishu_msg",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -429,8 +425,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_gotify",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -450,8 +445,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_groupme_msg",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -471,8 +465,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_json",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -492,8 +485,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_line_msg",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -513,8 +505,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_matrix",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -534,8 +525,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_messagebird_sms",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -555,8 +545,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_msteams",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -576,8 +565,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_ntfy",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -597,8 +585,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_onesignal",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -618,8 +605,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_opsgenie",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -639,8 +625,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_pagerduty",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -660,8 +645,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_pagertree",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -681,8 +665,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_postmark_email",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -702,8 +685,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_pushbullet",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -723,8 +705,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_pushjet",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -744,8 +725,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_pushover",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -765,8 +745,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_resend_email",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -786,8 +765,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_ryver",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -807,8 +785,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_sendgrid_email",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -828,8 +805,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_serverchan",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -849,8 +825,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_signl4",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -870,8 +845,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_simplepush",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -891,8 +865,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_slack",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -912,8 +885,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_smtp2go_email",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -933,8 +905,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_sparkpost_email",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -954,8 +925,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_spikesh",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -975,8 +945,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_telegram",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -996,8 +965,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -1017,8 +985,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_victorops",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -1038,8 +1005,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_wechat_work",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -1059,8 +1025,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_whatsapp_msg",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -1080,8 +1045,7 @@
       },
       "mime_type": "python",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_py_wxpusher",
       "source_readme": "apprise-notify/code-example-py/README.md",
@@ -1098,8 +1062,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_bark",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1116,8 +1079,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_brevo_email",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1134,8 +1096,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_discord",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1152,8 +1113,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_feishu_msg",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1170,8 +1130,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_gotify",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1188,8 +1147,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_groupme_msg",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1206,8 +1164,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_json",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1224,8 +1181,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_line_msg",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1242,8 +1198,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_matrix",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1260,8 +1215,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_messagebird_sms",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1278,8 +1232,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_msteams",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1296,8 +1249,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_ntfy",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1314,8 +1266,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_onesignal",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1332,8 +1283,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_opsgenie",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1350,8 +1300,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_pagerduty",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1368,8 +1317,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_pagertree",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1386,8 +1334,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_postmark_email",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1404,8 +1351,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_pushbullet",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1422,8 +1368,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_pushjet",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1440,8 +1385,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_pushover",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1458,8 +1402,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_resend_email",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1476,8 +1419,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_ryver",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1494,8 +1436,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_sendgrid_email",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1512,8 +1453,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_serverchan",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1530,8 +1470,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_signl4",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1548,8 +1487,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_simplepush",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1566,8 +1504,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_slack",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1584,8 +1521,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_smtp2go_email",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1602,8 +1538,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_sparkpost_email",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1620,8 +1555,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_spikesh",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1638,8 +1572,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_telegram",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1656,8 +1589,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1674,8 +1606,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_victorops",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1692,8 +1623,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_wechat_work",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1710,8 +1640,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_whatsapp_msg",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1728,8 +1657,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_code_example_sh_wxpusher",
       "source_readme": "apprise-notify/code-example-sh/README.md",
@@ -1746,8 +1674,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_bark",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1764,8 +1691,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_brevo_email",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1782,8 +1708,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_discord",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1800,8 +1725,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_feishu_msg",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1818,8 +1742,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_gotify",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1836,8 +1759,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_groupme_msg",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1854,8 +1776,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_json",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1872,8 +1793,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_line_msg",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1890,8 +1810,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_matrix",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1908,8 +1827,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_messagebird_sms",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1926,8 +1844,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_msteams",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1944,8 +1861,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_ntfy",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1962,8 +1878,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_onesignal",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1980,8 +1895,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_opsgenie",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -1998,8 +1912,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_pagerduty",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2016,8 +1929,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_pagertree",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2034,8 +1946,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_postmark_email",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2052,8 +1963,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_pushbullet",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2070,8 +1980,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_pushjet",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2088,8 +1997,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_pushover",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2106,8 +2014,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_resend_email",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2124,8 +2031,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_ryver",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2142,8 +2048,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_sendgrid_email",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2160,8 +2065,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_serverchan",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2178,8 +2082,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_signl4",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2196,8 +2099,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_simplepush",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2214,8 +2116,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_slack",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2232,8 +2133,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_smtp2go_email",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2250,8 +2150,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_sparkpost_email",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2268,8 +2167,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_spikesh",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2286,8 +2184,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_telegram",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2304,8 +2201,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2322,8 +2218,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_victorops",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2340,8 +2235,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_wechat_work",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2358,8 +2252,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_whatsapp_msg",
       "source_readme": "apprise-notify/connectivity/README.md",
@@ -2376,8 +2269,7 @@
       },
       "mime_type": "bash",
       "parameters": {
-        "chat_id": "",
-        "webhook_path": "/webhook"
+        "apprise_url": ""
       },
       "preset_name": "apprise_notify_connectivity_wxpusher",
       "source_readme": "apprise-notify/connectivity/README.md",
