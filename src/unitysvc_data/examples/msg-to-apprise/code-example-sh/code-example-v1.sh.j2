@@ -1,0 +1,41 @@
+#!/bin/bash
+# Code example for a UnitySVC Notify transformer (Apprise) service.
+#   local_testing : POST the COMPOSED apprise body straight to the apprise-api.
+#   gateway       : POST the canonical envelope; the gateway composes "urls".
+# The apprise_url parameter holds the per-channel test URL, e.g. discord://demo/demotoken.
+set -o pipefail
+
+URL="{{ service_base_url }}"
+
+{% if local_testing %}
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+  "urls": "${__apprise_url__}",
+  "title": "Hello from UnitySVC",
+  "body": "Notification delivered via transformer.",
+  "type": "info",
+  "format": "text"
+}' \
+    -o /dev/null -w "%{http_code}" \
+    "$URL" 2>/dev/null)
+{% else %}
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+    -d '{
+  "title": "Hello from UnitySVC",
+  "body": "Notification delivered via transformer.",
+  "from": "user@example.com"
+}' \
+    -o /dev/null -w "%{http_code}" \
+    "$URL" 2>/dev/null)
+{% endif %}
+
+case "$status" in
+  2??) echo "sent"; exit 0 ;;
+  000) echo "request failed: could not connect to $URL" >&2; exit 1 ;;
+  *)   echo "request failed: HTTP $status from $URL" >&2; exit 1 ;;
+esac
