@@ -1,0 +1,47 @@
+#!/bin/bash
+# Send a exotel sms notification via pass-through service.
+# Local mode: POST the exotel sms payload directly to the upstream webhook.
+# Gateway mode: POST the same exotel sms payload via the UnitySVC gateway (adds Bearer auth).
+set -o pipefail
+
+{% if local_testing %}
+WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
+
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-urlencode 'From=source' \
+    --data-urlencode 'Body=Hello from UnitySVC' \
+    --data-urlencode 'EncodingType=plain' \
+    --data-urlencode 'Priority=normal' \
+    --data-urlencode 'To=+15551234567' \
+    -o /dev/null -w "%{http_code}" \
+    "$WEBHOOK_URL" 2>/dev/null)
+
+case "$status" in
+  2??) echo "sent"; exit 0 ;;
+  000) echo "request failed: could not connect to $WEBHOOK_URL" >&2; exit 1 ;;
+  *)   echo "request failed: HTTP $status from $WEBHOOK_URL" >&2; exit 1 ;;
+esac
+
+{% else %}
+GATEWAY_URL="{{ service_base_url }}"
+
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+    --data-urlencode 'From=source' \
+    --data-urlencode 'Body=Hello from UnitySVC' \
+    --data-urlencode 'EncodingType=plain' \
+    --data-urlencode 'Priority=normal' \
+    --data-urlencode 'To=+15551234567' \
+    -o /dev/null -w "%{http_code}" \
+    "$GATEWAY_URL" 2>/dev/null)
+
+case "$status" in
+  2??) echo "sent"; exit 0 ;;
+  000) echo "request failed: could not connect to $GATEWAY_URL" >&2; exit 1 ;;
+  *)   echo "request failed: HTTP $status from $GATEWAY_URL" >&2; exit 1 ;;
+esac
+{% endif %}

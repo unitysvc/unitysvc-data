@@ -1,0 +1,39 @@
+#!/bin/bash
+# Send a lametric notification via pass-through service.
+# Local mode: POST the lametric payload directly to the upstream webhook.
+# Gateway mode: POST the same lametric payload via the UnitySVC gateway (adds Bearer auth).
+set -o pipefail
+
+{% if local_testing %}
+WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
+
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"priority": "info", "icon_type": "none", "lifetime": 120000, "model": {"cycles": 1, "frames": [{"icon": 1, "text": "Hello from UnitySVC"}]}}' \
+    -o /dev/null -w "%{http_code}" \
+    "$WEBHOOK_URL" 2>/dev/null)
+
+case "$status" in
+  2??) echo "sent"; exit 0 ;;
+  000) echo "request failed: could not connect to $WEBHOOK_URL" >&2; exit 1 ;;
+  *)   echo "request failed: HTTP $status from $WEBHOOK_URL" >&2; exit 1 ;;
+esac
+
+{% else %}
+GATEWAY_URL="{{ service_base_url }}"
+
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+    -d '{"priority": "info", "icon_type": "none", "lifetime": 120000, "model": {"cycles": 1, "frames": [{"icon": 1, "text": "Hello from UnitySVC"}]}}' \
+    -o /dev/null -w "%{http_code}" \
+    "$GATEWAY_URL" 2>/dev/null)
+
+case "$status" in
+  2??) echo "sent"; exit 0 ;;
+  000) echo "request failed: could not connect to $GATEWAY_URL" >&2; exit 1 ;;
+  *)   echo "request failed: HTTP $status from $GATEWAY_URL" >&2; exit 1 ;;
+esac
+{% endif %}
