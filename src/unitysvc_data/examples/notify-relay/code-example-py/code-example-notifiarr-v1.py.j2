@@ -1,0 +1,48 @@
+import os
+
+import httpx
+
+{% if local_testing %}
+WEBHOOK_URL = "{{ service_base_url }}${__webhook_path__}"
+
+response = httpx.post(
+    WEBHOOK_URL,
+    json={
+        "source": "apprise",
+        "type": "info",
+        "notification": {},
+        "discord": {
+            "text": {
+                "title": "Hello from UnitySVC",
+                "description": "Notification sent via pass-through service"
+            },
+            "ids": {
+                "channel": 0
+            }
+        }
+    },
+)
+{% else %}
+GATEWAY_URL = "{{ service_base_url }}"
+
+response = httpx.post(
+    GATEWAY_URL,
+    headers={"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"},
+    json={
+        "source": "apprise",
+        "type": "info",
+        "notification": {},
+        "discord": {
+            "text": {
+                "title": "Hello from UnitySVC",
+                "description": "Notification sent via pass-through service"
+            },
+            "ids": {
+                "channel": 0
+            }
+        }
+    },
+)
+{% endif %}
+response.raise_for_status()
+print(f"sent (HTTP {response.status_code})")

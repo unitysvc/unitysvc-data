@@ -1,0 +1,47 @@
+#!/bin/bash
+# Connectivity test for exotel sms notification services.
+# Local mode: POST a exotel sms ping directly to the upstream webhook.
+# Gateway mode: POST the same exotel sms payload via the UnitySVC gateway (adds Bearer auth).
+set -o pipefail
+
+{% if local_testing %}
+WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
+
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-urlencode 'From=source' \
+    --data-urlencode 'Body=connectivity check' \
+    --data-urlencode 'EncodingType=plain' \
+    --data-urlencode 'Priority=normal' \
+    --data-urlencode 'To=+15551234567' \
+    -o /dev/null -w "%{http_code}" \
+    "$WEBHOOK_URL" 2>/dev/null)
+
+case "$status" in
+  2??) echo "connectivity ok (HTTP $status)"; exit 0 ;;
+  000) echo "connectivity failed: could not connect to $WEBHOOK_URL" >&2; exit 1 ;;
+  *)   echo "connectivity failed: HTTP $status from $WEBHOOK_URL" >&2; exit 1 ;;
+esac
+
+{% else %}
+GATEWAY_URL="{{ service_base_url }}"
+
+status=$(curl -sS --max-time 10 \
+    -X POST \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+    --data-urlencode 'From=source' \
+    --data-urlencode 'Body=connectivity check' \
+    --data-urlencode 'EncodingType=plain' \
+    --data-urlencode 'Priority=normal' \
+    --data-urlencode 'To=+15551234567' \
+    -o /dev/null -w "%{http_code}" \
+    "$GATEWAY_URL" 2>/dev/null)
+
+case "$status" in
+  2??) echo "connectivity ok (HTTP $status)"; exit 0 ;;
+  000) echo "connectivity failed: could not connect to $GATEWAY_URL" >&2; exit 1 ;;
+  *)   echo "connectivity failed: HTTP $status from $GATEWAY_URL" >&2; exit 1 ;;
+esac
+{% endif %}

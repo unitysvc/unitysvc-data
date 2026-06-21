@@ -61,111 +61,291 @@
     "msg_to_apprise_code_example_py": "msg_to_apprise_code_example_py_v1",
     "msg_to_apprise_code_example_sh": "msg_to_apprise_code_example_sh_v1",
     "msg_to_apprise_connectivity": "msg_to_apprise_connectivity_v1",
+    "notify_relay_code_example_py_africastalking_sms": "notify_relay_code_example_py_africastalking_sms_v1",
     "notify_relay_code_example_py_bark": "notify_relay_code_example_py_bark_v1",
     "notify_relay_code_example_py_brevo_email": "notify_relay_code_example_py_brevo_email_v1",
+    "notify_relay_code_example_py_bulksms_sms": "notify_relay_code_example_py_bulksms_sms_v1",
+    "notify_relay_code_example_py_bulkvs_sms": "notify_relay_code_example_py_bulkvs_sms_v1",
+    "notify_relay_code_example_py_burstsms_sms": "notify_relay_code_example_py_burstsms_sms_v1",
+    "notify_relay_code_example_py_chanify": "notify_relay_code_example_py_chanify_v1",
+    "notify_relay_code_example_py_chime": "notify_relay_code_example_py_chime_v1",
+    "notify_relay_code_example_py_clicksend_sms": "notify_relay_code_example_py_clicksend_sms_v1",
+    "notify_relay_code_example_py_d7networks_sms": "notify_relay_code_example_py_d7networks_sms_v1",
+    "notify_relay_code_example_py_dapnet": "notify_relay_code_example_py_dapnet_v1",
+    "notify_relay_code_example_py_dingtalk": "notify_relay_code_example_py_dingtalk_v1",
     "notify_relay_code_example_py_discord": "notify_relay_code_example_py_discord_v1",
+    "notify_relay_code_example_py_dot": "notify_relay_code_example_py_dot_v1",
+    "notify_relay_code_example_py_elks_sms": "notify_relay_code_example_py_elks_sms_v1",
+    "notify_relay_code_example_py_evolution": "notify_relay_code_example_py_evolution_v1",
+    "notify_relay_code_example_py_exotel_sms": "notify_relay_code_example_py_exotel_sms_v1",
+    "notify_relay_code_example_py_fcm": "notify_relay_code_example_py_fcm_v1",
     "notify_relay_code_example_py_feishu_msg": "notify_relay_code_example_py_feishu_msg_v1",
+    "notify_relay_code_example_py_flock": "notify_relay_code_example_py_flock_v1",
+    "notify_relay_code_example_py_fluxer": "notify_relay_code_example_py_fluxer_v1",
+    "notify_relay_code_example_py_form_webhook": "notify_relay_code_example_py_form_webhook_v1",
+    "notify_relay_code_example_py_freemobile": "notify_relay_code_example_py_freemobile_v1",
     "notify_relay_code_example_py_gotify": "notify_relay_code_example_py_gotify_v1",
     "notify_relay_code_example_py_groupme_msg": "notify_relay_code_example_py_groupme_msg_v1",
+    "notify_relay_code_example_py_homeassistant": "notify_relay_code_example_py_homeassistant_v1",
+    "notify_relay_code_example_py_httpsms_sms": "notify_relay_code_example_py_httpsms_sms_v1",
+    "notify_relay_code_example_py_humhub": "notify_relay_code_example_py_humhub_v1",
+    "notify_relay_code_example_py_ifttt": "notify_relay_code_example_py_ifttt_v1",
+    "notify_relay_code_example_py_jira": "notify_relay_code_example_py_jira_v1",
     "notify_relay_code_example_py_json": "notify_relay_code_example_py_json_v1",
+    "notify_relay_code_example_py_kodi": "notify_relay_code_example_py_kodi_v1",
+    "notify_relay_code_example_py_kumulos": "notify_relay_code_example_py_kumulos_v1",
+    "notify_relay_code_example_py_lametric": "notify_relay_code_example_py_lametric_v1",
     "notify_relay_code_example_py_line_msg": "notify_relay_code_example_py_line_msg_v1",
+    "notify_relay_code_example_py_mailgun_email": "notify_relay_code_example_py_mailgun_email_v1",
+    "notify_relay_code_example_py_mastodon": "notify_relay_code_example_py_mastodon_v1",
     "notify_relay_code_example_py_matrix": "notify_relay_code_example_py_matrix_v1",
     "notify_relay_code_example_py_messagebird_sms": "notify_relay_code_example_py_messagebird_sms_v1",
+    "notify_relay_code_example_py_misskey": "notify_relay_code_example_py_misskey_v1",
+    "notify_relay_code_example_py_msg91_sms": "notify_relay_code_example_py_msg91_sms_v1",
     "notify_relay_code_example_py_msteams": "notify_relay_code_example_py_msteams_v1",
+    "notify_relay_code_example_py_nextcloud": "notify_relay_code_example_py_nextcloud_v1",
+    "notify_relay_code_example_py_nextcloudtalk": "notify_relay_code_example_py_nextcloudtalk_v1",
+    "notify_relay_code_example_py_notica": "notify_relay_code_example_py_notica_v1",
+    "notify_relay_code_example_py_notifiarr": "notify_relay_code_example_py_notifiarr_v1",
+    "notify_relay_code_example_py_notificationapi": "notify_relay_code_example_py_notificationapi_v1",
     "notify_relay_code_example_py_ntfy": "notify_relay_code_example_py_ntfy_v1",
+    "notify_relay_code_example_py_octopush_sms": "notify_relay_code_example_py_octopush_sms_v1",
     "notify_relay_code_example_py_onesignal": "notify_relay_code_example_py_onesignal_v1",
     "notify_relay_code_example_py_opsgenie": "notify_relay_code_example_py_opsgenie_v1",
     "notify_relay_code_example_py_pagerduty": "notify_relay_code_example_py_pagerduty_v1",
     "notify_relay_code_example_py_pagertree": "notify_relay_code_example_py_pagertree_v1",
+    "notify_relay_code_example_py_parseplatform": "notify_relay_code_example_py_parseplatform_v1",
+    "notify_relay_code_example_py_plivo_sms": "notify_relay_code_example_py_plivo_sms_v1",
+    "notify_relay_code_example_py_popcornnotify": "notify_relay_code_example_py_popcornnotify_v1",
     "notify_relay_code_example_py_postmark_email": "notify_relay_code_example_py_postmark_email_v1",
+    "notify_relay_code_example_py_prowl": "notify_relay_code_example_py_prowl_v1",
     "notify_relay_code_example_py_pushbullet": "notify_relay_code_example_py_pushbullet_v1",
+    "notify_relay_code_example_py_pushdeer": "notify_relay_code_example_py_pushdeer_v1",
+    "notify_relay_code_example_py_pushed": "notify_relay_code_example_py_pushed_v1",
     "notify_relay_code_example_py_pushjet": "notify_relay_code_example_py_pushjet_v1",
     "notify_relay_code_example_py_pushover": "notify_relay_code_example_py_pushover_v1",
+    "notify_relay_code_example_py_pushplus": "notify_relay_code_example_py_pushplus_v1",
+    "notify_relay_code_example_py_pushsafer": "notify_relay_code_example_py_pushsafer_v1",
+    "notify_relay_code_example_py_pushy": "notify_relay_code_example_py_pushy_v1",
+    "notify_relay_code_example_py_qqpush": "notify_relay_code_example_py_qqpush_v1",
     "notify_relay_code_example_py_resend_email": "notify_relay_code_example_py_resend_email_v1",
     "notify_relay_code_example_py_ryver": "notify_relay_code_example_py_ryver_v1",
     "notify_relay_code_example_py_sendgrid_email": "notify_relay_code_example_py_sendgrid_email_v1",
     "notify_relay_code_example_py_serverchan": "notify_relay_code_example_py_serverchan_v1",
+    "notify_relay_code_example_py_seven_sms": "notify_relay_code_example_py_seven_sms_v1",
     "notify_relay_code_example_py_signl4": "notify_relay_code_example_py_signl4_v1",
     "notify_relay_code_example_py_simplepush": "notify_relay_code_example_py_simplepush_v1",
+    "notify_relay_code_example_py_sinch_sms": "notify_relay_code_example_py_sinch_sms_v1",
     "notify_relay_code_example_py_slack": "notify_relay_code_example_py_slack_v1",
+    "notify_relay_code_example_py_smseagle_sms": "notify_relay_code_example_py_smseagle_sms_v1",
     "notify_relay_code_example_py_smtp2go_email": "notify_relay_code_example_py_smtp2go_email_v1",
     "notify_relay_code_example_py_sparkpost_email": "notify_relay_code_example_py_sparkpost_email_v1",
     "notify_relay_code_example_py_spikesh": "notify_relay_code_example_py_spikesh_v1",
+    "notify_relay_code_example_py_spugpush": "notify_relay_code_example_py_spugpush_v1",
+    "notify_relay_code_example_py_streamlabs": "notify_relay_code_example_py_streamlabs_v1",
+    "notify_relay_code_example_py_synologychat": "notify_relay_code_example_py_synologychat_v1",
+    "notify_relay_code_example_py_techulus": "notify_relay_code_example_py_techulus_v1",
     "notify_relay_code_example_py_telegram": "notify_relay_code_example_py_telegram_v1",
+    "notify_relay_code_example_py_twilio_sms": "notify_relay_code_example_py_twilio_sms_v1",
+    "notify_relay_code_example_py_viber": "notify_relay_code_example_py_viber_v1",
     "notify_relay_code_example_py_victorops": "notify_relay_code_example_py_victorops_v1",
+    "notify_relay_code_example_py_vonage_sms": "notify_relay_code_example_py_vonage_sms_v1",
     "notify_relay_code_example_py_wechat_work": "notify_relay_code_example_py_wechat_work_v1",
     "notify_relay_code_example_py_whatsapp_msg": "notify_relay_code_example_py_whatsapp_msg_v1",
     "notify_relay_code_example_py_wxpusher": "notify_relay_code_example_py_wxpusher_v1",
+    "notify_relay_code_example_py_xml_webhook": "notify_relay_code_example_py_xml_webhook_v1",
+    "notify_relay_code_example_py_zoom": "notify_relay_code_example_py_zoom_v1",
+    "notify_relay_code_example_py_zulip": "notify_relay_code_example_py_zulip_v1",
+    "notify_relay_code_example_sh_africastalking_sms": "notify_relay_code_example_sh_africastalking_sms_v1",
     "notify_relay_code_example_sh_bark": "notify_relay_code_example_sh_bark_v1",
     "notify_relay_code_example_sh_brevo_email": "notify_relay_code_example_sh_brevo_email_v1",
+    "notify_relay_code_example_sh_bulksms_sms": "notify_relay_code_example_sh_bulksms_sms_v1",
+    "notify_relay_code_example_sh_bulkvs_sms": "notify_relay_code_example_sh_bulkvs_sms_v1",
+    "notify_relay_code_example_sh_burstsms_sms": "notify_relay_code_example_sh_burstsms_sms_v1",
+    "notify_relay_code_example_sh_chanify": "notify_relay_code_example_sh_chanify_v1",
+    "notify_relay_code_example_sh_chime": "notify_relay_code_example_sh_chime_v1",
+    "notify_relay_code_example_sh_clicksend_sms": "notify_relay_code_example_sh_clicksend_sms_v1",
+    "notify_relay_code_example_sh_d7networks_sms": "notify_relay_code_example_sh_d7networks_sms_v1",
+    "notify_relay_code_example_sh_dapnet": "notify_relay_code_example_sh_dapnet_v1",
+    "notify_relay_code_example_sh_dingtalk": "notify_relay_code_example_sh_dingtalk_v1",
     "notify_relay_code_example_sh_discord": "notify_relay_code_example_sh_discord_v1",
+    "notify_relay_code_example_sh_dot": "notify_relay_code_example_sh_dot_v1",
+    "notify_relay_code_example_sh_elks_sms": "notify_relay_code_example_sh_elks_sms_v1",
+    "notify_relay_code_example_sh_evolution": "notify_relay_code_example_sh_evolution_v1",
+    "notify_relay_code_example_sh_exotel_sms": "notify_relay_code_example_sh_exotel_sms_v1",
+    "notify_relay_code_example_sh_fcm": "notify_relay_code_example_sh_fcm_v1",
     "notify_relay_code_example_sh_feishu_msg": "notify_relay_code_example_sh_feishu_msg_v1",
+    "notify_relay_code_example_sh_flock": "notify_relay_code_example_sh_flock_v1",
+    "notify_relay_code_example_sh_fluxer": "notify_relay_code_example_sh_fluxer_v1",
+    "notify_relay_code_example_sh_form_webhook": "notify_relay_code_example_sh_form_webhook_v1",
+    "notify_relay_code_example_sh_freemobile": "notify_relay_code_example_sh_freemobile_v1",
     "notify_relay_code_example_sh_gotify": "notify_relay_code_example_sh_gotify_v1",
     "notify_relay_code_example_sh_groupme_msg": "notify_relay_code_example_sh_groupme_msg_v1",
+    "notify_relay_code_example_sh_homeassistant": "notify_relay_code_example_sh_homeassistant_v1",
+    "notify_relay_code_example_sh_httpsms_sms": "notify_relay_code_example_sh_httpsms_sms_v1",
+    "notify_relay_code_example_sh_humhub": "notify_relay_code_example_sh_humhub_v1",
+    "notify_relay_code_example_sh_ifttt": "notify_relay_code_example_sh_ifttt_v1",
+    "notify_relay_code_example_sh_jira": "notify_relay_code_example_sh_jira_v1",
     "notify_relay_code_example_sh_json": "notify_relay_code_example_sh_json_v1",
+    "notify_relay_code_example_sh_kodi": "notify_relay_code_example_sh_kodi_v1",
+    "notify_relay_code_example_sh_kumulos": "notify_relay_code_example_sh_kumulos_v1",
+    "notify_relay_code_example_sh_lametric": "notify_relay_code_example_sh_lametric_v1",
     "notify_relay_code_example_sh_line_msg": "notify_relay_code_example_sh_line_msg_v1",
+    "notify_relay_code_example_sh_mailgun_email": "notify_relay_code_example_sh_mailgun_email_v1",
+    "notify_relay_code_example_sh_mastodon": "notify_relay_code_example_sh_mastodon_v1",
     "notify_relay_code_example_sh_matrix": "notify_relay_code_example_sh_matrix_v1",
     "notify_relay_code_example_sh_messagebird_sms": "notify_relay_code_example_sh_messagebird_sms_v1",
+    "notify_relay_code_example_sh_misskey": "notify_relay_code_example_sh_misskey_v1",
+    "notify_relay_code_example_sh_msg91_sms": "notify_relay_code_example_sh_msg91_sms_v1",
     "notify_relay_code_example_sh_msteams": "notify_relay_code_example_sh_msteams_v1",
+    "notify_relay_code_example_sh_nextcloud": "notify_relay_code_example_sh_nextcloud_v1",
+    "notify_relay_code_example_sh_nextcloudtalk": "notify_relay_code_example_sh_nextcloudtalk_v1",
+    "notify_relay_code_example_sh_notica": "notify_relay_code_example_sh_notica_v1",
+    "notify_relay_code_example_sh_notifiarr": "notify_relay_code_example_sh_notifiarr_v1",
+    "notify_relay_code_example_sh_notificationapi": "notify_relay_code_example_sh_notificationapi_v1",
     "notify_relay_code_example_sh_ntfy": "notify_relay_code_example_sh_ntfy_v1",
+    "notify_relay_code_example_sh_octopush_sms": "notify_relay_code_example_sh_octopush_sms_v1",
     "notify_relay_code_example_sh_onesignal": "notify_relay_code_example_sh_onesignal_v1",
     "notify_relay_code_example_sh_opsgenie": "notify_relay_code_example_sh_opsgenie_v1",
     "notify_relay_code_example_sh_pagerduty": "notify_relay_code_example_sh_pagerduty_v1",
     "notify_relay_code_example_sh_pagertree": "notify_relay_code_example_sh_pagertree_v1",
+    "notify_relay_code_example_sh_parseplatform": "notify_relay_code_example_sh_parseplatform_v1",
+    "notify_relay_code_example_sh_plivo_sms": "notify_relay_code_example_sh_plivo_sms_v1",
+    "notify_relay_code_example_sh_popcornnotify": "notify_relay_code_example_sh_popcornnotify_v1",
     "notify_relay_code_example_sh_postmark_email": "notify_relay_code_example_sh_postmark_email_v1",
+    "notify_relay_code_example_sh_prowl": "notify_relay_code_example_sh_prowl_v1",
     "notify_relay_code_example_sh_pushbullet": "notify_relay_code_example_sh_pushbullet_v1",
+    "notify_relay_code_example_sh_pushdeer": "notify_relay_code_example_sh_pushdeer_v1",
+    "notify_relay_code_example_sh_pushed": "notify_relay_code_example_sh_pushed_v1",
     "notify_relay_code_example_sh_pushjet": "notify_relay_code_example_sh_pushjet_v1",
     "notify_relay_code_example_sh_pushover": "notify_relay_code_example_sh_pushover_v1",
+    "notify_relay_code_example_sh_pushplus": "notify_relay_code_example_sh_pushplus_v1",
+    "notify_relay_code_example_sh_pushsafer": "notify_relay_code_example_sh_pushsafer_v1",
+    "notify_relay_code_example_sh_pushy": "notify_relay_code_example_sh_pushy_v1",
+    "notify_relay_code_example_sh_qqpush": "notify_relay_code_example_sh_qqpush_v1",
     "notify_relay_code_example_sh_resend_email": "notify_relay_code_example_sh_resend_email_v1",
     "notify_relay_code_example_sh_ryver": "notify_relay_code_example_sh_ryver_v1",
     "notify_relay_code_example_sh_sendgrid_email": "notify_relay_code_example_sh_sendgrid_email_v1",
     "notify_relay_code_example_sh_serverchan": "notify_relay_code_example_sh_serverchan_v1",
+    "notify_relay_code_example_sh_seven_sms": "notify_relay_code_example_sh_seven_sms_v1",
     "notify_relay_code_example_sh_signl4": "notify_relay_code_example_sh_signl4_v1",
     "notify_relay_code_example_sh_simplepush": "notify_relay_code_example_sh_simplepush_v1",
+    "notify_relay_code_example_sh_sinch_sms": "notify_relay_code_example_sh_sinch_sms_v1",
     "notify_relay_code_example_sh_slack": "notify_relay_code_example_sh_slack_v1",
+    "notify_relay_code_example_sh_smseagle_sms": "notify_relay_code_example_sh_smseagle_sms_v1",
     "notify_relay_code_example_sh_smtp2go_email": "notify_relay_code_example_sh_smtp2go_email_v1",
     "notify_relay_code_example_sh_sparkpost_email": "notify_relay_code_example_sh_sparkpost_email_v1",
     "notify_relay_code_example_sh_spikesh": "notify_relay_code_example_sh_spikesh_v1",
+    "notify_relay_code_example_sh_spugpush": "notify_relay_code_example_sh_spugpush_v1",
+    "notify_relay_code_example_sh_streamlabs": "notify_relay_code_example_sh_streamlabs_v1",
+    "notify_relay_code_example_sh_synologychat": "notify_relay_code_example_sh_synologychat_v1",
+    "notify_relay_code_example_sh_techulus": "notify_relay_code_example_sh_techulus_v1",
     "notify_relay_code_example_sh_telegram": "notify_relay_code_example_sh_telegram_v1",
+    "notify_relay_code_example_sh_twilio_sms": "notify_relay_code_example_sh_twilio_sms_v1",
+    "notify_relay_code_example_sh_viber": "notify_relay_code_example_sh_viber_v1",
     "notify_relay_code_example_sh_victorops": "notify_relay_code_example_sh_victorops_v1",
+    "notify_relay_code_example_sh_vonage_sms": "notify_relay_code_example_sh_vonage_sms_v1",
     "notify_relay_code_example_sh_wechat_work": "notify_relay_code_example_sh_wechat_work_v1",
     "notify_relay_code_example_sh_whatsapp_msg": "notify_relay_code_example_sh_whatsapp_msg_v1",
     "notify_relay_code_example_sh_wxpusher": "notify_relay_code_example_sh_wxpusher_v1",
+    "notify_relay_code_example_sh_xml_webhook": "notify_relay_code_example_sh_xml_webhook_v1",
+    "notify_relay_code_example_sh_zoom": "notify_relay_code_example_sh_zoom_v1",
+    "notify_relay_code_example_sh_zulip": "notify_relay_code_example_sh_zulip_v1",
+    "notify_relay_connectivity_africastalking_sms": "notify_relay_connectivity_africastalking_sms_v1",
     "notify_relay_connectivity_bark": "notify_relay_connectivity_bark_v1",
     "notify_relay_connectivity_brevo_email": "notify_relay_connectivity_brevo_email_v1",
+    "notify_relay_connectivity_bulksms_sms": "notify_relay_connectivity_bulksms_sms_v1",
+    "notify_relay_connectivity_bulkvs_sms": "notify_relay_connectivity_bulkvs_sms_v1",
+    "notify_relay_connectivity_burstsms_sms": "notify_relay_connectivity_burstsms_sms_v1",
+    "notify_relay_connectivity_chanify": "notify_relay_connectivity_chanify_v1",
+    "notify_relay_connectivity_chime": "notify_relay_connectivity_chime_v1",
+    "notify_relay_connectivity_clicksend_sms": "notify_relay_connectivity_clicksend_sms_v1",
+    "notify_relay_connectivity_d7networks_sms": "notify_relay_connectivity_d7networks_sms_v1",
+    "notify_relay_connectivity_dapnet": "notify_relay_connectivity_dapnet_v1",
+    "notify_relay_connectivity_dingtalk": "notify_relay_connectivity_dingtalk_v1",
     "notify_relay_connectivity_discord": "notify_relay_connectivity_discord_v1",
+    "notify_relay_connectivity_dot": "notify_relay_connectivity_dot_v1",
+    "notify_relay_connectivity_elks_sms": "notify_relay_connectivity_elks_sms_v1",
+    "notify_relay_connectivity_evolution": "notify_relay_connectivity_evolution_v1",
+    "notify_relay_connectivity_exotel_sms": "notify_relay_connectivity_exotel_sms_v1",
+    "notify_relay_connectivity_fcm": "notify_relay_connectivity_fcm_v1",
     "notify_relay_connectivity_feishu_msg": "notify_relay_connectivity_feishu_msg_v1",
+    "notify_relay_connectivity_flock": "notify_relay_connectivity_flock_v1",
+    "notify_relay_connectivity_fluxer": "notify_relay_connectivity_fluxer_v1",
+    "notify_relay_connectivity_form_webhook": "notify_relay_connectivity_form_webhook_v1",
+    "notify_relay_connectivity_freemobile": "notify_relay_connectivity_freemobile_v1",
     "notify_relay_connectivity_gotify": "notify_relay_connectivity_gotify_v1",
     "notify_relay_connectivity_groupme_msg": "notify_relay_connectivity_groupme_msg_v1",
+    "notify_relay_connectivity_homeassistant": "notify_relay_connectivity_homeassistant_v1",
+    "notify_relay_connectivity_httpsms_sms": "notify_relay_connectivity_httpsms_sms_v1",
+    "notify_relay_connectivity_humhub": "notify_relay_connectivity_humhub_v1",
+    "notify_relay_connectivity_ifttt": "notify_relay_connectivity_ifttt_v1",
+    "notify_relay_connectivity_jira": "notify_relay_connectivity_jira_v1",
     "notify_relay_connectivity_json": "notify_relay_connectivity_json_v1",
+    "notify_relay_connectivity_kodi": "notify_relay_connectivity_kodi_v1",
+    "notify_relay_connectivity_kumulos": "notify_relay_connectivity_kumulos_v1",
+    "notify_relay_connectivity_lametric": "notify_relay_connectivity_lametric_v1",
     "notify_relay_connectivity_line_msg": "notify_relay_connectivity_line_msg_v1",
+    "notify_relay_connectivity_mailgun_email": "notify_relay_connectivity_mailgun_email_v1",
+    "notify_relay_connectivity_mastodon": "notify_relay_connectivity_mastodon_v1",
     "notify_relay_connectivity_matrix": "notify_relay_connectivity_matrix_v1",
     "notify_relay_connectivity_messagebird_sms": "notify_relay_connectivity_messagebird_sms_v1",
+    "notify_relay_connectivity_misskey": "notify_relay_connectivity_misskey_v1",
+    "notify_relay_connectivity_msg91_sms": "notify_relay_connectivity_msg91_sms_v1",
     "notify_relay_connectivity_msteams": "notify_relay_connectivity_msteams_v1",
+    "notify_relay_connectivity_nextcloud": "notify_relay_connectivity_nextcloud_v1",
+    "notify_relay_connectivity_nextcloudtalk": "notify_relay_connectivity_nextcloudtalk_v1",
+    "notify_relay_connectivity_notica": "notify_relay_connectivity_notica_v1",
+    "notify_relay_connectivity_notifiarr": "notify_relay_connectivity_notifiarr_v1",
+    "notify_relay_connectivity_notificationapi": "notify_relay_connectivity_notificationapi_v1",
     "notify_relay_connectivity_ntfy": "notify_relay_connectivity_ntfy_v1",
+    "notify_relay_connectivity_octopush_sms": "notify_relay_connectivity_octopush_sms_v1",
     "notify_relay_connectivity_onesignal": "notify_relay_connectivity_onesignal_v1",
     "notify_relay_connectivity_opsgenie": "notify_relay_connectivity_opsgenie_v1",
     "notify_relay_connectivity_pagerduty": "notify_relay_connectivity_pagerduty_v1",
     "notify_relay_connectivity_pagertree": "notify_relay_connectivity_pagertree_v1",
+    "notify_relay_connectivity_parseplatform": "notify_relay_connectivity_parseplatform_v1",
+    "notify_relay_connectivity_plivo_sms": "notify_relay_connectivity_plivo_sms_v1",
+    "notify_relay_connectivity_popcornnotify": "notify_relay_connectivity_popcornnotify_v1",
     "notify_relay_connectivity_postmark_email": "notify_relay_connectivity_postmark_email_v1",
+    "notify_relay_connectivity_prowl": "notify_relay_connectivity_prowl_v1",
     "notify_relay_connectivity_pushbullet": "notify_relay_connectivity_pushbullet_v1",
+    "notify_relay_connectivity_pushdeer": "notify_relay_connectivity_pushdeer_v1",
+    "notify_relay_connectivity_pushed": "notify_relay_connectivity_pushed_v1",
     "notify_relay_connectivity_pushjet": "notify_relay_connectivity_pushjet_v1",
     "notify_relay_connectivity_pushover": "notify_relay_connectivity_pushover_v1",
+    "notify_relay_connectivity_pushplus": "notify_relay_connectivity_pushplus_v1",
+    "notify_relay_connectivity_pushsafer": "notify_relay_connectivity_pushsafer_v1",
+    "notify_relay_connectivity_pushy": "notify_relay_connectivity_pushy_v1",
+    "notify_relay_connectivity_qqpush": "notify_relay_connectivity_qqpush_v1",
     "notify_relay_connectivity_resend_email": "notify_relay_connectivity_resend_email_v1",
     "notify_relay_connectivity_ryver": "notify_relay_connectivity_ryver_v1",
     "notify_relay_connectivity_sendgrid_email": "notify_relay_connectivity_sendgrid_email_v1",
     "notify_relay_connectivity_serverchan": "notify_relay_connectivity_serverchan_v1",
+    "notify_relay_connectivity_seven_sms": "notify_relay_connectivity_seven_sms_v1",
     "notify_relay_connectivity_signl4": "notify_relay_connectivity_signl4_v1",
     "notify_relay_connectivity_simplepush": "notify_relay_connectivity_simplepush_v1",
+    "notify_relay_connectivity_sinch_sms": "notify_relay_connectivity_sinch_sms_v1",
     "notify_relay_connectivity_slack": "notify_relay_connectivity_slack_v1",
+    "notify_relay_connectivity_smseagle_sms": "notify_relay_connectivity_smseagle_sms_v1",
     "notify_relay_connectivity_smtp2go_email": "notify_relay_connectivity_smtp2go_email_v1",
     "notify_relay_connectivity_sparkpost_email": "notify_relay_connectivity_sparkpost_email_v1",
     "notify_relay_connectivity_spikesh": "notify_relay_connectivity_spikesh_v1",
+    "notify_relay_connectivity_spugpush": "notify_relay_connectivity_spugpush_v1",
+    "notify_relay_connectivity_streamlabs": "notify_relay_connectivity_streamlabs_v1",
+    "notify_relay_connectivity_synologychat": "notify_relay_connectivity_synologychat_v1",
+    "notify_relay_connectivity_techulus": "notify_relay_connectivity_techulus_v1",
     "notify_relay_connectivity_telegram": "notify_relay_connectivity_telegram_v1",
+    "notify_relay_connectivity_twilio_sms": "notify_relay_connectivity_twilio_sms_v1",
+    "notify_relay_connectivity_viber": "notify_relay_connectivity_viber_v1",
     "notify_relay_connectivity_victorops": "notify_relay_connectivity_victorops_v1",
+    "notify_relay_connectivity_vonage_sms": "notify_relay_connectivity_vonage_sms_v1",
     "notify_relay_connectivity_wechat_work": "notify_relay_connectivity_wechat_work_v1",
     "notify_relay_connectivity_whatsapp_msg": "notify_relay_connectivity_whatsapp_msg_v1",
     "notify_relay_connectivity_wxpusher": "notify_relay_connectivity_wxpusher_v1",
+    "notify_relay_connectivity_xml_webhook": "notify_relay_connectivity_xml_webhook_v1",
+    "notify_relay_connectivity_zoom": "notify_relay_connectivity_zoom_v1",
+    "notify_relay_connectivity_zulip": "notify_relay_connectivity_zulip_v1",
     "notify_relay_description": "notify_relay_description_v1",
     "recommender_description": "recommender_description_v1",
     "s3_code_example": "s3_code_example_v1",
@@ -1183,6 +1363,27 @@
       "source_readme": "msg-to-apprise/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_africastalking_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-africastalking-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_africastalking_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_bark_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1225,6 +1426,195 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_bulksms_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-bulksms-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_bulksms_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_bulkvs_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-bulkvs-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_bulkvs_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_burstsms_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-burstsms-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_burstsms_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_chanify_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-chanify-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_chanify",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_chime_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-chime-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_chime",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_clicksend_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-clicksend-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_clicksend_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_d7networks_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-d7networks-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_d7networks_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_dapnet_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-dapnet-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_dapnet",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_dingtalk_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-dingtalk-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_dingtalk",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_discord_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1246,6 +1636,111 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_dot_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-dot-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_dot",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_elks_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-elks-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_elks_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_evolution_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-evolution-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_evolution",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_exotel_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-exotel-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_exotel_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_fcm_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-fcm-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_fcm",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_feishu_msg_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1264,6 +1759,90 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_py_feishu_msg",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_flock_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-flock-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_flock",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_fluxer_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-fluxer-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_fluxer",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_form_webhook_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-form-webhook-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_form_webhook",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_freemobile_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-freemobile-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_freemobile",
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
@@ -1309,6 +1888,111 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_homeassistant_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-homeassistant-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_homeassistant",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_httpsms_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-httpsms-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_httpsms_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_humhub_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-humhub-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_humhub",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_ifttt_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-ifttt-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_ifttt",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_jira_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-jira-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_jira",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_json_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1330,6 +2014,69 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_kodi_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-kodi-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_kodi",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_kumulos_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-kumulos-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_kumulos",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_lametric_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-lametric-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_lametric",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_line_msg_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1348,6 +2095,48 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_py_line_msg",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_mailgun_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-mailgun-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_mailgun_email",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_mastodon_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-mastodon-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_mastodon",
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
@@ -1393,6 +2182,48 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_misskey_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-misskey-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_misskey",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_msg91_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-msg91-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_msg91_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_msteams_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1414,6 +2245,111 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_nextcloud_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-nextcloud-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_nextcloud",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_nextcloudtalk_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-nextcloudtalk-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_nextcloudtalk",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_notica_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-notica-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_notica",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_notifiarr_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-notifiarr-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_notifiarr",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_notificationapi_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-notificationapi-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_notificationapi",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_ntfy_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1432,6 +2368,27 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_py_ntfy",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_octopush_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-octopush-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_octopush_sms",
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
@@ -1519,6 +2476,69 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_parseplatform_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-parseplatform-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_parseplatform",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_plivo_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-plivo-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_plivo_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_popcornnotify_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-popcornnotify-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_popcornnotify",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_postmark_email_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1540,6 +2560,27 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_prowl_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-prowl-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_prowl",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_pushbullet_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1558,6 +2599,48 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_py_pushbullet",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_pushdeer_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-pushdeer-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_pushdeer",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_pushed_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-pushed-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_pushed",
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
@@ -1600,6 +2683,90 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_py_pushover",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_pushplus_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-pushplus-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_pushplus",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_pushsafer_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-pushsafer-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_pushsafer",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_pushy_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-pushy-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_pushy",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_qqpush_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-qqpush-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_qqpush",
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
@@ -1687,6 +2854,27 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_seven_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-seven-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_seven_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_signl4_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1729,6 +2917,27 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_sinch_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-sinch-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_sinch_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_slack_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1747,6 +2956,27 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_py_slack",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_smseagle_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-smseagle-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_smseagle_sms",
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
@@ -1813,6 +3043,90 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_spugpush_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-spugpush-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_spugpush",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_streamlabs_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-streamlabs-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_streamlabs",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_synologychat_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-synologychat-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_synologychat",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_techulus_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-techulus-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_techulus",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_telegram_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1834,6 +3148,48 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_twilio_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-twilio-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_twilio_sms",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_viber_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-viber-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_viber",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_py_victorops_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
@@ -1852,6 +3208,27 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_py_victorops",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_vonage_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-vonage-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_vonage_sms",
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
@@ -1918,6 +3295,87 @@
       "source_readme": "notify-relay/code-example-py/README.md",
       "version": 1
     },
+    "notify_relay_code_example_py_xml_webhook_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-xml-webhook-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_xml_webhook",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_zoom_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-zoom-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_zoom",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_py_zulip_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-py/code-example-zulip-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_py_zulip",
+      "source_readme": "notify-relay/code-example-py/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_africastalking_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-africastalking-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_africastalking_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_bark_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -1954,6 +3412,168 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_bulksms_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-bulksms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_bulksms_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_bulkvs_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-bulkvs-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_bulkvs_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_burstsms_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-burstsms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_burstsms_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_chanify_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-chanify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_chanify",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_chime_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-chime-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_chime",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_clicksend_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-clicksend-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_clicksend_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_d7networks_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-d7networks-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_d7networks_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_dapnet_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-dapnet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_dapnet",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_dingtalk_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-dingtalk-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_dingtalk",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_discord_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -1972,6 +3592,96 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_dot_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-dot-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_dot",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_elks_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-elks-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_elks_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_evolution_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-evolution-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_evolution",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_exotel_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-exotel-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_exotel_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_fcm_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-fcm-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_fcm",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_feishu_msg_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -1987,6 +3697,78 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_sh_feishu_msg",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_flock_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-flock-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_flock",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_fluxer_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-fluxer-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_fluxer",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_form_webhook_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-form-webhook-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_form_webhook",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_freemobile_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-freemobile-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_freemobile",
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
@@ -2026,6 +3808,96 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_homeassistant_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-homeassistant-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_homeassistant",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_httpsms_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-httpsms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_httpsms_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_humhub_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-humhub-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_humhub",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_ifttt_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-ifttt-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_ifttt",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_jira_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-jira-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_jira",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_json_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -2044,6 +3916,60 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_kodi_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-kodi-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_kodi",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_kumulos_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-kumulos-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_kumulos",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_lametric_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-lametric-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_lametric",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_line_msg_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -2059,6 +3985,42 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_sh_line_msg",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_mailgun_email_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-mailgun-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_mailgun_email",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_mastodon_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-mastodon-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_mastodon",
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
@@ -2098,6 +4060,42 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_misskey_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-misskey-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_misskey",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_msg91_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-msg91-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_msg91_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_msteams_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -2116,6 +4114,96 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_nextcloud_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-nextcloud-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_nextcloud",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_nextcloudtalk_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-nextcloudtalk-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_nextcloudtalk",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_notica_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-notica-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_notica",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_notifiarr_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-notifiarr-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_notifiarr",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_notificationapi_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-notificationapi-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_notificationapi",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_ntfy_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -2131,6 +4219,24 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_sh_ntfy",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_octopush_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-octopush-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_octopush_sms",
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
@@ -2206,6 +4312,60 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_parseplatform_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-parseplatform-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_parseplatform",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_plivo_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-plivo-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_plivo_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_popcornnotify_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-popcornnotify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_popcornnotify",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_postmark_email_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -2224,6 +4384,24 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_prowl_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-prowl-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_prowl",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_pushbullet_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -2239,6 +4417,42 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_sh_pushbullet",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_pushdeer_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-pushdeer-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_pushdeer",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_pushed_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-pushed-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_pushed",
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
@@ -2275,6 +4489,78 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_sh_pushover",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_pushplus_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-pushplus-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_pushplus",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_pushsafer_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-pushsafer-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_pushsafer",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_pushy_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-pushy-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_pushy",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_qqpush_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-qqpush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_qqpush",
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
@@ -2350,6 +4636,24 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_seven_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-seven-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_seven_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_signl4_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -2386,6 +4690,24 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_sinch_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-sinch-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_sinch_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_slack_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -2401,6 +4723,24 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_sh_slack",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_smseagle_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-smseagle-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_smseagle_sms",
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
@@ -2458,6 +4798,78 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_spugpush_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-spugpush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_spugpush",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_streamlabs_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-streamlabs-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_streamlabs",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_synologychat_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-synologychat-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_synologychat",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_techulus_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-techulus-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_techulus",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_telegram_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -2476,6 +4888,42 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_twilio_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-twilio-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_twilio_sms",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_viber_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-viber-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_viber",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
     "notify_relay_code_example_sh_victorops_v1": {
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
@@ -2491,6 +4939,24 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_code_example_sh_victorops",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_vonage_sms_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-vonage-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_vonage_sms",
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
@@ -2548,6 +5014,78 @@
       "source_readme": "notify-relay/code-example-sh/README.md",
       "version": 1
     },
+    "notify_relay_code_example_sh_xml_webhook_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-xml-webhook-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_xml_webhook",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_zoom_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-zoom-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_zoom",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_code_example_sh_zulip_v1": {
+      "category": "code_example",
+      "description": "cURL code example for pass-through HTTP notification services",
+      "example_file": "notify-relay/code-example-sh/code-example-zulip-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_code_example_sh_zulip",
+      "source_readme": "notify-relay/code-example-sh/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_africastalking_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-africastalking-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_africastalking_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_bark_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -2584,6 +5122,168 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_bulksms_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-bulksms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_bulksms_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_bulkvs_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-bulkvs-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_bulkvs_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_burstsms_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-burstsms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_burstsms_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_chanify_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-chanify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_chanify",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_chime_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-chime-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_chime",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_clicksend_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-clicksend-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_clicksend_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_d7networks_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-d7networks-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_d7networks_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_dapnet_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-dapnet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_dapnet",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_dingtalk_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-dingtalk-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_dingtalk",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_discord_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -2602,6 +5302,96 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_dot_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-dot-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_dot",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_elks_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-elks-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_elks_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_evolution_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-evolution-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_evolution",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_exotel_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-exotel-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_exotel_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_fcm_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-fcm-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_fcm",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_feishu_msg_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -2617,6 +5407,78 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_feishu_msg",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_flock_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-flock-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_flock",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_fluxer_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-fluxer-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_fluxer",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_form_webhook_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-form-webhook-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_form_webhook",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_freemobile_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-freemobile-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_freemobile",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -2656,6 +5518,96 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_homeassistant_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-homeassistant-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_homeassistant",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_httpsms_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-httpsms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_httpsms_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_humhub_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-humhub-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_humhub",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_ifttt_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-ifttt-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_ifttt",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_jira_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-jira-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_jira",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_json_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -2674,6 +5626,60 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_kodi_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-kodi-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_kodi",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_kumulos_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-kumulos-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_kumulos",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_lametric_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-lametric-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_lametric",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_line_msg_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -2689,6 +5695,42 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_line_msg",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_mailgun_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-mailgun-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_mailgun_email",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_mastodon_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-mastodon-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_mastodon",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -2728,6 +5770,42 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_misskey_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-misskey-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_misskey",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_msg91_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-msg91-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_msg91_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_msteams_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -2746,6 +5824,96 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_nextcloud_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-nextcloud-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_nextcloud",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_nextcloudtalk_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-nextcloudtalk-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_nextcloudtalk",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_notica_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-notica-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_notica",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_notifiarr_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-notifiarr-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_notifiarr",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_notificationapi_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-notificationapi-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_notificationapi",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_ntfy_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -2761,6 +5929,24 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_ntfy",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_octopush_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-octopush-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_octopush_sms",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -2836,6 +6022,60 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_parseplatform_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-parseplatform-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_parseplatform",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_plivo_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-plivo-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_plivo_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_popcornnotify_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-popcornnotify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_popcornnotify",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_postmark_email_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -2854,6 +6094,24 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_prowl_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-prowl-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_prowl",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_pushbullet_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -2869,6 +6127,42 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_pushbullet",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_pushdeer_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-pushdeer-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_pushdeer",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_pushed_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-pushed-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_pushed",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -2905,6 +6199,78 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_pushover",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_pushplus_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-pushplus-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_pushplus",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_pushsafer_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-pushsafer-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_pushsafer",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_pushy_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-pushy-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_pushy",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_qqpush_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-qqpush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_qqpush",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -2980,6 +6346,24 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_seven_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-seven-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_seven_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_signl4_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -3016,6 +6400,24 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_sinch_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-sinch-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_sinch_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_slack_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -3031,6 +6433,24 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_slack",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_smseagle_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-smseagle-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_smseagle_sms",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -3088,6 +6508,78 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_spugpush_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-spugpush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_spugpush",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_streamlabs_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-streamlabs-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_streamlabs",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_synologychat_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-synologychat-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_synologychat",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_techulus_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-techulus-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_techulus",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_telegram_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -3106,6 +6598,42 @@
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
+    "notify_relay_connectivity_twilio_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-twilio-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_twilio_sms",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_viber_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-viber-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_viber",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
     "notify_relay_connectivity_victorops_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
@@ -3121,6 +6649,24 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_victorops",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_vonage_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-vonage-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_vonage_sms",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },
@@ -3175,6 +6721,60 @@
         "webhook_path": "/webhook"
       },
       "preset_name": "notify_relay_connectivity_wxpusher",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_xml_webhook_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-xml-webhook-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_xml_webhook",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_zoom_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-zoom-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_zoom",
+      "source_readme": "notify-relay/connectivity/README.md",
+      "version": 1
+    },
+    "notify_relay_connectivity_zulip_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for pass-through HTTP notification services",
+      "example_file": "notify-relay/connectivity/connectivity-zulip-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "chat_id": "",
+        "webhook_path": "/webhook"
+      },
+      "preset_name": "notify_relay_connectivity_zulip",
       "source_readme": "notify-relay/connectivity/README.md",
       "version": 1
     },

@@ -1,0 +1,44 @@
+import os
+
+import httpx
+
+{% if local_testing %}
+WEBHOOK_URL = "{{ service_base_url }}${__webhook_path__}"
+
+response = httpx.post(
+    WEBHOOK_URL,
+    json={
+        "recipients": [
+            {
+                "phone_number": "+15551234567"
+            }
+        ],
+        "text": "Hello from UnitySVC",
+        "type": "sms_premium",
+        "purpose": "alert",
+        "sender": "src",
+        "with_replies": False
+    },
+)
+{% else %}
+GATEWAY_URL = "{{ service_base_url }}"
+
+response = httpx.post(
+    GATEWAY_URL,
+    headers={"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"},
+    json={
+        "recipients": [
+            {
+                "phone_number": "+15551234567"
+            }
+        ],
+        "text": "Hello from UnitySVC",
+        "type": "sms_premium",
+        "purpose": "alert",
+        "sender": "src",
+        "with_replies": False
+    },
+)
+{% endif %}
+response.raise_for_status()
+print(f"sent (HTTP {response.status_code})")

@@ -1,0 +1,38 @@
+import os
+
+import httpx
+
+{% if local_testing %}
+WEBHOOK_URL = "{{ service_base_url }}${__webhook_path__}"
+
+response = httpx.post(
+    WEBHOOK_URL,
+    json={
+        "notification": {
+            "notification": {
+                "title": "Hello from UnitySVC",
+                "body": "Notification sent via pass-through service"
+            }
+        },
+        "to": "device-or-topic"
+    },
+)
+{% else %}
+GATEWAY_URL = "{{ service_base_url }}"
+
+response = httpx.post(
+    GATEWAY_URL,
+    headers={"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"},
+    json={
+        "notification": {
+            "notification": {
+                "title": "Hello from UnitySVC",
+                "body": "Notification sent via pass-through service"
+            }
+        },
+        "to": "device-or-topic"
+    },
+)
+{% endif %}
+response.raise_for_status()
+print(f"sent (HTTP {response.status_code})")

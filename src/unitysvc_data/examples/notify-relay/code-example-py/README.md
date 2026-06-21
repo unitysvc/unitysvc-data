@@ -32,17 +32,31 @@ Only adds `Authorization: Bearer ${UNITYSVC_API_KEY}`.
 
 ## Upstream type reference
 
-| Variant | Key body fields | Channels |
+The relay forwards the customer's **native** upstream body unchanged, so each
+distinct upstream body shape is its own variant `notify_relay_<kind>_<channel>`.
+Most providers differ, so most channels have a 1:1 variant. A few share an
+identical body and reuse one variant:
+
+| Shared variant | Native body | Channels |
 |---|---|---|
-| `discord` | `embeds` / `content` | discord |
-| `slack` | `text` / `blocks` | slack, mattermost, rocketchat, gchat, flock, webex, notifico |
-| `telegram` | `chat_id`, `text` | telegram |
-| `msteams` | `@type`, `@context` | msteams (webhookb2) |
-| `matrix` | `msgtype`, `body` | matrix |
-| `ntfy` | `message` | ntfy |
-| `gotify` | `message` | gotify (token via webhook_path `?token=...`) |
-| `ryver` | `body` | ryver |
-| `json` | `message` | json (generic Apprise webhook) |
+| `slack` | `{"text":".."}` | slack, googlechat, mattermost, rocketchat, webex |
+| `discord` | `{"embeds":[..]}` / `{"content":".."}` | discord, guilded, revolt |
+| `feishu-msg` | `{"msg_type":"text","content":{"text":".."}}` | feishu_msg, lark |
+| `json` | `{"message":".."}` | json, ntfy (gotify adds `priority`) |
+
+Every other relay-capable channel has its own variant named after the channel
+(e.g. `notify_relay_code_example_py_twilio_sms`). 60 such variants were added in
+v0.1.23, covering the apprise catalog's POST-relayable channels (chat, push,
+SMS/email APIs, generic webhooks).
+
+**Not relay-capable** — no relay preset; use the channel's `msg-to-<channel>`
+apprise service instead. A relay needs ONE credential-injectable HTTP POST that
+carries the message in its body, which these can't provide:
+- OAuth2 / token-exchange at send time: office365_email, reddit, sendpulse_email, ringcentral_sms, wechat
+- OAuth1 signing: twitter — AWS SigV4 signing: ses_email, sns
+- Multi-step login: bluesky, emby, jellyfin, twist
+- Per-request signing/encryption: session, vapid — Non-HTTP (SMTP): smtp_email
+- Message rides in the URL query, no body to relay: threema, sfr_sms, voipms_sms, smsmanager_sms, clickatell_sms, kavenegar_sms, join, notifico, pushme, enigma2
 
 ## Versions
 
