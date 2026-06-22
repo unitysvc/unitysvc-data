@@ -1379,7 +1379,9 @@
       },
       "mime_type": "python",
       "parameters": {
-        "channel": "gateway"
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
       },
       "preset_name": "msg_to_gateway_code_example_py",
       "source_readme": "msg-to-gateway/code-example-py/README.md",

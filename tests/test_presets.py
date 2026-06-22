@@ -95,11 +95,13 @@ def test_msg_to_gateway_presets_are_registered():
     assert conn["category"] == "connectivity_test"
     assert set(conn["parameters"]) == {"channel", "native_body", "local_url"}
 
-    # Code-example preset: python, code_example, declares the channel param.
+    # Code-example preset: python, code_example, declares the three params
+    # (channel selector + local-mode native_body/local_url, mirroring the
+    # connectivity preset so its local probe POSTs the channel-native body).
     code = MANIFEST["presets"]["msg_to_gateway_code_example_py_v1"]
     assert code["mime_type"] == "python"
     assert code["category"] == "code_example"
-    assert set(code["parameters"]) == {"channel"}
+    assert set(code["parameters"]) == {"channel", "native_body", "local_url"}
 
 
 def test_msg_to_gateway_connectivity_renders_gateway_and_local_modes():
