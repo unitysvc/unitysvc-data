@@ -30,7 +30,7 @@ loop to compose the payload or attach credentials.
 
 `local_testing` is false.  POSTs the canonical envelope
 `{"title":"connectivity check","body":"ping","type":"info","format":"text"}` to
-`{{ service_base_url }}@{{ channel }}` with a `Bearer ${UNITYSVC_API_KEY}` header,
+`{{ service_base_url }}@<channel>` (the `channel` preset param, substituted as `${__channel__}`) with a `Bearer ${UNITYSVC_API_KEY}` header,
 exercising the full transformer path.
 
 ## Parameters
