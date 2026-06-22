@@ -111,8 +111,10 @@ def test_msg_to_gateway_connectivity_renders_gateway_and_local_modes():
     # No declared placeholder should survive substitution.
     for param in ("channel", "native_body", "local_url"):
         assert "${__" + param + "__}" not in body
-    # Gateway mode targets service_base_url@<channel> with the canonical envelope.
-    assert "{{ service_base_url }}@{{ channel }}" in body
+    # Gateway mode targets service_base_url@<channel>, where <channel> is the
+    # substituted ``channel`` preset param (default "gateway") — NOT a Jinja
+    # variable. ``{{ service_base_url }}`` stays Jinja for the SDK to render.
+    assert "{{ service_base_url }}@gateway" in body
     assert '{"title":"connectivity check","body":"ping","type":"info","format":"text"}' in body
     # Status handling mirrors the apprise connectivity preset.
     assert 'echo "connectivity ok (HTTP $status)"; exit 0' in body

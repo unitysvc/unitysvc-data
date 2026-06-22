@@ -23,7 +23,7 @@ if not (200 <= response.status_code < 300):
     sys.exit(1)
 {% else %}
 response = httpx.post(
-    f"{BASE_URL}@{{ channel }}",
+    f"{BASE_URL}@${__channel__}",
     headers={"Authorization": f"Bearer {k}"} if (k := os.environ.get("UNITYSVC_API_KEY")) else {},
     json={
         "title": "Hello from UnitySVC",

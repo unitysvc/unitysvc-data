@@ -18,7 +18,7 @@ status=$(curl -sS --max-time 10 \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)
 {% else %}
-URL="{{ service_base_url }}@{{ channel }}"
+URL="{{ service_base_url }}@${__channel__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
