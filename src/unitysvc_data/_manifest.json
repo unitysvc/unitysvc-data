@@ -61,6 +61,8 @@
     "msg_to_apprise_code_example_py": "msg_to_apprise_code_example_py_v1",
     "msg_to_apprise_code_example_sh": "msg_to_apprise_code_example_sh_v1",
     "msg_to_apprise_connectivity": "msg_to_apprise_connectivity_v1",
+    "msg_to_gateway_code_example_py": "msg_to_gateway_code_example_py_v1",
+    "msg_to_gateway_connectivity": "msg_to_gateway_connectivity_v1",
     "notify_relay_code_example_py_africastalking_sms": "notify_relay_code_example_py_africastalking_sms_v1",
     "notify_relay_code_example_py_bark": "notify_relay_code_example_py_bark_v1",
     "notify_relay_code_example_py_brevo_email": "notify_relay_code_example_py_brevo_email_v1",
@@ -1361,6 +1363,45 @@
       },
       "preset_name": "msg_to_apprise_connectivity",
       "source_readme": "msg-to-apprise/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_gateway_code_example_py_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-gateway/code-example-py/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway"
+      },
+      "preset_name": "msg_to_gateway_code_example_py",
+      "source_readme": "msg-to-gateway/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_gateway_connectivity_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-gateway/connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_gateway_connectivity",
+      "source_readme": "msg-to-gateway/connectivity/README.md",
       "version": 1
     },
     "notify_relay_code_example_py_africastalking_sms_v1": {

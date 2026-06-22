@@ -1,0 +1,35 @@
+import os
+
+import httpx
+
+# Code example for a UnitySVC Notify gateway-transformer channel.
+#   local_testing : POST the channel-NATIVE body straight to the upstream.
+#   gateway       : POST the canonical envelope to {BASE_URL}@<channel>; the
+#                   gateway transforms it into the upstream-native payload.
+# The channel parameter selects the transformer channel (e.g. gateway).
+BASE_URL = "{{ service_base_url }}"
+
+{% if local_testing %}
+response = httpx.post(
+    BASE_URL,
+    json={
+        "title": "Hello from UnitySVC",
+        "body": "Notification delivered via transformer.",
+        "type": "info",
+        "format": "text",
+    },
+)
+{% else %}
+response = httpx.post(
+    f"{BASE_URL}@{{ channel }}",
+    headers={"Authorization": f"Bearer {k}"} if (k := os.environ.get("UNITYSVC_API_KEY")) else {},
+    json={
+        "title": "Hello from UnitySVC",
+        "body": "Notification delivered via transformer.",
+        "type": "info",
+        "format": "text",
+    },
+)
+{% endif %}
+response.raise_for_status()
+print(f"sent (HTTP {response.status_code})")
