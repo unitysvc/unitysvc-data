@@ -46,15 +46,42 @@ exercising the full transformer path.
 
 The generic base preset takes the channel-native local-mode body as the
 `native_body` parameter — awkward, because the native body differs per upstream
-channel. Channel-specific variants instead **bake the native body in**, so the
-caller only supplies the `channel` selector and the `local_url` mock upstream
-(no `native_body`). Each variant becomes its own preset
-`msg_to_channel_connectivity_<channel>`.
+channel. There is **one variant per channel**, and each **bakes in that
+channel's native body**, so the caller only supplies the `channel` selector and
+the `local_url` mock upstream (no `native_body`). Each variant becomes its own
+preset `msg_to_channel_connectivity_<channel>` (hyphens in the channel slug
+become underscores, e.g. `twilio-sms` → `msg_to_channel_connectivity_twilio_sms`).
 
-- `discord` (`msg_to_channel_connectivity_discord`) — local mode POSTs a baked-in
-  Discord embed body (`{"embeds":[{"title":"connectivity check","description":"ping"}]}`)
-  to `local_url`. Gateway mode is identical to the base: POST the canonical
-  envelope to `service_base_url@<channel>` with Bearer auth.
+Gateway mode is identical across every variant and to the base: POST the
+canonical envelope to `service_base_url@<channel>` with Bearer auth. Only the
+baked-in local-mode native body differs. For example `discord`
+(`msg_to_channel_connectivity_discord`) POSTs a baked-in Discord embed body
+(`{"embeds":[{"title":"connectivity check","description":"ping"}]}`) to
+`local_url`.
+
+Channels with a per-channel variant:
+
+- Chat / team messaging: `slack`, `feishu-msg`, `json`, `ntfy`, `gotify`,
+  `discord`, `telegram`, `matrix`, `msteams`, `wechat-work`, `dingtalk`,
+  `line-msg`, `whatsapp-msg`, `groupme-msg`, `viber`, `zulip`, `flock`, `ryver`,
+  `zoom`, `chime`, `mastodon`, `misskey`, `humhub`, `nextcloud`,
+  `nextcloudtalk`, `synologychat`, `matrix-note-placeholder`
+- SMS APIs: `twilio-sms`, `vonage-sms`, `plivo-sms`, `sinch-sms`,
+  `messagebird-sms`, `clicksend-sms`, `bulksms-sms`, `bulkvs-sms`,
+  `burstsms-sms`, `africastalking-sms`, `d7networks-sms`, `elks-sms`,
+  `exotel-sms`, `httpsms-sms`, `seven-sms`, `octopush-sms`, `msg91-sms`,
+  `smseagle-sms`
+- Email APIs: `notificationapi`, `brevo-email`, `sendgrid-email`,
+  `mailgun-email`, `postmark-email`, `resend-email`, `smtp2go-email`,
+  `sparkpost-email`, `popcornnotify`
+- Push services: `bark`, `fcm`, `pushy`, `onesignal`, `kumulos`,
+  `parseplatform`, `pushbullet`, `pushover`, `pushjet`, `pushed`, `pushplus`,
+  `pushdeer`, `pushsafer`, `prowl`, `simplepush`, `techulus`, `spikesh`,
+  `spugpush`, `serverchan`, `chanify`, `qqpush`, `wxpusher`, `freemobile`,
+  `notica`, `streamlabs`, `lametric`, `dot`, `kodi`, `homeassistant`, `dapnet`
+- Ops / incident / webhooks: `ifttt`, `notifiarr`, `opsgenie`, `pagerduty`,
+  `pagertree`, `victorops`, `signl4`, `jira`, `signl4-placeholder`,
+  `form-webhook`, `xml-webhook`
 
 ## Versions
 

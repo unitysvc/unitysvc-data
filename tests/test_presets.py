@@ -127,6 +127,50 @@ def test_msg_to_channel_discord_variant_presets_are_registered():
     assert code["category"] == "code_example"
 
 
+def test_msg_to_channel_per_channel_variant_presets_are_registered():
+    """The bulk per-channel transformer variants (one variant per channel,
+    each baking in that channel's native body) register alongside the generic
+    base and the discord variant, reachable via their bare-name aliases."""
+    versioned, aliases = list_presets()
+    # A representative spread across the channel families (chat, SMS, email,
+    # push, ops/webhook). Hyphens in the channel slug become underscores.
+    sample_channels = (
+        "slack",
+        "feishu_msg",
+        "json",
+        "telegram",
+        "twilio_sms",
+        "vonage_sms",
+        "sendgrid_email",
+        "brevo_email",
+        "pushover",
+        "opsgenie",
+        "pagerduty",
+        "xml_webhook",
+    )
+    for ch in sample_channels:
+        for family in ("msg_to_channel_connectivity", "msg_to_channel_code_example_py"):
+            bare = f"{family}_{ch}"
+            assert bare in aliases, f"alias {bare!r} missing"
+            target = aliases[bare]
+            assert target == f"{bare}_v1"
+            assert target in versioned, f"alias target {target!r} not a versioned preset"
+            assert target in PRESETS, f"versioned preset {target!r} missing from PRESETS"
+
+    # The whole family is sizeable: well over a dozen connectivity variants
+    # beyond the generic base + discord were registered in this batch.
+    connectivity_variants = {
+        name
+        for name in versioned
+        if name.startswith("msg_to_channel_connectivity_")
+        and name.endswith("_v1")
+        and name not in ("msg_to_channel_connectivity_v1", "msg_to_channel_connectivity_discord_v1")
+    }
+    assert len(connectivity_variants) >= 90, (
+        f"expected the bulk per-channel connectivity variants, got {len(connectivity_variants)}"
+    )
+
+
 def test_msg_to_channel_discord_variant_bakes_native_body_in():
     """The discord variants bake the channel-native body in — they must NOT
     reference the ``native_body`` parameter (only ``channel`` + ``local_url``).

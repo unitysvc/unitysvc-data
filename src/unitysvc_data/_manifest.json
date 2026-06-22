@@ -62,9 +62,197 @@
     "msg_to_apprise_code_example_sh": "msg_to_apprise_code_example_sh_v1",
     "msg_to_apprise_connectivity": "msg_to_apprise_connectivity_v1",
     "msg_to_channel_code_example_py": "msg_to_channel_code_example_py_v1",
+    "msg_to_channel_code_example_py_africastalking_sms": "msg_to_channel_code_example_py_africastalking_sms_v1",
+    "msg_to_channel_code_example_py_bark": "msg_to_channel_code_example_py_bark_v1",
+    "msg_to_channel_code_example_py_brevo_email": "msg_to_channel_code_example_py_brevo_email_v1",
+    "msg_to_channel_code_example_py_bulksms_sms": "msg_to_channel_code_example_py_bulksms_sms_v1",
+    "msg_to_channel_code_example_py_bulkvs_sms": "msg_to_channel_code_example_py_bulkvs_sms_v1",
+    "msg_to_channel_code_example_py_burstsms_sms": "msg_to_channel_code_example_py_burstsms_sms_v1",
+    "msg_to_channel_code_example_py_chanify": "msg_to_channel_code_example_py_chanify_v1",
+    "msg_to_channel_code_example_py_chime": "msg_to_channel_code_example_py_chime_v1",
+    "msg_to_channel_code_example_py_clicksend_sms": "msg_to_channel_code_example_py_clicksend_sms_v1",
+    "msg_to_channel_code_example_py_d7networks_sms": "msg_to_channel_code_example_py_d7networks_sms_v1",
+    "msg_to_channel_code_example_py_dapnet": "msg_to_channel_code_example_py_dapnet_v1",
+    "msg_to_channel_code_example_py_dingtalk": "msg_to_channel_code_example_py_dingtalk_v1",
     "msg_to_channel_code_example_py_discord": "msg_to_channel_code_example_py_discord_v1",
+    "msg_to_channel_code_example_py_dot": "msg_to_channel_code_example_py_dot_v1",
+    "msg_to_channel_code_example_py_elks_sms": "msg_to_channel_code_example_py_elks_sms_v1",
+    "msg_to_channel_code_example_py_exotel_sms": "msg_to_channel_code_example_py_exotel_sms_v1",
+    "msg_to_channel_code_example_py_fcm": "msg_to_channel_code_example_py_fcm_v1",
+    "msg_to_channel_code_example_py_feishu_msg": "msg_to_channel_code_example_py_feishu_msg_v1",
+    "msg_to_channel_code_example_py_flock": "msg_to_channel_code_example_py_flock_v1",
+    "msg_to_channel_code_example_py_form_webhook": "msg_to_channel_code_example_py_form_webhook_v1",
+    "msg_to_channel_code_example_py_freemobile": "msg_to_channel_code_example_py_freemobile_v1",
+    "msg_to_channel_code_example_py_gotify": "msg_to_channel_code_example_py_gotify_v1",
+    "msg_to_channel_code_example_py_groupme_msg": "msg_to_channel_code_example_py_groupme_msg_v1",
+    "msg_to_channel_code_example_py_homeassistant": "msg_to_channel_code_example_py_homeassistant_v1",
+    "msg_to_channel_code_example_py_httpsms_sms": "msg_to_channel_code_example_py_httpsms_sms_v1",
+    "msg_to_channel_code_example_py_humhub": "msg_to_channel_code_example_py_humhub_v1",
+    "msg_to_channel_code_example_py_ifttt": "msg_to_channel_code_example_py_ifttt_v1",
+    "msg_to_channel_code_example_py_jira": "msg_to_channel_code_example_py_jira_v1",
+    "msg_to_channel_code_example_py_json": "msg_to_channel_code_example_py_json_v1",
+    "msg_to_channel_code_example_py_kodi": "msg_to_channel_code_example_py_kodi_v1",
+    "msg_to_channel_code_example_py_kumulos": "msg_to_channel_code_example_py_kumulos_v1",
+    "msg_to_channel_code_example_py_lametric": "msg_to_channel_code_example_py_lametric_v1",
+    "msg_to_channel_code_example_py_line_msg": "msg_to_channel_code_example_py_line_msg_v1",
+    "msg_to_channel_code_example_py_mailgun_email": "msg_to_channel_code_example_py_mailgun_email_v1",
+    "msg_to_channel_code_example_py_mastodon": "msg_to_channel_code_example_py_mastodon_v1",
+    "msg_to_channel_code_example_py_matrix": "msg_to_channel_code_example_py_matrix_v1",
+    "msg_to_channel_code_example_py_matrix_note_placeholder": "msg_to_channel_code_example_py_matrix_note_placeholder_v1",
+    "msg_to_channel_code_example_py_messagebird_sms": "msg_to_channel_code_example_py_messagebird_sms_v1",
+    "msg_to_channel_code_example_py_misskey": "msg_to_channel_code_example_py_misskey_v1",
+    "msg_to_channel_code_example_py_msg91_sms": "msg_to_channel_code_example_py_msg91_sms_v1",
+    "msg_to_channel_code_example_py_msteams": "msg_to_channel_code_example_py_msteams_v1",
+    "msg_to_channel_code_example_py_nextcloud": "msg_to_channel_code_example_py_nextcloud_v1",
+    "msg_to_channel_code_example_py_nextcloudtalk": "msg_to_channel_code_example_py_nextcloudtalk_v1",
+    "msg_to_channel_code_example_py_notica": "msg_to_channel_code_example_py_notica_v1",
+    "msg_to_channel_code_example_py_notifiarr": "msg_to_channel_code_example_py_notifiarr_v1",
+    "msg_to_channel_code_example_py_notificationapi": "msg_to_channel_code_example_py_notificationapi_v1",
+    "msg_to_channel_code_example_py_ntfy": "msg_to_channel_code_example_py_ntfy_v1",
+    "msg_to_channel_code_example_py_octopush_sms": "msg_to_channel_code_example_py_octopush_sms_v1",
+    "msg_to_channel_code_example_py_onesignal": "msg_to_channel_code_example_py_onesignal_v1",
+    "msg_to_channel_code_example_py_opsgenie": "msg_to_channel_code_example_py_opsgenie_v1",
+    "msg_to_channel_code_example_py_pagerduty": "msg_to_channel_code_example_py_pagerduty_v1",
+    "msg_to_channel_code_example_py_pagertree": "msg_to_channel_code_example_py_pagertree_v1",
+    "msg_to_channel_code_example_py_parseplatform": "msg_to_channel_code_example_py_parseplatform_v1",
+    "msg_to_channel_code_example_py_plivo_sms": "msg_to_channel_code_example_py_plivo_sms_v1",
+    "msg_to_channel_code_example_py_popcornnotify": "msg_to_channel_code_example_py_popcornnotify_v1",
+    "msg_to_channel_code_example_py_postmark_email": "msg_to_channel_code_example_py_postmark_email_v1",
+    "msg_to_channel_code_example_py_prowl": "msg_to_channel_code_example_py_prowl_v1",
+    "msg_to_channel_code_example_py_pushbullet": "msg_to_channel_code_example_py_pushbullet_v1",
+    "msg_to_channel_code_example_py_pushdeer": "msg_to_channel_code_example_py_pushdeer_v1",
+    "msg_to_channel_code_example_py_pushed": "msg_to_channel_code_example_py_pushed_v1",
+    "msg_to_channel_code_example_py_pushjet": "msg_to_channel_code_example_py_pushjet_v1",
+    "msg_to_channel_code_example_py_pushover": "msg_to_channel_code_example_py_pushover_v1",
+    "msg_to_channel_code_example_py_pushplus": "msg_to_channel_code_example_py_pushplus_v1",
+    "msg_to_channel_code_example_py_pushsafer": "msg_to_channel_code_example_py_pushsafer_v1",
+    "msg_to_channel_code_example_py_pushy": "msg_to_channel_code_example_py_pushy_v1",
+    "msg_to_channel_code_example_py_qqpush": "msg_to_channel_code_example_py_qqpush_v1",
+    "msg_to_channel_code_example_py_resend_email": "msg_to_channel_code_example_py_resend_email_v1",
+    "msg_to_channel_code_example_py_ryver": "msg_to_channel_code_example_py_ryver_v1",
+    "msg_to_channel_code_example_py_sendgrid_email": "msg_to_channel_code_example_py_sendgrid_email_v1",
+    "msg_to_channel_code_example_py_serverchan": "msg_to_channel_code_example_py_serverchan_v1",
+    "msg_to_channel_code_example_py_seven_sms": "msg_to_channel_code_example_py_seven_sms_v1",
+    "msg_to_channel_code_example_py_signl4": "msg_to_channel_code_example_py_signl4_v1",
+    "msg_to_channel_code_example_py_signl4_placeholder": "msg_to_channel_code_example_py_signl4_placeholder_v1",
+    "msg_to_channel_code_example_py_simplepush": "msg_to_channel_code_example_py_simplepush_v1",
+    "msg_to_channel_code_example_py_sinch_sms": "msg_to_channel_code_example_py_sinch_sms_v1",
+    "msg_to_channel_code_example_py_slack": "msg_to_channel_code_example_py_slack_v1",
+    "msg_to_channel_code_example_py_smseagle_sms": "msg_to_channel_code_example_py_smseagle_sms_v1",
+    "msg_to_channel_code_example_py_smtp2go_email": "msg_to_channel_code_example_py_smtp2go_email_v1",
+    "msg_to_channel_code_example_py_sparkpost_email": "msg_to_channel_code_example_py_sparkpost_email_v1",
+    "msg_to_channel_code_example_py_spikesh": "msg_to_channel_code_example_py_spikesh_v1",
+    "msg_to_channel_code_example_py_spugpush": "msg_to_channel_code_example_py_spugpush_v1",
+    "msg_to_channel_code_example_py_streamlabs": "msg_to_channel_code_example_py_streamlabs_v1",
+    "msg_to_channel_code_example_py_synologychat": "msg_to_channel_code_example_py_synologychat_v1",
+    "msg_to_channel_code_example_py_techulus": "msg_to_channel_code_example_py_techulus_v1",
+    "msg_to_channel_code_example_py_telegram": "msg_to_channel_code_example_py_telegram_v1",
+    "msg_to_channel_code_example_py_twilio_sms": "msg_to_channel_code_example_py_twilio_sms_v1",
+    "msg_to_channel_code_example_py_viber": "msg_to_channel_code_example_py_viber_v1",
+    "msg_to_channel_code_example_py_victorops": "msg_to_channel_code_example_py_victorops_v1",
+    "msg_to_channel_code_example_py_vonage_sms": "msg_to_channel_code_example_py_vonage_sms_v1",
+    "msg_to_channel_code_example_py_wechat_work": "msg_to_channel_code_example_py_wechat_work_v1",
+    "msg_to_channel_code_example_py_whatsapp_msg": "msg_to_channel_code_example_py_whatsapp_msg_v1",
+    "msg_to_channel_code_example_py_wxpusher": "msg_to_channel_code_example_py_wxpusher_v1",
+    "msg_to_channel_code_example_py_xml_webhook": "msg_to_channel_code_example_py_xml_webhook_v1",
+    "msg_to_channel_code_example_py_zoom": "msg_to_channel_code_example_py_zoom_v1",
+    "msg_to_channel_code_example_py_zulip": "msg_to_channel_code_example_py_zulip_v1",
     "msg_to_channel_connectivity": "msg_to_channel_connectivity_v1",
+    "msg_to_channel_connectivity_africastalking_sms": "msg_to_channel_connectivity_africastalking_sms_v1",
+    "msg_to_channel_connectivity_bark": "msg_to_channel_connectivity_bark_v1",
+    "msg_to_channel_connectivity_brevo_email": "msg_to_channel_connectivity_brevo_email_v1",
+    "msg_to_channel_connectivity_bulksms_sms": "msg_to_channel_connectivity_bulksms_sms_v1",
+    "msg_to_channel_connectivity_bulkvs_sms": "msg_to_channel_connectivity_bulkvs_sms_v1",
+    "msg_to_channel_connectivity_burstsms_sms": "msg_to_channel_connectivity_burstsms_sms_v1",
+    "msg_to_channel_connectivity_chanify": "msg_to_channel_connectivity_chanify_v1",
+    "msg_to_channel_connectivity_chime": "msg_to_channel_connectivity_chime_v1",
+    "msg_to_channel_connectivity_clicksend_sms": "msg_to_channel_connectivity_clicksend_sms_v1",
+    "msg_to_channel_connectivity_d7networks_sms": "msg_to_channel_connectivity_d7networks_sms_v1",
+    "msg_to_channel_connectivity_dapnet": "msg_to_channel_connectivity_dapnet_v1",
+    "msg_to_channel_connectivity_dingtalk": "msg_to_channel_connectivity_dingtalk_v1",
     "msg_to_channel_connectivity_discord": "msg_to_channel_connectivity_discord_v1",
+    "msg_to_channel_connectivity_dot": "msg_to_channel_connectivity_dot_v1",
+    "msg_to_channel_connectivity_elks_sms": "msg_to_channel_connectivity_elks_sms_v1",
+    "msg_to_channel_connectivity_exotel_sms": "msg_to_channel_connectivity_exotel_sms_v1",
+    "msg_to_channel_connectivity_fcm": "msg_to_channel_connectivity_fcm_v1",
+    "msg_to_channel_connectivity_feishu_msg": "msg_to_channel_connectivity_feishu_msg_v1",
+    "msg_to_channel_connectivity_flock": "msg_to_channel_connectivity_flock_v1",
+    "msg_to_channel_connectivity_form_webhook": "msg_to_channel_connectivity_form_webhook_v1",
+    "msg_to_channel_connectivity_freemobile": "msg_to_channel_connectivity_freemobile_v1",
+    "msg_to_channel_connectivity_gotify": "msg_to_channel_connectivity_gotify_v1",
+    "msg_to_channel_connectivity_groupme_msg": "msg_to_channel_connectivity_groupme_msg_v1",
+    "msg_to_channel_connectivity_homeassistant": "msg_to_channel_connectivity_homeassistant_v1",
+    "msg_to_channel_connectivity_httpsms_sms": "msg_to_channel_connectivity_httpsms_sms_v1",
+    "msg_to_channel_connectivity_humhub": "msg_to_channel_connectivity_humhub_v1",
+    "msg_to_channel_connectivity_ifttt": "msg_to_channel_connectivity_ifttt_v1",
+    "msg_to_channel_connectivity_jira": "msg_to_channel_connectivity_jira_v1",
+    "msg_to_channel_connectivity_json": "msg_to_channel_connectivity_json_v1",
+    "msg_to_channel_connectivity_kodi": "msg_to_channel_connectivity_kodi_v1",
+    "msg_to_channel_connectivity_kumulos": "msg_to_channel_connectivity_kumulos_v1",
+    "msg_to_channel_connectivity_lametric": "msg_to_channel_connectivity_lametric_v1",
+    "msg_to_channel_connectivity_line_msg": "msg_to_channel_connectivity_line_msg_v1",
+    "msg_to_channel_connectivity_mailgun_email": "msg_to_channel_connectivity_mailgun_email_v1",
+    "msg_to_channel_connectivity_mastodon": "msg_to_channel_connectivity_mastodon_v1",
+    "msg_to_channel_connectivity_matrix": "msg_to_channel_connectivity_matrix_v1",
+    "msg_to_channel_connectivity_matrix_note_placeholder": "msg_to_channel_connectivity_matrix_note_placeholder_v1",
+    "msg_to_channel_connectivity_messagebird_sms": "msg_to_channel_connectivity_messagebird_sms_v1",
+    "msg_to_channel_connectivity_misskey": "msg_to_channel_connectivity_misskey_v1",
+    "msg_to_channel_connectivity_msg91_sms": "msg_to_channel_connectivity_msg91_sms_v1",
+    "msg_to_channel_connectivity_msteams": "msg_to_channel_connectivity_msteams_v1",
+    "msg_to_channel_connectivity_nextcloud": "msg_to_channel_connectivity_nextcloud_v1",
+    "msg_to_channel_connectivity_nextcloudtalk": "msg_to_channel_connectivity_nextcloudtalk_v1",
+    "msg_to_channel_connectivity_notica": "msg_to_channel_connectivity_notica_v1",
+    "msg_to_channel_connectivity_notifiarr": "msg_to_channel_connectivity_notifiarr_v1",
+    "msg_to_channel_connectivity_notificationapi": "msg_to_channel_connectivity_notificationapi_v1",
+    "msg_to_channel_connectivity_ntfy": "msg_to_channel_connectivity_ntfy_v1",
+    "msg_to_channel_connectivity_octopush_sms": "msg_to_channel_connectivity_octopush_sms_v1",
+    "msg_to_channel_connectivity_onesignal": "msg_to_channel_connectivity_onesignal_v1",
+    "msg_to_channel_connectivity_opsgenie": "msg_to_channel_connectivity_opsgenie_v1",
+    "msg_to_channel_connectivity_pagerduty": "msg_to_channel_connectivity_pagerduty_v1",
+    "msg_to_channel_connectivity_pagertree": "msg_to_channel_connectivity_pagertree_v1",
+    "msg_to_channel_connectivity_parseplatform": "msg_to_channel_connectivity_parseplatform_v1",
+    "msg_to_channel_connectivity_plivo_sms": "msg_to_channel_connectivity_plivo_sms_v1",
+    "msg_to_channel_connectivity_popcornnotify": "msg_to_channel_connectivity_popcornnotify_v1",
+    "msg_to_channel_connectivity_postmark_email": "msg_to_channel_connectivity_postmark_email_v1",
+    "msg_to_channel_connectivity_prowl": "msg_to_channel_connectivity_prowl_v1",
+    "msg_to_channel_connectivity_pushbullet": "msg_to_channel_connectivity_pushbullet_v1",
+    "msg_to_channel_connectivity_pushdeer": "msg_to_channel_connectivity_pushdeer_v1",
+    "msg_to_channel_connectivity_pushed": "msg_to_channel_connectivity_pushed_v1",
+    "msg_to_channel_connectivity_pushjet": "msg_to_channel_connectivity_pushjet_v1",
+    "msg_to_channel_connectivity_pushover": "msg_to_channel_connectivity_pushover_v1",
+    "msg_to_channel_connectivity_pushplus": "msg_to_channel_connectivity_pushplus_v1",
+    "msg_to_channel_connectivity_pushsafer": "msg_to_channel_connectivity_pushsafer_v1",
+    "msg_to_channel_connectivity_pushy": "msg_to_channel_connectivity_pushy_v1",
+    "msg_to_channel_connectivity_qqpush": "msg_to_channel_connectivity_qqpush_v1",
+    "msg_to_channel_connectivity_resend_email": "msg_to_channel_connectivity_resend_email_v1",
+    "msg_to_channel_connectivity_ryver": "msg_to_channel_connectivity_ryver_v1",
+    "msg_to_channel_connectivity_sendgrid_email": "msg_to_channel_connectivity_sendgrid_email_v1",
+    "msg_to_channel_connectivity_serverchan": "msg_to_channel_connectivity_serverchan_v1",
+    "msg_to_channel_connectivity_seven_sms": "msg_to_channel_connectivity_seven_sms_v1",
+    "msg_to_channel_connectivity_signl4": "msg_to_channel_connectivity_signl4_v1",
+    "msg_to_channel_connectivity_signl4_placeholder": "msg_to_channel_connectivity_signl4_placeholder_v1",
+    "msg_to_channel_connectivity_simplepush": "msg_to_channel_connectivity_simplepush_v1",
+    "msg_to_channel_connectivity_sinch_sms": "msg_to_channel_connectivity_sinch_sms_v1",
+    "msg_to_channel_connectivity_slack": "msg_to_channel_connectivity_slack_v1",
+    "msg_to_channel_connectivity_smseagle_sms": "msg_to_channel_connectivity_smseagle_sms_v1",
+    "msg_to_channel_connectivity_smtp2go_email": "msg_to_channel_connectivity_smtp2go_email_v1",
+    "msg_to_channel_connectivity_sparkpost_email": "msg_to_channel_connectivity_sparkpost_email_v1",
+    "msg_to_channel_connectivity_spikesh": "msg_to_channel_connectivity_spikesh_v1",
+    "msg_to_channel_connectivity_spugpush": "msg_to_channel_connectivity_spugpush_v1",
+    "msg_to_channel_connectivity_streamlabs": "msg_to_channel_connectivity_streamlabs_v1",
+    "msg_to_channel_connectivity_synologychat": "msg_to_channel_connectivity_synologychat_v1",
+    "msg_to_channel_connectivity_techulus": "msg_to_channel_connectivity_techulus_v1",
+    "msg_to_channel_connectivity_telegram": "msg_to_channel_connectivity_telegram_v1",
+    "msg_to_channel_connectivity_twilio_sms": "msg_to_channel_connectivity_twilio_sms_v1",
+    "msg_to_channel_connectivity_viber": "msg_to_channel_connectivity_viber_v1",
+    "msg_to_channel_connectivity_victorops": "msg_to_channel_connectivity_victorops_v1",
+    "msg_to_channel_connectivity_vonage_sms": "msg_to_channel_connectivity_vonage_sms_v1",
+    "msg_to_channel_connectivity_wechat_work": "msg_to_channel_connectivity_wechat_work_v1",
+    "msg_to_channel_connectivity_whatsapp_msg": "msg_to_channel_connectivity_whatsapp_msg_v1",
+    "msg_to_channel_connectivity_wxpusher": "msg_to_channel_connectivity_wxpusher_v1",
+    "msg_to_channel_connectivity_xml_webhook": "msg_to_channel_connectivity_xml_webhook_v1",
+    "msg_to_channel_connectivity_zoom": "msg_to_channel_connectivity_zoom_v1",
+    "msg_to_channel_connectivity_zulip": "msg_to_channel_connectivity_zulip_v1",
     "notify_relay_code_example_py_africastalking_sms": "notify_relay_code_example_py_africastalking_sms_v1",
     "notify_relay_code_example_py_bark": "notify_relay_code_example_py_bark_v1",
     "notify_relay_code_example_py_brevo_email": "notify_relay_code_example_py_brevo_email_v1",
@@ -1367,6 +1555,270 @@
       "source_readme": "msg-to-apprise/connectivity/README.md",
       "version": 1
     },
+    "msg_to_channel_code_example_py_africastalking_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-africastalking-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_africastalking_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_bark_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-bark-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_bark",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_brevo_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-brevo-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_brevo_email",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_bulksms_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-bulksms-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_bulksms_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_bulkvs_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-bulkvs-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_bulkvs_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_burstsms_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-burstsms-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_burstsms_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_chanify_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-chanify-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_chanify",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_chime_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-chime-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_chime",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_clicksend_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-clicksend-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_clicksend_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_d7networks_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-d7networks-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_d7networks_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_dapnet_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-dapnet-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_dapnet",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_dingtalk_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-dingtalk-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_dingtalk",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
     "msg_to_channel_code_example_py_discord_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
@@ -1386,6 +1838,1612 @@
         "native_body": "{}"
       },
       "preset_name": "msg_to_channel_code_example_py_discord",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_dot_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-dot-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_dot",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_elks_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-elks-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_elks_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_exotel_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-exotel-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_exotel_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_fcm_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-fcm-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_fcm",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_feishu_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-feishu-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_feishu_msg",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_flock_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-flock-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_flock",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_form_webhook_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-form-webhook-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_form_webhook",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_freemobile_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-freemobile-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_freemobile",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_gotify_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-gotify-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_gotify",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_groupme_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-groupme-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_groupme_msg",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_homeassistant_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-homeassistant-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_homeassistant",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_httpsms_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-httpsms-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_httpsms_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_humhub_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-humhub-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_humhub",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_ifttt_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-ifttt-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_ifttt",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_jira_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-jira-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_jira",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_json_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-json-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_json",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_kodi_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-kodi-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_kodi",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_kumulos_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-kumulos-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_kumulos",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_lametric_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-lametric-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_lametric",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_line_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-line-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_line_msg",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_mailgun_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-mailgun-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_mailgun_email",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_mastodon_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-mastodon-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_mastodon",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_matrix_note_placeholder_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-matrix-note-placeholder-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_matrix_note_placeholder",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_matrix_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-matrix-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_matrix",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_messagebird_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-messagebird-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_messagebird_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_misskey_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-misskey-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_misskey",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_msg91_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-msg91-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_msg91_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_msteams_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-msteams-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_msteams",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_nextcloud_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-nextcloud-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_nextcloud",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_nextcloudtalk_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-nextcloudtalk-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_nextcloudtalk",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_notica_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-notica-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_notica",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_notifiarr_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-notifiarr-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_notifiarr",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_notificationapi_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-notificationapi-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_notificationapi",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_ntfy_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-ntfy-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_ntfy",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_octopush_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-octopush-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_octopush_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_onesignal_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-onesignal-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_onesignal",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_opsgenie_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-opsgenie-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_opsgenie",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_pagerduty_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-pagerduty-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_pagerduty",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_pagertree_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-pagertree-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_pagertree",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_parseplatform_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-parseplatform-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_parseplatform",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_plivo_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-plivo-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_plivo_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_popcornnotify_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-popcornnotify-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_popcornnotify",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_postmark_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-postmark-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_postmark_email",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_prowl_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-prowl-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_prowl",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_pushbullet_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-pushbullet-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_pushbullet",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_pushdeer_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-pushdeer-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_pushdeer",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_pushed_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-pushed-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_pushed",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_pushjet_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-pushjet-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_pushjet",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_pushover_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-pushover-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_pushover",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_pushplus_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-pushplus-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_pushplus",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_pushsafer_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-pushsafer-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_pushsafer",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_pushy_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-pushy-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_pushy",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_qqpush_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-qqpush-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_qqpush",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_resend_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-resend-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_resend_email",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_ryver_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-ryver-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_ryver",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_sendgrid_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-sendgrid-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_sendgrid_email",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_serverchan_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-serverchan-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_serverchan",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_seven_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-seven-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_seven_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_signl4_placeholder_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-signl4-placeholder-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_signl4_placeholder",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_signl4_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-signl4-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_signl4",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_simplepush_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-simplepush-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_simplepush",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_sinch_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-sinch-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_sinch_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_slack_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-slack-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_slack",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_smseagle_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-smseagle-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_smseagle_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_smtp2go_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-smtp2go-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_smtp2go_email",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_sparkpost_email_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-sparkpost-email-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_sparkpost_email",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_spikesh_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-spikesh-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_spikesh",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_spugpush_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-spugpush-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_spugpush",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_streamlabs_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-streamlabs-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_streamlabs",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_synologychat_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-synologychat-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_synologychat",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_techulus_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-techulus-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_techulus",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_telegram_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-telegram-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_telegram",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_twilio_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-twilio-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_twilio_sms",
       "source_readme": "msg-to-channel/code-example-py/README.md",
       "version": 1
     },
@@ -1411,6 +3469,432 @@
       "source_readme": "msg-to-channel/code-example-py/README.md",
       "version": 1
     },
+    "msg_to_channel_code_example_py_viber_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-viber-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_viber",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_victorops_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-victorops-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_victorops",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_vonage_sms_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-vonage-sms-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_vonage_sms",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_wechat_work_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-wechat-work-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_wechat_work",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_whatsapp_msg_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-whatsapp-msg-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_whatsapp_msg",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_wxpusher_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-wxpusher-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_wxpusher",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_xml_webhook_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-xml-webhook-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_xml_webhook",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_zoom_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-zoom-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_zoom",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_py_zulip_v1": {
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-zulip-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent",
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_zulip",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_africastalking_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-africastalking-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_africastalking_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_bark_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-bark-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_bark",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_brevo_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-brevo-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_brevo_email",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_bulksms_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-bulksms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_bulksms_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_bulkvs_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-bulkvs-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_bulkvs_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_burstsms_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-burstsms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_burstsms_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_chanify_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-chanify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_chanify",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_chime_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-chime-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_chime",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_clicksend_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-clicksend-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_clicksend_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_d7networks_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-d7networks-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_d7networks_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_dapnet_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-dapnet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_dapnet",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_dingtalk_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-dingtalk-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_dingtalk",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
     "msg_to_channel_connectivity_discord_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
@@ -1430,6 +3914,1393 @@
       "source_readme": "msg-to-channel/connectivity/README.md",
       "version": 1
     },
+    "msg_to_channel_connectivity_dot_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-dot-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_dot",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_elks_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-elks-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_elks_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_exotel_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-exotel-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_exotel_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_fcm_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-fcm-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_fcm",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_feishu_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-feishu-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_feishu_msg",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_flock_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-flock-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_flock",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_form_webhook_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-form-webhook-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_form_webhook",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_freemobile_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-freemobile-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_freemobile",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_gotify_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-gotify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_gotify",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_groupme_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-groupme-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_groupme_msg",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_homeassistant_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-homeassistant-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_homeassistant",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_httpsms_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-httpsms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_httpsms_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_humhub_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-humhub-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_humhub",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_ifttt_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-ifttt-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_ifttt",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_jira_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-jira-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_jira",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_json_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-json-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_json",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_kodi_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-kodi-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_kodi",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_kumulos_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-kumulos-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_kumulos",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_lametric_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-lametric-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_lametric",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_line_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-line-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_line_msg",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_mailgun_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-mailgun-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_mailgun_email",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_mastodon_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-mastodon-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_mastodon",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_matrix_note_placeholder_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-matrix-note-placeholder-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_matrix_note_placeholder",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_matrix_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-matrix-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_matrix",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_messagebird_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-messagebird-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_messagebird_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_misskey_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-misskey-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_misskey",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_msg91_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-msg91-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_msg91_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_msteams_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-msteams-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_msteams",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_nextcloud_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-nextcloud-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_nextcloud",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_nextcloudtalk_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-nextcloudtalk-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_nextcloudtalk",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_notica_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-notica-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_notica",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_notifiarr_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-notifiarr-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_notifiarr",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_notificationapi_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-notificationapi-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_notificationapi",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_ntfy_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-ntfy-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_ntfy",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_octopush_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-octopush-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_octopush_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_onesignal_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-onesignal-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_onesignal",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_opsgenie_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-opsgenie-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_opsgenie",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_pagerduty_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-pagerduty-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_pagerduty",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_pagertree_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-pagertree-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_pagertree",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_parseplatform_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-parseplatform-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_parseplatform",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_plivo_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-plivo-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_plivo_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_popcornnotify_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-popcornnotify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_popcornnotify",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_postmark_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-postmark-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_postmark_email",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_prowl_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-prowl-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_prowl",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_pushbullet_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-pushbullet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_pushbullet",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_pushdeer_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-pushdeer-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_pushdeer",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_pushed_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-pushed-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_pushed",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_pushjet_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-pushjet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_pushjet",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_pushover_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-pushover-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_pushover",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_pushplus_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-pushplus-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_pushplus",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_pushsafer_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-pushsafer-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_pushsafer",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_pushy_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-pushy-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_pushy",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_qqpush_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-qqpush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_qqpush",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_resend_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-resend-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_resend_email",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_ryver_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-ryver-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_ryver",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_sendgrid_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-sendgrid-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_sendgrid_email",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_serverchan_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-serverchan-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_serverchan",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_seven_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-seven-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_seven_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_signl4_placeholder_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-signl4-placeholder-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_signl4_placeholder",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_signl4_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-signl4-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_signl4",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_simplepush_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-simplepush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_simplepush",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_sinch_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-sinch-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_sinch_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_slack_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-slack-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_slack",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_smseagle_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-smseagle-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_smseagle_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_smtp2go_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-smtp2go-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_smtp2go_email",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_sparkpost_email_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-sparkpost-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_sparkpost_email",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_spikesh_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-spikesh-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_spikesh",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_spugpush_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-spugpush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_spugpush",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_streamlabs_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-streamlabs-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_streamlabs",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_synologychat_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-synologychat-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_synologychat",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_techulus_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-techulus-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_techulus",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_telegram_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-telegram-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_telegram",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_twilio_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-twilio-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_twilio_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
     "msg_to_channel_connectivity_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
@@ -1446,6 +5317,177 @@
         "native_body": "{}"
       },
       "preset_name": "msg_to_channel_connectivity",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_viber_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-viber-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_viber",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_victorops_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-victorops-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_victorops",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_vonage_sms_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-vonage-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_vonage_sms",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_wechat_work_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-wechat-work-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_wechat_work",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_whatsapp_msg_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-whatsapp-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_whatsapp_msg",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_wxpusher_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-wxpusher-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_wxpusher",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_xml_webhook_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-xml-webhook-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_xml_webhook",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_zoom_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-zoom-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_zoom",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_zulip_v1": {
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-zulip-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_zulip",
       "source_readme": "msg-to-channel/connectivity/README.md",
       "version": 1
     },
