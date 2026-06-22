@@ -98,7 +98,6 @@
     "msg_to_channel_code_example_py_mailgun_email": "msg_to_channel_code_example_py_mailgun_email_v1",
     "msg_to_channel_code_example_py_mastodon": "msg_to_channel_code_example_py_mastodon_v1",
     "msg_to_channel_code_example_py_matrix": "msg_to_channel_code_example_py_matrix_v1",
-    "msg_to_channel_code_example_py_matrix_note_placeholder": "msg_to_channel_code_example_py_matrix_note_placeholder_v1",
     "msg_to_channel_code_example_py_messagebird_sms": "msg_to_channel_code_example_py_messagebird_sms_v1",
     "msg_to_channel_code_example_py_misskey": "msg_to_channel_code_example_py_misskey_v1",
     "msg_to_channel_code_example_py_msg91_sms": "msg_to_channel_code_example_py_msg91_sms_v1",
@@ -134,7 +133,6 @@
     "msg_to_channel_code_example_py_serverchan": "msg_to_channel_code_example_py_serverchan_v1",
     "msg_to_channel_code_example_py_seven_sms": "msg_to_channel_code_example_py_seven_sms_v1",
     "msg_to_channel_code_example_py_signl4": "msg_to_channel_code_example_py_signl4_v1",
-    "msg_to_channel_code_example_py_signl4_placeholder": "msg_to_channel_code_example_py_signl4_placeholder_v1",
     "msg_to_channel_code_example_py_simplepush": "msg_to_channel_code_example_py_simplepush_v1",
     "msg_to_channel_code_example_py_sinch_sms": "msg_to_channel_code_example_py_sinch_sms_v1",
     "msg_to_channel_code_example_py_slack": "msg_to_channel_code_example_py_slack_v1",
@@ -194,7 +192,6 @@
     "msg_to_channel_connectivity_mailgun_email": "msg_to_channel_connectivity_mailgun_email_v1",
     "msg_to_channel_connectivity_mastodon": "msg_to_channel_connectivity_mastodon_v1",
     "msg_to_channel_connectivity_matrix": "msg_to_channel_connectivity_matrix_v1",
-    "msg_to_channel_connectivity_matrix_note_placeholder": "msg_to_channel_connectivity_matrix_note_placeholder_v1",
     "msg_to_channel_connectivity_messagebird_sms": "msg_to_channel_connectivity_messagebird_sms_v1",
     "msg_to_channel_connectivity_misskey": "msg_to_channel_connectivity_misskey_v1",
     "msg_to_channel_connectivity_msg91_sms": "msg_to_channel_connectivity_msg91_sms_v1",
@@ -230,7 +227,6 @@
     "msg_to_channel_connectivity_serverchan": "msg_to_channel_connectivity_serverchan_v1",
     "msg_to_channel_connectivity_seven_sms": "msg_to_channel_connectivity_seven_sms_v1",
     "msg_to_channel_connectivity_signl4": "msg_to_channel_connectivity_signl4_v1",
-    "msg_to_channel_connectivity_signl4_placeholder": "msg_to_channel_connectivity_signl4_placeholder_v1",
     "msg_to_channel_connectivity_simplepush": "msg_to_channel_connectivity_simplepush_v1",
     "msg_to_channel_connectivity_sinch_sms": "msg_to_channel_connectivity_sinch_sms_v1",
     "msg_to_channel_connectivity_slack": "msg_to_channel_connectivity_slack_v1",
@@ -2325,28 +2321,6 @@
       "source_readme": "msg-to-channel/code-example-py/README.md",
       "version": 1
     },
-    "msg_to_channel_code_example_py_matrix_note_placeholder_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for gateway-transformer notification services",
-      "example_file": "msg-to-channel/code-example-py/code-example-matrix-note-placeholder-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "channel": "gateway",
-        "local_url": "",
-        "native_body": "{}"
-      },
-      "preset_name": "msg_to_channel_code_example_py_matrix_note_placeholder",
-      "source_readme": "msg-to-channel/code-example-py/README.md",
-      "version": 1
-    },
     "msg_to_channel_code_example_py_matrix_v1": {
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
@@ -3114,28 +3088,6 @@
         "native_body": "{}"
       },
       "preset_name": "msg_to_channel_code_example_py_seven_sms",
-      "source_readme": "msg-to-channel/code-example-py/README.md",
-      "version": 1
-    },
-    "msg_to_channel_code_example_py_signl4_placeholder_v1": {
-      "category": "code_example",
-      "description": "Python (httpx) code example for gateway-transformer notification services",
-      "example_file": "msg-to-channel/code-example-py/code-example-signl4-placeholder-v1.py.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "sent",
-        "requirements": [
-          "httpx"
-        ]
-      },
-      "mime_type": "python",
-      "parameters": {
-        "channel": "gateway",
-        "local_url": "",
-        "native_body": "{}"
-      },
-      "preset_name": "msg_to_channel_code_example_py_signl4_placeholder",
       "source_readme": "msg-to-channel/code-example-py/README.md",
       "version": 1
     },
@@ -4332,25 +4284,6 @@
       "source_readme": "msg-to-channel/connectivity/README.md",
       "version": 1
     },
-    "msg_to_channel_connectivity_matrix_note_placeholder_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for gateway-transformer notification services",
-      "example_file": "msg-to-channel/connectivity/connectivity-matrix-note-placeholder-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "channel": "gateway",
-        "local_url": "",
-        "native_body": "{}"
-      },
-      "preset_name": "msg_to_channel_connectivity_matrix_note_placeholder",
-      "source_readme": "msg-to-channel/connectivity/README.md",
-      "version": 1
-    },
     "msg_to_channel_connectivity_matrix_v1": {
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
@@ -5013,25 +4946,6 @@
         "native_body": "{}"
       },
       "preset_name": "msg_to_channel_connectivity_seven_sms",
-      "source_readme": "msg-to-channel/connectivity/README.md",
-      "version": 1
-    },
-    "msg_to_channel_connectivity_signl4_placeholder_v1": {
-      "category": "connectivity_test",
-      "description": "Connectivity test for gateway-transformer notification services",
-      "example_file": "msg-to-channel/connectivity/connectivity-signl4-placeholder-v1.sh.j2",
-      "is_active": true,
-      "is_public": true,
-      "meta": {
-        "output_contains": "connectivity ok"
-      },
-      "mime_type": "bash",
-      "parameters": {
-        "channel": "gateway",
-        "local_url": "",
-        "native_body": "{}"
-      },
-      "preset_name": "msg_to_channel_connectivity_signl4_placeholder",
       "source_readme": "msg-to-channel/connectivity/README.md",
       "version": 1
     },
