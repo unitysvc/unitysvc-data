@@ -104,6 +104,51 @@ def test_msg_to_channel_presets_are_registered():
     assert set(code["parameters"]) == {"channel", "native_body", "local_url"}
 
 
+def test_msg_to_channel_discord_variant_presets_are_registered():
+    """The channel-specific discord variants register alongside the generic
+    base presets, reachable via their bare-name aliases."""
+    versioned, aliases = list_presets()
+    for bare in (
+        "msg_to_channel_connectivity_discord",
+        "msg_to_channel_code_example_py_discord",
+    ):
+        assert bare in aliases, f"alias {bare!r} missing"
+        target = aliases[bare]
+        assert target in versioned, f"alias target {target!r} not a versioned preset"
+        assert target == f"{bare}_v1"
+        assert target in PRESETS, f"versioned preset {target!r} missing from PRESETS"
+
+    # Variant inherits the family metadata (mime/category) from the shared README.
+    conn = MANIFEST["presets"]["msg_to_channel_connectivity_discord_v1"]
+    assert conn["mime_type"] == "bash"
+    assert conn["category"] == "connectivity_test"
+    code = MANIFEST["presets"]["msg_to_channel_code_example_py_discord_v1"]
+    assert code["mime_type"] == "python"
+    assert code["category"] == "code_example"
+
+
+def test_msg_to_channel_discord_variant_bakes_native_body_in():
+    """The discord variants bake the channel-native body in — they must NOT
+    reference the ``native_body`` parameter (only ``channel`` + ``local_url``).
+    The baked-in discord embed appears verbatim."""
+    for name in (
+        "msg_to_channel_connectivity_discord",
+        "msg_to_channel_code_example_py_discord",
+    ):
+        body = file_preset(name)
+        assert "${__native_body__}" not in body, f"{name}: must bake native body in"
+        # local_url + channel placeholders are substituted on render.
+        assert "${__local_url__}" not in body
+        assert "${__channel__}" not in body
+        # Gateway mode posts the canonical envelope to @<channel>.
+        assert "{{ service_base_url }}" in body
+        assert "@gateway" in body
+    # Connectivity variant: baked-in discord embed ping.
+    conn = file_preset("msg_to_channel_connectivity_discord")
+    assert '{"embeds":[{"title":"connectivity check","description":"ping"}]}' in conn
+    assert '{"title":"connectivity check","body":"ping","type":"info","format":"text"}' in conn
+
+
 def test_msg_to_channel_connectivity_renders_gateway_and_local_modes():
     """Default render substitutes declared params and keeps the
     canonical envelope + ``@<channel>`` selector for gateway mode."""

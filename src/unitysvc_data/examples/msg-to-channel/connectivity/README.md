@@ -38,13 +38,29 @@ exercising the full transformer path.
 - `channel` — the transformer channel selector appended to `service_base_url` as
   `@<channel>` in gateway mode (default `gateway`).
 - `native_body` — the channel-native request body POSTed to `local_url` in local
-  mode (e.g. a Discord webhook payload).
+  mode (e.g. a Discord webhook payload). Used by the generic base preset; the
+  channel-specific variants bake the native body in instead.
 - `local_url` — the mock upstream URL POSTed to in local mode.
+
+## Variants
+
+The generic base preset takes the channel-native local-mode body as the
+`native_body` parameter — awkward, because the native body differs per upstream
+channel. Channel-specific variants instead **bake the native body in**, so the
+caller only supplies the `channel` selector and the `local_url` mock upstream
+(no `native_body`). Each variant becomes its own preset
+`msg_to_channel_connectivity_<channel>`.
+
+- `discord` (`msg_to_channel_connectivity_discord`) — local mode POSTs a baked-in
+  Discord embed body (`{"embeds":[{"title":"connectivity check","description":"ping"}]}`)
+  to `local_url`. Gateway mode is identical to the base: POST the canonical
+  envelope to `service_base_url@<channel>` with Bearer auth.
 
 ## Versions
 
 ### v1 — initial release
 
-- Local: POST `native_body` to `local_url`; assert HTTP 2xx.
+- Local: POST `native_body` (base) or the baked-in channel body (variants) to
+  `local_url`; assert HTTP 2xx.
 - Gateway: POST the canonical envelope to `service_base_url@<channel>` with
   Bearer auth; assert HTTP 2xx.
