@@ -1,5 +1,5 @@
 +++
-preset_name = "msg_to_gateway_connectivity"
+preset_name = "msg_to_channel_connectivity"
 category = "connectivity_test"
 mime_type = "bash"
 file = "connectivity.sh.j2"
@@ -10,7 +10,7 @@ meta = { output_contains = "connectivity ok" }
 parameters = { channel = "gateway", native_body = "{}", local_url = "" }
 +++
 
-# msg-to-gateway / connectivity
+# msg-to-channel / connectivity
 
 Connectivity test for gateway *transformer* channels — channels that transform a
 canonical message envelope `{title, body, type, format}` into the upstream

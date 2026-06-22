@@ -78,11 +78,11 @@ def test_presets_contains_both_versioned_and_aliases():
         assert alias in PRESETS, f"alias {alias!r} missing from PRESETS"
 
 
-def test_msg_to_gateway_presets_are_registered():
+def test_msg_to_channel_presets_are_registered():
     """The gateway-transformer presets are present as versioned names
     and reachable via their bare-name aliases."""
     versioned, aliases = list_presets()
-    for bare in ("msg_to_gateway_connectivity", "msg_to_gateway_code_example_py"):
+    for bare in ("msg_to_channel_connectivity", "msg_to_channel_code_example_py"):
         assert bare in aliases, f"alias {bare!r} missing"
         target = aliases[bare]
         assert target in versioned, f"alias target {target!r} not a versioned preset"
@@ -90,7 +90,7 @@ def test_msg_to_gateway_presets_are_registered():
         assert target in PRESETS, f"versioned preset {target!r} missing from PRESETS"
 
     # Connectivity preset: bash, connectivity_test, declares the three params.
-    conn = MANIFEST["presets"]["msg_to_gateway_connectivity_v1"]
+    conn = MANIFEST["presets"]["msg_to_channel_connectivity_v1"]
     assert conn["mime_type"] == "bash"
     assert conn["category"] == "connectivity_test"
     assert set(conn["parameters"]) == {"channel", "native_body", "local_url"}
@@ -98,16 +98,16 @@ def test_msg_to_gateway_presets_are_registered():
     # Code-example preset: python, code_example, declares the three params
     # (channel selector + local-mode native_body/local_url, mirroring the
     # connectivity preset so its local probe POSTs the channel-native body).
-    code = MANIFEST["presets"]["msg_to_gateway_code_example_py_v1"]
+    code = MANIFEST["presets"]["msg_to_channel_code_example_py_v1"]
     assert code["mime_type"] == "python"
     assert code["category"] == "code_example"
     assert set(code["parameters"]) == {"channel", "native_body", "local_url"}
 
 
-def test_msg_to_gateway_connectivity_renders_gateway_and_local_modes():
+def test_msg_to_channel_connectivity_renders_gateway_and_local_modes():
     """Default render substitutes declared params and keeps the
     canonical envelope + ``@<channel>`` selector for gateway mode."""
-    body = file_preset("msg_to_gateway_connectivity")
+    body = file_preset("msg_to_channel_connectivity")
     # No declared placeholder should survive substitution.
     for param in ("channel", "native_body", "local_url"):
         assert "${__" + param + "__}" not in body

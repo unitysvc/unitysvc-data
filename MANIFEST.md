@@ -69,8 +69,8 @@ Schema version: `1`. Preset families: **358**. Concrete versions: **359**. Alias
 | `msg_to_apprise_code_example_py_v1` | `msg_to_apprise_code_example_py` | v1 | `code_example` | `python` | yes | [`msg-to-apprise/code-example-py/code-example-v1.py.j2`](src/unitysvc_data/examples/msg-to-apprise/code-example-py/code-example-v1.py.j2) | Python (httpx) code example for SMTP→notification transformer services |
 | `msg_to_apprise_code_example_sh_v1` | `msg_to_apprise_code_example_sh` | v1 | `code_example` | `bash` | yes | [`msg-to-apprise/code-example-sh/code-example-v1.sh.j2`](src/unitysvc_data/examples/msg-to-apprise/code-example-sh/code-example-v1.sh.j2) | cURL code example for SMTP→notification transformer services |
 | `msg_to_apprise_connectivity_v1` | `msg_to_apprise_connectivity` | v1 | `connectivity_test` | `bash` | yes | [`msg-to-apprise/connectivity/connectivity-v1.sh.j2`](src/unitysvc_data/examples/msg-to-apprise/connectivity/connectivity-v1.sh.j2) | Connectivity test for SMTP→notification transformer services |
-| `msg_to_gateway_code_example_py_v1` | `msg_to_gateway_code_example_py` | v1 | `code_example` | `python` | yes | [`msg-to-gateway/code-example-py/code-example-v1.py.j2`](src/unitysvc_data/examples/msg-to-gateway/code-example-py/code-example-v1.py.j2) | Python (httpx) code example for gateway-transformer notification services |
-| `msg_to_gateway_connectivity_v1` | `msg_to_gateway_connectivity` | v1 | `connectivity_test` | `bash` | yes | [`msg-to-gateway/connectivity/connectivity-v1.sh.j2`](src/unitysvc_data/examples/msg-to-gateway/connectivity/connectivity-v1.sh.j2) | Connectivity test for gateway-transformer notification services |
+| `msg_to_channel_code_example_py_v1` | `msg_to_channel_code_example_py` | v1 | `code_example` | `python` | yes | [`msg-to-channel/code-example-py/code-example-v1.py.j2`](src/unitysvc_data/examples/msg-to-channel/code-example-py/code-example-v1.py.j2) | Python (httpx) code example for gateway-transformer notification services |
+| `msg_to_channel_connectivity_v1` | `msg_to_channel_connectivity` | v1 | `connectivity_test` | `bash` | yes | [`msg-to-channel/connectivity/connectivity-v1.sh.j2`](src/unitysvc_data/examples/msg-to-channel/connectivity/connectivity-v1.sh.j2) | Connectivity test for gateway-transformer notification services |
 | `notify_relay_code_example_py_africastalking_sms_v1` | `notify_relay_code_example_py_africastalking_sms` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-africastalking-sms-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-africastalking-sms-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
 | `notify_relay_code_example_py_bark_v1` | `notify_relay_code_example_py_bark` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-bark-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-bark-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
 | `notify_relay_code_example_py_brevo_email_v1` | `notify_relay_code_example_py_brevo_email` | v1 | `code_example` | `python` | yes | [`notify-relay/code-example-py/code-example-brevo-email-v1.py.j2`](src/unitysvc_data/examples/notify-relay/code-example-py/code-example-brevo-email-v1.py.j2) | Python (httpx) code example for pass-through HTTP notification services |
@@ -433,8 +433,8 @@ Schema version: `1`. Preset families: **358**. Concrete versions: **359**. Alias
 | `msg_to_apprise_code_example_py` | `msg_to_apprise_code_example_py_v1` |
 | `msg_to_apprise_code_example_sh` | `msg_to_apprise_code_example_sh_v1` |
 | `msg_to_apprise_connectivity` | `msg_to_apprise_connectivity_v1` |
-| `msg_to_gateway_code_example_py` | `msg_to_gateway_code_example_py_v1` |
-| `msg_to_gateway_connectivity` | `msg_to_gateway_connectivity_v1` |
+| `msg_to_channel_code_example_py` | `msg_to_channel_code_example_py_v1` |
+| `msg_to_channel_connectivity` | `msg_to_channel_connectivity_v1` |
 | `notify_relay_code_example_py_africastalking_sms` | `notify_relay_code_example_py_africastalking_sms_v1` |
 | `notify_relay_code_example_py_bark` | `notify_relay_code_example_py_bark_v1` |
 | `notify_relay_code_example_py_brevo_email` | `notify_relay_code_example_py_brevo_email_v1` |

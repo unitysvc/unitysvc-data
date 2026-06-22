@@ -1,5 +1,5 @@
 +++
-preset_name = "msg_to_gateway_code_example_py"
+preset_name = "msg_to_channel_code_example_py"
 category = "code_example"
 mime_type = "python"
 file = "code-example.py.j2"
@@ -10,7 +10,7 @@ meta = { output_contains = "sent", requirements = ["httpx"] }
 parameters = { channel = "gateway", native_body = "{}", local_url = "" }
 +++
 
-# msg-to-gateway / code-example-py
+# msg-to-channel / code-example-py
 
 Python (httpx) code example for gateway *transformer* channels — channels that
 transform a canonical message envelope `{title, body, type, format}` into the
