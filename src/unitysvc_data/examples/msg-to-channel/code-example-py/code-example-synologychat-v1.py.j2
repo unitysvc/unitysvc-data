@@ -16,9 +16,9 @@ BASE_URL = "{{ service_base_url }}"
 {% if local_testing %}
 response = httpx.post(
     "${__local_url__}",
-    headers={"Content-Type": "application/json"},
-    json={
-        "text": "Hello from UnitySVC",
+    headers={"Content-Type": "application/x-www-form-urlencoded"},
+    data={
+        "payload": '{"text":"Hello from UnitySVC"}',
     },
 )
 if not (200 <= response.status_code < 300):

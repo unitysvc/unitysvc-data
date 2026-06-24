@@ -16,6 +16,7 @@ BASE_URL = "{{ service_base_url }}"
 {% if local_testing %}
 response = httpx.post(
     "${__local_url__}",
+    headers={"Content-Type": "application/x-www-form-urlencoded", "apiKey": "test_key"},
     data={
         "username": "test_user",
         "to": "+15551234567",
