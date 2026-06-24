@@ -11,6 +11,12 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.24] — maintenance release
+
+### Changed
+
+- Bump package version for the next `unitysvc-data` release.
+
 ## [0.1.10] — LLM connectivity presets + SMTP code-example preset
 
 ### Added
