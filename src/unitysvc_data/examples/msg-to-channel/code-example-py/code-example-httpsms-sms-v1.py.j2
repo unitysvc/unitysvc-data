@@ -16,7 +16,7 @@ BASE_URL = "{{ service_base_url }}"
 {% if local_testing %}
 response = httpx.post(
     "${__local_url__}",
-    headers={"Content-Type": "application/json"},
+    headers={"Content-Type": "application/json", "X-API-Key": "test_key"},
     json={
         "from": "+15551234567",
         "to": "+15551234567",

@@ -18,6 +18,7 @@ response = httpx.post(
     "${__local_url__}",
     headers={"Content-Type": "application/json"},
     json={
+        "api_key": "test_key",
         "sender": "test@example.com",
         "to": ["test@example.com"],
         "subject": "Hello from UnitySVC",

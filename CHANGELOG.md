@@ -11,6 +11,15 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.25] — msg-to-channel upstream test fixes
+
+### Fixed
+
+- Add mock-compatible auth headers and native payload fields to msg-to-channel
+  upstream-only local-testing examples.
+- Align PagerTree, Prowl, SimplePush, SMTP2GO, Synology Chat, and Matrix
+  upstream-only tests with the mock server contracts.
+
 ## [0.1.24] — maintenance release
 
 ### Changed
