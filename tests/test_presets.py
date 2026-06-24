@@ -78,6 +78,137 @@ def test_presets_contains_both_versioned_and_aliases():
         assert alias in PRESETS, f"alias {alias!r} missing from PRESETS"
 
 
+def test_msg_to_channel_presets_are_registered():
+    """The gateway-transformer presets are present as versioned names
+    and reachable via their bare-name aliases."""
+    versioned, aliases = list_presets()
+    for bare in ("msg_to_channel_connectivity", "msg_to_channel_code_example_py"):
+        assert bare in aliases, f"alias {bare!r} missing"
+        target = aliases[bare]
+        assert target in versioned, f"alias target {target!r} not a versioned preset"
+        assert target == f"{bare}_v1"
+        assert target in PRESETS, f"versioned preset {target!r} missing from PRESETS"
+
+    # Connectivity preset: bash, connectivity_test, declares the three params.
+    conn = MANIFEST["presets"]["msg_to_channel_connectivity_v1"]
+    assert conn["mime_type"] == "bash"
+    assert conn["category"] == "connectivity_test"
+    assert set(conn["parameters"]) == {"channel", "native_body", "local_url"}
+
+    # Code-example preset: python, code_example, declares the three params
+    # (channel selector + local-mode native_body/local_url, mirroring the
+    # connectivity preset so its local probe POSTs the channel-native body).
+    code = MANIFEST["presets"]["msg_to_channel_code_example_py_v1"]
+    assert code["mime_type"] == "python"
+    assert code["category"] == "code_example"
+    assert set(code["parameters"]) == {"channel", "native_body", "local_url"}
+
+
+def test_msg_to_channel_discord_variant_presets_are_registered():
+    """The channel-specific discord variants register alongside the generic
+    base presets, reachable via their bare-name aliases."""
+    versioned, aliases = list_presets()
+    for bare in (
+        "msg_to_channel_connectivity_discord",
+        "msg_to_channel_code_example_py_discord",
+    ):
+        assert bare in aliases, f"alias {bare!r} missing"
+        target = aliases[bare]
+        assert target in versioned, f"alias target {target!r} not a versioned preset"
+        assert target == f"{bare}_v1"
+        assert target in PRESETS, f"versioned preset {target!r} missing from PRESETS"
+
+    # Variant inherits the family metadata (mime/category) from the shared README.
+    conn = MANIFEST["presets"]["msg_to_channel_connectivity_discord_v1"]
+    assert conn["mime_type"] == "bash"
+    assert conn["category"] == "connectivity_test"
+    code = MANIFEST["presets"]["msg_to_channel_code_example_py_discord_v1"]
+    assert code["mime_type"] == "python"
+    assert code["category"] == "code_example"
+
+
+def test_msg_to_channel_per_channel_variant_presets_are_registered():
+    """The bulk per-channel transformer variants (one variant per channel,
+    each baking in that channel's native body) register alongside the generic
+    base and the discord variant, reachable via their bare-name aliases."""
+    versioned, aliases = list_presets()
+    # A representative spread across the channel families (chat, SMS, email,
+    # push, ops/webhook). Hyphens in the channel slug become underscores.
+    sample_channels = (
+        "slack",
+        "feishu_msg",
+        "json",
+        "telegram",
+        "twilio_sms",
+        "vonage_sms",
+        "sendgrid_email",
+        "brevo_email",
+        "pushover",
+        "opsgenie",
+        "pagerduty",
+        "xml_webhook",
+    )
+    for ch in sample_channels:
+        for family in ("msg_to_channel_connectivity", "msg_to_channel_code_example_py"):
+            bare = f"{family}_{ch}"
+            assert bare in aliases, f"alias {bare!r} missing"
+            target = aliases[bare]
+            assert target == f"{bare}_v1"
+            assert target in versioned, f"alias target {target!r} not a versioned preset"
+            assert target in PRESETS, f"versioned preset {target!r} missing from PRESETS"
+
+    # The whole family is sizeable: well over a dozen connectivity variants
+    # beyond the generic base + discord were registered in this batch.
+    connectivity_variants = {
+        name
+        for name in versioned
+        if name.startswith("msg_to_channel_connectivity_")
+        and name.endswith("_v1")
+        and name not in ("msg_to_channel_connectivity_v1", "msg_to_channel_connectivity_discord_v1")
+    }
+    assert len(connectivity_variants) >= 90, (
+        f"expected the bulk per-channel connectivity variants, got {len(connectivity_variants)}"
+    )
+
+
+def test_msg_to_channel_discord_variant_bakes_native_body_in():
+    """The discord variants bake the channel-native body in — they must NOT
+    reference the ``native_body`` parameter (only ``channel`` + ``local_url``).
+    The baked-in discord embed appears verbatim."""
+    for name in (
+        "msg_to_channel_connectivity_discord",
+        "msg_to_channel_code_example_py_discord",
+    ):
+        body = file_preset(name)
+        assert "${__native_body__}" not in body, f"{name}: must bake native body in"
+        # local_url + channel placeholders are substituted on render.
+        assert "${__local_url__}" not in body
+        assert "${__channel__}" not in body
+        # Gateway mode posts the canonical envelope to @<channel>.
+        assert "{{ service_base_url }}" in body
+        assert "@gateway" in body
+    # Connectivity variant: baked-in discord embed ping.
+    conn = file_preset("msg_to_channel_connectivity_discord")
+    assert '{"embeds":[{"title":"connectivity check","description":"ping"}]}' in conn
+    assert '{"title":"connectivity check","body":"ping","type":"info","format":"text"}' in conn
+
+
+def test_msg_to_channel_connectivity_renders_gateway_and_local_modes():
+    """Default render substitutes declared params and keeps the
+    canonical envelope + ``@<channel>`` selector for gateway mode."""
+    body = file_preset("msg_to_channel_connectivity")
+    # No declared placeholder should survive substitution.
+    for param in ("channel", "native_body", "local_url"):
+        assert "${__" + param + "__}" not in body
+    # Gateway mode targets service_base_url@<channel>, where <channel> is the
+    # substituted ``channel`` preset param (default "gateway") — NOT a Jinja
+    # variable. ``{{ service_base_url }}`` stays Jinja for the SDK to render.
+    assert "{{ service_base_url }}@gateway" in body
+    assert '{"title":"connectivity check","body":"ping","type":"info","format":"text"}' in body
+    # Status handling mirrors the apprise connectivity preset.
+    assert 'echo "connectivity ok (HTTP $status)"; exit 0' in body
+
+
 def test_list_presets_returns_versioned_and_aliases():
     versioned, aliases = list_presets()
     assert versioned == sorted(MANIFEST["presets"])
