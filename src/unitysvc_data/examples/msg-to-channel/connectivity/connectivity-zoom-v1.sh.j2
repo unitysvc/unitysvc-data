@@ -15,6 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
+    -H "Authorization: test_token" \
     -d '{"content":{"head":{"text":"t"},"body":[{"type":"message","text":"hi"}]}}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)

@@ -15,6 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
+    -H "apiKey: test_key" \
     --data-urlencode 'username=test_user' \
     --data-urlencode 'to=+15551234567' \
     --data-urlencode 'from=sender' \

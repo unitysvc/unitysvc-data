@@ -14,8 +14,12 @@ set -o pipefail
 URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"apikey":"test_key","application":"UnitySVC","event":"t","description":"hi","priority":0}' \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-urlencode 'apikey=test_key' \
+    --data-urlencode 'application=UnitySVC' \
+    --data-urlencode 'event=t' \
+    --data-urlencode 'description=hi' \
+    --data-urlencode 'priority=0' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)
 {% else %}

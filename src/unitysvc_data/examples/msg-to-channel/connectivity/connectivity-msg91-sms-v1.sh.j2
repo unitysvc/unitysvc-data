@@ -15,6 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
+    -H "authkey: test_key" \
     -d '{"template_id": "test_tmpl", "short_url": 0, "recipients": [{"mobiles": "15551234567", "body": "t", "type": "info"}]}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)

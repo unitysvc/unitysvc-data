@@ -15,6 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
+    -H "Authorization: key=test_key" \
     -d '{"notification": {"notification": {"title": "t", "body": "hi"}}, "to": "device-or-topic"}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)

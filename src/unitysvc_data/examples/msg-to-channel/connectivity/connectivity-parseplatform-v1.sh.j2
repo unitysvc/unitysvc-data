@@ -15,6 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
+    -H "X-Parse-Master-Key: test_key" \
     -d '{"where": {"deviceType": {"$in": ["ios", "android"]}}, "data": {"title": "t", "alert": "hi"}}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)

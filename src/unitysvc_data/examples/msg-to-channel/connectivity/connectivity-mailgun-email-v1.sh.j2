@@ -15,6 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
+    -u "user:test_password" \
     --data-urlencode 'from=sender@example.com' \
     --data-urlencode 'to=user@example.com' \
     --data-urlencode 'subject=t' \

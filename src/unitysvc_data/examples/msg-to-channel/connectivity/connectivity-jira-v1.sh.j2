@@ -15,6 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
+    -u "user:test_password" \
     -d '{"source":"apprise","message":"t","description":"hi","details":{},"priority":"P3"}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)

@@ -14,8 +14,8 @@ set -o pipefail
 URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"text":"t"}' \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-urlencode 'payload={"text":"t"}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)
 {% else %}

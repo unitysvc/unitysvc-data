@@ -15,7 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"sender":"test@example.com","to":["test@example.com"],"subject":"t","textbody":"hi"}' \
+    -d '{"api_key":"test_key","sender":"test@example.com","to":["test@example.com"],"subject":"t","textbody":"hi"}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)
 {% else %}

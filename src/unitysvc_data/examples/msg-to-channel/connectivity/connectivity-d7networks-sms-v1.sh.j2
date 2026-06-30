@@ -15,6 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
+    -H "Authorization: Bearer test_token" \
     -d '{"message_globals": {"channel": "sms", "originator": "source"}, "messages": [{"recipients": ["+15551234567"], "content": "t", "data_coding": "auto"}]}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)

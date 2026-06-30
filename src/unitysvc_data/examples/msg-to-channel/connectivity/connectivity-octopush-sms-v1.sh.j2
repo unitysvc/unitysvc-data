@@ -15,6 +15,8 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
+    -H "api-login: test_user" \
+    -H "api-key: test_key" \
     -d '{"recipients":[{"phone_number":"+15551234567"}],"text":"t","type":"sms_premium","purpose":"alert","sender":"src","with_replies":false}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)

@@ -15,6 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
+    -H "X-api-Key: test_key" \
     -d '{"source":"apprise","type":"info","notification":{},"discord":{"text":{"title":"t","description":"hi"},"ids":{"channel":0}}}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)

@@ -15,6 +15,7 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
+    -H "Authorization: AccessKey test_key" \
     -d '{"recipients":["31612345678"],"originator":"UnitySVC","body":"t"}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)
