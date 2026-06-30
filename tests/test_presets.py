@@ -184,27 +184,27 @@ def test_msg_to_channel_discord_variant_bakes_native_body_in():
         # local_url + channel placeholders are substituted on render.
         assert "${__local_url__}" not in body
         assert "${__channel__}" not in body
-        # Gateway mode posts the canonical envelope to @<channel>.
+        # Gateway-mode document rendering channelizes service_base_url server-side.
         assert "{{ service_base_url }}" in body
-        assert "@gateway" in body
-    # Connectivity variant: baked-in discord embed ping.
+        assert "{{ service_base_url }}@gateway" not in body
+    # Connectivity variant: baked-in discord embed using the mock happy-path text.
     conn = file_preset("msg_to_channel_connectivity_discord")
-    assert '{"embeds":[{"title":"connectivity check","description":"ping"}]}' in conn
-    assert '{"title":"connectivity check","body":"ping","type":"info","format":"text"}' in conn
+    assert '{"embeds":[{"title":"t","description":"hi"}]}' in conn
+    assert '{"title":"t","body":"hi","type":"info","format":"text"}' in conn
 
 
 def test_msg_to_channel_connectivity_renders_gateway_and_local_modes():
     """Default render substitutes declared params and keeps the
-    canonical envelope + ``@<channel>`` selector for gateway mode."""
+    canonical envelope for gateway mode."""
     body = file_preset("msg_to_channel_connectivity")
     # No declared placeholder should survive substitution.
     for param in ("channel", "native_body", "local_url"):
         assert "${__" + param + "__}" not in body
-    # Gateway mode targets service_base_url@<channel>, where <channel> is the
-    # substituted ``channel`` preset param (default "gateway") — NOT a Jinja
-    # variable. ``{{ service_base_url }}`` stays Jinja for the SDK to render.
-    assert "{{ service_base_url }}@gateway" in body
-    assert '{"title":"connectivity check","body":"ping","type":"info","format":"text"}' in body
+    # The backend diagnostic renderer appends/replaces @<channel> on
+    # ``service_base_url``; the preset must not append it again.
+    assert 'URL="{{ service_base_url }}"' in body
+    assert "{{ service_base_url }}@gateway" not in body
+    assert '{"title":"t","body":"hi","type":"info","format":"text"}' in body
     # Status handling mirrors the apprise connectivity preset.
     assert 'echo "connectivity ok (HTTP $status)"; exit 0' in body
 

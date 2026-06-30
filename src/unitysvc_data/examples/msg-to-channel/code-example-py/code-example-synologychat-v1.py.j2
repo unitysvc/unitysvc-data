@@ -7,7 +7,7 @@ import httpx
 #   local_testing : POST the channel-NATIVE synologychat body (baked in) straight to
 #                   a mock upstream (local_url).  No gateway to transform it, no
 #                   platform auth.
-#   gateway       : POST the canonical envelope to {BASE_URL}@<channel>; the
+#   gateway       : POST the canonical envelope to {BASE_URL}; the
 #                   gateway transforms it into the synologychat-native payload.
 # The synologychat-native body is baked into this variant — only the local_url (mock
 # upstream) and channel (transformer selector) parameters are supplied.
@@ -18,7 +18,7 @@ response = httpx.post(
     "${__local_url__}",
     headers={"Content-Type": "application/x-www-form-urlencoded"},
     data={
-        "payload": '{"text":"Hello from UnitySVC"}',
+        "payload": '{"text":"t"}',
     },
 )
 if not (200 <= response.status_code < 300):
@@ -26,11 +26,11 @@ if not (200 <= response.status_code < 300):
     sys.exit(1)
 {% else %}
 response = httpx.post(
-    f"{BASE_URL}@${__channel__}",
+    BASE_URL,
     headers={"Authorization": f"Bearer {k}"} if (k := os.environ.get("UNITYSVC_API_KEY")) else {},
     json={
-        "title": "Hello from UnitySVC",
-        "body": "Notification delivered via transformer.",
+        "title": "t",
+        "body": "hi",
         "type": "info",
         "format": "text",
     },
