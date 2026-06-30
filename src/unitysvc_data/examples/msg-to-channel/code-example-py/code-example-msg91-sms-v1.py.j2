@@ -7,7 +7,7 @@ import httpx
 #   local_testing : POST the channel-NATIVE msg91-sms body (baked in) straight to
 #                   a mock upstream (local_url).  No gateway to transform it, no
 #                   platform auth.
-#   gateway       : POST the canonical envelope to {BASE_URL}@<channel>; the
+#   gateway       : POST the canonical envelope to {BASE_URL}; the
 #                   gateway transforms it into the msg91-sms-native payload.
 # The msg91-sms-native body is baked into this variant — only the local_url (mock
 # upstream) and channel (transformer selector) parameters are supplied.
@@ -23,7 +23,7 @@ response = httpx.post(
         "recipients": [
             {
                 "mobiles": "15551234567",
-                "body": "Hello from UnitySVC",
+                "body": "t",
                 "type": "info",
             }
         ],
@@ -34,11 +34,11 @@ if not (200 <= response.status_code < 300):
     sys.exit(1)
 {% else %}
 response = httpx.post(
-    f"{BASE_URL}@${__channel__}",
+    BASE_URL,
     headers={"Authorization": f"Bearer {k}"} if (k := os.environ.get("UNITYSVC_API_KEY")) else {},
     json={
-        "title": "Hello from UnitySVC",
-        "body": "Notification delivered via transformer.",
+        "title": "t",
+        "body": "hi",
         "type": "info",
         "format": "text",
     },

@@ -3,7 +3,7 @@
 #   local_testing : POST the channel-NATIVE telegram body (baked in) straight to
 #                   a mock upstream (local_url).  No gateway to transform it, no
 #                   platform auth.
-#   gateway       : POST the canonical envelope to service_base_url@<channel>;
+#   gateway       : POST the canonical envelope to service_base_url;
 #                   the gateway transforms it into the telegram-native payload and
 #                   forwards it (Bearer auth).
 # The telegram-native body is baked into this variant — only the local_url (mock
@@ -15,16 +15,16 @@ URL="${__local_url__}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"chat_id":"${__chat_id__}","text":"connectivity check"}' \
+    -d '{"chat_id":"${__chat_id__}","text":"t"}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)
 {% else %}
-URL="{{ service_base_url }}@${__channel__}"
+URL="{{ service_base_url }}"
 status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
-    -d '{"title":"connectivity check","body":"ping","type":"info","format":"text"}' \
+    -d '{"title":"t","body":"hi","type":"info","format":"text"}' \
     -o /dev/null -w "%{http_code}" \
     "$URL" 2>/dev/null)
 {% endif %}

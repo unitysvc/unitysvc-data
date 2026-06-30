@@ -17,8 +17,10 @@ transform a canonical message envelope `{title, body, type, format}` into the
 upstream provider's native payload **inside the gateway** and POST it directly
 upstream, bypassing Apprise.
 
-The transformer channel is selected at request time by appending `@<channel>` to
-the service base URL (e.g. `@gateway`, `@gateway-plus`).
+The transformer channel is selected at request time via an `@<channel>` selector
+on the service base URL (e.g. `@gateway`, `@gateway-plus`). The gateway applies
+that selector to `BASE_URL` server-side, so this example POSTs to the bare
+`BASE_URL` and does **not** append `@<channel>` itself.
 
 ## Local mode
 
@@ -30,13 +32,14 @@ credentials.  Any HTTP 2xx is treated as success.
 ## Gateway mode
 
 `local_testing` is false.  Posts a canonical `{"title", "body", "type",
-"format"}` envelope to `{BASE_URL}@<channel>` with Bearer auth.  The gateway
+"format"}` envelope to `BASE_URL` with Bearer auth.  The gateway
 transformer converts it into the upstream-native payload and forwards it.
 
 ## Parameters
 
-- `channel` — the transformer channel selector appended to the base URL as
-  `@<channel>` in gateway mode (default `gateway`).
+- `channel` — the transformer channel selector (default `gateway`). Retained for
+  compatibility; the gateway applies the `@<channel>` selector to `BASE_URL`
+  server-side, so the example no longer appends it.
 - `native_body` — the channel-native request body POSTed to `local_url` in local
   mode (e.g. a Discord webhook payload). Used by the generic base preset; the
   channel-specific variants bake the native body in instead.
@@ -54,7 +57,7 @@ become underscores, e.g. `twilio-sms` →
 `msg_to_channel_code_example_py_twilio_sms`).
 
 Gateway mode is identical across every variant and to the base: POST the
-canonical envelope to `{BASE_URL}@<channel>` with Bearer auth. Only the baked-in
+canonical envelope to `BASE_URL` with Bearer auth. Only the baked-in
 local-mode native body differs. For example `discord`
 (`msg_to_channel_code_example_py_discord`) POSTs a baked-in Discord embed body to
 `local_url`.
@@ -89,5 +92,5 @@ Channels with a per-channel variant:
 
 - Local: POST `native_body` (base) or the baked-in channel body (variants) to
   `local_url`; assert HTTP 2xx.
-- Gateway: POST the canonical envelope to `{BASE_URL}@<channel>` with Bearer
+- Gateway: POST the canonical envelope to `BASE_URL` with Bearer
   auth; print `sent (HTTP <status>)`.
