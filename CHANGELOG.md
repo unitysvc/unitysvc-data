@@ -11,6 +11,28 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.26] — msg-to-channel: server-side channelization + local-testing auth
+
+### Changed
+
+- Drop the `@<channel>` suffix from every msg-to-channel connectivity and
+  code-example preset; the gateway now applies the channel selector to
+  `service_base_url` server-side, so the presets POST to the bare URL. Shorten
+  the baked test payloads to the mock happy-path text.
+
+### Fixed
+
+- Restore the per-channel auth headers / native body fields in `local_testing`
+  mode that `0.1.25` documented but did not actually emit — Bearer/Basic/api-key
+  variants, octopush dual `api-login` + `api-key`, form-encoded prowl/pushdeer/
+  synologychat, pagertree top-level `title`, simplepush `key`, smtp2go `api_key`
+  — so the gateway connectivity diagnostics pass against the mock upstream.
+
+### Docs
+
+- Update the connectivity + code-example READMEs to describe server-side
+  channelization (the preset no longer appends `@<channel>`).
+
 ## [0.1.25] — msg-to-channel upstream test fixes
 
 ### Fixed
