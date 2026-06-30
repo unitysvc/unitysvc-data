@@ -17,8 +17,10 @@ canonical message envelope `{title, body, type, format}` into the upstream
 provider's native payload **inside the gateway** and POST it directly to the
 upstream (e.g. discord.com), bypassing Apprise.
 
-Such a channel is selected at request time by appending `@<channel>` to the
-service path (e.g. `@gateway`, `@gateway-plus`).
+Such a channel is selected at request time via an `@<channel>` selector on the
+service path (e.g. `@gateway`, `@gateway-plus`). The gateway applies that
+selector to `service_base_url` server-side, so these presets POST to the bare
+`{{ service_base_url }}` and must **not** append `@<channel>` themselves.
 
 ## Local mode
 
@@ -30,13 +32,15 @@ loop to compose the payload or attach credentials.
 
 `local_testing` is false.  POSTs the canonical envelope
 `{"title":"connectivity check","body":"ping","type":"info","format":"text"}` to
-`{{ service_base_url }}@<channel>` (the `channel` preset param, substituted as `${__channel__}`) with a `Bearer ${UNITYSVC_API_KEY}` header,
-exercising the full transformer path.
+`{{ service_base_url }}` (the gateway applies the `@<channel>` selector
+server-side) with a `Bearer ${UNITYSVC_API_KEY}` header, exercising the full
+transformer path.
 
 ## Parameters
 
-- `channel` — the transformer channel selector appended to `service_base_url` as
-  `@<channel>` in gateway mode (default `gateway`).
+- `channel` — the transformer channel selector (default `gateway`). Retained for
+  compatibility; the gateway applies the `@<channel>` selector to
+  `service_base_url` server-side, so the preset no longer appends it.
 - `native_body` — the channel-native request body POSTed to `local_url` in local
   mode (e.g. a Discord webhook payload). Used by the generic base preset; the
   channel-specific variants bake the native body in instead.
@@ -53,7 +57,7 @@ preset `msg_to_channel_connectivity_<channel>` (hyphens in the channel slug
 become underscores, e.g. `twilio-sms` → `msg_to_channel_connectivity_twilio_sms`).
 
 Gateway mode is identical across every variant and to the base: POST the
-canonical envelope to `service_base_url@<channel>` with Bearer auth. Only the
+canonical envelope to `{{ service_base_url }}` with Bearer auth. Only the
 baked-in local-mode native body differs. For example `discord`
 (`msg_to_channel_connectivity_discord`) POSTs a baked-in Discord embed body
 (`{"embeds":[{"title":"connectivity check","description":"ping"}]}`) to
@@ -89,5 +93,5 @@ Channels with a per-channel variant:
 
 - Local: POST `native_body` (base) or the baked-in channel body (variants) to
   `local_url`; assert HTTP 2xx.
-- Gateway: POST the canonical envelope to `service_base_url@<channel>` with
+- Gateway: POST the canonical envelope to `{{ service_base_url }}` with
   Bearer auth; assert HTTP 2xx.
