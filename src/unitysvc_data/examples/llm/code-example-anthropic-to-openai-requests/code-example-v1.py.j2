@@ -1,0 +1,44 @@
+# Anthropic-format messages example for an anthropic->openai service: the
+# customer speaks Anthropic; the upstream is OpenAI. Uses `requests` so the same
+# example renders for either side of the translation.
+#
+#   local_testing : call the OpenAI UPSTREAM directly (chat-completions).
+#   otherwise     : call the gateway in Anthropic format; it translates to OpenAI.
+import os
+
+import requests
+
+{% if local_testing %}
+response = requests.post(
+    "{{ service_base_url }}/v1/chat/completions",
+    headers={
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "model": "{{ routing_key.model }}",
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "Say this is a test"},
+        ],
+    },
+)
+response.raise_for_status()
+print(response.json()["choices"][0]["message"]["content"])
+{% else %}
+response = requests.post(
+    "{{ service_base_url }}/v1/messages",
+    headers={
+        "x-api-key": os.environ["UNITYSVC_API_KEY"],
+        "anthropic-version": "2023-06-01",
+        "Content-Type": "application/json",
+    },
+    json={
+        "model": "{{ routing_key.model }}",
+        "max_tokens": 64,
+        "messages": [{"role": "user", "content": "Say this is a test"}],
+    },
+)
+response.raise_for_status()
+print(response.json()["content"][0]["text"])
+{% endif %}

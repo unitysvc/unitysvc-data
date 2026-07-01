@@ -1,0 +1,35 @@
+#!/bin/bash
+# Streaming Anthropic-format example for an anthropic->openai service: SSE rather
+# than a buffered body — a distinct gateway path (frame-by-frame translation).
+#
+#   local_testing : stream from the OpenAI UPSTREAM directly (chat.completion.chunk).
+#   otherwise     : stream from the gateway in Anthropic format; it translates the
+#                   OpenAI upstream stream into Anthropic content_block_delta events.
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+{% if local_testing %}
+curl --fail-with-body -sS -N "{{ service_base_url }}/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d '{
+    "model": "{{ routing_key.model }}",
+    "stream": true,
+    "messages": [
+      {"role": "system", "content": "You are a helpful assistant."},
+      {"role": "user", "content": "Say this is a test"}
+    ]
+  }'
+{% else %}
+curl --fail-with-body -sS -N "{{ service_base_url }}/v1/messages" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: ${UNITYSVC_API_KEY}" \
+  -H "anthropic-version: 2023-06-01" \
+  -d '{
+    "model": "{{ routing_key.model }}",
+    "max_tokens": 64,
+    "stream": true,
+    "messages": [{"role": "user", "content": "Say this is a test"}]
+  }'
+{% endif %}

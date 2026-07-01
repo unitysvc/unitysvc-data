@@ -1,0 +1,34 @@
+#!/bin/bash
+# OpenAI-format chat-completion example for an openai->anthropic service: the
+# customer speaks OpenAI; the upstream is Anthropic.
+#
+#   local_testing : call the Anthropic UPSTREAM directly (Anthropic Messages) —
+#                   no gateway, no translation.
+#   otherwise     : call the gateway in OpenAI format; it translates to the
+#                   Anthropic upstream and back.
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+{% if local_testing %}
+curl --fail-with-body -sS "{{ service_base_url }}/v1/messages" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: ${UNITYSVC_API_KEY}" \
+  -H "anthropic-version: 2023-06-01" \
+  -d '{
+    "model": "{{ routing_key.model }}",
+    "max_tokens": 64,
+    "messages": [{"role": "user", "content": "Say this is a test"}]
+  }'
+{% else %}
+curl --fail-with-body -sS "{{ service_base_url }}/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d '{
+    "model": "{{ routing_key.model }}",
+    "messages": [
+      {"role": "system", "content": "You are a helpful assistant."},
+      {"role": "user", "content": "Say this is a test"}
+    ]
+  }'
+{% endif %}
