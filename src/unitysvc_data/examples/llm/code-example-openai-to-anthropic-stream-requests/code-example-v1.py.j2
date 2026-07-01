@@ -1,0 +1,53 @@
+# Streaming OpenAI-format example for an openai->anthropic service: SSE rather
+# than a buffered body — a distinct gateway path (frame-by-frame translation).
+# Uses `requests` so the same example renders for either side of the translation.
+#
+#   local_testing : stream from the Anthropic UPSTREAM directly (SSE events).
+#   otherwise     : stream from the gateway in OpenAI format; it translates the
+#                   Anthropic upstream stream into OpenAI chat.completion.chunk.
+import os
+
+import requests
+
+{% if local_testing %}
+with requests.post(
+    "{{ service_base_url }}/v1/messages",
+    headers={
+        "x-api-key": os.environ["UNITYSVC_API_KEY"],
+        "anthropic-version": "2023-06-01",
+        "Content-Type": "application/json",
+    },
+    json={
+        "model": "{{ routing_key.model }}",
+        "max_tokens": 64,
+        "stream": True,
+        "messages": [{"role": "user", "content": "Say this is a test"}],
+    },
+    stream=True,
+) as response:
+    response.raise_for_status()
+    for line in response.iter_lines():
+        if line:
+            print(line.decode())
+{% else %}
+with requests.post(
+    "{{ service_base_url }}/v1/chat/completions",
+    headers={
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "model": "{{ routing_key.model }}",
+        "stream": True,
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "Say this is a test"},
+        ],
+    },
+    stream=True,
+) as response:
+    response.raise_for_status()
+    for line in response.iter_lines():
+        if line:
+            print(line.decode())
+{% endif %}

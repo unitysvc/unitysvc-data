@@ -11,6 +11,18 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.27] — llm: OpenAI ⇄ Anthropic translation code examples
+
+### Added
+
+- Eight `llm_code_example_{anthropic_to_openai,openai_to_anthropic}_*`
+  presets covering both translation directions, streaming and non-streaming,
+  in Python (`requests`) and shell (`curl`). Each renders in customer-format
+  against the gateway and switches to a direct native-format upstream call
+  under `local_testing`. Extracted from the `unitysvc-stress` `stress-llm`
+  templates so translation services can reference them as `$doc_preset`s
+  instead of carrying inline example files.
+
 ## [0.1.26] — msg-to-channel: server-side channelization + local-testing auth
 
 ### Changed
