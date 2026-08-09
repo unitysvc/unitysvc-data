@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -237,6 +238,29 @@ def test_smtp_connectivity_v2_gateway_strips_channel_suffix():
         ["bash", "-c", tls_script], capture_output=True, text=True, check=True
     )
     assert tls_result.stdout.strip() == "mail.example.com 465 true"
+
+
+def test_smtp_code_example_gateway_strips_channel_suffix():
+    """The Python code example parses service_base_url with urlparse; the
+    gateway's ``@<channel>`` suffix (smtp://host:587@byok) otherwise makes
+    urlparse read ``host:587`` as userinfo and ``byok`` as the host. Regression:
+    the code example connected to host ``byok`` and raised."""
+    body = file_preset("smtp_code_example")
+    gateway_branch = body.split("{% else %}", 1)[1].split("{% endif %}", 1)[0]
+    snippet = (
+        gateway_branch.replace(
+            "{{ service_base_url }}", "smtp://smtp.staging.svcpass.com:587@byok"
+        )
+        + "\nprint(smtp_host, smtp_port, use_ssl)\n"
+    )
+    result = subprocess.run(
+        [sys.executable, "-c", snippet],
+        capture_output=True,
+        text=True,
+        check=True,
+        env={**os.environ, "UNITYSVC_API_KEY": "x"},
+    )
+    assert result.stdout.strip() == "smtp.staging.svcpass.com 587 False"
 
 
 def test_list_presets_returns_versioned_and_aliases():

@@ -11,7 +11,13 @@ password = "{{ password | default('') }}"
 import os
 from urllib.parse import urlparse
 
-parsed = urlparse("{{ service_base_url }}")
+# The gateway appends an "@<channel>" selector to service_base_url for
+# multi-channel services (e.g. smtp://host:587@byok). Strip it before parsing,
+# otherwise urlparse reads "host:587" as userinfo and "byok" as the host.
+_raw = "{{ service_base_url }}"
+_scheme, _sep, _rest = _raw.partition("://")
+_authority = _rest.split("/", 1)[0].rsplit("@", 1)[0]
+parsed = urlparse(f"{_scheme}://{_authority}" if _sep else _raw)
 smtp_host = parsed.hostname
 smtp_port = parsed.port or 587
 use_ssl = parsed.scheme == "smtps"
