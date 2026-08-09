@@ -22,9 +22,15 @@ if [[ "$URL" == smtps://* ]]; then
 else
     stripped="${URL#smtp://}"
 fi
+# Reduce to the bare host[:port] authority. Drop any "/path" and the trailing
+# "@<channel>" selector the gateway appends for multi-channel services (e.g.
+# smtp://host:587@byok) — connectivity only opens a TCP socket for the 220
+# greeting, so the channel is irrelevant and "@byok" must not leak into PORT.
+stripped="${stripped%%/*}"
+stripped="${stripped%%@*}"
 HOST="${stripped%%:*}"
 PORT="${stripped#*:}"
-PORT="${PORT%%/*}"
+[ "$PORT" = "$HOST" ] && PORT=587
 PORT="${PORT:-587}"
 {% endif %}
 

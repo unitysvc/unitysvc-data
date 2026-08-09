@@ -15,9 +15,14 @@ PORT="{{ port | default('587') }}"
 URL="{{ service_base_url }}"
 stripped="${URL#smtp://}"
 stripped="${stripped#smtps://}"
+# Drop any "/path" and the trailing "@<channel>" selector the gateway appends
+# for multi-channel services (e.g. smtp://host:587@byok) — connectivity only
+# needs host:port.
+stripped="${stripped%%/*}"
+stripped="${stripped%%@*}"
 HOST="${stripped%%:*}"
 PORT="${stripped#*:}"
-PORT="${PORT%%/*}"
+[ "$PORT" = "$HOST" ] && PORT=587
 PORT="${PORT:-587}"
 {% endif %}
 

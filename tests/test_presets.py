@@ -209,6 +209,36 @@ def test_msg_to_channel_connectivity_renders_gateway_and_local_modes():
     assert 'echo "connectivity ok (HTTP $status)"; exit 0' in body
 
 
+def test_smtp_connectivity_v2_gateway_strips_channel_suffix():
+    """Gateway mode parses host/port out of ``service_base_url`` by hand (nc
+    needs a bare host + port). The backend appends an ``@<channel>`` selector
+    for multi-channel services (e.g. ``smtp://host:587@byok``); the preset must
+    strip it so PORT is ``587``, not ``587@byok``. Regression: multi-channel
+    SMTP services failed gateway connectivity with an unparseable port."""
+    body = file_preset("smtp_connectivity_v2")
+    gateway_branch = body.split("{% else %}", 1)[1].split("{% endif %}", 1)[0]
+    script = (
+        "USE_TLS=false\n"
+        + gateway_branch.replace(
+            "{{ service_base_url }}", "smtp://smtp.staging.svcpass.com:587@byok"
+        )
+        + '\necho "$HOST $PORT $USE_TLS"\n'
+    )
+    result = subprocess.run(
+        ["bash", "-c", script], capture_output=True, text=True, check=True
+    )
+    assert result.stdout.strip() == "smtp.staging.svcpass.com 587 false"
+
+    # smtps scheme → implicit TLS, and the @<channel> is still stripped.
+    tls_script = "USE_TLS=false\n" + gateway_branch.replace(
+        "{{ service_base_url }}", "smtps://mail.example.com:465@plus"
+    ) + '\necho "$HOST $PORT $USE_TLS"\n'
+    tls_result = subprocess.run(
+        ["bash", "-c", tls_script], capture_output=True, text=True, check=True
+    )
+    assert tls_result.stdout.strip() == "mail.example.com 465 true"
+
+
 def test_list_presets_returns_versioned_and_aliases():
     versioned, aliases = list_presets()
     assert versioned == sorted(MANIFEST["presets"])
