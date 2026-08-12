@@ -10,7 +10,8 @@ response = httpx.post(
     WEBHOOK_URL,
     json={"appToken":"test","contentType":1,"uids":["U_test"],"content":"connectivity check"},
 )
-response.raise_for_status()
+if response.status_code >= 400:
+    raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
 print(f"sent (HTTP {response.status_code})")
 
 {% else %}
@@ -29,6 +30,7 @@ response = httpx.post(
             "content": "connectivity check"
         },
 )
-response.raise_for_status()
+if response.status_code >= 400:
+    raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
 print(f"sent (HTTP {response.status_code})")
 {% endif %}

@@ -11,6 +11,33 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.31] — code examples report the server's error message
+
+### Fixed
+
+- Every Python code example now raises with the response body on a non-2xx
+  reply, instead of calling `raise_for_status()` and discarding it. The old form
+  produced `400 Client Error: Bad Request for url: ...` — the status and nothing
+  else — so a gateway or upstream rejection reached the seller test artifact with
+  its actual explanation thrown away. Diagnosing a translator bug
+  (unitysvc/unitysvc#1782) cost three rounds of guesswork for exactly this
+  reason: the answer, `anthropic-version: header is required`, was sitting in a
+  body no example printed. The JavaScript examples already did this
+  (``HTTP ${status}: ${await response.text()}``); Python was the outlier.
+
+  The check is `response.status_code >= 400` rather than `response.ok`, because
+  190 of the 208 examples use `httpx`, which has no `.ok`.
+
+- `api_code_example_shell` used `curl -fsS`, which suppresses the body on
+  failure; it now uses `--fail-with-body`, matching the other 29 shell examples.
+
+### Added
+
+- `tests/test_example_syntax.py`: renders every `*.py.j2` example in both
+  `local_testing` branches and parses the result, so a bad edit fails the build
+  instead of a service. Also asserts no example reintroduces bare
+  `response.raise_for_status()`.
+
 ## [0.1.28] — llm: SDK-based translation code examples
 
 ### Added

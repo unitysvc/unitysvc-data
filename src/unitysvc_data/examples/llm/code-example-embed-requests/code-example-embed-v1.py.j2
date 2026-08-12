@@ -13,7 +13,8 @@ response = requests.post(
         "input": ["Embed this sentence.", "As well as this one."],
     },
 )
-response.raise_for_status()
+if response.status_code >= 400:
+    raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
 
 embeddings = [item["embedding"] for item in response.json()["data"]]
 print(f"got {len(embeddings)} embeddings of dimension {len(embeddings[0])}")
