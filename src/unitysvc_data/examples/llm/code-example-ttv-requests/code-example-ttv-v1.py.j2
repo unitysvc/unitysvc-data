@@ -13,7 +13,8 @@ response = requests.post(
     headers={"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"},
     json={"inputs": prompt},
 )
-response.raise_for_status()
+if response.status_code >= 400:
+    raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
 with open(output_file, "wb") as f:
     f.write(response.content)
 print(f"Saved {output_file}")

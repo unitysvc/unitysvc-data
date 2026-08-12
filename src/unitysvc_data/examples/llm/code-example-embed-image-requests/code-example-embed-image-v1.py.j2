@@ -30,7 +30,8 @@ response = requests.post(
         "images": [data_uri],
     },
 )
-response.raise_for_status()
+if response.status_code >= 400:
+    raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
 data = response.json()
 embedding = data["embeddings"]["float"][0]
 print(f"got embedding of dimension {len(embedding)}")

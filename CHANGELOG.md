@@ -11,6 +11,38 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.31] — code examples report the server's error message
+
+### Fixed
+
+- Every Python code example now raises with the response body on a non-2xx
+  reply, instead of calling `raise_for_status()` and discarding it. The old form
+  produced `400 Client Error: Bad Request for url: ...` — the status and nothing
+  else — so a gateway or upstream rejection reached the seller test artifact with
+  its actual explanation thrown away. Diagnosing a translator bug
+  (unitysvc/unitysvc#1782) cost three rounds of guesswork for exactly this
+  reason: the answer, `anthropic-version: header is required`, was sitting in a
+  body no example printed. The JavaScript examples already did this
+  (``HTTP ${status}: ${await response.text()}``); Python was the outlier.
+
+  The check is `response.status_code >= 400` rather than `response.ok`, because
+  190 of the 208 examples use `httpx`, which has no `.ok`.
+
+- `api_code_example_shell` used `curl -fsS`, which suppresses the body on
+  failure. Note that swapping in `--fail-with-body` is not enough on its own:
+  that flag writes the error body to the output target, so the example's
+  `-o /dev/null` discarded the very message the flag recovered. The example now
+  captures the response and prints it on the failure path. A failing call went
+  from `curl: (22) The requested URL returned error: 401` to that plus
+  `{"error":"Missing svcpass API key. ..."}`.
+
+### Added
+
+- `tests/test_example_syntax.py`: renders every `*.py.j2` example in both
+  `local_testing` branches and parses the result, so a bad edit fails the build
+  instead of a service. Also asserts no example reintroduces bare
+  `response.raise_for_status()`.
+
 ## [0.1.28] — llm: SDK-based translation code examples
 
 ### Added
