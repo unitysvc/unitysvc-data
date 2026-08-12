@@ -18,7 +18,9 @@ message = client.messages.create(
     max_tokens=64,
     messages=[{"role": "user", "content": "Say this is a test"}],
 )
-print(message.content[0].text)
+# content[0] may be a thinking block (reasoning models) rather than a text
+# block, so print the block itself instead of assuming a .text attribute.
+print(message.content[0])
 {% else %}
 from openai import OpenAI
 
