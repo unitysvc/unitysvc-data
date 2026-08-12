@@ -1,9 +1,17 @@
 #!/bin/bash
 set -e
 
+auth=()
 if [ -n "${UNITYSVC_API_KEY:-}" ]; then
-    curl -sS --fail-with-body --max-time 5 -H "Authorization: Bearer ${UNITYSVC_API_KEY}" -o /dev/null "{{ service_base_url }}"
-else
-    curl -sS --fail-with-body --max-time 5 -o /dev/null "{{ service_base_url }}"
+    auth=(-H "Authorization: Bearer ${UNITYSVC_API_KEY}")
+fi
+
+# --fail-with-body exits non-zero on 4xx/5xx while still emitting the response
+# body, so a failure reports what the server actually said. Capture it rather
+# than sending it to /dev/null: on success the body is not interesting, on
+# failure it is the whole point.
+if ! body=$(curl -sS --fail-with-body --max-time 5 "${auth[@]}" "{{ service_base_url }}"); then
+    printf '%s\n' "$body" >&2
+    exit 1
 fi
 echo "ok"

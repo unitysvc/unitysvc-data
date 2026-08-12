@@ -63,3 +63,24 @@ def test_python_example_surfaces_the_response_body(path: Path):
         f"{path.name} discards the response body on failure; raise with "
         f"response.text instead so the server's message survives"
     )
+
+
+SH_EXAMPLES = sorted(EXAMPLES_DIR.rglob("*.sh.j2"))
+
+
+@pytest.mark.parametrize("path", SH_EXAMPLES, ids=lambda p: str(p.relative_to(EXAMPLES_DIR)))
+def test_shell_example_does_not_discard_the_error_body(path: Path):
+    """``--fail-with-body`` writes the error body to the output target.
+
+    Pairing it with ``-o /dev/null`` therefore surfaces nothing but
+    ``curl: (22) The requested URL returned error: 400`` — the flag looks like it
+    reports the failure while sending the message it recovered straight to the
+    bit bucket. Capture the body and print it on the failure path instead.
+    """
+    source = path.read_text(encoding="utf-8")
+    for line in source.splitlines():
+        if "--fail-with-body" in line and "-o /dev/null" in line:
+            pytest.fail(
+                f"{path.name}: --fail-with-body is defeated by -o /dev/null on "
+                f"this line, so the server's message is discarded:\n    {line.strip()}"
+            )

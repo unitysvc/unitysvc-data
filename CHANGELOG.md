@@ -29,7 +29,12 @@ rare).
   190 of the 208 examples use `httpx`, which has no `.ok`.
 
 - `api_code_example_shell` used `curl -fsS`, which suppresses the body on
-  failure; it now uses `--fail-with-body`, matching the other 29 shell examples.
+  failure. Note that swapping in `--fail-with-body` is not enough on its own:
+  that flag writes the error body to the output target, so the example's
+  `-o /dev/null` discarded the very message the flag recovered. The example now
+  captures the response and prints it on the failure path. A failing call went
+  from `curl: (22) The requested URL returned error: 401` to that plus
+  `{"error":"Missing svcpass API key. ..."}`.
 
 ### Added
 
