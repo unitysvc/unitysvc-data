@@ -23,7 +23,9 @@ response = requests.post(
     },
 )
 response.raise_for_status()
-print(response.json()["content"][0]["text"])
+# content[0] may be a thinking block (reasoning models) rather than a text
+# block, so print the block itself instead of assuming a "text" key.
+print(response.json()["content"][0])
 {% else %}
 response = requests.post(
     "{{ service_base_url }}/v1/chat/completions",
