@@ -1,0 +1,45 @@
+# Streaming OpenAI-format example for an openai->anthropic translation service,
+# using the official SDKs (SSE; a distinct gateway path).
+#
+#   local_testing : stream from the Anthropic UPSTREAM directly with the Anthropic SDK.
+#   otherwise     : stream from the gateway in OpenAI format with the OpenAI SDK;
+#                   the gateway translates the Anthropic stream into OpenAI
+#                   chat.completion.chunk deltas.
+import os
+
+{% if local_testing %}
+from anthropic import Anthropic
+
+client = Anthropic(
+    base_url="{{ service_base_url }}",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+with client.messages.stream(
+    model="{{ routing_key.model }}",
+    max_tokens=64,
+    messages=[{"role": "user", "content": "Say this is a test"}],
+) as stream:
+    for text in stream.text_stream:
+        print(text, end="", flush=True)
+print()
+{% else %}
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="{{ service_base_url }}/v1",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+stream = client.chat.completions.create(
+    model="{{ routing_key.model }}",
+    stream=True,
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Say this is a test"},
+    ],
+)
+for chunk in stream:
+    delta = chunk.choices[0].delta.content
+    if delta:
+        print(delta, end="", flush=True)
+print()
+{% endif %}

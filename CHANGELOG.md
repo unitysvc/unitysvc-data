@@ -11,6 +11,27 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.28] — llm: SDK-based translation code examples
+
+### Added
+
+- Four `llm_code_example_{anthropic_to_openai,openai_to_anthropic}[_stream]_sdk`
+  presets: SDK-based counterparts to the `_requests` variants, using the OpenAI
+  and Anthropic SDKs matched to each side of the translation (OpenAI SDK for the
+  OpenAI side, Anthropic SDK for the Anthropic side, on whichever end
+  `local_testing` selects). They declare `requirements = ["openai", "anthropic"]`
+  — the tradeoff for read-clarity vs the single-`requests`-dependency variants,
+  which are kept.
+
+### Fixed
+
+- `ruff check` now passes under ruff 0.16.2: sorted `__all__`, dropped a
+  read-only `global`, explicit `subprocess.run(check=...)`, `str.removesuffix`,
+  parenthesized implicit string concatenation, removed dead `# noqa: E402`, and
+  marked `tools/build.py` executable. `TRY004` is ignored — the preset
+  validators deliberately raise `ValueError` for bad input types (contract
+  enforced by `tests/test_presets.py`).
+
 ## [0.1.27] — llm: OpenAI ⇄ Anthropic translation code examples
 
 ### Added

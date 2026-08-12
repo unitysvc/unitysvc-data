@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "unitysvc-data"
-version = "0.1.27"
+version = "0.1.28"
 description = "Standard examples and presets for UnitySVC data packages"
 readme = "README.md"
 authors = [{ name = "Bo Peng", email = "bo.peng@unitysvc.com" }]
@@ -38,3 +38,9 @@ unitysvc_data = ["examples/**/*", "_manifest.json", "py.typed"]
 [tool.ruff]
 line-length = 120
 target-version = "py311"
+
+[tool.ruff.lint]
+# The preset validators deliberately raise ValueError for bad input types — that
+# is the public contract, enforced by tests/test_presets.py (raises(ValueError,
+# "must be a string"/"must be an object")). Keep it rather than TRY004's TypeError.
+ignore = ["TRY004"]

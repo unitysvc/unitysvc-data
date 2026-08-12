@@ -67,7 +67,6 @@ def _substituted_dir() -> Path:
 def _cleanup_substituted_dir() -> None:
     """Best-effort recursive removal of the substituted-bodies dir.
     Called via atexit; swallow any error so we don't poison shutdown."""
-    global _SUBSTITUTED_DIR
     if _SUBSTITUTED_DIR is None or not _SUBSTITUTED_DIR.is_dir():
         return
     try:
@@ -89,10 +88,10 @@ def _cleanup_substituted_dir() -> None:
 _EXAMPLES_ROOT = _files(__package__).joinpath("examples")
 
 __all__ = [
-    "PRESETS",
-    "MANIFEST",
     "ALIASES",
+    "MANIFEST",
     "OVERRIDABLE",
+    "PRESETS",
     "doc_preset",
     "file_preset",
     "list_presets",

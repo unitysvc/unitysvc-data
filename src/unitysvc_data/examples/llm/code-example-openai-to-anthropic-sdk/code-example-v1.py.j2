@@ -1,0 +1,37 @@
+# OpenAI-format example for an openai->anthropic translation service, using the
+# official SDKs (clearer than raw requests; needs both SDKs installed).
+#
+#   local_testing : call the Anthropic UPSTREAM directly with the Anthropic SDK.
+#   otherwise     : call the gateway in OpenAI format with the OpenAI SDK; the
+#                   gateway translates to the Anthropic upstream and back.
+import os
+
+{% if local_testing %}
+from anthropic import Anthropic
+
+client = Anthropic(
+    base_url="{{ service_base_url }}",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+message = client.messages.create(
+    model="{{ routing_key.model }}",
+    max_tokens=64,
+    messages=[{"role": "user", "content": "Say this is a test"}],
+)
+print(message.content[0].text)
+{% else %}
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="{{ service_base_url }}/v1",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+response = client.chat.completions.create(
+    model="{{ routing_key.model }}",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Say this is a test"},
+    ],
+)
+print(response.choices[0].message.content)
+{% endif %}
