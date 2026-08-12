@@ -8,8 +8,10 @@
     "llm_code_example_anthropic_javascript": "llm_code_example_anthropic_javascript_v1",
     "llm_code_example_anthropic_shell": "llm_code_example_anthropic_shell_v1",
     "llm_code_example_anthropic_to_openai_requests": "llm_code_example_anthropic_to_openai_requests_v1",
+    "llm_code_example_anthropic_to_openai_sdk": "llm_code_example_anthropic_to_openai_sdk_v1",
     "llm_code_example_anthropic_to_openai_shell": "llm_code_example_anthropic_to_openai_shell_v1",
     "llm_code_example_anthropic_to_openai_stream_requests": "llm_code_example_anthropic_to_openai_stream_requests_v1",
+    "llm_code_example_anthropic_to_openai_stream_sdk": "llm_code_example_anthropic_to_openai_stream_sdk_v1",
     "llm_code_example_anthropic_to_openai_stream_shell": "llm_code_example_anthropic_to_openai_stream_shell_v1",
     "llm_code_example_cerebras": "llm_code_example_cerebras_v1",
     "llm_code_example_cohere": "llm_code_example_cohere_v1",
@@ -33,8 +35,10 @@
     "llm_code_example_openai": "llm_code_example_openai_v1",
     "llm_code_example_openai_javascript": "llm_code_example_openai_javascript_v1",
     "llm_code_example_openai_to_anthropic_requests": "llm_code_example_openai_to_anthropic_requests_v1",
+    "llm_code_example_openai_to_anthropic_sdk": "llm_code_example_openai_to_anthropic_sdk_v1",
     "llm_code_example_openai_to_anthropic_shell": "llm_code_example_openai_to_anthropic_shell_v1",
     "llm_code_example_openai_to_anthropic_stream_requests": "llm_code_example_openai_to_anthropic_stream_requests_v1",
+    "llm_code_example_openai_to_anthropic_stream_sdk": "llm_code_example_openai_to_anthropic_stream_sdk_v1",
     "llm_code_example_openai_to_anthropic_stream_shell": "llm_code_example_openai_to_anthropic_stream_shell_v1",
     "llm_code_example_requests": "llm_code_example_requests_v1",
     "llm_code_example_rerank_javascript": "llm_code_example_rerank_javascript_v1",
@@ -662,6 +666,24 @@
       "source_readme": "llm/code-example-anthropic-to-openai-requests/README.md",
       "version": 1
     },
+    "llm_code_example_anthropic_to_openai_sdk_v1": {
+      "category": "code_example",
+      "description": "Python example: Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) using the official SDKs \u2014 OpenAI SDK for the direct-upstream test, Anthropic SDK for the gateway test",
+      "example_file": "llm/code-example-anthropic-to-openai-sdk/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "openai",
+          "anthropic"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_anthropic_to_openai_sdk",
+      "source_readme": "llm/code-example-anthropic-to-openai-sdk/README.md",
+      "version": 1
+    },
     "llm_code_example_anthropic_to_openai_shell_v1": {
       "category": "code_example",
       "description": "Shell example: Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl",
@@ -690,6 +712,24 @@
       "parameters": {},
       "preset_name": "llm_code_example_anthropic_to_openai_stream_requests",
       "source_readme": "llm/code-example-anthropic-to-openai-stream-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_anthropic_to_openai_stream_sdk_v1": {
+      "category": "code_example",
+      "description": "Streaming Python example: Anthropic-format SSE request against an anthropic->openai translation gateway using the official SDKs \u2014 OpenAI SDK for the direct-upstream test, Anthropic SDK for the gateway test",
+      "example_file": "llm/code-example-anthropic-to-openai-stream-sdk/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "openai",
+          "anthropic"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_anthropic_to_openai_stream_sdk",
+      "source_readme": "llm/code-example-anthropic-to-openai-stream-sdk/README.md",
       "version": 1
     },
     "llm_code_example_anthropic_to_openai_stream_shell_v1": {
@@ -1071,6 +1111,24 @@
       "source_readme": "llm/code-example-openai-to-anthropic-requests/README.md",
       "version": 1
     },
+    "llm_code_example_openai_to_anthropic_sdk_v1": {
+      "category": "code_example",
+      "description": "Python example: OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) using the official SDKs \u2014 Anthropic SDK for the direct-upstream test, OpenAI SDK for the gateway test",
+      "example_file": "llm/code-example-openai-to-anthropic-sdk/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "openai",
+          "anthropic"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_openai_to_anthropic_sdk",
+      "source_readme": "llm/code-example-openai-to-anthropic-sdk/README.md",
+      "version": 1
+    },
     "llm_code_example_openai_to_anthropic_shell_v1": {
       "category": "code_example",
       "description": "Shell example: OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) via curl",
@@ -1099,6 +1157,24 @@
       "parameters": {},
       "preset_name": "llm_code_example_openai_to_anthropic_stream_requests",
       "source_readme": "llm/code-example-openai-to-anthropic-stream-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_openai_to_anthropic_stream_sdk_v1": {
+      "category": "code_example",
+      "description": "Streaming Python example: OpenAI-format SSE request against an openai->anthropic translation gateway using the official SDKs \u2014 Anthropic SDK for the direct-upstream test, OpenAI SDK for the gateway test",
+      "example_file": "llm/code-example-openai-to-anthropic-stream-sdk/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "openai",
+          "anthropic"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_openai_to_anthropic_stream_sdk",
+      "source_readme": "llm/code-example-openai-to-anthropic-stream-sdk/README.md",
       "version": 1
     },
     "llm_code_example_openai_to_anthropic_stream_shell_v1": {
