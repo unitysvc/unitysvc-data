@@ -94,8 +94,8 @@ def list_examples() -> list[str]:
 # decorators that populate :data:`PRESET_FNS` — so downstream consumers
 # (notably ``unitysvc_core.load_data_file``) can enumerate every
 # decorated preset without knowing their names ahead of time.
-from ._registry import PRESET_FNS, preset  # noqa: E402  (placement is deliberate)
-from .presets import (  # noqa: E402  (placement is deliberate)
+from ._registry import PRESET_FNS, preset
+from .presets import (
     ALIASES,
     MANIFEST,
     OVERRIDABLE,
@@ -107,22 +107,22 @@ from .presets import (  # noqa: E402  (placement is deliberate)
 )
 
 __all__ = [
-    "__version__",
-    # Preferred preset API.
-    "doc_preset",
-    "file_preset",
-    "list_presets",
-    "PRESETS",
     "ALIASES",
     "MANIFEST",
     "OVERRIDABLE",
-    "register_jinja_globals",
+    "PRESETS",
+    "PRESET_FNS",
+    "__version__",
+    # Preferred preset API.
+    "doc_preset",
+    # Low-level path-based API.
+    "example_path",
+    "file_preset",
+    "list_examples",
+    "list_presets",
     # Decorator-driven registry — downstream tools enumerate these to
     # discover every preset type without hard-coding function names.
     "preset",
-    "PRESET_FNS",
-    # Low-level path-based API.
-    "example_path",
     "read_example",
-    "list_examples",
+    "register_jinja_globals",
 ]

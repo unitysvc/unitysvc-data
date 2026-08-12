@@ -550,7 +550,7 @@ def test_variant_and_base_coexist(tmp_path, monkeypatch):
         },
     )
     errors = build.BuildErrors()
-    presets, aliases = build.discover(errors)
+    presets, _aliases = build.discover(errors)
     assert not errors.messages, errors.messages
     names = [p.name for p in presets]
     assert "notify_connectivity_v1" in names
@@ -568,7 +568,7 @@ def test_variant_only_dir_no_base_required(tmp_path, monkeypatch):
         files={"connectivity-ntfy-v1.sh.j2": "echo ntfy"},
     )
     errors = build.BuildErrors()
-    presets, aliases = build.discover(errors)
+    presets, _aliases = build.discover(errors)
     assert not errors.messages, errors.messages
     assert [p.name for p in presets] == ["notify_connectivity_ntfy_v1"]
 
@@ -648,5 +648,5 @@ def test_duplicate_variant_version_is_error(tmp_path, monkeypatch):
     # Inject a synthetic collision directly via _load_families for the coverage,
     # but the more important tests above confirm the happy paths.
     errors = build.BuildErrors()
-    presets, _ = build.discover(errors)
+    _presets, _ = build.discover(errors)
     assert not errors.messages, errors.messages  # no collision in this case

@@ -433,6 +433,7 @@ def test_manifest_is_up_to_date():
         [sys.executable, str(REPO_ROOT / "tools" / "build.py"), "--check"],
         capture_output=True,
         text=True,
+        check=False,
     )
     assert result.returncode == 0, (
         f"tools/build.py --check failed:\n"
