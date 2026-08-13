@@ -7,6 +7,7 @@ description = "Streaming Python example: Anthropic-format SSE request against an
 is_active = true
 is_public = true
 meta = { requirements = ["openai", "anthropic"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-anthropic-to-openai-stream-sdk — streaming Anthropic-format call to an anthropic->openai translation gateway (SDK)

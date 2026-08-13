@@ -6,6 +6,7 @@ file = "code-example.sh.j2"
 description = "Shell example: streaming Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl"
 is_active = true
 is_public = true
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-anthropic-to-openai-stream-shell — streaming Anthropic-format call to an anthropic->openai translation gateway
