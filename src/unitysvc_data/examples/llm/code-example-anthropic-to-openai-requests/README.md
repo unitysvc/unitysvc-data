@@ -7,6 +7,7 @@ description = "Python example: Anthropic-format request against an anthropic->op
 is_active = true
 is_public = true
 meta = { requirements = ["requests"] }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / code-example-anthropic-to-openai-requests — Anthropic-format call to an anthropic->openai translation gateway

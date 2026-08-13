@@ -661,7 +661,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_anthropic_to_openai_requests",
       "source_readme": "llm/code-example-anthropic-to-openai-requests/README.md",
       "version": 1
@@ -679,7 +681,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_anthropic_to_openai_sdk",
       "source_readme": "llm/code-example-anthropic-to-openai-sdk/README.md",
       "version": 1
@@ -692,7 +696,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_anthropic_to_openai_shell",
       "source_readme": "llm/code-example-anthropic-to-openai-shell/README.md",
       "version": 1
@@ -709,7 +715,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_anthropic_to_openai_stream_requests",
       "source_readme": "llm/code-example-anthropic-to-openai-stream-requests/README.md",
       "version": 1
@@ -727,7 +735,9 @@
         ]
       },
       "mime_type": "python",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_anthropic_to_openai_stream_sdk",
       "source_readme": "llm/code-example-anthropic-to-openai-stream-sdk/README.md",
       "version": 1
@@ -740,7 +750,9 @@
       "is_public": true,
       "meta": {},
       "mime_type": "bash",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_code_example_anthropic_to_openai_stream_shell",
       "source_readme": "llm/code-example-anthropic-to-openai-stream-shell/README.md",
       "version": 1
