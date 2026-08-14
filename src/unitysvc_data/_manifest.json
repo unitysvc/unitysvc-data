@@ -13,6 +13,8 @@
     "llm_code_example_anthropic_to_openai_stream_requests": "llm_code_example_anthropic_to_openai_stream_requests_v1",
     "llm_code_example_anthropic_to_openai_stream_sdk": "llm_code_example_anthropic_to_openai_stream_sdk_v1",
     "llm_code_example_anthropic_to_openai_stream_shell": "llm_code_example_anthropic_to_openai_stream_shell_v1",
+    "llm_code_example_bedrock_converse": "llm_code_example_bedrock_converse_v1",
+    "llm_code_example_bedrock_invoke": "llm_code_example_bedrock_invoke_v1",
     "llm_code_example_cerebras": "llm_code_example_cerebras_v1",
     "llm_code_example_cohere": "llm_code_example_cohere_v1",
     "llm_code_example_embed_image_javascript": "llm_code_example_embed_image_javascript_v1",
@@ -772,6 +774,44 @@
       "parameters": {},
       "preset_name": "llm_code_example_anthropic",
       "source_readme": "llm/code-example-anthropic/README.md",
+      "version": 1
+    },
+    "llm_code_example_bedrock_converse_v1": {
+      "category": "code_example",
+      "description": "Python example: call the model with the native AWS SDK \u2014 boto3 converse() pointed at the UnitySVC gateway, which authenticates the svcpass access-key-id and re-signs upstream with the service's stored AWS credentials (SigV4)",
+      "example_file": "llm/code-example-bedrock-converse/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "connectivity ok",
+        "requirements": [
+          "boto3"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_bedrock_converse",
+      "source_readme": "llm/code-example-bedrock-converse/README.md",
+      "version": 1
+    },
+    "llm_code_example_bedrock_invoke_v1": {
+      "category": "code_example",
+      "description": "Python example: call the model with boto3 invoke_model() pointed at the UnitySVC gateway \u2014 same endpoint and SigV4 authentication as Converse, but the request body is the provider's NATIVE format",
+      "example_file": "llm/code-example-bedrock-invoke/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "boto3"
+        ],
+        "test": {
+          "status": "skip"
+        }
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_bedrock_invoke",
+      "source_readme": "llm/code-example-bedrock-invoke/README.md",
       "version": 1
     },
     "llm_code_example_cerebras_v1": {
