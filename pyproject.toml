@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "unitysvc-data"
-version = "0.1.33"
+version = "0.1.34"
 description = "Standard examples and presets for UnitySVC data packages"
 readme = "README.md"
 authors = [{ name = "Bo Peng", email = "bo.peng@unitysvc.com" }]
@@ -33,7 +33,7 @@ Issues  = "https://github.com/unitysvc/unitysvc-sellers/issues"
 where = ["src"]
 
 [tool.setuptools.package-data]
-unitysvc_data = ["examples/**/*", "_manifest.json", "py.typed"]
+unitysvc_data = ["examples/**/*", "_manifest.json", "logos.toml", "py.typed"]
 
 [tool.ruff]
 line-length = 120

@@ -82,9 +82,7 @@ def list_examples() -> list[str]:
     return sorted(
         path.relative_to(root).as_posix()
         for path in root.rglob("*")
-        if path.is_file()
-        and path.name != "README.md"
-        and not path.name.startswith(".")
+        if path.is_file() and path.name != "README.md" and not path.name.startswith(".")
     )
 
 
@@ -95,6 +93,12 @@ def list_examples() -> list[str]:
 # (notably ``unitysvc_core.load_data_file``) can enumerate every
 # decorated preset without knowing their names ahead of time.
 from ._registry import PRESET_FNS, preset
+from .logos import (
+    LogoFamily,
+    list_logo_families,
+    logo_preset,
+    resolve_family,
+)
 from .presets import (
     ALIASES,
     MANIFEST,
@@ -112,6 +116,7 @@ __all__ = [
     "OVERRIDABLE",
     "PRESETS",
     "PRESET_FNS",
+    "LogoFamily",
     "__version__",
     # Preferred preset API.
     "doc_preset",
@@ -119,10 +124,13 @@ __all__ = [
     "example_path",
     "file_preset",
     "list_examples",
+    "list_logo_families",
     "list_presets",
+    "logo_preset",
     # Decorator-driven registry — downstream tools enumerate these to
     # discover every preset type without hard-coding function names.
     "preset",
     "read_example",
     "register_jinja_globals",
+    "resolve_family",
 ]
