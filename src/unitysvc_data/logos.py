@@ -163,17 +163,58 @@ def logo_preset(source: Any, **kwargs: Any) -> str | None:
     ``extra="ignore"`` and has no ``logo`` field), leaving the provider
     logo in place. Callers therefore need no conditional around the key.
 
-    Unlike :func:`doc_preset` this takes no overrides — the value is a
-    single URL, so there is nothing to override. It must be the sentinel
-    dict's only key: ``expand_presets`` raises on sibling keys beside a
-    preset that expands to a scalar.
+    Two options tune that, passed in the nested form — a sibling key
+    beside ``$logo_preset`` raises, since ``expand_presets`` has nothing
+    to merge a scalar into::
+
+        {"$logo_preset": {"name": "qwen3-8b",  "override": "https://…/mine.svg"}}
+        {"$logo_preset": {"name": "aion-3.0",  "default":  "https://…/llm.svg"}}
+
+    One precedence chain: **override → family match → default → None.**
+
+    ``override`` is what a seller sets to win over the registry for one
+    model; ``default`` is the repo-wide fallback for models no family
+    claims (absent it, the offering has no logo and the *provider's* is
+    used, which is usually the right answer).
+
+    Both exist so a template needs no conditional around the key. A
+    template that branched::
+
+        {% if logo is defined %}"logo": {{ logo | tojson }}
+        {% else %}"logo": {{ {"$logo_preset": name} | tojson }}{% endif %}
+
+    collapses to one line that reads the same for every model::
+
+        "logo": {{ {"$logo_preset": {"name": name, "override": logo | default(none)}} | tojson }},
+
+    ``None`` (what ``{{ x | default(none) }}`` renders to) and ``""``
+    both mean "not supplied" for either option, which is what lets an
+    optional template parameter flow straight through.
+
+    Note a *wrong* family match is still a registry bug — fix
+    ``logos.toml`` so every repo benefits, rather than pinning an
+    ``override`` per seller to paper over it.
     """
+    override = kwargs.pop("override", None)
+    default = kwargs.pop("default", None)
     if kwargs:
         raise ValueError(
-            f"logo_preset takes no overrides (got {sorted(kwargs)!r}); it resolves to a "
-            f"single URL. Pass the model id alone: {{'$logo_preset': '<model-id>'}}."
+            f"logo_preset got unknown option(s) {sorted(kwargs)!r}; it takes 'override' "
+            f"(a URL that wins over the registry) and 'default' (a URL used when no "
+            f"family matches). Pass the model id alone for neither: "
+            f"{{'$logo_preset': '<model-id>'}}."
         )
+    for option, value in (("override", override), ("default", default)):
+        if value is not None and not isinstance(value, str):
+            raise ValueError(
+                f"logo_preset {option!r} must be a URL string (or null for none), "
+                f"got {type(value).__name__}: {value!r}"
+            )
+    if override:
+        return override
     if not isinstance(source, str):
         raise ValueError(f"logo_preset expects a model id string, got {type(source).__name__}: {source!r}")
     family = resolve_family(source)
-    return family.url if family else None
+    if family:
+        return family.url
+    return default or None

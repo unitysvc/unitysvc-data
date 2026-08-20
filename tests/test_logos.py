@@ -160,9 +160,98 @@ def test_no_family_shadows_another() -> None:
             )
 
 
-def test_preset_rejects_overrides() -> None:
-    with pytest.raises(ValueError, match="takes no overrides"):
+def test_preset_rejects_unknown_options() -> None:
+    with pytest.raises(ValueError, match="unknown option"):
         logo_preset("qwen", description="nope")
+
+
+def test_preset_rejects_misspelled_default() -> None:
+    """A typo must not silently mean "no fallback"."""
+    with pytest.raises(ValueError, match="unknown option"):
+        logo_preset("aion-3.0", defualt="https://example.test/x.svg")
+
+
+class TestOverrideAndDefault:
+    """One precedence chain: override → family match → default → None."""
+
+    FALLBACK = "https://example.test/generic-llm.svg"
+
+    def test_used_when_no_family_matches(self) -> None:
+        assert logo_preset("aion-3.0", default=self.FALLBACK) == self.FALLBACK
+
+    def test_a_match_wins_over_the_default(self) -> None:
+        by_name = {f.name: f for f in list_logo_families()}
+        assert logo_preset("qwen3-235b-a22b", default=self.FALLBACK) == by_name["qwen"].url
+
+    def test_absent_default_still_returns_none(self) -> None:
+        assert logo_preset("aion-3.0") is None
+
+    def test_null_default_means_no_fallback(self) -> None:
+        # What ``{{ fallback | default(none) }}`` renders to.
+        assert logo_preset("aion-3.0", default=None) is None
+
+    def test_empty_default_means_no_fallback(self) -> None:
+        # ``{{ fallback | default("") }}`` — an empty logo URL would be worse
+        # than none, since it creates a document pointing nowhere.
+        assert logo_preset("aion-3.0", default="") is None
+
+    def test_non_string_default_is_rejected(self) -> None:
+        with pytest.raises(ValueError, match="must be a URL string"):
+            logo_preset("aion-3.0", default=["https://example.test/x.svg"])
+
+    MINE = "https://example.test/mine.svg"
+
+    def test_override_wins_over_a_matching_family(self) -> None:
+        # The whole point: a seller pinning one model must not lose to the
+        # registry, or the pin silently does nothing.
+        assert logo_preset("qwen3-235b-a22b", override=self.MINE) == self.MINE
+
+    def test_override_wins_over_the_default_too(self) -> None:
+        assert (
+            logo_preset("aion-3.0", override=self.MINE, default=self.FALLBACK) == self.MINE
+        )
+
+    def test_absent_override_falls_through_to_the_match(self) -> None:
+        by_name = {f.name: f for f in list_logo_families()}
+        # ``{{ logo | default(none) }}`` for a model the seller did not pin.
+        assert logo_preset("qwen3-235b-a22b", override=None) == by_name["qwen"].url
+
+    def test_empty_override_falls_through_too(self) -> None:
+        by_name = {f.name: f for f in list_logo_families()}
+        assert logo_preset("qwen3-235b-a22b", override="") == by_name["qwen"].url
+
+    def test_override_applies_even_when_unmatched(self) -> None:
+        assert logo_preset("aion-3.0", override=self.MINE) == self.MINE
+
+    def test_non_string_override_is_rejected(self) -> None:
+        with pytest.raises(ValueError, match="'override' must be a URL string"):
+            logo_preset("qwen", override={"url": self.MINE})
+
+    def test_expands_through_core_sentinel(self) -> None:
+        """The nested option forms a template emits, end to end."""
+        core_utils = pytest.importorskip("unitysvc_core.utils")
+        by_name = {f.name: f for f in list_logo_families()}
+
+        unmatched = core_utils.expand_presets(
+            {"logo": {"$logo_preset": {"name": "aion-3.0", "default": self.FALLBACK}}}
+        )
+        assert unmatched == {"logo": self.FALLBACK}
+
+        matched = core_utils.expand_presets(
+            {"logo": {"$logo_preset": {"name": "kimi-k2-instruct", "default": self.FALLBACK}}}
+        )
+        assert matched == {"logo": by_name["kimi"].url}
+
+        # The one-line template idiom, both ways round: pinned and not.
+        pinned = core_utils.expand_presets(
+            {"logo": {"$logo_preset": {"name": "kimi-k2-instruct", "override": self.MINE}}}
+        )
+        assert pinned == {"logo": self.MINE}
+
+        unpinned = core_utils.expand_presets(
+            {"logo": {"$logo_preset": {"name": "kimi-k2-instruct", "override": None}}}
+        )
+        assert unpinned == {"logo": by_name["kimi"].url}
 
 
 def test_preset_rejects_non_string() -> None:
