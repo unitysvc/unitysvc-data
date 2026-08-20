@@ -33,7 +33,7 @@ Issues  = "https://github.com/unitysvc/unitysvc-sellers/issues"
 where = ["src"]
 
 [tool.setuptools.package-data]
-unitysvc_data = ["examples/**/*", "_manifest.json", "py.typed"]
+unitysvc_data = ["examples/**/*", "_manifest.json", "logos.toml", "py.typed"]
 
 [tool.ruff]
 line-length = 120

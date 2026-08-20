@@ -1,0 +1,157 @@
+# Model-family logo registry (unitysvc/unitysvc#1858).
+#
+# One entry per *model family* — the thing a catalog reader recognises
+# ("that's a Qwen model"), not per SKU. Resolved by ``logo_preset`` in
+# logos.py and dropped into an offering's ``logo`` field, which the
+# platform converts to a Document with category=logo. An unmatched model
+# simply gets no entry and falls back to the provider logo.
+#
+# Adding a family is a data change — no code change, no new preset
+# function. Append an entry, run the tests, cut a release.
+#
+# ---------------------------------------------------------------------
+# Asset policy
+# ---------------------------------------------------------------------
+# ``url`` points at a transparent SVG from @lobehub/icons-static-svg,
+# pinned to an exact version so the asset can't change under us.
+#
+# Transparent SVG is deliberate, and it is what the upload path is built
+# for: ``mirror_external_image`` in unitysvc-sellers re-hosts every logo
+# on platform S3 at upload time, compositing *transparent raster* images
+# onto ``_LOGO_BACKGROUND_RGB = (17, 24, 39)`` while leaving SVG
+# untouched. A transparent SVG therefore renders correctly against
+# whatever the catalog theme is; a pre-baked white square would be a
+# white card on a dark page, and could not be re-themed later.
+#
+# When a family has no mark of its own, use the vendor's — GLM is
+# Zhipu/Z.ai, Llama is Meta, Nemotron is NVIDIA. That is the same
+# recognition cue a reader actually uses.
+#
+# ---------------------------------------------------------------------
+# Matching
+# ---------------------------------------------------------------------
+# ``patterns`` are regular expressions matched against the *normalised*
+# model id (see logos.py: lowercased, path-stripped, vendor-prefix
+# stripped). They are tried in file order and the FIRST entry with a
+# matching pattern wins — so order matters where families could
+# overlap. Every pattern is compiled at import, so a typo fails loudly
+# rather than silently never matching.
+
+version = 1
+
+[[family]]
+name = "qwen"
+owner = "Alibaba"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/qwen-color.svg"
+# QwQ and QVQ are Qwen's reasoning / vision lines and ship under the
+# same mark upstream.
+patterns = ["qwen", "qwq", "qvq"]
+
+[[family]]
+name = "mistral"
+owner = "Mistral AI"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/mistral-color.svg"
+# The whole "-stral" house: mixtral, magistral, ministral, codestral,
+# devstral, pixtral, voxtral.
+patterns = ["mistral", "mixtral", "magistral", "ministral", "codestral", "devstral", "pixtral", "voxtral"]
+
+[[family]]
+name = "glm"
+owner = "Z.ai / Zhipu"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/zhipu-color.svg"
+# Ships as zai.glm-4.6 on Bedrock (dot prefix, stripped before matching)
+# and zai-glm-4.7 on Cerebras (hyphen, not stripped) — hence both
+# anchors. Boundary-anchored on purpose: a bare "glm" substring matches
+# Ollama's unrelated "everythinglm". AutoGLM is genuinely Zhipu's, so it
+# is listed explicitly rather than reached by a looser pattern.
+patterns = ["^glm", "[.-]glm", "autoglm"]
+
+[[family]]
+name = "deepseek"
+owner = "DeepSeek"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/deepseek-color.svg"
+patterns = ["deepseek"]
+
+[[family]]
+name = "llama"
+owner = "Meta"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/meta-color.svg"
+# Ordered after mistral/qwen so a fine-tune naming both (e.g. a
+# "llama-qwen-merge") resolves to the earlier, more specific family.
+patterns = ["llama"]
+
+[[family]]
+name = "gemma"
+owner = "Google"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/gemma-color.svg"
+patterns = ["gemma"]
+
+[[family]]
+name = "kimi"
+owner = "Moonshot AI"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/kimi-color.svg"
+patterns = ["kimi", "moonshot"]
+
+[[family]]
+name = "aya"
+owner = "Cohere"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/aya-color.svg"
+# Declared BEFORE command, and command's c4ai pattern is narrowed to
+# c4ai-command, because Aya ships under the same Cohere For AI prefix
+# (c4ai-aya-expanse-32b) and has its own mark. With a bare "c4ai" in
+# command and command declared first, every Aya model silently rendered
+# the Cohere command logo. Both guards are kept: order alone is too
+# fragile a thing to rely on.
+# Word-anchored — "aya" as a bare substring appears inside unrelated ids.
+patterns = ["\\baya\\b", "^aya-"]
+
+[[family]]
+name = "command"
+owner = "Cohere"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/cohere-color.svg"
+# Cohere's command line only. Deliberately NOT matching bare "embed" or
+# "rerank" — those are generic capability words used by many vendors,
+# and an early draft of this table mis-attributed other vendors' models
+# because of it. See the aya entry above for why c4ai is qualified.
+patterns = ["^command-", "^command$", "c4ai-command"]
+
+[[family]]
+name = "gpt-oss"
+owner = "OpenAI"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/openai.svg"
+# Monochrome — upstream ships no -color variant for openai.
+# Only gpt-oss: the catalog carries no hosted GPT models, and matching
+# bare "gpt" would sweep up unrelated fine-tunes.
+patterns = ["gpt-oss"]
+
+[[family]]
+name = "nemotron"
+owner = "NVIDIA"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/nvidia-color.svg"
+patterns = ["nemotron"]
+
+[[family]]
+name = "minimax"
+owner = "MiniMax"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/minimax-color.svg"
+patterns = ["minimax"]
+
+[[family]]
+name = "granite"
+owner = "IBM"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/ibm.svg"
+# Monochrome — upstream ships no -color variant for ibm.
+patterns = ["granite"]
+
+[[family]]
+name = "claude"
+owner = "Anthropic"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/claude-color.svg"
+patterns = ["claude"]
+
+[[family]]
+name = "phi"
+owner = "Microsoft"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/microsoft-color.svg"
+# Anchored to a digit: bare "phi" appears inside words like "sophia".
+patterns = ["phi-?\\d"]
