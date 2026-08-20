@@ -116,21 +116,21 @@ __all__ = [
     "OVERRIDABLE",
     "PRESETS",
     "PRESET_FNS",
-    "__version__",
     "LogoFamily",
+    "__version__",
     # Preferred preset API.
     "doc_preset",
     # Low-level path-based API.
     "example_path",
     "file_preset",
-    "list_logo_families",
-    "logo_preset",
-    "resolve_family",
     "list_examples",
+    "list_logo_families",
     "list_presets",
+    "logo_preset",
     # Decorator-driven registry — downstream tools enumerate these to
     # discover every preset type without hard-coding function names.
     "preset",
     "read_example",
     "register_jinja_globals",
+    "resolve_family",
 ]
