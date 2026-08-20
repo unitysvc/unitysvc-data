@@ -55,7 +55,6 @@ from typing import Any, NamedTuple
 
 from ._registry import preset
 
-
 #: Vendor prefixes that upstreams staple onto a model id. Bedrock ships
 #: ``anthropic.claude-sonnet-4`` and ``zai.glm-4.6``; regional Bedrock
 #: ids add ``us.`` / ``eu.`` / ``apac.`` on top. Stripped before matching
