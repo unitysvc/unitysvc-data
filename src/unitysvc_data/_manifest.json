@@ -69,7 +69,7 @@
     "llm_connectivity_embed": "llm_connectivity_embed_v1",
     "llm_connectivity_embed_image": "llm_connectivity_embed_image_v1",
     "llm_connectivity_transcription": "llm_connectivity_transcription_v1",
-    "llm_description": "llm_description_v1",
+    "llm_description": "llm_description_v2",
     "llm_request_template": "llm_request_template_v1",
     "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
     "msg_to_apprise_code_example_py": "msg_to_apprise_code_example_py_v1",
@@ -1716,7 +1716,7 @@
     },
     "llm_description_v1": {
       "category": "getting_started",
-      "description": "Customer-facing overview of an OpenAI-compatible LLM gateway service",
+      "description": "Customer-facing overview of how LLM services are consumed through the UnitySVC gateway",
       "example_file": "llm/description/description-v1.md",
       "is_active": true,
       "is_public": true,
@@ -1726,6 +1726,19 @@
       "preset_name": "llm_description",
       "source_readme": "llm/description/README.md",
       "version": 1
+    },
+    "llm_description_v2": {
+      "category": "getting_started",
+      "description": "Customer-facing overview of how LLM services are consumed through the UnitySVC gateway",
+      "example_file": "llm/description/description-v2.md",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "markdown",
+      "parameters": {},
+      "preset_name": "llm_description",
+      "source_readme": "llm/description/README.md",
+      "version": 2
     },
     "llm_request_template_anthropic_v1": {
       "category": "request_template",
