@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: send a chat completion request via the cerebras-cloud-sdk"
 is_active = true
 is_public = true
-meta = { requirements = ["cerebras-cloud-sdk"] }
+meta = { variant = "Cerebras SDK", requirements = ["cerebras-cloud-sdk"] }
 +++
 
 # llm / code-example-cerebras — chat completion via the `cerebras-cloud-sdk`

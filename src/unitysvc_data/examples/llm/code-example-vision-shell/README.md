@@ -6,6 +6,7 @@ file = "code-example-vision.sh.j2"
 description = "Bash example: describe an image via OpenAI-compatible /chat/completions using curl"
 is_active = true
 is_public = true
+meta = { variant = "Vision" }
 parameters = { version_prefix = "/v1" }
 +++
 

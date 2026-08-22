@@ -6,7 +6,7 @@ file = "code-example-anthropic-fc.py.j2"
 description = "Python example: tool use against an Anthropic Messages API endpoint via the anthropic SDK"
 is_active = true
 is_public = true
-meta = { requirements = ["anthropic"] }
+meta = { variant = "Function calling", requirements = ["anthropic"] }
 +++
 
 # llm / code-example-anthropic-fc — Anthropic tool use via the `anthropic` SDK

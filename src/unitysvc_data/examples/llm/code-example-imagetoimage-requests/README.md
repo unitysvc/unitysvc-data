@@ -6,7 +6,7 @@ file = "code-example-imagetoimage.py.j2"
 description = "Python example: image-to-image transform via Hugging Face /models/<model>"
 is_active = true
 is_public = true
-meta = { requirements = ["requests"] }
+meta = { variant = "Image to image", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
 +++
 

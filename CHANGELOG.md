@@ -11,6 +11,79 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.35] — generic `llm_description` v2 + `meta.variant` on code examples
+
+### Added
+
+- `llm_description_v2` — a rewrite of the LLM listing overview shown under
+  "How to use this model". v1 described "OpenAI-compatible LLM via UnitySVC",
+  but the preset is attached bare in 17 seller repos including services that
+  are not OpenAI-shaped: Anthropic's native Messages API, Bedrock's Converse
+  channel, Cohere's native embed and transcription surfaces. It also predated
+  gateway format translation, so it never mentioned that most services accept
+  both OpenAI and Anthropic input.
+
+  v2 is platform-wide and makes no claim about which format a given service
+  speaks: channels (managed / byok / byoe), where to find runnable code and
+  the Test Request panel, request formats and gateway translation, and the
+  `/g/` `/p/` `/a/` `/l/` `/m/` request primitives. Cross-references use the
+  relative `?topic=` form, which listing documents render as topic-reader
+  links.
+
+  Service-specific facts are dropped rather than templated — base URL, model,
+  price and accepted formats are already rendered from real data elsewhere on
+  the listing page. That leaves nothing to interpolate, so the file stays a
+  plain `.md`. This also fixes a v1 defect: its `{{ SERVICE_BASE_URL }}`,
+  `{{ API_KEY }}` and `{{ MODEL }}` tokens sat in a non-`.j2` file and were
+  never interpolated, so customers saw literal braces directly above code
+  examples that *were* rendered with real values.
+
+  Versions are append-only: `llm_description_v1` still resolves to the old
+  text. No seller repo pins `_v1`, so the bare `llm_description` alias moves
+  every consumer to v2 with no template changes.
+
+- `meta.variant` on all 61 `llm` code-example presets — a short label naming
+  the task or dialect rather than the language (`Chat`, `Anthropic-style`,
+  `OpenAI-style`, `Function calling`, `Streaming`, `boto3 Converse`,
+  `boto3 InvokeModel`, `Cohere SDK`, `Cerebras SDK`, `Embeddings`,
+  `Image embeddings`, `Rerank`, `Transcription`, `Text to speech`,
+  `Text to video`, `Vision`, `Image generation`, `Image to image`, `Guard`,
+  `Sentence Transformers`).
+
+  A service carries several examples in one language — Python has 3 on most
+  listings and 5 on bedrock — and the consuming UI needs to tell siblings
+  apart in a tab that already says "Python". The only text available before
+  this was the document title, which is the JSON key in each seller repo's
+  `listing.json.j2`: 16 distinct ones, free-form, with nothing structured
+  behind them. Stating the label beats inferring it from prose.
+
+  `variant` survives the seller-side `meta` override most templates use for
+  `sleep_after_test`, because `doc_preset` merges `meta` rather than replacing
+  it.
+
+## [0.1.34] — model-family logos via `logo_preset`
+
+### Added
+
+- `logo_preset` resolves a model-family logo, with `list_logo_families()` /
+  `resolve_family()` helpers and a `logos.toml` family table.
+
+## [0.1.33] — bedrock converse/invoke boto3 code examples
+
+### Added
+
+- `llm_code_example_bedrock_converse` and `llm_code_example_bedrock_invoke` —
+  boto3 examples against the native Bedrock runtime, for the converse channel
+  that addresses a model by id in the URL.
+
+## [0.1.32] — `version_prefix` for the anthropic↔openai presets
+
+### Added
+
+- `version_prefix` parameter support on the `anthropic_to_openai` /
+  `openai_to_anthropic` presets, so a repo whose upstream is versioned
+  something other than `/v1` can point the examples at it.
+
 ## [0.1.31] — code examples report the server's error message
 
 ### Fixed

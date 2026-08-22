@@ -6,6 +6,7 @@ file = "code-example-embed.sh.j2"
 description = "Shell example: request OpenAI-compatible embeddings via curl"
 is_active = true
 is_public = true
+meta = { variant = "Embeddings" }
 parameters = { version_prefix = "/v1" }
 +++
 

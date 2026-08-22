@@ -6,6 +6,7 @@ file = "code-example.sh.j2"
 description = "Shell example: send a chat completion request to an OpenAI-compatible LLM via curl"
 is_active = true
 is_public = true
+meta = { variant = "Chat" }
 parameters = { version_prefix = "/v1" }
 +++
 

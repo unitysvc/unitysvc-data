@@ -69,7 +69,7 @@
     "llm_connectivity_embed": "llm_connectivity_embed_v1",
     "llm_connectivity_embed_image": "llm_connectivity_embed_image_v1",
     "llm_connectivity_transcription": "llm_connectivity_transcription_v1",
-    "llm_description": "llm_description_v1",
+    "llm_description": "llm_description_v2",
     "llm_request_template": "llm_request_template_v1",
     "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
     "msg_to_apprise_code_example_py": "msg_to_apprise_code_example_py_v1",
@@ -617,7 +617,8 @@
       "meta": {
         "requirements": [
           "anthropic"
-        ]
+        ],
+        "variant": "Function calling"
       },
       "mime_type": "python",
       "parameters": {},
@@ -631,7 +632,9 @@
       "example_file": "llm/code-example-anthropic-javascript/code-example-anthropic-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Chat"
+      },
       "mime_type": "javascript",
       "parameters": {},
       "preset_name": "llm_code_example_anthropic_javascript",
@@ -644,7 +647,9 @@
       "example_file": "llm/code-example-anthropic-shell/code-example-anthropic-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Chat"
+      },
       "mime_type": "bash",
       "parameters": {},
       "preset_name": "llm_code_example_anthropic_shell",
@@ -660,7 +665,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Anthropic-style"
       },
       "mime_type": "python",
       "parameters": {
@@ -680,7 +686,8 @@
         "requirements": [
           "openai",
           "anthropic"
-        ]
+        ],
+        "variant": "Anthropic-style"
       },
       "mime_type": "python",
       "parameters": {
@@ -696,7 +703,9 @@
       "example_file": "llm/code-example-anthropic-to-openai-shell/code-example-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Anthropic-style"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -714,7 +723,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Anthropic-style (streaming)"
       },
       "mime_type": "python",
       "parameters": {
@@ -734,7 +744,8 @@
         "requirements": [
           "openai",
           "anthropic"
-        ]
+        ],
+        "variant": "Anthropic-style (streaming)"
       },
       "mime_type": "python",
       "parameters": {
@@ -750,7 +761,9 @@
       "example_file": "llm/code-example-anthropic-to-openai-stream-shell/code-example-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Anthropic-style (streaming)"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -768,7 +781,8 @@
       "meta": {
         "requirements": [
           "anthropic"
-        ]
+        ],
+        "variant": "Chat"
       },
       "mime_type": "python",
       "parameters": {},
@@ -786,7 +800,8 @@
         "output_contains": "connectivity ok",
         "requirements": [
           "boto3"
-        ]
+        ],
+        "variant": "boto3 Converse"
       },
       "mime_type": "python",
       "parameters": {},
@@ -806,7 +821,8 @@
         ],
         "test": {
           "status": "skip"
-        }
+        },
+        "variant": "boto3 InvokeModel"
       },
       "mime_type": "python",
       "parameters": {},
@@ -823,7 +839,8 @@
       "meta": {
         "requirements": [
           "cerebras-cloud-sdk"
-        ]
+        ],
+        "variant": "Cerebras SDK"
       },
       "mime_type": "python",
       "parameters": {},
@@ -840,7 +857,8 @@
       "meta": {
         "requirements": [
           "cohere"
-        ]
+        ],
+        "variant": "Cohere SDK"
       },
       "mime_type": "python",
       "parameters": {},
@@ -854,7 +872,9 @@
       "example_file": "llm/code-example-embed-image-javascript/code-example-embed-image-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Image embeddings"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -872,7 +892,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Image embeddings"
       },
       "mime_type": "python",
       "parameters": {
@@ -888,7 +909,9 @@
       "example_file": "llm/code-example-embed-image-shell/code-example-embed-image-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Image embeddings"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -903,7 +926,9 @@
       "example_file": "llm/code-example-embed-javascript/code-example-embed-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Embeddings"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -921,7 +946,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Embeddings"
       },
       "mime_type": "python",
       "parameters": {
@@ -937,7 +963,9 @@
       "example_file": "llm/code-example-embed-shell/code-example-embed-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Embeddings"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -955,7 +983,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Function calling"
       },
       "mime_type": "python",
       "parameters": {
@@ -971,7 +1000,9 @@
       "example_file": "llm/code-example-guard-javascript/code-example-guard-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Guard"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -989,7 +1020,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Guard"
       },
       "mime_type": "python",
       "parameters": {
@@ -1005,7 +1037,9 @@
       "example_file": "llm/code-example-guard-shell/code-example-guard-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Guard"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -1020,7 +1054,9 @@
       "example_file": "llm/code-example-image-javascript/code-example-image-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Image generation"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -1038,7 +1074,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Image generation"
       },
       "mime_type": "python",
       "parameters": {
@@ -1054,7 +1091,9 @@
       "example_file": "llm/code-example-image-shell/code-example-image-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Image generation"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -1069,7 +1108,9 @@
       "example_file": "llm/code-example-imagetoimage-javascript/code-example-imagetoimage-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Image to image"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -1087,7 +1128,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Image to image"
       },
       "mime_type": "python",
       "parameters": {
@@ -1103,7 +1145,9 @@
       "example_file": "llm/code-example-imagetoimage-shell/code-example-imagetoimage-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Image to image"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -1118,7 +1162,9 @@
       "example_file": "llm/code-example-javascript/code-example-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Chat"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -1136,7 +1182,8 @@
       "meta": {
         "requirements": [
           "openai"
-        ]
+        ],
+        "variant": "Chat"
       },
       "mime_type": "javascript",
       "parameters": {
@@ -1155,7 +1202,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "OpenAI-style"
       },
       "mime_type": "python",
       "parameters": {},
@@ -1173,7 +1221,8 @@
         "requirements": [
           "openai",
           "anthropic"
-        ]
+        ],
+        "variant": "OpenAI-style"
       },
       "mime_type": "python",
       "parameters": {},
@@ -1187,7 +1236,9 @@
       "example_file": "llm/code-example-openai-to-anthropic-shell/code-example-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "OpenAI-style"
+      },
       "mime_type": "bash",
       "parameters": {},
       "preset_name": "llm_code_example_openai_to_anthropic_shell",
@@ -1203,7 +1254,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "OpenAI-style (streaming)"
       },
       "mime_type": "python",
       "parameters": {},
@@ -1221,7 +1273,8 @@
         "requirements": [
           "openai",
           "anthropic"
-        ]
+        ],
+        "variant": "OpenAI-style (streaming)"
       },
       "mime_type": "python",
       "parameters": {},
@@ -1235,7 +1288,9 @@
       "example_file": "llm/code-example-openai-to-anthropic-stream-shell/code-example-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "OpenAI-style (streaming)"
+      },
       "mime_type": "bash",
       "parameters": {},
       "preset_name": "llm_code_example_openai_to_anthropic_stream_shell",
@@ -1251,7 +1306,8 @@
       "meta": {
         "requirements": [
           "openai"
-        ]
+        ],
+        "variant": "Chat"
       },
       "mime_type": "python",
       "parameters": {
@@ -1270,7 +1326,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Chat"
       },
       "mime_type": "python",
       "parameters": {
@@ -1286,7 +1343,9 @@
       "example_file": "llm/code-example-rerank-javascript/code-example-rerank-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Rerank"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -1304,7 +1363,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Rerank"
       },
       "mime_type": "python",
       "parameters": {
@@ -1320,7 +1380,9 @@
       "example_file": "llm/code-example-rerank-shell/code-example-rerank-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Rerank"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -1335,7 +1397,9 @@
       "example_file": "llm/code-example-sentencetransformers-javascript/code-example-sentencetransformers-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Sentence Transformers"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -1353,7 +1417,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Sentence Transformers"
       },
       "mime_type": "python",
       "parameters": {
@@ -1369,7 +1434,9 @@
       "example_file": "llm/code-example-sentencetransformers-shell/code-example-sentencetransformers-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Sentence Transformers"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -1384,7 +1451,9 @@
       "example_file": "llm/code-example-shell/code-example-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Chat"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -1402,7 +1471,8 @@
       "meta": {
         "requirements": [
           "openai"
-        ]
+        ],
+        "variant": "Streaming"
       },
       "mime_type": "javascript",
       "parameters": {
@@ -1421,7 +1491,8 @@
       "meta": {
         "requirements": [
           "openai"
-        ]
+        ],
+        "variant": "Streaming"
       },
       "mime_type": "python",
       "parameters": {
@@ -1437,7 +1508,9 @@
       "example_file": "llm/code-example-transcription-javascript/code-example-transcription-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Transcription"
+      },
       "mime_type": "javascript",
       "parameters": {
         "language": "en",
@@ -1456,7 +1529,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Transcription"
       },
       "mime_type": "python",
       "parameters": {
@@ -1473,7 +1547,9 @@
       "example_file": "llm/code-example-transcription-shell/code-example-transcription-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Transcription"
+      },
       "mime_type": "bash",
       "parameters": {
         "language": "en",
@@ -1489,7 +1565,9 @@
       "example_file": "llm/code-example-tts-javascript/code-example-tts-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Text to speech"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -1507,7 +1585,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Text to speech"
       },
       "mime_type": "python",
       "parameters": {
@@ -1523,7 +1602,9 @@
       "example_file": "llm/code-example-tts-shell/code-example-tts-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Text to speech"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -1538,7 +1619,9 @@
       "example_file": "llm/code-example-ttv-javascript/code-example-ttv-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Text to video"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -1556,7 +1639,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Text to video"
       },
       "mime_type": "python",
       "parameters": {
@@ -1572,7 +1656,9 @@
       "example_file": "llm/code-example-ttv-shell/code-example-ttv-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Text to video"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -1587,7 +1673,9 @@
       "example_file": "llm/code-example-vision-javascript/code-example-vision-v1.js.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Vision"
+      },
       "mime_type": "javascript",
       "parameters": {
         "version_prefix": "/v1"
@@ -1605,7 +1693,8 @@
       "meta": {
         "requirements": [
           "requests"
-        ]
+        ],
+        "variant": "Vision"
       },
       "mime_type": "python",
       "parameters": {
@@ -1621,7 +1710,9 @@
       "example_file": "llm/code-example-vision-shell/code-example-vision-v1.sh.j2",
       "is_active": true,
       "is_public": true,
-      "meta": {},
+      "meta": {
+        "variant": "Vision"
+      },
       "mime_type": "bash",
       "parameters": {
         "version_prefix": "/v1"
@@ -1716,7 +1807,7 @@
     },
     "llm_description_v1": {
       "category": "getting_started",
-      "description": "Customer-facing overview of an OpenAI-compatible LLM gateway service",
+      "description": "Customer-facing overview of how LLM services are consumed through the UnitySVC gateway",
       "example_file": "llm/description/description-v1.md",
       "is_active": true,
       "is_public": true,
@@ -1726,6 +1817,19 @@
       "preset_name": "llm_description",
       "source_readme": "llm/description/README.md",
       "version": 1
+    },
+    "llm_description_v2": {
+      "category": "getting_started",
+      "description": "Customer-facing overview of how LLM services are consumed through the UnitySVC gateway",
+      "example_file": "llm/description/description-v2.md",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "markdown",
+      "parameters": {},
+      "preset_name": "llm_description",
+      "source_readme": "llm/description/README.md",
+      "version": 2
     },
     "llm_request_template_anthropic_v1": {
       "category": "request_template",

@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: send a chat completion request via the cohere SDK (v2 chat API)"
 is_active = true
 is_public = true
-meta = { requirements = ["cohere"] }
+meta = { variant = "Cohere SDK", requirements = ["cohere"] }
 +++
 
 # llm / code-example-cohere — chat via the `cohere` SDK (v2)

@@ -6,6 +6,7 @@ file = "code-example-transcription.js.j2"
 description = "JavaScript example: transcribe audio via OpenAI-compatible /audio/transcriptions"
 is_active = true
 is_public = true
+meta = { variant = "Transcription" }
 parameters = { version_prefix = "/v1", language = "en" }
 +++
 

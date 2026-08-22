@@ -6,7 +6,7 @@ file = "code-example-rerank.py.j2"
 description = "Python example: rerank a candidate document set against a query"
 is_active = true
 is_public = true
-meta = { requirements = ["requests"] }
+meta = { variant = "Rerank", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
 +++
 

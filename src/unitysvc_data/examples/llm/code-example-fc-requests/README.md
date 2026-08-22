@@ -6,7 +6,7 @@ file = "code-example-fc.py.j2"
 description = "Python example: chat completion with function/tool calling on an OpenAI-compatible LLM"
 is_active = true
 is_public = true
-meta = { requirements = ["requests"] }
+meta = { variant = "Function calling", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
 +++
 
