@@ -6,7 +6,7 @@ file = "code-example-guard.py.j2"
 description = "Python example: probe a Llama-Guard-style safety classifier with a borderline prompt"
 is_active = true
 is_public = true
-meta = { requirements = ["requests"] }
+meta = { variant = "Guard", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
 +++
 

@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: send a message to an Anthropic-API-compatible LLM using the anthropic SDK"
 is_active = true
 is_public = true
-meta = { requirements = ["anthropic"] }
+meta = { variant = "Chat", requirements = ["anthropic"] }
 +++
 
 # llm / code-example-anthropic — Anthropic Messages API via the `anthropic` SDK

@@ -6,6 +6,7 @@ file = "code-example.sh.j2"
 description = "Shell example: Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl"
 is_active = true
 is_public = true
+meta = { variant = "Anthropic-style" }
 parameters = { version_prefix = "/v1" }
 +++
 

@@ -6,6 +6,7 @@ file = "code-example-anthropic.sh.j2"
 description = "curl example: POST a message to an Anthropic Messages API endpoint"
 is_active = true
 is_public = true
+meta = { variant = "Chat" }
 +++
 
 # llm / code-example-anthropic-shell — Anthropic Messages API via curl

@@ -6,6 +6,7 @@ file = "code-example-tts.sh.j2"
 description = "Bash example: synthesize speech via OpenAI-compatible /audio/speech using curl"
 is_active = true
 is_public = true
+meta = { variant = "Text to speech" }
 parameters = { version_prefix = "/v1" }
 +++
 

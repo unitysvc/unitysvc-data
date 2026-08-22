@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: streaming OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) via the requests library"
 is_active = true
 is_public = true
-meta = { requirements = ["requests"] }
+meta = { variant = "OpenAI-style (streaming)", requirements = ["requests"] }
 +++
 
 # llm / code-example-openai-to-anthropic-stream-requests — streaming OpenAI-format call to an openai->anthropic translation gateway

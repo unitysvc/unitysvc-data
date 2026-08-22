@@ -6,7 +6,7 @@ file = "code-example-transcription.py.j2"
 description = "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint"
 is_active = true
 is_public = true
-meta = { requirements = ["requests"] }
+meta = { variant = "Transcription", requirements = ["requests"] }
 parameters = { version_prefix = "/v1", language = "en" }
 +++
 

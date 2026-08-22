@@ -6,6 +6,7 @@ file = "code-example-transcription.sh.j2"
 description = "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl"
 is_active = true
 is_public = true
+meta = { variant = "Transcription" }
 parameters = { version_prefix = "/v1", language = "en" }
 +++
 

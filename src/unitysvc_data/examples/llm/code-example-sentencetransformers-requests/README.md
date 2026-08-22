@@ -6,7 +6,7 @@ file = "code-example-sentencetransformers.py.j2"
 description = "Python example: sentence-similarity via HF sentence-transformers /models/<model>"
 is_active = true
 is_public = true
-meta = { requirements = ["requests"] }
+meta = { variant = "Sentence Transformers", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
 +++
 

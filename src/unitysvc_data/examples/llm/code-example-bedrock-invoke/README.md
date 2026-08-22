@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: call the model with boto3 invoke_model() pointed at the UnitySVC gateway — same endpoint and SigV4 authentication as Converse, but the request body is the provider's NATIVE format"
 is_active = true
 is_public = true
-meta = { requirements = ["boto3"], test = { status = "skip" } }
+meta = { variant = "boto3 InvokeModel", requirements = ["boto3"], test = { status = "skip" } }
 +++
 
 # llm / code-example-bedrock-invoke — native Bedrock runtime InvokeModel via boto3

@@ -6,7 +6,7 @@ file = "code-example.js.j2"
 description = "JavaScript example: stream a chat completion from an OpenAI-compatible LLM using the openai SDK"
 is_active = true
 is_public = true
-meta = { requirements = ["openai"] }
+meta = { variant = "Streaming", requirements = ["openai"] }
 parameters = { version_prefix = "/v1" }
 +++
 

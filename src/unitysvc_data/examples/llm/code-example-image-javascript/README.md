@@ -6,6 +6,7 @@ file = "code-example-image.js.j2"
 description = "JavaScript example: generate an image via OpenAI-compatible /images/generations"
 is_active = true
 is_public = true
+meta = { variant = "Image generation" }
 parameters = { version_prefix = "/v1" }
 +++
 

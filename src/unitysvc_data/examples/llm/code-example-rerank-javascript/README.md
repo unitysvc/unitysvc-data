@@ -6,6 +6,7 @@ file = "code-example-rerank.js.j2"
 description = "JavaScript example: rerank documents via /rerank"
 is_active = true
 is_public = true
+meta = { variant = "Rerank" }
 parameters = { version_prefix = "/v1" }
 +++
 

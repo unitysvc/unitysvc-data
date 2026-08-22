@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: call the model with the native AWS SDK — boto3 converse() pointed at the UnitySVC gateway, which authenticates the svcpass access-key-id and re-signs upstream with the service's stored AWS credentials (SigV4)"
 is_active = true
 is_public = true
-meta = { requirements = ["boto3"], output_contains = "connectivity ok" }
+meta = { variant = "boto3 Converse", requirements = ["boto3"], output_contains = "connectivity ok" }
 +++
 
 # llm / code-example-bedrock-converse — native Bedrock runtime Converse via boto3

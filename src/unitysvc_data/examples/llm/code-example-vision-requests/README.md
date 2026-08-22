@@ -6,7 +6,7 @@ file = "code-example-vision.py.j2"
 description = "Python example: ask a vision-capable LLM about a publicly-hosted image"
 is_active = true
 is_public = true
-meta = { requirements = ["requests"] }
+meta = { variant = "Vision", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
 +++
 

@@ -6,6 +6,7 @@ file = "code-example-anthropic.js.j2"
 description = "JavaScript example: send a message to an Anthropic Messages API endpoint via built-in fetch"
 is_active = true
 is_public = true
+meta = { variant = "Chat" }
 +++
 
 # llm / code-example-anthropic-javascript — Anthropic Messages API via built-in fetch
