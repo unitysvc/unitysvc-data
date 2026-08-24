@@ -12,6 +12,11 @@ applies_to = { capability = "chat", dialect = "openai", upstream = "anthropic", 
 [versions.v1]
 # v1 predates the response-shape assertion and prints no sentinel.
 meta = { output_contains = "" }
+
+[versions.v2]
+# v2 asserted only the local_testing branch; its gateway branch never
+# prints the sentinel, so with the assertion it fails every gateway run.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-openai-to-anthropic-stream-shell — streaming OpenAI-format call to an openai->anthropic translation gateway

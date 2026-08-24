@@ -1,0 +1,52 @@
+# Streaming Anthropic-format example for an anthropic->openai translation
+# service, using the official SDKs (SSE; a distinct gateway path).
+#
+#   local_testing : stream from the OpenAI UPSTREAM directly with the OpenAI SDK.
+#   otherwise     : stream from the gateway in Anthropic format with the Anthropic
+#                   SDK; the gateway translates the OpenAI stream into Anthropic
+#                   content_block_delta events.
+import os
+
+{% if local_testing %}
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="{{ service_base_url }}${__version_prefix__}",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+stream = client.chat.completions.create(
+    model="{{ routing_key.model }}",
+    stream=True,
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Say this is a test"},
+    ],
+)
+for chunk in stream:
+    delta = chunk.choices[0].delta.content
+    if delta:
+        print(delta, end="", flush=True)
+print()
+{% else %}
+from anthropic import Anthropic
+
+client = Anthropic(
+    base_url="{{ service_base_url }}",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+# Iterate RAW stream events rather than using client.messages.stream():
+# the helper builds a full message snapshot from the event sequence, and
+# its accumulator crashes ('dict' object has no attribute 'append') when a
+# translated stream deviates even slightly from Anthropic's exact event
+# shapes. The deltas are what this example is about; read just those.
+stream = client.messages.create(
+    model="{{ routing_key.model }}",
+    max_tokens=64,
+    stream=True,
+    messages=[{"role": "user", "content": "Say this is a test"}],
+)
+for event in stream:
+    if event.type == "content_block_delta" and getattr(event.delta, "text", None):
+        print(event.delta.text, end="", flush=True)
+print()
+{% endif %}
