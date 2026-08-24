@@ -529,13 +529,6 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
             f"No preset declares parameter(s) {sorted(_unknown)!r}, so broadcasting "
             f"them would have no effect. Declared somewhere: {sorted(_declares)}."
         )
-        _declared = _PRESET_PARAMETERS.get(_name, {})
-        _bad = set(_params) - set(_declared)
-        if _bad:
-            raise ValueError(
-                f"Preset {_name!r} declares no parameter(s) {sorted(_bad)!r}. "
-                f"Declared: {sorted(_declared) or 'none'}."
-            )
 
     capability = capabilities[0]
     known = _known_capabilities()
