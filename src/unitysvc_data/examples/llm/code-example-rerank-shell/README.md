@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Rerank" }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "rerank" }
 +++
 
 # llm / code-example-rerank-shell — document reranking via `curl`

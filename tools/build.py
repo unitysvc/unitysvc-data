@@ -93,6 +93,18 @@ OPTIONAL_FIELDS: dict[str, Any] = {
     # double-underscore syntax avoids collision with shell-style
     # ``${VAR}`` references in ``.sh.j2`` example files.
     "parameters": {},
+    # ``applies_to`` states WHEN an example applies, so selection is data
+    # rather than pattern-matching on preset names:
+    #   capability  the platform capability it demonstrates (required for
+    #               code examples that a collection should select)
+    #   dialect     the request dialect the CALLER writes (chat only)
+    #   upstream    the dialect the service's upstream speaks (chat only);
+    #               differs from ``dialect`` when the gateway translates
+    #   feature     an attribute gate — streaming / tools / vision — that
+    #               the service must advertise before the example applies
+    # Like ``parameters`` it is build-time metadata and never reaches the
+    # document record.
+    "applies_to": {},
 }
 
 # Pattern declared parameter names must match (Python-identifier-like).
@@ -137,6 +149,7 @@ class Preset:
     is_public: bool
     meta: dict[str, Any]
     parameters: dict[str, str]     # name → default value (always string)
+    applies_to: dict[str, Any]     # capability / dialect / upstream / feature
     example_file: str              # relative to examples/
     source_readme: str             # relative to examples/
 
@@ -151,6 +164,7 @@ class Preset:
             "is_public": self.is_public,
             "meta": self.meta,
             "parameters": self.parameters,
+            "applies_to": self.applies_to,
             "example_file": self.example_file,
             "source_readme": self.source_readme,
         }
@@ -429,6 +443,7 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
                     is_public=is_public,
                     meta=meta,
                     parameters=parameters,
+                    applies_to=dict(front.get("applies_to", {})),
                     example_file=str(file_path.relative_to(EXAMPLES_DIR).as_posix()),
                     source_readme=str(readme_path.relative_to(EXAMPLES_DIR).as_posix()),
                 )
@@ -456,6 +471,7 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
                     is_public=is_public,
                     meta=meta,
                     parameters=parameters,
+                    applies_to=dict(front.get("applies_to", {})),
                     example_file=str(file_path.relative_to(EXAMPLES_DIR).as_posix()),
                     source_readme=str(readme_path.relative_to(EXAMPLES_DIR).as_posix()),
                 )

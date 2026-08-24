@@ -429,3 +429,71 @@ def test_capabilities_whose_probe_exists_still_get_one():
 def test_an_unrecognised_capability_is_still_an_error():
     with pytest.raises(ValueError, match="ocr"):
         llm_example_collection({"capabilities": ["ocr"], "formats": ["openai"]})
+
+
+def test_every_llm_code_example_declares_what_it_applies_to():
+    """`applies_to` is the systematic representation: each example states
+    the capability it demonstrates, and for chat the caller dialect and
+    upstream dialect it targets. Selection reads this rather than pattern
+    matching on preset names or mapping free-text `variant` labels.
+    """
+    from unitysvc_data import MANIFEST, applies_to
+
+    missing = []
+    for key, entry in MANIFEST["presets"].items():
+        if not key.startswith("llm_") or entry["category"] != "code_example":
+            continue
+        spec = applies_to(entry.get("preset_name", key))
+        if not spec.get("capability"):
+            missing.append(key)
+    assert not missing, f"code examples with no declared capability: {missing}"
+
+
+def test_chat_examples_declare_both_dialect_and_upstream():
+    """`variant='Chat'` covers both OpenAI-native and Anthropic-native
+    presets with nothing to tell them apart — which is why chat needed a
+    hand-written map. `applies_to` records the pair."""
+    from unitysvc_data import applies_to
+
+    assert applies_to("llm_code_example_openai")["dialect"] == "openai"
+    assert applies_to("llm_code_example_openai")["upstream"] == "openai"
+    assert applies_to("llm_code_example_anthropic")["dialect"] == "anthropic"
+    assert applies_to("llm_code_example_anthropic")["upstream"] == "anthropic"
+    # translated: caller writes Anthropic, upstream speaks OpenAI
+    spec = applies_to("llm_code_example_anthropic_to_openai_sdk")
+    assert (spec["dialect"], spec["upstream"]) == ("anthropic", "openai")
+
+
+def test_attribute_gated_examples_declare_their_feature():
+    from unitysvc_data import applies_to
+
+    assert applies_to("llm_code_example_fc_requests")["feature"] == "tools"
+    assert applies_to("llm_code_example_streaming_openai")["feature"] == "streaming"
+
+
+def test_applies_to_never_leaks_into_the_document_record():
+    """Selection metadata is build-time; the record describes the
+    listing-document. Same rule `parameters` already follows."""
+    assert "applies_to" not in doc_preset("llm_code_example_openai")
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        {"capabilities": ["chat"], "formats": ["openai"]},
+        {"capabilities": ["chat"], "formats": ["openai", "anthropic"], "tools": True},
+        {"capabilities": ["chat"], "formats": ["anthropic"], "upstream_dialect": "openai"},
+        {"capabilities": ["chat"], "formats": ["openai"], "upstream_dialect": "anthropic"},
+        {"capabilities": ["chat"], "formats": ["anthropic"], "upstream_dialect": "anthropic"},
+        {"capabilities": ["chat"], "formats": ["openai", "cohere", "cerebras"]},
+        BEDROCK,
+    ],
+    ids=["openai", "both+tools", "anth->openai", "openai->anth", "anth-native", "sdks", "bedrock"],
+)
+def test_no_two_examples_collide_on_a_title(source):
+    """Titles are the keys of `documents`, so a collision silently drops an
+    example. The sdk-vs-requests pair renders in the same language and the
+    same dialect, so it is the case most likely to collapse."""
+    docs = llm_example_collection(source)
+
+    assert len(docs) == len({_key(d) for d in docs.values()})

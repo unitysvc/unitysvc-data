@@ -7,6 +7,7 @@ description = "Shell example: streaming OpenAI-format request against an openai-
 is_active = true
 is_public = true
 meta = { variant = "OpenAI-style (streaming)" }
+applies_to = { capability = "chat", dialect = "openai", upstream = "anthropic", feature = "streaming" }
 +++
 
 # llm / code-example-openai-to-anthropic-stream-shell — streaming OpenAI-format call to an openai->anthropic translation gateway

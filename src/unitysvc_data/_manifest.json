@@ -561,6 +561,7 @@
   },
   "presets": {
     "api_code_example_requests_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python example: GET an HTTP endpoint via the requests library and assert a 2xx response",
       "example_file": "api/code-example-requests/code-example-v1.py.j2",
@@ -579,6 +580,7 @@
       "version": 1
     },
     "api_code_example_shell_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "curl example: GET an HTTP endpoint and assert a 2xx response",
       "example_file": "api/code-example-shell/code-example-v1.sh.j2",
@@ -594,6 +596,7 @@
       "version": 1
     },
     "api_connectivity_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Verify HTTP endpoint is reachable and returns a healthy status",
       "example_file": "api/connectivity/connectivity-v1.sh.j2",
@@ -609,6 +612,12 @@
       "version": 1
     },
     "llm_code_example_anthropic_fc_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "feature": "tools",
+        "upstream": "anthropic"
+      },
       "category": "code_example",
       "description": "Python example: tool use against an Anthropic Messages API endpoint via the anthropic SDK",
       "example_file": "llm/code-example-anthropic-fc/code-example-anthropic-fc-v1.py.j2",
@@ -627,6 +636,11 @@
       "version": 1
     },
     "llm_code_example_anthropic_javascript_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "upstream": "anthropic"
+      },
       "category": "code_example",
       "description": "JavaScript example: send a message to an Anthropic Messages API endpoint via built-in fetch",
       "example_file": "llm/code-example-anthropic-javascript/code-example-anthropic-v1.js.j2",
@@ -642,6 +656,11 @@
       "version": 1
     },
     "llm_code_example_anthropic_shell_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "upstream": "anthropic"
+      },
       "category": "code_example",
       "description": "curl example: POST a message to an Anthropic Messages API endpoint",
       "example_file": "llm/code-example-anthropic-shell/code-example-anthropic-v1.sh.j2",
@@ -657,6 +676,11 @@
       "version": 1
     },
     "llm_code_example_anthropic_to_openai_requests_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via the requests library",
       "example_file": "llm/code-example-anthropic-to-openai-requests/code-example-v1.py.j2",
@@ -677,6 +701,11 @@
       "version": 1
     },
     "llm_code_example_anthropic_to_openai_sdk_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) using the official SDKs \u2014 OpenAI SDK for the direct-upstream test, Anthropic SDK for the gateway test",
       "example_file": "llm/code-example-anthropic-to-openai-sdk/code-example-v1.py.j2",
@@ -698,6 +727,11 @@
       "version": 1
     },
     "llm_code_example_anthropic_to_openai_shell_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Shell example: Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl",
       "example_file": "llm/code-example-anthropic-to-openai-shell/code-example-v1.sh.j2",
@@ -715,6 +749,12 @@
       "version": 1
     },
     "llm_code_example_anthropic_to_openai_stream_requests_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "feature": "streaming",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: streaming Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via the requests library",
       "example_file": "llm/code-example-anthropic-to-openai-stream-requests/code-example-v1.py.j2",
@@ -735,6 +775,12 @@
       "version": 1
     },
     "llm_code_example_anthropic_to_openai_stream_sdk_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "feature": "streaming",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Streaming Python example: Anthropic-format SSE request against an anthropic->openai translation gateway using the official SDKs \u2014 OpenAI SDK for the direct-upstream test, Anthropic SDK for the gateway test",
       "example_file": "llm/code-example-anthropic-to-openai-stream-sdk/code-example-v1.py.j2",
@@ -756,6 +802,12 @@
       "version": 1
     },
     "llm_code_example_anthropic_to_openai_stream_shell_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "feature": "streaming",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Shell example: streaming Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl",
       "example_file": "llm/code-example-anthropic-to-openai-stream-shell/code-example-v1.sh.j2",
@@ -773,6 +825,11 @@
       "version": 1
     },
     "llm_code_example_anthropic_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "upstream": "anthropic"
+      },
       "category": "code_example",
       "description": "Python example: send a message to an Anthropic-API-compatible LLM using the anthropic SDK",
       "example_file": "llm/code-example-anthropic/code-example-v1.py.j2",
@@ -791,6 +848,11 @@
       "version": 1
     },
     "llm_code_example_bedrock_converse_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "bedrock_converse",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: call the model with the native AWS SDK \u2014 boto3 converse() pointed at the UnitySVC gateway, which authenticates the svcpass access-key-id and re-signs upstream with the service's stored AWS credentials (SigV4)",
       "example_file": "llm/code-example-bedrock-converse/code-example-v1.py.j2",
@@ -810,6 +872,11 @@
       "version": 1
     },
     "llm_code_example_bedrock_invoke_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "bedrock_invoke",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: call the model with boto3 invoke_model() pointed at the UnitySVC gateway \u2014 same endpoint and SigV4 authentication as Converse, but the request body is the provider's NATIVE format",
       "example_file": "llm/code-example-bedrock-invoke/code-example-v1.py.j2",
@@ -831,6 +898,11 @@
       "version": 1
     },
     "llm_code_example_cerebras_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "cerebras",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: send a chat completion request via the cerebras-cloud-sdk",
       "example_file": "llm/code-example-cerebras/code-example-v1.py.j2",
@@ -849,6 +921,11 @@
       "version": 1
     },
     "llm_code_example_cohere_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "cohere",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: send a chat completion request via the cohere SDK (v2 chat API)",
       "example_file": "llm/code-example-cohere/code-example-v1.py.j2",
@@ -867,6 +944,10 @@
       "version": 1
     },
     "llm_code_example_embed_image_javascript_v1": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "cohere"
+      },
       "category": "code_example",
       "description": "JavaScript example: embed an image via /embed (Cohere v2-style)",
       "example_file": "llm/code-example-embed-image-javascript/code-example-embed-image-v1.js.j2",
@@ -884,6 +965,10 @@
       "version": 1
     },
     "llm_code_example_embed_image_requests_v1": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "cohere"
+      },
       "category": "code_example",
       "description": "Python example: embed an image via /embed (Cohere v2-style)",
       "example_file": "llm/code-example-embed-image-requests/code-example-embed-image-v1.py.j2",
@@ -904,6 +989,10 @@
       "version": 1
     },
     "llm_code_example_embed_image_shell_v1": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "cohere"
+      },
       "category": "code_example",
       "description": "Bash example: embed an image via /embed (Cohere v2-style) using curl",
       "example_file": "llm/code-example-embed-image-shell/code-example-embed-image-v1.sh.j2",
@@ -921,6 +1010,9 @@
       "version": 1
     },
     "llm_code_example_embed_javascript_v1": {
+      "applies_to": {
+        "capability": "embed"
+      },
       "category": "code_example",
       "description": "JavaScript example: request OpenAI-compatible embeddings via fetch",
       "example_file": "llm/code-example-embed-javascript/code-example-embed-v1.js.j2",
@@ -938,6 +1030,9 @@
       "version": 1
     },
     "llm_code_example_embed_requests_v1": {
+      "applies_to": {
+        "capability": "embed"
+      },
       "category": "code_example",
       "description": "Python example: request OpenAI-compatible embeddings for a list of inputs",
       "example_file": "llm/code-example-embed-requests/code-example-embed-v1.py.j2",
@@ -958,6 +1053,9 @@
       "version": 1
     },
     "llm_code_example_embed_shell_v1": {
+      "applies_to": {
+        "capability": "embed"
+      },
       "category": "code_example",
       "description": "Shell example: request OpenAI-compatible embeddings via curl",
       "example_file": "llm/code-example-embed-shell/code-example-embed-v1.sh.j2",
@@ -975,6 +1073,12 @@
       "version": 1
     },
     "llm_code_example_fc_requests_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "tools",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: chat completion with function/tool calling on an OpenAI-compatible LLM",
       "example_file": "llm/code-example-fc-requests/code-example-fc-v1.py.j2",
@@ -995,6 +1099,9 @@
       "version": 1
     },
     "llm_code_example_guard_javascript_v1": {
+      "applies_to": {
+        "capability": "moderate"
+      },
       "category": "code_example",
       "description": "JavaScript example: send an unsafe prompt to a guard/safety model via /chat/completions",
       "example_file": "llm/code-example-guard-javascript/code-example-guard-v1.js.j2",
@@ -1012,6 +1119,9 @@
       "version": 1
     },
     "llm_code_example_guard_requests_v1": {
+      "applies_to": {
+        "capability": "moderate"
+      },
       "category": "code_example",
       "description": "Python example: probe a Llama-Guard-style safety classifier with a borderline prompt",
       "example_file": "llm/code-example-guard-requests/code-example-guard-v1.py.j2",
@@ -1032,6 +1142,9 @@
       "version": 1
     },
     "llm_code_example_guard_shell_v1": {
+      "applies_to": {
+        "capability": "moderate"
+      },
       "category": "code_example",
       "description": "Bash example: send an unsafe prompt to a guard/safety model via curl",
       "example_file": "llm/code-example-guard-shell/code-example-guard-v1.sh.j2",
@@ -1049,6 +1162,9 @@
       "version": 1
     },
     "llm_code_example_image_javascript_v1": {
+      "applies_to": {
+        "capability": "image-generate"
+      },
       "category": "code_example",
       "description": "JavaScript example: generate an image via OpenAI-compatible /images/generations",
       "example_file": "llm/code-example-image-javascript/code-example-image-v1.js.j2",
@@ -1066,6 +1182,9 @@
       "version": 1
     },
     "llm_code_example_image_requests_v1": {
+      "applies_to": {
+        "capability": "image-generate"
+      },
       "category": "code_example",
       "description": "Python example: generate an image from a text prompt via an OpenAI-compatible images endpoint",
       "example_file": "llm/code-example-image-requests/code-example-image-v1.py.j2",
@@ -1086,6 +1205,9 @@
       "version": 1
     },
     "llm_code_example_image_shell_v1": {
+      "applies_to": {
+        "capability": "image-generate"
+      },
       "category": "code_example",
       "description": "Bash example: generate an image via OpenAI-compatible /images/generations using curl",
       "example_file": "llm/code-example-image-shell/code-example-image-v1.sh.j2",
@@ -1103,6 +1225,9 @@
       "version": 1
     },
     "llm_code_example_imagetoimage_javascript_v1": {
+      "applies_to": {
+        "capability": "image-edit"
+      },
       "category": "code_example",
       "description": "JavaScript example: image-to-image transform via Hugging Face /models/<model>",
       "example_file": "llm/code-example-imagetoimage-javascript/code-example-imagetoimage-v1.js.j2",
@@ -1120,6 +1245,9 @@
       "version": 1
     },
     "llm_code_example_imagetoimage_requests_v1": {
+      "applies_to": {
+        "capability": "image-edit"
+      },
       "category": "code_example",
       "description": "Python example: image-to-image transform via Hugging Face /models/<model>",
       "example_file": "llm/code-example-imagetoimage-requests/code-example-imagetoimage-v1.py.j2",
@@ -1140,6 +1268,9 @@
       "version": 1
     },
     "llm_code_example_imagetoimage_shell_v1": {
+      "applies_to": {
+        "capability": "image-edit"
+      },
       "category": "code_example",
       "description": "Bash example: image-to-image transform via Hugging Face /models/<model> using curl",
       "example_file": "llm/code-example-imagetoimage-shell/code-example-imagetoimage-v1.sh.j2",
@@ -1157,6 +1288,11 @@
       "version": 1
     },
     "llm_code_example_javascript_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "JavaScript example: send a chat completion request to an OpenAI-compatible LLM",
       "example_file": "llm/code-example-javascript/code-example-v1.js.j2",
@@ -1174,6 +1310,11 @@
       "version": 1
     },
     "llm_code_example_openai_javascript_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "JavaScript example: send a chat completion request to an OpenAI-compatible LLM using the openai SDK",
       "example_file": "llm/code-example-openai-javascript/code-example-v1.js.j2",
@@ -1194,6 +1335,11 @@
       "version": 1
     },
     "llm_code_example_openai_to_anthropic_requests_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "anthropic"
+      },
       "category": "code_example",
       "description": "Python example: OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) via the requests library",
       "example_file": "llm/code-example-openai-to-anthropic-requests/code-example-v1.py.j2",
@@ -1212,6 +1358,11 @@
       "version": 1
     },
     "llm_code_example_openai_to_anthropic_sdk_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "anthropic"
+      },
       "category": "code_example",
       "description": "Python example: OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) using the official SDKs \u2014 Anthropic SDK for the direct-upstream test, OpenAI SDK for the gateway test",
       "example_file": "llm/code-example-openai-to-anthropic-sdk/code-example-v1.py.j2",
@@ -1231,6 +1382,11 @@
       "version": 1
     },
     "llm_code_example_openai_to_anthropic_shell_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "anthropic"
+      },
       "category": "code_example",
       "description": "Shell example: OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) via curl",
       "example_file": "llm/code-example-openai-to-anthropic-shell/code-example-v1.sh.j2",
@@ -1246,6 +1402,12 @@
       "version": 1
     },
     "llm_code_example_openai_to_anthropic_stream_requests_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "streaming",
+        "upstream": "anthropic"
+      },
       "category": "code_example",
       "description": "Python example: streaming OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) via the requests library",
       "example_file": "llm/code-example-openai-to-anthropic-stream-requests/code-example-v1.py.j2",
@@ -1264,6 +1426,12 @@
       "version": 1
     },
     "llm_code_example_openai_to_anthropic_stream_sdk_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "streaming",
+        "upstream": "anthropic"
+      },
       "category": "code_example",
       "description": "Streaming Python example: OpenAI-format SSE request against an openai->anthropic translation gateway using the official SDKs \u2014 Anthropic SDK for the direct-upstream test, OpenAI SDK for the gateway test",
       "example_file": "llm/code-example-openai-to-anthropic-stream-sdk/code-example-v1.py.j2",
@@ -1283,6 +1451,12 @@
       "version": 1
     },
     "llm_code_example_openai_to_anthropic_stream_shell_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "streaming",
+        "upstream": "anthropic"
+      },
       "category": "code_example",
       "description": "Shell example: streaming OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) via curl",
       "example_file": "llm/code-example-openai-to-anthropic-stream-shell/code-example-v1.sh.j2",
@@ -1298,6 +1472,11 @@
       "version": 1
     },
     "llm_code_example_openai_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: send a chat completion request to an OpenAI-compatible LLM using the openai SDK",
       "example_file": "llm/code-example-openai/code-example-v1.py.j2",
@@ -1318,6 +1497,11 @@
       "version": 1
     },
     "llm_code_example_requests_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: send a chat completion request to an OpenAI-compatible LLM using the requests library",
       "example_file": "llm/code-example-requests/code-example-v1.py.j2",
@@ -1338,6 +1522,9 @@
       "version": 1
     },
     "llm_code_example_rerank_javascript_v1": {
+      "applies_to": {
+        "capability": "rerank"
+      },
       "category": "code_example",
       "description": "JavaScript example: rerank documents via /rerank",
       "example_file": "llm/code-example-rerank-javascript/code-example-rerank-v1.js.j2",
@@ -1355,6 +1542,9 @@
       "version": 1
     },
     "llm_code_example_rerank_requests_v1": {
+      "applies_to": {
+        "capability": "rerank"
+      },
       "category": "code_example",
       "description": "Python example: rerank a candidate document set against a query",
       "example_file": "llm/code-example-rerank-requests/code-example-rerank-v1.py.j2",
@@ -1375,6 +1565,9 @@
       "version": 1
     },
     "llm_code_example_rerank_shell_v1": {
+      "applies_to": {
+        "capability": "rerank"
+      },
       "category": "code_example",
       "description": "Bash example: rerank documents via /rerank using curl",
       "example_file": "llm/code-example-rerank-shell/code-example-rerank-v1.sh.j2",
@@ -1392,6 +1585,10 @@
       "version": 1
     },
     "llm_code_example_sentencetransformers_javascript_v1": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "huggingface"
+      },
       "category": "code_example",
       "description": "JavaScript example: sentence-similarity via HF sentence-transformers /models/<model>",
       "example_file": "llm/code-example-sentencetransformers-javascript/code-example-sentencetransformers-v1.js.j2",
@@ -1409,6 +1606,10 @@
       "version": 1
     },
     "llm_code_example_sentencetransformers_requests_v1": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "huggingface"
+      },
       "category": "code_example",
       "description": "Python example: sentence-similarity via HF sentence-transformers /models/<model>",
       "example_file": "llm/code-example-sentencetransformers-requests/code-example-sentencetransformers-v1.py.j2",
@@ -1429,6 +1630,10 @@
       "version": 1
     },
     "llm_code_example_sentencetransformers_shell_v1": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "huggingface"
+      },
       "category": "code_example",
       "description": "Bash example: sentence-similarity via HF sentence-transformers /models/<model> using curl",
       "example_file": "llm/code-example-sentencetransformers-shell/code-example-sentencetransformers-v1.sh.j2",
@@ -1446,6 +1651,11 @@
       "version": 1
     },
     "llm_code_example_shell_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Shell example: send a chat completion request to an OpenAI-compatible LLM via curl",
       "example_file": "llm/code-example-shell/code-example-v1.sh.j2",
@@ -1463,6 +1673,12 @@
       "version": 1
     },
     "llm_code_example_streaming_openai_javascript_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "streaming",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "JavaScript example: stream a chat completion from an OpenAI-compatible LLM using the openai SDK",
       "example_file": "llm/code-example-streaming-openai-javascript/code-example-v1.js.j2",
@@ -1483,6 +1699,12 @@
       "version": 1
     },
     "llm_code_example_streaming_openai_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "streaming",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: stream a chat completion from an OpenAI-compatible LLM using the openai SDK",
       "example_file": "llm/code-example-streaming-openai/code-example-v1.py.j2",
@@ -1503,6 +1725,9 @@
       "version": 1
     },
     "llm_code_example_transcription_javascript_v1": {
+      "applies_to": {
+        "capability": "speech-transcribe"
+      },
       "category": "code_example",
       "description": "JavaScript example: transcribe audio via OpenAI-compatible /audio/transcriptions",
       "example_file": "llm/code-example-transcription-javascript/code-example-transcription-v1.js.j2",
@@ -1521,6 +1746,9 @@
       "version": 1
     },
     "llm_code_example_transcription_requests_v1": {
+      "applies_to": {
+        "capability": "speech-transcribe"
+      },
       "category": "code_example",
       "description": "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint",
       "example_file": "llm/code-example-transcription-requests/code-example-transcription-v1.py.j2",
@@ -1542,6 +1770,9 @@
       "version": 1
     },
     "llm_code_example_transcription_shell_v1": {
+      "applies_to": {
+        "capability": "speech-transcribe"
+      },
       "category": "code_example",
       "description": "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl",
       "example_file": "llm/code-example-transcription-shell/code-example-transcription-v1.sh.j2",
@@ -1560,6 +1791,9 @@
       "version": 1
     },
     "llm_code_example_tts_javascript_v1": {
+      "applies_to": {
+        "capability": "speech-synthesize"
+      },
       "category": "code_example",
       "description": "JavaScript example: synthesize speech via OpenAI-compatible /audio/speech",
       "example_file": "llm/code-example-tts-javascript/code-example-tts-v1.js.j2",
@@ -1577,6 +1811,9 @@
       "version": 1
     },
     "llm_code_example_tts_requests_v1": {
+      "applies_to": {
+        "capability": "speech-synthesize"
+      },
       "category": "code_example",
       "description": "Python example: synthesize speech from text using an OpenAI-compatible audio/speech endpoint",
       "example_file": "llm/code-example-tts-requests/code-example-tts-v1.py.j2",
@@ -1597,6 +1834,9 @@
       "version": 1
     },
     "llm_code_example_tts_shell_v1": {
+      "applies_to": {
+        "capability": "speech-synthesize"
+      },
       "category": "code_example",
       "description": "Bash example: synthesize speech via OpenAI-compatible /audio/speech using curl",
       "example_file": "llm/code-example-tts-shell/code-example-tts-v1.sh.j2",
@@ -1614,6 +1854,9 @@
       "version": 1
     },
     "llm_code_example_ttv_javascript_v1": {
+      "applies_to": {
+        "capability": "video-generate"
+      },
       "category": "code_example",
       "description": "JavaScript example: text-to-video via HF /models/<model>",
       "example_file": "llm/code-example-ttv-javascript/code-example-ttv-v1.js.j2",
@@ -1631,6 +1874,9 @@
       "version": 1
     },
     "llm_code_example_ttv_requests_v1": {
+      "applies_to": {
+        "capability": "video-generate"
+      },
       "category": "code_example",
       "description": "Python example: text-to-video via HF /models/<model>",
       "example_file": "llm/code-example-ttv-requests/code-example-ttv-v1.py.j2",
@@ -1651,6 +1897,9 @@
       "version": 1
     },
     "llm_code_example_ttv_shell_v1": {
+      "applies_to": {
+        "capability": "video-generate"
+      },
       "category": "code_example",
       "description": "Bash example: text-to-video via HF /models/<model> using curl",
       "example_file": "llm/code-example-ttv-shell/code-example-ttv-v1.sh.j2",
@@ -1668,6 +1917,12 @@
       "version": 1
     },
     "llm_code_example_vision_javascript_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "vision",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "JavaScript example: describe an image via OpenAI-compatible /chat/completions vision messages",
       "example_file": "llm/code-example-vision-javascript/code-example-vision-v1.js.j2",
@@ -1685,6 +1940,12 @@
       "version": 1
     },
     "llm_code_example_vision_requests_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "vision",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Python example: ask a vision-capable LLM about a publicly-hosted image",
       "example_file": "llm/code-example-vision-requests/code-example-vision-v1.py.j2",
@@ -1705,6 +1966,12 @@
       "version": 1
     },
     "llm_code_example_vision_shell_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "vision",
+        "upstream": "openai"
+      },
       "category": "code_example",
       "description": "Bash example: describe an image via OpenAI-compatible /chat/completions using curl",
       "example_file": "llm/code-example-vision-shell/code-example-vision-v1.sh.j2",
@@ -1722,6 +1989,7 @@
       "version": 1
     },
     "llm_connectivity_anthropic_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Verify an Anthropic-Messages-API LLM endpoint by issuing a tiny one-token message",
       "example_file": "llm/connectivity-anthropic/connectivity-v1.sh.j2",
@@ -1737,6 +2005,7 @@
       "version": 1
     },
     "llm_connectivity_embed_image_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Verify a Cohere-shape image embedding endpoint by sending a tiny known image",
       "example_file": "llm/connectivity-embed-image/connectivity-embed-image-v1.sh.j2",
@@ -1754,6 +2023,7 @@
       "version": 1
     },
     "llm_connectivity_embed_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible embeddings endpoint by issuing a tiny embed request",
       "example_file": "llm/connectivity-embed/connectivity-embed-v1.sh.j2",
@@ -1771,6 +2041,7 @@
       "version": 1
     },
     "llm_connectivity_transcription_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible audio-transcription endpoint by sending a tiny known audio file",
       "example_file": "llm/connectivity-transcription/connectivity-transcription-v1.sh.j2",
@@ -1789,6 +2060,7 @@
       "version": 1
     },
     "llm_connectivity_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible LLM endpoint by issuing a tiny chat completion",
       "example_file": "llm/connectivity/connectivity-v1.sh.j2",
@@ -1806,6 +2078,7 @@
       "version": 1
     },
     "llm_description_v1": {
+      "applies_to": {},
       "category": "getting_started",
       "description": "Customer-facing overview of how LLM services are consumed through the UnitySVC gateway",
       "example_file": "llm/description/description-v1.md",
@@ -1819,6 +2092,7 @@
       "version": 1
     },
     "llm_description_v2": {
+      "applies_to": {},
       "category": "getting_started",
       "description": "Customer-facing overview of how LLM services are consumed through the UnitySVC gateway",
       "example_file": "llm/description/description-v2.md",
@@ -1832,6 +2106,7 @@
       "version": 2
     },
     "llm_request_template_anthropic_v1": {
+      "applies_to": {},
       "category": "request_template",
       "description": "Minimal Anthropic Messages API request body",
       "example_file": "llm/request-template-anthropic/request-template-anthropic-v1.json",
@@ -1845,6 +2120,7 @@
       "version": 1
     },
     "llm_request_template_v1": {
+      "applies_to": {},
       "category": "request_template",
       "description": "Minimal OpenAI-compatible chat completion request body",
       "example_file": "llm/request-template/request-template-v1.json",
@@ -1858,6 +2134,7 @@
       "version": 1
     },
     "msg_to_apprise_code_example_py_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for SMTP\u2192notification transformer services",
       "example_file": "msg-to-apprise/code-example-py/code-example-v1.py.j2",
@@ -1878,6 +2155,7 @@
       "version": 1
     },
     "msg_to_apprise_code_example_sh_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for SMTP\u2192notification transformer services",
       "example_file": "msg-to-apprise/code-example-sh/code-example-v1.sh.j2",
@@ -1895,6 +2173,7 @@
       "version": 1
     },
     "msg_to_apprise_connectivity_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for SMTP\u2192notification transformer services",
       "example_file": "msg-to-apprise/connectivity/connectivity-v1.sh.j2",
@@ -1912,6 +2191,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_africastalking_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-africastalking-sms-v1.py.j2",
@@ -1934,6 +2214,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_bark_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-bark-v1.py.j2",
@@ -1956,6 +2237,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_brevo_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-brevo-email-v1.py.j2",
@@ -1978,6 +2260,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_bulksms_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-bulksms-sms-v1.py.j2",
@@ -2000,6 +2283,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_bulkvs_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-bulkvs-sms-v1.py.j2",
@@ -2022,6 +2306,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_burstsms_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-burstsms-sms-v1.py.j2",
@@ -2044,6 +2329,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_chanify_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-chanify-v1.py.j2",
@@ -2066,6 +2352,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_chime_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-chime-v1.py.j2",
@@ -2088,6 +2375,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_clicksend_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-clicksend-sms-v1.py.j2",
@@ -2110,6 +2398,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_d7networks_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-d7networks-sms-v1.py.j2",
@@ -2132,6 +2421,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_dapnet_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-dapnet-v1.py.j2",
@@ -2154,6 +2444,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_dingtalk_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-dingtalk-v1.py.j2",
@@ -2176,6 +2467,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_discord_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-discord-v1.py.j2",
@@ -2198,6 +2490,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_dot_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-dot-v1.py.j2",
@@ -2220,6 +2513,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_elks_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-elks-sms-v1.py.j2",
@@ -2242,6 +2536,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_exotel_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-exotel-sms-v1.py.j2",
@@ -2264,6 +2559,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_fcm_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-fcm-v1.py.j2",
@@ -2286,6 +2582,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_feishu_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-feishu-msg-v1.py.j2",
@@ -2308,6 +2605,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_flock_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-flock-v1.py.j2",
@@ -2330,6 +2628,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_form_webhook_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-form-webhook-v1.py.j2",
@@ -2352,6 +2651,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_freemobile_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-freemobile-v1.py.j2",
@@ -2374,6 +2674,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_gotify_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-gotify-v1.py.j2",
@@ -2396,6 +2697,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_groupme_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-groupme-msg-v1.py.j2",
@@ -2418,6 +2720,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_homeassistant_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-homeassistant-v1.py.j2",
@@ -2440,6 +2743,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_httpsms_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-httpsms-sms-v1.py.j2",
@@ -2462,6 +2766,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_humhub_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-humhub-v1.py.j2",
@@ -2484,6 +2789,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_ifttt_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-ifttt-v1.py.j2",
@@ -2506,6 +2812,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_jira_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-jira-v1.py.j2",
@@ -2528,6 +2835,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_json_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-json-v1.py.j2",
@@ -2550,6 +2858,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_kodi_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-kodi-v1.py.j2",
@@ -2572,6 +2881,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_kumulos_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-kumulos-v1.py.j2",
@@ -2594,6 +2904,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_lametric_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-lametric-v1.py.j2",
@@ -2616,6 +2927,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_line_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-line-msg-v1.py.j2",
@@ -2638,6 +2950,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_mailgun_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-mailgun-email-v1.py.j2",
@@ -2660,6 +2973,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_mastodon_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-mastodon-v1.py.j2",
@@ -2682,6 +2996,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_matrix_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-matrix-v1.py.j2",
@@ -2704,6 +3019,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_messagebird_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-messagebird-sms-v1.py.j2",
@@ -2726,6 +3042,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_misskey_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-misskey-v1.py.j2",
@@ -2748,6 +3065,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_msg91_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-msg91-sms-v1.py.j2",
@@ -2770,6 +3088,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_msteams_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-msteams-v1.py.j2",
@@ -2792,6 +3111,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_nextcloud_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-nextcloud-v1.py.j2",
@@ -2814,6 +3134,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_nextcloudtalk_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-nextcloudtalk-v1.py.j2",
@@ -2836,6 +3157,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_notica_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-notica-v1.py.j2",
@@ -2858,6 +3180,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_notifiarr_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-notifiarr-v1.py.j2",
@@ -2880,6 +3203,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_notificationapi_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-notificationapi-v1.py.j2",
@@ -2902,6 +3226,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_ntfy_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-ntfy-v1.py.j2",
@@ -2924,6 +3249,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_octopush_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-octopush-sms-v1.py.j2",
@@ -2946,6 +3272,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_onesignal_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-onesignal-v1.py.j2",
@@ -2968,6 +3295,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_opsgenie_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-opsgenie-v1.py.j2",
@@ -2990,6 +3318,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_pagerduty_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-pagerduty-v1.py.j2",
@@ -3012,6 +3341,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_pagertree_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-pagertree-v1.py.j2",
@@ -3034,6 +3364,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_parseplatform_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-parseplatform-v1.py.j2",
@@ -3056,6 +3387,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_plivo_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-plivo-sms-v1.py.j2",
@@ -3078,6 +3410,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_popcornnotify_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-popcornnotify-v1.py.j2",
@@ -3100,6 +3433,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_postmark_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-postmark-email-v1.py.j2",
@@ -3122,6 +3456,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_prowl_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-prowl-v1.py.j2",
@@ -3144,6 +3479,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_pushbullet_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-pushbullet-v1.py.j2",
@@ -3166,6 +3502,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_pushdeer_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-pushdeer-v1.py.j2",
@@ -3188,6 +3525,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_pushed_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-pushed-v1.py.j2",
@@ -3210,6 +3548,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_pushjet_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-pushjet-v1.py.j2",
@@ -3232,6 +3571,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_pushover_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-pushover-v1.py.j2",
@@ -3254,6 +3594,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_pushplus_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-pushplus-v1.py.j2",
@@ -3276,6 +3617,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_pushsafer_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-pushsafer-v1.py.j2",
@@ -3298,6 +3640,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_pushy_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-pushy-v1.py.j2",
@@ -3320,6 +3663,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_qqpush_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-qqpush-v1.py.j2",
@@ -3342,6 +3686,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_resend_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-resend-email-v1.py.j2",
@@ -3364,6 +3709,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_ryver_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-ryver-v1.py.j2",
@@ -3386,6 +3732,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_sendgrid_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-sendgrid-email-v1.py.j2",
@@ -3408,6 +3755,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_serverchan_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-serverchan-v1.py.j2",
@@ -3430,6 +3778,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_seven_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-seven-sms-v1.py.j2",
@@ -3452,6 +3801,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_signl4_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-signl4-v1.py.j2",
@@ -3474,6 +3824,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_simplepush_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-simplepush-v1.py.j2",
@@ -3496,6 +3847,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_sinch_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-sinch-sms-v1.py.j2",
@@ -3518,6 +3870,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_slack_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-slack-v1.py.j2",
@@ -3540,6 +3893,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_smseagle_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-smseagle-sms-v1.py.j2",
@@ -3562,6 +3916,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_smtp2go_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-smtp2go-email-v1.py.j2",
@@ -3584,6 +3939,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_sparkpost_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-sparkpost-email-v1.py.j2",
@@ -3606,6 +3962,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_spikesh_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-spikesh-v1.py.j2",
@@ -3628,6 +3985,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_spugpush_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-spugpush-v1.py.j2",
@@ -3650,6 +4008,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_streamlabs_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-streamlabs-v1.py.j2",
@@ -3672,6 +4031,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_synologychat_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-synologychat-v1.py.j2",
@@ -3694,6 +4054,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_techulus_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-techulus-v1.py.j2",
@@ -3716,6 +4077,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_telegram_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-telegram-v1.py.j2",
@@ -3738,6 +4100,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_twilio_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-twilio-sms-v1.py.j2",
@@ -3760,6 +4123,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-v1.py.j2",
@@ -3782,6 +4146,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_viber_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-viber-v1.py.j2",
@@ -3804,6 +4169,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_victorops_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-victorops-v1.py.j2",
@@ -3826,6 +4192,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_vonage_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-vonage-sms-v1.py.j2",
@@ -3848,6 +4215,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_wechat_work_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-wechat-work-v1.py.j2",
@@ -3870,6 +4238,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_whatsapp_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-whatsapp-msg-v1.py.j2",
@@ -3892,6 +4261,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_wxpusher_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-wxpusher-v1.py.j2",
@@ -3914,6 +4284,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_xml_webhook_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-xml-webhook-v1.py.j2",
@@ -3936,6 +4307,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_zoom_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-zoom-v1.py.j2",
@@ -3958,6 +4330,7 @@
       "version": 1
     },
     "msg_to_channel_code_example_py_zulip_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for gateway-transformer notification services",
       "example_file": "msg-to-channel/code-example-py/code-example-zulip-v1.py.j2",
@@ -3980,6 +4353,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_africastalking_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-africastalking-sms-v1.sh.j2",
@@ -3999,6 +4373,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_bark_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-bark-v1.sh.j2",
@@ -4018,6 +4393,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_brevo_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-brevo-email-v1.sh.j2",
@@ -4037,6 +4413,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_bulksms_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-bulksms-sms-v1.sh.j2",
@@ -4056,6 +4433,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_bulkvs_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-bulkvs-sms-v1.sh.j2",
@@ -4075,6 +4453,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_burstsms_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-burstsms-sms-v1.sh.j2",
@@ -4094,6 +4473,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_chanify_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-chanify-v1.sh.j2",
@@ -4113,6 +4493,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_chime_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-chime-v1.sh.j2",
@@ -4132,6 +4513,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_clicksend_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-clicksend-sms-v1.sh.j2",
@@ -4151,6 +4533,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_d7networks_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-d7networks-sms-v1.sh.j2",
@@ -4170,6 +4553,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_dapnet_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-dapnet-v1.sh.j2",
@@ -4189,6 +4573,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_dingtalk_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-dingtalk-v1.sh.j2",
@@ -4208,6 +4593,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_discord_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-discord-v1.sh.j2",
@@ -4227,6 +4613,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_dot_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-dot-v1.sh.j2",
@@ -4246,6 +4633,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_elks_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-elks-sms-v1.sh.j2",
@@ -4265,6 +4653,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_exotel_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-exotel-sms-v1.sh.j2",
@@ -4284,6 +4673,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_fcm_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-fcm-v1.sh.j2",
@@ -4303,6 +4693,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_feishu_msg_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-feishu-msg-v1.sh.j2",
@@ -4322,6 +4713,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_flock_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-flock-v1.sh.j2",
@@ -4341,6 +4733,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_form_webhook_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-form-webhook-v1.sh.j2",
@@ -4360,6 +4753,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_freemobile_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-freemobile-v1.sh.j2",
@@ -4379,6 +4773,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_gotify_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-gotify-v1.sh.j2",
@@ -4398,6 +4793,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_groupme_msg_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-groupme-msg-v1.sh.j2",
@@ -4417,6 +4813,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_homeassistant_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-homeassistant-v1.sh.j2",
@@ -4436,6 +4833,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_httpsms_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-httpsms-sms-v1.sh.j2",
@@ -4455,6 +4853,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_humhub_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-humhub-v1.sh.j2",
@@ -4474,6 +4873,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_ifttt_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-ifttt-v1.sh.j2",
@@ -4493,6 +4893,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_jira_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-jira-v1.sh.j2",
@@ -4512,6 +4913,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_json_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-json-v1.sh.j2",
@@ -4531,6 +4933,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_kodi_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-kodi-v1.sh.j2",
@@ -4550,6 +4953,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_kumulos_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-kumulos-v1.sh.j2",
@@ -4569,6 +4973,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_lametric_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-lametric-v1.sh.j2",
@@ -4588,6 +4993,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_line_msg_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-line-msg-v1.sh.j2",
@@ -4607,6 +5013,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_mailgun_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-mailgun-email-v1.sh.j2",
@@ -4626,6 +5033,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_mastodon_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-mastodon-v1.sh.j2",
@@ -4645,6 +5053,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_matrix_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-matrix-v1.sh.j2",
@@ -4664,6 +5073,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_messagebird_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-messagebird-sms-v1.sh.j2",
@@ -4683,6 +5093,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_misskey_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-misskey-v1.sh.j2",
@@ -4702,6 +5113,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_msg91_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-msg91-sms-v1.sh.j2",
@@ -4721,6 +5133,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_msteams_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-msteams-v1.sh.j2",
@@ -4740,6 +5153,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_nextcloud_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-nextcloud-v1.sh.j2",
@@ -4759,6 +5173,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_nextcloudtalk_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-nextcloudtalk-v1.sh.j2",
@@ -4778,6 +5193,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_notica_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-notica-v1.sh.j2",
@@ -4797,6 +5213,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_notifiarr_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-notifiarr-v1.sh.j2",
@@ -4816,6 +5233,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_notificationapi_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-notificationapi-v1.sh.j2",
@@ -4835,6 +5253,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_ntfy_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-ntfy-v1.sh.j2",
@@ -4854,6 +5273,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_octopush_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-octopush-sms-v1.sh.j2",
@@ -4873,6 +5293,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_onesignal_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-onesignal-v1.sh.j2",
@@ -4892,6 +5313,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_opsgenie_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-opsgenie-v1.sh.j2",
@@ -4911,6 +5333,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_pagerduty_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-pagerduty-v1.sh.j2",
@@ -4930,6 +5353,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_pagertree_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-pagertree-v1.sh.j2",
@@ -4949,6 +5373,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_parseplatform_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-parseplatform-v1.sh.j2",
@@ -4968,6 +5393,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_plivo_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-plivo-sms-v1.sh.j2",
@@ -4987,6 +5413,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_popcornnotify_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-popcornnotify-v1.sh.j2",
@@ -5006,6 +5433,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_postmark_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-postmark-email-v1.sh.j2",
@@ -5025,6 +5453,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_prowl_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-prowl-v1.sh.j2",
@@ -5044,6 +5473,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_pushbullet_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-pushbullet-v1.sh.j2",
@@ -5063,6 +5493,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_pushdeer_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-pushdeer-v1.sh.j2",
@@ -5082,6 +5513,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_pushed_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-pushed-v1.sh.j2",
@@ -5101,6 +5533,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_pushjet_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-pushjet-v1.sh.j2",
@@ -5120,6 +5553,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_pushover_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-pushover-v1.sh.j2",
@@ -5139,6 +5573,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_pushplus_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-pushplus-v1.sh.j2",
@@ -5158,6 +5593,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_pushsafer_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-pushsafer-v1.sh.j2",
@@ -5177,6 +5613,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_pushy_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-pushy-v1.sh.j2",
@@ -5196,6 +5633,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_qqpush_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-qqpush-v1.sh.j2",
@@ -5215,6 +5653,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_resend_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-resend-email-v1.sh.j2",
@@ -5234,6 +5673,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_ryver_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-ryver-v1.sh.j2",
@@ -5253,6 +5693,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_sendgrid_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-sendgrid-email-v1.sh.j2",
@@ -5272,6 +5713,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_serverchan_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-serverchan-v1.sh.j2",
@@ -5291,6 +5733,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_seven_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-seven-sms-v1.sh.j2",
@@ -5310,6 +5753,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_signl4_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-signl4-v1.sh.j2",
@@ -5329,6 +5773,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_simplepush_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-simplepush-v1.sh.j2",
@@ -5348,6 +5793,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_sinch_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-sinch-sms-v1.sh.j2",
@@ -5367,6 +5813,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_slack_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-slack-v1.sh.j2",
@@ -5386,6 +5833,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_smseagle_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-smseagle-sms-v1.sh.j2",
@@ -5405,6 +5853,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_smtp2go_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-smtp2go-email-v1.sh.j2",
@@ -5424,6 +5873,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_sparkpost_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-sparkpost-email-v1.sh.j2",
@@ -5443,6 +5893,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_spikesh_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-spikesh-v1.sh.j2",
@@ -5462,6 +5913,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_spugpush_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-spugpush-v1.sh.j2",
@@ -5481,6 +5933,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_streamlabs_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-streamlabs-v1.sh.j2",
@@ -5500,6 +5953,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_synologychat_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-synologychat-v1.sh.j2",
@@ -5519,6 +5973,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_techulus_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-techulus-v1.sh.j2",
@@ -5538,6 +5993,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_telegram_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-telegram-v1.sh.j2",
@@ -5557,6 +6013,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_twilio_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-twilio-sms-v1.sh.j2",
@@ -5576,6 +6033,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-v1.sh.j2",
@@ -5595,6 +6053,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_viber_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-viber-v1.sh.j2",
@@ -5614,6 +6073,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_victorops_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-victorops-v1.sh.j2",
@@ -5633,6 +6093,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_vonage_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-vonage-sms-v1.sh.j2",
@@ -5652,6 +6113,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_wechat_work_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-wechat-work-v1.sh.j2",
@@ -5671,6 +6133,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_whatsapp_msg_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-whatsapp-msg-v1.sh.j2",
@@ -5690,6 +6153,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_wxpusher_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-wxpusher-v1.sh.j2",
@@ -5709,6 +6173,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_xml_webhook_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-xml-webhook-v1.sh.j2",
@@ -5728,6 +6193,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_zoom_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-zoom-v1.sh.j2",
@@ -5747,6 +6213,7 @@
       "version": 1
     },
     "msg_to_channel_connectivity_zulip_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for gateway-transformer notification services",
       "example_file": "msg-to-channel/connectivity/connectivity-zulip-v1.sh.j2",
@@ -5766,6 +6233,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_africastalking_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-africastalking-sms-v1.py.j2",
@@ -5787,6 +6255,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_bark_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-bark-v1.py.j2",
@@ -5808,6 +6277,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_brevo_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-brevo-email-v1.py.j2",
@@ -5829,6 +6299,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_bulksms_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-bulksms-sms-v1.py.j2",
@@ -5850,6 +6321,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_bulkvs_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-bulkvs-sms-v1.py.j2",
@@ -5871,6 +6343,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_burstsms_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-burstsms-sms-v1.py.j2",
@@ -5892,6 +6365,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_chanify_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-chanify-v1.py.j2",
@@ -5913,6 +6387,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_chime_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-chime-v1.py.j2",
@@ -5934,6 +6409,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_clicksend_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-clicksend-sms-v1.py.j2",
@@ -5955,6 +6431,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_d7networks_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-d7networks-sms-v1.py.j2",
@@ -5976,6 +6453,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_dapnet_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-dapnet-v1.py.j2",
@@ -5997,6 +6475,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_dingtalk_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-dingtalk-v1.py.j2",
@@ -6018,6 +6497,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_discord_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-discord-v1.py.j2",
@@ -6039,6 +6519,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_dot_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-dot-v1.py.j2",
@@ -6060,6 +6541,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_elks_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-elks-sms-v1.py.j2",
@@ -6081,6 +6563,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_evolution_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-evolution-v1.py.j2",
@@ -6102,6 +6585,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_exotel_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-exotel-sms-v1.py.j2",
@@ -6123,6 +6607,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_fcm_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-fcm-v1.py.j2",
@@ -6144,6 +6629,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_feishu_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-feishu-msg-v1.py.j2",
@@ -6165,6 +6651,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_flock_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-flock-v1.py.j2",
@@ -6186,6 +6673,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_fluxer_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-fluxer-v1.py.j2",
@@ -6207,6 +6695,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_form_webhook_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-form-webhook-v1.py.j2",
@@ -6228,6 +6717,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_freemobile_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-freemobile-v1.py.j2",
@@ -6249,6 +6739,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_gotify_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-gotify-v1.py.j2",
@@ -6270,6 +6761,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_groupme_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-groupme-msg-v1.py.j2",
@@ -6291,6 +6783,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_homeassistant_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-homeassistant-v1.py.j2",
@@ -6312,6 +6805,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_httpsms_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-httpsms-sms-v1.py.j2",
@@ -6333,6 +6827,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_humhub_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-humhub-v1.py.j2",
@@ -6354,6 +6849,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_ifttt_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-ifttt-v1.py.j2",
@@ -6375,6 +6871,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_jira_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-jira-v1.py.j2",
@@ -6396,6 +6893,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_json_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-json-v1.py.j2",
@@ -6417,6 +6915,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_kodi_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-kodi-v1.py.j2",
@@ -6438,6 +6937,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_kumulos_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-kumulos-v1.py.j2",
@@ -6459,6 +6959,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_lametric_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-lametric-v1.py.j2",
@@ -6480,6 +6981,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_line_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-line-msg-v1.py.j2",
@@ -6501,6 +7003,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_mailgun_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-mailgun-email-v1.py.j2",
@@ -6522,6 +7025,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_mastodon_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-mastodon-v1.py.j2",
@@ -6543,6 +7047,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_matrix_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-matrix-v1.py.j2",
@@ -6564,6 +7069,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_messagebird_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-messagebird-sms-v1.py.j2",
@@ -6585,6 +7091,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_misskey_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-misskey-v1.py.j2",
@@ -6606,6 +7113,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_msg91_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-msg91-sms-v1.py.j2",
@@ -6627,6 +7135,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_msteams_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-msteams-v1.py.j2",
@@ -6648,6 +7157,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_nextcloud_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-nextcloud-v1.py.j2",
@@ -6669,6 +7179,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_nextcloudtalk_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-nextcloudtalk-v1.py.j2",
@@ -6690,6 +7201,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_notica_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-notica-v1.py.j2",
@@ -6711,6 +7223,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_notifiarr_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-notifiarr-v1.py.j2",
@@ -6732,6 +7245,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_notificationapi_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-notificationapi-v1.py.j2",
@@ -6753,6 +7267,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_ntfy_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-ntfy-v1.py.j2",
@@ -6774,6 +7289,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_octopush_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-octopush-sms-v1.py.j2",
@@ -6795,6 +7311,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_onesignal_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-onesignal-v1.py.j2",
@@ -6816,6 +7333,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_opsgenie_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-opsgenie-v1.py.j2",
@@ -6837,6 +7355,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_pagerduty_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-pagerduty-v1.py.j2",
@@ -6858,6 +7377,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_pagertree_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-pagertree-v1.py.j2",
@@ -6879,6 +7399,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_parseplatform_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-parseplatform-v1.py.j2",
@@ -6900,6 +7421,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_plivo_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-plivo-sms-v1.py.j2",
@@ -6921,6 +7443,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_popcornnotify_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-popcornnotify-v1.py.j2",
@@ -6942,6 +7465,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_postmark_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-postmark-email-v1.py.j2",
@@ -6963,6 +7487,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_prowl_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-prowl-v1.py.j2",
@@ -6984,6 +7509,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_pushbullet_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-pushbullet-v1.py.j2",
@@ -7005,6 +7531,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_pushdeer_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-pushdeer-v1.py.j2",
@@ -7026,6 +7553,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_pushed_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-pushed-v1.py.j2",
@@ -7047,6 +7575,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_pushjet_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-pushjet-v1.py.j2",
@@ -7068,6 +7597,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_pushover_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-pushover-v1.py.j2",
@@ -7089,6 +7619,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_pushplus_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-pushplus-v1.py.j2",
@@ -7110,6 +7641,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_pushsafer_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-pushsafer-v1.py.j2",
@@ -7131,6 +7663,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_pushy_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-pushy-v1.py.j2",
@@ -7152,6 +7685,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_qqpush_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-qqpush-v1.py.j2",
@@ -7173,6 +7707,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_resend_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-resend-email-v1.py.j2",
@@ -7194,6 +7729,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_ryver_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-ryver-v1.py.j2",
@@ -7215,6 +7751,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_sendgrid_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-sendgrid-email-v1.py.j2",
@@ -7236,6 +7773,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_serverchan_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-serverchan-v1.py.j2",
@@ -7257,6 +7795,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_seven_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-seven-sms-v1.py.j2",
@@ -7278,6 +7817,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_signl4_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-signl4-v1.py.j2",
@@ -7299,6 +7839,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_simplepush_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-simplepush-v1.py.j2",
@@ -7320,6 +7861,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_sinch_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-sinch-sms-v1.py.j2",
@@ -7341,6 +7883,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_slack_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-slack-v1.py.j2",
@@ -7362,6 +7905,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_smseagle_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-smseagle-sms-v1.py.j2",
@@ -7383,6 +7927,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_smtp2go_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-smtp2go-email-v1.py.j2",
@@ -7404,6 +7949,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_sparkpost_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-sparkpost-email-v1.py.j2",
@@ -7425,6 +7971,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_spikesh_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-spikesh-v1.py.j2",
@@ -7446,6 +7993,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_spugpush_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-spugpush-v1.py.j2",
@@ -7467,6 +8015,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_streamlabs_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-streamlabs-v1.py.j2",
@@ -7488,6 +8037,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_synologychat_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-synologychat-v1.py.j2",
@@ -7509,6 +8059,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_techulus_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-techulus-v1.py.j2",
@@ -7530,6 +8081,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_telegram_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-telegram-v1.py.j2",
@@ -7551,6 +8103,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_twilio_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-twilio-sms-v1.py.j2",
@@ -7572,6 +8125,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_viber_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-viber-v1.py.j2",
@@ -7593,6 +8147,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_victorops_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-victorops-v1.py.j2",
@@ -7614,6 +8169,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_vonage_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-vonage-sms-v1.py.j2",
@@ -7635,6 +8191,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_wechat_work_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-wechat-work-v1.py.j2",
@@ -7656,6 +8213,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_whatsapp_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-whatsapp-msg-v1.py.j2",
@@ -7677,6 +8235,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_wxpusher_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-wxpusher-v1.py.j2",
@@ -7698,6 +8257,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_xml_webhook_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-xml-webhook-v1.py.j2",
@@ -7719,6 +8279,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_zoom_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-zoom-v1.py.j2",
@@ -7740,6 +8301,7 @@
       "version": 1
     },
     "notify_relay_code_example_py_zulip_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python (httpx) code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-py/code-example-zulip-v1.py.j2",
@@ -7761,6 +8323,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_africastalking_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-africastalking-sms-v1.sh.j2",
@@ -7779,6 +8342,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_bark_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-bark-v1.sh.j2",
@@ -7797,6 +8361,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_brevo_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-brevo-email-v1.sh.j2",
@@ -7815,6 +8380,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_bulksms_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-bulksms-sms-v1.sh.j2",
@@ -7833,6 +8399,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_bulkvs_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-bulkvs-sms-v1.sh.j2",
@@ -7851,6 +8418,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_burstsms_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-burstsms-sms-v1.sh.j2",
@@ -7869,6 +8437,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_chanify_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-chanify-v1.sh.j2",
@@ -7887,6 +8456,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_chime_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-chime-v1.sh.j2",
@@ -7905,6 +8475,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_clicksend_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-clicksend-sms-v1.sh.j2",
@@ -7923,6 +8494,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_d7networks_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-d7networks-sms-v1.sh.j2",
@@ -7941,6 +8513,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_dapnet_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-dapnet-v1.sh.j2",
@@ -7959,6 +8532,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_dingtalk_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-dingtalk-v1.sh.j2",
@@ -7977,6 +8551,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_discord_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-discord-v1.sh.j2",
@@ -7995,6 +8570,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_dot_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-dot-v1.sh.j2",
@@ -8013,6 +8589,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_elks_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-elks-sms-v1.sh.j2",
@@ -8031,6 +8608,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_evolution_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-evolution-v1.sh.j2",
@@ -8049,6 +8627,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_exotel_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-exotel-sms-v1.sh.j2",
@@ -8067,6 +8646,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_fcm_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-fcm-v1.sh.j2",
@@ -8085,6 +8665,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_feishu_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-feishu-msg-v1.sh.j2",
@@ -8103,6 +8684,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_flock_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-flock-v1.sh.j2",
@@ -8121,6 +8703,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_fluxer_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-fluxer-v1.sh.j2",
@@ -8139,6 +8722,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_form_webhook_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-form-webhook-v1.sh.j2",
@@ -8157,6 +8741,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_freemobile_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-freemobile-v1.sh.j2",
@@ -8175,6 +8760,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_gotify_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-gotify-v1.sh.j2",
@@ -8193,6 +8779,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_groupme_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-groupme-msg-v1.sh.j2",
@@ -8211,6 +8798,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_homeassistant_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-homeassistant-v1.sh.j2",
@@ -8229,6 +8817,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_httpsms_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-httpsms-sms-v1.sh.j2",
@@ -8247,6 +8836,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_humhub_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-humhub-v1.sh.j2",
@@ -8265,6 +8855,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_ifttt_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-ifttt-v1.sh.j2",
@@ -8283,6 +8874,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_jira_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-jira-v1.sh.j2",
@@ -8301,6 +8893,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_json_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-json-v1.sh.j2",
@@ -8319,6 +8912,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_kodi_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-kodi-v1.sh.j2",
@@ -8337,6 +8931,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_kumulos_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-kumulos-v1.sh.j2",
@@ -8355,6 +8950,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_lametric_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-lametric-v1.sh.j2",
@@ -8373,6 +8969,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_line_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-line-msg-v1.sh.j2",
@@ -8391,6 +8988,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_mailgun_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-mailgun-email-v1.sh.j2",
@@ -8409,6 +9007,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_mastodon_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-mastodon-v1.sh.j2",
@@ -8427,6 +9026,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_matrix_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-matrix-v1.sh.j2",
@@ -8445,6 +9045,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_messagebird_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-messagebird-sms-v1.sh.j2",
@@ -8463,6 +9064,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_misskey_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-misskey-v1.sh.j2",
@@ -8481,6 +9083,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_msg91_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-msg91-sms-v1.sh.j2",
@@ -8499,6 +9102,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_msteams_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-msteams-v1.sh.j2",
@@ -8517,6 +9121,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_nextcloud_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-nextcloud-v1.sh.j2",
@@ -8535,6 +9140,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_nextcloudtalk_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-nextcloudtalk-v1.sh.j2",
@@ -8553,6 +9159,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_notica_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-notica-v1.sh.j2",
@@ -8571,6 +9178,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_notifiarr_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-notifiarr-v1.sh.j2",
@@ -8589,6 +9197,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_notificationapi_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-notificationapi-v1.sh.j2",
@@ -8607,6 +9216,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_ntfy_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-ntfy-v1.sh.j2",
@@ -8625,6 +9235,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_octopush_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-octopush-sms-v1.sh.j2",
@@ -8643,6 +9254,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_onesignal_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-onesignal-v1.sh.j2",
@@ -8661,6 +9273,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_opsgenie_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-opsgenie-v1.sh.j2",
@@ -8679,6 +9292,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_pagerduty_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-pagerduty-v1.sh.j2",
@@ -8697,6 +9311,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_pagertree_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-pagertree-v1.sh.j2",
@@ -8715,6 +9330,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_parseplatform_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-parseplatform-v1.sh.j2",
@@ -8733,6 +9349,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_plivo_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-plivo-sms-v1.sh.j2",
@@ -8751,6 +9368,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_popcornnotify_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-popcornnotify-v1.sh.j2",
@@ -8769,6 +9387,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_postmark_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-postmark-email-v1.sh.j2",
@@ -8787,6 +9406,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_prowl_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-prowl-v1.sh.j2",
@@ -8805,6 +9425,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_pushbullet_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-pushbullet-v1.sh.j2",
@@ -8823,6 +9444,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_pushdeer_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-pushdeer-v1.sh.j2",
@@ -8841,6 +9463,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_pushed_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-pushed-v1.sh.j2",
@@ -8859,6 +9482,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_pushjet_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-pushjet-v1.sh.j2",
@@ -8877,6 +9501,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_pushover_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-pushover-v1.sh.j2",
@@ -8895,6 +9520,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_pushplus_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-pushplus-v1.sh.j2",
@@ -8913,6 +9539,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_pushsafer_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-pushsafer-v1.sh.j2",
@@ -8931,6 +9558,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_pushy_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-pushy-v1.sh.j2",
@@ -8949,6 +9577,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_qqpush_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-qqpush-v1.sh.j2",
@@ -8967,6 +9596,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_resend_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-resend-email-v1.sh.j2",
@@ -8985,6 +9615,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_ryver_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-ryver-v1.sh.j2",
@@ -9003,6 +9634,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_sendgrid_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-sendgrid-email-v1.sh.j2",
@@ -9021,6 +9653,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_serverchan_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-serverchan-v1.sh.j2",
@@ -9039,6 +9672,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_seven_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-seven-sms-v1.sh.j2",
@@ -9057,6 +9691,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_signl4_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-signl4-v1.sh.j2",
@@ -9075,6 +9710,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_simplepush_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-simplepush-v1.sh.j2",
@@ -9093,6 +9729,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_sinch_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-sinch-sms-v1.sh.j2",
@@ -9111,6 +9748,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_slack_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-slack-v1.sh.j2",
@@ -9129,6 +9767,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_smseagle_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-smseagle-sms-v1.sh.j2",
@@ -9147,6 +9786,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_smtp2go_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-smtp2go-email-v1.sh.j2",
@@ -9165,6 +9805,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_sparkpost_email_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-sparkpost-email-v1.sh.j2",
@@ -9183,6 +9824,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_spikesh_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-spikesh-v1.sh.j2",
@@ -9201,6 +9843,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_spugpush_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-spugpush-v1.sh.j2",
@@ -9219,6 +9862,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_streamlabs_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-streamlabs-v1.sh.j2",
@@ -9237,6 +9881,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_synologychat_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-synologychat-v1.sh.j2",
@@ -9255,6 +9900,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_techulus_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-techulus-v1.sh.j2",
@@ -9273,6 +9919,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_telegram_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-telegram-v1.sh.j2",
@@ -9291,6 +9938,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_twilio_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-twilio-sms-v1.sh.j2",
@@ -9309,6 +9957,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_viber_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-viber-v1.sh.j2",
@@ -9327,6 +9976,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_victorops_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-victorops-v1.sh.j2",
@@ -9345,6 +9995,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_vonage_sms_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-vonage-sms-v1.sh.j2",
@@ -9363,6 +10014,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_wechat_work_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-wechat-work-v1.sh.j2",
@@ -9381,6 +10033,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_whatsapp_msg_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-whatsapp-msg-v1.sh.j2",
@@ -9399,6 +10052,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_wxpusher_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-wxpusher-v1.sh.j2",
@@ -9417,6 +10071,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_xml_webhook_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-xml-webhook-v1.sh.j2",
@@ -9435,6 +10090,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_zoom_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-zoom-v1.sh.j2",
@@ -9453,6 +10109,7 @@
       "version": 1
     },
     "notify_relay_code_example_sh_zulip_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL code example for pass-through HTTP notification services",
       "example_file": "notify-relay/code-example-sh/code-example-zulip-v1.sh.j2",
@@ -9471,6 +10128,7 @@
       "version": 1
     },
     "notify_relay_connectivity_africastalking_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-africastalking-sms-v1.sh.j2",
@@ -9489,6 +10147,7 @@
       "version": 1
     },
     "notify_relay_connectivity_bark_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-bark-v1.sh.j2",
@@ -9507,6 +10166,7 @@
       "version": 1
     },
     "notify_relay_connectivity_brevo_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-brevo-email-v1.sh.j2",
@@ -9525,6 +10185,7 @@
       "version": 1
     },
     "notify_relay_connectivity_bulksms_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-bulksms-sms-v1.sh.j2",
@@ -9543,6 +10204,7 @@
       "version": 1
     },
     "notify_relay_connectivity_bulkvs_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-bulkvs-sms-v1.sh.j2",
@@ -9561,6 +10223,7 @@
       "version": 1
     },
     "notify_relay_connectivity_burstsms_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-burstsms-sms-v1.sh.j2",
@@ -9579,6 +10242,7 @@
       "version": 1
     },
     "notify_relay_connectivity_chanify_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-chanify-v1.sh.j2",
@@ -9597,6 +10261,7 @@
       "version": 1
     },
     "notify_relay_connectivity_chime_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-chime-v1.sh.j2",
@@ -9615,6 +10280,7 @@
       "version": 1
     },
     "notify_relay_connectivity_clicksend_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-clicksend-sms-v1.sh.j2",
@@ -9633,6 +10299,7 @@
       "version": 1
     },
     "notify_relay_connectivity_d7networks_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-d7networks-sms-v1.sh.j2",
@@ -9651,6 +10318,7 @@
       "version": 1
     },
     "notify_relay_connectivity_dapnet_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-dapnet-v1.sh.j2",
@@ -9669,6 +10337,7 @@
       "version": 1
     },
     "notify_relay_connectivity_dingtalk_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-dingtalk-v1.sh.j2",
@@ -9687,6 +10356,7 @@
       "version": 1
     },
     "notify_relay_connectivity_discord_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-discord-v1.sh.j2",
@@ -9705,6 +10375,7 @@
       "version": 1
     },
     "notify_relay_connectivity_dot_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-dot-v1.sh.j2",
@@ -9723,6 +10394,7 @@
       "version": 1
     },
     "notify_relay_connectivity_elks_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-elks-sms-v1.sh.j2",
@@ -9741,6 +10413,7 @@
       "version": 1
     },
     "notify_relay_connectivity_evolution_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-evolution-v1.sh.j2",
@@ -9759,6 +10432,7 @@
       "version": 1
     },
     "notify_relay_connectivity_exotel_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-exotel-sms-v1.sh.j2",
@@ -9777,6 +10451,7 @@
       "version": 1
     },
     "notify_relay_connectivity_fcm_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-fcm-v1.sh.j2",
@@ -9795,6 +10470,7 @@
       "version": 1
     },
     "notify_relay_connectivity_feishu_msg_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-feishu-msg-v1.sh.j2",
@@ -9813,6 +10489,7 @@
       "version": 1
     },
     "notify_relay_connectivity_flock_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-flock-v1.sh.j2",
@@ -9831,6 +10508,7 @@
       "version": 1
     },
     "notify_relay_connectivity_fluxer_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-fluxer-v1.sh.j2",
@@ -9849,6 +10527,7 @@
       "version": 1
     },
     "notify_relay_connectivity_form_webhook_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-form-webhook-v1.sh.j2",
@@ -9867,6 +10546,7 @@
       "version": 1
     },
     "notify_relay_connectivity_freemobile_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-freemobile-v1.sh.j2",
@@ -9885,6 +10565,7 @@
       "version": 1
     },
     "notify_relay_connectivity_gotify_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-gotify-v1.sh.j2",
@@ -9903,6 +10584,7 @@
       "version": 1
     },
     "notify_relay_connectivity_groupme_msg_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-groupme-msg-v1.sh.j2",
@@ -9921,6 +10603,7 @@
       "version": 1
     },
     "notify_relay_connectivity_homeassistant_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-homeassistant-v1.sh.j2",
@@ -9939,6 +10622,7 @@
       "version": 1
     },
     "notify_relay_connectivity_httpsms_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-httpsms-sms-v1.sh.j2",
@@ -9957,6 +10641,7 @@
       "version": 1
     },
     "notify_relay_connectivity_humhub_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-humhub-v1.sh.j2",
@@ -9975,6 +10660,7 @@
       "version": 1
     },
     "notify_relay_connectivity_ifttt_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-ifttt-v1.sh.j2",
@@ -9993,6 +10679,7 @@
       "version": 1
     },
     "notify_relay_connectivity_jira_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-jira-v1.sh.j2",
@@ -10011,6 +10698,7 @@
       "version": 1
     },
     "notify_relay_connectivity_json_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-json-v1.sh.j2",
@@ -10029,6 +10717,7 @@
       "version": 1
     },
     "notify_relay_connectivity_kodi_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-kodi-v1.sh.j2",
@@ -10047,6 +10736,7 @@
       "version": 1
     },
     "notify_relay_connectivity_kumulos_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-kumulos-v1.sh.j2",
@@ -10065,6 +10755,7 @@
       "version": 1
     },
     "notify_relay_connectivity_lametric_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-lametric-v1.sh.j2",
@@ -10083,6 +10774,7 @@
       "version": 1
     },
     "notify_relay_connectivity_line_msg_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-line-msg-v1.sh.j2",
@@ -10101,6 +10793,7 @@
       "version": 1
     },
     "notify_relay_connectivity_mailgun_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-mailgun-email-v1.sh.j2",
@@ -10119,6 +10812,7 @@
       "version": 1
     },
     "notify_relay_connectivity_mastodon_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-mastodon-v1.sh.j2",
@@ -10137,6 +10831,7 @@
       "version": 1
     },
     "notify_relay_connectivity_matrix_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-matrix-v1.sh.j2",
@@ -10155,6 +10850,7 @@
       "version": 1
     },
     "notify_relay_connectivity_messagebird_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-messagebird-sms-v1.sh.j2",
@@ -10173,6 +10869,7 @@
       "version": 1
     },
     "notify_relay_connectivity_misskey_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-misskey-v1.sh.j2",
@@ -10191,6 +10888,7 @@
       "version": 1
     },
     "notify_relay_connectivity_msg91_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-msg91-sms-v1.sh.j2",
@@ -10209,6 +10907,7 @@
       "version": 1
     },
     "notify_relay_connectivity_msteams_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-msteams-v1.sh.j2",
@@ -10227,6 +10926,7 @@
       "version": 1
     },
     "notify_relay_connectivity_nextcloud_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-nextcloud-v1.sh.j2",
@@ -10245,6 +10945,7 @@
       "version": 1
     },
     "notify_relay_connectivity_nextcloudtalk_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-nextcloudtalk-v1.sh.j2",
@@ -10263,6 +10964,7 @@
       "version": 1
     },
     "notify_relay_connectivity_notica_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-notica-v1.sh.j2",
@@ -10281,6 +10983,7 @@
       "version": 1
     },
     "notify_relay_connectivity_notifiarr_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-notifiarr-v1.sh.j2",
@@ -10299,6 +11002,7 @@
       "version": 1
     },
     "notify_relay_connectivity_notificationapi_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-notificationapi-v1.sh.j2",
@@ -10317,6 +11021,7 @@
       "version": 1
     },
     "notify_relay_connectivity_ntfy_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-ntfy-v1.sh.j2",
@@ -10335,6 +11040,7 @@
       "version": 1
     },
     "notify_relay_connectivity_octopush_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-octopush-sms-v1.sh.j2",
@@ -10353,6 +11059,7 @@
       "version": 1
     },
     "notify_relay_connectivity_onesignal_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-onesignal-v1.sh.j2",
@@ -10371,6 +11078,7 @@
       "version": 1
     },
     "notify_relay_connectivity_opsgenie_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-opsgenie-v1.sh.j2",
@@ -10389,6 +11097,7 @@
       "version": 1
     },
     "notify_relay_connectivity_pagerduty_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-pagerduty-v1.sh.j2",
@@ -10407,6 +11116,7 @@
       "version": 1
     },
     "notify_relay_connectivity_pagertree_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-pagertree-v1.sh.j2",
@@ -10425,6 +11135,7 @@
       "version": 1
     },
     "notify_relay_connectivity_parseplatform_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-parseplatform-v1.sh.j2",
@@ -10443,6 +11154,7 @@
       "version": 1
     },
     "notify_relay_connectivity_plivo_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-plivo-sms-v1.sh.j2",
@@ -10461,6 +11173,7 @@
       "version": 1
     },
     "notify_relay_connectivity_popcornnotify_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-popcornnotify-v1.sh.j2",
@@ -10479,6 +11192,7 @@
       "version": 1
     },
     "notify_relay_connectivity_postmark_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-postmark-email-v1.sh.j2",
@@ -10497,6 +11211,7 @@
       "version": 1
     },
     "notify_relay_connectivity_prowl_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-prowl-v1.sh.j2",
@@ -10515,6 +11230,7 @@
       "version": 1
     },
     "notify_relay_connectivity_pushbullet_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-pushbullet-v1.sh.j2",
@@ -10533,6 +11249,7 @@
       "version": 1
     },
     "notify_relay_connectivity_pushdeer_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-pushdeer-v1.sh.j2",
@@ -10551,6 +11268,7 @@
       "version": 1
     },
     "notify_relay_connectivity_pushed_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-pushed-v1.sh.j2",
@@ -10569,6 +11287,7 @@
       "version": 1
     },
     "notify_relay_connectivity_pushjet_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-pushjet-v1.sh.j2",
@@ -10587,6 +11306,7 @@
       "version": 1
     },
     "notify_relay_connectivity_pushover_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-pushover-v1.sh.j2",
@@ -10605,6 +11325,7 @@
       "version": 1
     },
     "notify_relay_connectivity_pushplus_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-pushplus-v1.sh.j2",
@@ -10623,6 +11344,7 @@
       "version": 1
     },
     "notify_relay_connectivity_pushsafer_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-pushsafer-v1.sh.j2",
@@ -10641,6 +11363,7 @@
       "version": 1
     },
     "notify_relay_connectivity_pushy_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-pushy-v1.sh.j2",
@@ -10659,6 +11382,7 @@
       "version": 1
     },
     "notify_relay_connectivity_qqpush_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-qqpush-v1.sh.j2",
@@ -10677,6 +11401,7 @@
       "version": 1
     },
     "notify_relay_connectivity_resend_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-resend-email-v1.sh.j2",
@@ -10695,6 +11420,7 @@
       "version": 1
     },
     "notify_relay_connectivity_ryver_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-ryver-v1.sh.j2",
@@ -10713,6 +11439,7 @@
       "version": 1
     },
     "notify_relay_connectivity_sendgrid_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-sendgrid-email-v1.sh.j2",
@@ -10731,6 +11458,7 @@
       "version": 1
     },
     "notify_relay_connectivity_serverchan_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-serverchan-v1.sh.j2",
@@ -10749,6 +11477,7 @@
       "version": 1
     },
     "notify_relay_connectivity_seven_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-seven-sms-v1.sh.j2",
@@ -10767,6 +11496,7 @@
       "version": 1
     },
     "notify_relay_connectivity_signl4_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-signl4-v1.sh.j2",
@@ -10785,6 +11515,7 @@
       "version": 1
     },
     "notify_relay_connectivity_simplepush_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-simplepush-v1.sh.j2",
@@ -10803,6 +11534,7 @@
       "version": 1
     },
     "notify_relay_connectivity_sinch_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-sinch-sms-v1.sh.j2",
@@ -10821,6 +11553,7 @@
       "version": 1
     },
     "notify_relay_connectivity_slack_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-slack-v1.sh.j2",
@@ -10839,6 +11572,7 @@
       "version": 1
     },
     "notify_relay_connectivity_smseagle_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-smseagle-sms-v1.sh.j2",
@@ -10857,6 +11591,7 @@
       "version": 1
     },
     "notify_relay_connectivity_smtp2go_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-smtp2go-email-v1.sh.j2",
@@ -10875,6 +11610,7 @@
       "version": 1
     },
     "notify_relay_connectivity_sparkpost_email_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-sparkpost-email-v1.sh.j2",
@@ -10893,6 +11629,7 @@
       "version": 1
     },
     "notify_relay_connectivity_spikesh_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-spikesh-v1.sh.j2",
@@ -10911,6 +11648,7 @@
       "version": 1
     },
     "notify_relay_connectivity_spugpush_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-spugpush-v1.sh.j2",
@@ -10929,6 +11667,7 @@
       "version": 1
     },
     "notify_relay_connectivity_streamlabs_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-streamlabs-v1.sh.j2",
@@ -10947,6 +11686,7 @@
       "version": 1
     },
     "notify_relay_connectivity_synologychat_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-synologychat-v1.sh.j2",
@@ -10965,6 +11705,7 @@
       "version": 1
     },
     "notify_relay_connectivity_techulus_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-techulus-v1.sh.j2",
@@ -10983,6 +11724,7 @@
       "version": 1
     },
     "notify_relay_connectivity_telegram_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-telegram-v1.sh.j2",
@@ -11001,6 +11743,7 @@
       "version": 1
     },
     "notify_relay_connectivity_twilio_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-twilio-sms-v1.sh.j2",
@@ -11019,6 +11762,7 @@
       "version": 1
     },
     "notify_relay_connectivity_viber_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-viber-v1.sh.j2",
@@ -11037,6 +11781,7 @@
       "version": 1
     },
     "notify_relay_connectivity_victorops_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-victorops-v1.sh.j2",
@@ -11055,6 +11800,7 @@
       "version": 1
     },
     "notify_relay_connectivity_vonage_sms_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-vonage-sms-v1.sh.j2",
@@ -11073,6 +11819,7 @@
       "version": 1
     },
     "notify_relay_connectivity_wechat_work_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-wechat-work-v1.sh.j2",
@@ -11091,6 +11838,7 @@
       "version": 1
     },
     "notify_relay_connectivity_whatsapp_msg_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-whatsapp-msg-v1.sh.j2",
@@ -11109,6 +11857,7 @@
       "version": 1
     },
     "notify_relay_connectivity_wxpusher_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-wxpusher-v1.sh.j2",
@@ -11127,6 +11876,7 @@
       "version": 1
     },
     "notify_relay_connectivity_xml_webhook_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-xml-webhook-v1.sh.j2",
@@ -11145,6 +11895,7 @@
       "version": 1
     },
     "notify_relay_connectivity_zoom_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-zoom-v1.sh.j2",
@@ -11163,6 +11914,7 @@
       "version": 1
     },
     "notify_relay_connectivity_zulip_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Connectivity test for pass-through HTTP notification services",
       "example_file": "notify-relay/connectivity/connectivity-zulip-v1.sh.j2",
@@ -11181,6 +11933,7 @@
       "version": 1
     },
     "notify_relay_description_v1": {
+      "applies_to": {},
       "category": "getting_started",
       "description": "Customer-facing overview of a ntfy-shaped push-notification gateway service",
       "example_file": "notify-relay/description/description-v1.md",
@@ -11194,6 +11947,7 @@
       "version": 1
     },
     "recommender_description_v1": {
+      "applies_to": {},
       "category": "getting_started",
       "description": "Customer-facing overview of a Gorse-shaped recommender gateway service",
       "example_file": "recommender/description/description-v1.md",
@@ -11207,6 +11961,7 @@
       "version": 1
     },
     "s3_code_example_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python example: list objects in an S3 bucket via boto3",
       "example_file": "s3/code-example/code-example-v1.py.j2",
@@ -11225,6 +11980,7 @@
       "version": 1
     },
     "s3_connectivity_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Verify S3 endpoint accepts the configured credentials",
       "example_file": "s3/connectivity/connectivity-v1.py.j2",
@@ -11243,6 +11999,7 @@
       "version": 1
     },
     "s3_description_v1": {
+      "applies_to": {},
       "category": "getting_started",
       "description": "Customer-facing overview of the S3 gateway service",
       "example_file": "s3/description/description-v1.md",
@@ -11256,6 +12013,7 @@
       "version": 1
     },
     "smtp_code_example_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "Python example: send a test email via the UnitySVC SMTP gateway",
       "example_file": "smtp/code-example/code-example-v1.py.j2",
@@ -11271,6 +12029,7 @@
       "version": 1
     },
     "smtp_connectivity_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Verify SMTP server returns a 220 greeting on connect",
       "example_file": "smtp/connectivity/connectivity-v1.sh.j2",
@@ -11286,6 +12045,7 @@
       "version": 1
     },
     "smtp_connectivity_v2": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Verify SMTP server returns a 220 greeting on connect",
       "example_file": "smtp/connectivity/connectivity-v2.sh.j2",
@@ -11301,6 +12061,7 @@
       "version": 2
     },
     "uptime_description_v1": {
+      "applies_to": {},
       "category": "getting_started",
       "description": "Customer-facing overview of an uptime-monitoring bridge service",
       "example_file": "uptime/description/description-v1.md",
@@ -11314,6 +12075,7 @@
       "version": 1
     },
     "webhook_code_example_shell_v1": {
+      "applies_to": {},
       "category": "code_example",
       "description": "cURL example: POST a Discord embeds payload directly to a webhook endpoint",
       "example_file": "webhook/code-example-shell/code-example-v1.sh.j2",
@@ -11331,6 +12093,7 @@
       "version": 1
     },
     "webhook_connectivity_v1": {
+      "applies_to": {},
       "category": "connectivity_test",
       "description": "Verify a Discord-compatible webhook endpoint by POSTing a minimal embeds payload",
       "example_file": "webhook/connectivity/connectivity-v1.sh.j2",

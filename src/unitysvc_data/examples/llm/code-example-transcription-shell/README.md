@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Transcription" }
 parameters = { version_prefix = "/v1", language = "en" }
+applies_to = { capability = "speech-transcribe" }
 +++
 
 # llm / code-example-transcription-shell — audio transcription via `curl`

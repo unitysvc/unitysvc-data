@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Anthropic-style", requirements = ["openai", "anthropic"] }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "chat", dialect = "anthropic", upstream = "openai" }
 +++
 
 # llm / code-example-anthropic-to-openai-sdk — Anthropic-format call to an anthropic->openai translation gateway (SDK)

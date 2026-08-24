@@ -7,6 +7,7 @@ description = "Python example: send a message to an Anthropic-API-compatible LLM
 is_active = true
 is_public = true
 meta = { variant = "Chat", requirements = ["anthropic"] }
+applies_to = { capability = "chat", dialect = "anthropic", upstream = "anthropic" }
 +++
 
 # llm / code-example-anthropic — Anthropic Messages API via the `anthropic` SDK

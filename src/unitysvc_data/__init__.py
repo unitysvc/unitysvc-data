@@ -104,6 +104,7 @@ from .presets import (
     MANIFEST,
     OVERRIDABLE,
     PRESETS,
+    applies_to,
     doc_preset,
     file_preset,
     list_presets,
@@ -120,6 +121,7 @@ __all__ = [
     "LogoFamily",
     "__version__",
     # Preferred preset API.
+    "applies_to",
     "doc_preset",
     # Low-level path-based API.
     "example_path",

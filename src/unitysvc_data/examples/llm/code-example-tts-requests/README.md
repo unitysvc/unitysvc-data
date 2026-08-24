@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Text to speech", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "speech-synthesize" }
 +++
 
 # llm / code-example-tts-requests — text-to-speech via `requests`

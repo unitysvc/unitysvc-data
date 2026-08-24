@@ -7,6 +7,7 @@ description = "Python example: tool use against an Anthropic Messages API endpoi
 is_active = true
 is_public = true
 meta = { variant = "Function calling", requirements = ["anthropic"] }
+applies_to = { capability = "chat", dialect = "anthropic", upstream = "anthropic", feature = "tools" }
 +++
 
 # llm / code-example-anthropic-fc — Anthropic tool use via the `anthropic` SDK

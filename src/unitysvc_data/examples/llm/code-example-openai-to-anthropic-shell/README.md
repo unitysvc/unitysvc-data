@@ -7,6 +7,7 @@ description = "Shell example: OpenAI-format request against an openai->anthropic
 is_active = true
 is_public = true
 meta = { variant = "OpenAI-style" }
+applies_to = { capability = "chat", dialect = "openai", upstream = "anthropic" }
 +++
 
 # llm / code-example-openai-to-anthropic-shell — OpenAI-format call to an openai->anthropic translation gateway

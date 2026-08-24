@@ -7,6 +7,7 @@ description = "Python example: call the model with boto3 invoke_model() pointed 
 is_active = true
 is_public = true
 meta = { variant = "boto3 InvokeModel", requirements = ["boto3"], test = { status = "skip" } }
+applies_to = { capability = "chat", dialect = "bedrock_invoke", upstream = "openai" }
 +++
 
 # llm / code-example-bedrock-invoke — native Bedrock runtime InvokeModel via boto3

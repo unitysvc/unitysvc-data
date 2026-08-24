@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Function calling", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "chat", dialect = "openai", upstream = "openai", feature = "tools" }
 +++
 
 # llm / code-example-fc-requests — chat completion with function calling via `requests`

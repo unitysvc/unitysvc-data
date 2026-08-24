@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Guard" }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "moderate" }
 +++
 
 # llm / code-example-guard-shell — safety guard probe via `curl`

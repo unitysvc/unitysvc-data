@@ -128,6 +128,11 @@ _PRESET_RECORDS: dict[str, dict[str, Any]] = {}
 # inputs).  It's stored here separately and consumed by ``file_preset``.
 _PRESET_PARAMETERS: dict[str, dict[str, str]] = {}
 
+# Selection metadata — see ``applies_to`` in tools/build.py. Held apart
+# from ``_PRESET_RECORDS`` for the same reason as ``_PRESET_PARAMETERS``:
+# it describes when to choose the example, not the document it becomes.
+_PRESET_APPLIES_TO: dict[str, dict[str, Any]] = {}
+
 for _name, _entry in MANIFEST["presets"].items():
     _PRESET_RECORDS[_name] = {
         "category": _entry["category"],
@@ -142,6 +147,7 @@ for _name, _entry in MANIFEST["presets"].items():
     # manifests (or hand-built ones) may not have the field, so default
     # to no-parameters rather than raising.
     _PRESET_PARAMETERS[_name] = dict(_entry.get("parameters", {}))
+    _PRESET_APPLIES_TO[_name] = dict(_entry.get("applies_to", {}))
 
 # Alias entries share the same underlying record as their target. We
 # store the record under both names so a lookup of either resolves in
@@ -155,6 +161,7 @@ for _alias, _target in ALIASES.items():
         )
     _PRESET_RECORDS[_alias] = _PRESET_RECORDS[_target]
     _PRESET_PARAMETERS[_alias] = _PRESET_PARAMETERS[_target]
+    _PRESET_APPLIES_TO[_alias] = _PRESET_APPLIES_TO[_target]
 
 
 def _make_factory(record: dict[str, Any]):
@@ -377,38 +384,17 @@ def _materialise_substituted_body(
     return str(out_path)
 
 
-#: The capability each code-example preset demonstrates, read from the
-#: preset's own ``meta.variant``.  Every example already declares this in
-#: its front-matter, so the mapping lives in the data rather than being
-#: hand-maintained here — a new example family joins its capability the
-#: moment it is authored.
-#:
-#: Variants deliberately absent are not capabilities:
-#:   Anthropic-style / OpenAI-style (+streaming)  translation direction
-#:   Cerebras SDK / Cohere SDK / boto3 *          native dialects
-#:   Function calling / Streaming / Vision        attributes of a chat call
-#: All of those are selected by format or flag, not by capability.
-_VARIANT_CAPABILITY: dict[str, str] = {
-    "Chat": "chat",
-    "Embeddings": "embed",
-    "Transcription": "speech-transcribe",
-    "Text to speech": "speech-synthesize",
-    "Text to video": "video-generate",
-    "Image generation": "image-generate",
-    "Image to image": "image-edit",
-    "Rerank": "rerank",
-    "Guard": "moderate",
-}
-
 #: The connectivity preset that proves a capability, where one exists.
 #:
-#: ``None`` is meaningful, not a gap in this table: those capabilities
-#: have examples but no probe authored yet.  The collection then emits the
-#: examples and NO connectivity document, rather than falling back to a
-#: chat probe that cannot pass.  A service in that state is rejected by
-#: ``specs validate`` (and by the platform's activation gate, which
-#: requires at least one connectivity test) — visibly, at the point of
-#: declaration, instead of silently shipping an unprovable claim.
+#: ``None`` is meaningful, not a gap: those capabilities have examples but
+#: no probe authored yet, so the collection emits the examples and NO
+#: connectivity document rather than falling back to a chat probe that
+#: cannot pass. A service in that state is caught by ``specs validate``
+#: and by the activation gate, which requires at least one connectivity
+#: test — visibly, at the point of declaration.
+#:
+#: This is the ONLY hand-maintained table left: everything about WHICH
+#: examples apply now comes from each preset's own ``applies_to``.
 _CAPABILITY_PROBE: dict[str, str | None] = {
     "chat": "llm_connectivity",
     "embed": "llm_connectivity_embed",
@@ -421,105 +407,101 @@ _CAPABILITY_PROBE: dict[str, str | None] = {
     "moderate": None,
 }
 
-#: Document title by mime type, for the single-flavour-per-language
-#: capabilities (everything except chat, whose dialects need qualifying).
+#: Document title by mime type. Chat qualifies further (several flavours
+#: share a language), so the dialect and feature are appended.
 _TITLE_BY_MIME = {
     "python": "Python code example",
     "javascript": "JavaScript code example",
     "bash": "cURL code example",
 }
 
+#: Chat title qualifiers, so the flavours stay distinguishable when
+#: several dialects combine on one service.
+_DIALECT_LABEL = {
+    "openai": "", "anthropic": "Anthropic-style", "cohere": "Cohere SDK",
+    "cerebras": "Cerebras SDK", "bedrock_converse": "boto3 Converse",
+    "bedrock_invoke": "boto3 InvokeModel",
+}
 
-def _capability_examples(capability: str) -> list[tuple[str, str]]:
-    """``(title, preset name)`` for a non-chat capability, from the manifest."""
-    wanted = {v for v, c in _VARIANT_CAPABILITY.items() if c == capability}
-    seen: dict[str, dict[str, Any]] = {}
-    for key_, entry in MANIFEST["presets"].items():
-        if not key_.startswith("llm_") or entry.get("category") != "code_example":
+
+def _probe_for(capability: str, upstream: str) -> str | None:
+    """The connectivity preset that proves *capability* on *upstream*.
+
+    Chat is the one capability whose probe varies: the body it POSTs has
+    to be shaped for the dialect the upstream actually speaks.
+    """
+    if capability == "chat":
+        return "llm_connectivity_anthropic" if upstream == "anthropic" else "llm_connectivity"
+    return _CAPABILITY_PROBE[capability]
+
+
+def _example_title(entry: dict[str, Any], spec: dict[str, Any], native: bool) -> str:
+    """A distinct, customer-facing title for one example."""
+    base = _TITLE_BY_MIME.get(entry["mime_type"], entry["mime_type"])
+    bits = []
+    label = _DIALECT_LABEL.get(spec.get("dialect", ""), spec.get("dialect", ""))
+    if label and not native:
+        bits.append(label + (" input" if spec["dialect"] in ("openai", "anthropic") else ""))
+    elif label and native:
+        bits.append(label)
+    if spec.get("feature") in ("streaming", "tools", "vision"):
+        bits.append(spec["feature"])
+    # Disambiguate SDK-vs-raw within one language — but only when the
+    # dialect label has not already named the client (a "boto3 Converse"
+    # example needs no ", boto3 SDK" suffix).
+    reqs = (entry.get("meta") or {}).get("requirements") or []
+    names_client = "SDK" in label or "boto3" in label
+    if spec.get("capability") == "chat" and not names_client:
+        for sdk in ("openai", "anthropic", "cohere", "requests", "boto3"):
+            if sdk in reqs:
+                bits.append("requests" if sdk == "requests" else f"{sdk} SDK")
+                break
+    return f"{base} ({', '.join(bits)})" if bits else base
+
+
+def _code_examples() -> dict[str, dict[str, Any]]:
+    """Every llm code-example preset, latest version, keyed by preset name."""
+    out: dict[str, dict[str, Any]] = {}
+    for key, entry in MANIFEST["presets"].items():
+        if not key.startswith("llm_") or entry.get("category") != "code_example":
             continue
-        seen.setdefault(entry.get("preset_name", key_), entry)
-    out = []
-    for name, entry in sorted(seen.items()):
-        if (entry.get("meta") or {}).get("variant") in wanted:
-            out.append((_TITLE_BY_MIME.get(entry["mime_type"], entry["mime_type"]), name))
+        out.setdefault(entry.get("preset_name", key), entry)
     return out
 
 
-#: What a caller-facing request format contributes to a CHAT collection,
-#: keyed by ``(caller format, upstream dialect)``.
-#:
-#: The pair is the whole model: when they differ the gateway translates,
-#: so the example must show the caller's dialect going in, not the
-#: upstream's.  When they match the native SDK examples apply.  Every
-#: flavour is emitted — SDK and raw client, all three languages,
-#: streaming and not — because style is not a fact about the service.
-#: Titles are customer-facing keys of the ``documents`` mapping and must
-#: stay distinct when several groups combine on one service.
-_CHAT_EXAMPLES: dict[tuple[str, str], list[tuple[str, str]]] = {
-    ("openai", "openai"): [
-        ("Python code example (openai SDK)", "llm_code_example_openai"),
-        ("Python code example (requests)", "llm_code_example_requests"),
-        ("JavaScript code example", "llm_code_example_javascript"),
-        ("JavaScript code example (openai SDK)", "llm_code_example_openai_javascript"),
-        ("cURL code example", "llm_code_example_shell"),
-        ("Python streaming code example", "llm_code_example_streaming_openai"),
-        ("JavaScript streaming code example", "llm_code_example_streaming_openai_javascript"),
-    ],
-    ("anthropic", "openai"): [
-        ("Python code example (Anthropic-style input, anthropic SDK)", "llm_code_example_anthropic_to_openai_sdk"),
-        ("Python code example (Anthropic-style input, requests)", "llm_code_example_anthropic_to_openai_requests"),
-        ("cURL code example (Anthropic-style input)", "llm_code_example_anthropic_to_openai_shell"),
-        ("Python streaming code example (Anthropic-style input, anthropic SDK)", "llm_code_example_anthropic_to_openai_stream_sdk"),
-        ("Python streaming code example (Anthropic-style input, requests)", "llm_code_example_anthropic_to_openai_stream_requests"),
-        ("cURL streaming code example (Anthropic-style input)", "llm_code_example_anthropic_to_openai_stream_shell"),
-    ],
-    ("anthropic", "anthropic"): [
-        ("Python code example (anthropic SDK)", "llm_code_example_anthropic"),
-        ("JavaScript code example", "llm_code_example_anthropic_javascript"),
-        ("cURL code example", "llm_code_example_anthropic_shell"),
-    ],
-    ("openai", "anthropic"): [
-        ("Python code example (OpenAI-style input, openai SDK)", "llm_code_example_openai_to_anthropic_sdk"),
-        ("Python code example (OpenAI-style input, requests)", "llm_code_example_openai_to_anthropic_requests"),
-        ("cURL code example (OpenAI-style input)", "llm_code_example_openai_to_anthropic_shell"),
-        ("Python streaming code example (OpenAI-style input, openai SDK)", "llm_code_example_openai_to_anthropic_stream_sdk"),
-        ("Python streaming code example (OpenAI-style input, requests)", "llm_code_example_openai_to_anthropic_stream_requests"),
-        ("cURL streaming code example (OpenAI-style input)", "llm_code_example_openai_to_anthropic_stream_shell"),
-    ],
-    ("cohere", "openai"): [
-        ("Python code example (Cohere SDK)", "llm_code_example_cohere"),
-    ],
-    ("cerebras", "openai"): [
-        ("Python code example (Cerebras SDK)", "llm_code_example_cerebras"),
-    ],
-    ("bedrock_converse", "openai"): [
-        ("Python code example (boto3 Converse)", "llm_code_example_bedrock_converse"),
-    ],
-    ("bedrock_invoke", "openai"): [
-        ("Python code example (boto3 InvokeModel)", "llm_code_example_bedrock_invoke"),
-    ],
-}
+def _select(capability: str, *, dialects: set[str], upstream: str, features: set[str]):
+    """Examples that apply, read from each preset's own ``applies_to``.
 
-#: The default request body a chat service pre-fills the playground with,
-#: by upstream dialect. Chat-only: it is a chat-completion body.
-_CHAT_REQUEST_TEMPLATE: dict[str, str] = {
-    "openai": "llm_request_template",
-    "anthropic": "llm_request_template_anthropic",
-}
+    One rule for every capability — chat included. Chat used to need a
+    hand-written ``(dialect, upstream) -> presets`` map because
+    ``meta.variant`` said only "Chat" for both the OpenAI-native and the
+    Anthropic-native presets, with nothing to tell them apart.
+    ``applies_to`` records the pair, so the special case is gone.
+    """
+    for name, entry in sorted(_code_examples().items()):
+        spec = _PRESET_APPLIES_TO.get(name) or {}
+        if spec.get("capability") != capability:
+            continue
+        if spec.get("feature") and spec["feature"] not in features:
+            continue
+        if capability == "chat":
+            if spec.get("dialect") not in dialects or spec.get("upstream") != upstream:
+                continue
+        elif spec.get("dialect") and spec["dialect"] not in dialects:
+            # e.g. Cohere-shaped image embeddings, HF sentence-transformers
+            continue
+        native = spec.get("dialect") == spec.get("upstream")
+        yield _example_title(entry, spec, native), name
 
-#: The connectivity probe for a chat service, by upstream dialect.
-_CHAT_PROBE: dict[str, str] = {
-    "openai": "llm_connectivity",
-    "anthropic": "llm_connectivity_anthropic",
-}
 
-#: The function-calling example, by upstream dialect.  Gated on ``tools``
-#: because it 400s on a model without tool support, and a failing code
-#: example blocks activation — applicability, not flavour.
-_TOOLS_EXAMPLE: dict[str, tuple[str, str]] = {
-    "openai": ("Python function calling code example", "llm_code_example_fc_requests"),
-    "anthropic": ("Python function calling code example", "llm_code_example_anthropic_fc"),
-}
+
+def applies_to(preset_name: str) -> dict[str, Any]:
+    """When does this example apply — capability, dialect, upstream, feature.
+
+    Returns an empty dict for presets that declare nothing (connectivity
+    probes, descriptions, request templates).
+    """
+    return dict(_PRESET_APPLIES_TO.get(preset_name, {}))
 
 
 @preset
@@ -545,32 +527,36 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     groups = _normalise_groups(source.get("formats") or [], default_tools=source.get("tools"))
     sleep = source.get("sleep")
 
-    docs: dict[str, Any] = {}
-    probe: str | None = _CHAT_PROBE[upstream]
+    capability = capabilities[0]
+    if capability not in _CAPABILITY_PROBE:
+        raise ValueError(
+            f"No example collection is defined for capability {capability!r}. "
+            f"It has no code examples in unitysvc-data, so it cannot be "
+            f"demonstrated and must not be declared. Known: {sorted(_CAPABILITY_PROBE)}."
+        )
 
-    for capability in capabilities:
-        if capability in _CAPABILITY_PROBE and capability != "chat":
-            primary = _primary_group(groups)
-            for title, preset_name in _capability_examples(capability):
-                docs[title] = _scoped(preset_name, primary, sleep)
-            probe = _CAPABILITY_PROBE[capability]
-        elif capability == "chat":
-            # Examples are dialect-specific, so the pair (caller format,
-            # upstream dialect) decides them.
-            for group in groups:
-                for fmt in group["formats"]:
-                    for title, preset_name in _CHAT_EXAMPLES.get((fmt, upstream), []):
-                        docs[title] = _scoped(preset_name, group, sleep)
-                if group.get("tools"):
-                    title, preset_name = _TOOLS_EXAMPLE[upstream]
-                    docs[title] = _scoped(preset_name, group, sleep)
-            docs["Default request body"] = doc_preset(_CHAT_REQUEST_TEMPLATE[upstream])
-        else:
-            raise ValueError(
-                f"No example collection is defined for capability {capability!r}. "
-                f"It has no code examples in unitysvc-data, so it cannot be "
-                f"demonstrated and must not be declared. Known: {sorted(_CAPABILITY_PROBE)}."
-            )
+    docs: dict[str, Any] = {}
+    # ONE selection path for every capability. Each group contributes the
+    # examples whose own `applies_to` matches its dialects and features.
+    for group in groups:
+        features = {"streaming"}
+        if group.get("tools"):
+            features.add("tools")
+        if group.get("vision"):
+            features.add("vision")
+        for title, preset_name in _select(
+            capability,
+            dialects=set(group["formats"]),
+            upstream=upstream,
+            features=features,
+        ):
+            docs[title] = _scoped(preset_name, group, sleep)
+
+    if capability == "chat":
+        docs["Default request body"] = doc_preset(
+            "llm_request_template_anthropic" if upstream == "anthropic" else "llm_request_template"
+        )
+    probe: str | None = _probe_for(capability, upstream)
 
     # Capability-agnostic: describes how ANY LLM service is consumed
     # through the gateway, so an embedding or transcription service needs

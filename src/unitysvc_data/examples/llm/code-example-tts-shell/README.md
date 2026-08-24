@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Text to speech" }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "speech-synthesize" }
 +++
 
 # llm / code-example-tts-shell — text-to-speech via `curl`

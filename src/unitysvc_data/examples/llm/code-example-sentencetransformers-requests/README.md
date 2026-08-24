@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Sentence Transformers", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "embed", dialect = "huggingface" }
 +++
 
 # llm / code-example-sentencetransformers-requests — sentence similarity via `requests`

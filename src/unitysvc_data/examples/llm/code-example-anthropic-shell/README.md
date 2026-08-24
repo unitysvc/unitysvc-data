@@ -7,6 +7,7 @@ description = "curl example: POST a message to an Anthropic Messages API endpoin
 is_active = true
 is_public = true
 meta = { variant = "Chat" }
+applies_to = { capability = "chat", dialect = "anthropic", upstream = "anthropic" }
 +++
 
 # llm / code-example-anthropic-shell — Anthropic Messages API via curl

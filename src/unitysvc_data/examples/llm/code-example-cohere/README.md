@@ -7,6 +7,7 @@ description = "Python example: send a chat completion request via the cohere SDK
 is_active = true
 is_public = true
 meta = { variant = "Cohere SDK", requirements = ["cohere"] }
+applies_to = { capability = "chat", dialect = "cohere", upstream = "openai" }
 +++
 
 # llm / code-example-cohere — chat via the `cohere` SDK (v2)
