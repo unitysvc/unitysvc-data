@@ -550,3 +550,28 @@ def test_two_matching_probes_do_not_collapse_onto_one_title():
         _key(doc_preset("llm_connectivity_embed")),
         _key(doc_preset("llm_connectivity_embed_image")),
     }
+
+
+def test_non_executable_documents_are_never_scoped_to_a_channel():
+    """`meta.channels` / `meta.interfaces` tell the runner which channel to
+    execute against. A markdown how-to and a JSON request template are
+    never executed, so scoping them is meaningless — and on a multi-group
+    service the value they got was simply whichever group happened to be
+    processed last."""
+    docs = llm_example_collection(BEDROCK)
+
+    for title, record in docs.items():
+        if record["category"] in ("code_example", "connectivity_test"):
+            continue
+        meta = record.get("meta") or {}
+        assert "channels" not in meta, f"{title} ({record['category']}) was scoped"
+        assert "interfaces" not in meta, f"{title} ({record['category']}) was scoped"
+
+
+def test_scoping_a_document_does_not_depend_on_group_order():
+    reversed_groups = {**BEDROCK, "formats": list(reversed(BEDROCK["formats"]))}
+
+    a = llm_example_collection(BEDROCK)
+    b = llm_example_collection(reversed_groups)
+
+    assert {t: r.get("meta") for t, r in a.items()} == {t: r.get("meta") for t, r in b.items()}

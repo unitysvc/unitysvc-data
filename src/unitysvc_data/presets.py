@@ -578,6 +578,12 @@ def _primary_group(groups: list[dict[str, Any]]) -> dict[str, Any]:
     return groups[0] if groups else {}
 
 
+#: Documents the test runner executes. Only these carry scope: channels
+#: and interfaces tell the runner WHERE to run, which is meaningless for a
+#: how-to or a request template.
+_EXECUTABLE = frozenset({"code_example", "connectivity_test"})
+
+
 def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None) -> dict[str, Any]:
     """A document record scoped to its group's channel and interface.
 
@@ -587,6 +593,11 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None) -> dict[
     either would break execution.
     """
     record = doc_preset(preset_name)
+    if record["category"] not in _EXECUTABLE:
+        # Non-executable: nothing to run, nowhere to run it. Leaving these
+        # unscoped also makes the result independent of group order — the
+        # scope they used to pick up was just whichever group came last.
+        return record
     scope = {}
     if group.get("channel"):
         scope["channels"] = [group["channel"]]
