@@ -516,6 +516,9 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     upstream = source.get("upstream_dialect") or "openai"
     groups = _normalise_groups(source.get("formats") or [], default_tools=source.get("tools"))
     sleep = source.get("sleep")
+    # Which path version the upstream serves its API on — cohere's
+    # OpenAI-compatible surface is /compatibility/v1, crofai's is /v2.
+    version_prefix = source.get("version_prefix")
 
     capability = capabilities[0]
     known = _known_capabilities()
@@ -545,7 +548,7 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
             features=features,
         ):
             scope = _primary_group(groups) if title == "Connectivity test" else group
-            docs[title] = _scoped(preset_name, scope, sleep)
+            docs[title] = _scoped(preset_name, scope, sleep, group.get("version_prefix") or version_prefix)
     return docs
 
 
@@ -584,7 +587,8 @@ def _primary_group(groups: list[dict[str, Any]]) -> dict[str, Any]:
 _EXECUTABLE = frozenset({"code_example", "connectivity_test"})
 
 
-def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None) -> dict[str, Any]:
+def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
+            version_prefix: str | None = None) -> dict[str, Any]:
     """A document record scoped to its group's channel and interface.
 
     Merged INTO the preset's own ``meta`` rather than over it: the
@@ -592,7 +596,13 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None) -> dict[
     ``output_contains`` (what makes the test an assertion), and losing
     either would break execution.
     """
-    record = doc_preset(preset_name)
+    # Only presets that DECLARE the parameter may receive it: doc_preset
+    # auto-discriminates kwargs against declared parameters, and an
+    # undeclared one is rejected as a bad metadata override.
+    if version_prefix is not None and "version_prefix" in _PRESET_PARAMETERS.get(preset_name, {}):
+        record = doc_preset(preset_name, version_prefix=version_prefix)
+    else:
+        record = doc_preset(preset_name)
     if record["category"] not in _EXECUTABLE:
         # Non-executable: nothing to run, nowhere to run it. Leaving these
         # unscoped also makes the result independent of group order — the

@@ -575,3 +575,37 @@ def test_scoping_a_document_does_not_depend_on_group_order():
     b = llm_example_collection(reversed_groups)
 
     assert {t: r.get("meta") for t, r in a.items()} == {t: r.get("meta") for t, r in b.items()}
+
+
+def test_version_prefix_reaches_the_presets_that_declare_it():
+    """cohere serves its OpenAI-compatible surface at /compatibility/v1 and
+    crofai at /v2. Without threading this, every example points at /v1 and
+    404s — 41 services silently mis-documented."""
+    import pathlib
+
+    docs = llm_example_collection(
+        {"capabilities": ["chat"], "formats": ["openai"], "version_prefix": "/compatibility/v1"}
+    )
+
+    body = pathlib.Path(docs["cURL code example"]["file_path"]).read_text()
+    assert "/compatibility/v1/chat/completions" in body
+    assert "/v1/chat/completions" not in body.replace("/compatibility/v1/chat/completions", "")
+
+
+def test_version_prefix_is_ignored_by_presets_that_declare_no_parameter():
+    """`doc_preset` rejects an unknown kwarg as a bad metadata override, so
+    the prefix must only be passed to presets that declare it."""
+    docs = llm_example_collection(
+        {"capabilities": ["chat"], "formats": ["openai"], "version_prefix": "/v2"}
+    )
+
+    assert "How to use this model" in docs  # llm_description declares no parameters
+
+
+def test_default_version_prefix_is_unchanged():
+    import pathlib
+
+    docs = llm_example_collection({"capabilities": ["chat"], "formats": ["openai"]})
+
+    body = pathlib.Path(docs["cURL code example"]["file_path"]).read_text()
+    assert "/v1/chat/completions" in body
