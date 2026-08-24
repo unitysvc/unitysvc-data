@@ -303,35 +303,117 @@ def test_cerebras_dialect_contributes_its_sdk_example():
     assert "llm_code_example_cerebras" in examples_in(docs)
 
 
-CAPABILITIES_WITH_EXAMPLES = [
-    ("image-generate", "llm_code_example_image_requests"),
-    ("image-edit", "llm_code_example_imagetoimage_requests"),
-    ("video-generate", "llm_code_example_ttv_requests"),
-    ("speech-synthesize", "llm_code_example_tts_requests"),
-    ("rerank", "llm_code_example_rerank_requests"),
-    ("moderate", "llm_code_example_guard_requests"),
-]
+#: capability -> the COMPLETE set of examples it must emit, and the
+#: connectivity preset that proves it (``None`` where none is authored
+#: yet). Written out in full rather than derived from ``meta.variant``:
+#: the implementation derives from that, so deriving here too would make
+#: the test tautological and blind to a mapping regression.
+CAPABILITY_CONTRACT = {
+    "embed": (
+        {
+            "llm_code_example_embed_requests",
+            "llm_code_example_embed_javascript",
+            "llm_code_example_embed_shell",
+        },
+        "llm_connectivity_embed",
+    ),
+    "speech-transcribe": (
+        {
+            "llm_code_example_transcription_requests",
+            "llm_code_example_transcription_javascript",
+            "llm_code_example_transcription_shell",
+        },
+        "llm_connectivity_transcription",
+    ),
+    "speech-synthesize": (
+        {
+            "llm_code_example_tts_requests",
+            "llm_code_example_tts_javascript",
+            "llm_code_example_tts_shell",
+        },
+        None,
+    ),
+    "video-generate": (
+        {
+            "llm_code_example_ttv_requests",
+            "llm_code_example_ttv_javascript",
+            "llm_code_example_ttv_shell",
+        },
+        None,
+    ),
+    "image-generate": (
+        {
+            "llm_code_example_image_requests",
+            "llm_code_example_image_javascript",
+            "llm_code_example_image_shell",
+        },
+        None,
+    ),
+    "image-edit": (
+        {
+            "llm_code_example_imagetoimage_requests",
+            "llm_code_example_imagetoimage_javascript",
+            "llm_code_example_imagetoimage_shell",
+        },
+        None,
+    ),
+    "rerank": (
+        {
+            "llm_code_example_rerank_requests",
+            "llm_code_example_rerank_javascript",
+            "llm_code_example_rerank_shell",
+        },
+        None,
+    ),
+    "moderate": (
+        {
+            "llm_code_example_guard_requests",
+            "llm_code_example_guard_javascript",
+            "llm_code_example_guard_shell",
+        },
+        None,
+    ),
+}
 
 
-@pytest.mark.parametrize(("capability", "example"), CAPABILITIES_WITH_EXAMPLES)
-def test_capabilities_whose_examples_exist_are_declarable(capability, example):
-    """Every code-example preset declares the capability it demonstrates in
+@pytest.mark.parametrize("capability", sorted(CAPABILITY_CONTRACT))
+def test_a_capability_emits_its_complete_example_set(capability):
+    """All three language flavours, not just one.
+
+    Every code-example preset declares the capability it demonstrates in
     `meta.variant`, so a capability is expressible as soon as its examples
-    exist — a dedicated connectivity preset is a separate concern."""
+    exist — a dedicated connectivity preset is a separate concern.
+    """
+    expected, _ = CAPABILITY_CONTRACT[capability]
     docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
 
-    assert example in examples_in(docs)
+    assert examples_in(docs) == expected
 
 
-@pytest.mark.parametrize(("capability", "_example"), CAPABILITIES_WITH_EXAMPLES)
-def test_a_capability_with_no_probe_emits_no_connectivity_document(capability, _example):
-    """Silence here is deliberate and visible: rather than fall back to a
-    chat probe that cannot pass, the collection emits none, and
-    `specs validate` is where a service declaring an unprovable capability
-    gets rejected."""
+@pytest.mark.parametrize("capability", sorted(CAPABILITY_CONTRACT))
+def test_a_capability_offers_every_language(capability):
+    """python / javascript / bash, so no caller is left without one."""
     docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
 
-    assert not [d for d in docs.values() if d["category"] == "connectivity_test"]
+    mimes = {d["mime_type"] for d in docs.values() if d["category"] == "code_example"}
+    assert mimes == {"python", "javascript", "bash"}
+
+
+@pytest.mark.parametrize("capability", sorted(CAPABILITY_CONTRACT))
+def test_the_probe_matches_the_capability_contract(capability):
+    """Where a probe is authored the capability gets it; where none is,
+    the collection emits NO connectivity document rather than falling back
+    to a chat probe that cannot pass. `specs validate` and the activation
+    gate then reject the service at the point of declaration."""
+    _, probe = CAPABILITY_CONTRACT[capability]
+    docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
+
+    emitted = [d for d in docs.values() if d["category"] == "connectivity_test"]
+    if probe is None:
+        assert emitted == []
+    else:
+        assert len(emitted) == 1
+        assert _key(emitted[0]) == _key(doc_preset(probe))
 
 
 def test_capabilities_whose_probe_exists_still_get_one():
