@@ -377,32 +377,72 @@ def _materialise_substituted_body(
     return str(out_path)
 
 
-#: What each capability contributes, as ``(document title, preset name)``
-#: examples plus the connectivity preset that PROVES it.
+#: The capability each code-example preset demonstrates, read from the
+#: preset's own ``meta.variant``.  Every example already declares this in
+#: its front-matter, so the mapping lives in the data rather than being
+#: hand-maintained here — a new example family joins its capability the
+#: moment it is authored.
 #:
-#: The probe follows the capability, never the format: an embedding
-#: service handed ``llm_connectivity`` is gated by a chat-completion POST
-#: that /v1/embeddings rejects, so it declares a capability it can never
-#: pass.  ``chat`` has no entry here because its examples are
-#: dialect-specific — see :data:`_FORMAT_EXAMPLES`.
-_CAPABILITY_EXAMPLES: dict[str, tuple[list[tuple[str, str]], str | None]] = {
-    "embed": (
-        [
-            ("Python code example", "llm_code_example_embed_requests"),
-            ("JavaScript code example", "llm_code_example_embed_javascript"),
-            ("cURL code example", "llm_code_example_embed_shell"),
-        ],
-        "llm_connectivity_embed",
-    ),
-    "speech-transcribe": (
-        [
-            ("Python code example", "llm_code_example_transcription_requests"),
-            ("JavaScript code example", "llm_code_example_transcription_javascript"),
-            ("cURL code example", "llm_code_example_transcription_shell"),
-        ],
-        "llm_connectivity_transcription",
-    ),
+#: Variants deliberately absent are not capabilities:
+#:   Anthropic-style / OpenAI-style (+streaming)  translation direction
+#:   Cerebras SDK / Cohere SDK / boto3 *          native dialects
+#:   Function calling / Streaming / Vision        attributes of a chat call
+#: All of those are selected by format or flag, not by capability.
+_VARIANT_CAPABILITY: dict[str, str] = {
+    "Chat": "chat",
+    "Embeddings": "embed",
+    "Transcription": "speech-transcribe",
+    "Text to speech": "speech-synthesize",
+    "Text to video": "video-generate",
+    "Image generation": "image-generate",
+    "Image to image": "image-edit",
+    "Rerank": "rerank",
+    "Guard": "moderate",
 }
+
+#: The connectivity preset that proves a capability, where one exists.
+#:
+#: ``None`` is meaningful, not a gap in this table: those capabilities
+#: have examples but no probe authored yet.  The collection then emits the
+#: examples and NO connectivity document, rather than falling back to a
+#: chat probe that cannot pass.  A service in that state is rejected by
+#: ``specs validate`` (and by the platform's activation gate, which
+#: requires at least one connectivity test) — visibly, at the point of
+#: declaration, instead of silently shipping an unprovable claim.
+_CAPABILITY_PROBE: dict[str, str | None] = {
+    "chat": "llm_connectivity",
+    "embed": "llm_connectivity_embed",
+    "speech-transcribe": "llm_connectivity_transcription",
+    "speech-synthesize": None,
+    "video-generate": None,
+    "image-generate": None,
+    "image-edit": None,
+    "rerank": None,
+    "moderate": None,
+}
+
+#: Document title by mime type, for the single-flavour-per-language
+#: capabilities (everything except chat, whose dialects need qualifying).
+_TITLE_BY_MIME = {
+    "python": "Python code example",
+    "javascript": "JavaScript code example",
+    "bash": "cURL code example",
+}
+
+
+def _capability_examples(capability: str) -> list[tuple[str, str]]:
+    """``(title, preset name)`` for a non-chat capability, from the manifest."""
+    wanted = {v for v, c in _VARIANT_CAPABILITY.items() if c == capability}
+    seen: dict[str, dict[str, Any]] = {}
+    for key_, entry in MANIFEST["presets"].items():
+        if not key_.startswith("llm_") or entry.get("category") != "code_example":
+            continue
+        seen.setdefault(entry.get("preset_name", key_), entry)
+    out = []
+    for name, entry in sorted(seen.items()):
+        if (entry.get("meta") or {}).get("variant") in wanted:
+            out.append((_TITLE_BY_MIME.get(entry["mime_type"], entry["mime_type"]), name))
+    return out
 
 
 #: What a caller-facing request format contributes to a CHAT collection,
@@ -506,15 +546,14 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     sleep = source.get("sleep")
 
     docs: dict[str, Any] = {}
-    probe = _CHAT_PROBE[upstream]
+    probe: str | None = _CHAT_PROBE[upstream]
 
     for capability in capabilities:
-        if capability in _CAPABILITY_EXAMPLES:
-            entries, capability_probe = _CAPABILITY_EXAMPLES[capability]
+        if capability in _CAPABILITY_PROBE and capability != "chat":
             primary = _primary_group(groups)
-            for title, preset_name in entries:
+            for title, preset_name in _capability_examples(capability):
                 docs[title] = _scoped(preset_name, primary, sleep)
-            probe = capability_probe
+            probe = _CAPABILITY_PROBE[capability]
         elif capability == "chat":
             # Examples are dialect-specific, so the pair (caller format,
             # upstream dialect) decides them.
@@ -529,16 +568,16 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
         else:
             raise ValueError(
                 f"No example collection is defined for capability {capability!r}. "
-                f"A capability with no connectivity preset cannot be proven, so it "
-                f"must not be declared — add the preset first. Known: "
-                f"{sorted({'chat', *_CAPABILITY_EXAMPLES})}."
+                f"It has no code examples in unitysvc-data, so it cannot be "
+                f"demonstrated and must not be declared. Known: {sorted(_CAPABILITY_PROBE)}."
             )
 
     # Capability-agnostic: describes how ANY LLM service is consumed
     # through the gateway, so an embedding or transcription service needs
     # it just as much as a chat one.
     docs["How to use this model"] = doc_preset("llm_description")
-    docs["Connectivity test"] = _scoped(probe, _primary_group(groups), sleep)
+    if probe is not None:
+        docs["Connectivity test"] = _scoped(probe, _primary_group(groups), sleep)
     return docs
 
 

@@ -202,15 +202,6 @@ def test_a_plain_format_list_is_one_unscoped_group():
     assert "channels" not in docs["Python code example (openai SDK)"]["meta"]
 
 
-def test_unknown_capability_is_an_error_not_a_silent_chat_fallback():
-    """A capability with no probe must fail loudly. Six services today
-    declare rerank / speech-synthesize / moderate with no matching
-    connectivity preset; silently handing them a chat probe is how that
-    went unnoticed."""
-    with pytest.raises(ValueError, match="rerank"):
-        llm_example_collection({"capabilities": ["rerank"], "formats": ["openai"]})
-
-
 def test_chat_collection_carries_the_description_and_request_template():
     """Both are in 9 of 16 repos today and absent from the rest with no
     reason — normalising means every chat service gets them."""
@@ -310,3 +301,49 @@ def test_cerebras_dialect_contributes_its_sdk_example():
     docs = llm_example_collection({"capabilities": ["chat"], "formats": ["openai", "cerebras"]})
 
     assert "llm_code_example_cerebras" in examples_in(docs)
+
+
+CAPABILITIES_WITH_EXAMPLES = [
+    ("image-generate", "llm_code_example_image_requests"),
+    ("image-edit", "llm_code_example_imagetoimage_requests"),
+    ("video-generate", "llm_code_example_ttv_requests"),
+    ("speech-synthesize", "llm_code_example_tts_requests"),
+    ("rerank", "llm_code_example_rerank_requests"),
+    ("moderate", "llm_code_example_guard_requests"),
+]
+
+
+@pytest.mark.parametrize(("capability", "example"), CAPABILITIES_WITH_EXAMPLES)
+def test_capabilities_whose_examples_exist_are_declarable(capability, example):
+    """Every code-example preset declares the capability it demonstrates in
+    `meta.variant`, so a capability is expressible as soon as its examples
+    exist — a dedicated connectivity preset is a separate concern."""
+    docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
+
+    assert example in examples_in(docs)
+
+
+@pytest.mark.parametrize(("capability", "_example"), CAPABILITIES_WITH_EXAMPLES)
+def test_a_capability_with_no_probe_emits_no_connectivity_document(capability, _example):
+    """Silence here is deliberate and visible: rather than fall back to a
+    chat probe that cannot pass, the collection emits none, and
+    `specs validate` is where a service declaring an unprovable capability
+    gets rejected."""
+    docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
+
+    assert not [d for d in docs.values() if d["category"] == "connectivity_test"]
+
+
+def test_capabilities_whose_probe_exists_still_get_one():
+    for capability, probe in [
+        ("chat", "llm_connectivity"),
+        ("embed", "llm_connectivity_embed"),
+        ("speech-transcribe", "llm_connectivity_transcription"),
+    ]:
+        docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
+        assert probe in presets_in(docs), capability
+
+
+def test_an_unrecognised_capability_is_still_an_error():
+    with pytest.raises(ValueError, match="ocr"):
+        llm_example_collection({"capabilities": ["ocr"], "formats": ["openai"]})
