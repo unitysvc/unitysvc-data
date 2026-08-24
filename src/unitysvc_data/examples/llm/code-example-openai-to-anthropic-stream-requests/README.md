@@ -7,6 +7,7 @@ description = "Python example: streaming OpenAI-format request against an openai
 is_active = true
 is_public = true
 meta = { variant = "OpenAI-style (streaming)", requirements = ["requests"] }
+applies_to = { capability = "chat", dialect = "openai", upstream = "anthropic", feature = "streaming" }
 +++
 
 # llm / code-example-openai-to-anthropic-stream-requests — streaming OpenAI-format call to an openai->anthropic translation gateway

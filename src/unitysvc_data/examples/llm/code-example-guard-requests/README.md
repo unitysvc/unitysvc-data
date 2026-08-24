@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Guard", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "moderate" }
 +++
 
 # llm / code-example-guard-requests — safety classifier probe via `requests`

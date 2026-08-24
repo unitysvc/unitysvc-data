@@ -128,6 +128,11 @@ _PRESET_RECORDS: dict[str, dict[str, Any]] = {}
 # inputs).  It's stored here separately and consumed by ``file_preset``.
 _PRESET_PARAMETERS: dict[str, dict[str, str]] = {}
 
+# Selection metadata — see ``applies_to`` in tools/build.py. Held apart
+# from ``_PRESET_RECORDS`` for the same reason as ``_PRESET_PARAMETERS``:
+# it describes when to choose the example, not the document it becomes.
+_PRESET_APPLIES_TO: dict[str, dict[str, Any]] = {}
+
 for _name, _entry in MANIFEST["presets"].items():
     _PRESET_RECORDS[_name] = {
         "category": _entry["category"],
@@ -142,6 +147,7 @@ for _name, _entry in MANIFEST["presets"].items():
     # manifests (or hand-built ones) may not have the field, so default
     # to no-parameters rather than raising.
     _PRESET_PARAMETERS[_name] = dict(_entry.get("parameters", {}))
+    _PRESET_APPLIES_TO[_name] = dict(_entry.get("applies_to", {}))
 
 # Alias entries share the same underlying record as their target. We
 # store the record under both names so a lookup of either resolves in
@@ -155,6 +161,7 @@ for _alias, _target in ALIASES.items():
         )
     _PRESET_RECORDS[_alias] = _PRESET_RECORDS[_target]
     _PRESET_PARAMETERS[_alias] = _PRESET_PARAMETERS[_target]
+    _PRESET_APPLIES_TO[_alias] = _PRESET_APPLIES_TO[_target]
 
 
 def _make_factory(record: dict[str, Any]):
@@ -377,6 +384,260 @@ def _materialise_substituted_body(
     return str(out_path)
 
 
+#: The platform capabilities a collection can express — those with at
+#: least one code example declaring them. Derived, not maintained: a new
+#: example family adds its capability the moment it is authored.
+def _known_capabilities() -> set[str]:
+    return {
+        spec["capability"]
+        for name, spec in _PRESET_APPLIES_TO.items()
+        if spec.get("capability") and _PRESET_RECORDS[name]["category"] == "code_example"
+    }
+
+
+#: Document title by mime type. Several flavours can share a language, so
+#: the dialect and feature qualify it where needed.
+_TITLE_BY_MIME = {
+    "python": "Python code example",
+    "javascript": "JavaScript code example",
+    "bash": "cURL code example",
+}
+
+#: Titles for the non-example documents, by category.
+_TITLE_BY_CATEGORY = {
+    "connectivity_test": "Connectivity test",
+    "request_template": "Default request body",
+    "getting_started": "How to use this model",
+}
+
+#: How a dialect is named in a title.
+_DIALECT_LABEL = {
+    "openai": "", "anthropic": "Anthropic-style", "cohere": "Cohere SDK",
+    "cerebras": "Cerebras SDK", "bedrock_converse": "boto3 Converse",
+    "bedrock_invoke": "boto3 InvokeModel", "huggingface": "sentence-transformers",
+}
+
+
+def _title(entry: dict[str, Any], spec: dict[str, Any]) -> str:
+    """A distinct, customer-facing title for one document."""
+    category = entry["category"]
+    # Non-example documents get a fixed base title, but still need the
+    # qualifier: a service can legitimately match two probes (a cohere
+    # embedding service matches both the OpenAI-compat and the
+    # Cohere-native image probe), and a fixed title would drop one.
+    base = _TITLE_BY_CATEGORY.get(category) or _TITLE_BY_MIME.get(
+        entry["mime_type"], entry["mime_type"]
+    )
+    bits = []
+    dialect = spec.get("dialect", "")
+    label = _DIALECT_LABEL.get(dialect, dialect)
+    if label:
+        # "Anthropic-style input" reads as the dialect the CALLER writes;
+        # a named SDK reads as itself.
+        bits.append(f"{label} input" if dialect in ("openai", "anthropic") else label)
+    if spec.get("feature") in ("streaming", "tools", "vision"):
+        bits.append(spec["feature"])
+    # Disambiguate SDK-vs-raw within one language — unless the dialect
+    # label already names the client.
+    if category == "code_example" and not ("SDK" in label or "boto3" in label):
+        reqs = (entry.get("meta") or {}).get("requirements") or []
+        for sdk in ("openai", "anthropic", "cohere", "requests", "boto3"):
+            if sdk in reqs:
+                bits.append("requests" if sdk == "requests" else f"{sdk} SDK")
+                break
+    return f"{base} ({', '.join(bits)})" if bits else base
+
+
+def _applies(spec: dict[str, Any], *, capability: str, dialects: set[str],
+             upstream: str, features: set[str]) -> bool:
+    """Does a preset's ``applies_to`` admit this service?
+
+    One rule for every document — examples, probes, request templates and
+    the how-to alike. Each key is a constraint that must hold; an ABSENT
+    key means "no constraint", which is how a universal document
+    (``llm_description``) is expressed without a special case.
+    """
+    if spec.get("capability") not in (None, capability):
+        return False
+    if spec.get("dialect") is not None and spec["dialect"] not in dialects:
+        return False
+    if spec.get("upstream") is not None and spec["upstream"] != upstream:
+        return False
+    return not (spec.get("feature") is not None and spec["feature"] not in features)
+
+
+def _select(*, capability: str, dialects: set[str], upstream: str, features: set[str]):
+    """Every document that applies, as ``(title, preset name)``.
+
+    Nothing here names a capability: what a preset applies to lives in the
+    preset. Chat used to be selected separately because ``meta.variant``
+    said only "Chat" for both the OpenAI-native and Anthropic-native
+    presets — ``applies_to`` records the pair, so the special case is gone.
+    """
+    seen: dict[str, dict[str, Any]] = {}
+    for key, entry in MANIFEST["presets"].items():
+        if key.startswith("llm_"):
+            seen.setdefault(entry.get("preset_name", key), entry)
+    for name, entry in sorted(seen.items()):
+        spec = _PRESET_APPLIES_TO.get(name) or {}
+        if _applies(spec, capability=capability, dialects=dialects,
+                    upstream=upstream, features=features):
+            yield _title(entry, spec), name
+
+
+def applies_to(preset_name: str) -> dict[str, Any]:
+    """When does this example apply — capability, dialect, upstream, feature.
+
+    Returns an empty dict for presets that constrain nothing, which reads
+    as "applies to every service" (``llm_description``).
+    """
+    return dict(_PRESET_APPLIES_TO.get(preset_name, {}))
+
+
+@preset
+def llm_example_collection(source: Any) -> dict[str, Any]:
+    """Expand a service's capability declaration into a whole ``documents``
+    block — the code examples and the connectivity probe it implies.
+
+    Unlike :func:`doc_preset`, which returns ONE document, this returns a
+    mapping of ``{title: record}`` ready to be used as a listing's
+    ``documents`` value.
+    """
+    capabilities = source.get("capabilities") or ["chat"]
+    if len(capabilities) > 1:
+        # Each capability needs its own probe, but a collection declares
+        # one. Keeping the last would leave a capability unproven, which
+        # is the failure this preset exists to prevent.
+        raise ValueError(
+            f"A collection covers one capability, got {sorted(capabilities)!r}. "
+            f"Emit one collection per capability and merge them, so each keeps "
+            f"its own connectivity probe."
+        )
+    upstream = source.get("upstream_dialect") or "openai"
+    groups = _normalise_groups(source.get("formats") or [], default_tools=source.get("tools"))
+    sleep = source.get("sleep")
+    # Parameter values broadcast to every preset that DECLARES them —
+    # e.g. `version_prefix` (which path the upstream serves its API on:
+    # cohere /compatibility/v1, crofai /v2) or `language` on the
+    # transcription family. Generic rather than a named argument because
+    # llm presets already declare two and the package eight.
+    broadcast: dict[str, Any] = dict(source.get("params") or {})
+    _declares = {k for params in _PRESET_PARAMETERS.values() for k in params}
+    _unknown = set(broadcast) - _declares
+    if _unknown:
+        raise ValueError(
+            f"No preset declares parameter(s) {sorted(_unknown)!r}, so broadcasting "
+            f"them would have no effect. Declared somewhere: {sorted(_declares)}."
+        )
+
+    capability = capabilities[0]
+    known = _known_capabilities()
+    if capability not in known:
+        raise ValueError(
+            f"No example collection is defined for capability {capability!r}. "
+            f"It has no code examples in unitysvc-data, so it cannot be "
+            f"demonstrated and must not be declared. Known: {sorted(known)}."
+        )
+
+    docs: dict[str, Any] = {}
+    # One query, no capability branching: every document — examples, the
+    # connectivity probe, the request template, the how-to — is whatever
+    # declares that it applies here. The probe lands on the primary group
+    # because it must resolve to exactly one channel/interface; everything
+    # else is scoped to the group that contributed it.
+    for group in groups:
+        features = {"streaming"}
+        if group.get("tools"):
+            features.add("tools")
+        if group.get("vision"):
+            features.add("vision")
+        for title, preset_name in _select(
+            capability=capability,
+            dialects=set(group["formats"]),
+            upstream=upstream,
+            features=features,
+        ):
+            scope = _primary_group(groups) if title == "Connectivity test" else group
+            docs[title] = _scoped(
+                preset_name,
+                scope,
+                sleep,
+                {**broadcast, **(group.get("params") or {})},
+            )
+    return docs
+
+
+def _normalise_groups(formats: Any, *, default_tools: Any) -> list[dict[str, Any]]:
+    """Accept both the plain and the grouped ``formats`` forms.
+
+    ``["openai", "anthropic"]`` is sugar for a single unscoped group,
+    which covers every repo but bedrock.
+    """
+    if formats and all(isinstance(f, str) for f in formats):
+        return [{"formats": list(formats), "tools": bool(default_tools)}]
+    groups = []
+    for group in formats:
+        group = dict(group)
+        group.setdefault("formats", [])
+        group.setdefault("tools", bool(default_tools))
+        groups.append(group)
+    return groups
+
+
+def _primary_group(groups: list[dict[str, Any]]) -> dict[str, Any]:
+    """The group the connectivity probe attaches to.
+
+    The probe has to land on exactly one channel/interface, so a
+    multi-group service marks which. With one group it is implicit.
+    """
+    for group in groups:
+        if group.get("primary"):
+            return group
+    return groups[0] if groups else {}
+
+
+#: Documents the test runner executes. Only these carry scope: channels
+#: and interfaces tell the runner WHERE to run, which is meaningless for a
+#: how-to or a request template.
+_EXECUTABLE = frozenset({"code_example", "connectivity_test"})
+
+
+def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
+            broadcast: dict[str, Any] | None = None) -> dict[str, Any]:
+    """A document record scoped to its group's channel and interface.
+
+    Merged INTO the preset's own ``meta`` rather than over it: the
+    preset carries ``requirements`` (what the runner installs) and
+    ``output_contains`` (what makes the test an assertion), and losing
+    either would break execution.
+    """
+    # Only presets that DECLARE a parameter may receive it: doc_preset
+    # auto-discriminates kwargs against declared parameters, and an
+    # undeclared one is rejected as a bad metadata override.
+    declared = _PRESET_PARAMETERS.get(preset_name, {})
+    # Broadcast values reach only the presets that declare them, so a
+    # collection-wide `version_prefix` does not break `llm_description`.
+    kwargs = {k: v for k, v in (broadcast or {}).items() if k in declared}
+    record = doc_preset(preset_name, **kwargs) if kwargs else doc_preset(preset_name)
+    if record["category"] not in _EXECUTABLE:
+        # Non-executable: nothing to run, nowhere to run it. Leaving these
+        # unscoped also makes the result independent of group order — the
+        # scope they used to pick up was just whichever group came last.
+        return record
+    scope = {}
+    if group.get("channel"):
+        scope["channels"] = [group["channel"]]
+    if group.get("interface"):
+        scope["interfaces"] = [group["interface"]]
+    if group.get("test_status"):
+        scope["test"] = {"status": group["test_status"]}
+    if sleep is not None:
+        scope["sleep_after_test"] = sleep
+    if scope:
+        record["meta"] = {**(record.get("meta") or {}), **scope}
+    return record
+
+
 @preset
 def file_preset(source: Any, **kwargs: Any) -> str:
     """Return the UTF-8 content of the preset's bundled file, with
@@ -497,3 +758,6 @@ def register_jinja_globals(env: Any) -> None:
     (``s3_connectivity``) are registered.
     """
     env.globals.update(PRESETS)
+    # Collections expand to a whole ``documents`` block rather than one
+    # document, so they are not in PRESETS — register them by name too.
+    env.globals["llm_example_collection"] = llm_example_collection

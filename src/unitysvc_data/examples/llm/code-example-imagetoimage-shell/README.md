@@ -6,8 +6,13 @@ file = "code-example-imagetoimage.sh.j2"
 description = "Bash example: image-to-image transform via Hugging Face /models/<model> using curl"
 is_active = true
 is_public = true
-meta = { variant = "Image to image" }
+meta = { variant = "Image to image", output_contains = "example ok" }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "image-edit" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-imagetoimage-shell — image-to-image via `curl`

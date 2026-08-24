@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Streaming", requirements = ["openai"] }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "chat", dialect = "openai", upstream = "openai", feature = "streaming" }
 +++
 
 # llm / code-example-streaming-openai-javascript — streaming chat completion via the `openai` Node.js SDK

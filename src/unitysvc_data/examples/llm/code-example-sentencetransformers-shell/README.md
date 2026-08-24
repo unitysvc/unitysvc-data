@@ -6,8 +6,13 @@ file = "code-example-sentencetransformers.sh.j2"
 description = "Bash example: sentence-similarity via HF sentence-transformers /models/<model> using curl"
 is_active = true
 is_public = true
-meta = { variant = "Sentence Transformers" }
+meta = { variant = "Sentence Transformers", output_contains = "example ok" }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "embed", dialect = "huggingface" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-sentencetransformers-shell — sentence similarity via `curl`

@@ -11,6 +11,102 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.36] — `llm_example_collection`: documents derived from capability
+
+### Added
+
+- **`llm_example_collection`** — a new *kind* of preset. Where `doc_preset`
+  expands a sentinel into ONE document, this expands one into a whole
+  `documents` block:
+
+  ```jinja
+  "documents": {{ llm_example_collection(
+       capabilities = ["chat"],
+       formats      = ["openai", "anthropic"],
+       tools        = supports_tools) | tojson }}
+  ```
+
+  Rendering all 660 LLM services in the catalog showed `chat` alone producing
+  12 distinct preset sets across 16 seller repos, of which only three
+  differences encode a fact about the service — upstream dialect, which
+  dialects the caller may send, and tool support. The rest was drift.
+
+  What it derives: the examples for a (caller dialect, upstream dialect) pair —
+  translated when they differ, native when they match — plus the connectivity
+  preset that PROVES the capability, and the request template. A superset of
+  applicable flavours, since style is not a fact about the service; `tools`
+  stays a gate because `llm_code_example_fc_requests` 400s without tool
+  support, and a failing code example blocks activation.
+
+  Available as both the `$llm_example_collection` sentinel and, via
+  `register_jinja_globals`, a Jinja global.
+
+  Six keys: `capabilities`, `formats`, `upstream_dialect`, `tools`, `sleep`,
+  `params`. Anything specific to one service goes in a **sibling** document —
+  `expand_presets` merges sibling keys over the expanded mapping, so a listing
+  can add a document the collection cannot derive, or replace one it generated,
+  by title.
+
+- **`applies_to`** front-matter on every `llm/` preset, and an `applies_to(name)`
+  accessor. States when an example applies:
+
+  ```toml
+  applies_to = { capability = "chat", dialect = "anthropic",
+                 upstream = "openai", feature = "streaming" }
+  ```
+
+  An absent key is no constraint, which is how a universal document
+  (`llm_description`) is expressed without a special case. Selection reads
+  this rather than pattern-matching preset names, so a new example family
+  joins its capability the moment it is authored. Like `parameters`, it is
+  build-time metadata and never reaches the document record.
+
+- **Per-version metadata overrides** in `tools/build.py`:
+
+  ```toml
+  [versions.v1]
+  meta = { output_contains = "" }
+  ```
+
+  `meta` in the front-matter is shared by every version in a directory, which
+  is right for `description` and `requirements` but wrong for anything tied to
+  a specific file's CONTENT. Keys here are merged over the shared meta for that
+  version only; an empty value drops the key.
+
+### Changed
+
+- **The shell code examples now assert the response shape.** Sixteen `_v2`
+  presets — `llm_code_example_{shell,anthropic_shell,embed_shell,rerank_shell,
+  transcription_shell,tts_shell,guard_shell,vision_shell,image_shell,
+  imagetoimage_shell,ttv_shell,sentencetransformers_shell,embed_image_shell,
+  anthropic_to_openai_shell,anthropic_to_openai_stream_shell,
+  openai_to_anthropic_shell,openai_to_anthropic_stream_shell}` — capture the
+  response, print it, then check it:
+
+  ```bash
+  response=$(curl --fail-with-body -sS ...)
+  echo "$response"
+  if ! printf '%s' "$response" | grep -q '"choices"'; then
+    echo 'unexpected response: no "choices" in the reply' >&2
+    exit 1
+  fi
+  echo "example ok"
+  ```
+
+  v1 ran `curl --fail-with-body` and checked nothing else, so it asserted HTTP
+  STATUS only: a 200 carrying an error object passed, and so did a 200 from a
+  different capability. The needle is a contract fact per capability, not a
+  provider guess — `"choices"` chat, `"content"` Anthropic message, `"data"`
+  embeddings, `"results"` rerank, `"text"` transcript, `"data:"` SSE.
+
+  Aliases resolve to v2, so consumers pick this up automatically. v1 is
+  unchanged and opts out of the assertion via `[versions.v1]`.
+
+  llm code examples asserting anything: **17 of 61, up from 1**. The remaining
+  44 are python/js, which already fail structurally — they index into the
+  response and raise on a wrong shape.
+
+
 ## [0.1.35] — generic `llm_description` v2 + `meta.variant` on code examples
 
 ### Added

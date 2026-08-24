@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Image to image", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "image-edit" }
 +++
 
 # llm / code-example-imagetoimage-requests — image-to-image via `requests`

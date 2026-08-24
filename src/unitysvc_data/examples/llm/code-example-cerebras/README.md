@@ -7,6 +7,7 @@ description = "Python example: send a chat completion request via the cerebras-c
 is_active = true
 is_public = true
 meta = { variant = "Cerebras SDK", requirements = ["cerebras-cloud-sdk"] }
+applies_to = { capability = "chat", dialect = "cerebras", upstream = "openai" }
 +++
 
 # llm / code-example-cerebras — chat completion via the `cerebras-cloud-sdk`

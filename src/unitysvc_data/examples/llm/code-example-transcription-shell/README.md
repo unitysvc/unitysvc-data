@@ -6,8 +6,13 @@ file = "code-example-transcription.sh.j2"
 description = "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl"
 is_active = true
 is_public = true
-meta = { variant = "Transcription" }
+meta = { variant = "Transcription", output_contains = "example ok" }
 parameters = { version_prefix = "/v1", language = "en" }
+applies_to = { capability = "speech-transcribe" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-transcription-shell — audio transcription via `curl`

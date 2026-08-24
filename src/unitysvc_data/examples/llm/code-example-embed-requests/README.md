@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Embeddings", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "embed" }
 +++
 
 # llm / code-example-embed-requests — embeddings via `requests`

@@ -6,6 +6,7 @@ file = "request-template.json"
 description = "Minimal OpenAI-compatible chat completion request body"
 is_active = true
 is_public = true
+applies_to = { capability = "chat", upstream = "openai" }
 +++
 
 # llm / request-template — minimal chat completion payload

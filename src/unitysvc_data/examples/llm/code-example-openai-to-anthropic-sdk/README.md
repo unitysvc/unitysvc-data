@@ -7,6 +7,7 @@ description = "Python example: OpenAI-format request against an openai->anthropi
 is_active = true
 is_public = true
 meta = { variant = "OpenAI-style", requirements = ["openai", "anthropic"] }
+applies_to = { capability = "chat", dialect = "openai", upstream = "anthropic" }
 +++
 
 # llm / code-example-openai-to-anthropic-sdk — OpenAI-format call to an openai->anthropic translation gateway (SDK)

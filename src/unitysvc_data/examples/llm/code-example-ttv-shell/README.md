@@ -6,8 +6,13 @@ file = "code-example-ttv.sh.j2"
 description = "Bash example: text-to-video via HF /models/<model> using curl"
 is_active = true
 is_public = true
-meta = { variant = "Text to video" }
+meta = { variant = "Text to video", output_contains = "example ok" }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "video-generate" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-ttv-shell — text-to-video via `curl`

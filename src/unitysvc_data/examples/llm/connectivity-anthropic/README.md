@@ -7,6 +7,7 @@ description = "Verify an Anthropic-Messages-API LLM endpoint by issuing a tiny o
 is_active = true
 is_public = false
 meta = { output_contains = "connectivity ok" }
+applies_to = { capability = "chat", upstream = "anthropic" }
 +++
 
 # llm / connectivity-anthropic — Anthropic Messages API smoke test

@@ -8,6 +8,7 @@ is_active = true
 is_public = false
 meta = { output_contains = "connectivity ok" }
 parameters = { version_prefix = "/v1", language = "en" }
+applies_to = { capability = "speech-transcribe" }
 +++
 
 # llm / connectivity-transcription — audio transcription smoke test

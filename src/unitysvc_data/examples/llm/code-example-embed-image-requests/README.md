@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Image embeddings", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "embed", dialect = "cohere" }
 +++
 
 # llm / code-example-embed-image-requests — image embeddings via `requests`

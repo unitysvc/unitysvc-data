@@ -93,6 +93,28 @@ OPTIONAL_FIELDS: dict[str, Any] = {
     # double-underscore syntax avoids collision with shell-style
     # ``${VAR}`` references in ``.sh.j2`` example files.
     "parameters": {},
+    # ``applies_to`` states WHEN an example applies, so selection is data
+    # rather than pattern-matching on preset names:
+    #   capability  the platform capability it demonstrates (required for
+    #               code examples that a collection should select)
+    #   dialect     the request dialect the CALLER writes (chat only)
+    #   upstream    the dialect the service's upstream speaks (chat only);
+    #               differs from ``dialect`` when the gateway translates
+    #   feature     an attribute gate — streaming / tools / vision — that
+    #               the service must advertise before the example applies
+    # Like ``parameters`` it is build-time metadata and never reaches the
+    # document record.
+    "applies_to": {},
+    # Per-version metadata overrides, e.g.
+    #     [versions.v1]
+    #     meta = { output_contains = "" }
+    # ``meta`` in the front-matter is shared by every version in the
+    # directory, which is right for description/requirements but wrong for
+    # anything tied to a specific file's CONTENT. `output_contains` is
+    # checked against stdout, so declaring it for a version whose body
+    # never prints it would fail every run.  Keys here are merged over the
+    # shared meta for that version only; a null value drops the key.
+    "versions": {},
 }
 
 # Pattern declared parameter names must match (Python-identifier-like).
@@ -137,6 +159,7 @@ class Preset:
     is_public: bool
     meta: dict[str, Any]
     parameters: dict[str, str]     # name → default value (always string)
+    applies_to: dict[str, Any]     # capability / dialect / upstream / feature
     example_file: str              # relative to examples/
     source_readme: str             # relative to examples/
 
@@ -151,6 +174,7 @@ class Preset:
             "is_public": self.is_public,
             "meta": self.meta,
             "parameters": self.parameters,
+            "applies_to": self.applies_to,
             "example_file": self.example_file,
             "source_readme": self.source_readme,
         }
@@ -169,6 +193,19 @@ class BuildErrors:
 
 
 # --- Parsing ---------------------------------------------------------------
+
+
+def _meta_for(shared: dict[str, Any], overrides: dict[str, Any], version: int) -> dict[str, Any]:
+    """Shared meta with this version's overrides applied.
+
+    A null value removes the key, which is how an older version opts out of
+    something a later one declares.
+    """
+    over = (overrides.get(f"v{version}") or {}).get("meta")
+    if not over:
+        return dict(shared)
+    merged = {**shared, **over}
+    return {k: v for k, v in merged.items() if v not in (None, "")}
 
 
 def parse_front_matter(readme_path: Path, errors: BuildErrors) -> dict[str, Any] | None:
@@ -390,6 +427,7 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
     is_active = bool(front.get("is_active", OPTIONAL_FIELDS["is_active"]))
     is_public = bool(front.get("is_public", OPTIONAL_FIELDS["is_public"]))
     meta = dict(front.get("meta", {}))
+    version_overrides = dict(front.get("versions", {}))
 
     parameters = _parse_parameters(readme_path, front, errors)
     if parameters is None:
@@ -427,8 +465,9 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
                     description=description,
                     is_active=is_active,
                     is_public=is_public,
-                    meta=meta,
+                    meta=_meta_for(meta, version_overrides, v),
                     parameters=parameters,
+                    applies_to=dict(front.get("applies_to", {})),
                     example_file=str(file_path.relative_to(EXAMPLES_DIR).as_posix()),
                     source_readme=str(readme_path.relative_to(EXAMPLES_DIR).as_posix()),
                 )
@@ -454,8 +493,9 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
                     description=description,
                     is_active=is_active,
                     is_public=is_public,
-                    meta=meta,
+                    meta=_meta_for(meta, version_overrides, v),
                     parameters=parameters,
+                    applies_to=dict(front.get("applies_to", {})),
                     example_file=str(file_path.relative_to(EXAMPLES_DIR).as_posix()),
                     source_readme=str(readme_path.relative_to(EXAMPLES_DIR).as_posix()),
                 )

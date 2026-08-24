@@ -104,9 +104,11 @@ from .presets import (
     MANIFEST,
     OVERRIDABLE,
     PRESETS,
+    applies_to,
     doc_preset,
     file_preset,
     list_presets,
+    llm_example_collection,
     register_jinja_globals,
 )
 
@@ -119,6 +121,7 @@ __all__ = [
     "LogoFamily",
     "__version__",
     # Preferred preset API.
+    "applies_to",
     "doc_preset",
     # Low-level path-based API.
     "example_path",
@@ -126,6 +129,7 @@ __all__ = [
     "list_examples",
     "list_logo_families",
     "list_presets",
+    "llm_example_collection",
     "logo_preset",
     # Decorator-driven registry — downstream tools enumerate these to
     # discover every preset type without hard-coding function names.

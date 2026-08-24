@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Chat", requirements = ["openai"] }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "chat", dialect = "openai", upstream = "openai" }
 +++
 
 # llm / code-example-openai — chat completion via the `openai` SDK

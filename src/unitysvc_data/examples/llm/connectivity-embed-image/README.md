@@ -8,6 +8,7 @@ is_active = true
 is_public = false
 meta = { output_contains = "connectivity ok" }
 parameters = { version_prefix = "/v2" }
+applies_to = { capability = "embed", dialect = "cohere" }
 +++
 
 # llm / connectivity-embed-image — image embedding smoke test

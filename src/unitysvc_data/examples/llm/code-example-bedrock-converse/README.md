@@ -7,6 +7,7 @@ description = "Python example: call the model with the native AWS SDK — boto3 
 is_active = true
 is_public = true
 meta = { variant = "boto3 Converse", requirements = ["boto3"], output_contains = "connectivity ok" }
+applies_to = { capability = "chat", dialect = "bedrock_converse", upstream = "openai" }
 +++
 
 # llm / code-example-bedrock-converse — native Bedrock runtime Converse via boto3

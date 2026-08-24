@@ -6,6 +6,7 @@ file = "request-template-anthropic.json"
 description = "Minimal Anthropic Messages API request body"
 is_active = true
 is_public = true
+applies_to = { capability = "chat", upstream = "anthropic" }
 +++
 
 # llm / request-template-anthropic — minimal Messages API payload

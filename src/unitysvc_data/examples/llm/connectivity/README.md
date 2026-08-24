@@ -8,6 +8,7 @@ is_active = true
 is_public = false
 meta = { output_contains = "connectivity ok" }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "chat", upstream = "openai" }
 +++
 
 # llm / connectivity — chat completion smoke test

@@ -6,8 +6,13 @@ file = "code-example-image.sh.j2"
 description = "Bash example: generate an image via OpenAI-compatible /images/generations using curl"
 is_active = true
 is_public = true
-meta = { variant = "Image generation" }
+meta = { variant = "Image generation", output_contains = "example ok" }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "image-generate" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-image-shell — image generation via `curl`

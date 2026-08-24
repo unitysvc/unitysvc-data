@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Image embeddings" }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "embed", dialect = "cohere" }
 +++
 
 # llm / code-example-embed-image-javascript — image embeddings via `fetch`

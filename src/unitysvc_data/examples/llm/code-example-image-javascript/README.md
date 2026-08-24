@@ -8,6 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Image generation" }
 parameters = { version_prefix = "/v1" }
+applies_to = { capability = "image-generate" }
 +++
 
 # llm / code-example-image-javascript — image generation via `fetch`

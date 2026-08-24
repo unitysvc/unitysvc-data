@@ -7,6 +7,7 @@ description = "JavaScript example: send a message to an Anthropic Messages API e
 is_active = true
 is_public = true
 meta = { variant = "Chat" }
+applies_to = { capability = "chat", dialect = "anthropic", upstream = "anthropic" }
 +++
 
 # llm / code-example-anthropic-javascript — Anthropic Messages API via built-in fetch
