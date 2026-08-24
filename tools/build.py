@@ -105,6 +105,16 @@ OPTIONAL_FIELDS: dict[str, Any] = {
     # Like ``parameters`` it is build-time metadata and never reaches the
     # document record.
     "applies_to": {},
+    # Per-version metadata overrides, e.g.
+    #     [versions.v1]
+    #     meta = { output_contains = "" }
+    # ``meta`` in the front-matter is shared by every version in the
+    # directory, which is right for description/requirements but wrong for
+    # anything tied to a specific file's CONTENT. `output_contains` is
+    # checked against stdout, so declaring it for a version whose body
+    # never prints it would fail every run.  Keys here are merged over the
+    # shared meta for that version only; a null value drops the key.
+    "versions": {},
 }
 
 # Pattern declared parameter names must match (Python-identifier-like).
@@ -183,6 +193,19 @@ class BuildErrors:
 
 
 # --- Parsing ---------------------------------------------------------------
+
+
+def _meta_for(shared: dict[str, Any], overrides: dict[str, Any], version: int) -> dict[str, Any]:
+    """Shared meta with this version's overrides applied.
+
+    A null value removes the key, which is how an older version opts out of
+    something a later one declares.
+    """
+    over = (overrides.get(f"v{version}") or {}).get("meta")
+    if not over:
+        return dict(shared)
+    merged = {**shared, **over}
+    return {k: v for k, v in merged.items() if v not in (None, "")}
 
 
 def parse_front_matter(readme_path: Path, errors: BuildErrors) -> dict[str, Any] | None:
@@ -404,6 +427,7 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
     is_active = bool(front.get("is_active", OPTIONAL_FIELDS["is_active"]))
     is_public = bool(front.get("is_public", OPTIONAL_FIELDS["is_public"]))
     meta = dict(front.get("meta", {}))
+    version_overrides = dict(front.get("versions", {}))
 
     parameters = _parse_parameters(readme_path, front, errors)
     if parameters is None:
@@ -441,7 +465,7 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
                     description=description,
                     is_active=is_active,
                     is_public=is_public,
-                    meta=meta,
+                    meta=_meta_for(meta, version_overrides, v),
                     parameters=parameters,
                     applies_to=dict(front.get("applies_to", {})),
                     example_file=str(file_path.relative_to(EXAMPLES_DIR).as_posix()),
@@ -469,7 +493,7 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
                     description=description,
                     is_active=is_active,
                     is_public=is_public,
-                    meta=meta,
+                    meta=_meta_for(meta, version_overrides, v),
                     parameters=parameters,
                     applies_to=dict(front.get("applies_to", {})),
                     example_file=str(file_path.relative_to(EXAMPLES_DIR).as_posix()),

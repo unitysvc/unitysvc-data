@@ -6,9 +6,13 @@ file = "code-example-embed.sh.j2"
 description = "Shell example: request OpenAI-compatible embeddings via curl"
 is_active = true
 is_public = true
-meta = { variant = "Embeddings" }
+meta = { variant = "Embeddings", output_contains = "example ok" }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "embed" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-embed-shell — embeddings via `curl`

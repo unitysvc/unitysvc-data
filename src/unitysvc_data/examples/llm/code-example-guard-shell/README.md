@@ -6,9 +6,13 @@ file = "code-example-guard.sh.j2"
 description = "Bash example: send an unsafe prompt to a guard/safety model via curl"
 is_active = true
 is_public = true
-meta = { variant = "Guard" }
+meta = { variant = "Guard", output_contains = "example ok" }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "moderate" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-guard-shell — safety guard probe via `curl`

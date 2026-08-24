@@ -6,64 +6,64 @@
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
     "llm_code_example_anthropic_fc": "llm_code_example_anthropic_fc_v1",
     "llm_code_example_anthropic_javascript": "llm_code_example_anthropic_javascript_v1",
-    "llm_code_example_anthropic_shell": "llm_code_example_anthropic_shell_v1",
+    "llm_code_example_anthropic_shell": "llm_code_example_anthropic_shell_v2",
     "llm_code_example_anthropic_to_openai_requests": "llm_code_example_anthropic_to_openai_requests_v1",
     "llm_code_example_anthropic_to_openai_sdk": "llm_code_example_anthropic_to_openai_sdk_v1",
-    "llm_code_example_anthropic_to_openai_shell": "llm_code_example_anthropic_to_openai_shell_v1",
+    "llm_code_example_anthropic_to_openai_shell": "llm_code_example_anthropic_to_openai_shell_v2",
     "llm_code_example_anthropic_to_openai_stream_requests": "llm_code_example_anthropic_to_openai_stream_requests_v1",
     "llm_code_example_anthropic_to_openai_stream_sdk": "llm_code_example_anthropic_to_openai_stream_sdk_v1",
-    "llm_code_example_anthropic_to_openai_stream_shell": "llm_code_example_anthropic_to_openai_stream_shell_v1",
+    "llm_code_example_anthropic_to_openai_stream_shell": "llm_code_example_anthropic_to_openai_stream_shell_v2",
     "llm_code_example_bedrock_converse": "llm_code_example_bedrock_converse_v1",
     "llm_code_example_bedrock_invoke": "llm_code_example_bedrock_invoke_v1",
     "llm_code_example_cerebras": "llm_code_example_cerebras_v1",
     "llm_code_example_cohere": "llm_code_example_cohere_v1",
     "llm_code_example_embed_image_javascript": "llm_code_example_embed_image_javascript_v1",
     "llm_code_example_embed_image_requests": "llm_code_example_embed_image_requests_v1",
-    "llm_code_example_embed_image_shell": "llm_code_example_embed_image_shell_v1",
+    "llm_code_example_embed_image_shell": "llm_code_example_embed_image_shell_v2",
     "llm_code_example_embed_javascript": "llm_code_example_embed_javascript_v1",
     "llm_code_example_embed_requests": "llm_code_example_embed_requests_v1",
-    "llm_code_example_embed_shell": "llm_code_example_embed_shell_v1",
+    "llm_code_example_embed_shell": "llm_code_example_embed_shell_v2",
     "llm_code_example_fc_requests": "llm_code_example_fc_requests_v1",
     "llm_code_example_guard_javascript": "llm_code_example_guard_javascript_v1",
     "llm_code_example_guard_requests": "llm_code_example_guard_requests_v1",
-    "llm_code_example_guard_shell": "llm_code_example_guard_shell_v1",
+    "llm_code_example_guard_shell": "llm_code_example_guard_shell_v2",
     "llm_code_example_image_javascript": "llm_code_example_image_javascript_v1",
     "llm_code_example_image_requests": "llm_code_example_image_requests_v1",
-    "llm_code_example_image_shell": "llm_code_example_image_shell_v1",
+    "llm_code_example_image_shell": "llm_code_example_image_shell_v2",
     "llm_code_example_imagetoimage_javascript": "llm_code_example_imagetoimage_javascript_v1",
     "llm_code_example_imagetoimage_requests": "llm_code_example_imagetoimage_requests_v1",
-    "llm_code_example_imagetoimage_shell": "llm_code_example_imagetoimage_shell_v1",
+    "llm_code_example_imagetoimage_shell": "llm_code_example_imagetoimage_shell_v2",
     "llm_code_example_javascript": "llm_code_example_javascript_v1",
     "llm_code_example_openai": "llm_code_example_openai_v1",
     "llm_code_example_openai_javascript": "llm_code_example_openai_javascript_v1",
     "llm_code_example_openai_to_anthropic_requests": "llm_code_example_openai_to_anthropic_requests_v1",
     "llm_code_example_openai_to_anthropic_sdk": "llm_code_example_openai_to_anthropic_sdk_v1",
-    "llm_code_example_openai_to_anthropic_shell": "llm_code_example_openai_to_anthropic_shell_v1",
+    "llm_code_example_openai_to_anthropic_shell": "llm_code_example_openai_to_anthropic_shell_v2",
     "llm_code_example_openai_to_anthropic_stream_requests": "llm_code_example_openai_to_anthropic_stream_requests_v1",
     "llm_code_example_openai_to_anthropic_stream_sdk": "llm_code_example_openai_to_anthropic_stream_sdk_v1",
-    "llm_code_example_openai_to_anthropic_stream_shell": "llm_code_example_openai_to_anthropic_stream_shell_v1",
+    "llm_code_example_openai_to_anthropic_stream_shell": "llm_code_example_openai_to_anthropic_stream_shell_v2",
     "llm_code_example_requests": "llm_code_example_requests_v1",
     "llm_code_example_rerank_javascript": "llm_code_example_rerank_javascript_v1",
     "llm_code_example_rerank_requests": "llm_code_example_rerank_requests_v1",
-    "llm_code_example_rerank_shell": "llm_code_example_rerank_shell_v1",
+    "llm_code_example_rerank_shell": "llm_code_example_rerank_shell_v2",
     "llm_code_example_sentencetransformers_javascript": "llm_code_example_sentencetransformers_javascript_v1",
     "llm_code_example_sentencetransformers_requests": "llm_code_example_sentencetransformers_requests_v1",
-    "llm_code_example_sentencetransformers_shell": "llm_code_example_sentencetransformers_shell_v1",
-    "llm_code_example_shell": "llm_code_example_shell_v1",
+    "llm_code_example_sentencetransformers_shell": "llm_code_example_sentencetransformers_shell_v2",
+    "llm_code_example_shell": "llm_code_example_shell_v2",
     "llm_code_example_streaming_openai": "llm_code_example_streaming_openai_v1",
     "llm_code_example_streaming_openai_javascript": "llm_code_example_streaming_openai_javascript_v1",
     "llm_code_example_transcription_javascript": "llm_code_example_transcription_javascript_v1",
     "llm_code_example_transcription_requests": "llm_code_example_transcription_requests_v1",
-    "llm_code_example_transcription_shell": "llm_code_example_transcription_shell_v1",
+    "llm_code_example_transcription_shell": "llm_code_example_transcription_shell_v2",
     "llm_code_example_tts_javascript": "llm_code_example_tts_javascript_v1",
     "llm_code_example_tts_requests": "llm_code_example_tts_requests_v1",
     "llm_code_example_tts_shell": "llm_code_example_tts_shell_v1",
     "llm_code_example_ttv_javascript": "llm_code_example_ttv_javascript_v1",
     "llm_code_example_ttv_requests": "llm_code_example_ttv_requests_v1",
-    "llm_code_example_ttv_shell": "llm_code_example_ttv_shell_v1",
+    "llm_code_example_ttv_shell": "llm_code_example_ttv_shell_v2",
     "llm_code_example_vision_javascript": "llm_code_example_vision_javascript_v1",
     "llm_code_example_vision_requests": "llm_code_example_vision_requests_v1",
-    "llm_code_example_vision_shell": "llm_code_example_vision_shell_v1",
+    "llm_code_example_vision_shell": "llm_code_example_vision_shell_v2",
     "llm_connectivity": "llm_connectivity_v1",
     "llm_connectivity_anthropic": "llm_connectivity_anthropic_v1",
     "llm_connectivity_embed": "llm_connectivity_embed_v1",
@@ -675,6 +675,27 @@
       "source_readme": "llm/code-example-anthropic-shell/README.md",
       "version": 1
     },
+    "llm_code_example_anthropic_shell_v2": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "upstream": "anthropic"
+      },
+      "category": "code_example",
+      "description": "curl example: POST a message to an Anthropic Messages API endpoint",
+      "example_file": "llm/code-example-anthropic-shell/code-example-anthropic-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Chat"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_anthropic_shell",
+      "source_readme": "llm/code-example-anthropic-shell/README.md",
+      "version": 2
+    },
     "llm_code_example_anthropic_to_openai_requests_v1": {
       "applies_to": {
         "capability": "chat",
@@ -747,6 +768,29 @@
       "preset_name": "llm_code_example_anthropic_to_openai_shell",
       "source_readme": "llm/code-example-anthropic-to-openai-shell/README.md",
       "version": 1
+    },
+    "llm_code_example_anthropic_to_openai_shell_v2": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Shell example: Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl",
+      "example_file": "llm/code-example-anthropic-to-openai-shell/code-example-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Anthropic-style"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_anthropic_to_openai_shell",
+      "source_readme": "llm/code-example-anthropic-to-openai-shell/README.md",
+      "version": 2
     },
     "llm_code_example_anthropic_to_openai_stream_requests_v1": {
       "applies_to": {
@@ -823,6 +867,30 @@
       "preset_name": "llm_code_example_anthropic_to_openai_stream_shell",
       "source_readme": "llm/code-example-anthropic-to-openai-stream-shell/README.md",
       "version": 1
+    },
+    "llm_code_example_anthropic_to_openai_stream_shell_v2": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "feature": "streaming",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Shell example: streaming Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl",
+      "example_file": "llm/code-example-anthropic-to-openai-stream-shell/code-example-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Anthropic-style (streaming)"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_anthropic_to_openai_stream_shell",
+      "source_readme": "llm/code-example-anthropic-to-openai-stream-shell/README.md",
+      "version": 2
     },
     "llm_code_example_anthropic_v1": {
       "applies_to": {
@@ -1009,6 +1077,28 @@
       "source_readme": "llm/code-example-embed-image-shell/README.md",
       "version": 1
     },
+    "llm_code_example_embed_image_shell_v2": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "cohere"
+      },
+      "category": "code_example",
+      "description": "Bash example: embed an image via /embed (Cohere v2-style) using curl",
+      "example_file": "llm/code-example-embed-image-shell/code-example-embed-image-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Image embeddings"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_embed_image_shell",
+      "source_readme": "llm/code-example-embed-image-shell/README.md",
+      "version": 2
+    },
     "llm_code_example_embed_javascript_v1": {
       "applies_to": {
         "capability": "embed"
@@ -1071,6 +1161,27 @@
       "preset_name": "llm_code_example_embed_shell",
       "source_readme": "llm/code-example-embed-shell/README.md",
       "version": 1
+    },
+    "llm_code_example_embed_shell_v2": {
+      "applies_to": {
+        "capability": "embed"
+      },
+      "category": "code_example",
+      "description": "Shell example: request OpenAI-compatible embeddings via curl",
+      "example_file": "llm/code-example-embed-shell/code-example-embed-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Embeddings"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_embed_shell",
+      "source_readme": "llm/code-example-embed-shell/README.md",
+      "version": 2
     },
     "llm_code_example_fc_requests_v1": {
       "applies_to": {
@@ -1161,6 +1272,27 @@
       "source_readme": "llm/code-example-guard-shell/README.md",
       "version": 1
     },
+    "llm_code_example_guard_shell_v2": {
+      "applies_to": {
+        "capability": "moderate"
+      },
+      "category": "code_example",
+      "description": "Bash example: send an unsafe prompt to a guard/safety model via curl",
+      "example_file": "llm/code-example-guard-shell/code-example-guard-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Guard"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_guard_shell",
+      "source_readme": "llm/code-example-guard-shell/README.md",
+      "version": 2
+    },
     "llm_code_example_image_javascript_v1": {
       "applies_to": {
         "capability": "image-generate"
@@ -1224,6 +1356,27 @@
       "source_readme": "llm/code-example-image-shell/README.md",
       "version": 1
     },
+    "llm_code_example_image_shell_v2": {
+      "applies_to": {
+        "capability": "image-generate"
+      },
+      "category": "code_example",
+      "description": "Bash example: generate an image via OpenAI-compatible /images/generations using curl",
+      "example_file": "llm/code-example-image-shell/code-example-image-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Image generation"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_image_shell",
+      "source_readme": "llm/code-example-image-shell/README.md",
+      "version": 2
+    },
     "llm_code_example_imagetoimage_javascript_v1": {
       "applies_to": {
         "capability": "image-edit"
@@ -1286,6 +1439,27 @@
       "preset_name": "llm_code_example_imagetoimage_shell",
       "source_readme": "llm/code-example-imagetoimage-shell/README.md",
       "version": 1
+    },
+    "llm_code_example_imagetoimage_shell_v2": {
+      "applies_to": {
+        "capability": "image-edit"
+      },
+      "category": "code_example",
+      "description": "Bash example: image-to-image transform via Hugging Face /models/<model> using curl",
+      "example_file": "llm/code-example-imagetoimage-shell/code-example-imagetoimage-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Image to image"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_imagetoimage_shell",
+      "source_readme": "llm/code-example-imagetoimage-shell/README.md",
+      "version": 2
     },
     "llm_code_example_javascript_v1": {
       "applies_to": {
@@ -1401,6 +1575,27 @@
       "source_readme": "llm/code-example-openai-to-anthropic-shell/README.md",
       "version": 1
     },
+    "llm_code_example_openai_to_anthropic_shell_v2": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "anthropic"
+      },
+      "category": "code_example",
+      "description": "Shell example: OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) via curl",
+      "example_file": "llm/code-example-openai-to-anthropic-shell/code-example-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "OpenAI-style"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_openai_to_anthropic_shell",
+      "source_readme": "llm/code-example-openai-to-anthropic-shell/README.md",
+      "version": 2
+    },
     "llm_code_example_openai_to_anthropic_stream_requests_v1": {
       "applies_to": {
         "capability": "chat",
@@ -1470,6 +1665,28 @@
       "preset_name": "llm_code_example_openai_to_anthropic_stream_shell",
       "source_readme": "llm/code-example-openai-to-anthropic-stream-shell/README.md",
       "version": 1
+    },
+    "llm_code_example_openai_to_anthropic_stream_shell_v2": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "streaming",
+        "upstream": "anthropic"
+      },
+      "category": "code_example",
+      "description": "Shell example: streaming OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) via curl",
+      "example_file": "llm/code-example-openai-to-anthropic-stream-shell/code-example-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "OpenAI-style (streaming)"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_openai_to_anthropic_stream_shell",
+      "source_readme": "llm/code-example-openai-to-anthropic-stream-shell/README.md",
+      "version": 2
     },
     "llm_code_example_openai_v1": {
       "applies_to": {
@@ -1584,6 +1801,27 @@
       "source_readme": "llm/code-example-rerank-shell/README.md",
       "version": 1
     },
+    "llm_code_example_rerank_shell_v2": {
+      "applies_to": {
+        "capability": "rerank"
+      },
+      "category": "code_example",
+      "description": "Bash example: rerank documents via /rerank using curl",
+      "example_file": "llm/code-example-rerank-shell/code-example-rerank-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Rerank"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_rerank_shell",
+      "source_readme": "llm/code-example-rerank-shell/README.md",
+      "version": 2
+    },
     "llm_code_example_sentencetransformers_javascript_v1": {
       "applies_to": {
         "capability": "embed",
@@ -1650,6 +1888,28 @@
       "source_readme": "llm/code-example-sentencetransformers-shell/README.md",
       "version": 1
     },
+    "llm_code_example_sentencetransformers_shell_v2": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "huggingface"
+      },
+      "category": "code_example",
+      "description": "Bash example: sentence-similarity via HF sentence-transformers /models/<model> using curl",
+      "example_file": "llm/code-example-sentencetransformers-shell/code-example-sentencetransformers-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Sentence Transformers"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_sentencetransformers_shell",
+      "source_readme": "llm/code-example-sentencetransformers-shell/README.md",
+      "version": 2
+    },
     "llm_code_example_shell_v1": {
       "applies_to": {
         "capability": "chat",
@@ -1671,6 +1931,29 @@
       "preset_name": "llm_code_example_shell",
       "source_readme": "llm/code-example-shell/README.md",
       "version": 1
+    },
+    "llm_code_example_shell_v2": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Shell example: send a chat completion request to an OpenAI-compatible LLM via curl",
+      "example_file": "llm/code-example-shell/code-example-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Chat"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_shell",
+      "source_readme": "llm/code-example-shell/README.md",
+      "version": 2
     },
     "llm_code_example_streaming_openai_javascript_v1": {
       "applies_to": {
@@ -1789,6 +2072,28 @@
       "preset_name": "llm_code_example_transcription_shell",
       "source_readme": "llm/code-example-transcription-shell/README.md",
       "version": 1
+    },
+    "llm_code_example_transcription_shell_v2": {
+      "applies_to": {
+        "capability": "speech-transcribe"
+      },
+      "category": "code_example",
+      "description": "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl",
+      "example_file": "llm/code-example-transcription-shell/code-example-transcription-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Transcription"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "language": "en",
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_transcription_shell",
+      "source_readme": "llm/code-example-transcription-shell/README.md",
+      "version": 2
     },
     "llm_code_example_tts_javascript_v1": {
       "applies_to": {
@@ -1916,6 +2221,27 @@
       "source_readme": "llm/code-example-ttv-shell/README.md",
       "version": 1
     },
+    "llm_code_example_ttv_shell_v2": {
+      "applies_to": {
+        "capability": "video-generate"
+      },
+      "category": "code_example",
+      "description": "Bash example: text-to-video via HF /models/<model> using curl",
+      "example_file": "llm/code-example-ttv-shell/code-example-ttv-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Text to video"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_ttv_shell",
+      "source_readme": "llm/code-example-ttv-shell/README.md",
+      "version": 2
+    },
     "llm_code_example_vision_javascript_v1": {
       "applies_to": {
         "capability": "chat",
@@ -1987,6 +2313,30 @@
       "preset_name": "llm_code_example_vision_shell",
       "source_readme": "llm/code-example-vision-shell/README.md",
       "version": 1
+    },
+    "llm_code_example_vision_shell_v2": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "vision",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Bash example: describe an image via OpenAI-compatible /chat/completions using curl",
+      "example_file": "llm/code-example-vision-shell/code-example-vision-v2.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Vision"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_vision_shell",
+      "source_readme": "llm/code-example-vision-shell/README.md",
+      "version": 2
     },
     "llm_connectivity_anthropic_v1": {
       "applies_to": {

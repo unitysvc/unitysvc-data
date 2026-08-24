@@ -1,0 +1,25 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+audio_url="${AUDIO_URL:-https://raw.githubusercontent.com/openai/whisper/main/tests/jfk.flac}"
+audio_file="${TMPDIR:-/tmp}/$(basename "${audio_url%%\?*}")"
+[ -f "${audio_file}" ] || curl -sSL --fail-with-body -o "${audio_file}" "${audio_url}"
+
+response=$(curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/audio/transcriptions" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -F "model={{ routing_key.model }}" \
+  -F "language=${__language__}" \
+  -F "file=@${audio_file}")
+
+echo "$response"
+
+# A 2xx does not mean the call did what you asked: an error object, or a
+# reply from a different capability, also returns 200. Assert the reply
+# really is a transcript before treating this as success.
+if ! printf '%s' "$response" | grep -q '"text"'; then
+  echo 'unexpected response: no "text" in the reply' >&2
+  exit 1
+fi
+echo "example ok"

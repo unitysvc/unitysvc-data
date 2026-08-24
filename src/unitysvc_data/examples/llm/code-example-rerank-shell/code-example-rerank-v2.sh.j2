@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+response=$(curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/rerank" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d '{
+    "model": "{{ routing_key.model }}",
+    "query": "What is the capital of the United States?",
+    "top_n": 3,
+    "documents": [
+      "Carson City is the capital of Nevada.",
+      "Saipan is the capital of the Northern Mariana Islands.",
+      "Washington, D.C. is the capital of the United States.",
+      "Capitalization is the use of a capital letter at the start of a word.",
+      "Capital punishment has existed in the United States for centuries."
+    ]
+  }')
+
+echo "$response"
+
+# A 2xx does not mean the call did what you asked: an error object, or a
+# reply from a different capability, also returns 200. Assert the reply
+# really is a rerank result list before treating this as success.
+if ! printf '%s' "$response" | grep -q '"results"'; then
+  echo 'unexpected response: no "results" in the reply' >&2
+  exit 1
+fi
+echo "example ok"

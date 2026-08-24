@@ -1,0 +1,29 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+response=$(curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/models/{{ routing_key.model }}" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d '{
+    "inputs": {
+      "source_sentence": "I love machine learning",
+      "sentences": [
+        "I enjoy studying AI",
+        "The weather is nice today",
+        "Deep learning is fascinating"
+      ]
+    }
+  }')
+
+echo "$response"
+
+# A 2xx does not mean the call did what you asked: an error object, or a
+# reply from a different capability, also returns 200. Assert the reply
+# really is a embeddings array before treating this as success.
+if ! printf '%s' "$response" | grep -q '"data"'; then
+  echo 'unexpected response: no "data" in the reply' >&2
+  exit 1
+fi
+echo "example ok"

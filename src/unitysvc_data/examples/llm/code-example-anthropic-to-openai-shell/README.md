@@ -6,9 +6,13 @@ file = "code-example.sh.j2"
 description = "Shell example: Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl"
 is_active = true
 is_public = true
-meta = { variant = "Anthropic-style" }
+meta = { variant = "Anthropic-style", output_contains = "example ok" }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", dialect = "anthropic", upstream = "openai" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-anthropic-to-openai-shell — Anthropic-format call to an anthropic->openai translation gateway

@@ -6,8 +6,12 @@ file = "code-example-anthropic.sh.j2"
 description = "curl example: POST a message to an Anthropic Messages API endpoint"
 is_active = true
 is_public = true
-meta = { variant = "Chat" }
+meta = { variant = "Chat", output_contains = "example ok" }
 applies_to = { capability = "chat", dialect = "anthropic", upstream = "anthropic" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-anthropic-shell — Anthropic Messages API via curl

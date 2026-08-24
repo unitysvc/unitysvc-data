@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+image_url="${IMAGE_URL:-https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg}"
+prompt="${PROMPT:-Turn this into a cinematic cyberpunk scene}"
+strength="${STRENGTH:-0.6}"
+output_file="${OUTPUT_FILE:-output.png}"
+
+input_file="$(basename "${image_url%%\?*}")"
+[ -f "${input_file}" ] || curl -sSL --fail-with-body -o "${input_file}" "${image_url}"
+
+response=$(curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/models/{{ routing_key.model }}" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -F "image=@${input_file}" \
+  -F "prompt=${prompt}" \
+  -F "strength=${strength}" \
+  -o "${output_file}")
+
+echo "$response"
+
+# A 2xx does not mean the call did what you asked: an error object, or a
+# reply from a different capability, also returns 200. Assert the reply
+# really is a image payload before treating this as success.
+if ! printf '%s' "$response" | grep -q '"data"'; then
+  echo 'unexpected response: no "data" in the reply' >&2
+  exit 1
+fi
+echo "example ok"
+echo "Saved ${output_file}"

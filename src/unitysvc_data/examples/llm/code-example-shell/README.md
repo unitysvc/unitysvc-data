@@ -6,9 +6,13 @@ file = "code-example.sh.j2"
 description = "Shell example: send a chat completion request to an OpenAI-compatible LLM via curl"
 is_active = true
 is_public = true
-meta = { variant = "Chat" }
+meta = { variant = "Chat", output_contains = "example ok" }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-shell — chat completion via `curl`

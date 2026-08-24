@@ -6,9 +6,13 @@ file = "code-example-rerank.sh.j2"
 description = "Bash example: rerank documents via /rerank using curl"
 is_active = true
 is_public = true
-meta = { variant = "Rerank" }
+meta = { variant = "Rerank", output_contains = "example ok" }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "rerank" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-rerank-shell — document reranking via `curl`

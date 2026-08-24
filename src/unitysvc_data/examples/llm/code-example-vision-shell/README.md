@@ -6,9 +6,13 @@ file = "code-example-vision.sh.j2"
 description = "Bash example: describe an image via OpenAI-compatible /chat/completions using curl"
 is_active = true
 is_public = true
-meta = { variant = "Vision" }
+meta = { variant = "Vision", output_contains = "example ok" }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai", feature = "vision" }
+
+[versions.v1]
+# v1 predates the response-shape assertion and prints no sentinel.
+meta = { output_contains = "" }
 +++
 
 # llm / code-example-vision-shell — vision via `curl`

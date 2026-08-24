@@ -692,3 +692,24 @@ def test_a_broadcast_param_no_preset_declares_is_an_error():
         llm_example_collection(
             {"capabilities": ["chat"], "formats": ["openai"], "params": {"nonsuch": "x"}}
         )
+
+
+def test_an_asserted_example_can_actually_produce_its_sentinel():
+    """`output_contains` is checked against the example's stdout. A preset
+    declaring a sentinel its body never prints would fail every run — a
+    self-inflicted failure, not a real one."""
+    import pathlib
+
+    from unitysvc_data import MANIFEST, example_path
+
+    broken = []
+    for key, entry in MANIFEST["presets"].items():
+        if not key.startswith("llm_") or entry["category"] != "code_example":
+            continue
+        needle = (entry.get("meta") or {}).get("output_contains")
+        if not needle:
+            continue
+        body = pathlib.Path(example_path(entry["example_file"])).read_text()
+        if needle not in body:
+            broken.append(key)
+    assert not broken, f"declare output_contains but never print it: {broken}"
