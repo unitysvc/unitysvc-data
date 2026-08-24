@@ -529,17 +529,6 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
             f"No preset declares parameter(s) {sorted(_unknown)!r}, so broadcasting "
             f"them would have no effect. Declared somewhere: {sorted(_declares)}."
         )
-    # Per-example parameter overrides, keyed by preset name. Validated up
-    # front rather than at render time: a typo'd preset or parameter would
-    # otherwise be silently ignored, leaving the author believing they had
-    # customised an example when they had not.
-    example_params: dict[str, dict[str, Any]] = dict(source.get("example_params") or {})
-    for _name, _params in example_params.items():
-        if _name not in _PRESET_RECORDS:
-            raise ValueError(
-                f"example_params names unknown preset {_name!r}. "
-                f"It must be a preset this collection can emit."
-            )
         _declared = _PRESET_PARAMETERS.get(_name, {})
         _bad = set(_params) - set(_declared)
         if _bad:
@@ -581,7 +570,6 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
                 scope,
                 sleep,
                 {**broadcast, **(group.get("params") or {})},
-                example_params.get(preset_name),
             )
     return docs
 
@@ -622,8 +610,7 @@ _EXECUTABLE = frozenset({"code_example", "connectivity_test"})
 
 
 def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
-            broadcast: dict[str, Any] | None = None,
-            params: dict[str, Any] | None = None) -> dict[str, Any]:
+            broadcast: dict[str, Any] | None = None) -> dict[str, Any]:
     """A document record scoped to its group's channel and interface.
 
     Merged INTO the preset's own ``meta`` rather than over it: the
@@ -638,8 +625,6 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
     # Broadcast values reach only the presets that declare them, so a
     # collection-wide `version_prefix` does not break `llm_description`.
     kwargs = {k: v for k, v in (broadcast or {}).items() if k in declared}
-    # Per-example overrides win over the broadcast value.
-    kwargs.update(params or {})
     record = doc_preset(preset_name, **kwargs) if kwargs else doc_preset(preset_name)
     if record["category"] not in _EXECUTABLE:
         # Non-executable: nothing to run, nowhere to run it. Leaving these

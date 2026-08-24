@@ -611,51 +611,7 @@ def test_default_version_prefix_is_unchanged():
     assert "/v1/chat/completions" in body
 
 
-def test_per_example_parameters_override_the_collection_default():
-    """One collection-wide value cannot serve every example: a preset may
-    declare parameters the others do not, or need a different value for
-    the same one. `example_params` targets a single preset by name."""
-    import pathlib
 
-    docs = llm_example_collection(
-        {
-            "capabilities": ["chat"],
-            "formats": ["openai"],
-            "params": {"version_prefix": "/v2"},
-            "example_params": {"llm_code_example_shell": {"version_prefix": "/compatibility/v1"}},
-        }
-    )
-
-    targeted = pathlib.Path(docs["cURL code example"]["file_path"]).read_text()
-    assert "/compatibility/v1/chat/completions" in targeted
-
-    # every other example keeps the collection-level value
-    other = pathlib.Path(docs["Python code example (openai SDK)"]["file_path"]).read_text()
-    assert "/v2" in other
-
-
-def test_per_example_parameters_reject_an_undeclared_name():
-    """Silently ignoring a typo'd parameter would leave the author
-    believing they had customised an example when they had not."""
-    with pytest.raises(ValueError, match="nonsuch"):
-        llm_example_collection(
-            {
-                "capabilities": ["chat"],
-                "formats": ["openai"],
-                "example_params": {"llm_code_example_shell": {"nonsuch": "x"}},
-            }
-        )
-
-
-def test_per_example_parameters_reject_an_unknown_preset():
-    with pytest.raises(ValueError, match="llm_code_example_typo"):
-        llm_example_collection(
-            {
-                "capabilities": ["chat"],
-                "formats": ["openai"],
-                "example_params": {"llm_code_example_typo": {"version_prefix": "/v1"}},
-            }
-        )
 
 
 def test_collection_level_params_broadcast_to_every_preset_declaring_them():
@@ -713,3 +669,60 @@ def test_an_asserted_example_can_actually_produce_its_sentinel():
         if needle not in body:
             broken.append(key)
     assert not broken, f"declare output_contains but never print it: {broken}"
+
+
+def test_the_collection_takes_six_keys_and_no_more():
+    """A guard on API surface. Anything a repo needs beyond these belongs
+    in a sibling document, not a new option — see the tests below."""
+    import inspect
+
+    from unitysvc_data import presets
+
+    source = inspect.getsource(presets.llm_example_collection)
+    import re
+
+    declared = set(re.findall(r'source\.get\("([a-z_]+)"\)', source))
+    assert declared == {
+        "capabilities",  # which capability to build a collection for
+        "formats",       # caller dialects, plain list or scoped groups
+        "upstream_dialect",
+        "tools",         # gate for the function-calling example
+        "sleep",         # meta.sleep_after_test, for rate-limited upstreams
+        "params",        # broadcast to presets declaring the parameter
+    }, f"API surface changed: {sorted(declared)}"
+
+
+def test_a_sibling_document_adds_one_the_collection_cannot_derive():
+    """The escape hatch is the sentinel's own sibling-merge, not a
+    collection option: `expand_presets` merges sibling keys over the
+    expanded mapping and expands their values first."""
+    from unitysvc_core.utils import expand_presets
+
+    out = expand_presets(
+        {
+            "$llm_example_collection": {"capabilities": ["chat"], "formats": ["openai"]},
+            "Python code example (Cohere SDK)": {"$doc_preset": "llm_code_example_cohere"},
+        }
+    )
+
+    assert "Python code example (Cohere SDK)" in out
+    assert _key(out["Python code example (Cohere SDK)"]) == _key(doc_preset("llm_code_example_cohere"))
+
+
+def test_a_sibling_overrides_a_generated_document_by_title():
+    """Which is why the collection needs no per-example parameter option:
+    restating the title replaces what it generated."""
+    import pathlib
+
+    from unitysvc_core.utils import expand_presets
+
+    out = expand_presets(
+        {
+            "$llm_example_collection": {"capabilities": ["chat"], "formats": ["openai"]},
+            "cURL code example": {
+                "$doc_preset": {"name": "llm_code_example_shell", "version_prefix": "/v2"}
+            },
+        }
+    )
+
+    assert "/v2/chat/completions" in pathlib.Path(out["cURL code example"]["file_path"]).read_text()
