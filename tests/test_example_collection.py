@@ -23,14 +23,9 @@ def presets_in(docs: dict) -> set[str]:
     """
     from unitysvc_data import PRESETS
 
-    by_record = {}
-    for name in PRESETS:
-        if not name.startswith("llm_"):
-            continue
-        try:
-            by_record[_key(doc_preset(name))] = name
-        except Exception:
-            continue
+    # Every llm_* preset expands cleanly; if one ever stops doing so that
+    # is a manifest bug and should surface here rather than be swallowed.
+    by_record = {_key(doc_preset(name)): name for name in PRESETS if name.startswith("llm_")}
     found = set()
     for record in docs.values():
         name = by_record.get(_key(record))
@@ -261,7 +256,8 @@ def test_registered_as_a_jinja_global_for_templated_repos():
     from unitysvc_data import register_jinja_globals
 
     class Env:
-        globals: dict = {}
+        def __init__(self) -> None:
+            self.globals: dict = {}
 
     env = Env()
     register_jinja_globals(env)
