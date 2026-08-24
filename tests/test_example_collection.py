@@ -278,3 +278,35 @@ def test_multiple_capabilities_are_rejected_rather_than_losing_a_probe():
     exact failure this preset exists to prevent."""
     with pytest.raises(ValueError, match="one capability"):
         llm_example_collection({"capabilities": ["chat", "embed"], "formats": ["openai"]})
+
+
+def test_speech_transcribe_is_supported_since_its_presets_exist():
+    """Found by the before/after sweep: three services (cohere-transcribe,
+    groq whisper x2) were rejected even though unitysvc-data ships both
+    the examples and the probe."""
+    docs = llm_example_collection({"capabilities": ["speech-transcribe"], "formats": ["openai"]})
+
+    probe = next(d for d in docs.values() if d["category"] == "connectivity_test")
+    assert _key(probe) == _key(doc_preset("llm_connectivity_transcription"))
+    assert examples_in(docs) == {
+        "llm_code_example_transcription_requests",
+        "llm_code_example_transcription_javascript",
+        "llm_code_example_transcription_shell",
+    }
+
+
+def test_the_how_to_use_doc_is_emitted_for_every_capability():
+    """Found by the sweep: 12 embedding services lost `llm_description`.
+    It describes how ANY LLM service is consumed through the gateway, so
+    it is not chat-specific."""
+    for capability in ("chat", "embed", "speech-transcribe"):
+        docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
+        assert "llm_description" in presets_in(docs), capability
+
+
+def test_cerebras_dialect_contributes_its_sdk_example():
+    """Found by the sweep: cerebras' three services lost their SDK example
+    because the dialect had no entry."""
+    docs = llm_example_collection({"capabilities": ["chat"], "formats": ["openai", "cerebras"]})
+
+    assert "llm_code_example_cerebras" in examples_in(docs)

@@ -394,6 +394,14 @@ _CAPABILITY_EXAMPLES: dict[str, tuple[list[tuple[str, str]], str | None]] = {
         ],
         "llm_connectivity_embed",
     ),
+    "speech-transcribe": (
+        [
+            ("Python code example", "llm_code_example_transcription_requests"),
+            ("JavaScript code example", "llm_code_example_transcription_javascript"),
+            ("cURL code example", "llm_code_example_transcription_shell"),
+        ],
+        "llm_connectivity_transcription",
+    ),
 }
 
 
@@ -441,6 +449,9 @@ _CHAT_EXAMPLES: dict[tuple[str, str], list[tuple[str, str]]] = {
     ("cohere", "openai"): [
         ("Python code example (Cohere SDK)", "llm_code_example_cohere"),
     ],
+    ("cerebras", "openai"): [
+        ("Python code example (Cerebras SDK)", "llm_code_example_cerebras"),
+    ],
     ("bedrock_converse", "openai"): [
         ("Python code example (boto3 Converse)", "llm_code_example_bedrock_converse"),
     ],
@@ -449,18 +460,11 @@ _CHAT_EXAMPLES: dict[tuple[str, str], list[tuple[str, str]]] = {
     ],
 }
 
-#: Non-executable documents every chat collection carries, by upstream
-#: dialect. Present in 9 of 16 repos today and absent from the rest for
-#: no reason anyone recorded — normalising means every service gets them.
-_CHAT_SUPPORT_DOCS: dict[str, list[tuple[str, str]]] = {
-    "openai": [
-        ("How to use this model", "llm_description"),
-        ("Default request body", "llm_request_template"),
-    ],
-    "anthropic": [
-        ("How to use this model", "llm_description"),
-        ("Default request body", "llm_request_template_anthropic"),
-    ],
+#: The default request body a chat service pre-fills the playground with,
+#: by upstream dialect. Chat-only: it is a chat-completion body.
+_CHAT_REQUEST_TEMPLATE: dict[str, str] = {
+    "openai": "llm_request_template",
+    "anthropic": "llm_request_template_anthropic",
 }
 
 #: The connectivity probe for a chat service, by upstream dialect.
@@ -521,8 +525,7 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
                 if group.get("tools"):
                     title, preset_name = _TOOLS_EXAMPLE[upstream]
                     docs[title] = _scoped(preset_name, group, sleep)
-            for title, preset_name in _CHAT_SUPPORT_DOCS[upstream]:
-                docs[title] = doc_preset(preset_name)
+            docs["Default request body"] = doc_preset(_CHAT_REQUEST_TEMPLATE[upstream])
         else:
             raise ValueError(
                 f"No example collection is defined for capability {capability!r}. "
@@ -531,6 +534,10 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
                 f"{sorted({'chat', *_CAPABILITY_EXAMPLES})}."
             )
 
+    # Capability-agnostic: describes how ANY LLM service is consumed
+    # through the gateway, so an embedding or transcription service needs
+    # it just as much as a chat one.
+    docs["How to use this model"] = doc_preset("llm_description")
     docs["Connectivity test"] = _scoped(probe, _primary_group(groups), sleep)
     return docs
 
