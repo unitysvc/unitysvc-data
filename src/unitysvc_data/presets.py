@@ -384,74 +384,63 @@ def _materialise_substituted_body(
     return str(out_path)
 
 
-#: The connectivity preset that proves a capability, where one exists.
-#:
-#: ``None`` is meaningful, not a gap: those capabilities have examples but
-#: no probe authored yet, so the collection emits the examples and NO
-#: connectivity document rather than falling back to a chat probe that
-#: cannot pass. A service in that state is caught by ``specs validate``
-#: and by the activation gate, which requires at least one connectivity
-#: test — visibly, at the point of declaration.
-#:
-#: This is the ONLY hand-maintained table left: everything about WHICH
-#: examples apply now comes from each preset's own ``applies_to``.
-_CAPABILITY_PROBE: dict[str, str | None] = {
-    "chat": "llm_connectivity",
-    "embed": "llm_connectivity_embed",
-    "speech-transcribe": "llm_connectivity_transcription",
-    "speech-synthesize": None,
-    "video-generate": None,
-    "image-generate": None,
-    "image-edit": None,
-    "rerank": None,
-    "moderate": None,
-}
+#: The platform capabilities a collection can express — those with at
+#: least one code example declaring them. Derived, not maintained: a new
+#: example family adds its capability the moment it is authored.
+def _known_capabilities() -> set[str]:
+    return {
+        spec["capability"]
+        for name, spec in _PRESET_APPLIES_TO.items()
+        if spec.get("capability") and _PRESET_RECORDS[name]["category"] == "code_example"
+    }
 
-#: Document title by mime type. Chat qualifies further (several flavours
-#: share a language), so the dialect and feature are appended.
+
+#: Document title by mime type. Several flavours can share a language, so
+#: the dialect and feature qualify it where needed.
 _TITLE_BY_MIME = {
     "python": "Python code example",
     "javascript": "JavaScript code example",
     "bash": "cURL code example",
 }
 
-#: Chat title qualifiers, so the flavours stay distinguishable when
-#: several dialects combine on one service.
+#: Titles for the non-example documents, by category.
+_TITLE_BY_CATEGORY = {
+    "connectivity_test": "Connectivity test",
+    "request_template": "Default request body",
+    "getting_started": "How to use this model",
+}
+
+#: How a dialect is named in a title.
 _DIALECT_LABEL = {
     "openai": "", "anthropic": "Anthropic-style", "cohere": "Cohere SDK",
     "cerebras": "Cerebras SDK", "bedrock_converse": "boto3 Converse",
-    "bedrock_invoke": "boto3 InvokeModel",
+    "bedrock_invoke": "boto3 InvokeModel", "huggingface": "sentence-transformers",
 }
 
 
-def _probe_for(capability: str, upstream: str) -> str | None:
-    """The connectivity preset that proves *capability* on *upstream*.
-
-    Chat is the one capability whose probe varies: the body it POSTs has
-    to be shaped for the dialect the upstream actually speaks.
-    """
-    if capability == "chat":
-        return "llm_connectivity_anthropic" if upstream == "anthropic" else "llm_connectivity"
-    return _CAPABILITY_PROBE[capability]
-
-
-def _example_title(entry: dict[str, Any], spec: dict[str, Any], native: bool) -> str:
-    """A distinct, customer-facing title for one example."""
-    base = _TITLE_BY_MIME.get(entry["mime_type"], entry["mime_type"])
+def _title(entry: dict[str, Any], spec: dict[str, Any]) -> str:
+    """A distinct, customer-facing title for one document."""
+    category = entry["category"]
+    # Non-example documents get a fixed base title, but still need the
+    # qualifier: a service can legitimately match two probes (a cohere
+    # embedding service matches both the OpenAI-compat and the
+    # Cohere-native image probe), and a fixed title would drop one.
+    base = _TITLE_BY_CATEGORY.get(category) or _TITLE_BY_MIME.get(
+        entry["mime_type"], entry["mime_type"]
+    )
     bits = []
-    label = _DIALECT_LABEL.get(spec.get("dialect", ""), spec.get("dialect", ""))
-    if label and not native:
-        bits.append(label + (" input" if spec["dialect"] in ("openai", "anthropic") else ""))
-    elif label and native:
-        bits.append(label)
+    dialect = spec.get("dialect", "")
+    label = _DIALECT_LABEL.get(dialect, dialect)
+    if label:
+        # "Anthropic-style input" reads as the dialect the CALLER writes;
+        # a named SDK reads as itself.
+        bits.append(f"{label} input" if dialect in ("openai", "anthropic") else label)
     if spec.get("feature") in ("streaming", "tools", "vision"):
         bits.append(spec["feature"])
-    # Disambiguate SDK-vs-raw within one language — but only when the
-    # dialect label has not already named the client (a "boto3 Converse"
-    # example needs no ", boto3 SDK" suffix).
-    reqs = (entry.get("meta") or {}).get("requirements") or []
-    names_client = "SDK" in label or "boto3" in label
-    if spec.get("capability") == "chat" and not names_client:
+    # Disambiguate SDK-vs-raw within one language — unless the dialect
+    # label already names the client.
+    if category == "code_example" and not ("SDK" in label or "boto3" in label):
+        reqs = (entry.get("meta") or {}).get("requirements") or []
         for sdk in ("openai", "anthropic", "cohere", "requests", "boto3"):
             if sdk in reqs:
                 bits.append("requests" if sdk == "requests" else f"{sdk} SDK")
@@ -459,47 +448,48 @@ def _example_title(entry: dict[str, Any], spec: dict[str, Any], native: bool) ->
     return f"{base} ({', '.join(bits)})" if bits else base
 
 
-def _code_examples() -> dict[str, dict[str, Any]]:
-    """Every llm code-example preset, latest version, keyed by preset name."""
-    out: dict[str, dict[str, Any]] = {}
-    for key, entry in MANIFEST["presets"].items():
-        if not key.startswith("llm_") or entry.get("category") != "code_example":
-            continue
-        out.setdefault(entry.get("preset_name", key), entry)
-    return out
+def _applies(spec: dict[str, Any], *, capability: str, dialects: set[str],
+             upstream: str, features: set[str]) -> bool:
+    """Does a preset's ``applies_to`` admit this service?
 
-
-def _select(capability: str, *, dialects: set[str], upstream: str, features: set[str]):
-    """Examples that apply, read from each preset's own ``applies_to``.
-
-    One rule for every capability — chat included. Chat used to need a
-    hand-written ``(dialect, upstream) -> presets`` map because
-    ``meta.variant`` said only "Chat" for both the OpenAI-native and the
-    Anthropic-native presets, with nothing to tell them apart.
-    ``applies_to`` records the pair, so the special case is gone.
+    One rule for every document — examples, probes, request templates and
+    the how-to alike. Each key is a constraint that must hold; an ABSENT
+    key means "no constraint", which is how a universal document
+    (``llm_description``) is expressed without a special case.
     """
-    for name, entry in sorted(_code_examples().items()):
-        spec = _PRESET_APPLIES_TO.get(name) or {}
-        if spec.get("capability") != capability:
-            continue
-        if spec.get("feature") and spec["feature"] not in features:
-            continue
-        if capability == "chat":
-            if spec.get("dialect") not in dialects or spec.get("upstream") != upstream:
-                continue
-        elif spec.get("dialect") and spec["dialect"] not in dialects:
-            # e.g. Cohere-shaped image embeddings, HF sentence-transformers
-            continue
-        native = spec.get("dialect") == spec.get("upstream")
-        yield _example_title(entry, spec, native), name
+    if spec.get("capability") not in (None, capability):
+        return False
+    if spec.get("dialect") is not None and spec["dialect"] not in dialects:
+        return False
+    if spec.get("upstream") is not None and spec["upstream"] != upstream:
+        return False
+    return not (spec.get("feature") is not None and spec["feature"] not in features)
 
+
+def _select(*, capability: str, dialects: set[str], upstream: str, features: set[str]):
+    """Every document that applies, as ``(title, preset name)``.
+
+    Nothing here names a capability: what a preset applies to lives in the
+    preset. Chat used to be selected separately because ``meta.variant``
+    said only "Chat" for both the OpenAI-native and Anthropic-native
+    presets — ``applies_to`` records the pair, so the special case is gone.
+    """
+    seen: dict[str, dict[str, Any]] = {}
+    for key, entry in MANIFEST["presets"].items():
+        if key.startswith("llm_"):
+            seen.setdefault(entry.get("preset_name", key), entry)
+    for name, entry in sorted(seen.items()):
+        spec = _PRESET_APPLIES_TO.get(name) or {}
+        if _applies(spec, capability=capability, dialects=dialects,
+                    upstream=upstream, features=features):
+            yield _title(entry, spec), name
 
 
 def applies_to(preset_name: str) -> dict[str, Any]:
     """When does this example apply — capability, dialect, upstream, feature.
 
-    Returns an empty dict for presets that declare nothing (connectivity
-    probes, descriptions, request templates).
+    Returns an empty dict for presets that constrain nothing, which reads
+    as "applies to every service" (``llm_description``).
     """
     return dict(_PRESET_APPLIES_TO.get(preset_name, {}))
 
@@ -528,16 +518,20 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     sleep = source.get("sleep")
 
     capability = capabilities[0]
-    if capability not in _CAPABILITY_PROBE:
+    known = _known_capabilities()
+    if capability not in known:
         raise ValueError(
             f"No example collection is defined for capability {capability!r}. "
             f"It has no code examples in unitysvc-data, so it cannot be "
-            f"demonstrated and must not be declared. Known: {sorted(_CAPABILITY_PROBE)}."
+            f"demonstrated and must not be declared. Known: {sorted(known)}."
         )
 
     docs: dict[str, Any] = {}
-    # ONE selection path for every capability. Each group contributes the
-    # examples whose own `applies_to` matches its dialects and features.
+    # One query, no capability branching: every document — examples, the
+    # connectivity probe, the request template, the how-to — is whatever
+    # declares that it applies here. The probe lands on the primary group
+    # because it must resolve to exactly one channel/interface; everything
+    # else is scoped to the group that contributed it.
     for group in groups:
         features = {"streaming"}
         if group.get("tools"):
@@ -545,25 +539,13 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
         if group.get("vision"):
             features.add("vision")
         for title, preset_name in _select(
-            capability,
+            capability=capability,
             dialects=set(group["formats"]),
             upstream=upstream,
             features=features,
         ):
-            docs[title] = _scoped(preset_name, group, sleep)
-
-    if capability == "chat":
-        docs["Default request body"] = doc_preset(
-            "llm_request_template_anthropic" if upstream == "anthropic" else "llm_request_template"
-        )
-    probe: str | None = _probe_for(capability, upstream)
-
-    # Capability-agnostic: describes how ANY LLM service is consumed
-    # through the gateway, so an embedding or transcription service needs
-    # it just as much as a chat one.
-    docs["How to use this model"] = doc_preset("llm_description")
-    if probe is not None:
-        docs["Connectivity test"] = _scoped(probe, _primary_group(groups), sleep)
+            scope = _primary_group(groups) if title == "Connectivity test" else group
+            docs[title] = _scoped(preset_name, scope, sleep)
     return docs
 
 

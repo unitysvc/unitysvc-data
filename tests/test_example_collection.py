@@ -497,3 +497,56 @@ def test_no_two_examples_collide_on_a_title(source):
     docs = llm_example_collection(source)
 
     assert len(docs) == len({_key(d) for d in docs.values()})
+
+
+def test_the_probe_is_selected_like_everything_else():
+    """No hand-maintained capability->probe table: connectivity presets
+    declare `applies_to` just as examples do, so the right probe falls out
+    of the same query."""
+    from unitysvc_data import applies_to
+
+    assert applies_to("llm_connectivity") == {"capability": "chat", "upstream": "openai"}
+    assert applies_to("llm_connectivity_anthropic") == {"capability": "chat", "upstream": "anthropic"}
+    assert applies_to("llm_connectivity_embed") == {"capability": "embed"}
+    assert applies_to("llm_connectivity_transcription") == {"capability": "speech-transcribe"}
+
+
+def test_the_request_template_is_selected_like_everything_else():
+    """`llm_request_template` is a chat-completion body, so it declares
+    chat — rather than the collection special-casing chat to add it."""
+    from unitysvc_data import applies_to
+
+    assert applies_to("llm_request_template")["capability"] == "chat"
+    assert applies_to("llm_request_template_anthropic")["upstream"] == "anthropic"
+
+
+def test_the_how_to_doc_declares_nothing_because_it_is_universal():
+    """An absent `capability` means "applies to every service" — which is
+    how a universal document is expressed without a special case."""
+    from unitysvc_data import applies_to
+
+    assert applies_to("llm_description") == {}
+
+
+def test_no_capability_is_hardcoded_in_the_selection_logic():
+    """The guard against the chat special case creeping back."""
+    import inspect
+
+    from unitysvc_data import presets
+
+    source = inspect.getsource(presets._select)
+    assert '"chat"' not in source, "selection must not name a capability"
+
+
+def test_two_matching_probes_do_not_collapse_onto_one_title():
+    """A cohere embedding service matches both the OpenAI-compat probe and
+    the Cohere-native image-embedding probe. Both are real and both should
+    survive; a fixed per-category title silently dropped one."""
+    docs = llm_example_collection({"capabilities": ["embed"], "formats": ["openai", "cohere"]})
+
+    probes = [d for d in docs.values() if d["category"] == "connectivity_test"]
+    assert len(probes) == 2
+    assert {_key(p) for p in probes} == {
+        _key(doc_preset("llm_connectivity_embed")),
+        _key(doc_preset("llm_connectivity_embed_image")),
+    }

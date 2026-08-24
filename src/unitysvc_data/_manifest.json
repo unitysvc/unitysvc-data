@@ -1989,7 +1989,10 @@
       "version": 1
     },
     "llm_connectivity_anthropic_v1": {
-      "applies_to": {},
+      "applies_to": {
+        "capability": "chat",
+        "upstream": "anthropic"
+      },
       "category": "connectivity_test",
       "description": "Verify an Anthropic-Messages-API LLM endpoint by issuing a tiny one-token message",
       "example_file": "llm/connectivity-anthropic/connectivity-v1.sh.j2",
@@ -2005,7 +2008,10 @@
       "version": 1
     },
     "llm_connectivity_embed_image_v1": {
-      "applies_to": {},
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "cohere"
+      },
       "category": "connectivity_test",
       "description": "Verify a Cohere-shape image embedding endpoint by sending a tiny known image",
       "example_file": "llm/connectivity-embed-image/connectivity-embed-image-v1.sh.j2",
@@ -2023,7 +2029,9 @@
       "version": 1
     },
     "llm_connectivity_embed_v1": {
-      "applies_to": {},
+      "applies_to": {
+        "capability": "embed"
+      },
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible embeddings endpoint by issuing a tiny embed request",
       "example_file": "llm/connectivity-embed/connectivity-embed-v1.sh.j2",
@@ -2041,7 +2049,9 @@
       "version": 1
     },
     "llm_connectivity_transcription_v1": {
-      "applies_to": {},
+      "applies_to": {
+        "capability": "speech-transcribe"
+      },
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible audio-transcription endpoint by sending a tiny known audio file",
       "example_file": "llm/connectivity-transcription/connectivity-transcription-v1.sh.j2",
@@ -2060,7 +2070,10 @@
       "version": 1
     },
     "llm_connectivity_v1": {
-      "applies_to": {},
+      "applies_to": {
+        "capability": "chat",
+        "upstream": "openai"
+      },
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible LLM endpoint by issuing a tiny chat completion",
       "example_file": "llm/connectivity/connectivity-v1.sh.j2",
@@ -2106,7 +2119,10 @@
       "version": 2
     },
     "llm_request_template_anthropic_v1": {
-      "applies_to": {},
+      "applies_to": {
+        "capability": "chat",
+        "upstream": "anthropic"
+      },
       "category": "request_template",
       "description": "Minimal Anthropic Messages API request body",
       "example_file": "llm/request-template-anthropic/request-template-anthropic-v1.json",
@@ -2120,7 +2136,10 @@
       "version": 1
     },
     "llm_request_template_v1": {
-      "applies_to": {},
+      "applies_to": {
+        "capability": "chat",
+        "upstream": "openai"
+      },
       "category": "request_template",
       "description": "Minimal OpenAI-compatible chat completion request body",
       "example_file": "llm/request-template/request-template-v1.json",
