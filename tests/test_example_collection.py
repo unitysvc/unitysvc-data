@@ -696,7 +696,10 @@ def test_a_sibling_document_adds_one_the_collection_cannot_derive():
     """The escape hatch is the sentinel's own sibling-merge, not a
     collection option: `expand_presets` merges sibling keys over the
     expanded mapping and expands their values first."""
-    from unitysvc_core.utils import expand_presets
+    # unitysvc-data has zero runtime dependencies and unitysvc-core depends
+    # on IT, not the reverse — so the merge itself is core's behaviour and
+    # can only be documented here, where core happens to be installed.
+    expand_presets = pytest.importorskip("unitysvc_core.utils").expand_presets
 
     out = expand_presets(
         {
@@ -714,7 +717,7 @@ def test_a_sibling_overrides_a_generated_document_by_title():
     restating the title replaces what it generated."""
     import pathlib
 
-    from unitysvc_core.utils import expand_presets
+    expand_presets = pytest.importorskip("unitysvc_core.utils").expand_presets
 
     out = expand_presets(
         {
@@ -726,3 +729,16 @@ def test_a_sibling_overrides_a_generated_document_by_title():
     )
 
     assert "/v2/chat/completions" in pathlib.Path(out["cURL code example"]["file_path"]).read_text()
+
+
+def test_the_collection_returns_a_plain_mergeable_mapping():
+    """The stdlib-only half of the sibling contract, so it is asserted even
+    where unitysvc-core is not installed: the return value must be an
+    ordinary dict keyed by title, so a caller can merge over it."""
+    docs = llm_example_collection({"capabilities": ["chat"], "formats": ["openai"]})
+
+    assert type(docs) is dict
+    assert all(isinstance(t, str) for t in docs)
+    assert dict(docs, **{"cURL code example": {"replaced": True}})["cURL code example"] == {
+        "replaced": True
+    }
