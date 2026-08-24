@@ -516,9 +516,19 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     upstream = source.get("upstream_dialect") or "openai"
     groups = _normalise_groups(source.get("formats") or [], default_tools=source.get("tools"))
     sleep = source.get("sleep")
-    # Which path version the upstream serves its API on — cohere's
-    # OpenAI-compatible surface is /compatibility/v1, crofai's is /v2.
-    version_prefix = source.get("version_prefix")
+    # Parameter values broadcast to every preset that DECLARES them —
+    # e.g. `version_prefix` (which path the upstream serves its API on:
+    # cohere /compatibility/v1, crofai /v2) or `language` on the
+    # transcription family. Generic rather than a named argument because
+    # llm presets already declare two and the package eight.
+    broadcast: dict[str, Any] = dict(source.get("params") or {})
+    _declares = {k for params in _PRESET_PARAMETERS.values() for k in params}
+    _unknown = set(broadcast) - _declares
+    if _unknown:
+        raise ValueError(
+            f"No preset declares parameter(s) {sorted(_unknown)!r}, so broadcasting "
+            f"them would have no effect. Declared somewhere: {sorted(_declares)}."
+        )
     # Per-example parameter overrides, keyed by preset name. Validated up
     # front rather than at render time: a typo'd preset or parameter would
     # otherwise be silently ignored, leaving the author believing they had
@@ -570,7 +580,7 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
                 preset_name,
                 scope,
                 sleep,
-                group.get("version_prefix") or version_prefix,
+                {**broadcast, **(group.get("params") or {})},
                 example_params.get(preset_name),
             )
     return docs
@@ -612,7 +622,7 @@ _EXECUTABLE = frozenset({"code_example", "connectivity_test"})
 
 
 def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
-            version_prefix: str | None = None,
+            broadcast: dict[str, Any] | None = None,
             params: dict[str, Any] | None = None) -> dict[str, Any]:
     """A document record scoped to its group's channel and interface.
 
@@ -625,10 +635,10 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
     # auto-discriminates kwargs against declared parameters, and an
     # undeclared one is rejected as a bad metadata override.
     declared = _PRESET_PARAMETERS.get(preset_name, {})
-    kwargs: dict[str, Any] = {}
-    if version_prefix is not None and "version_prefix" in declared:
-        kwargs["version_prefix"] = version_prefix
-    # Per-example overrides win over the collection-level value.
+    # Broadcast values reach only the presets that declare them, so a
+    # collection-wide `version_prefix` does not break `llm_description`.
+    kwargs = {k: v for k, v in (broadcast or {}).items() if k in declared}
+    # Per-example overrides win over the broadcast value.
     kwargs.update(params or {})
     record = doc_preset(preset_name, **kwargs) if kwargs else doc_preset(preset_name)
     if record["category"] not in _EXECUTABLE:

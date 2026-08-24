@@ -584,7 +584,7 @@ def test_version_prefix_reaches_the_presets_that_declare_it():
     import pathlib
 
     docs = llm_example_collection(
-        {"capabilities": ["chat"], "formats": ["openai"], "version_prefix": "/compatibility/v1"}
+        {"capabilities": ["chat"], "formats": ["openai"], "params": {"version_prefix": "/compatibility/v1"}}
     )
 
     body = pathlib.Path(docs["cURL code example"]["file_path"]).read_text()
@@ -596,7 +596,7 @@ def test_version_prefix_is_ignored_by_presets_that_declare_no_parameter():
     """`doc_preset` rejects an unknown kwarg as a bad metadata override, so
     the prefix must only be passed to presets that declare it."""
     docs = llm_example_collection(
-        {"capabilities": ["chat"], "formats": ["openai"], "version_prefix": "/v2"}
+        {"capabilities": ["chat"], "formats": ["openai"], "params": {"version_prefix": "/v2"}}
     )
 
     assert "How to use this model" in docs  # llm_description declares no parameters
@@ -621,7 +621,7 @@ def test_per_example_parameters_override_the_collection_default():
         {
             "capabilities": ["chat"],
             "formats": ["openai"],
-            "version_prefix": "/v2",
+            "params": {"version_prefix": "/v2"},
             "example_params": {"llm_code_example_shell": {"version_prefix": "/compatibility/v1"}},
         }
     )
@@ -655,4 +655,40 @@ def test_per_example_parameters_reject_an_unknown_preset():
                 "formats": ["openai"],
                 "example_params": {"llm_code_example_typo": {"version_prefix": "/v1"}},
             }
+        )
+
+
+def test_collection_level_params_broadcast_to_every_preset_declaring_them():
+    """The broadcast form is not redundant with `example_params`: without
+    it cohere would need an entry per preset, and a new example family
+    would mean editing every repo — the drift this collection removes.
+
+    Generic rather than a named `version_prefix=`, because llm presets
+    already declare two parameters (version_prefix, language) and the
+    package eight.
+    """
+    import pathlib
+
+    docs = llm_example_collection(
+        {"capabilities": ["chat"], "formats": ["openai"], "params": {"version_prefix": "/v2"}}
+    )
+
+    body = pathlib.Path(docs["cURL code example"]["file_path"]).read_text()
+    assert "/v2/chat/completions" in body
+
+
+def test_broadcast_params_skip_presets_that_do_not_declare_them():
+    """`llm_description` declares nothing, so a broadcast value must not
+    reach it — doc_preset would reject it as a bad metadata override."""
+    docs = llm_example_collection(
+        {"capabilities": ["chat"], "formats": ["openai"], "params": {"version_prefix": "/v2"}}
+    )
+
+    assert "How to use this model" in docs
+
+
+def test_a_broadcast_param_no_preset_declares_is_an_error():
+    with pytest.raises(ValueError, match="nonsuch"):
+        llm_example_collection(
+            {"capabilities": ["chat"], "formats": ["openai"], "params": {"nonsuch": "x"}}
         )
