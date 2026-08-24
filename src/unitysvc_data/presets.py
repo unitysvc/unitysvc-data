@@ -519,6 +519,24 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     # Which path version the upstream serves its API on — cohere's
     # OpenAI-compatible surface is /compatibility/v1, crofai's is /v2.
     version_prefix = source.get("version_prefix")
+    # Per-example parameter overrides, keyed by preset name. Validated up
+    # front rather than at render time: a typo'd preset or parameter would
+    # otherwise be silently ignored, leaving the author believing they had
+    # customised an example when they had not.
+    example_params: dict[str, dict[str, Any]] = dict(source.get("example_params") or {})
+    for _name, _params in example_params.items():
+        if _name not in _PRESET_RECORDS:
+            raise ValueError(
+                f"example_params names unknown preset {_name!r}. "
+                f"It must be a preset this collection can emit."
+            )
+        _declared = _PRESET_PARAMETERS.get(_name, {})
+        _bad = set(_params) - set(_declared)
+        if _bad:
+            raise ValueError(
+                f"Preset {_name!r} declares no parameter(s) {sorted(_bad)!r}. "
+                f"Declared: {sorted(_declared) or 'none'}."
+            )
 
     capability = capabilities[0]
     known = _known_capabilities()
@@ -548,7 +566,13 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
             features=features,
         ):
             scope = _primary_group(groups) if title == "Connectivity test" else group
-            docs[title] = _scoped(preset_name, scope, sleep, group.get("version_prefix") or version_prefix)
+            docs[title] = _scoped(
+                preset_name,
+                scope,
+                sleep,
+                group.get("version_prefix") or version_prefix,
+                example_params.get(preset_name),
+            )
     return docs
 
 
@@ -588,7 +612,8 @@ _EXECUTABLE = frozenset({"code_example", "connectivity_test"})
 
 
 def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
-            version_prefix: str | None = None) -> dict[str, Any]:
+            version_prefix: str | None = None,
+            params: dict[str, Any] | None = None) -> dict[str, Any]:
     """A document record scoped to its group's channel and interface.
 
     Merged INTO the preset's own ``meta`` rather than over it: the
@@ -596,13 +621,16 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
     ``output_contains`` (what makes the test an assertion), and losing
     either would break execution.
     """
-    # Only presets that DECLARE the parameter may receive it: doc_preset
+    # Only presets that DECLARE a parameter may receive it: doc_preset
     # auto-discriminates kwargs against declared parameters, and an
     # undeclared one is rejected as a bad metadata override.
-    if version_prefix is not None and "version_prefix" in _PRESET_PARAMETERS.get(preset_name, {}):
-        record = doc_preset(preset_name, version_prefix=version_prefix)
-    else:
-        record = doc_preset(preset_name)
+    declared = _PRESET_PARAMETERS.get(preset_name, {})
+    kwargs: dict[str, Any] = {}
+    if version_prefix is not None and "version_prefix" in declared:
+        kwargs["version_prefix"] = version_prefix
+    # Per-example overrides win over the collection-level value.
+    kwargs.update(params or {})
+    record = doc_preset(preset_name, **kwargs) if kwargs else doc_preset(preset_name)
     if record["category"] not in _EXECUTABLE:
         # Non-executable: nothing to run, nowhere to run it. Leaving these
         # unscoped also makes the result independent of group order — the

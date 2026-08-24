@@ -609,3 +609,50 @@ def test_default_version_prefix_is_unchanged():
 
     body = pathlib.Path(docs["cURL code example"]["file_path"]).read_text()
     assert "/v1/chat/completions" in body
+
+
+def test_per_example_parameters_override_the_collection_default():
+    """One collection-wide value cannot serve every example: a preset may
+    declare parameters the others do not, or need a different value for
+    the same one. `example_params` targets a single preset by name."""
+    import pathlib
+
+    docs = llm_example_collection(
+        {
+            "capabilities": ["chat"],
+            "formats": ["openai"],
+            "version_prefix": "/v2",
+            "example_params": {"llm_code_example_shell": {"version_prefix": "/compatibility/v1"}},
+        }
+    )
+
+    targeted = pathlib.Path(docs["cURL code example"]["file_path"]).read_text()
+    assert "/compatibility/v1/chat/completions" in targeted
+
+    # every other example keeps the collection-level value
+    other = pathlib.Path(docs["Python code example (openai SDK)"]["file_path"]).read_text()
+    assert "/v2" in other
+
+
+def test_per_example_parameters_reject_an_undeclared_name():
+    """Silently ignoring a typo'd parameter would leave the author
+    believing they had customised an example when they had not."""
+    with pytest.raises(ValueError, match="nonsuch"):
+        llm_example_collection(
+            {
+                "capabilities": ["chat"],
+                "formats": ["openai"],
+                "example_params": {"llm_code_example_shell": {"nonsuch": "x"}},
+            }
+        )
+
+
+def test_per_example_parameters_reject_an_unknown_preset():
+    with pytest.raises(ValueError, match="llm_code_example_typo"):
+        llm_example_collection(
+            {
+                "capabilities": ["chat"],
+                "formats": ["openai"],
+                "example_params": {"llm_code_example_typo": {"version_prefix": "/v1"}},
+            }
+        )
