@@ -377,6 +377,216 @@ def _materialise_substituted_body(
     return str(out_path)
 
 
+#: What each capability contributes, as ``(document title, preset name)``
+#: examples plus the connectivity preset that PROVES it.
+#:
+#: The probe follows the capability, never the format: an embedding
+#: service handed ``llm_connectivity`` is gated by a chat-completion POST
+#: that /v1/embeddings rejects, so it declares a capability it can never
+#: pass.  ``chat`` has no entry here because its examples are
+#: dialect-specific — see :data:`_FORMAT_EXAMPLES`.
+_CAPABILITY_EXAMPLES: dict[str, tuple[list[tuple[str, str]], str | None]] = {
+    "embed": (
+        [
+            ("Python code example", "llm_code_example_embed_requests"),
+            ("JavaScript code example", "llm_code_example_embed_javascript"),
+            ("cURL code example", "llm_code_example_embed_shell"),
+        ],
+        "llm_connectivity_embed",
+    ),
+}
+
+
+#: What a caller-facing request format contributes to a CHAT collection,
+#: keyed by ``(caller format, upstream dialect)``.
+#:
+#: The pair is the whole model: when they differ the gateway translates,
+#: so the example must show the caller's dialect going in, not the
+#: upstream's.  When they match the native SDK examples apply.  Every
+#: flavour is emitted — SDK and raw client, all three languages,
+#: streaming and not — because style is not a fact about the service.
+#: Titles are customer-facing keys of the ``documents`` mapping and must
+#: stay distinct when several groups combine on one service.
+_CHAT_EXAMPLES: dict[tuple[str, str], list[tuple[str, str]]] = {
+    ("openai", "openai"): [
+        ("Python code example (openai SDK)", "llm_code_example_openai"),
+        ("Python code example (requests)", "llm_code_example_requests"),
+        ("JavaScript code example", "llm_code_example_javascript"),
+        ("JavaScript code example (openai SDK)", "llm_code_example_openai_javascript"),
+        ("cURL code example", "llm_code_example_shell"),
+        ("Python streaming code example", "llm_code_example_streaming_openai"),
+        ("JavaScript streaming code example", "llm_code_example_streaming_openai_javascript"),
+    ],
+    ("anthropic", "openai"): [
+        ("Python code example (Anthropic-style input, anthropic SDK)", "llm_code_example_anthropic_to_openai_sdk"),
+        ("Python code example (Anthropic-style input, requests)", "llm_code_example_anthropic_to_openai_requests"),
+        ("cURL code example (Anthropic-style input)", "llm_code_example_anthropic_to_openai_shell"),
+        ("Python streaming code example (Anthropic-style input, anthropic SDK)", "llm_code_example_anthropic_to_openai_stream_sdk"),
+        ("Python streaming code example (Anthropic-style input, requests)", "llm_code_example_anthropic_to_openai_stream_requests"),
+        ("cURL streaming code example (Anthropic-style input)", "llm_code_example_anthropic_to_openai_stream_shell"),
+    ],
+    ("anthropic", "anthropic"): [
+        ("Python code example (anthropic SDK)", "llm_code_example_anthropic"),
+        ("JavaScript code example", "llm_code_example_anthropic_javascript"),
+        ("cURL code example", "llm_code_example_anthropic_shell"),
+    ],
+    ("openai", "anthropic"): [
+        ("Python code example (OpenAI-style input, openai SDK)", "llm_code_example_openai_to_anthropic_sdk"),
+        ("Python code example (OpenAI-style input, requests)", "llm_code_example_openai_to_anthropic_requests"),
+        ("cURL code example (OpenAI-style input)", "llm_code_example_openai_to_anthropic_shell"),
+        ("Python streaming code example (OpenAI-style input, openai SDK)", "llm_code_example_openai_to_anthropic_stream_sdk"),
+        ("Python streaming code example (OpenAI-style input, requests)", "llm_code_example_openai_to_anthropic_stream_requests"),
+        ("cURL streaming code example (OpenAI-style input)", "llm_code_example_openai_to_anthropic_stream_shell"),
+    ],
+    ("cohere", "openai"): [
+        ("Python code example (Cohere SDK)", "llm_code_example_cohere"),
+    ],
+    ("bedrock_converse", "openai"): [
+        ("Python code example (boto3 Converse)", "llm_code_example_bedrock_converse"),
+    ],
+    ("bedrock_invoke", "openai"): [
+        ("Python code example (boto3 InvokeModel)", "llm_code_example_bedrock_invoke"),
+    ],
+}
+
+#: Non-executable documents every chat collection carries, by upstream
+#: dialect. Present in 9 of 16 repos today and absent from the rest for
+#: no reason anyone recorded — normalising means every service gets them.
+_CHAT_SUPPORT_DOCS: dict[str, list[tuple[str, str]]] = {
+    "openai": [
+        ("How to use this model", "llm_description"),
+        ("Default request body", "llm_request_template"),
+    ],
+    "anthropic": [
+        ("How to use this model", "llm_description"),
+        ("Default request body", "llm_request_template_anthropic"),
+    ],
+}
+
+#: The connectivity probe for a chat service, by upstream dialect.
+_CHAT_PROBE: dict[str, str] = {
+    "openai": "llm_connectivity",
+    "anthropic": "llm_connectivity_anthropic",
+}
+
+#: The function-calling example, by upstream dialect.  Gated on ``tools``
+#: because it 400s on a model without tool support, and a failing code
+#: example blocks activation — applicability, not flavour.
+_TOOLS_EXAMPLE: dict[str, tuple[str, str]] = {
+    "openai": ("Python function calling code example", "llm_code_example_fc_requests"),
+    "anthropic": ("Python function calling code example", "llm_code_example_anthropic_fc"),
+}
+
+
+@preset
+def llm_example_collection(source: Any) -> dict[str, Any]:
+    """Expand a service's capability declaration into a whole ``documents``
+    block — the code examples and the connectivity probe it implies.
+
+    Unlike :func:`doc_preset`, which returns ONE document, this returns a
+    mapping of ``{title: record}`` ready to be used as a listing's
+    ``documents`` value.
+    """
+    capabilities = source.get("capabilities") or ["chat"]
+    if len(capabilities) > 1:
+        # Each capability needs its own probe, but a collection declares
+        # one. Keeping the last would leave a capability unproven, which
+        # is the failure this preset exists to prevent.
+        raise ValueError(
+            f"A collection covers one capability, got {sorted(capabilities)!r}. "
+            f"Emit one collection per capability and merge them, so each keeps "
+            f"its own connectivity probe."
+        )
+    upstream = source.get("upstream_dialect") or "openai"
+    groups = _normalise_groups(source.get("formats") or [], default_tools=source.get("tools"))
+    sleep = source.get("sleep")
+
+    docs: dict[str, Any] = {}
+    probe = _CHAT_PROBE[upstream]
+
+    for capability in capabilities:
+        if capability in _CAPABILITY_EXAMPLES:
+            entries, capability_probe = _CAPABILITY_EXAMPLES[capability]
+            primary = _primary_group(groups)
+            for title, preset_name in entries:
+                docs[title] = _scoped(preset_name, primary, sleep)
+            probe = capability_probe
+        elif capability == "chat":
+            # Examples are dialect-specific, so the pair (caller format,
+            # upstream dialect) decides them.
+            for group in groups:
+                for fmt in group["formats"]:
+                    for title, preset_name in _CHAT_EXAMPLES.get((fmt, upstream), []):
+                        docs[title] = _scoped(preset_name, group, sleep)
+                if group.get("tools"):
+                    title, preset_name = _TOOLS_EXAMPLE[upstream]
+                    docs[title] = _scoped(preset_name, group, sleep)
+            for title, preset_name in _CHAT_SUPPORT_DOCS[upstream]:
+                docs[title] = doc_preset(preset_name)
+        else:
+            raise ValueError(
+                f"No example collection is defined for capability {capability!r}. "
+                f"A capability with no connectivity preset cannot be proven, so it "
+                f"must not be declared — add the preset first. Known: "
+                f"{sorted({'chat', *_CAPABILITY_EXAMPLES})}."
+            )
+
+    docs["Connectivity test"] = _scoped(probe, _primary_group(groups), sleep)
+    return docs
+
+
+def _normalise_groups(formats: Any, *, default_tools: Any) -> list[dict[str, Any]]:
+    """Accept both the plain and the grouped ``formats`` forms.
+
+    ``["openai", "anthropic"]`` is sugar for a single unscoped group,
+    which covers every repo but bedrock.
+    """
+    if formats and all(isinstance(f, str) for f in formats):
+        return [{"formats": list(formats), "tools": bool(default_tools)}]
+    groups = []
+    for group in formats:
+        group = dict(group)
+        group.setdefault("formats", [])
+        group.setdefault("tools", bool(default_tools))
+        groups.append(group)
+    return groups
+
+
+def _primary_group(groups: list[dict[str, Any]]) -> dict[str, Any]:
+    """The group the connectivity probe attaches to.
+
+    The probe has to land on exactly one channel/interface, so a
+    multi-group service marks which. With one group it is implicit.
+    """
+    for group in groups:
+        if group.get("primary"):
+            return group
+    return groups[0] if groups else {}
+
+
+def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None) -> dict[str, Any]:
+    """A document record scoped to its group's channel and interface.
+
+    Merged INTO the preset's own ``meta`` rather than over it: the
+    preset carries ``requirements`` (what the runner installs) and
+    ``output_contains`` (what makes the test an assertion), and losing
+    either would break execution.
+    """
+    record = doc_preset(preset_name)
+    scope = {}
+    if group.get("channel"):
+        scope["channels"] = [group["channel"]]
+    if group.get("interface"):
+        scope["interfaces"] = [group["interface"]]
+    if group.get("test_status"):
+        scope["test"] = {"status": group["test_status"]}
+    if sleep is not None:
+        scope["sleep_after_test"] = sleep
+    if scope:
+        record["meta"] = {**(record.get("meta") or {}), **scope}
+    return record
+
+
 @preset
 def file_preset(source: Any, **kwargs: Any) -> str:
     """Return the UTF-8 content of the preset's bundled file, with
@@ -497,3 +707,6 @@ def register_jinja_globals(env: Any) -> None:
     (``s3_connectivity``) are registered.
     """
     env.globals.update(PRESETS)
+    # Collections expand to a whole ``documents`` block rather than one
+    # document, so they are not in PRESETS — register them by name too.
+    env.globals["llm_example_collection"] = llm_example_collection

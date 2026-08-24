@@ -107,6 +107,7 @@ from .presets import (
     doc_preset,
     file_preset,
     list_presets,
+    llm_example_collection,
     register_jinja_globals,
 )
 
@@ -126,6 +127,7 @@ __all__ = [
     "list_examples",
     "list_logo_families",
     "list_presets",
+    "llm_example_collection",
     "logo_preset",
     # Decorator-driven registry — downstream tools enumerate these to
     # discover every preset type without hard-coding function names.
