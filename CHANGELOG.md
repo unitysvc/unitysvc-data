@@ -11,6 +11,51 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.37] — fix the translated-shell assertions the deepseek canary caught
+
+The first live run of the 0.1.36 collection (deepseek staging, 2 services)
+rejected both revisions with 5 failing documents. Root causes and fixes,
+each verified by executing the fixed script against the staging gateway
+before this release:
+
+### Fixed
+
+- **`llm_code_example_{anthropic_to_openai,openai_to_anthropic}{,_stream}_shell` v3** —
+  v2 wrapped only the `local_testing` branch, so the gateway branch (the one
+  staging actually runs) never printed the sentinel and every gateway run
+  failed with `unexpected_output`. v3 asserts in BOTH branches, and the
+  gateway branch keys the needle on the CALLER's dialect — the gateway
+  replies in the style you sent, so an Anthropic-dialect caller gets
+  `"content"` back even when the upstream speaks OpenAI. (v2 had keyed it
+  on the upstream dialect: backwards.)
+
+  The published v2s can never pass in gateway mode, so `[versions.v2]`
+  opts them out of `output_contains` — a pinned `_v2` degrades to
+  status-only instead of always-failing. Aliases resolve to v3.
+
+- **`llm_code_example_anthropic_to_openai_stream_sdk` v2** — the v1 gateway
+  branch crashed with `AttributeError: 'dict' object has no attribute
+  'append'`: `client.messages.stream()` builds a full message snapshot,
+  and its accumulator breaks when a translated stream deviates slightly
+  from Anthropic's exact event shapes. v2 iterates RAW events
+  (`messages.create(stream=True)`) and reads only the text deltas.
+
+- The branch-aware sentinel test: every Jinja branch of an asserting
+  example must be able to produce its `output_contains` (a sentinel in the
+  shared tail after the final `endif` counts — bedrock-converse prints it
+  there). This is the test that would have caught the v2 bug before
+  release.
+
+### Known, not fixed here
+
+- `llm_code_example_openai_javascript` and `_streaming_openai_javascript`
+  fail with `Cannot find module 'openai'`: the platform test runner
+  installs Python `meta.requirements` but not JavaScript ones. Fix is in
+  the runner (unitysvc backend), not this package.
+- The `openai_to_anthropic` direction is corrected by symmetry but not yet
+  verified on the wire — no anthropic-upstream service has adopted the
+  collection yet.
+
 ## [0.1.36] — `llm_example_collection`: documents derived from capability
 
 ### Added

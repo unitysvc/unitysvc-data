@@ -742,3 +742,36 @@ def test_the_collection_returns_a_plain_mergeable_mapping():
     assert dict(docs, **{"cURL code example": {"replaced": True}})["cURL code example"] == {
         "replaced": True
     }
+
+
+def test_every_branch_of_an_asserted_example_prints_the_sentinel():
+    """The deepseek canary failure: v2 wrapped only the `local_testing`
+    branch, so gateway mode — the branch staging actually runs — never
+    printed the sentinel and every run failed with unexpected_output.
+    `output_contains` applies to the whole document, so every Jinja branch
+    must be able to produce it."""
+    import pathlib
+    import re
+
+    from unitysvc_data import MANIFEST, example_path
+
+    broken = []
+    for key, entry in MANIFEST["presets"].items():
+        if not key.startswith("llm_") or entry["category"] != "code_example":
+            continue
+        needle = (entry.get("meta") or {}).get("output_contains")
+        if not needle:
+            continue
+        body = pathlib.Path(example_path(entry["example_file"])).read_text()
+        if "local_testing" not in body:
+            continue  # single-branch files are covered by the existing test
+        # A sentinel in the shared tail after the last endif is reachable
+        # from every branch (bedrock-converse prints it there); otherwise
+        # each branch must produce it itself.
+        tail = body.rsplit("endif", 1)[-1]
+        if needle in tail:
+            continue
+        for i, branch in enumerate(re.split(r"{%\s*(?:else|elif[^%]*)\s*%}", body)):
+            if needle not in branch:
+                broken.append(f"{key} (branch {i})")
+    assert not broken, f"a branch cannot produce its own output_contains: {broken}"

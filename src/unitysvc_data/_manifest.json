@@ -9,10 +9,10 @@
     "llm_code_example_anthropic_shell": "llm_code_example_anthropic_shell_v2",
     "llm_code_example_anthropic_to_openai_requests": "llm_code_example_anthropic_to_openai_requests_v1",
     "llm_code_example_anthropic_to_openai_sdk": "llm_code_example_anthropic_to_openai_sdk_v1",
-    "llm_code_example_anthropic_to_openai_shell": "llm_code_example_anthropic_to_openai_shell_v2",
+    "llm_code_example_anthropic_to_openai_shell": "llm_code_example_anthropic_to_openai_shell_v3",
     "llm_code_example_anthropic_to_openai_stream_requests": "llm_code_example_anthropic_to_openai_stream_requests_v1",
-    "llm_code_example_anthropic_to_openai_stream_sdk": "llm_code_example_anthropic_to_openai_stream_sdk_v1",
-    "llm_code_example_anthropic_to_openai_stream_shell": "llm_code_example_anthropic_to_openai_stream_shell_v2",
+    "llm_code_example_anthropic_to_openai_stream_sdk": "llm_code_example_anthropic_to_openai_stream_sdk_v2",
+    "llm_code_example_anthropic_to_openai_stream_shell": "llm_code_example_anthropic_to_openai_stream_shell_v3",
     "llm_code_example_bedrock_converse": "llm_code_example_bedrock_converse_v1",
     "llm_code_example_bedrock_invoke": "llm_code_example_bedrock_invoke_v1",
     "llm_code_example_cerebras": "llm_code_example_cerebras_v1",
@@ -38,10 +38,10 @@
     "llm_code_example_openai_javascript": "llm_code_example_openai_javascript_v1",
     "llm_code_example_openai_to_anthropic_requests": "llm_code_example_openai_to_anthropic_requests_v1",
     "llm_code_example_openai_to_anthropic_sdk": "llm_code_example_openai_to_anthropic_sdk_v1",
-    "llm_code_example_openai_to_anthropic_shell": "llm_code_example_openai_to_anthropic_shell_v2",
+    "llm_code_example_openai_to_anthropic_shell": "llm_code_example_openai_to_anthropic_shell_v3",
     "llm_code_example_openai_to_anthropic_stream_requests": "llm_code_example_openai_to_anthropic_stream_requests_v1",
     "llm_code_example_openai_to_anthropic_stream_sdk": "llm_code_example_openai_to_anthropic_stream_sdk_v1",
-    "llm_code_example_openai_to_anthropic_stream_shell": "llm_code_example_openai_to_anthropic_stream_shell_v2",
+    "llm_code_example_openai_to_anthropic_stream_shell": "llm_code_example_openai_to_anthropic_stream_shell_v3",
     "llm_code_example_requests": "llm_code_example_requests_v1",
     "llm_code_example_rerank_javascript": "llm_code_example_rerank_javascript_v1",
     "llm_code_example_rerank_requests": "llm_code_example_rerank_requests_v1",
@@ -781,7 +781,6 @@
       "is_active": true,
       "is_public": true,
       "meta": {
-        "output_contains": "example ok",
         "variant": "Anthropic-style"
       },
       "mime_type": "bash",
@@ -791,6 +790,29 @@
       "preset_name": "llm_code_example_anthropic_to_openai_shell",
       "source_readme": "llm/code-example-anthropic-to-openai-shell/README.md",
       "version": 2
+    },
+    "llm_code_example_anthropic_to_openai_shell_v3": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Shell example: Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl",
+      "example_file": "llm/code-example-anthropic-to-openai-shell/code-example-v3.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Anthropic-style"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_anthropic_to_openai_shell",
+      "source_readme": "llm/code-example-anthropic-to-openai-shell/README.md",
+      "version": 3
     },
     "llm_code_example_anthropic_to_openai_stream_requests_v1": {
       "applies_to": {
@@ -845,6 +867,33 @@
       "source_readme": "llm/code-example-anthropic-to-openai-stream-sdk/README.md",
       "version": 1
     },
+    "llm_code_example_anthropic_to_openai_stream_sdk_v2": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "feature": "streaming",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Streaming Python example: Anthropic-format SSE request against an anthropic->openai translation gateway using the official SDKs \u2014 OpenAI SDK for the direct-upstream test, Anthropic SDK for the gateway test",
+      "example_file": "llm/code-example-anthropic-to-openai-stream-sdk/code-example-v2.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "openai",
+          "anthropic"
+        ],
+        "variant": "Anthropic-style (streaming)"
+      },
+      "mime_type": "python",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_anthropic_to_openai_stream_sdk",
+      "source_readme": "llm/code-example-anthropic-to-openai-stream-sdk/README.md",
+      "version": 2
+    },
     "llm_code_example_anthropic_to_openai_stream_shell_v1": {
       "applies_to": {
         "capability": "chat",
@@ -881,7 +930,6 @@
       "is_active": true,
       "is_public": true,
       "meta": {
-        "output_contains": "example ok",
         "variant": "Anthropic-style (streaming)"
       },
       "mime_type": "bash",
@@ -891,6 +939,30 @@
       "preset_name": "llm_code_example_anthropic_to_openai_stream_shell",
       "source_readme": "llm/code-example-anthropic-to-openai-stream-shell/README.md",
       "version": 2
+    },
+    "llm_code_example_anthropic_to_openai_stream_shell_v3": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "feature": "streaming",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Shell example: streaming Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl",
+      "example_file": "llm/code-example-anthropic-to-openai-stream-shell/code-example-v3.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Anthropic-style (streaming)"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_anthropic_to_openai_stream_shell",
+      "source_readme": "llm/code-example-anthropic-to-openai-stream-shell/README.md",
+      "version": 3
     },
     "llm_code_example_anthropic_v1": {
       "applies_to": {
@@ -1587,7 +1659,6 @@
       "is_active": true,
       "is_public": true,
       "meta": {
-        "output_contains": "example ok",
         "variant": "OpenAI-style"
       },
       "mime_type": "bash",
@@ -1595,6 +1666,27 @@
       "preset_name": "llm_code_example_openai_to_anthropic_shell",
       "source_readme": "llm/code-example-openai-to-anthropic-shell/README.md",
       "version": 2
+    },
+    "llm_code_example_openai_to_anthropic_shell_v3": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "upstream": "anthropic"
+      },
+      "category": "code_example",
+      "description": "Shell example: OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) via curl",
+      "example_file": "llm/code-example-openai-to-anthropic-shell/code-example-v3.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "OpenAI-style"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_openai_to_anthropic_shell",
+      "source_readme": "llm/code-example-openai-to-anthropic-shell/README.md",
+      "version": 3
     },
     "llm_code_example_openai_to_anthropic_stream_requests_v1": {
       "applies_to": {
@@ -1679,7 +1771,6 @@
       "is_active": true,
       "is_public": true,
       "meta": {
-        "output_contains": "example ok",
         "variant": "OpenAI-style (streaming)"
       },
       "mime_type": "bash",
@@ -1687,6 +1778,28 @@
       "preset_name": "llm_code_example_openai_to_anthropic_stream_shell",
       "source_readme": "llm/code-example-openai-to-anthropic-stream-shell/README.md",
       "version": 2
+    },
+    "llm_code_example_openai_to_anthropic_stream_shell_v3": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "streaming",
+        "upstream": "anthropic"
+      },
+      "category": "code_example",
+      "description": "Shell example: streaming OpenAI-format request against an openai->anthropic translation gateway (customer speaks OpenAI; upstream is Anthropic) via curl",
+      "example_file": "llm/code-example-openai-to-anthropic-stream-shell/code-example-v3.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "OpenAI-style (streaming)"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_openai_to_anthropic_stream_shell",
+      "source_readme": "llm/code-example-openai-to-anthropic-stream-shell/README.md",
+      "version": 3
     },
     "llm_code_example_openai_v1": {
       "applies_to": {
