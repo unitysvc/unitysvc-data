@@ -1,7 +1,7 @@
 async function main() {
   const imageUrl =
     process.env.IMAGE_URL ||
-    "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg";
+    "https://raw.githubusercontent.com/unitysvc/unitysvc-data/main/src/unitysvc_data/examples/llm/test-image.jpg";
   const prompt = process.env.PROMPT || "Describe this image.";
 
   const response = await fetch("{{ service_base_url }}${__version_prefix__}/chat/completions", {

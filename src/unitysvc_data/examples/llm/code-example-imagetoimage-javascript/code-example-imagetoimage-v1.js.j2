@@ -3,7 +3,7 @@ import { writeFile } from "fs/promises";
 async function main() {
   const imageUrl =
     process.env.IMAGE_URL ||
-    "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg";
+    "https://raw.githubusercontent.com/unitysvc/unitysvc-data/main/src/unitysvc_data/examples/llm/test-image.jpg";
   const prompt = process.env.PROMPT || "Turn this into a cinematic cyberpunk scene";
   const strength = process.env.STRENGTH || "0.6";
   const outputFile = process.env.OUTPUT_FILE || "output.png";

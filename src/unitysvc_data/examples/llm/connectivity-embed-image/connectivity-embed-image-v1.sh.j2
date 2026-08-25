@@ -3,7 +3,7 @@ set -e -o pipefail
 
 : "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
 
-image_url="${IMAGE_URL:-https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg}"
+image_url="${IMAGE_URL:-https://raw.githubusercontent.com/unitysvc/unitysvc-data/main/src/unitysvc_data/examples/llm/test-image.jpg}"
 image_file="${TMPDIR:-/tmp}/$(basename "${image_url%%\?*}")"
 [ -f "${image_file}" ] || curl -sSL --fail-with-body -o "${image_file}" "${image_url}"
 
