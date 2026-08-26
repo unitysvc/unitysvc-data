@@ -17,7 +17,9 @@ stream = client.chat.completions.create(
 )
 
 for chunk in stream:
-    delta = chunk.choices[0].delta.content
+    # Some upstreams and the gateway emit SSE chunks with an empty choices
+    # array (role-only or usage frames) - guard like the JS example does.
+    delta = chunk.choices[0].delta.content if chunk.choices else None
     if delta:
         print(delta, end="", flush=True)
 print()
