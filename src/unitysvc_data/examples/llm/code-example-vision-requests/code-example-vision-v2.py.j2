@@ -1,0 +1,60 @@
+import base64
+import os
+
+import requests
+
+image_url = os.environ.get(
+    "IMAGE_URL",
+    "https://raw.githubusercontent.com/unitysvc/unitysvc-data/main/src/unitysvc_data/examples/llm/test-image.jpg",
+)
+prompt = os.environ.get("PROMPT", "Describe this image.")
+
+# Fetch the image HERE and inline it as a data URI, rather than handing the
+# model a URL and letting it fetch the bytes itself. Server-side fetching is
+# the provider's network, not yours: some cannot reach an arbitrary host at
+# all, and others manage it only most of the time, so the call fails with a
+# download error that has nothing to do with your request. Inlining removes
+# that dependency — the only fetch is this one, and it either works or fails
+# where you can see it.
+#
+# To send your own local image instead, drop the request and read the file:
+#   media_type, image_bytes = "image/jpeg", open("my-image.jpg", "rb").read()
+image_response = requests.get(image_url, timeout=30)
+if image_response.status_code >= 400:
+    raise RuntimeError(f"HTTP {image_response.status_code} fetching {image_url}: {image_response.text[:200]}")
+media_type = image_response.headers.get("Content-Type", "image/jpeg")
+image_b64 = base64.b64encode(image_response.content).decode()
+
+response = requests.post(
+    "{{ service_base_url }}${__version_prefix__}/chat/completions",
+    headers={
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "model": "{{ routing_key.model }}",
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": prompt},
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": f"data:{media_type};base64,{image_b64}"},
+                    },
+                ],
+            }
+        ],
+    },
+)
+if response.status_code >= 400:
+    raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
+
+# A 2xx does not mean the call did what you asked: an error object, or a
+# reply from a different capability, also returns 200. Assert the reply
+# really is a chat completion before treating this as success.
+data = response.json()
+if "choices" not in data:
+    raise RuntimeError(f'unexpected response: no "choices" in the reply: {data}')
+print(data["choices"][0]["message"]["content"])
+print("example ok")

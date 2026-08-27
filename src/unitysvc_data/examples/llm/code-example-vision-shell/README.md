@@ -37,3 +37,15 @@ Optional:
 ## Versions
 
 ### v1 — initial release
+
+### v3 — inline the image instead of asking the model to fetch it
+
+- Downloads `IMAGE_URL` with `curl` and sends it as a `data:` URI, so the
+  request no longer depends on the provider being able to reach that host.
+  Server-side fetching was intermittently failing (observed on DeepSeek:
+  3 of 4 identical calls succeeded, the fourth returned
+  `400 Failed to download image`), which made every vision example a
+  coin-flip in CI for reasons unrelated to the service.
+- Takes the media type from the response's `Content-Type` rather than
+  assuming JPEG, so swapping in a PNG needs no edit.
+- `base64` wraps output on GNU but not BSD; `tr -d '\n'` normalises both.

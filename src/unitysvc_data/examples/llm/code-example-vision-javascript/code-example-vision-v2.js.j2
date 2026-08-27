@@ -1,0 +1,61 @@
+async function main() {
+  const imageUrl =
+    process.env.IMAGE_URL ||
+    "https://raw.githubusercontent.com/unitysvc/unitysvc-data/main/src/unitysvc_data/examples/llm/test-image.jpg";
+  const prompt = process.env.PROMPT || "Describe this image.";
+
+  // Fetch the image HERE and inline it as a data URI, rather than handing the
+  // model a URL and letting it fetch the bytes itself. Server-side fetching is
+  // the provider's network, not yours: some cannot reach an arbitrary host at
+  // all, and others manage it only most of the time, so the call fails with a
+  // download error that has nothing to do with your request. Inlining removes
+  // that dependency — the only fetch is this one, and it either works or fails
+  // where you can see it.
+  //
+  // To send your own local image instead, drop the fetch and read the file:
+  //   const imageB64 = require("fs").readFileSync("my-image.jpg").toString("base64");
+  const imageResponse = await fetch(imageUrl);
+  if (!imageResponse.ok) {
+    throw new Error(`HTTP ${imageResponse.status} fetching ${imageUrl}`);
+  }
+  const mediaType = imageResponse.headers.get("content-type") || "image/jpeg";
+  const imageB64 = Buffer.from(await imageResponse.arrayBuffer()).toString("base64");
+
+  const response = await fetch("{{ service_base_url }}${__version_prefix__}/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "{{ routing_key.model }}",
+      messages: [
+        {
+          role: "user",
+          content: [
+            { type: "text", text: prompt },
+            { type: "image_url", image_url: { url: `data:${mediaType};base64,${imageB64}` } },
+          ],
+        },
+      ],
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+  }
+
+  // A 2xx does not mean the call did what you asked: an error object, or a
+  // reply from a different capability, also returns 200. Assert the reply
+  // really is a chat completion before treating this as success.
+  const data = await response.json();
+  if (!data.choices) {
+    throw new Error(`unexpected response: no "choices" in the reply: ${JSON.stringify(data)}`);
+  }
+  console.log(data.choices[0].message.content);
+  console.log("example ok");
+}
+
+main().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});
