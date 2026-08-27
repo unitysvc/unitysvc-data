@@ -263,12 +263,52 @@ def test_every_document_has_a_distinct_title():
     assert len(docs) == len({_key(d) for d in docs.values()})
 
 
-def test_multiple_capabilities_are_rejected_rather_than_losing_a_probe():
-    """Each capability needs its own probe, but a collection declares one.
-    Silently keeping the last would leave a capability unproven — the
-    exact failure this preset exists to prevent."""
-    with pytest.raises(ValueError, match="one capability"):
-        llm_example_collection({"capabilities": ["chat", "embed"], "formats": ["openai"]})
+def test_every_declared_capability_contributes_its_examples():
+    """A collection covers every capability the service declares. Dropping
+    one would leave it undemonstrated while still declared — the exact
+    failure this preset exists to prevent."""
+    both = llm_example_collection(
+        {"capabilities": ["chat", "image-text-to-text"], "formats": ["openai"]}
+    )
+    chat_only = llm_example_collection({"capabilities": ["chat"], "formats": ["openai"]})
+
+    assert set(chat_only) < set(both)
+    assert any("vision" in title for title in both)
+    # Still one probe: liveness is a property of the service, not of a
+    # capability, so fanning out must not duplicate it.
+    assert len([d for d in both.values() if d["category"] == "connectivity_test"]) == 1
+
+
+def test_fanning_out_capabilities_keeps_titles_distinct():
+    """Titles key the ``documents`` mapping, so a chat example and an
+    image-text-to-text example that rendered the same title would silently
+    overwrite one another. The ``vision`` feature qualifier prevents it."""
+    docs = llm_example_collection(
+        {"capabilities": ["chat", "image-text-to-text"], "formats": ["openai", "anthropic"]}
+    )
+
+    assert len(docs) == len({_key(d) for d in docs.values()})
+
+
+def test_declaring_an_undemonstrable_capability_still_raises():
+    """The gate survives the fan-out: a capability with no code examples
+    cannot be demonstrated, so it must not be declared."""
+    with pytest.raises(ValueError, match="must not be declared"):
+        llm_example_collection({"capabilities": ["chat", "telepathy"], "formats": ["openai"]})
+
+
+def test_image_text_to_text_implies_the_vision_feature():
+    """The capability needs the vision examples, so declaring it is enough
+    — a listing does not have to set ``vision: true`` as well."""
+    implied = llm_example_collection(
+        {"capabilities": ["image-text-to-text"], "formats": ["openai"]}
+    )
+    explicit = llm_example_collection(
+        {"capabilities": ["image-text-to-text"], "formats": [{"formats": ["openai"], "vision": True}]}
+    )
+
+    assert implied
+    assert set(implied) == set(explicit)
 
 
 def test_speech_transcribe_is_supported_since_its_presets_exist():

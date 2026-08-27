@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import atexit
 import hashlib
+import itertools
 import json
 import os
 import tempfile
@@ -384,6 +385,15 @@ def _materialise_substituted_body(
     return str(out_path)
 
 
+#: Capabilities whose examples are registered behind the ``vision`` feature.
+#: The feature is kept on those presets so ``_title`` keeps their documents
+#: distinguishable from the plain-chat ones ("... (OpenAI-style input, vision)"
+#: vs "... (OpenAI-style input)") — without it the two collide on title and one
+#: silently overwrites the other. Declaring the capability implies the feature,
+#: so a listing never has to state both.
+_VISION_CAPABILITIES = frozenset({"image-text-to-text"})
+
+
 #: The platform capabilities a collection can express — those with at
 #: least one code example declaring them. Derived, not maintained: a new
 #: example family adds its capability the moment it is authored.
@@ -503,16 +513,16 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     mapping of ``{title: record}`` ready to be used as a listing's
     ``documents`` value.
     """
-    capabilities = source.get("capabilities") or ["chat"]
-    if len(capabilities) > 1:
-        # Each capability needs its own probe, but a collection declares
-        # one. Keeping the last would leave a capability unproven, which
-        # is the failure this preset exists to prevent.
-        raise ValueError(
-            f"A collection covers one capability, got {sorted(capabilities)!r}. "
-            f"Emit one collection per capability and merge them, so each keeps "
-            f"its own connectivity probe."
-        )
+    # A collection covers EVERY capability the service declares, and each one
+    # must bring its own examples — a capability nobody can demonstrate must
+    # not be declared, which is the rule this preset exists to enforce.
+    #
+    # This used to be one capability per collection, on the grounds that each
+    # needs its own connectivity probe. It does not: a probe answers "is the
+    # upstream alive", which is a property of the service, not of any one
+    # capability. The examples are what demonstrate a capability, so they are
+    # what fans out here while the probe stays single (see below).
+    capabilities = list(source.get("capabilities") or ["chat"])
     upstream = source.get("upstream_dialect") or "openai"
     groups = _normalise_groups(source.get("formats") or [], default_tools=source.get("tools"))
     sleep = source.get("sleep")
@@ -530,11 +540,11 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
             f"them would have no effect. Declared somewhere: {sorted(_declares)}."
         )
 
-    capability = capabilities[0]
     known = _known_capabilities()
-    if capability not in known:
+    unknown = [c for c in capabilities if c not in known]
+    if unknown:
         raise ValueError(
-            f"No example collection is defined for capability {capability!r}. "
+            f"No example collection is defined for capability {unknown[0]!r}. "
             f"It has no code examples in unitysvc-data, so it cannot be "
             f"demonstrated and must not be declared. Known: {sorted(known)}."
         )
@@ -545,11 +555,14 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     # declares that it applies here. The probe lands on the primary group
     # because it must resolve to exactly one channel/interface; everything
     # else is scoped to the group that contributed it.
-    for group in groups:
+    for capability, group in itertools.product(capabilities, groups):
         features = {"streaming"}
         if group.get("tools"):
             features.add("tools")
-        if group.get("vision"):
+        # `vision` is implied by the capability that needs it, so a listing
+        # declaring `image-text-to-text` does not also have to set the flag.
+        # The flag is still honoured on its own for the callers that set it.
+        if group.get("vision") or capability in _VISION_CAPABILITIES:
             features.add("vision")
         for title, preset_name in _select(
             capability=capability,
