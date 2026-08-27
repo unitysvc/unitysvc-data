@@ -241,6 +241,58 @@ def test_sleep_does_not_clobber_the_presets_requirements():
     assert docs["Python code example (openai SDK)"]["meta"]["requirements"] == ["openai"]
 
 
+def test_timeout_is_applied_to_every_executable_document():
+    """A slow model needs the runner to wait longer before killing the
+    script (`resolve_test_timeout`); nebius's Qwen2.5-VL-72B needs 120 s.
+    Like `sleep`, it has to reach the probe as well as the examples."""
+    docs = llm_example_collection(
+        {"capabilities": ["chat"], "formats": ["openai"], "timeout": 120}
+    )
+
+    executable = [
+        d for d in docs.values() if d["category"] in ("code_example", "connectivity_test")
+    ]
+    assert executable, "expected executable documents"
+    assert all(d["meta"]["timeout"] == 120 for d in executable)
+
+
+def test_timeout_is_absent_when_not_asked_for():
+    """No timeout key means the runner's own 30 s default applies; emitting
+    one unasked would pin every catalog to a number it never chose."""
+    docs = llm_example_collection({"capabilities": ["chat"], "formats": ["openai"]})
+
+    assert all("timeout" not in (d.get("meta") or {}) for d in docs.values())
+
+
+def test_timeout_does_not_scope_non_executable_documents():
+    """A how-to is never run, so a run timeout is meaningless on it."""
+    docs = llm_example_collection(
+        {"capabilities": ["chat"], "formats": ["openai"], "timeout": 120}
+    )
+
+    assert "timeout" not in (docs["How to use this model"].get("meta") or {})
+
+
+def test_timeout_rides_alongside_sleep_and_scope():
+    """The knobs compose: a grouped, scoped collection keeps channel and
+    interface pinning while carrying both timing values."""
+    docs = llm_example_collection(
+        {
+            "capabilities": ["chat"],
+            "formats": [{"formats": ["openai"], "channel": "byok",
+                         "interface": "provider_api", "primary": True}],
+            "sleep": 5,
+            "timeout": 120,
+        }
+    )
+
+    probe = docs["Connectivity test"]["meta"]
+    assert probe["channels"] == ["byok"]
+    assert probe["interfaces"] == ["provider_api"]
+    assert probe["sleep_after_test"] == 5
+    assert probe["timeout"] == 120
+
+
 def test_registered_as_a_jinja_global_for_templated_repos():
     """Templated seller repos call it as a Jinja global rather than via
     the JSON sentinel, so it must be registered on the render env."""
@@ -671,9 +723,14 @@ def test_an_asserted_example_can_actually_produce_its_sentinel():
     assert not broken, f"declare output_contains but never print it: {broken}"
 
 
-def test_the_collection_takes_six_keys_and_no_more():
+def test_the_collection_takes_seven_keys_and_no_more():
     """A guard on API surface. Anything a repo needs beyond these belongs
-    in a sibling document, not a new option — see the tests below."""
+    in a sibling document, not a new option — see the tests below.
+
+    `timeout` was the seventh, added for nebius: a model slow enough to
+    need more than the runner's 30 s cannot express that through a sibling
+    without restating every document the collection derives, which is the
+    hand-authoring this preset exists to remove."""
     import inspect
 
     from unitysvc_data import presets
@@ -689,6 +746,7 @@ def test_the_collection_takes_six_keys_and_no_more():
         "tools",         # gate for the function-calling example
         "sleep",         # meta.sleep_after_test, for rate-limited upstreams
         "params",        # broadcast to presets declaring the parameter
+        "timeout",       # meta.timeout, for models slower than the 30 s default
     }, f"API surface changed: {sorted(declared)}"
 
 

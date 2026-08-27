@@ -516,6 +516,11 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     upstream = source.get("upstream_dialect") or "openai"
     groups = _normalise_groups(source.get("formats") or [], default_tools=source.get("tools"))
     sleep = source.get("sleep")
+    # How long the runner may let each executed document run before killing
+    # it. A property of the MODEL rather than of a channel — a slow model is
+    # slow wherever it is reached — so it sits beside `sleep` rather than in a
+    # format group. Absent means the runner's own 30 s default.
+    timeout = source.get("timeout")
     # Parameter values broadcast to every preset that DECLARES them —
     # e.g. `version_prefix` (which path the upstream serves its API on:
     # cohere /compatibility/v1, crofai /v2) or `language` on the
@@ -563,6 +568,7 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
                 scope,
                 sleep,
                 {**broadcast, **(group.get("params") or {})},
+                timeout,
             )
     return docs
 
@@ -603,13 +609,20 @@ _EXECUTABLE = frozenset({"code_example", "connectivity_test"})
 
 
 def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
-            broadcast: dict[str, Any] | None = None) -> dict[str, Any]:
+            broadcast: dict[str, Any] | None = None,
+            timeout: Any = None) -> dict[str, Any]:
     """A document record scoped to its group's channel and interface.
 
     Merged INTO the preset's own ``meta`` rather than over it: the
     preset carries ``requirements`` (what the runner installs) and
     ``output_contains`` (what makes the test an assertion), and losing
     either would break execution.
+
+    ``timeout`` is how long the runner lets the script run before killing
+    it (``resolve_test_timeout``; 30 s when absent). It is a sibling of
+    ``sleep`` rather than a group key because it describes the MODEL, not
+    the channel a dialect is reached on: a slow model is slow on every
+    channel it serves.
     """
     # Only presets that DECLARE a parameter may receive it: doc_preset
     # auto-discriminates kwargs against declared parameters, and an
@@ -633,6 +646,8 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
         scope["test"] = {"status": group["test_status"]}
     if sleep is not None:
         scope["sleep_after_test"] = sleep
+    if timeout is not None:
+        scope["timeout"] = timeout
     if scope:
         record["meta"] = {**(record.get("meta") or {}), **scope}
     return record
