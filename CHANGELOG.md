@@ -11,6 +11,53 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.39] — `image-text-to-text` as a capability, and vision examples that stop flaking
+
+### `image-text-to-text` is a capability (#68)
+
+A vision-language model accepts an image plus a text instruction and returns
+text. That is a defined input with its own code examples, so it can be
+demonstrated on its own — but there was no way to *say* it, and a vision model
+was indistinguishable from a text one in the catalog.
+
+- The three vision code examples are re-registered under
+  `capability = "image-text-to-text"`. They already sent text + image, so they
+  demonstrate exactly this and needed no edit.
+- `llm_example_collection` now covers **every** capability a service declares,
+  gating each against the known set, rather than exactly one. The old
+  one-capability rule existed because "each capability needs its own
+  connectivity probe" — it does not: a probe answers *is the upstream alive*,
+  a property of the service, not of a capability. Examples fan out; the probe
+  stays single.
+- The `vision` feature stays on those presets, because `_title` uses it to keep
+  their documents distinguishable from the plain-chat ones. Declaring the
+  capability implies the feature, so a listing never states both.
+
+**Breaking:** `formats: [{..., vision: true}]` alone no longer selects the
+vision examples. Direct `$doc_preset` references by name are unaffected.
+
+### Vision examples inline the image (v3 shell, v2 requests, v2 javascript)
+
+All three handed the model a URL and relied on **the provider** fetching those
+bytes server-side. That is the provider's network, not the caller's, and it was
+intermittently failing — on DeepSeek, 3 of 4 identical calls succeeded and the
+fourth returned `400 Failed to download image`, from a URL serving 200 locally.
+Every vision example was a coin-flip in CI for reasons unrelated to the service.
+
+0.1.38 (#64) already moved this image once, off Wikimedia, which DeepSeek could
+not reach at all. Changing host does not address the class; removing the
+server-side fetch does.
+
+- The image is downloaded by the example and sent as a `data:` URI.
+- Media type comes from the fetched `Content-Type` rather than assuming JPEG.
+- The Python and JavaScript versions gain the `"choices"` assertion and the
+  `example ok` sentinel their family metadata already expected, so a 200
+  carrying an error object no longer reads as a pass. The shell version had
+  both from v2.
+
+Each note also shows the one-line change to send a local file instead, which is
+the more common real use.
+
 ## [0.1.37] — fix the translated-shell assertions the deepseek canary caught
 
 The first live run of the 0.1.36 collection (deepseek staging, 2 services)

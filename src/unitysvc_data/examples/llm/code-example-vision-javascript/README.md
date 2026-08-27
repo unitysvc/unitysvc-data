@@ -34,3 +34,17 @@ Optional:
 ## Versions
 
 ### v1 — initial release
+
+### v2 — inline the image, and assert the reply shape
+
+- Fetches `IMAGE_URL` and sends it as a `data:` URI, so the request no
+  longer depends on the provider being able to reach that host.
+  Server-side fetching was intermittently failing (observed on DeepSeek:
+  3 of 4 identical calls succeeded, the fourth returned
+  `400 Failed to download image`), which made every vision example a
+  coin-flip in CI for reasons unrelated to the service.
+- Takes the media type from the image response's `content-type` rather
+  than assuming JPEG.
+- Adds the `choices` assertion and the `example ok` sentinel the family
+  metadata already expects — a 200 carrying an error object no longer
+  reads as a pass.

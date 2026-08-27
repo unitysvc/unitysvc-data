@@ -61,9 +61,9 @@
     "llm_code_example_ttv_javascript": "llm_code_example_ttv_javascript_v1",
     "llm_code_example_ttv_requests": "llm_code_example_ttv_requests_v1",
     "llm_code_example_ttv_shell": "llm_code_example_ttv_shell_v2",
-    "llm_code_example_vision_javascript": "llm_code_example_vision_javascript_v1",
-    "llm_code_example_vision_requests": "llm_code_example_vision_requests_v1",
-    "llm_code_example_vision_shell": "llm_code_example_vision_shell_v2",
+    "llm_code_example_vision_javascript": "llm_code_example_vision_javascript_v2",
+    "llm_code_example_vision_requests": "llm_code_example_vision_requests_v2",
+    "llm_code_example_vision_shell": "llm_code_example_vision_shell_v3",
     "llm_connectivity": "llm_connectivity_v1",
     "llm_connectivity_anthropic": "llm_connectivity_anthropic_v1",
     "llm_connectivity_embed": "llm_connectivity_embed_v1",
@@ -2378,6 +2378,29 @@
       "source_readme": "llm/code-example-vision-javascript/README.md",
       "version": 1
     },
+    "llm_code_example_vision_javascript_v2": {
+      "applies_to": {
+        "capability": "image-text-to-text",
+        "dialect": "openai",
+        "feature": "vision",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "JavaScript example: describe an image via OpenAI-compatible /chat/completions vision messages",
+      "example_file": "llm/code-example-vision-javascript/code-example-vision-v2.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "variant": "Vision"
+      },
+      "mime_type": "javascript",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_vision_javascript",
+      "source_readme": "llm/code-example-vision-javascript/README.md",
+      "version": 2
+    },
     "llm_code_example_vision_requests_v1": {
       "applies_to": {
         "capability": "image-text-to-text",
@@ -2403,6 +2426,32 @@
       "preset_name": "llm_code_example_vision_requests",
       "source_readme": "llm/code-example-vision-requests/README.md",
       "version": 1
+    },
+    "llm_code_example_vision_requests_v2": {
+      "applies_to": {
+        "capability": "image-text-to-text",
+        "dialect": "openai",
+        "feature": "vision",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Python example: ask a vision-capable LLM about a publicly-hosted image",
+      "example_file": "llm/code-example-vision-requests/code-example-vision-v2.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "requirements": [
+          "requests"
+        ],
+        "variant": "Vision"
+      },
+      "mime_type": "python",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_vision_requests",
+      "source_readme": "llm/code-example-vision-requests/README.md",
+      "version": 2
     },
     "llm_code_example_vision_shell_v1": {
       "applies_to": {
@@ -2450,6 +2499,30 @@
       "preset_name": "llm_code_example_vision_shell",
       "source_readme": "llm/code-example-vision-shell/README.md",
       "version": 2
+    },
+    "llm_code_example_vision_shell_v3": {
+      "applies_to": {
+        "capability": "image-text-to-text",
+        "dialect": "openai",
+        "feature": "vision",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Bash example: describe an image via OpenAI-compatible /chat/completions using curl",
+      "example_file": "llm/code-example-vision-shell/code-example-vision-v3.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "example ok",
+        "variant": "Vision"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_vision_shell",
+      "source_readme": "llm/code-example-vision-shell/README.md",
+      "version": 3
     },
     "llm_connectivity_anthropic_v1": {
       "applies_to": {
