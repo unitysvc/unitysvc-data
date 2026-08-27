@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Vision" }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "chat", dialect = "openai", upstream = "openai", feature = "vision" }
+applies_to = { capability = "image-text-to-text", dialect = "openai", upstream = "openai", feature = "vision" }
 +++
 
 # llm / code-example-vision-javascript — vision via `fetch`

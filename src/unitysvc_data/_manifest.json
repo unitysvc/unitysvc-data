@@ -2357,7 +2357,7 @@
     },
     "llm_code_example_vision_javascript_v1": {
       "applies_to": {
-        "capability": "chat",
+        "capability": "image-text-to-text",
         "dialect": "openai",
         "feature": "vision",
         "upstream": "openai"
@@ -2380,7 +2380,7 @@
     },
     "llm_code_example_vision_requests_v1": {
       "applies_to": {
-        "capability": "chat",
+        "capability": "image-text-to-text",
         "dialect": "openai",
         "feature": "vision",
         "upstream": "openai"
@@ -2406,7 +2406,7 @@
     },
     "llm_code_example_vision_shell_v1": {
       "applies_to": {
-        "capability": "chat",
+        "capability": "image-text-to-text",
         "dialect": "openai",
         "feature": "vision",
         "upstream": "openai"
@@ -2429,7 +2429,7 @@
     },
     "llm_code_example_vision_shell_v2": {
       "applies_to": {
-        "capability": "chat",
+        "capability": "image-text-to-text",
         "dialect": "openai",
         "feature": "vision",
         "upstream": "openai"
