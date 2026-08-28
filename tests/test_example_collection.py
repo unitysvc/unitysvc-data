@@ -371,7 +371,7 @@ CAPABILITY_CONTRACT = {
             "llm_code_example_tts_javascript",
             "llm_code_example_tts_shell",
         },
-        None,
+        "llm_connectivity_tts",
     ),
     "video-generate": (
         {
@@ -461,6 +461,7 @@ def test_capabilities_whose_probe_exists_still_get_one():
         ("chat", "llm_connectivity"),
         ("embed", "llm_connectivity_embed"),
         ("speech-to-text", "llm_connectivity_transcription"),
+        ("text-to-speech", "llm_connectivity_tts"),
     ]:
         docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
         assert probe in presets_in(docs), capability

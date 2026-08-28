@@ -11,6 +11,51 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.40] — audio capabilities renamed, and the TTS probe that was missing
+
+### `speech-transcribe` → `speech-to-text`, `speech-synthesize` → `text-to-speech` (#70)
+
+The two audio ids are renamed to the transform-shaped form already used by
+`image-text-to-text`, and to what the ecosystem calls them: Groq's `/models`
+reports `output_modalities: ["transcription"] / ["speech"]`, HuggingFace's
+pipeline tags are `automatic-speech-recognition` / `text-to-speech`.
+
+- `applies_to.capability` renamed in the seven transcription/TTS example
+  READMEs; `_manifest.json` and `MANIFEST.md` regenerated.
+- **Preset names are unchanged** — `llm_code_example_transcription_*`,
+  `llm_connectivity_transcription`, `llm_code_example_tts_*`. They are keyed by
+  example family, not by capability id, so a listing referencing a preset by
+  name is unaffected.
+
+**Breaking for service data:** the allowlist `specs validate` enforces is
+derived from these presets, so a listing declaring `speech-transcribe` or
+`speech-synthesize` now fails with "no example collection is defined for
+capability". Catalogs are updated in lockstep (cohere, fireworks, groq,
+huggingface, parasail), alongside the vocabulary in unitysvc/unitysvc#1954 and
+the Audio group rule in unitysvc/unitysvc-admin-data#34.
+
+### New preset: `llm_connectivity_tts` (#71)
+
+`text-to-speech` had six code examples and no connectivity probe. Connectivity
+is mandatory to activate, so a TTS service could never leave `draft` however
+complete its examples were — the gate behind groq's `canopylabs/orpheus-v1-*`
+and parasail's `resemble-tts-en`. See unitysvc/unitysvc#1781.
+
+Asserting on audio needs a different shape from the rest of the family. The
+others grep the body for a field (`"choices"`, `"text"`); a successful TTS
+response is audio bytes with nothing to grep. Three checks stand in: HTTP 2xx,
+at least `min_bytes` (default 1024) of body, and a first byte that is not `{` —
+some gateways answer 200 with a JSON error envelope, which a byte count alone
+would accept.
+
+`voice` is a per-listing parameter (default `alloy`) because voice ids are not
+portable between providers.
+
+This also gives unitysvc/unitysvc#1781's second blocker a way to close:
+`/v1/audio/speech` routing is unverified because no catalog exercises it.
+Running this probe against a real TTS service either proves the route or
+produces a concrete gateway bug.
+
 ## [0.1.39] — `image-text-to-text` as a capability, and vision examples that stop flaking
 
 ### `image-text-to-text` is a capability (#68)
