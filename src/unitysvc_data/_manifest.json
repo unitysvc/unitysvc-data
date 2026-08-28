@@ -2122,7 +2122,7 @@
     },
     "llm_code_example_transcription_javascript_v1": {
       "applies_to": {
-        "capability": "speech-transcribe"
+        "capability": "speech-to-text"
       },
       "category": "code_example",
       "description": "JavaScript example: transcribe audio via OpenAI-compatible /audio/transcriptions",
@@ -2143,7 +2143,7 @@
     },
     "llm_code_example_transcription_requests_v1": {
       "applies_to": {
-        "capability": "speech-transcribe"
+        "capability": "speech-to-text"
       },
       "category": "code_example",
       "description": "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint",
@@ -2167,7 +2167,7 @@
     },
     "llm_code_example_transcription_shell_v1": {
       "applies_to": {
-        "capability": "speech-transcribe"
+        "capability": "speech-to-text"
       },
       "category": "code_example",
       "description": "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl",
@@ -2188,7 +2188,7 @@
     },
     "llm_code_example_transcription_shell_v2": {
       "applies_to": {
-        "capability": "speech-transcribe"
+        "capability": "speech-to-text"
       },
       "category": "code_example",
       "description": "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl",
@@ -2210,7 +2210,7 @@
     },
     "llm_code_example_tts_javascript_v1": {
       "applies_to": {
-        "capability": "speech-synthesize"
+        "capability": "text-to-speech"
       },
       "category": "code_example",
       "description": "JavaScript example: synthesize speech via OpenAI-compatible /audio/speech",
@@ -2230,7 +2230,7 @@
     },
     "llm_code_example_tts_requests_v1": {
       "applies_to": {
-        "capability": "speech-synthesize"
+        "capability": "text-to-speech"
       },
       "category": "code_example",
       "description": "Python example: synthesize speech from text using an OpenAI-compatible audio/speech endpoint",
@@ -2253,7 +2253,7 @@
     },
     "llm_code_example_tts_shell_v1": {
       "applies_to": {
-        "capability": "speech-synthesize"
+        "capability": "text-to-speech"
       },
       "category": "code_example",
       "description": "Bash example: synthesize speech via OpenAI-compatible /audio/speech using curl",
@@ -2586,7 +2586,7 @@
     },
     "llm_connectivity_transcription_v1": {
       "applies_to": {
-        "capability": "speech-transcribe"
+        "capability": "speech-to-text"
       },
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible audio-transcription endpoint by sending a tiny known audio file",

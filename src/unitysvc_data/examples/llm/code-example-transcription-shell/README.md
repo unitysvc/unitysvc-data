@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Transcription", output_contains = "example ok" }
 parameters = { version_prefix = "/v1", language = "en" }
-applies_to = { capability = "speech-transcribe" }
+applies_to = { capability = "speech-to-text" }
 
 [versions.v1]
 # v1 predates the response-shape assertion and prints no sentinel.

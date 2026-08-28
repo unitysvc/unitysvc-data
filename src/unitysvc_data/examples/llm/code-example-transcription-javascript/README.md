@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Transcription" }
 parameters = { version_prefix = "/v1", language = "en" }
-applies_to = { capability = "speech-transcribe" }
+applies_to = { capability = "speech-to-text" }
 +++
 
 # llm / code-example-transcription-javascript — audio transcription via `fetch`
