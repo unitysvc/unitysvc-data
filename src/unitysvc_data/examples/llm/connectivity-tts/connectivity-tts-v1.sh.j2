@@ -1,0 +1,50 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+# Unlike every other probe in this family, a successful response here is AUDIO,
+# not JSON — there is no field to grep for. The assertions are therefore:
+#   1. HTTP 2xx
+#   2. the body is big enough to be real audio, not a stub or an error page
+#   3. it does not look like JSON (a 200 carrying {"error": ...} is a failure
+#      some gateways produce, and byte count alone would accept it)
+response_file="${TMPDIR:-/tmp}/tts-connectivity-response.bin"
+http_code=$(curl -sS "{{ service_base_url }}${__version_prefix__}/audio/speech" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d "{
+    \"model\": \"{{ routing_key.model }}\",
+    \"input\": \"UnitySVC connectivity check.\",
+    \"voice\": \"${__voice__}\",
+    \"response_format\": \"${__response_format__}\"
+  }" \
+  -o "${response_file}" \
+  -w "%{http_code}")
+
+if [ "${http_code#2}" = "${http_code}" ]; then
+    echo "HTTP $http_code from upstream:" >&2
+    head -c 2000 "${response_file}" >&2
+    exit 1
+fi
+
+# Portable byte count: `wc -c <file` avoids the filename column BSD wc emits.
+bytes=$(wc -c <"${response_file}" | tr -d ' ')
+if [ "${bytes}" -lt "${__min_bytes__}" ]; then
+    echo "HTTP 2xx but only ${bytes} bytes returned (expected >= ${__min_bytes__}):" >&2
+    head -c 2000 "${response_file}" >&2
+    exit 1
+fi
+
+# A JSON body with a 2xx means the upstream answered with an error envelope
+# rather than audio. Check only the first byte so a legitimate audio file that
+# happens to contain a brace later is not rejected.
+first_byte=$(head -c 1 "${response_file}")
+if [ "${first_byte}" = "{" ]; then
+    echo "HTTP 2xx but the body is JSON, not audio:" >&2
+    head -c 2000 "${response_file}" >&2
+    exit 1
+fi
+
+rm -f "${response_file}"
+echo "connectivity ok"
