@@ -69,6 +69,7 @@
     "llm_connectivity_embed": "llm_connectivity_embed_v1",
     "llm_connectivity_embed_image": "llm_connectivity_embed_image_v1",
     "llm_connectivity_transcription": "llm_connectivity_transcription_v1",
+    "llm_connectivity_tts": "llm_connectivity_tts_v1",
     "llm_description": "llm_description_v2",
     "llm_request_template": "llm_request_template_v1",
     "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
@@ -2603,6 +2604,29 @@
       },
       "preset_name": "llm_connectivity_transcription",
       "source_readme": "llm/connectivity-transcription/README.md",
+      "version": 1
+    },
+    "llm_connectivity_tts_v1": {
+      "applies_to": {
+        "capability": "text-to-speech"
+      },
+      "category": "connectivity_test",
+      "description": "Verify an OpenAI-compatible text-to-speech endpoint by synthesizing a short phrase and asserting real audio comes back",
+      "example_file": "llm/connectivity-tts/connectivity-tts-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "output_contains": "connectivity ok"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "min_bytes": "1024",
+        "response_format": "wav",
+        "version_prefix": "/v1",
+        "voice": "alloy"
+      },
+      "preset_name": "llm_connectivity_tts",
+      "source_readme": "llm/connectivity-tts/README.md",
       "version": 1
     },
     "llm_connectivity_v1": {
