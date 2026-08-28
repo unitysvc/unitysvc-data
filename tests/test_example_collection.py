@@ -315,7 +315,7 @@ def test_speech_transcribe_is_supported_since_its_presets_exist():
     """Found by the before/after sweep: three services (cohere-transcribe,
     groq whisper x2) were rejected even though unitysvc-data ships both
     the examples and the probe."""
-    docs = llm_example_collection({"capabilities": ["speech-transcribe"], "formats": ["openai"]})
+    docs = llm_example_collection({"capabilities": ["speech-to-text"], "formats": ["openai"]})
 
     probe = next(d for d in docs.values() if d["category"] == "connectivity_test")
     assert _key(probe) == _key(doc_preset("llm_connectivity_transcription"))
@@ -330,7 +330,7 @@ def test_the_how_to_use_doc_is_emitted_for_every_capability():
     """Found by the sweep: 12 embedding services lost `llm_description`.
     It describes how ANY LLM service is consumed through the gateway, so
     it is not chat-specific."""
-    for capability in ("chat", "embed", "speech-transcribe"):
+    for capability in ("chat", "embed", "speech-to-text"):
         docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
         assert "llm_description" in presets_in(docs), capability
 
@@ -357,7 +357,7 @@ CAPABILITY_CONTRACT = {
         },
         "llm_connectivity_embed",
     ),
-    "speech-transcribe": (
+    "speech-to-text": (
         {
             "llm_code_example_transcription_requests",
             "llm_code_example_transcription_javascript",
@@ -365,7 +365,7 @@ CAPABILITY_CONTRACT = {
         },
         "llm_connectivity_transcription",
     ),
-    "speech-synthesize": (
+    "text-to-speech": (
         {
             "llm_code_example_tts_requests",
             "llm_code_example_tts_javascript",
@@ -460,7 +460,7 @@ def test_capabilities_whose_probe_exists_still_get_one():
     for capability, probe in [
         ("chat", "llm_connectivity"),
         ("embed", "llm_connectivity_embed"),
-        ("speech-transcribe", "llm_connectivity_transcription"),
+        ("speech-to-text", "llm_connectivity_transcription"),
     ]:
         docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
         assert probe in presets_in(docs), capability
@@ -548,7 +548,7 @@ def test_the_probe_is_selected_like_everything_else():
     assert applies_to("llm_connectivity") == {"capability": "chat", "upstream": "openai"}
     assert applies_to("llm_connectivity_anthropic") == {"capability": "chat", "upstream": "anthropic"}
     assert applies_to("llm_connectivity_embed") == {"capability": "embed"}
-    assert applies_to("llm_connectivity_transcription") == {"capability": "speech-transcribe"}
+    assert applies_to("llm_connectivity_transcription") == {"capability": "speech-to-text"}
 
 
 def test_the_request_template_is_selected_like_everything_else():
