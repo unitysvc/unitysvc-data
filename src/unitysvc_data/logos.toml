@@ -81,6 +81,18 @@ url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/meta-color.svg"
 patterns = ["llama"]
 
 [[family]]
+name = "muse"
+owner = "Meta"
+url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/meta-color.svg"
+# Meta's Muse line (Muse Glimmer 30B and successors). It has no mark of
+# its own, so it carries the vendor's — the same call the file makes for
+# Llama, and the same recognition cue a reader actually uses. Kept as its
+# own family rather than folded into "llama" patterns because the two are
+# separate model lines that happen to share an owner; a future Muse mark
+# would then be a one-line url change here.
+patterns = ["muse-glimmer", "^muse[.-]"]
+
+[[family]]
 name = "gemma"
 owner = "Google"
 url = "https://unpkg.com/@lobehub/icons-static-svg@1.94.0/icons/gemma-color.svg"
