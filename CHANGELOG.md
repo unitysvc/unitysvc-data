@@ -11,6 +11,17 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.41] — Meta's Muse family gets a logo
+
+### Added
+
+- `muse` logo family (Meta). `muse-glimmer-30b` matched nothing, so its catalog
+  row fell back to the serving provider's mark — Parasail's or Fireworks' logo
+  on a Meta model, the confusion `logo_preset` exists to remove. Muse has no
+  mark of its own, so it carries the vendor's, as Llama and Nemotron already do.
+  Patterns (`muse-glimmer`, `^muse[.-]`) are narrow enough that `amusement-7b`
+  and `musegan-x` stay unmatched.
+
 ## [0.1.40] — audio capabilities renamed, and the TTS probe that was missing
 
 ### `speech-transcribe` → `speech-to-text`, `speech-synthesize` → `text-to-speech` (#70)

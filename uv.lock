@@ -90,7 +90,7 @@ wheels = [
 
 [[package]]
 name = "unitysvc-data"
-version = "0.1.40"
+version = "0.1.41"
 source = { editable = "." }
 
 [package.optional-dependencies]
