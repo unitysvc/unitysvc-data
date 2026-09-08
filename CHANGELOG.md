@@ -11,6 +11,22 @@ rare).
 
 ## [Unreleased]
 
+## [0.1.42] — msg_request_template preset
+
+### Added
+
+- `msg_request_template` — a `request_template` preset for services that
+  accept the unified `msg` envelope (`title`, `body`, `type`, `format`):
+  `notify`, `msg-to-mailbox`, and the whole `msg-to-<channel>` family in
+  `unitysvc-services-notify`. Pre-fills the Test Request playground the same
+  way `llm_request_template` does for LLM services.
+- `msg_to_channel_code_example_sh` — a cURL sibling of
+  `msg_to_channel_code_example_py`, one variant per transformer channel (93
+  channels + the generic base), so `msg-to-<channel>` listings can offer a
+  copy-pasteable `curl` example alongside the Python one. Same request bodies,
+  headers, and success criteria as the Python family — request-for-request
+  equivalent, just written as a shell one-liner.
+
 ## [0.1.41] — Meta's Muse family gets a logo
 
 ### Added

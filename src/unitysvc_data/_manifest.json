@@ -73,6 +73,7 @@
     "llm_description": "llm_description_v2",
     "llm_request_template": "llm_request_template_v1",
     "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
+    "msg_request_template": "msg_request_template_v1",
     "msg_to_apprise_code_example_py": "msg_to_apprise_code_example_py_v1",
     "msg_to_apprise_code_example_sh": "msg_to_apprise_code_example_sh_v1",
     "msg_to_apprise_connectivity": "msg_to_apprise_connectivity_v1",
@@ -170,6 +171,100 @@
     "msg_to_channel_code_example_py_xml_webhook": "msg_to_channel_code_example_py_xml_webhook_v1",
     "msg_to_channel_code_example_py_zoom": "msg_to_channel_code_example_py_zoom_v1",
     "msg_to_channel_code_example_py_zulip": "msg_to_channel_code_example_py_zulip_v1",
+    "msg_to_channel_code_example_sh": "msg_to_channel_code_example_sh_v1",
+    "msg_to_channel_code_example_sh_africastalking_sms": "msg_to_channel_code_example_sh_africastalking_sms_v1",
+    "msg_to_channel_code_example_sh_bark": "msg_to_channel_code_example_sh_bark_v1",
+    "msg_to_channel_code_example_sh_brevo_email": "msg_to_channel_code_example_sh_brevo_email_v1",
+    "msg_to_channel_code_example_sh_bulksms_sms": "msg_to_channel_code_example_sh_bulksms_sms_v1",
+    "msg_to_channel_code_example_sh_bulkvs_sms": "msg_to_channel_code_example_sh_bulkvs_sms_v1",
+    "msg_to_channel_code_example_sh_burstsms_sms": "msg_to_channel_code_example_sh_burstsms_sms_v1",
+    "msg_to_channel_code_example_sh_chanify": "msg_to_channel_code_example_sh_chanify_v1",
+    "msg_to_channel_code_example_sh_chime": "msg_to_channel_code_example_sh_chime_v1",
+    "msg_to_channel_code_example_sh_clicksend_sms": "msg_to_channel_code_example_sh_clicksend_sms_v1",
+    "msg_to_channel_code_example_sh_d7networks_sms": "msg_to_channel_code_example_sh_d7networks_sms_v1",
+    "msg_to_channel_code_example_sh_dapnet": "msg_to_channel_code_example_sh_dapnet_v1",
+    "msg_to_channel_code_example_sh_dingtalk": "msg_to_channel_code_example_sh_dingtalk_v1",
+    "msg_to_channel_code_example_sh_discord": "msg_to_channel_code_example_sh_discord_v1",
+    "msg_to_channel_code_example_sh_dot": "msg_to_channel_code_example_sh_dot_v1",
+    "msg_to_channel_code_example_sh_elks_sms": "msg_to_channel_code_example_sh_elks_sms_v1",
+    "msg_to_channel_code_example_sh_exotel_sms": "msg_to_channel_code_example_sh_exotel_sms_v1",
+    "msg_to_channel_code_example_sh_fcm": "msg_to_channel_code_example_sh_fcm_v1",
+    "msg_to_channel_code_example_sh_feishu_msg": "msg_to_channel_code_example_sh_feishu_msg_v1",
+    "msg_to_channel_code_example_sh_flock": "msg_to_channel_code_example_sh_flock_v1",
+    "msg_to_channel_code_example_sh_form_webhook": "msg_to_channel_code_example_sh_form_webhook_v1",
+    "msg_to_channel_code_example_sh_freemobile": "msg_to_channel_code_example_sh_freemobile_v1",
+    "msg_to_channel_code_example_sh_gotify": "msg_to_channel_code_example_sh_gotify_v1",
+    "msg_to_channel_code_example_sh_groupme_msg": "msg_to_channel_code_example_sh_groupme_msg_v1",
+    "msg_to_channel_code_example_sh_homeassistant": "msg_to_channel_code_example_sh_homeassistant_v1",
+    "msg_to_channel_code_example_sh_httpsms_sms": "msg_to_channel_code_example_sh_httpsms_sms_v1",
+    "msg_to_channel_code_example_sh_humhub": "msg_to_channel_code_example_sh_humhub_v1",
+    "msg_to_channel_code_example_sh_ifttt": "msg_to_channel_code_example_sh_ifttt_v1",
+    "msg_to_channel_code_example_sh_jira": "msg_to_channel_code_example_sh_jira_v1",
+    "msg_to_channel_code_example_sh_json": "msg_to_channel_code_example_sh_json_v1",
+    "msg_to_channel_code_example_sh_kodi": "msg_to_channel_code_example_sh_kodi_v1",
+    "msg_to_channel_code_example_sh_kumulos": "msg_to_channel_code_example_sh_kumulos_v1",
+    "msg_to_channel_code_example_sh_lametric": "msg_to_channel_code_example_sh_lametric_v1",
+    "msg_to_channel_code_example_sh_line_msg": "msg_to_channel_code_example_sh_line_msg_v1",
+    "msg_to_channel_code_example_sh_mailgun_email": "msg_to_channel_code_example_sh_mailgun_email_v1",
+    "msg_to_channel_code_example_sh_mastodon": "msg_to_channel_code_example_sh_mastodon_v1",
+    "msg_to_channel_code_example_sh_matrix": "msg_to_channel_code_example_sh_matrix_v1",
+    "msg_to_channel_code_example_sh_messagebird_sms": "msg_to_channel_code_example_sh_messagebird_sms_v1",
+    "msg_to_channel_code_example_sh_misskey": "msg_to_channel_code_example_sh_misskey_v1",
+    "msg_to_channel_code_example_sh_msg91_sms": "msg_to_channel_code_example_sh_msg91_sms_v1",
+    "msg_to_channel_code_example_sh_msteams": "msg_to_channel_code_example_sh_msteams_v1",
+    "msg_to_channel_code_example_sh_nextcloud": "msg_to_channel_code_example_sh_nextcloud_v1",
+    "msg_to_channel_code_example_sh_nextcloudtalk": "msg_to_channel_code_example_sh_nextcloudtalk_v1",
+    "msg_to_channel_code_example_sh_notica": "msg_to_channel_code_example_sh_notica_v1",
+    "msg_to_channel_code_example_sh_notifiarr": "msg_to_channel_code_example_sh_notifiarr_v1",
+    "msg_to_channel_code_example_sh_notificationapi": "msg_to_channel_code_example_sh_notificationapi_v1",
+    "msg_to_channel_code_example_sh_ntfy": "msg_to_channel_code_example_sh_ntfy_v1",
+    "msg_to_channel_code_example_sh_octopush_sms": "msg_to_channel_code_example_sh_octopush_sms_v1",
+    "msg_to_channel_code_example_sh_onesignal": "msg_to_channel_code_example_sh_onesignal_v1",
+    "msg_to_channel_code_example_sh_opsgenie": "msg_to_channel_code_example_sh_opsgenie_v1",
+    "msg_to_channel_code_example_sh_pagerduty": "msg_to_channel_code_example_sh_pagerduty_v1",
+    "msg_to_channel_code_example_sh_pagertree": "msg_to_channel_code_example_sh_pagertree_v1",
+    "msg_to_channel_code_example_sh_parseplatform": "msg_to_channel_code_example_sh_parseplatform_v1",
+    "msg_to_channel_code_example_sh_plivo_sms": "msg_to_channel_code_example_sh_plivo_sms_v1",
+    "msg_to_channel_code_example_sh_popcornnotify": "msg_to_channel_code_example_sh_popcornnotify_v1",
+    "msg_to_channel_code_example_sh_postmark_email": "msg_to_channel_code_example_sh_postmark_email_v1",
+    "msg_to_channel_code_example_sh_prowl": "msg_to_channel_code_example_sh_prowl_v1",
+    "msg_to_channel_code_example_sh_pushbullet": "msg_to_channel_code_example_sh_pushbullet_v1",
+    "msg_to_channel_code_example_sh_pushdeer": "msg_to_channel_code_example_sh_pushdeer_v1",
+    "msg_to_channel_code_example_sh_pushed": "msg_to_channel_code_example_sh_pushed_v1",
+    "msg_to_channel_code_example_sh_pushjet": "msg_to_channel_code_example_sh_pushjet_v1",
+    "msg_to_channel_code_example_sh_pushover": "msg_to_channel_code_example_sh_pushover_v1",
+    "msg_to_channel_code_example_sh_pushplus": "msg_to_channel_code_example_sh_pushplus_v1",
+    "msg_to_channel_code_example_sh_pushsafer": "msg_to_channel_code_example_sh_pushsafer_v1",
+    "msg_to_channel_code_example_sh_pushy": "msg_to_channel_code_example_sh_pushy_v1",
+    "msg_to_channel_code_example_sh_qqpush": "msg_to_channel_code_example_sh_qqpush_v1",
+    "msg_to_channel_code_example_sh_resend_email": "msg_to_channel_code_example_sh_resend_email_v1",
+    "msg_to_channel_code_example_sh_ryver": "msg_to_channel_code_example_sh_ryver_v1",
+    "msg_to_channel_code_example_sh_sendgrid_email": "msg_to_channel_code_example_sh_sendgrid_email_v1",
+    "msg_to_channel_code_example_sh_serverchan": "msg_to_channel_code_example_sh_serverchan_v1",
+    "msg_to_channel_code_example_sh_seven_sms": "msg_to_channel_code_example_sh_seven_sms_v1",
+    "msg_to_channel_code_example_sh_signl4": "msg_to_channel_code_example_sh_signl4_v1",
+    "msg_to_channel_code_example_sh_simplepush": "msg_to_channel_code_example_sh_simplepush_v1",
+    "msg_to_channel_code_example_sh_sinch_sms": "msg_to_channel_code_example_sh_sinch_sms_v1",
+    "msg_to_channel_code_example_sh_slack": "msg_to_channel_code_example_sh_slack_v1",
+    "msg_to_channel_code_example_sh_smseagle_sms": "msg_to_channel_code_example_sh_smseagle_sms_v1",
+    "msg_to_channel_code_example_sh_smtp2go_email": "msg_to_channel_code_example_sh_smtp2go_email_v1",
+    "msg_to_channel_code_example_sh_sparkpost_email": "msg_to_channel_code_example_sh_sparkpost_email_v1",
+    "msg_to_channel_code_example_sh_spikesh": "msg_to_channel_code_example_sh_spikesh_v1",
+    "msg_to_channel_code_example_sh_spugpush": "msg_to_channel_code_example_sh_spugpush_v1",
+    "msg_to_channel_code_example_sh_streamlabs": "msg_to_channel_code_example_sh_streamlabs_v1",
+    "msg_to_channel_code_example_sh_synologychat": "msg_to_channel_code_example_sh_synologychat_v1",
+    "msg_to_channel_code_example_sh_techulus": "msg_to_channel_code_example_sh_techulus_v1",
+    "msg_to_channel_code_example_sh_telegram": "msg_to_channel_code_example_sh_telegram_v1",
+    "msg_to_channel_code_example_sh_twilio_sms": "msg_to_channel_code_example_sh_twilio_sms_v1",
+    "msg_to_channel_code_example_sh_viber": "msg_to_channel_code_example_sh_viber_v1",
+    "msg_to_channel_code_example_sh_victorops": "msg_to_channel_code_example_sh_victorops_v1",
+    "msg_to_channel_code_example_sh_vonage_sms": "msg_to_channel_code_example_sh_vonage_sms_v1",
+    "msg_to_channel_code_example_sh_wechat_work": "msg_to_channel_code_example_sh_wechat_work_v1",
+    "msg_to_channel_code_example_sh_whatsapp_msg": "msg_to_channel_code_example_sh_whatsapp_msg_v1",
+    "msg_to_channel_code_example_sh_wxpusher": "msg_to_channel_code_example_sh_wxpusher_v1",
+    "msg_to_channel_code_example_sh_xml_webhook": "msg_to_channel_code_example_sh_xml_webhook_v1",
+    "msg_to_channel_code_example_sh_zoom": "msg_to_channel_code_example_sh_zoom_v1",
+    "msg_to_channel_code_example_sh_zulip": "msg_to_channel_code_example_sh_zulip_v1",
     "msg_to_channel_connectivity": "msg_to_channel_connectivity_v1",
     "msg_to_channel_connectivity_africastalking_sms": "msg_to_channel_connectivity_africastalking_sms_v1",
     "msg_to_channel_connectivity_bark": "msg_to_channel_connectivity_bark_v1",
@@ -2712,6 +2807,20 @@
       "source_readme": "llm/request-template/README.md",
       "version": 1
     },
+    "msg_request_template_v1": {
+      "applies_to": {},
+      "category": "request_template",
+      "description": "Minimal msg envelope request body",
+      "example_file": "msg/request-template/request-template-v1.json",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "json",
+      "parameters": {},
+      "preset_name": "msg_request_template",
+      "source_readme": "msg/request-template/README.md",
+      "version": 1
+    },
     "msg_to_apprise_code_example_py_v1": {
       "applies_to": {},
       "category": "code_example",
@@ -4929,6 +5038,1886 @@
       },
       "preset_name": "msg_to_channel_code_example_py_zulip",
       "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_africastalking_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-africastalking-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_africastalking_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_bark_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-bark-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_bark",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_brevo_email_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-brevo-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_brevo_email",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_bulksms_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-bulksms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_bulksms_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_bulkvs_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-bulkvs-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_bulkvs_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_burstsms_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-burstsms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_burstsms_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_chanify_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-chanify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_chanify",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_chime_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-chime-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_chime",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_clicksend_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-clicksend-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_clicksend_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_d7networks_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-d7networks-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_d7networks_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_dapnet_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-dapnet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_dapnet",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_dingtalk_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-dingtalk-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_dingtalk",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_discord_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-discord-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_discord",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_dot_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-dot-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_dot",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_elks_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-elks-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_elks_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_exotel_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-exotel-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_exotel_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_fcm_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-fcm-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_fcm",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_feishu_msg_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-feishu-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_feishu_msg",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_flock_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-flock-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_flock",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_form_webhook_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-form-webhook-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_form_webhook",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_freemobile_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-freemobile-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_freemobile",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_gotify_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-gotify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_gotify",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_groupme_msg_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-groupme-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_groupme_msg",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_homeassistant_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-homeassistant-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_homeassistant",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_httpsms_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-httpsms-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_httpsms_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_humhub_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-humhub-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_humhub",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_ifttt_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-ifttt-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_ifttt",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_jira_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-jira-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_jira",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_json_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-json-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_json",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_kodi_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-kodi-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_kodi",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_kumulos_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-kumulos-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_kumulos",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_lametric_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-lametric-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_lametric",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_line_msg_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-line-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_line_msg",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_mailgun_email_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-mailgun-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_mailgun_email",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_mastodon_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-mastodon-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_mastodon",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_matrix_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-matrix-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_matrix",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_messagebird_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-messagebird-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_messagebird_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_misskey_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-misskey-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_misskey",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_msg91_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-msg91-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_msg91_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_msteams_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-msteams-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_msteams",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_nextcloud_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-nextcloud-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_nextcloud",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_nextcloudtalk_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-nextcloudtalk-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_nextcloudtalk",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_notica_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-notica-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_notica",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_notifiarr_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-notifiarr-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_notifiarr",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_notificationapi_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-notificationapi-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_notificationapi",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_ntfy_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-ntfy-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_ntfy",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_octopush_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-octopush-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_octopush_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_onesignal_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-onesignal-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_onesignal",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_opsgenie_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-opsgenie-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_opsgenie",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_pagerduty_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-pagerduty-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_pagerduty",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_pagertree_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-pagertree-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_pagertree",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_parseplatform_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-parseplatform-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_parseplatform",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_plivo_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-plivo-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_plivo_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_popcornnotify_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-popcornnotify-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_popcornnotify",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_postmark_email_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-postmark-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_postmark_email",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_prowl_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-prowl-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_prowl",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_pushbullet_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-pushbullet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_pushbullet",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_pushdeer_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-pushdeer-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_pushdeer",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_pushed_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-pushed-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_pushed",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_pushjet_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-pushjet-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_pushjet",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_pushover_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-pushover-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_pushover",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_pushplus_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-pushplus-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_pushplus",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_pushsafer_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-pushsafer-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_pushsafer",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_pushy_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-pushy-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_pushy",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_qqpush_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-qqpush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_qqpush",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_resend_email_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-resend-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_resend_email",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_ryver_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-ryver-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_ryver",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_sendgrid_email_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-sendgrid-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_sendgrid_email",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_serverchan_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-serverchan-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_serverchan",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_seven_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-seven-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_seven_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_signl4_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-signl4-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_signl4",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_simplepush_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-simplepush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_simplepush",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_sinch_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-sinch-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_sinch_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_slack_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-slack-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_slack",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_smseagle_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-smseagle-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_smseagle_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_smtp2go_email_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-smtp2go-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_smtp2go_email",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_sparkpost_email_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-sparkpost-email-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_sparkpost_email",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_spikesh_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-spikesh-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_spikesh",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_spugpush_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-spugpush-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_spugpush",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_streamlabs_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-streamlabs-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_streamlabs",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_synologychat_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-synologychat-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_synologychat",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_techulus_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-techulus-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_techulus",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_telegram_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-telegram-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_telegram",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_twilio_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-twilio-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_twilio_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_viber_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-viber-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_viber",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_victorops_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-victorops-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_victorops",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_vonage_sms_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-vonage-sms-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_vonage_sms",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_wechat_work_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-wechat-work-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_wechat_work",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_whatsapp_msg_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-whatsapp-msg-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_whatsapp_msg",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_wxpusher_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-wxpusher-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_wxpusher",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_xml_webhook_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-xml-webhook-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_xml_webhook",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_zoom_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-zoom-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_zoom",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
+    "msg_to_channel_code_example_sh_zulip_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-zulip-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "output_contains": "sent"
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_zulip",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
       "version": 1
     },
     "msg_to_channel_connectivity_africastalking_sms_v1": {
