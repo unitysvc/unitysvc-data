@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: send a chat completion request via the cerebras-cloud-sdk"
 is_active = true
 is_public = true
-meta = { variant = "Cerebras SDK", requirements = ["cerebras-cloud-sdk"] }
+meta = { variant = "Cerebras SDK", requirements = ["cerebras-cloud-sdk"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 applies_to = { capability = "chat", dialect = "cerebras", upstream = "openai" }
 +++
 

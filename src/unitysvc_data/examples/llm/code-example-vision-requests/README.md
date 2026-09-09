@@ -6,7 +6,7 @@ file = "code-example-vision.py.j2"
 description = "Python example: ask a vision-capable LLM about a publicly-hosted image"
 is_active = true
 is_public = true
-meta = { variant = "Vision", requirements = ["requests"] }
+meta = { variant = "Vision", requirements = ["requests"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "image-text-to-text", dialect = "openai", upstream = "openai", feature = "vision" }
 +++

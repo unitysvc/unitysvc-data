@@ -6,7 +6,7 @@ file = "code-example-vision.sh.j2"
 description = "Bash example: describe an image via OpenAI-compatible /chat/completions using curl"
 is_active = true
 is_public = true
-meta = { variant = "Vision", output_contains = "example ok" }
+meta = { variant = "Vision", output_contains = "example ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "image-text-to-text", dialect = "openai", upstream = "openai", feature = "vision" }
 

@@ -6,7 +6,7 @@ file = "connectivity.sh.j2"
 description = "Verify an Anthropic-Messages-API LLM endpoint by issuing a tiny one-token message"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok" }
+meta = { output_contains = "connectivity ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 applies_to = { capability = "chat", upstream = "anthropic" }
 +++
 

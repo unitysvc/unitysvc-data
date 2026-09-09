@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: send a chat completion request via the cohere SDK (v2 chat API)"
 is_active = true
 is_public = true
-meta = { variant = "Cohere SDK", requirements = ["cohere"] }
+meta = { variant = "Cohere SDK", requirements = ["cohere"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 applies_to = { capability = "chat", dialect = "cohere", upstream = "openai" }
 +++
 

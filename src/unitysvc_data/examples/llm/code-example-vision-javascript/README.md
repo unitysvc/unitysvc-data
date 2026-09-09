@@ -6,7 +6,7 @@ file = "code-example-vision.js.j2"
 description = "JavaScript example: describe an image via OpenAI-compatible /chat/completions vision messages"
 is_active = true
 is_public = true
-meta = { variant = "Vision" }
+meta = { variant = "Vision", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "image-text-to-text", dialect = "openai", upstream = "openai", feature = "vision" }
 +++

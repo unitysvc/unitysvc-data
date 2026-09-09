@@ -720,6 +720,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "anthropic"
         ],
@@ -743,6 +747,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Chat"
       },
       "mime_type": "javascript",
@@ -763,6 +771,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Chat"
       },
       "mime_type": "bash",
@@ -783,6 +795,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "Chat"
       },
@@ -804,6 +820,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -829,6 +849,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "openai",
           "anthropic"
@@ -855,6 +879,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Anthropic-style"
       },
       "mime_type": "bash",
@@ -877,6 +905,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Anthropic-style"
       },
       "mime_type": "bash",
@@ -899,6 +931,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "Anthropic-style"
       },
@@ -923,6 +959,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -949,6 +989,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "openai",
           "anthropic"
@@ -976,6 +1020,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "openai",
           "anthropic"
@@ -1003,6 +1051,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Anthropic-style (streaming)"
       },
       "mime_type": "bash",
@@ -1026,6 +1078,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Anthropic-style (streaming)"
       },
       "mime_type": "bash",
@@ -1049,6 +1105,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "Anthropic-style (streaming)"
       },
@@ -1072,6 +1132,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "anthropic"
         ],
@@ -1095,6 +1159,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "connectivity ok",
         "requirements": [
           "boto3"
@@ -1119,6 +1187,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "boto3"
         ],
@@ -1145,6 +1217,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "cerebras-cloud-sdk"
         ],
@@ -1168,6 +1244,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "cohere"
         ],
@@ -1190,6 +1270,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "variant": "Image embeddings"
       },
       "mime_type": "javascript",
@@ -1211,6 +1294,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -1235,6 +1321,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "variant": "Image embeddings"
       },
       "mime_type": "bash",
@@ -1256,6 +1345,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "Image embeddings"
       },
@@ -1277,6 +1369,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "variant": "Embeddings"
       },
       "mime_type": "javascript",
@@ -1297,6 +1392,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -1320,6 +1418,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "variant": "Embeddings"
       },
       "mime_type": "bash",
@@ -1340,6 +1441,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "Embeddings"
       },
@@ -1364,6 +1468,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -1471,6 +1579,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "images_generated": 1
+        },
         "variant": "Image generation"
       },
       "mime_type": "javascript",
@@ -1491,6 +1602,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "images_generated": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -1514,6 +1628,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "images_generated": 1
+        },
         "variant": "Image generation"
       },
       "mime_type": "bash",
@@ -1534,6 +1651,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "images_generated": 1
+        },
         "output_contains": "example ok",
         "variant": "Image generation"
       },
@@ -1555,6 +1675,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "images_generated": 1
+        },
         "variant": "Image to image"
       },
       "mime_type": "javascript",
@@ -1575,6 +1698,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "images_generated": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -1598,6 +1724,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "images_generated": 1
+        },
         "variant": "Image to image"
       },
       "mime_type": "bash",
@@ -1618,6 +1747,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "images_generated": 1
+        },
         "output_contains": "example ok",
         "variant": "Image to image"
       },
@@ -1641,6 +1773,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Chat"
       },
       "mime_type": "javascript",
@@ -1663,6 +1799,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "openai"
         ],
@@ -1688,6 +1828,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -1711,6 +1855,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "openai",
           "anthropic"
@@ -1735,6 +1883,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "OpenAI-style"
       },
       "mime_type": "bash",
@@ -1755,6 +1907,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "OpenAI-style"
       },
       "mime_type": "bash",
@@ -1775,6 +1931,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "OpenAI-style"
       },
@@ -1797,6 +1957,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -1821,6 +1985,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "openai",
           "anthropic"
@@ -1846,6 +2014,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "OpenAI-style (streaming)"
       },
       "mime_type": "bash",
@@ -1867,6 +2039,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "OpenAI-style (streaming)"
       },
       "mime_type": "bash",
@@ -1888,6 +2064,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "OpenAI-style (streaming)"
       },
@@ -1909,6 +2089,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "openai"
         ],
@@ -1934,6 +2118,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -2042,6 +2230,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "variant": "Sentence Transformers"
       },
       "mime_type": "javascript",
@@ -2063,6 +2254,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -2087,6 +2281,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "variant": "Sentence Transformers"
       },
       "mime_type": "bash",
@@ -2108,6 +2305,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "Sentence Transformers"
       },
@@ -2131,6 +2331,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Chat"
       },
       "mime_type": "bash",
@@ -2153,6 +2357,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "Chat"
       },
@@ -2177,6 +2385,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "openai"
         ],
@@ -2203,6 +2415,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "openai"
         ],
@@ -2226,6 +2442,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "duration_seconds": 0.01
+        },
         "variant": "Transcription"
       },
       "mime_type": "javascript",
@@ -2247,6 +2466,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "duration_seconds": 0.01
+        },
         "requirements": [
           "requests"
         ],
@@ -2271,6 +2493,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "duration_seconds": 0.01
+        },
         "variant": "Transcription"
       },
       "mime_type": "bash",
@@ -2292,6 +2517,9 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "duration_seconds": 0.01
+        },
         "output_contains": "example ok",
         "variant": "Transcription"
       },
@@ -2464,6 +2692,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Vision"
       },
       "mime_type": "javascript",
@@ -2487,6 +2719,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Vision"
       },
       "mime_type": "javascript",
@@ -2510,6 +2746,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -2536,6 +2776,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "requirements": [
           "requests"
         ],
@@ -2562,6 +2806,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "variant": "Vision"
       },
       "mime_type": "bash",
@@ -2585,6 +2833,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "Vision"
       },
@@ -2609,6 +2861,10 @@
       "is_active": true,
       "is_public": true,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "example ok",
         "variant": "Vision"
       },
@@ -2631,6 +2887,10 @@
       "is_active": true,
       "is_public": false,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "connectivity ok"
       },
       "mime_type": "bash",
@@ -2650,6 +2910,9 @@
       "is_active": true,
       "is_public": false,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "output_contains": "connectivity ok"
       },
       "mime_type": "bash",
@@ -2670,6 +2933,9 @@
       "is_active": true,
       "is_public": false,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1
+        },
         "output_contains": "connectivity ok"
       },
       "mime_type": "bash",
@@ -2690,6 +2956,9 @@
       "is_active": true,
       "is_public": false,
       "meta": {
+        "min_expected_metrics": {
+          "duration_seconds": 0.01
+        },
         "output_contains": "connectivity ok"
       },
       "mime_type": "bash",
@@ -2735,6 +3004,10 @@
       "is_active": true,
       "is_public": false,
       "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
         "output_contains": "connectivity ok"
       },
       "mime_type": "bash",

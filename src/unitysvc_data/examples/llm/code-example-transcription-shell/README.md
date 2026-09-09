@@ -6,7 +6,7 @@ file = "code-example-transcription.sh.j2"
 description = "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl"
 is_active = true
 is_public = true
-meta = { variant = "Transcription", output_contains = "example ok" }
+meta = { variant = "Transcription", output_contains = "example ok", min_expected_metrics = { duration_seconds = 0.01 } }
 parameters = { version_prefix = "/v1", language = "en" }
 applies_to = { capability = "speech-to-text" }
 

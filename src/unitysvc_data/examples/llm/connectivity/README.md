@@ -6,7 +6,7 @@ file = "connectivity.sh.j2"
 description = "Verify an OpenAI-compatible LLM endpoint by issuing a tiny chat completion"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok" }
+meta = { output_contains = "connectivity ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", upstream = "openai" }
 +++

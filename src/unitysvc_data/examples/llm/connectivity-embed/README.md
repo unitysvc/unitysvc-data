@@ -6,7 +6,7 @@ file = "connectivity-embed.sh.j2"
 description = "Verify an OpenAI-compatible embeddings endpoint by issuing a tiny embed request"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok" }
+meta = { output_contains = "connectivity ok", min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "embed" }
 +++

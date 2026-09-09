@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: call the model with the native AWS SDK — boto3 converse() pointed at the UnitySVC gateway, which authenticates the svcpass access-key-id and re-signs upstream with the service's stored AWS credentials (SigV4)"
 is_active = true
 is_public = true
-meta = { variant = "boto3 Converse", requirements = ["boto3"], output_contains = "connectivity ok" }
+meta = { variant = "boto3 Converse", requirements = ["boto3"], output_contains = "connectivity ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 applies_to = { capability = "chat", dialect = "bedrock_converse", upstream = "openai" }
 +++
 

@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: send a chat completion request to an OpenAI-compatible LLM using the requests library"
 is_active = true
 is_public = true
-meta = { variant = "Chat", requirements = ["requests"] }
+meta = { variant = "Chat", requirements = ["requests"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai" }
 +++
