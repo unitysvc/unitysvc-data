@@ -6,7 +6,7 @@ file = "connectivity.sh.j2"
 description = "Connectivity test for pass-through HTTP notification services"
 is_active = true
 is_public = true
-meta = { output_contains = "connectivity ok" }
+meta = { output_contains = "connectivity ok", min_expected_metrics = { bytes_out = 1 } }
 parameters = { webhook_path = "/webhook", chat_id = "" }
 +++
 
