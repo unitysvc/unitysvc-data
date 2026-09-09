@@ -6,7 +6,7 @@ file = "code-example-embed-image.py.j2"
 description = "Python example: embed an image via /embed (Cohere v2-style)"
 is_active = true
 is_public = true
-meta = { variant = "Image embeddings", requirements = ["requests"] }
+meta = { variant = "Image embeddings", requirements = ["requests"], min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "embed", dialect = "cohere" }
 +++

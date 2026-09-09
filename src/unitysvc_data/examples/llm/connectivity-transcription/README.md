@@ -6,7 +6,7 @@ file = "connectivity-transcription.sh.j2"
 description = "Verify an OpenAI-compatible audio-transcription endpoint by sending a tiny known audio file"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok" }
+meta = { output_contains = "connectivity ok", min_expected_metrics = { duration_seconds = 0.01 } }
 parameters = { version_prefix = "/v1", language = "en" }
 applies_to = { capability = "speech-to-text" }
 +++

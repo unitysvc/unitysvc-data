@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) using the official SDKs — OpenAI SDK for the direct-upstream test, Anthropic SDK for the gateway test"
 is_active = true
 is_public = true
-meta = { variant = "Anthropic-style", requirements = ["openai", "anthropic"] }
+meta = { variant = "Anthropic-style", requirements = ["openai", "anthropic"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", dialect = "anthropic", upstream = "openai" }
 +++

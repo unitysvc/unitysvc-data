@@ -6,7 +6,7 @@ file = "code-example-anthropic.js.j2"
 description = "JavaScript example: send a message to an Anthropic Messages API endpoint via built-in fetch"
 is_active = true
 is_public = true
-meta = { variant = "Chat" }
+meta = { variant = "Chat", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 applies_to = { capability = "chat", dialect = "anthropic", upstream = "anthropic" }
 +++
 

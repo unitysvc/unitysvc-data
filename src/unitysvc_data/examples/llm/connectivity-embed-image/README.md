@@ -6,7 +6,7 @@ file = "connectivity-embed-image.sh.j2"
 description = "Verify a Cohere-shape image embedding endpoint by sending a tiny known image"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok" }
+meta = { output_contains = "connectivity ok", min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v2" }
 applies_to = { capability = "embed", dialect = "cohere" }
 +++

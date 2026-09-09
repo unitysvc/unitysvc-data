@@ -6,7 +6,7 @@ file = "code-example-anthropic.sh.j2"
 description = "curl example: POST a message to an Anthropic Messages API endpoint"
 is_active = true
 is_public = true
-meta = { variant = "Chat", output_contains = "example ok" }
+meta = { variant = "Chat", output_contains = "example ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 applies_to = { capability = "chat", dialect = "anthropic", upstream = "anthropic" }
 
 [versions.v1]

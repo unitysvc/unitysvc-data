@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Streaming Python example: OpenAI-format SSE request against an openai->anthropic translation gateway using the official SDKs — Anthropic SDK for the direct-upstream test, OpenAI SDK for the gateway test"
 is_active = true
 is_public = true
-meta = { variant = "OpenAI-style (streaming)", requirements = ["openai", "anthropic"] }
+meta = { variant = "OpenAI-style (streaming)", requirements = ["openai", "anthropic"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 applies_to = { capability = "chat", dialect = "openai", upstream = "anthropic", feature = "streaming" }
 +++
 

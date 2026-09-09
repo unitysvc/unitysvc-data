@@ -6,7 +6,7 @@ file = "code-example-fc.py.j2"
 description = "Python example: chat completion with function/tool calling on an OpenAI-compatible LLM"
 is_active = true
 is_public = true
-meta = { variant = "Function calling", requirements = ["requests"] }
+meta = { variant = "Function calling", requirements = ["requests"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai", feature = "tools" }
 +++

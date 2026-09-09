@@ -6,7 +6,7 @@ file = "code-example-embed.py.j2"
 description = "Python example: request OpenAI-compatible embeddings for a list of inputs"
 is_active = true
 is_public = true
-meta = { variant = "Embeddings", requirements = ["requests"] }
+meta = { variant = "Embeddings", requirements = ["requests"], min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "embed" }
 +++

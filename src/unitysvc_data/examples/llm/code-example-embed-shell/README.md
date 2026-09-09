@@ -6,7 +6,7 @@ file = "code-example-embed.sh.j2"
 description = "Shell example: request OpenAI-compatible embeddings via curl"
 is_active = true
 is_public = true
-meta = { variant = "Embeddings", output_contains = "example ok" }
+meta = { variant = "Embeddings", output_contains = "example ok", min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "embed" }
 

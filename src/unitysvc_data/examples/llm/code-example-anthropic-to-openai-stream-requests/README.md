@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: streaming Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via the requests library"
 is_active = true
 is_public = true
-meta = { variant = "Anthropic-style (streaming)", requirements = ["requests"] }
+meta = { variant = "Anthropic-style (streaming)", requirements = ["requests"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", dialect = "anthropic", upstream = "openai", feature = "streaming" }
 +++

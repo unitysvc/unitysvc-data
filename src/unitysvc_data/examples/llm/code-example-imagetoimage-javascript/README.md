@@ -6,7 +6,7 @@ file = "code-example-imagetoimage.js.j2"
 description = "JavaScript example: image-to-image transform via Hugging Face /models/<model>"
 is_active = true
 is_public = true
-meta = { variant = "Image to image" }
+meta = { variant = "Image to image", min_expected_metrics = { images_generated = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "image-edit" }
 +++

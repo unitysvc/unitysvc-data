@@ -517,10 +517,20 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     example) also gets ``meta.min_expected_metrics = {"bytes_out": 1}``
     by default, opting the service into the platform's billing-verification
     check (unitysvc/unitysvc#1522) — see the ``bytes_out`` comment below for
-    why that floor, specifically, is safe to default. Pass
-    ``min_expected_metrics`` in ``source`` to replace it (``{}`` to opt out
-    entirely, a stricter dict to require more once verified for this
-    provider).
+    why that floor, specifically, is safe to default across every capability
+    and dialect. Pass ``min_expected_metrics`` in ``source`` to replace this
+    collection-wide default (``{}`` to opt out entirely, a stricter dict to
+    require more of every document this collection generates).
+
+    A single PRESET can also declare its own ``min_expected_metrics`` in its
+    README front-matter ``meta`` — e.g. real token counts for a dialect
+    verified to report them (``chat``/``openai`` and ``chat``/``anthropic``
+    do; a raw third-party "OpenAI-compatible" clone is not guaranteed to,
+    see the DeepSeek BYOK counter-example below). That is layered ON TOP of
+    this collection-wide default (union by metric name, preset wins on a
+    shared name) via :func:`_scoped`, not a replacement for it — so
+    declaring a stronger floor on one preset never weakens the baseline
+    every other document in the collection still gets.
     """
     # A collection covers EVERY capability the service declares, and each one
     # must bring its own examples — a capability nobody can demonstrate must
@@ -675,8 +685,15 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
         scope["test"] = {"status": group["test_status"]}
     if sleep is not None:
         scope["sleep_after_test"] = sleep
-    if min_expected_metrics:
-        scope["min_expected_metrics"] = min_expected_metrics
+    # Union, not override: the collection-wide floor (typically the
+    # universally-safe bytes_out) and a preset's OWN floor (declared in its
+    # README front-matter, because it knows its exact response shape — e.g.
+    # a genuine token count for a dialect verified to report one) both
+    # apply. On a shared metric name the preset's own value wins, since it
+    # is the more specific, empirically-verified source.
+    own_metrics = (record.get("meta") or {}).get("min_expected_metrics")
+    if min_expected_metrics or own_metrics:
+        scope["min_expected_metrics"] = {**(min_expected_metrics or {}), **(own_metrics or {})}
     if scope:
         record["meta"] = {**(record.get("meta") or {}), **scope}
     return record

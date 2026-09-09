@@ -6,7 +6,7 @@ file = "code-example-sentencetransformers.js.j2"
 description = "JavaScript example: sentence-similarity via HF sentence-transformers /models/<model>"
 is_active = true
 is_public = true
-meta = { variant = "Sentence Transformers" }
+meta = { variant = "Sentence Transformers", min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "embed", dialect = "huggingface" }
 +++

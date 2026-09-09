@@ -25,6 +25,30 @@ rare).
   collection's `source` dict to replace the default (`{}` to opt out,
   a stricter dict — e.g. real token floors — once verified for that
   service's bundle).
+- **Per-preset `min_expected_metrics`, layered on top of the collection
+  default.** A single preset's own README `meta` can now declare its own
+  billing-verification floor — the capability-specific metric its real
+  API response is expected to report, per the platform's pricing basis
+  (`apisix-gateways` `lib/api/usage_event.lua`) — and `_scoped` UNIONS it
+  with the collection-wide default rather than replacing it (preset wins
+  on a shared metric name). Declared on every `chat` and
+  `image-text-to-text` preset (`input_tokens`/`output_tokens`), every
+  generic-dialect `embed` preset (`input_tokens`), `image-generate` /
+  `image-edit` (`images_generated`), and `speech-to-text`
+  (`duration_seconds`, floored low since test clips are short).
+  Deliberately left on `bytes_out` only: `moderate` and `rerank` (no
+  capability-specific metric the gateway's extractor populates — Cohere's
+  rerank API reports `billed_units`, not a `usage` block, and moderation
+  has no metering branch at all), `text-to-speech` (a raw-audio response
+  the gateway's JSON-only extractor structurally cannot see — a
+  `duration_seconds` floor there would fail every request, not just
+  noncompliant ones), and `video-generate` (no evidence of any
+  capability-specific metric). These are real pricing-basis assertions
+  authored ahead of live verification for capabilities/dialects this
+  account has no enrolled service for yet — expect the platform's health
+  sweep to surface real gaps (metering bugs, or an over-strict floor for
+  a specific provider's response shape) once one exists, same as the
+  DeepSeek canary did for the connectivity-billing check itself (0.1.37).
 
 ## [0.1.42] — msg_request_template preset
 

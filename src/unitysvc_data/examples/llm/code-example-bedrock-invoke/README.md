@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: call the model with boto3 invoke_model() pointed at the UnitySVC gateway — same endpoint and SigV4 authentication as Converse, but the request body is the provider's NATIVE format"
 is_active = true
 is_public = true
-meta = { variant = "boto3 InvokeModel", requirements = ["boto3"], test = { status = "skip" } }
+meta = { variant = "boto3 InvokeModel", requirements = ["boto3"], test = { status = "skip" }, min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 applies_to = { capability = "chat", dialect = "bedrock_invoke", upstream = "openai" }
 +++
 

@@ -6,7 +6,7 @@ file = "code-example-image.py.j2"
 description = "Python example: generate an image from a text prompt via an OpenAI-compatible images endpoint"
 is_active = true
 is_public = true
-meta = { variant = "Image generation", requirements = ["requests"] }
+meta = { variant = "Image generation", requirements = ["requests"], min_expected_metrics = { images_generated = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "image-generate" }
 +++

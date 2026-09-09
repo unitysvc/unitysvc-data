@@ -6,7 +6,7 @@ file = "code-example-embed-image.sh.j2"
 description = "Bash example: embed an image via /embed (Cohere v2-style) using curl"
 is_active = true
 is_public = true
-meta = { variant = "Image embeddings", output_contains = "example ok" }
+meta = { variant = "Image embeddings", output_contains = "example ok", min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "embed", dialect = "cohere" }
 

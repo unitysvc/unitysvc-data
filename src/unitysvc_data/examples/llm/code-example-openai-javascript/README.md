@@ -6,7 +6,7 @@ file = "code-example.js.j2"
 description = "JavaScript example: send a chat completion request to an OpenAI-compatible LLM using the openai SDK"
 is_active = true
 is_public = true
-meta = { variant = "Chat", requirements = ["openai"] }
+meta = { variant = "Chat", requirements = ["openai"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai" }
 +++

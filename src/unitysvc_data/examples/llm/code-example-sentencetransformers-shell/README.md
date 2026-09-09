@@ -6,7 +6,7 @@ file = "code-example-sentencetransformers.sh.j2"
 description = "Bash example: sentence-similarity via HF sentence-transformers /models/<model> using curl"
 is_active = true
 is_public = true
-meta = { variant = "Sentence Transformers", output_contains = "example ok" }
+meta = { variant = "Sentence Transformers", output_contains = "example ok", min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "embed", dialect = "huggingface" }
 

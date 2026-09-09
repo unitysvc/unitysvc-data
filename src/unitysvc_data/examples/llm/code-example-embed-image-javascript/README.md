@@ -6,7 +6,7 @@ file = "code-example-embed-image.js.j2"
 description = "JavaScript example: embed an image via /embed (Cohere v2-style)"
 is_active = true
 is_public = true
-meta = { variant = "Image embeddings" }
+meta = { variant = "Image embeddings", min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "embed", dialect = "cohere" }
 +++

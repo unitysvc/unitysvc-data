@@ -245,8 +245,12 @@ def test_min_expected_metrics_defaults_to_bytes_out_on_every_executable_document
     """Every executable document opts into billing verification (#1522) by
     default, on the one floor that's safe without knowing a provider's
     metering scheme: bytes_out is set by the gateway itself from the raw
-    response size, unlike token counts which require a recognised dialect."""
-    docs = llm_example_collection({"capabilities": ["chat"], "formats": ["openai"]})
+    response size, unlike token counts which require a recognised dialect.
+
+    Uses ``moderate`` (the guard examples), which declares no preset-own
+    ``min_expected_metrics`` — see the union tests below for capabilities
+    that layer a stronger, preset-specific floor on top."""
+    docs = llm_example_collection({"capabilities": ["moderate"], "formats": ["openai"]})
 
     executable = [
         d for d in docs.values() if d["category"] in ("code_example", "connectivity_test")
@@ -256,15 +260,11 @@ def test_min_expected_metrics_defaults_to_bytes_out_on_every_executable_document
 
 
 def test_min_expected_metrics_default_does_not_clobber_the_presets_own_meta():
-    docs = llm_example_collection({"capabilities": ["chat"], "formats": ["openai"]})
+    docs = llm_example_collection({"capabilities": ["moderate"], "formats": ["openai"]})
 
-    example = docs["Python code example (openai SDK)"]
-    assert example["meta"]["requirements"] == ["openai"]
+    example = docs["Python code example (requests)"]
+    assert example["meta"]["requirements"] == ["requests"]
     assert example["meta"]["min_expected_metrics"] == {"bytes_out": 1}
-
-    probe = docs["Connectivity test"]
-    assert probe["meta"]["output_contains"] == "connectivity ok"
-    assert probe["meta"]["min_expected_metrics"] == {"bytes_out": 1}
 
 
 def test_min_expected_metrics_is_overridable_per_service():
@@ -272,7 +272,7 @@ def test_min_expected_metrics_is_overridable_per_service():
     require a stricter floor than the byte-count default."""
     docs = llm_example_collection(
         {
-            "capabilities": ["chat"],
+            "capabilities": ["moderate"],
             "formats": ["openai"],
             "min_expected_metrics": {"output_tokens": 1},
         }
@@ -287,7 +287,7 @@ def test_min_expected_metrics_is_overridable_per_service():
 
 def test_min_expected_metrics_empty_dict_opts_out():
     docs = llm_example_collection(
-        {"capabilities": ["chat"], "formats": ["openai"], "min_expected_metrics": {}}
+        {"capabilities": ["moderate"], "formats": ["openai"], "min_expected_metrics": {}}
     )
 
     executable = [
@@ -295,6 +295,46 @@ def test_min_expected_metrics_empty_dict_opts_out():
     ]
     assert executable, "expected executable documents"
     assert all("min_expected_metrics" not in d["meta"] for d in executable)
+
+
+def test_min_expected_metrics_unions_with_the_presets_own_floor():
+    """A preset that has verified its own dialect reports token counts
+    (see the DeepSeek BYOK counter-example in unitysvc-data's CHANGELOG for
+    why this is only declared per-preset, not defaulted platform-wide)
+    layers its floor ON TOP of the collection's bytes_out default — both
+    apply, the preset's floor doesn't replace the safety net."""
+    docs = llm_example_collection({"capabilities": ["chat"], "formats": ["openai"]})
+
+    example = docs["Python code example (openai SDK)"]
+    assert example["meta"]["requirements"] == ["openai"]
+    assert example["meta"]["min_expected_metrics"] == {
+        "bytes_out": 1,
+        "input_tokens": 1,
+        "output_tokens": 1,
+    }
+
+    probe = docs["Connectivity test"]
+    assert probe["meta"]["output_contains"] == "connectivity ok"
+    assert probe["meta"]["min_expected_metrics"] == {
+        "bytes_out": 1,
+        "input_tokens": 1,
+        "output_tokens": 1,
+    }
+
+
+def test_min_expected_metrics_preset_floor_wins_on_a_shared_key():
+    """A collection-level override and a preset's own floor can name the
+    same metric; the preset's own (more specific, verified) value wins."""
+    docs = llm_example_collection(
+        {
+            "capabilities": ["chat"],
+            "formats": ["openai"],
+            "min_expected_metrics": {"input_tokens": 999},
+        }
+    )
+
+    example = docs["Python code example (openai SDK)"]
+    assert example["meta"]["min_expected_metrics"] == {"input_tokens": 1, "output_tokens": 1}
 
 
 def test_registered_as_a_jinja_global_for_templated_repos():
