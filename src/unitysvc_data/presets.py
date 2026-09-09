@@ -512,6 +512,15 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     Unlike :func:`doc_preset`, which returns ONE document, this returns a
     mapping of ``{title: record}`` ready to be used as a listing's
     ``documents`` value.
+
+    Every executable document (the connectivity probe and every code
+    example) also gets ``meta.min_expected_metrics = {"bytes_out": 1}``
+    by default, opting the service into the platform's billing-verification
+    check (unitysvc/unitysvc#1522) — see the ``bytes_out`` comment below for
+    why that floor, specifically, is safe to default. Pass
+    ``min_expected_metrics`` in ``source`` to replace it (``{}`` to opt out
+    entirely, a stricter dict to require more once verified for this
+    provider).
     """
     # A collection covers EVERY capability the service declares, and each one
     # must bring its own examples — a capability nobody can demonstrate must
@@ -526,6 +535,24 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     upstream = source.get("upstream_dialect") or "openai"
     groups = _normalise_groups(source.get("formats") or [], default_tools=source.get("tools"))
     sleep = source.get("sleep")
+    # Billing-verification floor (unitysvc/unitysvc#1522): a connectivity
+    # probe proves the request round-tripped, not that the platform
+    # actually metered and billed it — the #1520 class of bug (a real
+    # 200 with no usage event) looks identical to success otherwise.
+    # ``bytes_out`` is the gateway's own always-on transfer metering
+    # (apisix-gateways lib/usage_event.lua), set from the raw response
+    # size regardless of whether the body parses as a recognised LLM
+    # dialect — unlike token counts, which require exactly that and are
+    # absent for providers/response shapes the gateway doesn't recognise
+    # (observed directly: a DeepSeek BYOK connectivity probe produced no
+    # ``output_tokens`` at all). So it is the one floor safe to default
+    # for every provider without knowing its metering scheme in advance.
+    # Pass ``min_expected_metrics={}`` to opt a collection out entirely;
+    # pass a non-empty dict to replace the default with something
+    # stricter (e.g. real token counts) once verified for that service.
+    min_expected_metrics = source.get("min_expected_metrics")
+    if min_expected_metrics is None:
+        min_expected_metrics = {"bytes_out": 1}
     # Parameter values broadcast to every preset that DECLARES them —
     # e.g. `version_prefix` (which path the upstream serves its API on:
     # cohere /compatibility/v1, crofai /v2) or `language` on the
@@ -576,6 +603,7 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
                 scope,
                 sleep,
                 {**broadcast, **(group.get("params") or {})},
+                min_expected_metrics=min_expected_metrics,
             )
     return docs
 
@@ -616,7 +644,8 @@ _EXECUTABLE = frozenset({"code_example", "connectivity_test"})
 
 
 def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
-            broadcast: dict[str, Any] | None = None) -> dict[str, Any]:
+            broadcast: dict[str, Any] | None = None,
+            min_expected_metrics: dict[str, Any] | None = None) -> dict[str, Any]:
     """A document record scoped to its group's channel and interface.
 
     Merged INTO the preset's own ``meta`` rather than over it: the
@@ -646,6 +675,8 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
         scope["test"] = {"status": group["test_status"]}
     if sleep is not None:
         scope["sleep_after_test"] = sleep
+    if min_expected_metrics:
+        scope["min_expected_metrics"] = min_expected_metrics
     if scope:
         record["meta"] = {**(record.get("meta") or {}), **scope}
     return record

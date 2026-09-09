@@ -11,6 +11,21 @@ rare).
 
 ## [Unreleased]
 
+### Added
+
+- **`llm_example_collection` — `min_expected_metrics` defaults to
+  `{"bytes_out": 1}`** on every executable document it generates (the
+  connectivity probe and every code example), opting services into the
+  platform's billing-verification check (unitysvc/unitysvc#1522, #2093)
+  without any per-service authoring. `bytes_out` is the gateway's own
+  always-on transfer metering — set from the raw response size regardless
+  of whether the body parses as a recognised LLM dialect — unlike token
+  counts, which require exactly that and were observed absent for a
+  DeepSeek BYOK connectivity probe. Pass `min_expected_metrics` in the
+  collection's `source` dict to replace the default (`{}` to opt out,
+  a stricter dict — e.g. real token floors — once verified for that
+  service's bundle).
+
 ## [0.1.42] — msg_request_template preset
 
 ### Added

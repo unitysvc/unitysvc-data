@@ -241,6 +241,62 @@ def test_sleep_does_not_clobber_the_presets_requirements():
     assert docs["Python code example (openai SDK)"]["meta"]["requirements"] == ["openai"]
 
 
+def test_min_expected_metrics_defaults_to_bytes_out_on_every_executable_document():
+    """Every executable document opts into billing verification (#1522) by
+    default, on the one floor that's safe without knowing a provider's
+    metering scheme: bytes_out is set by the gateway itself from the raw
+    response size, unlike token counts which require a recognised dialect."""
+    docs = llm_example_collection({"capabilities": ["chat"], "formats": ["openai"]})
+
+    executable = [
+        d for d in docs.values() if d["category"] in ("code_example", "connectivity_test")
+    ]
+    assert executable, "expected executable documents"
+    assert all(d["meta"]["min_expected_metrics"] == {"bytes_out": 1} for d in executable)
+
+
+def test_min_expected_metrics_default_does_not_clobber_the_presets_own_meta():
+    docs = llm_example_collection({"capabilities": ["chat"], "formats": ["openai"]})
+
+    example = docs["Python code example (openai SDK)"]
+    assert example["meta"]["requirements"] == ["openai"]
+    assert example["meta"]["min_expected_metrics"] == {"bytes_out": 1}
+
+    probe = docs["Connectivity test"]
+    assert probe["meta"]["output_contains"] == "connectivity ok"
+    assert probe["meta"]["min_expected_metrics"] == {"bytes_out": 1}
+
+
+def test_min_expected_metrics_is_overridable_per_service():
+    """A service that has verified its bundle does token-level metering can
+    require a stricter floor than the byte-count default."""
+    docs = llm_example_collection(
+        {
+            "capabilities": ["chat"],
+            "formats": ["openai"],
+            "min_expected_metrics": {"output_tokens": 1},
+        }
+    )
+
+    executable = [
+        d for d in docs.values() if d["category"] in ("code_example", "connectivity_test")
+    ]
+    assert executable, "expected executable documents"
+    assert all(d["meta"]["min_expected_metrics"] == {"output_tokens": 1} for d in executable)
+
+
+def test_min_expected_metrics_empty_dict_opts_out():
+    docs = llm_example_collection(
+        {"capabilities": ["chat"], "formats": ["openai"], "min_expected_metrics": {}}
+    )
+
+    executable = [
+        d for d in docs.values() if d["category"] in ("code_example", "connectivity_test")
+    ]
+    assert executable, "expected executable documents"
+    assert all("min_expected_metrics" not in d["meta"] for d in executable)
+
+
 def test_registered_as_a_jinja_global_for_templated_repos():
     """Templated seller repos call it as a Jinja global rather than via
     the JSON sentinel, so it must be registered on the render env."""
@@ -712,9 +768,16 @@ def test_an_asserted_example_can_actually_produce_its_sentinel():
     assert not broken, f"declare output_contains but never print it: {broken}"
 
 
-def test_the_collection_takes_six_keys_and_no_more():
+def test_the_collection_takes_seven_keys_and_no_more():
     """A guard on API surface. Anything a repo needs beyond these belongs
-    in a sibling document, not a new option — see the tests below."""
+    in a sibling document, not a new option — see the tests below.
+
+    ``min_expected_metrics`` earned first-class status (rather than the
+    sibling escape hatch) on the same grounds as ``sleep``: it applies
+    uniformly to every executable document the collection generates, and
+    a per-title sibling override for something every document needs would
+    mean reverse-engineering and repeating each preset's own record by
+    hand (see unitysvc/unitysvc#1522's rollout for exactly that pain)."""
     import inspect
 
     from unitysvc_data import presets
@@ -730,6 +793,7 @@ def test_the_collection_takes_six_keys_and_no_more():
         "tools",         # gate for the function-calling example
         "sleep",         # meta.sleep_after_test, for rate-limited upstreams
         "params",        # broadcast to presets declaring the parameter
+        "min_expected_metrics",  # meta.min_expected_metrics, billing-verification floor
     }, f"API surface changed: {sorted(declared)}"
 
 
