@@ -11,6 +11,8 @@ rare).
 
 ## [Unreleased]
 
+## [0.2.0] — min_expected_metrics billing-verification coverage, LLM and notify
+
 ### Added
 
 - **`llm_example_collection` — `min_expected_metrics` defaults to
