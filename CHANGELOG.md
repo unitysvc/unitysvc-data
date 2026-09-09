@@ -11,6 +11,8 @@ rare).
 
 ## [Unreleased]
 
+## [0.2.0] — min_expected_metrics billing-verification coverage, LLM and notify
+
 ### Added
 
 - **`llm_example_collection` — `min_expected_metrics` defaults to
@@ -49,6 +51,18 @@ rare).
   sweep to surface real gaps (metering bugs, or an over-strict floor for
   a specific provider's response shape) once one exists, same as the
   DeepSeek canary did for the connectivity-billing check itself (0.1.37).
+- **`min_expected_metrics = {"bytes_out": 1}` on every notification-service
+  preset** (`notify_relay_code_example_py`/`_sh`, `notify_relay_connectivity`,
+  `msg_to_apprise_code_example_py`/`_sh`, `msg_to_apprise_connectivity`,
+  `msg_to_channel_code_example_py`/`_sh`, `msg_to_channel_connectivity`, and
+  every channel variant of each). These presets are plain `doc_preset`s, not
+  generated through `llm_example_collection`, so they never picked up the
+  `bytes_out` default above and had zero billing-verification coverage.
+  `bytes_out` is the right (and only) floor here too: notification upstreams
+  (webhook relays, Apprise-format transforms) don't return a structured
+  `usage` block for the gateway's extractor to read, so a token/count floor
+  isn't available — but the gateway's transfer metering is unconditional
+  regardless of upstream response shape.
 
 ## [0.1.42] — msg_request_template preset
 

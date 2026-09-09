@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python (httpx) code example for gateway-transformer notification services"
 is_active = true
 is_public = true
-meta = { output_contains = "sent", requirements = ["httpx"] }
+meta = { output_contains = "sent", requirements = ["httpx"], min_expected_metrics = { bytes_out = 1 } }
 parameters = { channel = "gateway", native_body = "{}", local_url = "" }
 +++
 

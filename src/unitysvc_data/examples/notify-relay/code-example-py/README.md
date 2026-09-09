@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python (httpx) code example for pass-through HTTP notification services"
 is_active = true
 is_public = true
-meta = { output_contains = "sent", requirements = ["httpx"] }
+meta = { output_contains = "sent", requirements = ["httpx"], min_expected_metrics = { bytes_out = 1 } }
 parameters = { webhook_path = "/webhook", chat_id = "" }
 +++
 

@@ -6,7 +6,7 @@ file = "code-example.sh.j2"
 description = "cURL code example for SMTP→notification transformer services"
 is_active = true
 is_public = true
-meta = { output_contains = "sent" }
+meta = { output_contains = "sent", min_expected_metrics = { bytes_out = 1 } }
 parameters = { apprise_url = "" }
 +++
 
