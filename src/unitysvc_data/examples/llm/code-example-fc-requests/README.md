@@ -56,8 +56,5 @@ parity can still pass.
 - Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env;
   missing any of the three fails fast with `KeyError`.
 - Single `echo_message` tool wired to a local function.
-
-### v2 — bound generated output
-
 - Optionally sends `max_tokens` when the collection supplies the
   `max_tokens` parameter; the default example remains uncapped.

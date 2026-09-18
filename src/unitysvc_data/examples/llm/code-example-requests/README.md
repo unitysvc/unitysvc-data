@@ -43,8 +43,5 @@ Required:
   non-zero exit.
 - Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from the
   environment; missing any of the three fails fast with `KeyError`.
-
-### v2 — bound generated output
-
 - Optionally sends `max_tokens` when the collection supplies the
   `max_tokens` parameter; the default example remains uncapped.

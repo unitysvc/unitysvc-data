@@ -44,8 +44,5 @@ Required:
   example skips empty deltas to avoid printing `None`.
 - `print(..., end="", flush=True)` so tokens appear immediately
   rather than buffered to a newline.
-
-### v2 — bound generated output
-
 - Optionally sends `max_tokens` when the collection supplies the
   `max_tokens` parameter; the default example remains uncapped.

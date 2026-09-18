@@ -38,8 +38,5 @@ Required:
 - A small loop checks the three required env vars before the request
   and exits 1 on any missing one.
 - Non-2xx responses are surfaced with status + body and exit code 1.
-
-### v2 — bound generated output
-
 - Optionally sends `max_tokens` when the collection supplies the
   `max_tokens` parameter; the default example remains uncapped.
