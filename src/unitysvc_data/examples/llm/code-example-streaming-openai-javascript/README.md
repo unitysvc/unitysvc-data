@@ -7,7 +7,7 @@ description = "JavaScript example: stream a chat completion from an OpenAI-compa
 is_active = true
 is_public = true
 meta = { variant = "Streaming", requirements = ["openai"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
-parameters = { version_prefix = "/v1" }
+parameters = { version_prefix = "/v1", max_tokens = "" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai", feature = "streaming" }
 +++
 
@@ -46,5 +46,5 @@ Required:
 
 ### v2 — bound generated output
 
-- Sends `max_tokens: 64` so providers cannot apply a context-sized
-  default that leaves no room for the prompt.
+- Optionally sends `max_tokens` when the collection supplies the
+  `max_tokens` parameter; the default example remains uncapped.
