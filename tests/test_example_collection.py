@@ -10,6 +10,10 @@ carry its preset name, so the path is not a usable key.
 
 from __future__ import annotations
 
+import re
+from pathlib import Path
+
+import jinja2
 import pytest
 
 from unitysvc_data import doc_preset, llm_example_collection
@@ -72,6 +76,35 @@ def test_openai_format_contributes_every_openai_native_flavour():
         "llm_code_example_streaming_openai",  # python, streaming
         "llm_code_example_streaming_openai_javascript",  # js, streaming
     }
+
+
+def _render_example(record: dict) -> str:
+    source = Path(record["file_path"]).read_text()
+    return jinja2.Environment(undefined=jinja2.ChainableUndefined).from_string(source).render()
+
+
+def test_openai_native_examples_only_bound_output_tokens_when_requested():
+    """The exceptional cap must not leak into copyable examples by default."""
+    default_docs = llm_example_collection(
+        {"capabilities": ["chat"], "formats": ["openai"], "tools": True}
+    )
+    capped_docs = llm_example_collection(
+        {
+            "capabilities": ["chat"],
+            "formats": ["openai"],
+            "tools": True,
+            "params": {"max_tokens": "64"},
+        }
+    )
+
+    for title, default_record in default_docs.items():
+        if default_record["category"] != "code_example":
+            continue
+        assert "max_tokens" not in _render_example(default_record), title
+        assert re.search(
+            r'["\']?max_tokens["\']?\s*[:=]\s*64\b',
+            _render_example(capped_docs[title]),
+        ), title
 
 
 def test_embed_capability_probes_embeddings_not_chat():

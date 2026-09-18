@@ -1479,6 +1479,7 @@
       },
       "mime_type": "python",
       "parameters": {
+        "max_tokens": "",
         "version_prefix": "/v1"
       },
       "preset_name": "llm_code_example_fc_requests",
@@ -1781,6 +1782,7 @@
       },
       "mime_type": "javascript",
       "parameters": {
+        "max_tokens": "",
         "version_prefix": "/v1"
       },
       "preset_name": "llm_code_example_javascript",
@@ -1810,6 +1812,7 @@
       },
       "mime_type": "javascript",
       "parameters": {
+        "max_tokens": "",
         "version_prefix": "/v1"
       },
       "preset_name": "llm_code_example_openai_javascript",
@@ -2100,6 +2103,7 @@
       },
       "mime_type": "python",
       "parameters": {
+        "max_tokens": "",
         "version_prefix": "/v1"
       },
       "preset_name": "llm_code_example_openai",
@@ -2129,6 +2133,7 @@
       },
       "mime_type": "python",
       "parameters": {
+        "max_tokens": "",
         "version_prefix": "/v1"
       },
       "preset_name": "llm_code_example_requests",
@@ -2339,6 +2344,7 @@
       },
       "mime_type": "bash",
       "parameters": {
+        "max_tokens": "",
         "version_prefix": "/v1"
       },
       "preset_name": "llm_code_example_shell",
@@ -2366,6 +2372,7 @@
       },
       "mime_type": "bash",
       "parameters": {
+        "max_tokens": "",
         "version_prefix": "/v1"
       },
       "preset_name": "llm_code_example_shell",
@@ -2396,6 +2403,7 @@
       },
       "mime_type": "javascript",
       "parameters": {
+        "max_tokens": "",
         "version_prefix": "/v1"
       },
       "preset_name": "llm_code_example_streaming_openai_javascript",
@@ -2426,6 +2434,7 @@
       },
       "mime_type": "python",
       "parameters": {
+        "max_tokens": "",
         "version_prefix": "/v1"
       },
       "preset_name": "llm_code_example_streaming_openai",

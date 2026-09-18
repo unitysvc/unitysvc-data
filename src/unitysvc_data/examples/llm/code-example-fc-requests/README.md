@@ -7,7 +7,7 @@ description = "Python example: chat completion with function/tool calling on an 
 is_active = true
 is_public = true
 meta = { variant = "Function calling", requirements = ["requests"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
-parameters = { version_prefix = "/v1" }
+parameters = { version_prefix = "/v1", max_tokens = "" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai", feature = "tools" }
 +++
 
@@ -56,3 +56,5 @@ parity can still pass.
 - Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env;
   missing any of the three fails fast with `KeyError`.
 - Single `echo_message` tool wired to a local function.
+- Optionally sends `max_tokens` when the collection supplies the
+  `max_tokens` parameter; the default example remains uncapped.

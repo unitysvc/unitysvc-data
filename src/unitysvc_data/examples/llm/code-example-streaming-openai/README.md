@@ -7,7 +7,7 @@ description = "Python example: stream a chat completion from an OpenAI-compatibl
 is_active = true
 is_public = true
 meta = { variant = "Streaming", requirements = ["openai"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
-parameters = { version_prefix = "/v1" }
+parameters = { version_prefix = "/v1", max_tokens = "" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai", feature = "streaming" }
 +++
 
@@ -44,3 +44,5 @@ Required:
   example skips empty deltas to avoid printing `None`.
 - `print(..., end="", flush=True)` so tokens appear immediately
   rather than buffered to a newline.
+- Optionally sends `max_tokens` when the collection supplies the
+  `max_tokens` parameter; the default example remains uncapped.

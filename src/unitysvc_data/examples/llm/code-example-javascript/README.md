@@ -7,7 +7,7 @@ description = "JavaScript example: send a chat completion request to an OpenAI-c
 is_active = true
 is_public = true
 meta = { variant = "Chat", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
-parameters = { version_prefix = "/v1" }
+parameters = { version_prefix = "/v1", max_tokens = "" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai" }
 +++
 
@@ -38,3 +38,5 @@ Required:
 - A small loop checks the three required env vars before the request
   and exits 1 on any missing one.
 - Non-2xx responses are surfaced with status + body and exit code 1.
+- Optionally sends `max_tokens` when the collection supplies the
+  `max_tokens` parameter; the default example remains uncapped.

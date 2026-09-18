@@ -7,7 +7,7 @@ description = "Python example: send a chat completion request to an OpenAI-compa
 is_active = true
 is_public = true
 meta = { variant = "Chat", requirements = ["openai"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
-parameters = { version_prefix = "/v1" }
+parameters = { version_prefix = "/v1", max_tokens = "" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai" }
 +++
 
@@ -43,3 +43,5 @@ Required:
   with a clear stack trace), so no explicit status check is needed.
 - Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from the
   environment; missing any of the three fails fast with `KeyError`.
+- Optionally sends `max_tokens` when the collection supplies the
+  `max_tokens` parameter; the default example remains uncapped.

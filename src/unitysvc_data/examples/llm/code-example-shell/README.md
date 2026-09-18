@@ -7,7 +7,7 @@ description = "Shell example: send a chat completion request to an OpenAI-compat
 is_active = true
 is_public = true
 meta = { variant = "Chat", output_contains = "example ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
-parameters = { version_prefix = "/v1" }
+parameters = { version_prefix = "/v1", max_tokens = "" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai" }
 
 [versions.v1]
@@ -42,3 +42,9 @@ Required:
   one fails before the request is sent.
 - `set -e -o pipefail` so failures (including inside pipes)
   propagate.
+
+### v2 — assert the response shape
+
+- Verifies that a successful response contains chat-completion choices.
+- Optionally sends `max_tokens` when the collection supplies the
+  `max_tokens` parameter; the default example remains uncapped.

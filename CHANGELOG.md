@@ -11,6 +11,16 @@ rare).
 
 ## [Unreleased]
 
+## [0.2.1] — optional output limits for OpenAI examples
+
+### Changed
+
+- Native OpenAI chat examples now declare an optional `max_tokens` preset
+  parameter. The default remains empty, preserving the natural request shape
+  shown to customers; services whose upstream rejects an omitted output limit
+  can opt in through `llm_example_collection` with
+  `params: {"max_tokens": "64"}`.
+
 ## [0.2.0] — min_expected_metrics billing-verification coverage, LLM and notify
 
 ### Added
