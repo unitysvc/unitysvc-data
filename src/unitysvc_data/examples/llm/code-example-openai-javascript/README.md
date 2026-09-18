@@ -42,3 +42,8 @@ Required:
   `node code-example.js` without ESM/`type:"module"` setup.
 - HTTP errors surface as `OpenAIError` subclasses; `main().catch`
   exits 1 with a clean message.
+
+### v2 — bound generated output
+
+- Sends `max_tokens: 64` so providers cannot apply a context-sized
+  default that leaves no room for the prompt.

@@ -38,3 +38,8 @@ Required:
 - A small loop checks the three required env vars before the request
   and exits 1 on any missing one.
 - Non-2xx responses are surfaced with status + body and exit code 1.
+
+### v2 — bound generated output
+
+- Sends `max_tokens: 64` so providers cannot apply a context-sized
+  default that leaves no room for the prompt.

@@ -44,3 +44,8 @@ Required:
   example skips empty deltas to avoid printing `None`.
 - `print(..., end="", flush=True)` so tokens appear immediately
   rather than buffered to a newline.
+
+### v2 — bound generated output
+
+- Sends `max_tokens=64` so providers cannot apply a context-sized
+  default that leaves no room for the prompt.

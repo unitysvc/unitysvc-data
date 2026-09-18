@@ -56,3 +56,8 @@ parity can still pass.
 - Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env;
   missing any of the three fails fast with `KeyError`.
 - Single `echo_message` tool wired to a local function.
+
+### v2 — bound generated output
+
+- Sends `max_tokens: 64` so providers cannot apply a context-sized
+  default that leaves no room for the prompt.
