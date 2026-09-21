@@ -11,6 +11,23 @@ rare).
 
 ## [Unreleased]
 
+## [0.3.0] — streaming examples tolerate a usage-only final chunk
+
+### Added
+
+- `llm_code_example_streaming_openai_v2`,
+  `llm_code_example_openai_to_anthropic_stream_sdk_v2` and
+  `llm_code_example_anthropic_to_openai_stream_sdk_v3` skip a stream chunk
+  that carries no choice. Some OpenAI-compatible upstreams close a stream
+  with a usage-only chunk whose `choices` is `[]`, and the previous versions
+  indexed `choices[0]` unconditionally, raising `IndexError` at the very end
+  of an otherwise successful call. Observed against QwenCloud, which sends
+  that chunk on every stream; the JavaScript sibling example has always
+  guarded the same case with `chunk.choices[0]?.delta?.content`. The
+  version-less aliases now point at the guarded versions; data pinned to an
+  earlier `_vN` is unchanged.
+
+
 ## [0.2.1] — optional output limits for OpenAI examples
 
 ### Changed

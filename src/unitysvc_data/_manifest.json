@@ -11,7 +11,7 @@
     "llm_code_example_anthropic_to_openai_sdk": "llm_code_example_anthropic_to_openai_sdk_v1",
     "llm_code_example_anthropic_to_openai_shell": "llm_code_example_anthropic_to_openai_shell_v3",
     "llm_code_example_anthropic_to_openai_stream_requests": "llm_code_example_anthropic_to_openai_stream_requests_v1",
-    "llm_code_example_anthropic_to_openai_stream_sdk": "llm_code_example_anthropic_to_openai_stream_sdk_v2",
+    "llm_code_example_anthropic_to_openai_stream_sdk": "llm_code_example_anthropic_to_openai_stream_sdk_v3",
     "llm_code_example_anthropic_to_openai_stream_shell": "llm_code_example_anthropic_to_openai_stream_shell_v3",
     "llm_code_example_bedrock_converse": "llm_code_example_bedrock_converse_v1",
     "llm_code_example_bedrock_invoke": "llm_code_example_bedrock_invoke_v1",
@@ -40,7 +40,7 @@
     "llm_code_example_openai_to_anthropic_sdk": "llm_code_example_openai_to_anthropic_sdk_v1",
     "llm_code_example_openai_to_anthropic_shell": "llm_code_example_openai_to_anthropic_shell_v3",
     "llm_code_example_openai_to_anthropic_stream_requests": "llm_code_example_openai_to_anthropic_stream_requests_v1",
-    "llm_code_example_openai_to_anthropic_stream_sdk": "llm_code_example_openai_to_anthropic_stream_sdk_v1",
+    "llm_code_example_openai_to_anthropic_stream_sdk": "llm_code_example_openai_to_anthropic_stream_sdk_v2",
     "llm_code_example_openai_to_anthropic_stream_shell": "llm_code_example_openai_to_anthropic_stream_shell_v3",
     "llm_code_example_requests": "llm_code_example_requests_v1",
     "llm_code_example_rerank_javascript": "llm_code_example_rerank_javascript_v1",
@@ -50,7 +50,7 @@
     "llm_code_example_sentencetransformers_requests": "llm_code_example_sentencetransformers_requests_v1",
     "llm_code_example_sentencetransformers_shell": "llm_code_example_sentencetransformers_shell_v2",
     "llm_code_example_shell": "llm_code_example_shell_v2",
-    "llm_code_example_streaming_openai": "llm_code_example_streaming_openai_v1",
+    "llm_code_example_streaming_openai": "llm_code_example_streaming_openai_v2",
     "llm_code_example_streaming_openai_javascript": "llm_code_example_streaming_openai_javascript_v1",
     "llm_code_example_transcription_javascript": "llm_code_example_transcription_javascript_v1",
     "llm_code_example_transcription_requests": "llm_code_example_transcription_requests_v1",
@@ -1038,6 +1038,37 @@
       "source_readme": "llm/code-example-anthropic-to-openai-stream-sdk/README.md",
       "version": 2
     },
+    "llm_code_example_anthropic_to_openai_stream_sdk_v3": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "anthropic",
+        "feature": "streaming",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Streaming Python example: Anthropic-format SSE request against an anthropic->openai translation gateway using the official SDKs \u2014 OpenAI SDK for the direct-upstream test, Anthropic SDK for the gateway test",
+      "example_file": "llm/code-example-anthropic-to-openai-stream-sdk/code-example-v3.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "requirements": [
+          "openai",
+          "anthropic"
+        ],
+        "variant": "Anthropic-style (streaming)"
+      },
+      "mime_type": "python",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_anthropic_to_openai_stream_sdk",
+      "source_readme": "llm/code-example-anthropic-to-openai-stream-sdk/README.md",
+      "version": 3
+    },
     "llm_code_example_anthropic_to_openai_stream_shell_v1": {
       "applies_to": {
         "capability": "chat",
@@ -2004,6 +2035,35 @@
       "source_readme": "llm/code-example-openai-to-anthropic-stream-sdk/README.md",
       "version": 1
     },
+    "llm_code_example_openai_to_anthropic_stream_sdk_v2": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "streaming",
+        "upstream": "anthropic"
+      },
+      "category": "code_example",
+      "description": "Streaming Python example: OpenAI-format SSE request against an openai->anthropic translation gateway using the official SDKs \u2014 Anthropic SDK for the direct-upstream test, OpenAI SDK for the gateway test",
+      "example_file": "llm/code-example-openai-to-anthropic-stream-sdk/code-example-v2.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "requirements": [
+          "openai",
+          "anthropic"
+        ],
+        "variant": "OpenAI-style (streaming)"
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_openai_to_anthropic_stream_sdk",
+      "source_readme": "llm/code-example-openai-to-anthropic-stream-sdk/README.md",
+      "version": 2
+    },
     "llm_code_example_openai_to_anthropic_stream_shell_v1": {
       "applies_to": {
         "capability": "chat",
@@ -2440,6 +2500,37 @@
       "preset_name": "llm_code_example_streaming_openai",
       "source_readme": "llm/code-example-streaming-openai/README.md",
       "version": 1
+    },
+    "llm_code_example_streaming_openai_v2": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "openai",
+        "feature": "streaming",
+        "upstream": "openai"
+      },
+      "category": "code_example",
+      "description": "Python example: stream a chat completion from an OpenAI-compatible LLM using the openai SDK",
+      "example_file": "llm/code-example-streaming-openai/code-example-v2.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "requirements": [
+          "openai"
+        ],
+        "variant": "Streaming"
+      },
+      "mime_type": "python",
+      "parameters": {
+        "max_tokens": "",
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_code_example_streaming_openai",
+      "source_readme": "llm/code-example-streaming-openai/README.md",
+      "version": 2
     },
     "llm_code_example_transcription_javascript_v1": {
       "applies_to": {

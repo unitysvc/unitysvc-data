@@ -1,0 +1,34 @@
+import os
+
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="{{ service_base_url }}${__version_prefix__}",
+    api_key=os.environ["UNITYSVC_API_KEY"],
+)
+
+stream = client.chat.completions.create(
+    model="{{ routing_key.model }}",
+{% if "${__max_tokens__}" %}
+    max_tokens=${__max_tokens__},
+{% endif %}
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Say this is a test"},
+    ],
+    stream=True,
+)
+
+for chunk in stream:
+    # A chunk need not carry a choice. Some OpenAI-compatible upstreams end
+    # a stream with a usage-only chunk whose "choices" is [], so indexing
+    # [0] unconditionally raises IndexError at the very end of an otherwise
+    # successful call. Observed against QwenCloud, which sends that chunk on
+    # every stream; the JavaScript sibling example has always guarded the
+    # same case with `chunk.choices[0]?.delta?.content`.
+    if not chunk.choices:
+        continue
+    delta = chunk.choices[0].delta.content
+    if delta:
+        print(delta, end="", flush=True)
+print()
