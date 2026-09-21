@@ -45,3 +45,11 @@ Required:
 ### v1 — initial release
 - Single `"Say this is a test"` message; prints the streamed text deltas as they
   arrive. The Anthropic-shape call sets the required `max_tokens: 64`.
+
+### v2 — tolerate a usage-only final chunk
+
+- Skips a chunk that carries no choice. Some OpenAI-compatible upstreams
+  end a stream with a usage-only chunk whose `choices` is `[]`; indexing
+  `choices[0]` there raised `IndexError` at the very end of an otherwise
+  successful call (observed against QwenCloud, which sends that chunk on
+  every stream). No other behaviour changes.
