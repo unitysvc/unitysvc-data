@@ -6,13 +6,9 @@ file = "code-example-vision.sh.j2"
 description = "Bash example: describe an image via OpenAI-compatible /chat/completions using curl"
 is_active = true
 is_public = true
-meta = { variant = "Vision", output_contains = "example ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
+meta = { variant = "Vision", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "image-text-to-text", dialect = "openai", upstream = "openai", feature = "vision" }
-
-[versions.v1]
-# v1 predates the response-shape assertion and prints no sentinel.
-meta = { output_contains = "" }
 +++
 
 # llm / code-example-vision-shell — vision via `curl`
@@ -49,3 +45,9 @@ Optional:
 - Takes the media type from the response's `Content-Type` rather than
   assuming JPEG, so swapping in a PNG needs no edit.
 - `base64` wraps output on GNU but not BSD; `tr -d '\n'` normalises both.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

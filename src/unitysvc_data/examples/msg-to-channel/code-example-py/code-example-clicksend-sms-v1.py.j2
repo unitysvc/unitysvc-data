@@ -27,9 +27,11 @@ response = httpx.post(
         ]
     },
 )
+{%- if not customer_display %}
 if not (200 <= response.status_code < 300):
     print(f"failed (HTTP {response.status_code})", file=sys.stderr)
     sys.exit(1)
+{%- endif %}
 {% else %}
 response = httpx.post(
     BASE_URL,
@@ -41,7 +43,8 @@ response = httpx.post(
         "format": "text",
     },
 )
+{%- if not customer_display %}
 if response.status_code >= 400:
     raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
+{%- endif %}
 {% endif %}
-print(f"sent (HTTP {response.status_code})")

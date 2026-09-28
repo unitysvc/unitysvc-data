@@ -6,7 +6,7 @@ file = "connectivity-embed-image.sh.j2"
 description = "Verify a Cohere-shape image embedding endpoint by sending a tiny known image"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok", min_expected_metrics = { input_tokens = 1 } }
+meta = { min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v2" }
 applies_to = { capability = "embed", dialect = "cohere" }
 +++
@@ -51,3 +51,9 @@ Downloads a tiny cat image to the OS temp dir, base64-inlines it as a
   on failure (the bare `--fail-with-body | grep -q` pattern eats the
   body and leaves operators with just an exit code).
 - Output contains `connectivity ok` on success.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

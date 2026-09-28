@@ -1,16 +1,21 @@
 #!/bin/bash
 # Embedding-shape connectivity probe: POST a one-input embedding request
 # against the rendered model and assert the gateway returned a real
-# ``data`` array.  Cheap, non-zero exit on any 4xx / 5xx, prints
-# "connectivity ok" on success so output_contains can verify a real
-# round-trip.
+# ``data`` array. Cheap, with a non-zero exit on any 4xx / 5xx.
 set -e -o pipefail
 
 : "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
 
-curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/embeddings" \
+response=$(curl --fail-with-body -sS "{{ service_base_url }}${__version_prefix__}/embeddings" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
-  -d '{"model":"{{ routing_key.model }}","input":"ping"}' \
-  | grep -q '"data"'
-echo "connectivity ok"
+  -d '{"model":"{{ routing_key.model }}","input":"ping"}')
+
+echo "$response"
+
+{%- if not customer_display %}
+if ! printf '%s' "$response" | grep -q '"data"'; then
+  echo 'unexpected response: no "data" in the reply' >&2
+  exit 1
+fi
+{%- endif %}

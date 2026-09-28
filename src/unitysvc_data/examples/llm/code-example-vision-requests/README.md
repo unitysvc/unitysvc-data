@@ -65,6 +65,11 @@ Optional:
   coin-flip in CI for reasons unrelated to the service.
 - Takes the media type from the image response's `Content-Type` rather
   than assuming JPEG.
-- Adds the `"choices"` assertion and the `example ok` sentinel the family
-  metadata already expects — a 200 carrying an error object no longer
+- Adds a `"choices"` assertion, so a 200 carrying an error object no longer
   reads as a pass.
+- **Amended in 0.2.2**: the assertion is the whole verification now. It used to
+  be paired with an `example ok` sentinel that the family metadata matched
+  against stdout; that mechanism was retired platform-side
+  (unitysvc/unitysvc#2490), so the marker is gone and the HTTP and
+  response-shape checks are wrapped in `{%- if not customer_display %}` — they
+  still run, but the published example no longer shows them.

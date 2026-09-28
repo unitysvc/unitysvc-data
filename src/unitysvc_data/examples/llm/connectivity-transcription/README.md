@@ -6,7 +6,7 @@ file = "connectivity-transcription.sh.j2"
 description = "Verify an OpenAI-compatible audio-transcription endpoint by sending a tiny known audio file"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok", min_expected_metrics = { duration_seconds = 0.01 } }
+meta = { min_expected_metrics = { duration_seconds = 0.01 } }
 parameters = { version_prefix = "/v1", language = "en" }
 applies_to = { capability = "speech-to-text" }
 +++
@@ -48,6 +48,11 @@ and prints `connectivity ok` on success.
 - POST `/audio/transcriptions` with the audio + model.
 - `curl --fail-with-body` so 4xx / 5xx surface as non-zero exit.
 - `grep -q '"text"'` so a 200 with an unrelated body still fails.
-- Output contains `connectivity ok` — paired with the
-  `output_contains = "connectivity ok"` meta so the run-tests flow can
-  confirm a real round-trip.
+- Prints `connectivity ok` only after the transcript-shape check confirms a
+  real round-trip; curl or shape failures exit non-zero.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

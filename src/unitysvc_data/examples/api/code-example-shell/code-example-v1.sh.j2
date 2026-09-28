@@ -12,6 +12,7 @@ fi
 # failure it is the whole point.
 if ! body=$(curl -sS --fail-with-body --max-time 5 "${auth[@]}" "{{ service_base_url }}"); then
     printf '%s\n' "$body" >&2
+{%- if not customer_display %}
     exit 1
+{%- endif %}
 fi
-echo "ok"

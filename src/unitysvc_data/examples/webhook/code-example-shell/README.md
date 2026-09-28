@@ -6,7 +6,6 @@ file = "code-example.sh.j2"
 description = "cURL example: POST a Discord embeds payload directly to a webhook endpoint"
 is_active = true
 is_public = true
-meta = { output_contains = "sent" }
 parameters = { webhook_path = "/webhook" }
 +++
 
@@ -49,3 +48,9 @@ Discord `embeds` payload before forwarding to the configured webhook.
 
 - `curl -X POST` with Discord `embeds` JSON.
 - Prints `sent` on success.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

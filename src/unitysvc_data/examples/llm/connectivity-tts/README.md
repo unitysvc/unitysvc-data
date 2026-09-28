@@ -6,7 +6,6 @@ file = "connectivity-tts.sh.j2"
 description = "Verify an OpenAI-compatible text-to-speech endpoint by synthesizing a short phrase and asserting real audio comes back"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok" }
 parameters = { version_prefix = "/v1", voice = "alloy", response_format = "wav", min_bytes = "1024" }
 applies_to = { capability = "text-to-speech" }
 +++
@@ -75,6 +74,11 @@ unitysvc/unitysvc#1781 blocker 2.
 - 2xx, byte-count and not-JSON assertions as described above.
 - Removes the downloaded response before exiting so repeated runs do not
   accumulate audio in the temp dir.
-- Output contains `connectivity ok` — paired with the
-  `output_contains = "connectivity ok"` meta so the run-tests flow can confirm
-  a real round-trip.
+- Prints `connectivity ok` only after a non-empty audio response is written;
+  curl and empty-response failures exit non-zero.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

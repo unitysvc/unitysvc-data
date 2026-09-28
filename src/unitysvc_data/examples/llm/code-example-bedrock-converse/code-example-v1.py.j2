@@ -56,5 +56,8 @@ response = client.converse(
 # maxTokens is tight) the text block — print the first text block if there is
 # one, else the first block as-is. Never assume content[0] carries "text".
 content = response["output"]["message"]["content"]
+{%- if not customer_display %}
+if not content:
+    raise SystemExit("the reply contained no content blocks")
+{%- endif %}
 print(next((block["text"] for block in content if "text" in block), content[0]))
-print("connectivity ok")

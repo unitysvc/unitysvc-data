@@ -6,7 +6,7 @@ file = "connectivity.sh.j2"
 description = "Verify an OpenAI-compatible LLM endpoint by issuing a tiny chat completion"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
+meta = { min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", upstream = "openai" }
 +++
@@ -43,6 +43,11 @@ generating a real reply.
 - `grep -q '"choices"'` so a 200 with an unrelated body (rare, but
   some upstream errors return 200 with an `{"error": ...}` envelope)
   still fails.
-- Output contains `connectivity ok` — paired with the
-  `output_contains = "connectivity ok"` meta so the run-tests flow can
-  confirm a real round-trip.
+- Prints `connectivity ok` only after the response-shape check confirms a
+  real round-trip; curl or shape failures exit non-zero.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

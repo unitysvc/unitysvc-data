@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: list objects in an S3 bucket via boto3"
 is_active = true
 is_public = true
-meta = { output_contains = "connectivity ok", requirements = ["boto3"] }
+meta = { requirements = ["boto3"] }
 +++
 
 # s3 / code-example — list objects via boto3
@@ -48,3 +48,9 @@ five objects from the bucket using `boto3` and prints their keys.
 
 - Three-branch (seller creds / unsigned / gateway) rendering based on
   `local_testing` and `interface.access_key`.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

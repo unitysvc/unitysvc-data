@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python example: call the model with the native AWS SDK — boto3 converse() pointed at the UnitySVC gateway, which authenticates the svcpass access-key-id and re-signs upstream with the service's stored AWS credentials (SigV4)"
 is_active = true
 is_public = true
-meta = { variant = "boto3 Converse", requirements = ["boto3"], output_contains = "connectivity ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
+meta = { variant = "boto3 Converse", requirements = ["boto3"], min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 applies_to = { capability = "chat", dialect = "bedrock_converse", upstream = "openai" }
 +++
 
@@ -74,3 +74,9 @@ credential chain (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`).
   pong"` user turn, `maxTokens: 64` (headroom for reasoning models),
   reasoning-block-tolerant response parsing, prints `connectivity ok` on
   success.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

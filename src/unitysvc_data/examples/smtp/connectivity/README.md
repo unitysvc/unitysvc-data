@@ -6,7 +6,6 @@ file = "connectivity.sh.j2"
 description = "Verify SMTP server returns a 220 greeting on connect"
 is_active = true
 is_public = true
-meta = { output_contains = "connectivity ok" }
 +++
 
 # smtp / connectivity — SMTP banner smoke test
@@ -37,8 +36,7 @@ The script picks the mode by looking at which env var is set — no
 
 ## Conventions
 
-- Success line: `connectivity ok (220 ...)` — `meta.output_contains`
-  uses `connectivity ok` so any banner text passes.
+- Success line: `connectivity ok (220 ...)`; any non-220 banner exits non-zero.
 - Does not run `STARTTLS` or authenticate. This test is strictly
   "pipe opens and server says it's SMTP".
 - Ports 25 and 465 work too; override `PORT` in the env.
@@ -55,6 +53,11 @@ The script picks the mode by looking at which env var is set — no
 - When TLS is not required, behaviour is identical to v1.
 - Use v2 for any upstream with `tls: true` in `upstream_access_config`
   or a `smtps://` gateway URL.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
 
 ### v1 — initial release
 

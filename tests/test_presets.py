@@ -205,8 +205,9 @@ def test_msg_to_channel_connectivity_renders_gateway_and_local_modes():
     assert 'URL="{{ service_base_url }}"' in body
     assert "{{ service_base_url }}@gateway" not in body
     assert '{"title":"t","body":"hi","type":"info","format":"text"}' in body
-    # Status handling mirrors the apprise connectivity preset.
-    assert 'echo "connectivity ok (HTTP $status)"; exit 0' in body
+    # The runner validates status in-script without printing a success token.
+    assert "2??) exit 0 ;;" in body
+    assert "connectivity ok" not in body
 
 
 def test_list_presets_returns_versioned_and_aliases():
@@ -247,7 +248,7 @@ def test_doc_preset_sentinel_versioned():
     record = doc_preset({"$preset": "s3_connectivity_v1"})
     assert record["category"] == "connectivity_test"
     assert record["mime_type"] == "python"
-    assert record["meta"] == {"output_contains": "connectivity ok", "requirements": ["boto3"]}
+    assert record["meta"] == {"requirements": ["boto3"]}
     assert Path(record["file_path"]).is_file()
 
 
@@ -271,9 +272,9 @@ def test_doc_preset_sentinel_with_overrides():
 
 def test_doc_preset_deep_merges_meta():
     record = doc_preset(
-        {"$preset": "smtp_connectivity_v1", "$with": {"meta": {"timeout_s": 10}}}
+        {"$preset": "s3_connectivity_v1", "$with": {"meta": {"timeout_s": 10}}}
     )
-    assert record["meta"] == {"output_contains": "connectivity ok", "timeout_s": 10}
+    assert record["meta"] == {"requirements": ["boto3"], "timeout_s": 10}
 
 
 def test_doc_preset_returns_fresh_copy():

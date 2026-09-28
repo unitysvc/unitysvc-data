@@ -6,7 +6,7 @@ file = "connectivity.py.j2"
 description = "Verify S3 endpoint accepts the configured credentials"
 is_active = true
 is_public = true
-meta = { output_contains = "connectivity ok", requirements = ["boto3"] }
+meta = { requirements = ["boto3"] }
 +++
 
 # s3 / connectivity — S3 credential smoke test
@@ -51,3 +51,9 @@ signature was accepted — that's still connectivity ok.
 
 - Three-way branch on `local_testing` / `interface.access_key`.
 - Treats non-auth `ClientError` as pass.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

@@ -6,18 +6,9 @@ file = "code-example.sh.j2"
 description = "Shell example: streaming Anthropic-format request against an anthropic->openai translation gateway (customer speaks Anthropic; upstream is OpenAI) via curl"
 is_active = true
 is_public = true
-meta = { variant = "Anthropic-style (streaming)", output_contains = "example ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
+meta = { variant = "Anthropic-style (streaming)", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "chat", dialect = "anthropic", upstream = "openai", feature = "streaming" }
-
-[versions.v1]
-# v1 predates the response-shape assertion and prints no sentinel.
-meta = { output_contains = "" }
-
-[versions.v2]
-# v2 asserted only the local_testing branch; its gateway branch never
-# prints the sentinel, so with the assertion it fails every gateway run.
-meta = { output_contains = "" }
 +++
 
 # llm / code-example-anthropic-to-openai-stream-shell — streaming Anthropic-format call to an anthropic->openai translation gateway
@@ -63,3 +54,14 @@ Required:
 - Posts a single `"Say this is a test"` user message; Anthropic-shape
   calls set the required top-level `max_tokens: 64`.
 - `curl --fail-with-body` so upstream / gateway errors surface as a non-zero exit.
+
+### v3 — in-script verification
+
+- Verifies the response in the script rather than through the runner's
+  `output_contains` sentinel, which was retired platform-side
+  (unitysvc/unitysvc#2490) — so the check is a real status or response-shape
+  assertion, not a match against a token the script printed unconditionally.
+- The assertion is wrapped in `{%- if not customer_display %}` so it runs but
+  stays out of the published example; the unconditional success marker is gone.
+- **Amended in 0.2.2.** Earlier installs of this package ship a v3 whose
+  verification lived in metadata instead.

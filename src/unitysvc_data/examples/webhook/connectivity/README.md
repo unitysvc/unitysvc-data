@@ -6,7 +6,6 @@ file = "connectivity.sh.j2"
 description = "Verify a Discord-compatible webhook endpoint by POSTing a minimal embeds payload"
 is_active = true
 is_public = false
-meta = { output_contains = "connectivity ok" }
 parameters = { webhook_path = "/webhook" }
 +++
 
@@ -44,3 +43,9 @@ fragment.
 - POST `{"embeds":[{"title":"connectivity check","description":"ping"}]}`.
 - Asserts HTTP 204.
 - Output contains `connectivity ok`.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

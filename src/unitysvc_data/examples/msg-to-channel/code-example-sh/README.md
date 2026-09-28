@@ -6,7 +6,7 @@ file = "code-example.sh.j2"
 description = "cURL code example for gateway-transformer notification services"
 is_active = true
 is_public = true
-meta = { output_contains = "sent", min_expected_metrics = { bytes_out = 1 } }
+meta = { min_expected_metrics = { bytes_out = 1 } }
 parameters = { channel = "gateway", native_body = "{}", local_url = "" }
 +++
 
@@ -100,3 +100,9 @@ Channels with a per-channel variant:
   `msg_to_channel_code_example_py` request-for-request — same bodies, same
   headers, same success criteria — just written as a `curl` one-liner instead
   of a Python script.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

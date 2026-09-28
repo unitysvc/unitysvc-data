@@ -22,6 +22,7 @@ http_code=$(curl -sS "{{ service_base_url }}${__version_prefix__}/audio/speech" 
   -o "${response_file}" \
   -w "%{http_code}")
 
+{%- if not customer_display %}
 if [ "${http_code#2}" = "${http_code}" ]; then
     echo "HTTP $http_code from upstream:" >&2
     head -c 2000 "${response_file}" >&2
@@ -47,4 +48,4 @@ if [ "${first_byte}" = "{" ]; then
 fi
 
 rm -f "${response_file}"
-echo "connectivity ok"
+{%- endif %}

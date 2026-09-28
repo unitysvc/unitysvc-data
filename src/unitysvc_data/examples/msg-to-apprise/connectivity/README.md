@@ -6,7 +6,7 @@ file = "connectivity.sh.j2"
 description = "Connectivity test for SMTP→notification transformer services"
 is_active = true
 is_public = true
-meta = { output_contains = "connectivity ok", min_expected_metrics = { bytes_out = 1 } }
+meta = { min_expected_metrics = { bytes_out = 1 } }
 parameters = { apprise_url = "" }
 +++
 
@@ -55,3 +55,9 @@ upstream of the service being listed.
 
 - Local: POST upstream-format ping payload; assert success status code.
 - Gateway: POST `{"title":"connectivity check","body":"ping","from":"test@example.com"}`; assert HTTP 2xx.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

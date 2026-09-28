@@ -36,9 +36,12 @@ s3 = boto3.client('s3',
 {% endif %}
 
 response = s3.list_objects_v2(Bucket=bucket, MaxKeys=5, Prefix=prefix)
+{%- if not customer_display %}
+if "KeyCount" not in response:
+    raise SystemExit("the S3 response did not include KeyCount")
+{%- endif %}
 for obj in response.get('Contents', []):
     key = obj['Key']
     if prefix and key.startswith(prefix):
         key = key[len(prefix):]
     print(f"{key}  ({obj['Size']} bytes)")
-print("connectivity ok")

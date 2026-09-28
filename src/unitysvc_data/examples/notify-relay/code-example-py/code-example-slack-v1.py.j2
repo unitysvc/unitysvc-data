@@ -18,6 +18,7 @@ response = httpx.post(
     json={"text": "Hello from UnitySVC", "username": "unitysvc"},
 )
 {% endif %}
+{%- if not customer_display %}
 if response.status_code >= 400:
     raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
-print(f"sent (HTTP {response.status_code})")
+{%- endif %}

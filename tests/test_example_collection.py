@@ -347,7 +347,6 @@ def test_min_expected_metrics_unions_with_the_presets_own_floor():
     }
 
     probe = docs["Connectivity test"]
-    assert probe["meta"]["output_contains"] == "connectivity ok"
     assert probe["meta"]["min_expected_metrics"] == {
         "bytes_out": 1,
         "input_tokens": 1,
@@ -820,25 +819,50 @@ def test_a_broadcast_param_no_preset_declares_is_an_error():
         )
 
 
-def test_an_asserted_example_can_actually_produce_its_sentinel():
-    """`output_contains` is checked against the example's stdout. A preset
-    declaring a sentinel its body never prints would fail every run — a
-    self-inflicted failure, not a real one."""
-    import pathlib
+def test_no_preset_emits_removed_output_contains_metadata():
+    """Scripts own their assertions; the runner no longer matches stdout."""
+    from unitysvc_data import MANIFEST
 
-    from unitysvc_data import MANIFEST, example_path
+    offenders = [
+        key
+        for key, entry in MANIFEST["presets"].items()
+        if "output_contains" in (entry.get("meta") or {})
+    ]
 
-    broken = []
-    for key, entry in MANIFEST["presets"].items():
-        if not key.startswith("llm_") or entry["category"] != "code_example":
-            continue
-        needle = (entry.get("meta") or {}).get("output_contains")
-        if not needle:
-            continue
-        body = pathlib.Path(example_path(entry["example_file"])).read_text()
-        if needle not in body:
-            broken.append(key)
-    assert not broken, f"declare output_contains but never print it: {broken}"
+    assert not offenders
+
+
+def test_current_presets_do_not_print_retired_success_markers():
+    """A literal success token can make an otherwise empty test look useful."""
+    from unitysvc_data import MANIFEST
+
+    examples_root = Path(__file__).parents[1] / "src" / "unitysvc_data" / "examples"
+    exact_markers = {
+        'echo "sent"',
+        "echo 'sent'",
+        'echo "ok"',
+        "echo 'ok'",
+        'print("ok")',
+        "print('ok')",
+    }
+    offenders = []
+    for target in sorted(set(MANIFEST["aliases"].values())):
+        entry = MANIFEST["presets"][target]
+        path = examples_root / entry["example_file"]
+        for line_number, line in enumerate(path.read_text().splitlines(), start=1):
+            statement = line.strip()
+            if not statement.startswith(("echo ", "print(")):
+                continue
+            magic_prefixes = (
+                '"example ok',
+                "'example ok",
+                '"connectivity ok',
+                "'connectivity ok",
+            )
+            if any(marker in statement for marker in magic_prefixes) or statement in exact_markers:
+                offenders.append(f"{target}: {path.name}:{line_number}: {statement}")
+
+    assert not offenders, "\n".join(offenders)
 
 
 def test_the_collection_takes_seven_keys_and_no_more():
@@ -920,36 +944,3 @@ def test_the_collection_returns_a_plain_mergeable_mapping():
     assert dict(docs, **{"cURL code example": {"replaced": True}})["cURL code example"] == {
         "replaced": True
     }
-
-
-def test_every_branch_of_an_asserted_example_prints_the_sentinel():
-    """The deepseek canary failure: v2 wrapped only the `local_testing`
-    branch, so gateway mode — the branch staging actually runs — never
-    printed the sentinel and every run failed with unexpected_output.
-    `output_contains` applies to the whole document, so every Jinja branch
-    must be able to produce it."""
-    import pathlib
-    import re
-
-    from unitysvc_data import MANIFEST, example_path
-
-    broken = []
-    for key, entry in MANIFEST["presets"].items():
-        if not key.startswith("llm_") or entry["category"] != "code_example":
-            continue
-        needle = (entry.get("meta") or {}).get("output_contains")
-        if not needle:
-            continue
-        body = pathlib.Path(example_path(entry["example_file"])).read_text()
-        if "local_testing" not in body:
-            continue  # single-branch files are covered by the existing test
-        # A sentinel in the shared tail after the last endif is reachable
-        # from every branch (bedrock-converse prints it there); otherwise
-        # each branch must produce it itself.
-        tail = body.rsplit("endif", 1)[-1]
-        if needle in tail:
-            continue
-        for i, branch in enumerate(re.split(r"{%\s*(?:else|elif[^%]*)\s*%}", body)):
-            if needle not in branch:
-                broken.append(f"{key} (branch {i})")
-    assert not broken, f"a branch cannot produce its own output_contains: {broken}"

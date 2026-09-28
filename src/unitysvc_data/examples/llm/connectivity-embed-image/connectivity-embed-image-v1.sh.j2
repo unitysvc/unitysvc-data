@@ -23,6 +23,7 @@ http_code=$(curl -sS "{{ service_base_url }}${__version_prefix__}/embed" \
   -o "${response_file}" \
   -w "%{http_code}")
 
+{%- if not customer_display %}
 case "$http_code" in
   2??)
     grep -q '"embeddings"' "${response_file}" || {
@@ -37,4 +38,4 @@ case "$http_code" in
     exit 1
     ;;
 esac
-echo "connectivity ok"
+{%- endif %}
