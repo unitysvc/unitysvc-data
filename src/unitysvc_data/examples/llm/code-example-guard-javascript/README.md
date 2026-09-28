@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Guard" }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "moderate" }
+applies_to = { capability = "moderate", dialect = "openai" }
 +++
 
 # llm / code-example-guard-javascript — safety guard probe via `fetch`

@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Image to image", requirements = ["requests"], min_expected_metrics = { images_generated = 1 } }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "image-edit" }
+applies_to = { capability = "image-edit", dialect = "openai" }
 +++
 
 # llm / code-example-imagetoimage-requests — image-to-image via `requests`

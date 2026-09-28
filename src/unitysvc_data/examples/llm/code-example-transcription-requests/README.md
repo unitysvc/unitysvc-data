@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Transcription", requirements = ["requests"], min_expected_metrics = { duration_seconds = 0.01 } }
 parameters = { version_prefix = "/v1", language = "en" }
-applies_to = { capability = "speech-to-text" }
+applies_to = { capability = "speech-to-text", dialect = "openai" }
 +++
 
 # llm / code-example-transcription-requests — audio transcription via `requests`

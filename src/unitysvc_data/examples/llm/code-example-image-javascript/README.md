@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Image generation", min_expected_metrics = { images_generated = 1 } }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "image-generate" }
+applies_to = { capability = "image-generate", dialect = "openai" }
 +++
 
 # llm / code-example-image-javascript — image generation via `fetch`

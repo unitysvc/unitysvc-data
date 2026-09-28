@@ -8,7 +8,7 @@ is_active = true
 is_public = false
 meta = { min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "embed" }
+applies_to = { capability = "embed", dialect = "openai" }
 +++
 
 # llm / connectivity-embed — embeddings smoke test

@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Text to video" }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "video-generate" }
+applies_to = { capability = "video-generate", dialect = "openai" }
 +++
 
 # llm / code-example-ttv-javascript — text-to-video via `fetch`

@@ -1589,7 +1589,8 @@
     },
     "llm_code_example_embed_javascript_v1": {
       "applies_to": {
-        "capability": "embed"
+        "capability": "embed",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: request OpenAI-compatible embeddings via fetch",
@@ -1612,7 +1613,8 @@
     },
     "llm_code_example_embed_requests_v1": {
       "applies_to": {
-        "capability": "embed"
+        "capability": "embed",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: request OpenAI-compatible embeddings for a list of inputs",
@@ -1638,7 +1640,8 @@
     },
     "llm_code_example_embed_shell_v1": {
       "applies_to": {
-        "capability": "embed"
+        "capability": "embed",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Shell example: request OpenAI-compatible embeddings via curl",
@@ -1661,7 +1664,8 @@
     },
     "llm_code_example_embed_shell_v2": {
       "applies_to": {
-        "capability": "embed"
+        "capability": "embed",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Shell example: request OpenAI-compatible embeddings via curl",
@@ -1715,7 +1719,8 @@
     },
     "llm_code_example_guard_javascript_v1": {
       "applies_to": {
-        "capability": "moderate"
+        "capability": "moderate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: send an unsafe prompt to a guard/safety model via /chat/completions",
@@ -1735,7 +1740,8 @@
     },
     "llm_code_example_guard_requests_v1": {
       "applies_to": {
-        "capability": "moderate"
+        "capability": "moderate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: probe a Llama-Guard-style safety classifier with a borderline prompt",
@@ -1758,7 +1764,8 @@
     },
     "llm_code_example_guard_shell_v1": {
       "applies_to": {
-        "capability": "moderate"
+        "capability": "moderate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: send an unsafe prompt to a guard/safety model via curl",
@@ -1778,7 +1785,8 @@
     },
     "llm_code_example_guard_shell_v2": {
       "applies_to": {
-        "capability": "moderate"
+        "capability": "moderate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: send an unsafe prompt to a guard/safety model via curl",
@@ -1798,7 +1806,8 @@
     },
     "llm_code_example_image_javascript_v1": {
       "applies_to": {
-        "capability": "image-generate"
+        "capability": "image-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: generate an image via OpenAI-compatible /images/generations",
@@ -1821,7 +1830,8 @@
     },
     "llm_code_example_image_requests_v1": {
       "applies_to": {
-        "capability": "image-generate"
+        "capability": "image-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: generate an image from a text prompt via an OpenAI-compatible images endpoint",
@@ -1847,7 +1857,8 @@
     },
     "llm_code_example_image_shell_v1": {
       "applies_to": {
-        "capability": "image-generate"
+        "capability": "image-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: generate an image via OpenAI-compatible /images/generations using curl",
@@ -1870,7 +1881,8 @@
     },
     "llm_code_example_image_shell_v2": {
       "applies_to": {
-        "capability": "image-generate"
+        "capability": "image-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: generate an image via OpenAI-compatible /images/generations using curl",
@@ -1893,7 +1905,8 @@
     },
     "llm_code_example_imagetoimage_javascript_v1": {
       "applies_to": {
-        "capability": "image-edit"
+        "capability": "image-edit",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: image-to-image transform via Hugging Face /models/<model>",
@@ -1916,7 +1929,8 @@
     },
     "llm_code_example_imagetoimage_requests_v1": {
       "applies_to": {
-        "capability": "image-edit"
+        "capability": "image-edit",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: image-to-image transform via Hugging Face /models/<model>",
@@ -1942,7 +1956,8 @@
     },
     "llm_code_example_imagetoimage_shell_v1": {
       "applies_to": {
-        "capability": "image-edit"
+        "capability": "image-edit",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: image-to-image transform via Hugging Face /models/<model> using curl",
@@ -1965,7 +1980,8 @@
     },
     "llm_code_example_imagetoimage_shell_v2": {
       "applies_to": {
-        "capability": "image-edit"
+        "capability": "image-edit",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: image-to-image transform via Hugging Face /models/<model> using curl",
@@ -2364,7 +2380,8 @@
     },
     "llm_code_example_rerank_javascript_v1": {
       "applies_to": {
-        "capability": "rerank"
+        "capability": "rerank",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: rerank documents via /rerank",
@@ -2384,7 +2401,8 @@
     },
     "llm_code_example_rerank_requests_v1": {
       "applies_to": {
-        "capability": "rerank"
+        "capability": "rerank",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: rerank a candidate document set against a query",
@@ -2407,7 +2425,8 @@
     },
     "llm_code_example_rerank_shell_v1": {
       "applies_to": {
-        "capability": "rerank"
+        "capability": "rerank",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: rerank documents via /rerank using curl",
@@ -2427,7 +2446,8 @@
     },
     "llm_code_example_rerank_shell_v2": {
       "applies_to": {
-        "capability": "rerank"
+        "capability": "rerank",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: rerank documents via /rerank using curl",
@@ -2662,7 +2682,8 @@
     },
     "llm_code_example_transcription_javascript_v1": {
       "applies_to": {
-        "capability": "speech-to-text"
+        "capability": "speech-to-text",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: transcribe audio via OpenAI-compatible /audio/transcriptions",
@@ -2686,7 +2707,8 @@
     },
     "llm_code_example_transcription_requests_v1": {
       "applies_to": {
-        "capability": "speech-to-text"
+        "capability": "speech-to-text",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint",
@@ -2713,7 +2735,8 @@
     },
     "llm_code_example_transcription_shell_v1": {
       "applies_to": {
-        "capability": "speech-to-text"
+        "capability": "speech-to-text",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl",
@@ -2737,7 +2760,8 @@
     },
     "llm_code_example_transcription_shell_v2": {
       "applies_to": {
-        "capability": "speech-to-text"
+        "capability": "speech-to-text",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl",
@@ -2833,7 +2857,8 @@
     },
     "llm_code_example_tts_javascript_v1": {
       "applies_to": {
-        "capability": "text-to-speech"
+        "capability": "text-to-speech",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: synthesize speech via OpenAI-compatible /audio/speech",
@@ -2853,7 +2878,8 @@
     },
     "llm_code_example_tts_requests_v1": {
       "applies_to": {
-        "capability": "text-to-speech"
+        "capability": "text-to-speech",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: synthesize speech from text using an OpenAI-compatible audio/speech endpoint",
@@ -2876,7 +2902,8 @@
     },
     "llm_code_example_tts_shell_v1": {
       "applies_to": {
-        "capability": "text-to-speech"
+        "capability": "text-to-speech",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: synthesize speech via OpenAI-compatible /audio/speech using curl",
@@ -2896,7 +2923,8 @@
     },
     "llm_code_example_ttv_javascript_v1": {
       "applies_to": {
-        "capability": "video-generate"
+        "capability": "video-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: text-to-video via HF /models/<model>",
@@ -2916,7 +2944,8 @@
     },
     "llm_code_example_ttv_requests_v1": {
       "applies_to": {
-        "capability": "video-generate"
+        "capability": "video-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: text-to-video via HF /models/<model>",
@@ -2939,7 +2968,8 @@
     },
     "llm_code_example_ttv_shell_v1": {
       "applies_to": {
-        "capability": "video-generate"
+        "capability": "video-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: text-to-video via HF /models/<model> using curl",
@@ -2959,7 +2989,8 @@
     },
     "llm_code_example_ttv_shell_v2": {
       "applies_to": {
-        "capability": "video-generate"
+        "capability": "video-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: text-to-video via HF /models/<model> using curl",
@@ -3287,7 +3318,8 @@
     },
     "llm_connectivity_embed_v1": {
       "applies_to": {
-        "capability": "embed"
+        "capability": "embed",
+        "dialect": "openai"
       },
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible embeddings endpoint by issuing a tiny embed request",
@@ -3309,7 +3341,8 @@
     },
     "llm_connectivity_transcription_v1": {
       "applies_to": {
-        "capability": "speech-to-text"
+        "capability": "speech-to-text",
+        "dialect": "openai"
       },
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible audio-transcription endpoint by sending a tiny known audio file",
@@ -3354,7 +3387,8 @@
     },
     "llm_connectivity_tts_v1": {
       "applies_to": {
-        "capability": "text-to-speech"
+        "capability": "text-to-speech",
+        "dialect": "openai"
       },
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible text-to-speech endpoint by synthesizing a short phrase and asserting real audio comes back",

@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Rerank" }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "rerank" }
+applies_to = { capability = "rerank", dialect = "openai" }
 +++
 
 # llm / code-example-rerank-javascript — document reranking via `fetch`

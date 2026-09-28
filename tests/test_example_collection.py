@@ -676,8 +676,10 @@ def test_the_probe_is_selected_like_everything_else():
 
     assert applies_to("llm_connectivity") == {"capability": "chat", "upstream": "openai"}
     assert applies_to("llm_connectivity_anthropic") == {"capability": "chat", "upstream": "anthropic"}
-    assert applies_to("llm_connectivity_embed") == {"capability": "embed"}
-    assert applies_to("llm_connectivity_transcription") == {"capability": "speech-to-text"}
+    assert applies_to("llm_connectivity_embed") == {
+        "capability": "embed", "dialect": "openai"}
+    assert applies_to("llm_connectivity_transcription") == {
+        "capability": "speech-to-text", "dialect": "openai"}
 
 
 def test_the_request_template_is_selected_like_everything_else():
@@ -1025,3 +1027,46 @@ def test_the_singular_channel_key_still_works():
     docs = llm_example_collection(BEDROCK)
 
     assert docs["Python code example (boto3 Converse)"]["meta"]["channels"] == ["converse"]
+
+
+def test_a_modality_example_is_scoped_to_the_dialect_it_is_written_in():
+    """Every stock modality example targets an OpenAI path — /audio/speech,
+    /embeddings, /images/generations, /rerank — so each is an OpenAI-dialect
+    document and must say so. They used to constrain only `capability`, which
+    made them apply to EVERY dialect: a DashScope-only TTS service picked up the
+    /v1/audio/speech example, an endpoint QwenCloud answers with 404."""
+    native = llm_example_collection({
+        "capabilities": ["text-to-speech"],
+        "formats": [{"formats": ["dashscope"], "interface": "dashscope",
+                     "upstream_dialect": "dashscope"}],
+    })
+    assert "llm_code_example_tts_requests" not in examples_in(native)
+    assert "llm_code_example_tts_dashscope_requests" in examples_in(native)
+
+    # ...and the OpenAI-dialect service that always had them still does.
+    compat = llm_example_collection(
+        {"capabilities": ["text-to-speech"], "formats": ["openai"]}
+    )
+    assert "llm_code_example_tts_requests" in examples_in(compat)
+
+
+def test_every_capability_example_is_pinned_to_a_wire_shape():
+    """The gap this closes, as an invariant. A document that names its capability
+    and nothing else applies to EVERY dialect and every upstream, so it is served
+    to a caller writing a wire shape it was not written in — which is how a
+    DashScope-only TTS service came to publish an /v1/audio/speech example.
+
+    Either constraint closes it, because either one excludes a native group:
+    `dialect` pins what the CALLER writes, `upstream` what the upstream speaks,
+    and a DashScope channel differs on both. `llm_description` is the deliberate
+    exception — it constrains nothing because it really does apply to everything.
+    """
+    from unitysvc_data import MANIFEST
+    from unitysvc_data.presets import applies_to
+
+    names = {r.get("preset_name", k) for k, r in MANIFEST["presets"].items()
+             if k.startswith("llm_")}
+    gaps = sorted(n for n in names
+                  if (a := applies_to(n)).get("capability")
+                  and not a.get("dialect") and not a.get("upstream"))
+    assert gaps == [], f"these name a capability but no wire shape: {gaps}"

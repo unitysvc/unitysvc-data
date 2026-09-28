@@ -7,7 +7,7 @@ description = "Verify an OpenAI-compatible text-to-speech endpoint by synthesizi
 is_active = true
 is_public = false
 parameters = { version_prefix = "/v1", voice = "alloy", response_format = "wav", min_bytes = "1024" }
-applies_to = { capability = "text-to-speech" }
+applies_to = { capability = "text-to-speech", dialect = "openai" }
 +++
 
 # llm / connectivity-tts — text-to-speech smoke test

@@ -8,7 +8,7 @@ is_active = true
 is_public = false
 meta = { min_expected_metrics = { duration_seconds = 0.01 } }
 parameters = { version_prefix = "/v1", language = "en" }
-applies_to = { capability = "speech-to-text" }
+applies_to = { capability = "speech-to-text", dialect = "openai" }
 +++
 
 # llm / connectivity-transcription — audio transcription smoke test
