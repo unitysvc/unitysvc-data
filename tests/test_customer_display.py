@@ -52,12 +52,12 @@ class TestElseIsRejected:
 
         assert any("elif" in v for v in audience_violations(source))
 
-    def test_a_plain_block_is_accepted(self) -> None:
+    def test_a_block_without_an_else_is_accepted(self) -> None:
         source = (
             "print('shared')\n"
-            "{% if not customer_display %}\n"
+            "{%- if not customer_display %}\n"
             "assert response\n"
-            "{% endif %}\n"
+            "{%- endif %}\n"
         )
 
         assert audience_violations(source) == []
@@ -114,12 +114,33 @@ class TestPolarityAndPlacement:
 
         assert any("own line" in v for v in audience_violations(source))
 
-    def test_whitespace_control_is_a_violation(self) -> None:
-        # ``{%-`` / ``-%}`` splice lines together, which breaks the
-        # subsequence comparison the removal-only rule depends on.
-        source = "{%- if not customer_display %}\nassert x\n{% endif %}\n"
+    def test_the_trim_form_is_required(self) -> None:
+        # A plain ``{% if %}`` on its own line leaves that line's newline in
+        # the output, so wrapping an example CHANGES what the runner executes
+        # (a blank line appears where the tag was). ``{%-`` absorbs it, and
+        # only that form leaves the executed render byte-identical.
+        source = "{% if not customer_display %}\nassert x\n{%- endif %}\n"
 
-        assert any("whitespace" in v for v in audience_violations(source))
+        assert any("{%-" in v for v in audience_violations(source))
+
+    def test_the_trim_form_is_accepted(self) -> None:
+        source = "line1\n{%- if not customer_display %}\nassert x\n{%- endif %}\nline2\n"
+
+        assert audience_violations(source) == []
+
+    def test_wrapping_in_the_trim_form_leaves_the_executed_render_untouched(
+        self,
+    ) -> None:
+        """The property the trim form exists to preserve."""
+        env = jinja2.Environment()
+        unwrapped = "line1\nassert x\nline2\n"
+        wrapped = (
+            "line1\n{%- if not customer_display %}\nassert x\n{%- endif %}\nline2\n"
+        )
+
+        executed = env.from_string(wrapped).render(customer_display=False)
+
+        assert executed == env.from_string(unwrapped).render(customer_display=False)
 
 
 class TestOrderedSubsequence:

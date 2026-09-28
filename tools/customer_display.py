@@ -15,8 +15,12 @@ stops holding, all enforced here:
   inverts the safe default — every document renderer uses a lenient Jinja
   environment, so an absent flag is falsy, and only the ``not`` form degrades
   to "execute the checks" on a renderer that does not supply it yet;
-* a tag sharing a line with code, or using ``{%-``/``-%}`` whitespace control,
-  splices lines and makes the two renders incomparable.
+* a tag sharing a line with code splices lines and makes the two renders
+  incomparable — so each tag sits alone on its line, and opens with ``{%-`` so
+  it absorbs that line's own newline. Without the trim, wrapping an example
+  inserts a blank line where the tag was, which changes what the runner
+  executes; with it, the executed render is byte-identical to the unwrapped
+  original and a migration is invisible to anything that renders it.
 
 Importable so preset authors can run it directly; the gate is
 ``tests/test_customer_display.py``.
@@ -84,11 +88,13 @@ def audience_violations(source: str) -> list[str]:
         for raw in _RAW_TAG_RE.findall(line):
             if not _mentions_flag(raw):
                 continue
-            if raw.startswith("{%-") or raw.endswith("-%}"):
+            if not raw.startswith("{%-"):
                 violations.append(
-                    f"line {lineno}: customer_display tag uses whitespace "
-                    f"control ({raw.strip()}); it splices lines together and "
-                    f"makes the two renders incomparable"
+                    f"line {lineno}: customer_display tag must open with "
+                    f"'{{%-' ({raw.strip()}). A plain tag leaves its own "
+                    f"newline in the output, so wrapping an example changes "
+                    f"what the runner executes; the trim form leaves the "
+                    f"executed render byte-identical."
                 )
             if line.strip() != raw.strip():
                 violations.append(

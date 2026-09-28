@@ -399,20 +399,20 @@ An example serves two audiences. The seller test runner and the health sweep
 block hides it from the second without hiding it from the first:
 
 ```jinja
-{% if not customer_display %}
+{%- if not customer_display %}
 n = 0
-{% endif %}
+{%- endif %}
 for chunk in stream:
-{% if not customer_display %}
+{%- if not customer_display %}
     n += 1
-{% endif %}
+{%- endif %}
     delta = chunk.choices[0].delta.content
     if delta:
         print(delta, end="", flush=True)
-{% if not customer_display %}
+{%- if not customer_display %}
 if not n:
     raise SystemExit("unexpected response: the stream yielded no chunks")
-{% endif %}
+{%- endif %}
 ```
 
 Use it for anything that only makes sense while something is running the
@@ -438,8 +438,13 @@ subsequence of the default render: same lines, same order, duplicates
 preserved. Hidden code may observe and assert; removing it must not change the
 request or any visible behaviour.
 
-**Tags sit on their own line, with no `{%-` / `-%}` whitespace control**, which
-would splice lines together and make the two renders incomparable.
+**Tags sit on their own line and open with `{%-`.** The trim is not cosmetic:
+a plain `{% if %}` leaves its own newline in the output, so wrapping an
+existing example inserts a blank line and *changes what the runner executes*.
+With `{%-` the executed render is byte-identical to the unwrapped original, so
+migrating an example is invisible to everything that renders it — which is what
+makes wrapping the existing corpus a safe, mechanical change rather than a
+behavioural one.
 
 ### The scaffolding baseline
 
