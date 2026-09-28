@@ -19,6 +19,46 @@ alone cannot tell you.
 
 ## [Unreleased]
 
+### Added
+
+- **DashScope-native presets — 16 families across four capabilities.** QwenCloud
+  serves chat, embeddings, text-to-speech and speech-to-text only through its
+  native API for three of the four: `/compatible-mode/v1/audio/speech`,
+  `/images/generations` and `/audio/transcriptions` all answer **404** while
+  `/compatible-mode/v1/models` lists the TTS, ASR and image models. The models
+  are served; the OpenAI-shaped routes to them are not.
+
+  Each capability gets a connectivity probe plus Python (`requests`), shell
+  (`curl`) and JavaScript (`fetch`) examples, declared as
+  `applies_to.dialect = "dashscope"` — the axis that already carries `cohere`,
+  `cerebras`, `bedrock_converse` and the rest, and the same token the gateway
+  uses for `upstream_format`.
+
+  `aigc/multimodal-generation/generation` serves chat, TTS **and** ASR; only the
+  `input` shape differs. Embeddings live at
+  `embeddings/text-embedding/text-embedding`. Every request and response shape
+  was captured from the live API, and all 16 rendered examples were executed
+  against it before release — real transcription, real embedding dimensions,
+  real audio URLs.
+
+  Chat is included even though the compatibility layer serves it, so a seller
+  can offer the native surface without switching dialects between capabilities.
+
+  Assertions check the payload rather than the status, because DashScope answers
+  **200 with an error envelope**; they sit behind `{%- if not customer_display %}`
+  so the published examples stay clean.
+
+  Not covered: image generation and video. The provider refuses synchronous
+  calls for them (`403 AccessDenied: current user api does not support
+  synchronous calls`), so they need an async submit/poll contract the gateway
+  has never fronted.
+
+  **The TTS families declare `min_expected_metrics = { characters = 1 }`**, the
+  dimension their pricing uses. The gateway does not yet map `usage.characters`
+  (unitysvc/unitysvc#2493), so a TTS service cannot activate until it does. That
+  is deliberate: a weaker floor would let a service activate while its billed
+  dimension went unverified.
+
 ## [0.2.2] — in-script output assertions, and the customer_display contract
 
 ### Added

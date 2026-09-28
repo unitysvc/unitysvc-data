@@ -1,0 +1,20 @@
+#!/bin/bash
+# DashScope connectivity probe (text-to-speech): POST the smallest useful request the
+# native endpoint takes and assert the reply really carries "audio".
+# A 2xx alone is not enough -- DashScope answers 200 with an error envelope.
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+response=$(curl --fail-with-body -sS "{{ service_base_url }}" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d '{"model": "{{ routing_key.model }}", "input": {"text": "Hello from UnitySVC"}, "parameters": {"voice": "Cherry"}}')
+
+echo "$response"
+{%- if not customer_display %}
+if ! printf '%s' "$response" | grep -q '"audio"'; then
+  echo 'unexpected response: no "audio" in the reply' >&2
+  exit 1
+fi
+{%- endif %}
