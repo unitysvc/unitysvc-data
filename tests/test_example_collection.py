@@ -944,3 +944,52 @@ def test_the_collection_returns_a_plain_mergeable_mapping():
     assert dict(docs, **{"cURL code example": {"replaced": True}})["cURL code example"] == {
         "replaced": True
     }
+
+
+# QwenCloud reaches us two ways at once: its compatibility layer speaks
+# OpenAI, while its native DashScope API is the only surface serving TTS and
+# ASR. Each is a separate channel on one service, so the upstream dialect
+# differs BETWEEN groups of a single collection — unlike bedrock, where both
+# groups front the same OpenAI-shaped upstream and only the caller's dialect
+# differs.
+QWENCLOUD = {
+    "capabilities": ["chat"],
+    "upstream_dialect": "openai",
+    "formats": [
+        {"formats": ["openai", "anthropic"], "channel": "managed",
+         "interface": "canonical", "primary": True},
+        {"formats": ["dashscope"], "channel": "dashscope-managed",
+         "interface": "dashscope_api", "upstream_dialect": "dashscope"},
+    ],
+}
+
+
+def test_a_group_may_override_the_collections_upstream_dialect():
+    """A group maps to exactly one channel, and which dialect the upstream
+    speaks is a property of that channel (`upstream_format` in its config) —
+    not of the service. Without a per-group override, a collection can only
+    describe channels that all front the same upstream dialect, so QwenCloud's
+    native DashScope channel could not share a listing with its
+    OpenAI-compatible one."""
+    docs = llm_example_collection(QWENCLOUD)
+
+    # The DashScope-native example is selected only because the group's own
+    # upstream_dialect satisfied the preset's `upstream: dashscope`.
+    native = docs["Python code example (DashScope input, requests)"]
+    assert native["meta"]["channels"] == ["dashscope-managed"]
+    assert native["meta"]["interfaces"] == ["dashscope_api"]
+
+    # ...and the compat group still gets the OpenAI-upstream examples, which
+    # the DashScope presets must not displace.
+    assert "llm_code_example_requests" in examples_in(docs)
+
+
+def test_an_unscoped_collection_still_uses_one_upstream_dialect():
+    """The override is opt-in per group: a collection that declares only
+    `upstream_dialect` keeps selecting against it for every group, so no
+    existing repo changes behaviour."""
+    docs = llm_example_collection(
+        {"capabilities": ["chat"], "formats": ["openai"], "upstream_dialect": "dashscope"}
+    )
+
+    assert "llm_code_example_chat_dashscope_requests" not in examples_in(docs)
