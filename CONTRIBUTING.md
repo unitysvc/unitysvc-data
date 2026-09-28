@@ -415,10 +415,20 @@ if not n:
 {%- endif %}
 ```
 
-Use it for anything that only makes sense while something is running the
-example: assertions, non-zero exits, `echo "example ok"` markers, and the
-counters or captures they need. Do **not** use it to hide explanatory
-comments — those are the reason an example is worth publishing.
+Use it for anything that only makes sense while something is *verifying* the
+example: assertions about the reply, `echo "example ok"`-style success markers,
+`grep -q` gates that turn a response into an exit code, and the counters or
+captures those need.
+
+Do **not** use it to hide two things. **Explanatory comments** — those are the
+reason an example is worth publishing; if a comment explains a check you are
+wrapping, move the comment inside the wrap with it rather than leaving it
+describing code the reader cannot see. And **error handling** — `if
+(!response.ok) throw new Error(...)`, `main().catch(e => { …; process.exit(1) })`,
+`response.raise_for_status()`, a shell `exit 1` on a failed call. Those are the
+idiomatic shapes of the language and a customer needs to see them; hiding them
+publishes an example that silently swallows failures, which is worse than
+publishing an assertion. The checker deliberately does not flag them.
 
 ### The rules, all enforced by `tests/test_customer_display.py`
 
