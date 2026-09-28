@@ -75,6 +75,37 @@ No preset content changed, so no preset version moved.
   dropped 110 entries that were never scaffolding (143 → 33), and the migration
   took the rest (33 → 0).
 
+### Fixed
+
+- **The streaming examples no longer die on a usage-only final chunk.** Four
+  Python streaming examples indexed `chunk.choices[0]` unconditionally. The
+  OpenAI API closes a stream with a usage-only chunk whose `choices` is `[]` when
+  `stream_options.include_usage` is set, and some compatible providers send that
+  chunk whether you asked or not — so the canonical loop raised `IndexError`
+  *after the whole reply had already printed*, turning a successful call into a
+  failure and a rejected service. Verified against a provider that sends it
+  unasked: before, `IndexError` and exit 1; after, the reply prints and exit 0.
+
+  The guard (`if not chunk.choices: continue`) is **visible** in the published
+  example rather than wrapped. It is client code a customer needs — the
+  JavaScript sibling has always had it as `chunk.choices[0]?.delta?.content` —
+  and hiding it would publish an example that breaks against a compliant API.
+- **The streaming examples now assert that something streamed**
+  (unitysvc/unitysvc-data#80). A model that accepts the request and ignores
+  `stream=True` yields no chunks at all, so the loop body never ran and the
+  example exited 0 with nothing verified — four such examples were recorded green
+  for a model with no working path. Each now checks it received content (or, for
+  the raw-`requests` variants, at least one SSE `data:` frame), wrapped in
+  `{%- if not customer_display %}` so the published example is unchanged.
+  Verified against such a model: it now exits 1 with a message naming the cause.
+
+  Covers all eight streaming preset versions — the OpenAI SDK example and its
+  JavaScript twin, both translation SDK examples (including the raw-events v2),
+  and both raw-`requests` variants, in each of their `local_testing` and gateway
+  arms.
+- `code-example-anthropic-to-openai-stream-sdk`'s v2 is documented for the first
+  time; the family shipped it while its README described only v1.
+
 ## [0.2.1] — optional output limits for OpenAI examples
 
 ### Changed

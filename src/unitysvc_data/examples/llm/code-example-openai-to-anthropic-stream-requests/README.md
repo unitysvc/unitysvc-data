@@ -53,3 +53,8 @@ Required:
 - Posts a single `"Say this is a test"` user message; Anthropic-shape
   calls set the required top-level `max_tokens: 64`.
 - `response.raise_for_status()` so upstream / gateway errors surface as a non-zero exit.
+- **Amended in 0.2.2**: asserts the stream actually produced something, wrapped
+  in `{%- if not customer_display %}`. A model that accepts the request and
+  ignores `stream=True` yields nothing, so the loop body never ran and the
+  example exited 0 with no output verified (unitysvc/unitysvc-data#80).
+

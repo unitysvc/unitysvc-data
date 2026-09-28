@@ -45,3 +45,8 @@ Required:
   `node code-example.js`.
 - Optionally sends `max_tokens` when the collection supplies the
   `max_tokens` parameter; the default example remains uncapped.
+- **Amended in 0.2.2**: asserts the stream actually produced something, wrapped
+  in `{%- if not customer_display %}`. A model that accepts the request and
+  ignores `stream=True` yields nothing, so the loop body never ran and the
+  example exited 0 with no output verified (unitysvc/unitysvc-data#80).
+

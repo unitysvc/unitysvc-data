@@ -17,13 +17,26 @@ async function main() {
     ],
     stream: true,
   });
+{%- if not customer_display %}
+  let received = 0;
+{%- endif %}
   for await (const chunk of stream) {
     const delta = chunk.choices[0]?.delta?.content;
     if (delta) {
+{%- if not customer_display %}
+      received += delta.length;
+{%- endif %}
       process.stdout.write(delta);
     }
   }
   process.stdout.write("\n");
+{%- if not customer_display %}
+  if (!received) {
+    throw new Error(
+      "the stream produced no content — the upstream may have ignored stream: true"
+    );
+  }
+{%- endif %}
 }
 
 main().catch((err) => {
