@@ -13,17 +13,42 @@ catching nothing. Each rule is proven against a template that breaks it.
 
 from __future__ import annotations
 
+import importlib.util
+import sys
 from pathlib import Path
 
 import jinja2
 import pytest
 
-from tools.customer_display import (
-    EXECUTION_ONLY_MARKERS,
-    audience_violations,
-    is_ordered_subsequence,
-    unwrapped_scaffolding,
-)
+REPO_ROOT = Path(__file__).resolve().parent.parent
+
+
+def _load_customer_display_module():
+    """Import ``tools/customer_display.py`` without putting tools/ on sys.path.
+
+    Same approach as ``test_build.py``: ``tools/`` is dev tooling and is not a
+    package, so ``from tools.customer_display import ...`` only resolves when
+    the repo root happens to be on ``sys.path`` — true under
+    ``python -m pytest`` (which prepends the cwd) and false under the bare
+    ``pytest`` that CI runs.
+    """
+    path = REPO_ROOT / "tools" / "customer_display.py"
+    spec = importlib.util.spec_from_file_location(
+        "unitysvc_data_customer_display_under_test", path
+    )
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+_customer_display = _load_customer_display_module()
+
+EXECUTION_ONLY_MARKERS = _customer_display.EXECUTION_ONLY_MARKERS
+audience_violations = _customer_display.audience_violations
+is_ordered_subsequence = _customer_display.is_ordered_subsequence
+unwrapped_scaffolding = _customer_display.unwrapped_scaffolding
 
 
 class TestElseIsRejected:
