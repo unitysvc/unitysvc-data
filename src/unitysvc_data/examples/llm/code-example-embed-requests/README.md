@@ -44,3 +44,9 @@ Required:
 - `requests.post` against `SERVICE_BASE_URL` with `model` + `input`.
 - Reads `UNITYSVC_API_KEY`, `SERVICE_BASE_URL`, `MODEL` from env;
   missing any of the three fails fast with `KeyError`.
+- **Amended in 0.2.3**: `applies_to` now declares `dialect = "openai"`.
+  It named only the capability, and an absent key means "no constraint" — so
+  this example applied to callers writing any dialect, including ones whose
+  upstream has no such endpoint. Selection metadata only: nothing this example
+  does has changed, and every service that received it still does, because they
+  all declare `openai`.
