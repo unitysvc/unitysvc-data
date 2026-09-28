@@ -21,8 +21,7 @@ s3_kwargs['endpoint_url'] = "{{ s3_endpoint }}"
 s3 = boto3.client('s3', **s3_kwargs)
 {% else %}
 # Public bucket: no credentials to verify, nothing to check.
-print("connectivity ok (public bucket — no credentials to verify)")
-sys.exit(0)
+s3 = None
 {% endif %}
 {% else %}
 # Access via UnitySVC S3 gateway — sign with the customer's API key.
@@ -39,12 +38,15 @@ s3 = boto3.client('s3',
 )
 {% endif %}
 
+{%- if not customer_display %}
 # Auth-error codes: credentials were rejected. Anything else (including
 # 403 AccessDenied on list_buckets) still proves the signature was
 # accepted — the caller just isn't allowed to list. That counts as ok.
 AUTH_FAILURES = {'InvalidAccessKeyId', 'SignatureDoesNotMatch', 'InvalidClientTokenId'}
 
 try:
+    if s3 is None:
+        raise SystemExit(0)
     {% if local_testing %}
     s3.list_buckets()
     {% else %}
@@ -61,4 +63,4 @@ except ClientError as e:
 except BotoCoreError as e:
     print(f"connectivity failed: {e}", file=sys.stderr)
     sys.exit(1)
-print("connectivity ok")
+{%- endif %}

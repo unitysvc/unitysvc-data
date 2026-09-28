@@ -9,9 +9,17 @@ non-preset fixes (build script, tests, docs), major bumps only to
 remove a previously-published `_vN` preset (should be vanishingly
 rare).
 
+One category the scheme did not anticipate: **amending an existing `-vN` in
+place**, which the append-only rule made impossible until 0.2.2 (see
+CONTRIBUTING, "The one exception"). An amendment changes what an already-published
+version does, so it is not a mere patch even when the number says so. When one
+happens, the release notes say which versions were amended and each family's
+README records it under the version it changed — because the version number
+alone cannot tell you.
+
 ## [Unreleased]
 
-## [0.2.2] — enforce the customer_display authoring contract
+## [0.2.2] — in-script output assertions, and the customer_display contract
 
 ### Added
 
@@ -30,6 +38,42 @@ rare).
 
 No preset content changed, so no preset version moved.
 
+
+### Changed
+
+- Removed `meta.output_contains` from every preset. Executable documents now
+  rely exclusively on their own status, response-shape, and non-zero-exit
+  checks, so a test cannot appear asserted while an empty or unconditional
+  stdout marker silently passes it (unitysvc/unitysvc#2491).
+- Moved those checks into the example scripts and wrapped them in
+  `{%- if not customer_display %}`, so the runner executes them and the
+  published example does not show them. The success markers they existed to
+  feed (`echo "example ok"`, `print("connectivity ok"`, …) are gone.
+- **Amended ~600 existing `-vN` examples in place rather than publishing new
+  versions.** This is an exception to the append-only rule, and CONTRIBUTING
+  spells out the two conditions that justified it: the behaviour a pinned
+  version would have preserved no longer exists platform-side, and the
+  version-less alias — which every preset but one is referenced through — moves
+  on release anyway, so a bump would have imposed the identical change while
+  leaving ~600 files nothing resolves to. If your installed package predates
+  0.2.2, the same `-vN` will verify differently; each family's README records
+  this under the version it changed.
+- **Narrowed the scaffolding marker table**: error handling is no longer treated
+  as execution-only code. It used to match `exit 1`, `sys.exit(...)`,
+  `process.exit(1)` and `throw new Error`, which accounted for 161 of 202 hits
+  across the corpus — nearly all of them the error path a *customer* should see
+  (`if (!response.ok) throw new Error(...)`, `main().catch(e => { …;
+  process.exit(1) })`). What remains is only what a customer has no use for: a
+  bare `assert`, an unconditional success token, and a `grep -q` gate over a
+  captured response. Narrowing also surfaced four genuine sentinels the old
+  table never matched — `print("connectivity ok")` in the bedrock, s3 and smtp
+  Python examples, and `print("example ok")` in vision v2 — files that read as
+  verified and were not. Python and JavaScript success markers are now matched
+  alongside the shell ones.
+- `tests/customer_display_baseline.txt` is now empty, so the wrapping check is a
+  hard rule instead of a ratchet. It got there in two steps: the narrowing above
+  dropped 110 entries that were never scaffolding (143 → 33), and the migration
+  took the rest (33 → 0).
 
 ## [0.2.1] — optional output limits for OpenAI examples
 

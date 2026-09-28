@@ -52,7 +52,6 @@ async function main() {
     throw new Error(`unexpected response: no "choices" in the reply: ${JSON.stringify(data)}`);
   }
   console.log(data.choices[0].message.content);
-  console.log("example ok");
 }
 
 main().catch((err) => {

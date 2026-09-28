@@ -23,6 +23,7 @@ response=$(curl --fail-with-body -sS "{{ service_base_url }}/v1/messages" \
 
 echo "$response"
 
+{%- if not customer_display %}
 # A 2xx does not mean the call did what you asked: an error object, or a
 # reply from a different capability, also returns 200. Assert the reply
 # really is a Anthropic message before treating this as success.
@@ -30,7 +31,8 @@ if ! printf '%s' "$response" | grep -q '"content"'; then
   echo 'unexpected response: no "content" in the reply' >&2
   exit 1
 fi
-echo "example ok"
+{%- endif %}
+
 {% else %}
 response=$(curl --fail-with-body -sS "{{ service_base_url }}/v1/chat/completions" \
   -H "Content-Type: application/json" \
@@ -45,11 +47,13 @@ response=$(curl --fail-with-body -sS "{{ service_base_url }}/v1/chat/completions
 
 echo "$response"
 
+{%- if not customer_display %}
 # The gateway replies in the dialect YOU sent, regardless of what the
 # upstream speaks — so assert the reply is a chat completion, the caller's shape.
 if ! printf '%s' "$response" | grep -q '"choices"'; then
   echo 'unexpected response: no "choices" in the reply' >&2
   exit 1
 fi
-echo "example ok"
+{%- endif %}
+
 {% endif %}

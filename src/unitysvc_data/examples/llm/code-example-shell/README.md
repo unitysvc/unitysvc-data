@@ -6,13 +6,9 @@ file = "code-example.sh.j2"
 description = "Shell example: send a chat completion request to an OpenAI-compatible LLM via curl"
 is_active = true
 is_public = true
-meta = { variant = "Chat", output_contains = "example ok", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
+meta = { variant = "Chat", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
 parameters = { version_prefix = "/v1", max_tokens = "" }
 applies_to = { capability = "chat", dialect = "openai", upstream = "openai" }
-
-[versions.v1]
-# v1 predates the response-shape assertion and prints no sentinel.
-meta = { output_contains = "" }
 +++
 
 # llm / code-example-shell — chat completion via `curl`
@@ -48,3 +44,9 @@ Required:
 - Verifies that a successful response contains chat-completion choices.
 - Optionally sends `max_tokens` when the collection supplies the
   `max_tokens` parameter; the default example remains uncapped.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

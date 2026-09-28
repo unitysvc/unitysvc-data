@@ -6,13 +6,9 @@ file = "code-example-embed.sh.j2"
 description = "Shell example: request OpenAI-compatible embeddings via curl"
 is_active = true
 is_public = true
-meta = { variant = "Embeddings", output_contains = "example ok", min_expected_metrics = { input_tokens = 1 } }
+meta = { variant = "Embeddings", min_expected_metrics = { input_tokens = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "embed" }
-
-[versions.v1]
-# v1 predates the response-shape assertion and prints no sentinel.
-meta = { output_contains = "" }
 +++
 
 # llm / code-example-embed-shell — embeddings via `curl`
@@ -40,3 +36,14 @@ Required:
 - Heredoc JSON so no `jq` dependency is required.
 - `${VAR:?msg}` guards on the three required env vars so a missing
   one fails before the request is sent.
+
+### v2 — in-script verification
+
+- Verifies the response in the script rather than through the runner's
+  `output_contains` sentinel, which was retired platform-side
+  (unitysvc/unitysvc#2490) — so the check is a real status or response-shape
+  assertion, not a match against a token the script printed unconditionally.
+- The assertion is wrapped in `{%- if not customer_display %}` so it runs but
+  stays out of the published example; the unconditional success marker is gone.
+- **Amended in 0.2.2.** Earlier installs of this package ship a v2 whose
+  verification lived in metadata instead.

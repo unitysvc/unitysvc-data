@@ -18,6 +18,7 @@ response=$(curl --fail-with-body -sS "{{ service_base_url }}/v1/messages" \
 
 echo "$response"
 
+{%- if not customer_display %}
 # A 2xx does not mean the call did what you asked: an error object, or a
 # reply from a different capability, also returns 200. Assert the reply
 # really is a Anthropic message before treating this as success.
@@ -25,4 +26,5 @@ if ! printf '%s' "$response" | grep -q '"content"'; then
   echo 'unexpected response: no "content" in the reply' >&2
   exit 1
 fi
-echo "example ok"
+{%- endif %}
+

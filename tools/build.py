@@ -107,13 +107,10 @@ OPTIONAL_FIELDS: dict[str, Any] = {
     "applies_to": {},
     # Per-version metadata overrides, e.g.
     #     [versions.v1]
-    #     meta = { output_contains = "" }
+    #     meta = { requirements = ["requests"] }
     # ``meta`` in the front-matter is shared by every version in the
-    # directory, which is right for description/requirements but wrong for
-    # anything tied to a specific file's CONTENT. `output_contains` is
-    # checked against stdout, so declaring it for a version whose body
-    # never prints it would fail every run.  Keys here are merged over the
-    # shared meta for that version only; a null value drops the key.
+    # directory. Keys here are merged over the shared meta for that version
+    # only; a null value drops the key.
     "versions": {},
 }
 

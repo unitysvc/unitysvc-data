@@ -586,7 +586,7 @@ def test_variant_inherits_readme_metadata(tmp_path, monkeypatch):
         'description = "shared desc"\n'
         "is_active = true\n"
         "is_public = false\n"
-        'meta = { output_contains = "ok" }\n'
+        'meta = { timeout_s = 10 }\n'
         'parameters = { webhook_path = "/webhook" }\n'
         "+++\n\n# body\n"
     )
@@ -608,7 +608,7 @@ def test_variant_inherits_readme_metadata(tmp_path, monkeypatch):
     assert p.description == "shared desc"
     assert p.is_active is True
     assert p.is_public is False
-    assert p.meta == {"output_contains": "ok"}
+    assert p.meta == {"timeout_s": 10}
     assert p.parameters == {"webhook_path": "/webhook"}
 
 

@@ -142,7 +142,7 @@ Optional fields (defaults shown):
 |--------------|----------|--------------------------------------------|
 | `is_active`  | `true`   | Document is active on the listing          |
 | `is_public`  | `false`  | Document is customer-visible               |
-| `meta`       | `{}`     | Free-form metadata (e.g. `output_contains`)|
+| `meta`       | `{}`     | Free-form metadata (e.g. `requirements`)   |
 | `parameters` | `{}`     | Per-listing string params (see below)      |
 
 ### Parameters — per-listing customisation of the example body
@@ -349,7 +349,7 @@ pytest -q
 ### 7. Bump the package version
 
 Edit `pyproject.toml` and `src/unitysvc_data/_version.py`. Since new
-presets are additive, a **minor** bump (e.g. `0.2.0 → 0.3.0`) is right.
+presets are additive, a **minor** bump (e.g. `0.2.0 → 0.2.2`) is right.
 
 ### 8. Open the PR
 
@@ -386,8 +386,38 @@ tracks the newest version.
 **Existing `-vN` files and their behaviour are append-only.** Never
 edit `connectivity-v1.py.j2` or its metadata after it's published —
 sellers rely on pinned versions staying byte-identical across
-package upgrades. If you need to change v1, the answer is always
-"publish v2."
+package upgrades. If you need to change v1, the answer is almost
+always "publish v2."
+
+### The one exception, and how to tell whether you have it
+
+0.2.2 amended ~600 existing examples in place instead of publishing new
+versions, because a new version would have protected nobody. Two facts have to
+hold together before you may do the same:
+
+1. **The behaviour being preserved no longer exists.** `output_contains` was
+   retired platform-side (unitysvc/unitysvc#2490): ingest strips the key, and a
+   v1 that still declared it verified nothing. There was no working old
+   behaviour left to pin to — only a check that read as if it worked.
+2. **The version-less alias carries essentially all the traffic.** Publishing
+   a v2 repoints the alias, so every caller using `llm_connectivity` rather
+   than `llm_connectivity_v1` moves on release anyway. Before 0.2.2 exactly one
+   preset was version-pinned in real seller data across every repo we publish;
+   the rest tracked the alias. A version bump would have imposed the same change
+   on the same callers, while leaving ~600 dead files nothing resolves to.
+
+Note also that `meta` in the front-matter is shared by every version in the
+directory, so removing a key there changes v1 too. Bumping the version does not
+insulate old versions from a metadata change unless you also add a
+`[versions.vN]` override — which is why the versioned form of this migration
+would have left v1 with neither its metadata check nor an in-script one.
+
+If either fact fails — the old behaviour still works, or a caller pins the
+version you want to edit — publish a new version. Amending in place is a
+one-time answer to a retired mechanism, not a shortcut around versioning. When
+you do amend, say so in the family's README under the version you changed
+(`**Amended in <release>**: …`), so a reader whose installed package predates it
+can tell why the behaviour differs.
 
 ---
 
@@ -415,10 +445,20 @@ if not n:
 {%- endif %}
 ```
 
-Use it for anything that only makes sense while something is running the
-example: assertions, non-zero exits, `echo "example ok"` markers, and the
-counters or captures they need. Do **not** use it to hide explanatory
-comments — those are the reason an example is worth publishing.
+Use it for anything that only makes sense while something is *verifying* the
+example: assertions about the reply, `echo "example ok"`-style success markers,
+`grep -q` gates that turn a response into an exit code, and the counters or
+captures those need.
+
+Do **not** use it to hide two things. **Explanatory comments** — those are the
+reason an example is worth publishing; if a comment explains a check you are
+wrapping, move the comment inside the wrap with it rather than leaving it
+describing code the reader cannot see. And **error handling** — `if
+(!response.ok) throw new Error(...)`, `main().catch(e => { …; process.exit(1) })`,
+`response.raise_for_status()`, a shell `exit 1` on a failed call. Those are the
+idiomatic shapes of the language and a customer needs to see them; hiding them
+publishes an example that silently swallows failures, which is worse than
+publishing an assertion. The checker deliberately does not flag them.
 
 ### The rules, all enforced by `tests/test_customer_display.py`
 
@@ -451,9 +491,12 @@ behavioural one.
 `tests/customer_display_baseline.txt` lists examples whose execution-only code
 is not wrapped yet. It is a ratchet: a file with scaffolding that is *absent*
 from the list fails the build, and so does a listed file that no longer has
-any — so the list cannot go stale, and may only shrink. Wrapping an example
-means publishing a new `-vN` (see the append-only rule above), then deleting
-its line.
+any — so the list cannot go stale, and may only shrink.
+
+**As of 0.2.2 it is empty**, which makes the check a hard rule: an example with
+unwrapped verification fails the build, full stop. Keep it that way. If you
+genuinely must land one unwrapped, add its path and treat the line as a promise
+to come back.
 
 Run the checker directly while authoring:
 

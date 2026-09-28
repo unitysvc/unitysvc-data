@@ -10,10 +10,10 @@ response = httpx.post(
     WEBHOOK_URL,
     json={"msg_type":"text","content":{"text":"connectivity check"}},
 )
+{%- if not customer_display %}
 if response.status_code >= 400:
     raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
-print(f"sent (HTTP {response.status_code})")
-
+{%- endif %}
 {% else %}
 # Gateway mode: POST the notification payload to the UnitySVC gateway.
 GATEWAY_URL = "{{ service_base_url }}"
@@ -28,7 +28,8 @@ response = httpx.post(
             }
         },
 )
+{%- if not customer_display %}
 if response.status_code >= 400:
     raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
-print(f"sent (HTTP {response.status_code})")
+{%- endif %}
 {% endif %}

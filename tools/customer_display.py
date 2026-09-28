@@ -44,21 +44,32 @@ _ACCEPTED_CONDITION = "not customer_display"
 #: Lines that only make sense when something is executing them. Deliberately
 #: conservative — each pattern is anchored to a statement, so prose mentioning
 #: "assert" or a string containing ``example ok`` does not trip it.
+#:
+#: **Error handling is not scaffolding.** An earlier version of this table also
+#: matched ``exit 1``, ``sys.exit(...)``, ``process.exit(1)`` and ``throw new
+#: Error``, which flagged 161 of 202 hits across the corpus — nearly all of them
+#: the error path a *customer* should see. ``if (!response.ok) throw new
+#: Error(...)`` and ``main().catch(e => { ...; process.exit(1) })`` are the
+#: idiomatic shapes of the language; hiding them would publish examples that
+#: silently swallow failures, which is worse than publishing an assertion.
+#:
+#: What stays here is only what a customer has no use for: a bare ``assert``, a
+#: success token printed unconditionally so a retired stdout matcher could find
+#: it (unitysvc/unitysvc#2490), and a ``grep -q`` gate over a captured response,
+#: which exists to turn a reply into an exit code rather than to show anything.
 EXECUTION_ONLY_MARKERS: dict[str, tuple[re.Pattern[str], ...]] = {
     ".py.j2": (
         re.compile(r"^\s*assert\s"),
-        re.compile(r"^\s*raise\s+SystemExit\b"),
-        re.compile(r"^\s*sys\.exit\("),
+        re.compile(r"""^\s*print\(\s*['"](?:example|connectivity) ok['"]"""),
     ),
     ".sh.j2": (
-        re.compile(r"^\s*exit\s+[1-9]"),
-        re.compile(r"""^\s*echo\s+['"]example ok['"]"""),
-        re.compile(r"^\s*echo\s+.*\|\s*grep\s+-q\b"),
+        re.compile(r"""^\s*echo\s+['"](?:example|connectivity) ok['"]\s*$"""),
         re.compile(r"\|\s*grep\s+-q\b"),
     ),
     ".js.j2": (
-        re.compile(r"^\s*process\.exit\(\s*[1-9]"),
-        re.compile(r"^\s*throw\s+new\s+Error\b"),
+        re.compile(
+            r"""^\s*console\.log\(\s*['"`](?:example|connectivity) ok['"`]"""
+        ),
     ),
 }
 

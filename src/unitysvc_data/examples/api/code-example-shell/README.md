@@ -6,7 +6,6 @@ file = "code-example.sh.j2"
 description = "curl example: GET an HTTP endpoint and assert a 2xx response"
 is_active = true
 is_public = true
-meta = { output_contains = "ok" }
 +++
 
 # api / code-example-shell — generic HTTP smoke test via `curl`
@@ -34,5 +33,10 @@ customer wiring the service into a shell script.
 
 - `curl -fsS {{ service_base_url }}` with optional bearer auth, 5-second timeout.
 - `-f` makes curl exit non-zero on any non-2xx response.
-- Prints `ok` on success — paired with the `output_contains = "ok"` meta
-  so the platform's run-tests flow can confirm a real endpoint hit.
+- Prints `ok` after curl confirms a successful endpoint hit.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

@@ -12,9 +12,9 @@ status=$(curl -sS --max-time 5 \
     -o /dev/null -w "%{http_code}" \
     "$WEBHOOK_URL" 2>/dev/null)
 
+{%- if not customer_display %}
 case "$status" in
   204)
-    echo "connectivity ok (HTTP $status)"
     exit 0
     ;;
   000)
@@ -26,3 +26,4 @@ case "$status" in
     exit 1
     ;;
 esac
+{%- endif %}

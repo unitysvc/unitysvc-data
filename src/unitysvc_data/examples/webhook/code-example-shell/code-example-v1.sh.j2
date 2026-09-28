@@ -6,7 +6,7 @@ set -o pipefail
 
 WEBHOOK_URL="{{ service_base_url }}${__webhook_path__}"
 
-curl -sS --max-time 10 \
+status=$(curl -sS --max-time 10 \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
@@ -18,7 +18,12 @@ curl -sS --max-time 10 \
     }
   ]
 }' \
-    -o /dev/null -w "%{http_code}\n" \
-    "$WEBHOOK_URL"
+    -o /dev/null -w "%{http_code}" \
+    "$WEBHOOK_URL")
 
-echo "sent"
+{%- if not customer_display %}
+if [ "$status" != "204" ]; then
+    echo "send failed: HTTP $status from $WEBHOOK_URL" >&2
+    exit 1
+fi
+{%- endif %}

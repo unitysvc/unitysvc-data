@@ -6,13 +6,9 @@ file = "code-example-imagetoimage.sh.j2"
 description = "Bash example: image-to-image transform via Hugging Face /models/<model> using curl"
 is_active = true
 is_public = true
-meta = { variant = "Image to image", output_contains = "example ok", min_expected_metrics = { images_generated = 1 } }
+meta = { variant = "Image to image", min_expected_metrics = { images_generated = 1 } }
 parameters = { version_prefix = "/v1" }
 applies_to = { capability = "image-edit" }
-
-[versions.v1]
-# v1 predates the response-shape assertion and prints no sentinel.
-meta = { output_contains = "" }
 +++
 
 # llm / code-example-imagetoimage-shell — image-to-image via `curl`
@@ -37,3 +33,14 @@ Optional:
 ## Versions
 
 ### v1 — initial release
+
+### v2 — in-script verification
+
+- Verifies the response in the script rather than through the runner's
+  `output_contains` sentinel, which was retired platform-side
+  (unitysvc/unitysvc#2490) — so the check is a real status or response-shape
+  assertion, not a match against a token the script printed unconditionally.
+- The assertion is wrapped in `{%- if not customer_display %}` so it runs but
+  stays out of the published example; the unconditional success marker is gone.
+- **Amended in 0.2.2.** Earlier installs of this package ship a v2 whose
+  verification lived in metadata instead.

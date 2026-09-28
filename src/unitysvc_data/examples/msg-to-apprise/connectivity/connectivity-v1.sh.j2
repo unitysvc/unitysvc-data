@@ -26,8 +26,10 @@ status=$(curl -sS --max-time 10 \
     "$URL" 2>/dev/null)
 {% endif %}
 
+{%- if not customer_display %}
 case "$status" in
-  2??) echo "connectivity ok (HTTP $status)"; exit 0 ;;
+  2??) exit 0 ;;
   000) echo "connectivity failed: could not connect to $URL" >&2; exit 1 ;;
   *)   echo "connectivity failed: HTTP $status from $URL" >&2; exit 1 ;;
 esac
+{%- endif %}

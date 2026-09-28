@@ -659,9 +659,8 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
     """A document record scoped to its group's channel and interface.
 
     Merged INTO the preset's own ``meta`` rather than over it: the
-    preset carries ``requirements`` (what the runner installs) and
-    ``output_contains`` (what makes the test an assertion), and losing
-    either would break execution.
+    preset carries ``requirements`` (what the runner installs) and its
+    own billing-verification floor, and losing either would break execution.
     """
     # Only presets that DECLARE a parameter may receive it: doc_preset
     # auto-discriminates kwargs against declared parameters, and an

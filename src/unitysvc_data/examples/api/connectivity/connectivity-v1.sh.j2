@@ -24,9 +24,9 @@ fi
 
 # Accept 2xx/3xx (alive) and 401/403 (alive, auth challenge).
 # Reject 000 (connect/DNS failure), 404 (wrong path), 5xx (broken).
+{%- if not customer_display %}
 case "$status" in
   2??|3??|401|403)
-    echo "connectivity ok (HTTP $status)"
     exit 0
     ;;
   000)
@@ -38,3 +38,4 @@ case "$status" in
     exit 1
     ;;
 esac
+{%- endif %}

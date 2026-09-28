@@ -6,7 +6,7 @@ file = "code-example.py.j2"
 description = "Python (httpx) code example for pass-through HTTP notification services"
 is_active = true
 is_public = true
-meta = { output_contains = "sent", requirements = ["httpx"], min_expected_metrics = { bytes_out = 1 } }
+meta = { requirements = ["httpx"], min_expected_metrics = { bytes_out = 1 } }
 parameters = { webhook_path = "/webhook", chat_id = "" }
 +++
 
@@ -64,3 +64,9 @@ carries the message in its body, which these can't provide:
 
 - Local: POST upstream-format payload via `httpx.post`; print `sent (HTTP <status>)`.
 - Gateway: POST same payload with Bearer auth; print `sent (HTTP <status>)`.
+- **Amended in 0.2.2**: verification moved into the script. The runner-side
+  `output_contains` sentinel it used to rely on was retired platform-side
+  (unitysvc/unitysvc#2490), so the check is now a real status or
+  response-shape assertion, wrapped in `{%- if not customer_display %}` to keep
+  it out of the published example. The unconditional success marker is gone.
+

@@ -36,10 +36,9 @@ else
     greeting=$( (echo "QUIT"; sleep 1) | nc -w 5 "$HOST" "$PORT" 2>/dev/null | head -1 )
 fi
 
-if [[ "$greeting" == "220 "* ]]; then
-    echo "connectivity ok ($greeting)"
-    exit 0
+{%- if not customer_display %}
+if [[ "$greeting" != "220 "* ]]; then
+    echo "connectivity failed: expected '220 ...' greeting from ${HOST}:${PORT}, got: ${greeting:-<no response>}" >&2
+    exit 1
 fi
-
-echo "connectivity failed: expected '220 ...' greeting from ${HOST}:${PORT}, got: ${greeting:-<no response>}" >&2
-exit 1
+{%- endif %}
