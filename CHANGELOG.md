@@ -11,6 +11,23 @@ rare).
 
 ## [Unreleased]
 
+## [0.2.2] — enforce the customer_display authoring contract
+
+### Added
+
+- `tools/customer_display.py` and `tests/test_customer_display.py` validate
+  `{% if not customer_display %}` blocks across every shipped example: the
+  condition must be exactly `not customer_display`, the block may carry no
+  `{% else %}` or `{% elif %}` (an arm shown to customers but never executed),
+  the customer render must be an ordered line subsequence of the executed one,
+  and the tags must sit on their own lines without whitespace control.
+- `tests/customer_display_baseline.txt` ratchets the 143 examples whose
+  execution-only code is not wrapped yet: new unwrapped scaffolding fails the
+  build, and so does a baseline entry for a file that no longer has any.
+
+No preset content changed, so no preset version moved.
+
+
 ## [0.2.1] — optional output limits for OpenAI examples
 
 ### Changed
