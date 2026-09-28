@@ -105,6 +105,17 @@ No preset content changed, so no preset version moved.
   arms.
 - `code-example-anthropic-to-openai-stream-sdk`'s v2 is documented for the first
   time; the family shipped it while its README described only v1.
+- **Raised `max_tokens` from 64 to 1024 in the 21 translation examples.** A
+  reasoning model spends its whole budget on the thinking block: at 64 tokens
+  `kimi-k3` and `glm-5.2` emitted 281 and 253 characters of `thinking_delta`,
+  zero `text_delta`, and stopped on `max_tokens`. The published example
+  therefore returned **nothing** to a customer running it against those models,
+  and the streaming ones failed the new assertion (correctly — they produced no
+  content). At 1024 both finish thinking and answer, stopping on `end_turn`.
+  This matches what the corpus already does for native Anthropic examples,
+  which have always used 1024; only the `*-to-*` translation examples were on
+  64. Note the cost: a translation example may now emit up to 1024 output
+  tokens per test run instead of 64.
 
 ## [0.2.1] — optional output limits for OpenAI examples
 

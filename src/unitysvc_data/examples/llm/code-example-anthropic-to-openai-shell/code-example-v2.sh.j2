@@ -40,7 +40,7 @@ curl --fail-with-body -sS "{{ service_base_url }}/v1/messages" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
     "model": "{{ routing_key.model }}",
-    "max_tokens": 64,
+    "max_tokens": 1024,
     "messages": [{"role": "user", "content": "Say this is a test"}]
   }'
 {% endif %}

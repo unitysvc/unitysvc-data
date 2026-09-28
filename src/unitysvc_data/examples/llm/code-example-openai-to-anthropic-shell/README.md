@@ -62,3 +62,7 @@ Required:
   stays out of the published example; the unconditional success marker is gone.
 - **Amended in 0.2.2.** Earlier installs of this package ship a v3 whose
   verification lived in metadata instead.
+- **Amended in 0.2.2**: `max_tokens` raised from 64 to 1024. A reasoning model
+  spends the whole 64-token budget inside its thinking block and emits no
+  visible text at all, so the example returned nothing; 1024 lets it finish and
+  answer. Native Anthropic examples in this collection have always used 1024.

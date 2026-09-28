@@ -15,7 +15,7 @@ client = Anthropic(
 )
 message = client.messages.create(
     model="{{ routing_key.model }}",
-    max_tokens=64,
+    max_tokens=1024,
     messages=[{"role": "user", "content": "Say this is a test"}],
 )
 # content[0] may be a thinking block (reasoning models) rather than a text
