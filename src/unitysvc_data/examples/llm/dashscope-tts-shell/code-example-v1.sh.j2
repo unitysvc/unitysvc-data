@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+response=$(curl --fail-with-body -sS "{{ service_base_url }}" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d '{"model": "{{ routing_key.model }}", "input": {"text": "Hello from UnitySVC"}, "parameters": {"voice": "Cherry"}}')
+
+echo "$response"
+{%- if not customer_display %}
+# DashScope answers 200 with an error envelope, so the status alone proves
+# nothing -- check the payload actually carries a result.
+if ! printf '%s' "$response" | grep -q '"audio"'; then
+  echo 'unexpected response: no "audio" in the reply' >&2
+  exit 1
+fi
+{%- endif %}

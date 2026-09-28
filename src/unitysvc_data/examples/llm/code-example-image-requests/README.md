@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Image generation", requirements = ["requests"], min_expected_metrics = { images_generated = 1 } }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "image-generate" }
+applies_to = { capability = "image-generate", dialect = "openai" }
 +++
 
 # llm / code-example-image-requests — text-to-image via `requests`
@@ -48,3 +48,9 @@ Optional:
 - POST `model` + `prompt` + `size=1024x1024` + `response_format=b64_json`.
 - Saves the decoded image to `OUTPUT_FILE`.
 - Required env vars fail fast with `KeyError` if missing.
+- **Amended in 0.2.3**: `applies_to` now declares `dialect = "openai"`.
+  It named only the capability, and an absent key means "no constraint" — so
+  this example applied to callers writing any dialect, including ones whose
+  upstream has no such endpoint. Selection metadata only: nothing this example
+  does has changed, and every service that received it still does, because they
+  all declare `openai`.

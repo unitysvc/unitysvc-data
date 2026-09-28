@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Text to video", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "video-generate" }
+applies_to = { capability = "video-generate", dialect = "openai" }
 +++
 
 # llm / code-example-ttv-requests — text-to-video via `requests`
@@ -33,3 +33,9 @@ Optional:
 ## Versions
 
 ### v1 — initial release
+- **Amended in 0.2.3**: `applies_to` now declares `dialect = "openai"`.
+  It named only the capability, and an absent key means "no constraint" — so
+  this example applied to callers writing any dialect, including ones whose
+  upstream has no such endpoint. Selection metadata only: nothing this example
+  does has changed, and every service that received it still does, because they
+  all declare `openai`.

@@ -1,0 +1,20 @@
+#!/bin/bash
+# DashScope connectivity probe (chat): POST the smallest useful request the
+# native endpoint takes and assert the reply really carries "choices".
+# A 2xx alone is not enough -- DashScope answers 200 with an error envelope.
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+response=$(curl --fail-with-body -sS "{{ service_base_url }}" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -d '{"model": "{{ routing_key.model }}", "input": {"messages": [{"role": "user", "content": [{"text": "Say this is a test"}]}]}, "parameters": {"max_tokens": 64}}')
+
+echo "$response"
+{%- if not customer_display %}
+if ! printf '%s' "$response" | grep -q '"choices"'; then
+  echo 'unexpected response: no "choices" in the reply' >&2
+  exit 1
+fi
+{%- endif %}

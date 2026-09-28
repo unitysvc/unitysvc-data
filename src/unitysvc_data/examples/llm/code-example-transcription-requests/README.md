@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Transcription", requirements = ["requests"], min_expected_metrics = { duration_seconds = 0.01 } }
 parameters = { version_prefix = "/v1", language = "en" }
-applies_to = { capability = "speech-to-text" }
+applies_to = { capability = "speech-to-text", dialect = "openai" }
 +++
 
 # llm / code-example-transcription-requests — audio transcription via `requests`
@@ -53,3 +53,9 @@ Optional:
   the transcription endpoint.
 - `raise_for_status()` on both calls so a download or upload
   failure exits non-zero with a clear message.
+- **Amended in 0.2.3**: `applies_to` now declares `dialect = "openai"`.
+  It named only the capability, and an absent key means "no constraint" — so
+  this example applied to callers writing any dialect, including ones whose
+  upstream has no such endpoint. Selection metadata only: nothing this example
+  does has changed, and every service that received it still does, because they
+  all declare `openai`.

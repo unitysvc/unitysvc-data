@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Rerank" }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "rerank" }
+applies_to = { capability = "rerank", dialect = "openai" }
 +++
 
 # llm / code-example-rerank-shell — document reranking via `curl`
@@ -40,3 +40,9 @@ Required:
   stays out of the published example; the unconditional success marker is gone.
 - **Amended in 0.2.2.** Earlier installs of this package ship a v2 whose
   verification lived in metadata instead.
+- **Amended in 0.2.3**: `applies_to` now declares `dialect = "openai"`.
+  It named only the capability, and an absent key means "no constraint" — so
+  this example applied to callers writing any dialect, including ones whose
+  upstream has no such endpoint. Selection metadata only: nothing this example
+  does has changed, and every service that received it still does, because they
+  all declare `openai`.

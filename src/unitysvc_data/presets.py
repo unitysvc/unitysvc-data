@@ -425,7 +425,12 @@ _DIALECT_LABEL = {
     "openai": "", "anthropic": "Anthropic-style", "cohere": "Cohere SDK",
     "cerebras": "Cerebras SDK", "bedrock_converse": "boto3 Converse",
     "bedrock_invoke": "boto3 InvokeModel", "huggingface": "sentence-transformers",
+    "dashscope": "DashScope",
 }
+
+#: Dialects the CALLER writes, rather than an SDK that writes them for it.
+#: These read as "<label> input"; everything else reads as the SDK's own name.
+_CALLER_DIALECTS = ("openai", "anthropic", "dashscope")
 
 
 def _title(entry: dict[str, Any], spec: dict[str, Any]) -> str:
@@ -444,7 +449,7 @@ def _title(entry: dict[str, Any], spec: dict[str, Any]) -> str:
     if label:
         # "Anthropic-style input" reads as the dialect the CALLER writes;
         # a named SDK reads as itself.
-        bits.append(f"{label} input" if dialect in ("openai", "anthropic") else label)
+        bits.append(f"{label} input" if dialect in _CALLER_DIALECTS else label)
     if spec.get("feature") in ("streaming", "tools", "vision"):
         bits.append(spec["feature"])
     # Disambiguate SDK-vs-raw within one language — unless the dialect
@@ -604,7 +609,13 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
         for title, preset_name in _select(
             capability=capability,
             dialects=set(group["formats"]),
-            upstream=upstream,
+            # Which dialect the UPSTREAM speaks is a property of the channel a
+            # group maps to (its ``upstream_format``), not of the service: one
+            # listing can front an OpenAI-compatible channel and a native one
+            # at the same time (QwenCloud's compat layer plus DashScope, where
+            # only the native surface serves TTS/ASR). The collection-level
+            # value stays the default, so every existing repo is unaffected.
+            upstream=group.get("upstream_dialect") or upstream,
             features=features,
         ):
             scope = _primary_group(groups) if title == "Connectivity test" else group
@@ -623,6 +634,10 @@ def _normalise_groups(formats: Any, *, default_tools: Any) -> list[dict[str, Any
 
     ``["openai", "anthropic"]`` is sugar for a single unscoped group,
     which covers every repo but bedrock.
+
+    A group's keys are passed through untouched, so ``upstream_dialect`` —
+    read back in the caller — needs no defaulting here: absent means "use
+    the collection's".
     """
     if formats and all(isinstance(f, str) for f in formats):
         return [{"formats": list(formats), "tools": bool(default_tools)}]
@@ -676,8 +691,17 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
         # scope they used to pick up was just whichever group came last.
         return record
     scope = {}
-    if group.get("channel"):
-        scope["channels"] = [group["channel"]]
+    # ``channels`` (a list) or ``channel`` (one name). Both exist because an
+    # interface may front more than one channel: bedrock's each front exactly
+    # one, while a provider offering the same endpoint as managed-resale and
+    # BYOK has two per interface. Naming just one of those leaves the other with
+    # no documentation, and naming none is worse than it looks — an unscoped
+    # document applies to EVERY channel, including the channels belonging to a
+    # different interface, whose dialect it is not written in.
+    channels = group.get("channels") or (
+        [group["channel"]] if group.get("channel") else None)
+    if channels:
+        scope["channels"] = list(channels)
     if group.get("interface"):
         scope["interfaces"] = [group["interface"]]
     if group.get("test_status"):

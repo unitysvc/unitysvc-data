@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Rerank", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "rerank" }
+applies_to = { capability = "rerank", dialect = "openai" }
 +++
 
 # llm / code-example-rerank-requests — rerank via `requests`
@@ -41,3 +41,9 @@ Required:
 
 - POST `model` + `query` + `top_n` + `documents`.
 - Required env vars fail fast with `KeyError` if missing.
+- **Amended in 0.2.3**: `applies_to` now declares `dialect = "openai"`.
+  It named only the capability, and an absent key means "no constraint" — so
+  this example applied to callers writing any dialect, including ones whose
+  upstream has no such endpoint. Selection metadata only: nothing this example
+  does has changed, and every service that received it still does, because they
+  all declare `openai`.

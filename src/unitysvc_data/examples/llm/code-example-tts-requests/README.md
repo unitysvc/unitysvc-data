@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Text to speech", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "text-to-speech" }
+applies_to = { capability = "text-to-speech", dialect = "openai" }
 +++
 
 # llm / code-example-tts-requests — text-to-speech via `requests`
@@ -48,3 +48,9 @@ Optional:
 - POST `model` + `input` + `voice` + `response_format=wav`.
 - No vendor SDK; `requests` only.
 - Required env vars fail fast with `KeyError` if missing.
+- **Amended in 0.2.3**: `applies_to` now declares `dialect = "openai"`.
+  It named only the capability, and an absent key means "no constraint" — so
+  this example applied to callers writing any dialect, including ones whose
+  upstream has no such endpoint. Selection metadata only: nothing this example
+  does has changed, and every service that received it still does, because they
+  all declare `openai`.

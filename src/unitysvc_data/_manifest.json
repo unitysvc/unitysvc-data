@@ -13,10 +13,19 @@
     "llm_code_example_anthropic_to_openai_stream_requests": "llm_code_example_anthropic_to_openai_stream_requests_v1",
     "llm_code_example_anthropic_to_openai_stream_sdk": "llm_code_example_anthropic_to_openai_stream_sdk_v2",
     "llm_code_example_anthropic_to_openai_stream_shell": "llm_code_example_anthropic_to_openai_stream_shell_v3",
+    "llm_code_example_asr_dashscope_javascript": "llm_code_example_asr_dashscope_javascript_v1",
+    "llm_code_example_asr_dashscope_requests": "llm_code_example_asr_dashscope_requests_v1",
+    "llm_code_example_asr_dashscope_shell": "llm_code_example_asr_dashscope_shell_v1",
     "llm_code_example_bedrock_converse": "llm_code_example_bedrock_converse_v1",
     "llm_code_example_bedrock_invoke": "llm_code_example_bedrock_invoke_v1",
     "llm_code_example_cerebras": "llm_code_example_cerebras_v1",
+    "llm_code_example_chat_dashscope_javascript": "llm_code_example_chat_dashscope_javascript_v1",
+    "llm_code_example_chat_dashscope_requests": "llm_code_example_chat_dashscope_requests_v1",
+    "llm_code_example_chat_dashscope_shell": "llm_code_example_chat_dashscope_shell_v1",
     "llm_code_example_cohere": "llm_code_example_cohere_v1",
+    "llm_code_example_embed_dashscope_javascript": "llm_code_example_embed_dashscope_javascript_v1",
+    "llm_code_example_embed_dashscope_requests": "llm_code_example_embed_dashscope_requests_v1",
+    "llm_code_example_embed_dashscope_shell": "llm_code_example_embed_dashscope_shell_v1",
     "llm_code_example_embed_image_javascript": "llm_code_example_embed_image_javascript_v1",
     "llm_code_example_embed_image_requests": "llm_code_example_embed_image_requests_v1",
     "llm_code_example_embed_image_shell": "llm_code_example_embed_image_shell_v2",
@@ -55,6 +64,9 @@
     "llm_code_example_transcription_javascript": "llm_code_example_transcription_javascript_v1",
     "llm_code_example_transcription_requests": "llm_code_example_transcription_requests_v1",
     "llm_code_example_transcription_shell": "llm_code_example_transcription_shell_v2",
+    "llm_code_example_tts_dashscope_javascript": "llm_code_example_tts_dashscope_javascript_v1",
+    "llm_code_example_tts_dashscope_requests": "llm_code_example_tts_dashscope_requests_v1",
+    "llm_code_example_tts_dashscope_shell": "llm_code_example_tts_dashscope_shell_v1",
     "llm_code_example_tts_javascript": "llm_code_example_tts_javascript_v1",
     "llm_code_example_tts_requests": "llm_code_example_tts_requests_v1",
     "llm_code_example_tts_shell": "llm_code_example_tts_shell_v1",
@@ -66,10 +78,14 @@
     "llm_code_example_vision_shell": "llm_code_example_vision_shell_v3",
     "llm_connectivity": "llm_connectivity_v1",
     "llm_connectivity_anthropic": "llm_connectivity_anthropic_v1",
+    "llm_connectivity_asr_dashscope": "llm_connectivity_asr_dashscope_v1",
+    "llm_connectivity_chat_dashscope": "llm_connectivity_chat_dashscope_v1",
     "llm_connectivity_embed": "llm_connectivity_embed_v1",
+    "llm_connectivity_embed_dashscope": "llm_connectivity_embed_dashscope_v1",
     "llm_connectivity_embed_image": "llm_connectivity_embed_image_v1",
     "llm_connectivity_transcription": "llm_connectivity_transcription_v1",
     "llm_connectivity_tts": "llm_connectivity_tts_v1",
+    "llm_connectivity_tts_dashscope": "llm_connectivity_tts_dashscope_v1",
     "llm_description": "llm_description_v2",
     "llm_request_template": "llm_request_template_v1",
     "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
@@ -1139,6 +1155,81 @@
       "source_readme": "llm/code-example-anthropic/README.md",
       "version": 1
     },
+    "llm_code_example_asr_dashscope_javascript_v1": {
+      "applies_to": {
+        "capability": "speech-to-text",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "JavaScript example: transcribe audio on a DashScope-native endpoint with fetch",
+      "example_file": "llm/dashscope-asr-javascript/code-example-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "variant": "Speech to text (DashScope)"
+      },
+      "mime_type": "javascript",
+      "parameters": {},
+      "preset_name": "llm_code_example_asr_dashscope_javascript",
+      "source_readme": "llm/dashscope-asr-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_asr_dashscope_requests_v1": {
+      "applies_to": {
+        "capability": "speech-to-text",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Python example: transcribe audio on a DashScope-native endpoint using the requests library",
+      "example_file": "llm/dashscope-asr-requests/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "requirements": [
+          "requests"
+        ],
+        "variant": "Speech to text (DashScope)"
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_asr_dashscope_requests",
+      "source_readme": "llm/dashscope-asr-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_asr_dashscope_shell_v1": {
+      "applies_to": {
+        "capability": "speech-to-text",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Shell example: transcribe audio on a DashScope-native endpoint via curl",
+      "example_file": "llm/dashscope-asr-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "variant": "Speech to text (DashScope)"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_asr_dashscope_shell",
+      "source_readme": "llm/dashscope-asr-shell/README.md",
+      "version": 1
+    },
     "llm_code_example_bedrock_converse_v1": {
       "applies_to": {
         "capability": "chat",
@@ -1223,6 +1314,81 @@
       "source_readme": "llm/code-example-cerebras/README.md",
       "version": 1
     },
+    "llm_code_example_chat_dashscope_javascript_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "JavaScript example: send a chat completion to a DashScope-native endpoint with fetch",
+      "example_file": "llm/dashscope-chat-javascript/code-example-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "variant": "Chat (DashScope)"
+      },
+      "mime_type": "javascript",
+      "parameters": {},
+      "preset_name": "llm_code_example_chat_dashscope_javascript",
+      "source_readme": "llm/dashscope-chat-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_chat_dashscope_requests_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Python example: send a chat completion to a DashScope-native endpoint using the requests library",
+      "example_file": "llm/dashscope-chat-requests/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "requirements": [
+          "requests"
+        ],
+        "variant": "Chat (DashScope)"
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_chat_dashscope_requests",
+      "source_readme": "llm/dashscope-chat-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_chat_dashscope_shell_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Shell example: send a chat completion to a DashScope-native endpoint via curl",
+      "example_file": "llm/dashscope-chat-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "variant": "Chat (DashScope)"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_chat_dashscope_shell",
+      "source_readme": "llm/dashscope-chat-shell/README.md",
+      "version": 1
+    },
     "llm_code_example_cohere_v1": {
       "applies_to": {
         "capability": "chat",
@@ -1248,6 +1414,78 @@
       "parameters": {},
       "preset_name": "llm_code_example_cohere",
       "source_readme": "llm/code-example-cohere/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_dashscope_javascript_v1": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "JavaScript example: request text embeddings from a DashScope-native endpoint with fetch",
+      "example_file": "llm/dashscope-embed-javascript/code-example-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "total_tokens": 1
+        },
+        "variant": "Embeddings (DashScope)"
+      },
+      "mime_type": "javascript",
+      "parameters": {},
+      "preset_name": "llm_code_example_embed_dashscope_javascript",
+      "source_readme": "llm/dashscope-embed-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_dashscope_requests_v1": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Python example: request text embeddings from a DashScope-native endpoint using the requests library",
+      "example_file": "llm/dashscope-embed-requests/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "total_tokens": 1
+        },
+        "requirements": [
+          "requests"
+        ],
+        "variant": "Embeddings (DashScope)"
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_embed_dashscope_requests",
+      "source_readme": "llm/dashscope-embed-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_embed_dashscope_shell_v1": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Shell example: request text embeddings from a DashScope-native endpoint via curl",
+      "example_file": "llm/dashscope-embed-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "total_tokens": 1
+        },
+        "variant": "Embeddings (DashScope)"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_embed_dashscope_shell",
+      "source_readme": "llm/dashscope-embed-shell/README.md",
       "version": 1
     },
     "llm_code_example_embed_image_javascript_v1": {
@@ -1351,7 +1589,8 @@
     },
     "llm_code_example_embed_javascript_v1": {
       "applies_to": {
-        "capability": "embed"
+        "capability": "embed",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: request OpenAI-compatible embeddings via fetch",
@@ -1374,7 +1613,8 @@
     },
     "llm_code_example_embed_requests_v1": {
       "applies_to": {
-        "capability": "embed"
+        "capability": "embed",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: request OpenAI-compatible embeddings for a list of inputs",
@@ -1400,7 +1640,8 @@
     },
     "llm_code_example_embed_shell_v1": {
       "applies_to": {
-        "capability": "embed"
+        "capability": "embed",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Shell example: request OpenAI-compatible embeddings via curl",
@@ -1423,7 +1664,8 @@
     },
     "llm_code_example_embed_shell_v2": {
       "applies_to": {
-        "capability": "embed"
+        "capability": "embed",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Shell example: request OpenAI-compatible embeddings via curl",
@@ -1477,7 +1719,8 @@
     },
     "llm_code_example_guard_javascript_v1": {
       "applies_to": {
-        "capability": "moderate"
+        "capability": "moderate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: send an unsafe prompt to a guard/safety model via /chat/completions",
@@ -1497,7 +1740,8 @@
     },
     "llm_code_example_guard_requests_v1": {
       "applies_to": {
-        "capability": "moderate"
+        "capability": "moderate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: probe a Llama-Guard-style safety classifier with a borderline prompt",
@@ -1520,7 +1764,8 @@
     },
     "llm_code_example_guard_shell_v1": {
       "applies_to": {
-        "capability": "moderate"
+        "capability": "moderate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: send an unsafe prompt to a guard/safety model via curl",
@@ -1540,7 +1785,8 @@
     },
     "llm_code_example_guard_shell_v2": {
       "applies_to": {
-        "capability": "moderate"
+        "capability": "moderate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: send an unsafe prompt to a guard/safety model via curl",
@@ -1560,7 +1806,8 @@
     },
     "llm_code_example_image_javascript_v1": {
       "applies_to": {
-        "capability": "image-generate"
+        "capability": "image-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: generate an image via OpenAI-compatible /images/generations",
@@ -1583,7 +1830,8 @@
     },
     "llm_code_example_image_requests_v1": {
       "applies_to": {
-        "capability": "image-generate"
+        "capability": "image-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: generate an image from a text prompt via an OpenAI-compatible images endpoint",
@@ -1609,7 +1857,8 @@
     },
     "llm_code_example_image_shell_v1": {
       "applies_to": {
-        "capability": "image-generate"
+        "capability": "image-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: generate an image via OpenAI-compatible /images/generations using curl",
@@ -1632,7 +1881,8 @@
     },
     "llm_code_example_image_shell_v2": {
       "applies_to": {
-        "capability": "image-generate"
+        "capability": "image-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: generate an image via OpenAI-compatible /images/generations using curl",
@@ -1655,7 +1905,8 @@
     },
     "llm_code_example_imagetoimage_javascript_v1": {
       "applies_to": {
-        "capability": "image-edit"
+        "capability": "image-edit",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: image-to-image transform via Hugging Face /models/<model>",
@@ -1678,7 +1929,8 @@
     },
     "llm_code_example_imagetoimage_requests_v1": {
       "applies_to": {
-        "capability": "image-edit"
+        "capability": "image-edit",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: image-to-image transform via Hugging Face /models/<model>",
@@ -1704,7 +1956,8 @@
     },
     "llm_code_example_imagetoimage_shell_v1": {
       "applies_to": {
-        "capability": "image-edit"
+        "capability": "image-edit",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: image-to-image transform via Hugging Face /models/<model> using curl",
@@ -1727,7 +1980,8 @@
     },
     "llm_code_example_imagetoimage_shell_v2": {
       "applies_to": {
-        "capability": "image-edit"
+        "capability": "image-edit",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: image-to-image transform via Hugging Face /models/<model> using curl",
@@ -2126,7 +2380,8 @@
     },
     "llm_code_example_rerank_javascript_v1": {
       "applies_to": {
-        "capability": "rerank"
+        "capability": "rerank",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: rerank documents via /rerank",
@@ -2146,7 +2401,8 @@
     },
     "llm_code_example_rerank_requests_v1": {
       "applies_to": {
-        "capability": "rerank"
+        "capability": "rerank",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: rerank a candidate document set against a query",
@@ -2169,7 +2425,8 @@
     },
     "llm_code_example_rerank_shell_v1": {
       "applies_to": {
-        "capability": "rerank"
+        "capability": "rerank",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: rerank documents via /rerank using curl",
@@ -2189,7 +2446,8 @@
     },
     "llm_code_example_rerank_shell_v2": {
       "applies_to": {
-        "capability": "rerank"
+        "capability": "rerank",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: rerank documents via /rerank using curl",
@@ -2424,7 +2682,8 @@
     },
     "llm_code_example_transcription_javascript_v1": {
       "applies_to": {
-        "capability": "speech-to-text"
+        "capability": "speech-to-text",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: transcribe audio via OpenAI-compatible /audio/transcriptions",
@@ -2448,7 +2707,8 @@
     },
     "llm_code_example_transcription_requests_v1": {
       "applies_to": {
-        "capability": "speech-to-text"
+        "capability": "speech-to-text",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: transcribe a pre-recorded audio file with an OpenAI-compatible audio transcription endpoint",
@@ -2475,7 +2735,8 @@
     },
     "llm_code_example_transcription_shell_v1": {
       "applies_to": {
-        "capability": "speech-to-text"
+        "capability": "speech-to-text",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl",
@@ -2499,7 +2760,8 @@
     },
     "llm_code_example_transcription_shell_v2": {
       "applies_to": {
-        "capability": "speech-to-text"
+        "capability": "speech-to-text",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: transcribe audio via OpenAI-compatible /audio/transcriptions using curl",
@@ -2521,9 +2783,82 @@
       "source_readme": "llm/code-example-transcription-shell/README.md",
       "version": 2
     },
+    "llm_code_example_tts_dashscope_javascript_v1": {
+      "applies_to": {
+        "capability": "text-to-speech",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "JavaScript example: synthesise speech from text on a DashScope-native endpoint with fetch",
+      "example_file": "llm/dashscope-tts-javascript/code-example-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "characters": 1
+        },
+        "variant": "Text to speech (DashScope)"
+      },
+      "mime_type": "javascript",
+      "parameters": {},
+      "preset_name": "llm_code_example_tts_dashscope_javascript",
+      "source_readme": "llm/dashscope-tts-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_tts_dashscope_requests_v1": {
+      "applies_to": {
+        "capability": "text-to-speech",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Python example: synthesise speech from text on a DashScope-native endpoint using the requests library",
+      "example_file": "llm/dashscope-tts-requests/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "characters": 1
+        },
+        "requirements": [
+          "requests"
+        ],
+        "variant": "Text to speech (DashScope)"
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_tts_dashscope_requests",
+      "source_readme": "llm/dashscope-tts-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_tts_dashscope_shell_v1": {
+      "applies_to": {
+        "capability": "text-to-speech",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Shell example: synthesise speech from text on a DashScope-native endpoint via curl",
+      "example_file": "llm/dashscope-tts-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "characters": 1
+        },
+        "variant": "Text to speech (DashScope)"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_tts_dashscope_shell",
+      "source_readme": "llm/dashscope-tts-shell/README.md",
+      "version": 1
+    },
     "llm_code_example_tts_javascript_v1": {
       "applies_to": {
-        "capability": "text-to-speech"
+        "capability": "text-to-speech",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: synthesize speech via OpenAI-compatible /audio/speech",
@@ -2543,7 +2878,8 @@
     },
     "llm_code_example_tts_requests_v1": {
       "applies_to": {
-        "capability": "text-to-speech"
+        "capability": "text-to-speech",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: synthesize speech from text using an OpenAI-compatible audio/speech endpoint",
@@ -2566,7 +2902,8 @@
     },
     "llm_code_example_tts_shell_v1": {
       "applies_to": {
-        "capability": "text-to-speech"
+        "capability": "text-to-speech",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: synthesize speech via OpenAI-compatible /audio/speech using curl",
@@ -2586,7 +2923,8 @@
     },
     "llm_code_example_ttv_javascript_v1": {
       "applies_to": {
-        "capability": "video-generate"
+        "capability": "video-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "JavaScript example: text-to-video via HF /models/<model>",
@@ -2606,7 +2944,8 @@
     },
     "llm_code_example_ttv_requests_v1": {
       "applies_to": {
-        "capability": "video-generate"
+        "capability": "video-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Python example: text-to-video via HF /models/<model>",
@@ -2629,7 +2968,8 @@
     },
     "llm_code_example_ttv_shell_v1": {
       "applies_to": {
-        "capability": "video-generate"
+        "capability": "video-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: text-to-video via HF /models/<model> using curl",
@@ -2649,7 +2989,8 @@
     },
     "llm_code_example_ttv_shell_v2": {
       "applies_to": {
-        "capability": "video-generate"
+        "capability": "video-generate",
+        "dialect": "openai"
       },
       "category": "code_example",
       "description": "Bash example: text-to-video via HF /models/<model> using curl",
@@ -2884,6 +3225,74 @@
       "source_readme": "llm/connectivity-anthropic/README.md",
       "version": 1
     },
+    "llm_connectivity_asr_dashscope_v1": {
+      "applies_to": {
+        "capability": "speech-to-text",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "connectivity_test",
+      "description": "Verify a DashScope-native endpoint by issuing a tiny request (speech-to-text)",
+      "example_file": "llm/dashscope-asr-connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_connectivity_asr_dashscope",
+      "source_readme": "llm/dashscope-asr-connectivity/README.md",
+      "version": 1
+    },
+    "llm_connectivity_chat_dashscope_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "connectivity_test",
+      "description": "Verify a DashScope-native endpoint by issuing a tiny request (chat)",
+      "example_file": "llm/dashscope-chat-connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_connectivity_chat_dashscope",
+      "source_readme": "llm/dashscope-chat-connectivity/README.md",
+      "version": 1
+    },
+    "llm_connectivity_embed_dashscope_v1": {
+      "applies_to": {
+        "capability": "embed",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "connectivity_test",
+      "description": "Verify a DashScope-native endpoint by issuing a tiny request (embed)",
+      "example_file": "llm/dashscope-embed-connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "min_expected_metrics": {
+          "total_tokens": 1
+        }
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_connectivity_embed_dashscope",
+      "source_readme": "llm/dashscope-embed-connectivity/README.md",
+      "version": 1
+    },
     "llm_connectivity_embed_image_v1": {
       "applies_to": {
         "capability": "embed",
@@ -2909,7 +3318,8 @@
     },
     "llm_connectivity_embed_v1": {
       "applies_to": {
-        "capability": "embed"
+        "capability": "embed",
+        "dialect": "openai"
       },
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible embeddings endpoint by issuing a tiny embed request",
@@ -2931,7 +3341,8 @@
     },
     "llm_connectivity_transcription_v1": {
       "applies_to": {
-        "capability": "speech-to-text"
+        "capability": "speech-to-text",
+        "dialect": "openai"
       },
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible audio-transcription endpoint by sending a tiny known audio file",
@@ -2952,9 +3363,32 @@
       "source_readme": "llm/connectivity-transcription/README.md",
       "version": 1
     },
+    "llm_connectivity_tts_dashscope_v1": {
+      "applies_to": {
+        "capability": "text-to-speech",
+        "dialect": "dashscope",
+        "upstream": "dashscope"
+      },
+      "category": "connectivity_test",
+      "description": "Verify a DashScope-native endpoint by issuing a tiny request (text-to-speech)",
+      "example_file": "llm/dashscope-tts-connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "min_expected_metrics": {
+          "characters": 1
+        }
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_connectivity_tts_dashscope",
+      "source_readme": "llm/dashscope-tts-connectivity/README.md",
+      "version": 1
+    },
     "llm_connectivity_tts_v1": {
       "applies_to": {
-        "capability": "text-to-speech"
+        "capability": "text-to-speech",
+        "dialect": "openai"
       },
       "category": "connectivity_test",
       "description": "Verify an OpenAI-compatible text-to-speech endpoint by synthesizing a short phrase and asserting real audio comes back",

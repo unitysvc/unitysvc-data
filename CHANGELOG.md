@@ -17,7 +17,90 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
-## [Unreleased]
+## [0.2.3] — DashScope-native presets, and dialect-scoped selection
+
+### Added
+
+- **DashScope-native presets — 16 families across four capabilities.** QwenCloud
+  serves chat, embeddings, text-to-speech and speech-to-text only through its
+  native API for three of the four: `/compatible-mode/v1/audio/speech`,
+  `/images/generations` and `/audio/transcriptions` all answer **404** while
+  `/compatible-mode/v1/models` lists the TTS, ASR and image models. The models
+  are served; the OpenAI-shaped routes to them are not.
+
+  Each capability gets a connectivity probe plus Python (`requests`), shell
+  (`curl`) and JavaScript (`fetch`) examples, declared as
+  `applies_to.dialect = "dashscope"` — the axis that already carries `cohere`,
+  `cerebras`, `bedrock_converse` and the rest, and the same token the gateway
+  uses for `upstream_format`.
+
+  `aigc/multimodal-generation/generation` serves chat, TTS **and** ASR; only the
+  `input` shape differs. Embeddings live at
+  `embeddings/text-embedding/text-embedding`. Every request and response shape
+  was captured from the live API, and all 16 rendered examples were executed
+  against it before release — real transcription, real embedding dimensions,
+  real audio URLs.
+
+  Chat is included even though the compatibility layer serves it, so a seller
+  can offer the native surface without switching dialects between capabilities.
+
+  Assertions check the payload rather than the status, because DashScope answers
+  **200 with an error envelope**; they sit behind `{%- if not customer_display %}`
+  so the published examples stay clean.
+
+  Not covered: image generation and video. The provider refuses synchronous
+  calls for them (`403 AccessDenied: current user api does not support
+  synchronous calls`), so they need an async submit/poll contract the gateway
+  has never fronted.
+
+  **The TTS families declare `min_expected_metrics = { characters = 1 }`**, the
+  dimension their pricing uses. The gateway does not yet map `usage.characters`
+  (unitysvc/unitysvc#2493), so a TTS service cannot activate until it does. That
+  is deliberate: a weaker floor would let a service activate while its billed
+  dimension went unverified.
+
+- **`$llm_example_collection`: a group may declare its own `upstream_dialect`.**
+  It was read once per collection, so every group was selected against the same
+  upstream. That describes bedrock correctly — both its groups front an
+  OpenAI-shaped upstream and only the caller's dialect differs — but it cannot
+  describe a service reachable through *two* upstreams at once, which is what a
+  QwenCloud listing is: its compatibility layer speaks OpenAI while its native
+  DashScope API is the only surface serving TTS and ASR. Which dialect an
+  upstream speaks is a property of the **channel**, and a group already maps 1:1
+  to a channel, so the dialect belongs on the group. The collection-level value
+  remains the default, so no existing repo changes behaviour.
+
+- **`$llm_example_collection`: a group may scope to several `channels`.**
+  `channel` names one, which is all bedrock needs — each of its interfaces
+  fronts a single channel. An interface fronting both a managed-resale and a
+  BYOK channel needs to name both, and neither existing option worked: naming
+  one leaves the other with no documentation and no probe, while naming none
+  applies the document to **every** channel, including the channels of a
+  different interface, whose dialect it is not written in. `channel` is
+  unchanged.
+
+### Changed
+
+- **Every modality example now declares the wire shape it is written in.**
+  Twenty-seven presets — TTS, ASR, embeddings, rerank, moderation, image and
+  video — constrained only `capability`. An absent key means "no constraint", so
+  each applied to every dialect and every upstream. Invisible while every LLM
+  upstream spoke OpenAI; a DashScope-only TTS service surfaces it, publishing
+  the stock `/v1/audio/speech` example beside its native one against an endpoint
+  QwenCloud answers with **404**.
+
+  Each now declares `dialect = "openai"` — what the *caller* writes, which is
+  what these examples are. Deliberately not `upstream`, which would also have
+  excluded an OpenAI caller reaching a non-OpenAI upstream through a translator;
+  that is a working combination and these are the examples for it.
+
+  Amended in place rather than versioned, because `applies_to` is front-matter
+  and therefore shared by every version in the directory — the same reason given
+  for `meta` in CONTRIBUTING, "The one exception". A v2 could not have insulated
+  v1 from it. No service changes: every repo's groups declare `openai`, and the
+  only groups that lose these documents are native ones, which is the point. A
+  test now asserts the invariant across the whole preset set, so the next
+  modality example cannot be added without a wire shape.
 
 ## [0.2.2] — in-script output assertions, and the customer_display contract
 

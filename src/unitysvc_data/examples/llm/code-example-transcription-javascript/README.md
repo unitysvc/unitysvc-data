@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Transcription", min_expected_metrics = { duration_seconds = 0.01 } }
 parameters = { version_prefix = "/v1", language = "en" }
-applies_to = { capability = "speech-to-text" }
+applies_to = { capability = "speech-to-text", dialect = "openai" }
 +++
 
 # llm / code-example-transcription-javascript — audio transcription via `fetch`
@@ -35,3 +35,9 @@ Optional:
 ### v1 — - initial release
 - Native `fetch` / `FormData` / `Blob` (Node 18+, no extra deps).
 - Falls back to a public Whisper sample so the example runs out-of-the-box.
+- **Amended in 0.2.3**: `applies_to` now declares `dialect = "openai"`.
+  It named only the capability, and an absent key means "no constraint" — so
+  this example applied to callers writing any dialect, including ones whose
+  upstream has no such endpoint. Selection metadata only: nothing this example
+  does has changed, and every service that received it still does, because they
+  all declare `openai`.

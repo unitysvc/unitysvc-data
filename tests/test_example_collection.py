@@ -676,8 +676,10 @@ def test_the_probe_is_selected_like_everything_else():
 
     assert applies_to("llm_connectivity") == {"capability": "chat", "upstream": "openai"}
     assert applies_to("llm_connectivity_anthropic") == {"capability": "chat", "upstream": "anthropic"}
-    assert applies_to("llm_connectivity_embed") == {"capability": "embed"}
-    assert applies_to("llm_connectivity_transcription") == {"capability": "speech-to-text"}
+    assert applies_to("llm_connectivity_embed") == {
+        "capability": "embed", "dialect": "openai"}
+    assert applies_to("llm_connectivity_transcription") == {
+        "capability": "speech-to-text", "dialect": "openai"}
 
 
 def test_the_request_template_is_selected_like_everything_else():
@@ -944,3 +946,127 @@ def test_the_collection_returns_a_plain_mergeable_mapping():
     assert dict(docs, **{"cURL code example": {"replaced": True}})["cURL code example"] == {
         "replaced": True
     }
+
+
+# QwenCloud reaches us two ways at once: its compatibility layer speaks
+# OpenAI, while its native DashScope API is the only surface serving TTS and
+# ASR. Each is a separate channel on one service, so the upstream dialect
+# differs BETWEEN groups of a single collection — unlike bedrock, where both
+# groups front the same OpenAI-shaped upstream and only the caller's dialect
+# differs.
+QWENCLOUD = {
+    "capabilities": ["chat"],
+    "upstream_dialect": "openai",
+    "formats": [
+        {"formats": ["openai", "anthropic"], "channel": "managed",
+         "interface": "canonical", "primary": True},
+        {"formats": ["dashscope"], "channel": "dashscope-managed",
+         "interface": "dashscope_api", "upstream_dialect": "dashscope"},
+    ],
+}
+
+
+def test_a_group_may_override_the_collections_upstream_dialect():
+    """A group maps to exactly one channel, and which dialect the upstream
+    speaks is a property of that channel (`upstream_format` in its config) —
+    not of the service. Without a per-group override, a collection can only
+    describe channels that all front the same upstream dialect, so QwenCloud's
+    native DashScope channel could not share a listing with its
+    OpenAI-compatible one."""
+    docs = llm_example_collection(QWENCLOUD)
+
+    # The DashScope-native example is selected only because the group's own
+    # upstream_dialect satisfied the preset's `upstream: dashscope`.
+    native = docs["Python code example (DashScope input, requests)"]
+    assert native["meta"]["channels"] == ["dashscope-managed"]
+    assert native["meta"]["interfaces"] == ["dashscope_api"]
+
+    # ...and the compat group still gets the OpenAI-upstream examples, which
+    # the DashScope presets must not displace.
+    assert "llm_code_example_requests" in examples_in(docs)
+
+
+def test_an_unscoped_collection_still_uses_one_upstream_dialect():
+    """The override is opt-in per group: a collection that declares only
+    `upstream_dialect` keeps selecting against it for every group, so no
+    existing repo changes behaviour."""
+    docs = llm_example_collection(
+        {"capabilities": ["chat"], "formats": ["openai"], "upstream_dialect": "dashscope"}
+    )
+
+    assert "llm_code_example_chat_dashscope_requests" not in examples_in(docs)
+
+
+def test_a_group_may_scope_to_several_channels():
+    """`channel` names one, which is all bedrock needs — each of its interfaces
+    fronts a single channel. An interface with BOTH a managed and a byok channel
+    needs to name both: scoping to one leaves the other undocumented, and
+    scoping to neither fans every document across every channel, including the
+    channels of the OTHER interface, where its dialect is wrong."""
+    docs = llm_example_collection({
+        "capabilities": ["chat"],
+        "formats": [
+            {"formats": ["openai"], "channels": ["managed", "byok"],
+             "interface": "canonical", "primary": True},
+            {"formats": ["dashscope"], "channels": ["ds-managed", "ds-byok"],
+             "interface": "dashscope", "upstream_dialect": "dashscope"},
+        ],
+    })
+
+    compat = docs["Python code example (requests)"]
+    assert compat["meta"]["channels"] == ["managed", "byok"]
+    assert compat["meta"]["interfaces"] == ["canonical"]
+
+    native = docs["Python code example (DashScope input, requests)"]
+    assert native["meta"]["channels"] == ["ds-managed", "ds-byok"]
+    assert native["meta"]["interfaces"] == ["dashscope"]
+
+
+def test_the_singular_channel_key_still_works():
+    """bedrock's form is unchanged."""
+    docs = llm_example_collection(BEDROCK)
+
+    assert docs["Python code example (boto3 Converse)"]["meta"]["channels"] == ["converse"]
+
+
+def test_a_modality_example_is_scoped_to_the_dialect_it_is_written_in():
+    """Every stock modality example targets an OpenAI path — /audio/speech,
+    /embeddings, /images/generations, /rerank — so each is an OpenAI-dialect
+    document and must say so. They used to constrain only `capability`, which
+    made them apply to EVERY dialect: a DashScope-only TTS service picked up the
+    /v1/audio/speech example, an endpoint QwenCloud answers with 404."""
+    native = llm_example_collection({
+        "capabilities": ["text-to-speech"],
+        "formats": [{"formats": ["dashscope"], "interface": "dashscope",
+                     "upstream_dialect": "dashscope"}],
+    })
+    assert "llm_code_example_tts_requests" not in examples_in(native)
+    assert "llm_code_example_tts_dashscope_requests" in examples_in(native)
+
+    # ...and the OpenAI-dialect service that always had them still does.
+    compat = llm_example_collection(
+        {"capabilities": ["text-to-speech"], "formats": ["openai"]}
+    )
+    assert "llm_code_example_tts_requests" in examples_in(compat)
+
+
+def test_every_capability_example_is_pinned_to_a_wire_shape():
+    """The gap this closes, as an invariant. A document that names its capability
+    and nothing else applies to EVERY dialect and every upstream, so it is served
+    to a caller writing a wire shape it was not written in — which is how a
+    DashScope-only TTS service came to publish an /v1/audio/speech example.
+
+    Either constraint closes it, because either one excludes a native group:
+    `dialect` pins what the CALLER writes, `upstream` what the upstream speaks,
+    and a DashScope channel differs on both. `llm_description` is the deliberate
+    exception — it constrains nothing because it really does apply to everything.
+    """
+    from unitysvc_data import MANIFEST
+    from unitysvc_data.presets import applies_to
+
+    names = {r.get("preset_name", k) for k, r in MANIFEST["presets"].items()
+             if k.startswith("llm_")}
+    gaps = sorted(n for n in names
+                  if (a := applies_to(n)).get("capability")
+                  and not a.get("dialect") and not a.get("upstream"))
+    assert gaps == [], f"these name a capability but no wire shape: {gaps}"
