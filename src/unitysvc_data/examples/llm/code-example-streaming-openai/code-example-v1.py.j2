@@ -19,8 +19,25 @@ stream = client.chat.completions.create(
     stream=True,
 )
 
+{%- if not customer_display %}
+received = 0
+{%- endif %}
 for chunk in stream:
+    # A chunk need not carry a choice: with stream_options.include_usage the
+    # OpenAI API closes the stream with a usage-only chunk whose choices is [],
+    # and some compatible providers send that chunk whether you asked or not.
+    if not chunk.choices:
+        continue
     delta = chunk.choices[0].delta.content
     if delta:
+{%- if not customer_display %}
+        received += len(delta)
+{%- endif %}
         print(delta, end="", flush=True)
 print()
+{%- if not customer_display %}
+if not received:
+    raise SystemExit(
+        "the stream produced no content — the upstream may have ignored stream=True"
+    )
+{%- endif %}

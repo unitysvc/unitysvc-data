@@ -46,3 +46,14 @@ Required:
   rather than buffered to a newline.
 - Optionally sends `max_tokens` when the collection supplies the
   `max_tokens` parameter; the default example remains uncapped.
+- **Amended in 0.2.2**: skips chunks whose `choices` is empty. The OpenAI API
+  closes a stream with a usage-only chunk when `stream_options.include_usage` is
+  set, and some compatible providers send that chunk whether you asked or not —
+  indexing `[0]` unconditionally raised `IndexError` at the very end of an
+  otherwise successful call. The guard stays visible: it is client code a
+  customer needs, which is why the JavaScript sibling always had it.
+- **Amended in 0.2.2**: asserts the stream actually produced something, wrapped
+  in `{%- if not customer_display %}`. A model that accepts the request and
+  ignores `stream=True` yields nothing, so the loop body never ran and the
+  example exited 0 with no output verified (unitysvc/unitysvc-data#80).
+
