@@ -993,3 +993,35 @@ def test_an_unscoped_collection_still_uses_one_upstream_dialect():
     )
 
     assert "llm_code_example_chat_dashscope_requests" not in examples_in(docs)
+
+
+def test_a_group_may_scope_to_several_channels():
+    """`channel` names one, which is all bedrock needs — each of its interfaces
+    fronts a single channel. An interface with BOTH a managed and a byok channel
+    needs to name both: scoping to one leaves the other undocumented, and
+    scoping to neither fans every document across every channel, including the
+    channels of the OTHER interface, where its dialect is wrong."""
+    docs = llm_example_collection({
+        "capabilities": ["chat"],
+        "formats": [
+            {"formats": ["openai"], "channels": ["managed", "byok"],
+             "interface": "canonical", "primary": True},
+            {"formats": ["dashscope"], "channels": ["ds-managed", "ds-byok"],
+             "interface": "dashscope", "upstream_dialect": "dashscope"},
+        ],
+    })
+
+    compat = docs["Python code example (requests)"]
+    assert compat["meta"]["channels"] == ["managed", "byok"]
+    assert compat["meta"]["interfaces"] == ["canonical"]
+
+    native = docs["Python code example (DashScope input, requests)"]
+    assert native["meta"]["channels"] == ["ds-managed", "ds-byok"]
+    assert native["meta"]["interfaces"] == ["dashscope"]
+
+
+def test_the_singular_channel_key_still_works():
+    """bedrock's form is unchanged."""
+    docs = llm_example_collection(BEDROCK)
+
+    assert docs["Python code example (boto3 Converse)"]["meta"]["channels"] == ["converse"]

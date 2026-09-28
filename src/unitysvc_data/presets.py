@@ -691,8 +691,17 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
         # scope they used to pick up was just whichever group came last.
         return record
     scope = {}
-    if group.get("channel"):
-        scope["channels"] = [group["channel"]]
+    # ``channels`` (a list) or ``channel`` (one name). Both exist because an
+    # interface may front more than one channel: bedrock's each front exactly
+    # one, while a provider offering the same endpoint as managed-resale and
+    # BYOK has two per interface. Naming just one of those leaves the other with
+    # no documentation, and naming none is worse than it looks — an unscoped
+    # document applies to EVERY channel, including the channels belonging to a
+    # different interface, whose dialect it is not written in.
+    channels = group.get("channels") or (
+        [group["channel"]] if group.get("channel") else None)
+    if channels:
+        scope["channels"] = list(channels)
     if group.get("interface"):
         scope["interfaces"] = [group["interface"]]
     if group.get("test_status"):
