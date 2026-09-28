@@ -58,4 +58,7 @@ Required:
   in `{%- if not customer_display %}`. A model that accepts the request and
   ignores `stream=True` yields nothing, so the loop body never ran and the
   example exited 0 with no output verified (unitysvc/unitysvc-data#80).
-
+- **Amended in 0.2.2**: `max_tokens` raised from 64 to 1024. A reasoning model
+  spends the whole 64-token budget inside its thinking block and emits no
+  visible text at all, so the example returned nothing; 1024 lets it finish and
+  answer. Native Anthropic examples in this collection have always used 1024.

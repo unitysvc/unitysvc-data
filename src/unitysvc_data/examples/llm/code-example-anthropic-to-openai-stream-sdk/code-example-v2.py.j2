@@ -58,7 +58,7 @@ client = Anthropic(
 # shapes. The deltas are what this example is about; read just those.
 stream = client.messages.create(
     model="{{ routing_key.model }}",
-    max_tokens=64,
+    max_tokens=1024,
     stream=True,
     messages=[{"role": "user", "content": "Say this is a test"}],
 )

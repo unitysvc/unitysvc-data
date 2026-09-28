@@ -36,7 +36,7 @@ response = requests.post(
     },
     json={
         "model": "{{ routing_key.model }}",
-        "max_tokens": 64,
+        "max_tokens": 1024,
         "messages": [{"role": "user", "content": "Say this is a test"}],
     },
 )

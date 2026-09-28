@@ -52,3 +52,7 @@ Required:
 - Posts a single `"Say this is a test"` user message; Anthropic-shape
   calls set the required top-level `max_tokens: 64`.
 - `response.raise_for_status()` so upstream / gateway errors surface as a non-zero exit.
+- **Amended in 0.2.2**: `max_tokens` raised from 64 to 1024. A reasoning model
+  spends the whole 64-token budget inside its thinking block and emits no
+  visible text at all, so the example returned nothing; 1024 lets it finish and
+  answer. Native Anthropic examples in this collection have always used 1024.
