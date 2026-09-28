@@ -391,6 +391,79 @@ package upgrades. If you need to change v1, the answer is always
 
 ---
 
+## Audience-scoped code: `{% if not customer_display %}`
+
+An example serves two audiences. The seller test runner and the health sweep
+**execute** it; the customer-facing projection renders it again with
+`customer_display` set and shows the result on the marketplace. Wrapping a
+block hides it from the second without hiding it from the first:
+
+```jinja
+{%- if not customer_display %}
+n = 0
+{%- endif %}
+for chunk in stream:
+{%- if not customer_display %}
+    n += 1
+{%- endif %}
+    delta = chunk.choices[0].delta.content
+    if delta:
+        print(delta, end="", flush=True)
+{%- if not customer_display %}
+if not n:
+    raise SystemExit("unexpected response: the stream yielded no chunks")
+{%- endif %}
+```
+
+Use it for anything that only makes sense while something is running the
+example: assertions, non-zero exits, `echo "example ok"` markers, and the
+counters or captures they need. Do **not** use it to hide explanatory
+comments — those are the reason an example is worth publishing.
+
+### The rules, all enforced by `tests/test_customer_display.py`
+
+**The condition is always `not customer_display`.** Never `{% if customer_display %}`.
+Every document renderer uses a lenient Jinja environment, so an absent flag is
+falsy, and only the `not` form degrades to "execute the checks" on a renderer
+that does not supply it yet. The inverted form silently strips assertions
+instead — the failure this whole mechanism exists to prevent.
+
+**No `{% else %}` and no `{% elif %}`.** An else-arm is shown to customers and
+never executed, so nothing tests it and it rots invisibly. If the two
+audiences need different code, the customer-facing half is untested by
+construction — which is not a thing this flag may be used to build.
+
+**Removal only.** The `customer_display` render must be an ordered line
+subsequence of the default render: same lines, same order, duplicates
+preserved. Hidden code may observe and assert; removing it must not change the
+request or any visible behaviour.
+
+**Tags sit on their own line and open with `{%-`.** The trim is not cosmetic:
+a plain `{% if %}` leaves its own newline in the output, so wrapping an
+existing example inserts a blank line and *changes what the runner executes*.
+With `{%-` the executed render is byte-identical to the unwrapped original, so
+migrating an example is invisible to everything that renders it — which is what
+makes wrapping the existing corpus a safe, mechanical change rather than a
+behavioural one.
+
+### The scaffolding baseline
+
+`tests/customer_display_baseline.txt` lists examples whose execution-only code
+is not wrapped yet. It is a ratchet: a file with scaffolding that is *absent*
+from the list fails the build, and so does a listed file that no longer has
+any — so the list cannot go stale, and may only shrink. Wrapping an example
+means publishing a new `-vN` (see the append-only rule above), then deleting
+its line.
+
+Run the checker directly while authoring:
+
+```bash
+python tools/customer_display.py                     # the whole corpus
+python tools/customer_display.py path/to/example.j2  # one file
+```
+
+---
+
 ## Filename and directory conventions, in one place
 
 | Element              | Rule                                                                 |
