@@ -100,7 +100,6 @@
     "llm_connectivity_tts_dashscope": "llm_connectivity_tts_dashscope_v1",
     "llm_description": "llm_description_v2",
     "llm_request_template": "llm_request_template_v2",
-    "llm_request_template_anthropic": "llm_request_template_anthropic_v1",
     "msg_request_template": "msg_request_template_v1",
     "msg_to_apprise_code_example_py": "msg_to_apprise_code_example_py_v1",
     "msg_to_apprise_code_example_sh": "msg_to_apprise_code_example_sh_v1",
@@ -3764,24 +3763,6 @@
       "preset_name": "llm_description",
       "source_readme": "llm/description/README.md",
       "version": 2
-    },
-    "llm_request_template_anthropic_v1": {
-      "applies_to": {
-        "capability": "chat",
-        "superseded_by": "llm_request_template",
-        "upstream": "anthropic"
-      },
-      "category": "request_template",
-      "description": "Minimal Anthropic Messages API request body",
-      "example_file": "llm/request-template-anthropic/request-template-anthropic-v1.json",
-      "is_active": true,
-      "is_public": true,
-      "meta": {},
-      "mime_type": "json",
-      "parameters": {},
-      "preset_name": "llm_request_template_anthropic",
-      "source_readme": "llm/request-template-anthropic/README.md",
-      "version": 1
     },
     "llm_request_template_v1": {
       "applies_to": {

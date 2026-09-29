@@ -29,19 +29,29 @@ alone cannot tell you.
   uses the entry for the format the customer picks (unitysvc/unitysvc#2508);
   entries for formats a service doesn't accept are ignored. The `openai` entry
   is v1's body, and v1 is unchanged for listings pinned to it.
-- **`applies_to.superseded_by`** — names the preset that replaced this one. A
-  superseded preset is never selected by `llm_example_collection`, but still
-  resolves by name.
 
 ### Changed
 
 - `llm_request_template` now applies to every chat service, not only those
   with an OpenAI upstream, so every chat listing gets the keyed template.
-- `llm_request_template_anthropic` is superseded by `llm_request_template` and
-  no longer selected; a listing that names it keeps its body.
 - The family's `description` now reads "Minimal chat request body for each
   request format". The description is shared by every version, so v1's
   document description changes too; its body does not.
+
+### Removed
+
+- **`llm_request_template_anthropic`.** With the keyed body reaching every chat
+  service, a second request-template preset has no job — and per-format presets
+  are the wrong shape for this catalog, where most chat services accept both
+  OpenAI and Anthropic through the translator. Such a service would get two
+  `Default request body` documents (the titles differ by dialect label) and
+  nothing to say which is the default; one body keyed by format collapses 1..N
+  formats into a single lookup the playground indexes by the format the customer
+  picked.
+
+  No repo names it: checked across every `unitysvc-services-*` and
+  `unitysvc-admin-data` tree. A listing that did would lose its document, so this
+  is a breaking removal in principle — it just has no subject.
 
 ### Deploy order
 

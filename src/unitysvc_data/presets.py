@@ -507,13 +507,7 @@ def _applies(spec: dict[str, Any], *, capability: str, dialects: set[str],
     the how-to alike. Each key is a constraint that must hold; an ABSENT
     key means "no constraint", which is how a universal document
     (``llm_description``) is expressed without a special case.
-
-    ``superseded_by`` names the preset that replaced this one. A superseded
-    preset is never selected, but still resolves by name, so a listing that
-    names it keeps its document.
     """
-    if spec.get("superseded_by"):
-        return False
     if spec.get("capability") not in (None, capability):
         return False
     if spec.get("dialect") is not None and spec["dialect"] not in dialects:

@@ -255,7 +255,6 @@ def test_every_chat_upstream_gets_the_one_format_keyed_request_template():
         templates = [d for d in docs.values() if d["category"] == "request_template"]
         assert len(templates) == 1
         assert "llm_request_template" in presets_in(docs)
-        assert "llm_request_template_anthropic" not in presets_in(docs)
 
 
 def test_the_request_template_carries_a_body_for_each_request_format():
@@ -281,18 +280,25 @@ def test_the_pinned_v1_template_is_unchanged():
     assert set(v1) == {"max_tokens", "messages"}
 
 
-def test_a_superseded_preset_is_not_selected_but_still_resolves():
-    from unitysvc_data import PRESETS, applies_to
+def test_exactly_one_request_template_preset_serves_chat():
+    """One keyed body, not one preset per format. A service accepting both
+    OpenAI and Anthropic needs ONE default request body — the playground indexes
+    it by the format the customer picked — and per-format presets would hand it
+    two `Default request body` documents with no way to say which is the default.
 
-    superseded = {
-        name: spec["superseded_by"]
-        for name in PRESETS
-        if (spec := applies_to(name)).get("superseded_by")
-    }
-    assert "llm_request_template_anthropic" in superseded
-    for name, successor in superseded.items():
-        assert successor in PRESETS, f"{name} is superseded by unknown {successor}"
-        assert doc_preset(name)["category"]
+    `llm_request_template_anthropic` was removed rather than kept unselected, so
+    this asserts nothing has reintroduced a second one."""
+    from unitysvc_data import PRESETS
+
+    llm_templates = sorted(
+        n for n in PRESETS if "request_template" in n and n.startswith("llm_")
+    )
+    # The family plus its version aliases, and nothing else.
+    assert llm_templates == [
+        "llm_request_template",
+        "llm_request_template_v1",
+        "llm_request_template_v2",
+    ], llm_templates
 
 
 def test_sleep_is_applied_to_every_executable_document():

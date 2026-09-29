@@ -69,8 +69,13 @@ assistant.", user prompt "Say hello in one sentence.", at most 100 tokens.
 
 - Keyed by format: `openai`, `anthropic`, `cohere`, `dashscope`,
   `bedrock_converse`. The `openai` entry is v1's body.
-- `applies_to` no longer requires an OpenAI upstream: every chat service gets
-  this template, and `llm_request_template_anthropic` is superseded by it.
+- `applies_to` no longer requires an OpenAI upstream, so every chat service gets
+  this template whatever its dialect — which is what makes one keyed body the
+  right shape: a service accepting both OpenAI and Anthropic needs ONE default
+  body, and the playground indexes it by the format the customer picked.
+  `llm_request_template_anthropic` is removed rather than kept alongside; per-format
+  templates would give such a service two `Default request body` documents and no
+  way to say which is the default.
 - Needs a playground that picks a format's entry (unitysvc/unitysvc#2508).
   An older one shows the whole map as the body.
 
