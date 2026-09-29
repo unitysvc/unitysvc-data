@@ -1,0 +1,76 @@
+{
+  "openai": {
+    "max_tokens": 100,
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful assistant."
+      },
+      {
+        "role": "user",
+        "content": "Say hello in one sentence."
+      }
+    ]
+  },
+  "anthropic": {
+    "max_tokens": 100,
+    "system": "You are a helpful assistant.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Say hello in one sentence."
+      }
+    ]
+  },
+  "cohere": {
+    "max_tokens": 100,
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful assistant."
+      },
+      {
+        "role": "user",
+        "content": "Say hello in one sentence."
+      }
+    ]
+  },
+  "dashscope": {
+    "input": {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a helpful assistant."
+        },
+        {
+          "role": "user",
+          "content": "Say hello in one sentence."
+        }
+      ]
+    },
+    "parameters": {
+      "max_tokens": 100,
+      "result_format": "message"
+    }
+  },
+  "bedrock_converse": {
+    "system": [
+      {
+        "text": "You are a helpful assistant."
+      }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "text": "Say hello in one sentence."
+          }
+        ]
+      }
+    ],
+    "inferenceConfig": {
+      "maxTokens": 100
+    }
+  }
+}
