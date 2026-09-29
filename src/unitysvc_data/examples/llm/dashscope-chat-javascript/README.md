@@ -7,7 +7,7 @@ description = "JavaScript example: send a chat completion to a DashScope-native 
 is_active = true
 is_public = true
 meta = { variant = "Chat (DashScope)", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
-applies_to = { capability = "chat", dialect = "dashscope", upstream = "dashscope" }
+applies_to = { capability = "chat", dialect = "dashscope_multimodal", upstream = "dashscope" }
 +++
 
 # llm / dashscope-chat-javascript
@@ -35,4 +35,11 @@ the full native path, so the example posts to the service URL with no suffix.
 ## Versions
 
 ### v1 — initial release
-
+- **Amended in 0.2.4**: the dialect token is now `dashscope_multimodal`, not
+  `dashscope`. These examples send and read the multimodal shape — `content` as an
+  **array of parts** — which `aigc/multimodal-generation/generation` serves and
+  `aigc/text-generation/generation` rejects with `HTTP 400 InvalidParameter: url
+  error`. Naming the token after the shape is what lets a text-only model select
+  `dashscope_text` instead; a bare `dashscope` now selects neither, so a service
+  has to say which it speaks. Selection metadata only — nothing these examples do
+  has changed.
