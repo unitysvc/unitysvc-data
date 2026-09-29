@@ -1274,3 +1274,27 @@ def test_a_group_without_capabilities_still_serves_all_of_them():
     names = examples_in(docs)
     assert "llm_code_example_requests" in names
     assert "llm_code_example_tts_requests" in names
+
+
+def test_the_omni_tts_probe_never_pipes_its_response():
+    """Its stream is ~140 KB of base64 audio, far past the pipe buffer. A reader
+    that stops early — `head -c 200`, or `grep -q` on its first match — closes
+    the pipe, the writer takes SIGPIPE, and under `pipefail` the probe exits 141
+    with a request that actually succeeded. Staging rejected a service for
+    exactly that.
+
+    Reproduced at 213 KB: the piped form exits 141, the substring form exits 0.
+    """
+    import pathlib
+
+    body = pathlib.Path(
+        doc_preset("llm_connectivity_omni_tts_dashscope")["file_path"]
+    ).read_text()
+    offenders = [
+        line.strip() for line in body.splitlines()
+        if '"$response"' in line and "|" in line
+    ]
+    assert not offenders, f"pipes the response: {offenders}"
+    # ...and it still checks for audio, by reading the variable directly.
+    assert 'case "$response" in' in body
+    assert '"audio"' in body
