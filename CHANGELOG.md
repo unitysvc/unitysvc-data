@@ -17,6 +17,27 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.5] — pin the DashScope text-generation response shape
+
+### Fixed
+
+- **The DashScope text-generation examples now pin
+  `parameters.result_format` to `"message"`.** Without it the response shape is a
+  property of the MODEL, not of the request: text-generation returns
+  `output.text` for some models and `output.choices[].message` for others, so an
+  example reading `choices` failed with `Cannot read properties of undefined` on
+  whichever half of a catalog defaults the other way. Probed both ways against
+  `qwen-flash`:
+
+  ```
+  no result_format   -> {"output":{"text":"Pong! …"}}
+  result_format=message -> {"output":{"choices":[{"message":{"content":"Pong! …"}}]}}
+  ```
+
+  The readers are unchanged; the request now asks for the shape it reads. Only
+  the four `dashscope-text-chat-*` families are affected — multimodal-generation
+  supports the `message` shape only and always returned it.
+
 ## [0.2.4] — the DashScope native path is per-modality, and titles name their capability
 
 ### Fixed
