@@ -1041,7 +1041,9 @@ def test_a_modality_example_is_scoped_to_the_dialect_it_is_written_in():
                      "upstream_dialect": "dashscope"}],
     })
     assert "llm_code_example_tts_requests" not in examples_in(native)
-    assert "llm_code_example_tts_dashscope_requests" in examples_in(native)
+    # The multimodal token selects the OMNI shape; the dedicated-model shape
+    # lives under `dashscope_audio_task` (0.2.6).
+    assert "llm_code_example_omni_tts_dashscope_requests" in examples_in(native)
 
     # ...and the OpenAI-dialect service that always had them still does.
     compat = llm_example_collection(
@@ -1085,8 +1087,8 @@ def test_a_multi_capability_service_keeps_every_capability_s_examples():
     })
     names = examples_in(docs)
     for expected in ("llm_code_example_chat_dashscope_requests",
-                     "llm_code_example_tts_dashscope_requests",
-                     "llm_code_example_asr_dashscope_requests"):
+                     "llm_code_example_omni_tts_dashscope_requests",
+                     "llm_code_example_omni_asr_dashscope_requests"):
         assert expected in names, f"{expected} was overwritten by a sibling"
     # ...and each probe survives too.
     probes = [d for d in docs.values() if d["category"] == "connectivity_test"]
@@ -1115,3 +1117,69 @@ def test_chat_and_vision_titles_carry_no_capability_label():
     assert "Python code example (requests)" in docs, "chat stays unlabelled"
     assert any("vision" in t for t in docs), "vision is named by its feature bit"
     assert not any("image-text-to-text" in t for t in docs)
+
+
+def test_omni_audio_examples_are_chat_shaped_and_stream_for_output():
+    """An omni model reaches speech as a CHAT call: `input.messages` plus
+    `parameters.modalities`. It rejects the dedicated-model `input.text` request
+    with `Either "prompt" or "messages" must exist`, so the two shapes cannot
+    share a dialect token — and they did, which meant one silently overwrote the
+    other for the same capability."""
+    import pathlib
+
+    docs = llm_example_collection({
+        "capabilities": ["chat", "text-to-speech", "speech-to-text"],
+        "formats": [{"formats": ["dashscope_multimodal"], "interface": "dashscope",
+                     "upstream_dialect": "dashscope"}],
+    })
+    audio = {t: d for t, d in docs.items()
+             if "speech" in t or "transcription" in t}
+    assert len(audio) == 8, f"expected 4 speech + 4 transcription, got {sorted(audio)}"
+
+    for title, doc in audio.items():
+        body = pathlib.Path(doc["file_path"]).read_text()
+        assert "messages" in body, f"{title} must send input.messages"
+        # Audio OUTPUT is streaming-only: without the SSE header the call still
+        # returns 200 and still bills audio tokens, and carries no audio at all.
+        if "speech" in title:
+            assert "X-DashScope-SSE" in body, f"{title} must stream"
+            assert "modalities" in body, f"{title} must ask for audio output"
+        else:
+            assert "X-DashScope-SSE" not in body, f"{title} needs no stream"
+
+
+def test_the_dedicated_audio_shape_has_its_own_dialect():
+    """A single-purpose TTS/ASR model takes `input.text` / `input.audio` with no
+    messages at all. Same capability, different wire shape, so a different token
+    — otherwise both match and the collection keeps only one."""
+    from unitysvc_data.presets import applies_to
+
+    assert applies_to("llm_code_example_tts_dashscope_requests")["dialect"] == (
+        "dashscope_audio_task")
+    assert applies_to("llm_code_example_omni_tts_dashscope_requests")["dialect"] == (
+        "dashscope_multimodal")
+
+    # ...and an omni group selects only the omni ones.
+    docs = llm_example_collection({
+        "capabilities": ["text-to-speech"],
+        "formats": [{"formats": ["dashscope_multimodal"], "interface": "dashscope",
+                     "upstream_dialect": "dashscope"}],
+    })
+    names = examples_in(docs)
+    assert "llm_code_example_omni_tts_dashscope_requests" in names
+    assert "llm_code_example_tts_dashscope_requests" not in names
+
+
+def test_omni_audio_floors_are_tokens_not_characters():
+    """Probed: omni audio bills in tokens, with the audio counted in
+    `output_tokens_details.audio_tokens`. A `characters` floor there fails
+    verification on a service that meters correctly."""
+    docs = llm_example_collection({
+        "capabilities": ["text-to-speech", "speech-to-text"],
+        "formats": [{"formats": ["dashscope_multimodal"], "interface": "dashscope",
+                     "upstream_dialect": "dashscope"}],
+    })
+    for title, doc in docs.items():
+        floor = (doc.get("meta") or {}).get("min_expected_metrics")
+        if floor is not None:
+            assert "characters" not in floor, f"{title} still demands characters"

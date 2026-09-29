@@ -7,7 +7,7 @@ description = "Shell example: transcribe audio on a DashScope-native endpoint vi
 is_active = true
 is_public = true
 meta = { variant = "Speech to text (DashScope)", min_expected_metrics = { input_tokens = 1, output_tokens = 1 } }
-applies_to = { capability = "speech-to-text", dialect = "dashscope_multimodal", upstream = "dashscope" }
+applies_to = { capability = "speech-to-text", dialect = "dashscope_audio_task", upstream = "dashscope" }
 +++
 
 # llm / dashscope-asr-shell
@@ -43,3 +43,10 @@ the full native path, so the example posts to the service URL with no suffix.
   `dashscope_text` instead; a bare `dashscope` now selects neither, so a service
   has to say which it speaks. Selection metadata only — nothing these examples do
   has changed.
+- **Amended in 0.2.6**: the dialect token is now `dashscope_audio_task`. This
+  example is written for a DEDICATED single-purpose audio model, whose request is
+  `input.text` / `input.audio` with no `messages`. An omni model rejects that with
+  `InvalidParameter: Either "prompt" or "messages" must exist`, and reaches the
+  same capability as a chat call asking for audio — which is what the new
+  `dashscope-omni-*` families do under `dashscope_multimodal`. Both had claimed
+  that token, so the same capability selected both and one overwrote the other.

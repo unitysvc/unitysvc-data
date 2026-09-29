@@ -46,6 +46,12 @@
     "llm_code_example_imagetoimage_requests": "llm_code_example_imagetoimage_requests_v1",
     "llm_code_example_imagetoimage_shell": "llm_code_example_imagetoimage_shell_v2",
     "llm_code_example_javascript": "llm_code_example_javascript_v1",
+    "llm_code_example_omni_asr_dashscope_javascript": "llm_code_example_omni_asr_dashscope_javascript_v1",
+    "llm_code_example_omni_asr_dashscope_requests": "llm_code_example_omni_asr_dashscope_requests_v1",
+    "llm_code_example_omni_asr_dashscope_shell": "llm_code_example_omni_asr_dashscope_shell_v1",
+    "llm_code_example_omni_tts_dashscope_javascript": "llm_code_example_omni_tts_dashscope_javascript_v1",
+    "llm_code_example_omni_tts_dashscope_requests": "llm_code_example_omni_tts_dashscope_requests_v1",
+    "llm_code_example_omni_tts_dashscope_shell": "llm_code_example_omni_tts_dashscope_shell_v1",
     "llm_code_example_openai": "llm_code_example_openai_v1",
     "llm_code_example_openai_javascript": "llm_code_example_openai_javascript_v1",
     "llm_code_example_openai_to_anthropic_requests": "llm_code_example_openai_to_anthropic_requests_v1",
@@ -87,6 +93,8 @@
     "llm_connectivity_embed": "llm_connectivity_embed_v1",
     "llm_connectivity_embed_dashscope": "llm_connectivity_embed_dashscope_v1",
     "llm_connectivity_embed_image": "llm_connectivity_embed_image_v1",
+    "llm_connectivity_omni_asr_dashscope": "llm_connectivity_omni_asr_dashscope_v1",
+    "llm_connectivity_omni_tts_dashscope": "llm_connectivity_omni_tts_dashscope_v1",
     "llm_connectivity_transcription": "llm_connectivity_transcription_v1",
     "llm_connectivity_tts": "llm_connectivity_tts_v1",
     "llm_connectivity_tts_dashscope": "llm_connectivity_tts_dashscope_v1",
@@ -1162,7 +1170,7 @@
     "llm_code_example_asr_dashscope_javascript_v1": {
       "applies_to": {
         "capability": "speech-to-text",
-        "dialect": "dashscope_multimodal",
+        "dialect": "dashscope_audio_task",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -1186,7 +1194,7 @@
     "llm_code_example_asr_dashscope_requests_v1": {
       "applies_to": {
         "capability": "speech-to-text",
-        "dialect": "dashscope_multimodal",
+        "dialect": "dashscope_audio_task",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -1213,7 +1221,7 @@
     "llm_code_example_asr_dashscope_shell_v1": {
       "applies_to": {
         "capability": "speech-to-text",
-        "dialect": "dashscope_multimodal",
+        "dialect": "dashscope_audio_task",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -2108,6 +2116,156 @@
       "source_readme": "llm/code-example-javascript/README.md",
       "version": 1
     },
+    "llm_code_example_omni_asr_dashscope_javascript_v1": {
+      "applies_to": {
+        "capability": "speech-to-text",
+        "dialect": "dashscope_multimodal",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "JavaScript example: transcribe audio with an omni model on a DashScope-native endpoint with fetch",
+      "example_file": "llm/dashscope-omni-asr-javascript/code-example-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "variant": "Transcription (DashScope omni)"
+      },
+      "mime_type": "javascript",
+      "parameters": {},
+      "preset_name": "llm_code_example_omni_asr_dashscope_javascript",
+      "source_readme": "llm/dashscope-omni-asr-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_omni_asr_dashscope_requests_v1": {
+      "applies_to": {
+        "capability": "speech-to-text",
+        "dialect": "dashscope_multimodal",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Python example: transcribe audio with an omni model on a DashScope-native endpoint using the requests library",
+      "example_file": "llm/dashscope-omni-asr-requests/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "requirements": [
+          "requests"
+        ],
+        "variant": "Transcription (DashScope omni)"
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_omni_asr_dashscope_requests",
+      "source_readme": "llm/dashscope-omni-asr-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_omni_asr_dashscope_shell_v1": {
+      "applies_to": {
+        "capability": "speech-to-text",
+        "dialect": "dashscope_multimodal",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Shell example: transcribe audio with an omni model on a DashScope-native endpoint via curl",
+      "example_file": "llm/dashscope-omni-asr-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "variant": "Transcription (DashScope omni)"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_omni_asr_dashscope_shell",
+      "source_readme": "llm/dashscope-omni-asr-shell/README.md",
+      "version": 1
+    },
+    "llm_code_example_omni_tts_dashscope_javascript_v1": {
+      "applies_to": {
+        "capability": "text-to-speech",
+        "dialect": "dashscope_multimodal",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "JavaScript example: synthesise speech with an omni model on a DashScope-native endpoint with fetch",
+      "example_file": "llm/dashscope-omni-tts-javascript/code-example-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "variant": "Speech (DashScope omni)"
+      },
+      "mime_type": "javascript",
+      "parameters": {},
+      "preset_name": "llm_code_example_omni_tts_dashscope_javascript",
+      "source_readme": "llm/dashscope-omni-tts-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_omni_tts_dashscope_requests_v1": {
+      "applies_to": {
+        "capability": "text-to-speech",
+        "dialect": "dashscope_multimodal",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Python example: synthesise speech with an omni model on a DashScope-native endpoint using the requests library",
+      "example_file": "llm/dashscope-omni-tts-requests/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "requirements": [
+          "requests"
+        ],
+        "variant": "Speech (DashScope omni)"
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_omni_tts_dashscope_requests",
+      "source_readme": "llm/dashscope-omni-tts-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_omni_tts_dashscope_shell_v1": {
+      "applies_to": {
+        "capability": "text-to-speech",
+        "dialect": "dashscope_multimodal",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Shell example: synthesise speech with an omni model on a DashScope-native endpoint via curl",
+      "example_file": "llm/dashscope-omni-tts-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "variant": "Speech (DashScope omni)"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_omni_tts_dashscope_shell",
+      "source_readme": "llm/dashscope-omni-tts-shell/README.md",
+      "version": 1
+    },
     "llm_code_example_openai_javascript_v1": {
       "applies_to": {
         "capability": "chat",
@@ -2865,7 +3023,7 @@
     "llm_code_example_tts_dashscope_javascript_v1": {
       "applies_to": {
         "capability": "text-to-speech",
-        "dialect": "dashscope_multimodal",
+        "dialect": "dashscope_audio_task",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -2888,7 +3046,7 @@
     "llm_code_example_tts_dashscope_requests_v1": {
       "applies_to": {
         "capability": "text-to-speech",
-        "dialect": "dashscope_multimodal",
+        "dialect": "dashscope_audio_task",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -2914,7 +3072,7 @@
     "llm_code_example_tts_dashscope_shell_v1": {
       "applies_to": {
         "capability": "text-to-speech",
-        "dialect": "dashscope_multimodal",
+        "dialect": "dashscope_audio_task",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -3307,7 +3465,7 @@
     "llm_connectivity_asr_dashscope_v1": {
       "applies_to": {
         "capability": "speech-to-text",
-        "dialect": "dashscope_multimodal",
+        "dialect": "dashscope_audio_task",
         "upstream": "dashscope"
       },
       "category": "connectivity_test",
@@ -3441,6 +3599,52 @@
       "source_readme": "llm/connectivity-embed/README.md",
       "version": 1
     },
+    "llm_connectivity_omni_asr_dashscope_v1": {
+      "applies_to": {
+        "capability": "speech-to-text",
+        "dialect": "dashscope_multimodal",
+        "upstream": "dashscope"
+      },
+      "category": "connectivity_test",
+      "description": "Verify an omni DashScope endpoint by transcribing a tiny audio sample",
+      "example_file": "llm/dashscope-omni-asr-connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_connectivity_omni_asr_dashscope",
+      "source_readme": "llm/dashscope-omni-asr-connectivity/README.md",
+      "version": 1
+    },
+    "llm_connectivity_omni_tts_dashscope_v1": {
+      "applies_to": {
+        "capability": "text-to-speech",
+        "dialect": "dashscope_multimodal",
+        "upstream": "dashscope"
+      },
+      "category": "connectivity_test",
+      "description": "Verify an omni DashScope endpoint by synthesising a short clip",
+      "example_file": "llm/dashscope-omni-tts-connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_connectivity_omni_tts_dashscope",
+      "source_readme": "llm/dashscope-omni-tts-connectivity/README.md",
+      "version": 1
+    },
     "llm_connectivity_transcription_v1": {
       "applies_to": {
         "capability": "speech-to-text",
@@ -3468,7 +3672,7 @@
     "llm_connectivity_tts_dashscope_v1": {
       "applies_to": {
         "capability": "text-to-speech",
-        "dialect": "dashscope_multimodal",
+        "dialect": "dashscope_audio_task",
         "upstream": "dashscope"
       },
       "category": "connectivity_test",

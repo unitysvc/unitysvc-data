@@ -17,6 +17,48 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.6] — omni-shaped audio: speech is a chat call, and its output streams
+
+### Added
+
+- **`dashscope-omni-tts-*` and `dashscope-omni-asr-*`** — text-to-speech and
+  speech-to-text for an **omni** model, where both are a chat call rather than a
+  request shape of their own. All four flavours each (Python, shell, JavaScript,
+  connectivity probe). Every shape below was read off the live API, not inferred.
+
+  **Speech-to-text** is an `audio` part in `input.messages[].content` beside the
+  instruction; the transcription comes back as ordinary chat text.
+
+  **Text-to-speech** is `parameters.modalities = ["text", "audio"]`, and **its
+  output is streaming-only** — the part worth knowing. Without
+  `X-DashScope-SSE: enable` the call still returns 200 and still bills
+  `output_tokens_details.audio_tokens`, but the reply carries only text and the
+  audio is silently absent. The audio arrives across frames as `content[].audio`,
+  an **object** (`data` base64, `id`, `expires_at`) rather than a bare string, so
+  an example has to concatenate the `data` of every frame.
+
+  `parameters.voice` is left unset: the accepted names are model-specific
+  (`Ethan`, `Chelsie`, `Serena` work on the omni models, while `Cherry` — which
+  the dedicated TTS models take — is rejected), so naming one breaks the example
+  on the next model.
+
+  The floors are **tokens**, not characters. Omni audio meters in tokens, with the
+  audio counted inside `*_tokens_details`.
+
+### Changed
+
+- **The dedicated single-purpose audio families move to
+  `dialect = "dashscope_audio_task"`.** `dashscope-tts-*` and `dashscope-asr-*`
+  are written for a model whose request is `input.text` / `input.audio` with no
+  `messages`; an omni model rejects that with
+  `InvalidParameter: Either "prompt" or "messages" must exist and cannot both be
+  none`. Both shapes had claimed `dashscope_multimodal`, so the same capability
+  selected both and the collection kept whichever came last.
+
+  Amended in place rather than versioned, because `applies_to` is front-matter
+  shared by every version in the directory; each family's README records it.
+  Selection metadata only.
+
 ## [0.2.5] — pin the DashScope text-generation response shape
 
 ### Fixed

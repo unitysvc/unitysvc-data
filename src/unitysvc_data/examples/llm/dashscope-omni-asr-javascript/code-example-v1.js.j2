@@ -1,0 +1,39 @@
+async function main() {
+  const response = await fetch("{{ service_base_url }}", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: "{{ routing_key.model }}",
+      input: {
+        messages: [
+          {
+            role: "user",
+            content: [
+              { audio: "https://raw.githubusercontent.com/openai/whisper/main/tests/jfk.flac" },
+              { text: "Transcribe this audio." },
+            ],
+          },
+        ],
+      },
+      parameters: { max_tokens: 128 },
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+  }
+  const data = await response.json();
+  console.log(data.output.choices[0].message.content[0].text);
+{%- if not customer_display %}
+  if (!data.output?.choices?.length) {
+      throw new Error("no choices in the reply");
+    }
+{%- endif %}
+}
+
+main().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});

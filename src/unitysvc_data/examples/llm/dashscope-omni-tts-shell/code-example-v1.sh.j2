@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+output_file="${OUTPUT_FILE:-speech.wav}"
+
+# Audio output is streaming-only, hence the SSE header: without it the call
+# succeeds, bills audio tokens, and returns no audio.
+curl --fail-with-body -sS -N "{{ service_base_url }}" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -H "X-DashScope-SSE: enable" \
+  -d '{"model": "{{ routing_key.model }}", "input": {"messages": [{"role": "user", "content": [{"text": "Say this is a test"}]}]}, "parameters": {"modalities": ["text", "audio"], "incremental_output": true}}' \
+  > /tmp/dashscope-omni-tts.sse
+
+# `audio` is an object; take the base64 `data` of every frame and concatenate.
+grep -o '"data":"[^"]*"' /tmp/dashscope-omni-tts.sse \
+  | sed 's/"data":"//; s/"$//' \
+  | tr -d '\n' \
+  | base64 --decode > "$output_file"
+
+echo "Saved $output_file"
+{%- if not customer_display %}
+if [ ! -s "$output_file" ]; then
+  echo 'no audio in the stream' >&2
+  exit 1
+fi
+{%- endif %}
