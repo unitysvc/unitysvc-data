@@ -259,7 +259,9 @@ def test_every_chat_upstream_gets_the_one_format_keyed_request_template():
 
 
 def test_the_request_template_carries_a_body_for_each_request_format():
-    body = json.loads(open(doc_preset("llm_request_template")["file_path"]).read())
+    body = json.loads(
+        Path(doc_preset("llm_request_template")["file_path"]).read_text()
+    )
     assert set(body) == {"openai", "anthropic", "cohere", "dashscope", "bedrock_converse"}
     # The gateway recognises each body as its own format by shape
     # (apisix-gateways request_meta.classify); keep the markers it keys on.
@@ -273,7 +275,9 @@ def test_the_request_template_carries_a_body_for_each_request_format():
 
 
 def test_the_pinned_v1_template_is_unchanged():
-    v1 = json.loads(open(doc_preset("llm_request_template_v1")["file_path"]).read())
+    v1 = json.loads(
+        Path(doc_preset("llm_request_template_v1")["file_path"]).read_text()
+    )
     assert set(v1) == {"max_tokens", "messages"}
 
 
