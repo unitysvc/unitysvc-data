@@ -295,7 +295,7 @@ def test_min_expected_metrics_defaults_to_bytes_out_on_every_executable_document
 def test_min_expected_metrics_default_does_not_clobber_the_presets_own_meta():
     docs = llm_example_collection({"capabilities": ["moderate"], "formats": ["openai"]})
 
-    example = docs["Python code example (requests)"]
+    example = docs["Python code example (moderation, requests)"]
     assert example["meta"]["requirements"] == ["requests"]
     assert example["meta"]["min_expected_metrics"] == {"bytes_out": 1}
 
@@ -960,7 +960,7 @@ QWENCLOUD = {
     "formats": [
         {"formats": ["openai", "anthropic"], "channel": "managed",
          "interface": "canonical", "primary": True},
-        {"formats": ["dashscope"], "channel": "dashscope-managed",
+        {"formats": ["dashscope_text"], "channel": "dashscope-managed",
          "interface": "dashscope_api", "upstream_dialect": "dashscope"},
     ],
 }
@@ -1008,7 +1008,7 @@ def test_a_group_may_scope_to_several_channels():
         "formats": [
             {"formats": ["openai"], "channels": ["managed", "byok"],
              "interface": "canonical", "primary": True},
-            {"formats": ["dashscope"], "channels": ["ds-managed", "ds-byok"],
+            {"formats": ["dashscope_text"], "channels": ["ds-managed", "ds-byok"],
              "interface": "dashscope", "upstream_dialect": "dashscope"},
         ],
     })
@@ -1037,7 +1037,7 @@ def test_a_modality_example_is_scoped_to_the_dialect_it_is_written_in():
     /v1/audio/speech example, an endpoint QwenCloud answers with 404."""
     native = llm_example_collection({
         "capabilities": ["text-to-speech"],
-        "formats": [{"formats": ["dashscope"], "interface": "dashscope",
+        "formats": [{"formats": ["dashscope_multimodal"], "interface": "dashscope",
                      "upstream_dialect": "dashscope"}],
     })
     assert "llm_code_example_tts_requests" not in examples_in(native)
@@ -1070,3 +1070,48 @@ def test_every_capability_example_is_pinned_to_a_wire_shape():
                   if (a := applies_to(n)).get("capability")
                   and not a.get("dialect") and not a.get("upstream"))
     assert gaps == [], f"these name a capability but no wire shape: {gaps}"
+
+
+def test_a_multi_capability_service_keeps_every_capability_s_examples():
+    """`docs` is keyed by title, and the title carried the dialect, the feature
+    and the SDK but never the CAPABILITY. So for a service declaring several,
+    two documents that differ only by capability produced the same title and one
+    silently overwrote the other — an omni model declaring chat, text-to-speech
+    and speech-to-text shipped ONE of those three sets of examples."""
+    docs = llm_example_collection({
+        "capabilities": ["chat", "text-to-speech", "speech-to-text"],
+        "formats": [{"formats": ["dashscope_multimodal"], "interface": "dashscope",
+                     "upstream_dialect": "dashscope"}],
+    })
+    names = examples_in(docs)
+    for expected in ("llm_code_example_chat_dashscope_requests",
+                     "llm_code_example_tts_dashscope_requests",
+                     "llm_code_example_asr_dashscope_requests"):
+        assert expected in names, f"{expected} was overwritten by a sibling"
+    # ...and each probe survives too.
+    probes = [d for d in docs.values() if d["category"] == "connectivity_test"]
+    assert len(probes) == 3, f"expected one probe per capability, got {len(probes)}"
+
+
+def test_a_title_names_its_capability_unconditionally():
+    """Not only when a sibling capability would collide with it. The rule has to
+    hold for one service in isolation, because whether a title is unique cannot
+    depend on what else the service happens to declare."""
+    docs = llm_example_collection({"capabilities": ["embed"], "formats": ["openai"]})
+
+    assert "Python code example (embeddings, requests)" in docs
+    assert "Connectivity test (embeddings)" in docs
+
+
+def test_chat_and_vision_titles_carry_no_capability_label():
+    """The two deliberate exceptions. Chat is the reading a bare title already
+    has, and vision is carried by the `vision` feature bit — so neither can
+    collide with a labelled sibling, and labelling them would churn the titles of
+    nearly every published service. A title is a document's key."""
+    docs = llm_example_collection(
+        {"capabilities": ["chat", "image-text-to-text"], "formats": ["openai"]}
+    )
+
+    assert "Python code example (requests)" in docs, "chat stays unlabelled"
+    assert any("vision" in t for t in docs), "vision is named by its feature bit"
+    assert not any("image-text-to-text" in t for t in docs)

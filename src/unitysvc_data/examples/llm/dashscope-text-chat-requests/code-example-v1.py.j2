@@ -1,0 +1,20 @@
+import os
+
+import requests
+
+response = requests.post(
+    "{{ service_base_url }}",
+    headers={
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
+        "Content-Type": "application/json",
+    },
+    json={"model": "{{ routing_key.model }}", "input": {"messages": [{"role": "user", "content": "Say this is a test"}]}, "parameters": {"max_tokens": 64}},
+)
+if response.status_code >= 400:
+    raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
+data = response.json()
+print(data["output"]["choices"][0]["message"]["content"])
+{%- if not customer_display %}
+if not data.get("output", {}).get("choices"):
+    raise SystemExit("no choices in the reply")
+{%- endif %}

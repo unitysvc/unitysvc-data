@@ -17,6 +17,64 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.4] — the DashScope native path is per-modality, and titles name their capability
+
+### Fixed
+
+- **A title now names its capability, so a multi-capability service keeps every
+  capability's examples.** `docs` is keyed by title, and a title carried the
+  dialect, the feature and the SDK but never the capability — so two documents
+  differing only by capability produced the same key and one silently overwrote
+  the other. An omni model declaring `chat`, `text-to-speech` and
+  `speech-to-text` shipped **one** of those three sets: 3 examples where there
+  should have been 9, and 1 probe where there should have been 3. Sixteen
+  QwenCloud services were published that way.
+
+  `chat` and `image-text-to-text` stay unlabelled, deliberately. Chat is the
+  reading a bare title already has and vision is carried by the `vision` feature
+  bit, so neither can collide with a labelled sibling — and a title is a
+  document's KEY, so labelling them would retire and recreate a document on
+  nearly every published service for a collision that cannot happen.
+
+- **DashScope's native path and body shape are set by the model's MODALITY, not
+  by its capability**, so `dashscope` alone could not describe a chat service.
+  Proved by direct probe, in both directions:
+
+  | model | `aigc/text-generation/generation`, `content` string | `aigc/multimodal-generation/generation`, `content` array |
+  |---|---|---|
+  | text-only (`deepseek-v4-flash-0731`) | **200** | 400 `InvalidParameter: url error` |
+  | omni (`qwen3.5-omni-flash`) | 400 `InvalidParameter: url error` | **200** |
+
+  The responses differ too: text-generation returns
+  `output.choices[].message.content` as a **string**, multimodal as an **array of
+  parts**. Endpoint, request shape and response shape move together, so they are
+  one wire dialect and a service has to say which it speaks.
+
+  Staging rejected 39 service revisions on exactly this: every failure was a
+  DashScope document, every compatible-mode document passed.
+
+### Added
+
+- **`dashscope-text-chat-{requests,shell,javascript,connectivity}`** — chat over
+  `aigc/text-generation/generation`, declaring `dialect = "dashscope_text"`.
+
+### Changed
+
+- **The chat, TTS and ASR DashScope families now declare
+  `dialect = "dashscope_multimodal"`**, which is what they always were — they send
+  and read the array-of-parts shape. Amended in place rather than versioned,
+  because `applies_to` is front-matter and shared by every version in the
+  directory (see CONTRIBUTING, "The one exception"); each family's README records
+  it. Selection metadata only; nothing these examples do has changed.
+
+  Embeddings keep plain `dashscope`: their endpoint and shape are unique and the
+  capability already pins them.
+
+  **Neither chat token is the default.** A group naming a bare `dashscope` for
+  chat now selects *neither*, which fails where it can be seen rather than
+  sending the wrong shape to the wrong path — the failure mode this release
+  exists to remove.
+
 ## [0.2.3] — DashScope-native presets, and dialect-scoped selection
 
 ### Added

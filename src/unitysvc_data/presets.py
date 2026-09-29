@@ -425,12 +425,43 @@ _DIALECT_LABEL = {
     "openai": "", "anthropic": "Anthropic-style", "cohere": "Cohere SDK",
     "cerebras": "Cerebras SDK", "bedrock_converse": "boto3 Converse",
     "bedrock_invoke": "boto3 InvokeModel", "huggingface": "sentence-transformers",
+    # All three DashScope tokens share one LABEL on purpose. They name different
+    # native endpoints and body shapes (text-generation vs multimodal-generation
+    # vs embeddings), which a service must distinguish; a customer reading a code
+    # example must not, and only one of them is ever selected for a given
+    # service, so the titles cannot collide.
     "dashscope": "DashScope",
+    "dashscope_text": "DashScope",
+    "dashscope_multimodal": "DashScope",
 }
 
 #: Dialects the CALLER writes, rather than an SDK that writes them for it.
 #: These read as "<label> input"; everything else reads as the SDK's own name.
-_CALLER_DIALECTS = ("openai", "anthropic", "dashscope")
+_CALLER_DIALECTS = (
+    "openai", "anthropic", "dashscope", "dashscope_text", "dashscope_multimodal",
+)
+
+
+#: How a capability is named in a title. A title must say which capability its
+#: example demonstrates, because `docs` is keyed by title: without it, two
+#: documents differing only by capability collide and one silently overwrites the
+#: other.
+#:
+#: `chat` and `image-text-to-text` map to nothing on purpose, and that is not an
+#: oversight. Chat is the reading a bare title already has, and vision is already
+#: carried by the ``vision`` feature bit — so neither can collide with a labelled
+#: sibling, and labelling them would churn the titles of nearly every published
+#: service for no gain. A title is a document's KEY.
+_CAPABILITY_LABEL = {
+    "embed": "embeddings",
+    "text-to-speech": "speech",
+    "speech-to-text": "transcription",
+    "rerank": "rerank",
+    "moderate": "moderation",
+    "image-generate": "image",
+    "image-edit": "image edit",
+    "video-generate": "video",
+}
 
 
 def _title(entry: dict[str, Any], spec: dict[str, Any]) -> str:
@@ -444,6 +475,12 @@ def _title(entry: dict[str, Any], spec: dict[str, Any]) -> str:
         entry["mime_type"], entry["mime_type"]
     )
     bits = []
+    # The capability first, because it is the most significant distinction: an
+    # omni model declaring chat, text-to-speech and speech-to-text used to ship
+    # ONE of those three sets of examples, the other two overwritten by title.
+    capability_label = _CAPABILITY_LABEL.get(spec.get("capability") or "")
+    if capability_label:
+        bits.append(capability_label)
     dialect = spec.get("dialect", "")
     label = _DIALECT_LABEL.get(dialect, dialect)
     if label:

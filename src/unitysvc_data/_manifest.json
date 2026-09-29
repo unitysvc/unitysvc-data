@@ -22,6 +22,9 @@
     "llm_code_example_chat_dashscope_javascript": "llm_code_example_chat_dashscope_javascript_v1",
     "llm_code_example_chat_dashscope_requests": "llm_code_example_chat_dashscope_requests_v1",
     "llm_code_example_chat_dashscope_shell": "llm_code_example_chat_dashscope_shell_v1",
+    "llm_code_example_chat_dashscope_text_javascript": "llm_code_example_chat_dashscope_text_javascript_v1",
+    "llm_code_example_chat_dashscope_text_requests": "llm_code_example_chat_dashscope_text_requests_v1",
+    "llm_code_example_chat_dashscope_text_shell": "llm_code_example_chat_dashscope_text_shell_v1",
     "llm_code_example_cohere": "llm_code_example_cohere_v1",
     "llm_code_example_embed_dashscope_javascript": "llm_code_example_embed_dashscope_javascript_v1",
     "llm_code_example_embed_dashscope_requests": "llm_code_example_embed_dashscope_requests_v1",
@@ -80,6 +83,7 @@
     "llm_connectivity_anthropic": "llm_connectivity_anthropic_v1",
     "llm_connectivity_asr_dashscope": "llm_connectivity_asr_dashscope_v1",
     "llm_connectivity_chat_dashscope": "llm_connectivity_chat_dashscope_v1",
+    "llm_connectivity_chat_dashscope_text": "llm_connectivity_chat_dashscope_text_v1",
     "llm_connectivity_embed": "llm_connectivity_embed_v1",
     "llm_connectivity_embed_dashscope": "llm_connectivity_embed_dashscope_v1",
     "llm_connectivity_embed_image": "llm_connectivity_embed_image_v1",
@@ -1158,7 +1162,7 @@
     "llm_code_example_asr_dashscope_javascript_v1": {
       "applies_to": {
         "capability": "speech-to-text",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -1182,7 +1186,7 @@
     "llm_code_example_asr_dashscope_requests_v1": {
       "applies_to": {
         "capability": "speech-to-text",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -1209,7 +1213,7 @@
     "llm_code_example_asr_dashscope_shell_v1": {
       "applies_to": {
         "capability": "speech-to-text",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -1317,7 +1321,7 @@
     "llm_code_example_chat_dashscope_javascript_v1": {
       "applies_to": {
         "capability": "chat",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -1341,7 +1345,7 @@
     "llm_code_example_chat_dashscope_requests_v1": {
       "applies_to": {
         "capability": "chat",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -1368,7 +1372,7 @@
     "llm_code_example_chat_dashscope_shell_v1": {
       "applies_to": {
         "capability": "chat",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -1387,6 +1391,81 @@
       "parameters": {},
       "preset_name": "llm_code_example_chat_dashscope_shell",
       "source_readme": "llm/dashscope-chat-shell/README.md",
+      "version": 1
+    },
+    "llm_code_example_chat_dashscope_text_javascript_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "dashscope_text",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "JavaScript example: send a chat completion to a DashScope text-generation endpoint with fetch",
+      "example_file": "llm/dashscope-text-chat-javascript/code-example-v1.js.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "variant": "Chat (DashScope text)"
+      },
+      "mime_type": "javascript",
+      "parameters": {},
+      "preset_name": "llm_code_example_chat_dashscope_text_javascript",
+      "source_readme": "llm/dashscope-text-chat-javascript/README.md",
+      "version": 1
+    },
+    "llm_code_example_chat_dashscope_text_requests_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "dashscope_text",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Python example: send a chat completion to a DashScope text-generation endpoint using the requests library",
+      "example_file": "llm/dashscope-text-chat-requests/code-example-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "requirements": [
+          "requests"
+        ],
+        "variant": "Chat (DashScope text)"
+      },
+      "mime_type": "python",
+      "parameters": {},
+      "preset_name": "llm_code_example_chat_dashscope_text_requests",
+      "source_readme": "llm/dashscope-text-chat-requests/README.md",
+      "version": 1
+    },
+    "llm_code_example_chat_dashscope_text_shell_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "dashscope_text",
+        "upstream": "dashscope"
+      },
+      "category": "code_example",
+      "description": "Shell example: send a chat completion to a DashScope text-generation endpoint via curl",
+      "example_file": "llm/dashscope-text-chat-shell/code-example-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        },
+        "variant": "Chat (DashScope text)"
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_code_example_chat_dashscope_text_shell",
+      "source_readme": "llm/dashscope-text-chat-shell/README.md",
       "version": 1
     },
     "llm_code_example_cohere_v1": {
@@ -2786,7 +2865,7 @@
     "llm_code_example_tts_dashscope_javascript_v1": {
       "applies_to": {
         "capability": "text-to-speech",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -2809,7 +2888,7 @@
     "llm_code_example_tts_dashscope_requests_v1": {
       "applies_to": {
         "capability": "text-to-speech",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -2835,7 +2914,7 @@
     "llm_code_example_tts_dashscope_shell_v1": {
       "applies_to": {
         "capability": "text-to-speech",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "code_example",
@@ -3228,7 +3307,7 @@
     "llm_connectivity_asr_dashscope_v1": {
       "applies_to": {
         "capability": "speech-to-text",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "connectivity_test",
@@ -3248,10 +3327,33 @@
       "source_readme": "llm/dashscope-asr-connectivity/README.md",
       "version": 1
     },
+    "llm_connectivity_chat_dashscope_text_v1": {
+      "applies_to": {
+        "capability": "chat",
+        "dialect": "dashscope_text",
+        "upstream": "dashscope"
+      },
+      "category": "connectivity_test",
+      "description": "Verify a DashScope text-generation endpoint by issuing a tiny request (chat)",
+      "example_file": "llm/dashscope-text-chat-connectivity/connectivity-v1.sh.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "min_expected_metrics": {
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "llm_connectivity_chat_dashscope_text",
+      "source_readme": "llm/dashscope-text-chat-connectivity/README.md",
+      "version": 1
+    },
     "llm_connectivity_chat_dashscope_v1": {
       "applies_to": {
         "capability": "chat",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "connectivity_test",
@@ -3366,7 +3468,7 @@
     "llm_connectivity_tts_dashscope_v1": {
       "applies_to": {
         "capability": "text-to-speech",
-        "dialect": "dashscope",
+        "dialect": "dashscope_multimodal",
         "upstream": "dashscope"
       },
       "category": "connectivity_test",
