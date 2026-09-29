@@ -1,4 +1,6 @@
 import { writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 async function main() {
   // Audio output is streaming-only: without the SSE header the call still
@@ -38,7 +40,9 @@ async function main() {
     }
   }
 
-  const outputFile = process.env.OUTPUT_FILE ?? "speech.wav";
+  // Into a temp dir by default: the test runner executes this from a
+  // working directory it cannot write to.
+  const outputFile = process.env.OUTPUT_FILE ?? join(tmpdir(), "speech.wav");
   await writeFile(outputFile, Buffer.from(chunks.join(""), "base64"));
   console.log(`Saved ${outputFile} (${chunks.length} audio frame(s))`);
 {%- if not customer_display %}

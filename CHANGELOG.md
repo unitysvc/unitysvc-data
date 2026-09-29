@@ -17,6 +17,26 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.7] — a group may serve only some of a service's capabilities
+
+### Added
+
+- **A format group may declare its own `capabilities`.** The collection fanned
+  the service's whole list across every group, so each advertised capabilities
+  its endpoint might not serve. QwenCloud's compatible-mode endpoint serves chat
+  and embeddings but answers `/v1/audio/speech` and `/v1/audio/transcriptions`
+  with **404** — and an omni service's compat group still pulled in the stock
+  OpenAI audio examples and failed them, while its native group handled audio
+  correctly. Absent, a group serves all of them, so no existing repo changes.
+
+### Fixed
+
+- **The omni TTS examples write their clip somewhere writable.** They defaulted
+  to `speech.wav` in the working directory, and the test runner executes from one
+  it cannot write to: `PermissionError: [Errno 13] Permission denied` failed a
+  script whose request, stream and audio decode had all succeeded. `OUTPUT_FILE`
+  still overrides; the default is now under the system temp directory.
+
 ## [0.2.6] — omni-shaped audio: speech is a chat call, and its output streams
 
 ### Added
