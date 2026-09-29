@@ -1,0 +1,45 @@
+import base64
+import json
+import os
+
+import requests
+
+# Audio output is streaming-only: without the SSE header the call still returns
+# 200 and still bills audio tokens, but the reply carries only text.
+response = requests.post(
+    "{{ service_base_url }}",
+    headers={
+        "Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}",
+        "Content-Type": "application/json",
+        "X-DashScope-SSE": "enable",
+    },
+    json={
+        "model": "{{ routing_key.model }}",
+        "input": {"messages": [{"role": "user", "content": [{"text": "Say this is a test"}]}]},
+        "parameters": {"modalities": ["text", "audio"], "incremental_output": True},
+    },
+    stream=True,
+)
+if response.status_code >= 400:
+    raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
+
+chunks = []
+for line in response.iter_lines(decode_unicode=True):
+    if not line or not line.startswith("data:"):
+        continue
+    frame = json.loads(line[5:])
+    for choice in frame.get("output", {}).get("choices") or []:
+        for part in choice.get("message", {}).get("content") or []:
+            # `audio` is an object — {data, id, expires_at} — not a bare string.
+            audio = part.get("audio")
+            if isinstance(audio, dict) and audio.get("data"):
+                chunks.append(audio["data"])
+
+output_file = os.environ.get("OUTPUT_FILE", "speech.wav")
+with open(output_file, "wb") as f:
+    f.write(base64.b64decode("".join(chunks)))
+print(f"Saved {output_file} ({len(chunks)} audio frame(s))")
+{%- if not customer_display %}
+if not chunks:
+    raise SystemExit("no audio frames in the stream")
+{%- endif %}

@@ -1,0 +1,54 @@
+import { writeFile } from "node:fs/promises";
+
+async function main() {
+  // Audio output is streaming-only: without the SSE header the call still
+  // returns 200 and still bills audio tokens, but carries only text.
+  const response = await fetch("{{ service_base_url }}", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,
+      "X-DashScope-SSE": "enable",
+    },
+    body: JSON.stringify({
+      model: "{{ routing_key.model }}",
+      input: { messages: [{ role: "user", content: [{ text: "Say this is a test" }] }] },
+      parameters: { modalities: ["text", "audio"], incremental_output: true },
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+  }
+
+  const chunks = [];
+  let buffer = "";
+  for await (const bytes of response.body) {
+    buffer += new TextDecoder().decode(bytes, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() ?? "";
+    for (const line of lines) {
+      if (!line.startsWith("data:")) continue;
+      const frame = JSON.parse(line.slice(5));
+      for (const choice of frame.output?.choices ?? []) {
+        for (const part of choice.message?.content ?? []) {
+          // `audio` is an object — {data, id, expires_at} — not a bare string.
+          if (part.audio?.data) chunks.push(part.audio.data);
+        }
+      }
+    }
+  }
+
+  const outputFile = process.env.OUTPUT_FILE ?? "speech.wav";
+  await writeFile(outputFile, Buffer.from(chunks.join(""), "base64"));
+  console.log(`Saved ${outputFile} (${chunks.length} audio frame(s))`);
+{%- if not customer_display %}
+  if (chunks.length === 0) {
+      throw new Error("no audio frames in the stream");
+    }
+{%- endif %}
+}
+
+main().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});

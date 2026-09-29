@@ -1,0 +1,21 @@
+#!/bin/bash
+# DashScope connectivity probe (omni text-to-speech): ask for audio output and
+# assert the stream really carries an audio frame. A 2xx alone is not enough --
+# without the SSE header the call still succeeds and returns no audio at all.
+set -e -o pipefail
+
+: "${UNITYSVC_API_KEY:?UNITYSVC_API_KEY is not set}"
+
+response=$(curl --fail-with-body -sS -N "{{ service_base_url }}" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
+  -H "X-DashScope-SSE: enable" \
+  -d '{"model": "{{ routing_key.model }}", "input": {"messages": [{"role": "user", "content": [{"text": "Say this is a test"}]}]}, "parameters": {"modalities": ["text", "audio"], "incremental_output": true}}')
+
+printf '%s' "$response" | head -c 200
+{%- if not customer_display %}
+if ! printf '%s' "$response" | grep -q '"audio"'; then
+  echo 'unexpected response: no "audio" in the stream' >&2
+  exit 1
+fi
+{%- endif %}
