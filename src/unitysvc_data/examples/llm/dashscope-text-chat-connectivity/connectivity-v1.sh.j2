@@ -9,7 +9,7 @@ set -e -o pipefail
 response=$(curl --fail-with-body -sS "{{ service_base_url }}" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${UNITYSVC_API_KEY}" \
-  -d '{"model": "{{ routing_key.model }}", "input": {"messages": [{"role": "user", "content": "Say this is a test"}]}, "parameters": {"max_tokens": 64}}')
+  -d '{"model": "{{ routing_key.model }}", "input": {"messages": [{"role": "user", "content": "Say this is a test"}]}, "parameters": {"max_tokens": 64, "result_format": "message"}}')
 
 echo "$response"
 {%- if not customer_display %}

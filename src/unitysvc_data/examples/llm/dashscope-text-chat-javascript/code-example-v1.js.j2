@@ -5,7 +5,7 @@ async function main() {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.UNITYSVC_API_KEY}`,
     },
-    body: JSON.stringify({"model": "{{ routing_key.model }}", "input": {"messages": [{"role": "user", "content": "Say this is a test"}]}, "parameters": {"max_tokens": 64}}),
+    body: JSON.stringify({"model": "{{ routing_key.model }}", "input": {"messages": [{"role": "user", "content": "Say this is a test"}]}, "parameters": {"max_tokens": 64, "result_format": "message"}}),
   });
   if (!response.ok) {
     throw new Error(`HTTP ${response.status}: ${await response.text()}`);

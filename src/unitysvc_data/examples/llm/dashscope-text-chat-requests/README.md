@@ -26,6 +26,11 @@ are one wire dialect, and a service must say which of the two it speaks. Neither
 is the default; a group naming a bare `dashscope` selects neither, which fails
 where it can be seen rather than sending the wrong shape.
 
+The request pins `parameters.result_format` to `"message"`. Text-generation
+returns whichever shape the MODEL defaults to otherwise — `output.text` for some,
+`output.choices[].message` for others — and a reader cannot be written against
+both. Pinning it makes the response shape a property of the request.
+
 Assertions check the payload rather than the status, because DashScope answers
 **200 with an error envelope**. They sit behind `{%- if not customer_display %}`
 so the published example stays clean.
@@ -38,3 +43,11 @@ so the published example stays clean.
 - No vendor SDK; `requests` only.
 - Raises with the response body on a non-2xx, rather than `raise_for_status`,
   which discards it.
+- **Amended in 0.2.5**: `parameters.result_format` is now pinned to `"message"`.
+  Without it DashScope's text-generation returns whichever shape the MODEL
+  defaults to — `output.text` for some, `output.choices[].message` for others —
+  so an example that reads `choices` failed on half the catalog with
+  `Cannot read properties of undefined`. Probed both ways on `qwen-flash`:
+  absent gives `{"output":{"text":…}}`, `"message"` gives
+  `{"output":{"choices":[…]}}`. The reader is unchanged; the request now asks for
+  the shape it reads.
