@@ -10,6 +10,7 @@ carry its preset name, so the path is not a usable key.
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 
@@ -243,13 +244,51 @@ def test_chat_collection_carries_the_description_and_request_template():
     assert presets_in(docs) >= {"llm_description", "llm_request_template"}
 
 
-def test_anthropic_upstream_gets_the_anthropic_request_template():
-    docs = llm_example_collection(
-        {"capabilities": ["chat"], "formats": ["anthropic"], "upstream_dialect": "anthropic"}
-    )
+def test_every_chat_upstream_gets_the_one_format_keyed_request_template():
+    """v2 keys a body per request format, so an Anthropic upstream no longer
+    needs its own template — and must not get both, which would collide on
+    the title "Default request body"."""
+    for upstream in ("openai", "anthropic"):
+        docs = llm_example_collection(
+            {"capabilities": ["chat"], "formats": ["anthropic"], "upstream_dialect": upstream}
+        )
+        templates = [d for d in docs.values() if d["category"] == "request_template"]
+        assert len(templates) == 1
+        assert "llm_request_template" in presets_in(docs)
+        assert "llm_request_template_anthropic" not in presets_in(docs)
 
-    assert "llm_request_template_anthropic" in presets_in(docs)
-    assert "llm_request_template" not in presets_in(docs)
+
+def test_the_request_template_carries_a_body_for_each_request_format():
+    body = json.loads(open(doc_preset("llm_request_template")["file_path"]).read())
+    assert set(body) == {"openai", "anthropic", "cohere", "dashscope", "bedrock_converse"}
+    # The gateway recognises each body as its own format by shape
+    # (apisix-gateways request_meta.classify); keep the markers it keys on.
+    assert "system" in body["anthropic"] and "max_tokens" in body["anthropic"]
+    assert isinstance(body["dashscope"]["input"], dict)
+    assert body["bedrock_converse"]["messages"][0]["content"] == [
+        {"text": "Say hello in one sentence."}
+    ]
+    # No entry names a model: the routing key is merged in by the caller.
+    assert all("model" not in entry for entry in body.values())
+
+
+def test_the_pinned_v1_template_is_unchanged():
+    v1 = json.loads(open(doc_preset("llm_request_template_v1")["file_path"]).read())
+    assert set(v1) == {"max_tokens", "messages"}
+
+
+def test_a_superseded_preset_is_not_selected_but_still_resolves():
+    from unitysvc_data import PRESETS, applies_to
+
+    superseded = {
+        name: spec["superseded_by"]
+        for name in PRESETS
+        if (spec := applies_to(name)).get("superseded_by")
+    }
+    assert "llm_request_template_anthropic" in superseded
+    for name, successor in superseded.items():
+        assert successor in PRESETS, f"{name} is superseded by unknown {successor}"
+        assert doc_preset(name)["category"]
 
 
 def test_sleep_is_applied_to_every_executable_document():
@@ -687,8 +726,7 @@ def test_the_request_template_is_selected_like_everything_else():
     chat — rather than the collection special-casing chat to add it."""
     from unitysvc_data import applies_to
 
-    assert applies_to("llm_request_template")["capability"] == "chat"
-    assert applies_to("llm_request_template_anthropic")["upstream"] == "anthropic"
+    assert applies_to("llm_request_template") == {"capability": "chat"}
 
 
 def test_the_how_to_doc_declares_nothing_because_it_is_universal():
@@ -1062,15 +1100,22 @@ def test_every_capability_example_is_pinned_to_a_wire_shape():
     `dialect` pins what the CALLER writes, `upstream` what the upstream speaks,
     and a DashScope channel differs on both. `llm_description` is the deliberate
     exception — it constrains nothing because it really does apply to everything.
+
+    `llm_request_template` is the other one: from v2 it carries a body for EVERY
+    request format, keyed by format name, and the playground picks the entry for
+    the format the caller writes. It is pinned to a wire shape per entry rather
+    than per document.
     """
     from unitysvc_data import MANIFEST
     from unitysvc_data.presets import applies_to
 
+    keyed_by_format = {"llm_request_template"}
     names = {r.get("preset_name", k) for k, r in MANIFEST["presets"].items()
              if k.startswith("llm_")}
     gaps = sorted(n for n in names
                   if (a := applies_to(n)).get("capability")
-                  and not a.get("dialect") and not a.get("upstream"))
+                  and not a.get("dialect") and not a.get("upstream")
+                  and n not in keyed_by_format)
     assert gaps == [], f"these name a capability but no wire shape: {gaps}"
 
 

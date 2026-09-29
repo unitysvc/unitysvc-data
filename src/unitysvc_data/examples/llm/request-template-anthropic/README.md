@@ -6,7 +6,7 @@ file = "request-template-anthropic.json"
 description = "Minimal Anthropic Messages API request body"
 is_active = true
 is_public = true
-applies_to = { capability = "chat", upstream = "anthropic" }
+applies_to = { capability = "chat", upstream = "anthropic", superseded_by = "llm_request_template" }
 +++
 
 # llm / request-template-anthropic — minimal Messages API payload
@@ -43,6 +43,14 @@ validation and as `request_template` metadata attached to a listing.
 - Response shape is `content[0].text` rather than
   `choices[0].message.content`. Tests should assert
   `content[0].text` exists and is non-empty.
+
+## Superseded
+
+`llm_request_template` v2 carries this body under its `anthropic` key, beside
+a body for every other request format, and applies to every chat service.
+`llm_example_collection` therefore no longer selects this preset
+(`applies_to.superseded_by`). It still resolves by name, so a listing that
+names it keeps getting this body.
 
 ## Versions
 

@@ -102,6 +102,8 @@ OPTIONAL_FIELDS: dict[str, Any] = {
     #               differs from ``dialect`` when the gateway translates
     #   feature     an attribute gate — streaming / tools / vision — that
     #               the service must advertise before the example applies
+    #   superseded_by  the preset that replaced this one; a superseded
+    #               preset is never selected, but still resolves by name
     # Like ``parameters`` it is build-time metadata and never reaches the
     # document record.
     "applies_to": {},
