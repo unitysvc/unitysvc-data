@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+import tempfile
 
 import requests
 
@@ -35,7 +36,12 @@ for line in response.iter_lines(decode_unicode=True):
             if isinstance(audio, dict) and audio.get("data"):
                 chunks.append(audio["data"])
 
-output_file = os.environ.get("OUTPUT_FILE", "speech.wav")
+# Into a temp dir by default: the test runner executes this from a
+# working directory it cannot write to, and a PermissionError there
+# fails a script whose request, stream and decode all succeeded.
+output_file = os.environ.get("OUTPUT_FILE") or os.path.join(
+    tempfile.gettempdir(), "speech.wav"
+)
 with open(output_file, "wb") as f:
     f.write(base64.b64decode("".join(chunks)))
 print(f"Saved {output_file} ({len(chunks)} audio frame(s))")

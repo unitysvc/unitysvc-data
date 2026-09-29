@@ -1183,3 +1183,39 @@ def test_omni_audio_floors_are_tokens_not_characters():
         floor = (doc.get("meta") or {}).get("min_expected_metrics")
         if floor is not None:
             assert "characters" not in floor, f"{title} still demands characters"
+
+
+def test_a_group_may_serve_a_subset_of_the_service_s_capabilities():
+    """`capabilities` fans across every group, so a group advertises the service's
+    whole capability list whether or not its endpoint serves them. QwenCloud's
+    compatible-mode endpoint serves chat and embeddings but answers
+    `/v1/audio/speech` and `/v1/audio/transcriptions` with 404 — yet an omni
+    service's compat group pulled in the stock OpenAI audio examples and failed
+    them, while its native group handled audio correctly."""
+    docs = llm_example_collection({
+        "capabilities": ["chat", "text-to-speech"],
+        "formats": [
+            # The compat endpoint serves chat only; say so.
+            {"formats": ["openai"], "capabilities": ["chat"],
+             "interface": "canonical", "primary": True},
+            {"formats": ["dashscope_multimodal"], "interface": "dashscope",
+             "upstream_dialect": "dashscope"},
+        ],
+    })
+    names = examples_in(docs)
+    # The stock /v1/audio/speech example must NOT be selected...
+    assert "llm_code_example_tts_requests" not in names
+    # ...while the native one is, and chat still reaches the compat endpoint.
+    assert "llm_code_example_omni_tts_dashscope_requests" in names
+    assert "llm_code_example_requests" in names
+
+
+def test_a_group_without_capabilities_still_serves_all_of_them():
+    """Opt-in per group: every existing repo declares none and is unaffected."""
+    docs = llm_example_collection({
+        "capabilities": ["chat", "text-to-speech"],
+        "formats": [{"formats": ["openai"], "interface": "canonical"}],
+    })
+    names = examples_in(docs)
+    assert "llm_code_example_requests" in names
+    assert "llm_code_example_tts_requests" in names

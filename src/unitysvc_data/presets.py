@@ -32,7 +32,6 @@ from __future__ import annotations
 
 import atexit
 import hashlib
-import itertools
 import json
 import os
 import tempfile
@@ -634,35 +633,44 @@ def llm_example_collection(source: Any) -> dict[str, Any]:
     # declares that it applies here. The probe lands on the primary group
     # because it must resolve to exactly one channel/interface; everything
     # else is scoped to the group that contributed it.
-    for capability, group in itertools.product(capabilities, groups):
-        features = {"streaming"}
-        if group.get("tools"):
-            features.add("tools")
-        # `vision` is implied by the capability that needs it, so a listing
-        # declaring `image-text-to-text` does not also have to set the flag.
-        # The flag is still honoured on its own for the callers that set it.
-        if group.get("vision") or capability in _VISION_CAPABILITIES:
-            features.add("vision")
-        for title, preset_name in _select(
-            capability=capability,
-            dialects=set(group["formats"]),
-            # Which dialect the UPSTREAM speaks is a property of the channel a
-            # group maps to (its ``upstream_format``), not of the service: one
-            # listing can front an OpenAI-compatible channel and a native one
-            # at the same time (QwenCloud's compat layer plus DashScope, where
-            # only the native surface serves TTS/ASR). The collection-level
-            # value stays the default, so every existing repo is unaffected.
-            upstream=group.get("upstream_dialect") or upstream,
-            features=features,
-        ):
-            scope = _primary_group(groups) if title == "Connectivity test" else group
-            docs[title] = _scoped(
-                preset_name,
-                scope,
-                sleep,
-                {**broadcast, **(group.get("params") or {})},
-                min_expected_metrics=min_expected_metrics,
-            )
+    # Per GROUP, then per capability, because a group may serve only a SUBSET.
+    # `capabilities` fanned across every group, so each advertised the service's
+    # whole list whether or not its endpoint served them: QwenCloud's
+    # compatible-mode endpoint serves chat and embeddings but answers
+    # /v1/audio/speech and /v1/audio/transcriptions with 404, and its compat group
+    # still pulled in the stock OpenAI audio examples and failed them.
+    #
+    # Absent, a group serves all of them, so no existing repo changes.
+    for group in groups:
+        for capability in (group.get("capabilities") or capabilities):
+            features = {"streaming"}
+            if group.get("tools"):
+                features.add("tools")
+            # `vision` is implied by the capability that needs it, so a listing
+            # declaring `image-text-to-text` does not also have to set the flag.
+            # The flag is still honoured on its own for the callers that set it.
+            if group.get("vision") or capability in _VISION_CAPABILITIES:
+                features.add("vision")
+            for title, preset_name in _select(
+                capability=capability,
+                dialects=set(group["formats"]),
+                # Which dialect the UPSTREAM speaks is a property of the channel a
+                # group maps to (its ``upstream_format``), not of the service: one
+                # listing can front an OpenAI-compatible channel and a native one
+                # at the same time (QwenCloud's compat layer plus DashScope, where
+                # only the native surface serves TTS/ASR). The collection-level
+                # value stays the default, so every existing repo is unaffected.
+                upstream=group.get("upstream_dialect") or upstream,
+                features=features,
+            ):
+                scope = _primary_group(groups) if title == "Connectivity test" else group
+                docs[title] = _scoped(
+                    preset_name,
+                    scope,
+                    sleep,
+                    {**broadcast, **(group.get("params") or {})},
+                    min_expected_metrics=min_expected_metrics,
+                )
     return docs
 
 
