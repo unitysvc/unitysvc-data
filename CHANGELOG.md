@@ -17,6 +17,28 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.9] — the omni TTS probe no longer dies of SIGPIPE
+
+### Fixed
+
+- **The omni text-to-speech connectivity probe piped its response into
+  `head -c 200`.** That stream is ~140 KB of base64 audio, far past the pipe
+  buffer, so `head` closes the pipe after 200 bytes, the writer takes SIGPIPE,
+  and under `set -o pipefail` the probe exits **141** — failing a check whose
+  request had succeeded. Staging rejected a service for exactly that, with every
+  other document passing.
+
+  Reproduced at 213 KB: the piped form exits 141, the substring form exits 0.
+
+  The probe now reads the variable directly — bash substring to print, `case` to
+  test — so nothing pipes it. `grep -q` was the same hazard latent (it exits on
+  its first match) and went with it. A test asserts the probe pipes `$response`
+  nowhere.
+
+  The other DashScope probes are unaffected: their responses are a few hundred
+  bytes, well inside the buffer. The stock TTS probe is too — its `head -c` reads
+  a *file*, which has no writer to signal.
+
 ## [0.2.8] — one default request body per request format
 
 ### Added
