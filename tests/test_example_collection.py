@@ -593,6 +593,22 @@ CAPABILITY_CONTRACT = {
 }
 
 
+#: The dialect a capability is demonstrated on, where it is not the platform
+#: default. ``image-edit`` and ``video-generate`` are served only by the Hugging
+#: Face inference API (``/models/<model>``); they used to declare the OpenAI
+#: dialect while posting to that path, so they were offered to OpenAI-dialect
+#: services whose endpoint does not serve it (corrected in 0.2.12). Asking for
+#: them with ``formats: ["openai"]`` now correctly yields nothing.
+CAPABILITY_DIALECT = {
+    "image-edit": "huggingface",
+    "video-generate": "huggingface",
+}
+
+
+def _formats_for(capability: str) -> list[str]:
+    return [CAPABILITY_DIALECT.get(capability, "openai")]
+
+
 @pytest.mark.parametrize("capability", sorted(CAPABILITY_CONTRACT))
 def test_a_capability_emits_its_complete_example_set(capability):
     """All three language flavours, not just one.
@@ -602,7 +618,9 @@ def test_a_capability_emits_its_complete_example_set(capability):
     exist — a dedicated connectivity preset is a separate concern.
     """
     expected, _ = CAPABILITY_CONTRACT[capability]
-    docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
+    docs = llm_example_collection(
+        {"capabilities": [capability], "formats": _formats_for(capability)}
+    )
 
     assert examples_in(docs) == expected
 
@@ -610,7 +628,9 @@ def test_a_capability_emits_its_complete_example_set(capability):
 @pytest.mark.parametrize("capability", sorted(CAPABILITY_CONTRACT))
 def test_a_capability_offers_every_language(capability):
     """python / javascript / bash, so no caller is left without one."""
-    docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
+    docs = llm_example_collection(
+        {"capabilities": [capability], "formats": _formats_for(capability)}
+    )
 
     mimes = {d["mime_type"] for d in docs.values() if d["category"] == "code_example"}
     assert mimes == {"python", "javascript", "bash"}
@@ -623,7 +643,9 @@ def test_the_probe_matches_the_capability_contract(capability):
     to a chat probe that cannot pass. `specs validate` and the activation
     gate then reject the service at the point of declaration."""
     _, probe = CAPABILITY_CONTRACT[capability]
-    docs = llm_example_collection({"capabilities": [capability], "formats": ["openai"]})
+    docs = llm_example_collection(
+        {"capabilities": [capability], "formats": _formats_for(capability)}
+    )
 
     emitted = [d for d in docs.values() if d["category"] == "connectivity_test"]
     if probe is None:

@@ -90,7 +90,11 @@ DIALECTS: dict[str, Classifier] = {
     "cerebras": Classifier("Cerebras SDK"),
     "bedrock_converse": Classifier("boto3 Converse"),
     "bedrock_invoke": Classifier("boto3 InvokeModel"),
-    "huggingface": Classifier("sentence-transformers"),
+    # Named for the surface, not for one model family: the same
+    # ``/models/<model>`` inference API serves sentence embeddings, image
+    # editing and text-to-video. It was "sentence-transformers", which could
+    # not honestly title the image-edit and video examples that also speak it.
+    "huggingface": Classifier("Hugging Face"),
     "dashscope": Classifier("DashScope", caller_dialect=True),
     "dashscope_text": Classifier("DashScope text", caller_dialect=True),
     "dashscope_multimodal": Classifier("DashScope", caller_dialect=True),
