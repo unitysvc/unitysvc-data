@@ -8,7 +8,7 @@ is_active = true
 is_public = true
 meta = { variant = "Text to video", requirements = ["requests"] }
 parameters = { version_prefix = "/v1" }
-applies_to = { capability = "video-generate", dialect = "openai" }
+applies_to = { capability = "video-generate", dialect = "huggingface" }
 +++
 
 # llm / code-example-ttv-requests — text-to-video via `requests`
@@ -33,6 +33,12 @@ Optional:
 ## Versions
 
 ### v1 — initial release
+- **Amended in 0.2.12**: `dialect` corrected to `huggingface`. The 0.2.3
+  amendment below declared `openai`, but this template posts to the Hugging
+  Face inference API (`/models/<model>`) -- so the example was offered to
+  every OpenAI-dialect service, whose endpoint does not serve that path.
+  Selection metadata only; the template is unchanged. The document title
+  gains a `Hugging Face` qualifier as a result.
 - **Amended in 0.2.3**: `applies_to` now declares `dialect = "openai"`.
   It named only the capability, and an absent key means "no constraint" — so
   this example applied to callers writing any dialect, including ones whose

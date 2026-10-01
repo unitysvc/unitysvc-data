@@ -1992,7 +1992,7 @@
     "llm_code_example_imagetoimage_javascript_v1": {
       "applies_to": {
         "capability": "image-edit",
-        "dialect": "openai"
+        "dialect": "huggingface"
       },
       "category": "code_example",
       "description": "JavaScript example: image-to-image transform via Hugging Face /models/<model>",
@@ -2016,7 +2016,7 @@
     "llm_code_example_imagetoimage_requests_v1": {
       "applies_to": {
         "capability": "image-edit",
-        "dialect": "openai"
+        "dialect": "huggingface"
       },
       "category": "code_example",
       "description": "Python example: image-to-image transform via Hugging Face /models/<model>",
@@ -2043,7 +2043,7 @@
     "llm_code_example_imagetoimage_shell_v1": {
       "applies_to": {
         "capability": "image-edit",
-        "dialect": "openai"
+        "dialect": "huggingface"
       },
       "category": "code_example",
       "description": "Bash example: image-to-image transform via Hugging Face /models/<model> using curl",
@@ -2067,7 +2067,7 @@
     "llm_code_example_imagetoimage_shell_v2": {
       "applies_to": {
         "capability": "image-edit",
-        "dialect": "openai"
+        "dialect": "huggingface"
       },
       "category": "code_example",
       "description": "Bash example: image-to-image transform via Hugging Face /models/<model> using curl",
@@ -3160,7 +3160,7 @@
     "llm_code_example_ttv_javascript_v1": {
       "applies_to": {
         "capability": "video-generate",
-        "dialect": "openai"
+        "dialect": "huggingface"
       },
       "category": "code_example",
       "description": "JavaScript example: text-to-video via HF /models/<model>",
@@ -3181,7 +3181,7 @@
     "llm_code_example_ttv_requests_v1": {
       "applies_to": {
         "capability": "video-generate",
-        "dialect": "openai"
+        "dialect": "huggingface"
       },
       "category": "code_example",
       "description": "Python example: text-to-video via HF /models/<model>",
@@ -3205,7 +3205,7 @@
     "llm_code_example_ttv_shell_v1": {
       "applies_to": {
         "capability": "video-generate",
-        "dialect": "openai"
+        "dialect": "huggingface"
       },
       "category": "code_example",
       "description": "Bash example: text-to-video via HF /models/<model> using curl",
@@ -3226,7 +3226,7 @@
     "llm_code_example_ttv_shell_v2": {
       "applies_to": {
         "capability": "video-generate",
-        "dialect": "openai"
+        "dialect": "huggingface"
       },
       "category": "code_example",
       "description": "Bash example: text-to-video via HF /models/<model> using curl",

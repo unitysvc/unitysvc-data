@@ -17,6 +17,56 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.12] — image-edit and video-generate stop claiming the OpenAI dialect
+
+### Fixed
+
+- **Six examples declared `dialect = "openai"` while posting to the Hugging Face
+  inference API.** `llm_code_example_imagetoimage_*` and
+  `llm_code_example_ttv_*` call `/models/<model>`, which their own descriptions
+  say ("image-to-image transform via Hugging Face `/models/<model>`"), so they
+  were offered to every OpenAI-dialect service — whose endpoint does not serve
+  that path. The sibling calling the same endpoint,
+  `llm_code_example_sentencetransformers_*`, had it right all along.
+
+  All six carried the note "Amended in 0.2.3: `applies_to` now declares
+  `dialect = "openai"`" — the value was wrong when it was introduced, and
+  nothing could catch it: the registry validates that a value *exists*, not
+  that it matches what the template calls.
+
+### Changed
+
+- **The `huggingface` label is now "Hugging Face", not "sentence-transformers".**
+  The same `/models/<model>` surface serves sentence embeddings, image editing
+  and text-to-video, so a label naming one Python library could not honestly
+  title the other two. This is what makes the fix above readable rather than
+  just correct.
+
+### Amended documents
+
+Nine titles change — a rename creates a new document and orphans the old one's
+test results:
+
+- 6 `image-edit` / `video-generate` examples gain a `Hugging Face` qualifier
+  (they previously read as plain `(image edit)` / `(video)`)
+- 3 `embeddings` examples: `sentence-transformers` → `Hugging Face`
+
+### Consequence worth knowing
+
+**An OpenAI-dialect service declaring `image-edit` or `video-generate` now gets
+zero code examples for it**, where it previously got three that pointed at an
+endpoint it does not serve. Three broken examples is worse than none, but the
+zero is silent: the capability gate asks "does any preset declare this
+capability", not "does any example apply to *this* service". Making that gate
+per-service would have surfaced the original defect and is worth considering
+separately.
+
+### Still open
+
+The 34 examples that declare a capability and dialect but constrain no
+`upstream` (#98). An absent key means "no constraint", so each needs a
+per-case decision that the registry cannot make.
+
 ## [0.2.11] — the build refuses a title clash
 
 No preset, example or title changes: all 681 rendered titles are byte-identical
