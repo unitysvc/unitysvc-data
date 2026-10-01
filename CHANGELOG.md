@@ -17,41 +17,106 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
-## [0.2.12] — image-edit and video-generate stop claiming the OpenAI dialect
+## [0.2.10] — a classifier registry, and the build refuses a title clash
+
+Developed as 0.2.10, 0.2.11 and 0.2.12; collapsed into one release because
+none of the intermediate numbers was ever published, and PyPI's previous
+version is 0.2.9.
+
+A document's title is its KEY: the backend upserts on
+`(entity_id, context_type, title)`, so two examples that render one title do
+not conflict — the second overwrites the first and the example is lost with no
+signal. That had already cost a round of omni-model documents. Everything here
+is about making it impossible rather than merely unlikely.
+
+### Added
+
+- **`unitysvc_data.classifiers` — the declaration of what `applies_to` accepts.**
+  The four axes were documented only in a comment in `tools/build.py` and
+  validated nowhere. Because an ABSENT key means "no constraint", a typo did
+  not narrow a selector, it silently *widened* it: `capabilty = "chat"` would
+  have made an example apply to every service. One such omission had to be
+  found by hand and fixed in 0.2.3 (`llm/code-example-tts-shell`, which named
+  a capability but no dialect). `tools/build.py` now rejects an unknown key or
+  value with a near-miss hint.
+
+- **The registry owns each value's display label**, so `presets._title` is
+  derived from it rather than from private tables beside the title builder.
+  `_DIALECT_LABEL`, `_CALLER_DIALECTS` and `_CAPABILITY_LABEL` are gone. A
+  value cannot be used without being registered and `label()` never returns
+  its input, so no raw token can reach a customer-facing title. An empty label
+  — `openai`, `chat`, every `upstream` — is now declared data with a note
+  saying why, not a hardcoded skip.
+
+- **`tools/build.py` fails when two examples that can be selected for the SAME
+  service render the same title.** Two checks, split because they answer
+  different questions: `classifiers.check_registry()` is stated over the
+  DECLARED values, so a value added with a missing or duplicate label fails
+  before any example adopts it; the corpus pass is stated over the EXAMPLES,
+  because whether a clash is reachable depends on which combinations exist.
+
+- **`Axis.co_occurs`** — whether two examples differing only on this axis can
+  meet on one service. `capability` (fanned into one `documents` mapping),
+  `dialect` and `feature` (matched against sets) co-occur; `upstream` does not,
+  because a collection is built with exactly one
+  (`source["upstream_dialect"]`). That flag is the input to the collision
+  check, which is why every `upstream` label is empty and why it is not a
+  defect.
+
+- **`UNLABELLED` and `SHARED_LABELS`** — the deliberate exceptions, each
+  requiring a written reachability argument. `chat` and `image-text-to-text`
+  are both unlabelled and would clash, except that declaring the latter implies
+  the `vision` feature; `dashscope` and `dashscope_multimodal` both read
+  "DashScope" but no capability has examples on both.
+
+- **`unitysvc_data.titles`** — the title builder, lifted out of `presets` so
+  `tools/build.py` can render a title while validating without importing the
+  module that loads the manifest the same script generates. `presets._title`
+  is an alias; nothing else moved.
 
 ### Fixed
 
-- **Six examples declared `dialect = "openai"` while posting to the Hugging Face
-  inference API.** `llm_code_example_imagetoimage_*` and
-  `llm_code_example_ttv_*` call `/models/<model>`, which their own descriptions
-  say ("image-to-image transform via Hugging Face `/models/<model>`"), so they
-  were offered to every OpenAI-dialect service — whose endpoint does not serve
-  that path. The sibling calling the same endpoint,
-  `llm_code_example_sentencetransformers_*`, had it right all along.
+- **`dashscope_audio_task` had no label, so eight titles showed the raw token**
+  (`cURL code example (speech, dashscope_audio_task)`). It cannot recur: a
+  value has to be registered to be used.
 
-  All six carried the note "Amended in 0.2.3: `applies_to` now declares
-  `dialect = "openai"`" — the value was wrong when it was introduced, and
-  nothing could catch it: the registry validates that a value *exists*, not
-  that it matches what the template calls.
+- **`dashscope_text` and `dashscope_multimodal` both rendered "DashScope"**, so
+  their chat examples produced identical titles. A service's `input_formats` is
+  a set, so a service declaring both surfaces would have had one example
+  silently overwrite the other. `dashscope_text` now reads "DashScope text".
+
+- **Six examples declared `dialect = "openai"` while posting to the Hugging
+  Face inference API.** `llm_code_example_imagetoimage_*` and
+  `llm_code_example_ttv_*` call `/models/<model>`, which their own descriptions
+  say, so they were offered to every OpenAI-dialect service — whose endpoint
+  does not serve that path. The sibling calling the same endpoint,
+  `llm_code_example_sentencetransformers_*`, had it right. Neither guard above
+  catches this: `openai` is a registered value, and the examples do not clash
+  on a title; they are simply selected for the wrong services.
 
 ### Changed
 
 - **The `huggingface` label is now "Hugging Face", not "sentence-transformers".**
   The same `/models/<model>` surface serves sentence embeddings, image editing
   and text-to-video, so a label naming one Python library could not honestly
-  title the other two. This is what makes the fix above readable rather than
-  just correct.
+  title the other two.
 
 ### Amended documents
 
-Nine titles change — a rename creates a new document and orphans the old one's
-test results:
+Twenty-one titles change, and a rename creates a new document that orphans the
+old one's test results — see the note at the top of this file on why a patch
+number cannot carry that:
 
-- 6 `image-edit` / `video-generate` examples gain a `Hugging Face` qualifier
-  (they previously read as plain `(image edit)` / `(video)`)
-- 3 `embeddings` examples: `sentence-transformers` → `Hugging Face`
+- 8 `dashscope_audio_task` examples and probes: raw token → `DashScope audio task`
+  (these were never right)
+- 4 `dashscope_text` chat examples and the probe: `DashScope input` →
+  `DashScope text input`
+- 6 image-edit / video-generate examples gain a `Hugging Face` qualifier
+- 3 embeddings examples: `sentence-transformers` → `Hugging Face`
 
-### Consequence worth knowing
+Every other title is byte-identical to 0.2.9.
+
+### Behaviour change worth knowing
 
 **An OpenAI-dialect service declaring `image-edit` or `video-generate` now gets
 zero code examples for it**, where it previously got three that pointed at an
@@ -61,107 +126,19 @@ capability", not "does any example apply to *this* service". Making that gate
 per-service would have surfaced the original defect and is worth considering
 separately.
 
-### Still open
-
-The 34 examples that declare a capability and dialect but constrain no
-`upstream` (#98). An absent key means "no constraint", so each needs a
-per-case decision that the registry cannot make.
-
-## [0.2.11] — the build refuses a title clash
-
-No preset, example or title changes: all 681 rendered titles are byte-identical
-to 0.2.10. This turns the invariant 0.2.10 established into something the build
-enforces.
-
-### Added
-
-- **`tools/build.py` now fails when two examples that can be selected for the
-  SAME service render the same title.** A title is a document's key (the backend
-  upserts on `entity_id + context_type + title`), so a clash does not error — it
-  overwrites, and the losing example is gone with no signal. That is how an omni
-  model once shipped one of its three capabilities' examples and silently
-  dropped the other two.
-
-  Two checks, deliberately split:
-
-  - `classifiers.check_registry()` is stated over the **declared** values, so a
-    value added with a missing or duplicate label fails before any example
-    adopts it.
-  - the corpus pass is stated over the **examples**, because whether a clash is
-    reachable depends on which combinations exist — the registry permits pairs
-    no example realises.
-
-- **`Axis.co_occurs` — whether two examples differing only on this axis can meet
-  on one service.** `capability` (fanned into one `documents` mapping),
-  `dialect` and `feature` (matched against sets) co-occur; `upstream` does not,
-  because a collection is built with exactly one (`source["upstream_dialect"]`).
-  That flag is the input to the collision check, which is why every `upstream`
-  label is empty and why it is not a defect.
-
-- **`UNLABELLED` and `SHARED_LABELS`** — the deliberate exceptions, each
-  requiring a written reachability argument. `chat` and `image-text-to-text` are
-  both unlabelled and would clash, except that declaring the latter implies the
-  `vision` feature; `dashscope` and `dashscope_multimodal` both read "DashScope"
-  but no capability has examples on both. Adding an entry without that argument
-  is how a silent overwrite gets introduced.
-
-- **`unitysvc_data.titles`** — the title builder, lifted out of `presets` so
-  `tools/build.py` can render a title while validating without importing the
-  module that loads the manifest the same script generates.
-  `presets._title` is now an alias; nothing else moved.
-
 ### Note
 
-The check is scoped per gateway family. A service's documents come from one
-family — `presets._select` only considers `llm_*`, and the other families are
-referenced by name — so `api_connectivity` and `llm_connectivity` both being
-"Connectivity test" is not a clash: they never meet.
+The collision check is scoped per gateway family. A service's documents come
+from one family — `presets._select` only considers `llm_*`, and the other
+families are referenced by name — so `api_connectivity` and `llm_connectivity`
+both being "Connectivity test" is not a clash: they never meet.
 
-## [0.2.10] — classifier registry; two DashScope surfaces stop sharing a title
+### Still open
 
-### Added
-
-- **`unitysvc_data.classifiers` — the declaration of what `applies_to` accepts.**
-  The four axes were documented only in a comment in `tools/build.py` and
-  validated nowhere. Because an ABSENT key means "no constraint", a typo did
-  not narrow a selector, it silently *widened* it: `capabilty = "chat"` made an
-  example apply to every service. One such omission had to be found by hand and
-  fixed in 0.2.3 (`llm/code-example-tts-shell`, which named a capability but no
-  dialect). `tools/build.py` now rejects an unknown key or value with a
-  near-miss hint.
-
-- **The registry owns each value's display label**, so `presets._title` is
-  derived from it rather than from private tables beside the title builder.
-  `_DIALECT_LABEL`, `_CALLER_DIALECTS` and `_CAPABILITY_LABEL` are gone. An
-  empty label — `openai`, `chat`, every `upstream` — is now declared data with
-  a note saying why, not a hardcoded skip.
-
-### Fixed
-
-- **`dashscope_audio_task` had no label, so eight titles showed the raw token**
-  (`cURL code example (speech, dashscope_audio_task)`). It cannot recur: a
-  value has to be registered to be used, and `label()` never returns its input.
-
-- **`dashscope_text` and `dashscope_multimodal` both rendered "DashScope"**, so
-  their chat examples produced identical titles. A title is a document's KEY
-  (the backend upserts on `entity_id + context_type + title`), and a service's
-  `input_formats` is a set, so a service declaring both surfaces would have had
-  one example silently overwrite the other. `dashscope_text` now reads
-  "DashScope text".
-
-### Amended documents
-
-Twelve titles change, which creates new documents and orphans the test results
-of the old ones — see the note at the top of this file on why a patch number
-cannot carry that:
-
-- 8 `dashscope_audio_task` examples and probes: `dashscope_audio_task` →
-  `DashScope audio task` (these were showing a raw token, so the old titles
-  were never right)
-- 4 `dashscope_text` chat examples and the probe: `DashScope input` →
-  `DashScope text input`
-
-Every other title in the corpus — 669 of 681 — is byte-identical.
+34 examples declare a capability and a dialect but constrain no `upstream`, so
+they apply to a service whose upstream speaks anything — the shape of the bug
+0.2.3 fixed by hand. Each needs a per-case decision the registry cannot make
+(#98).
 
 ## [0.2.9] — the omni TTS probe no longer dies of SIGPIPE
 

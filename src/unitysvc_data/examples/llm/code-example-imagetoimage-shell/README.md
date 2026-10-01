@@ -44,7 +44,7 @@ Optional:
   stays out of the published example; the unconditional success marker is gone.
 - **Amended in 0.2.2.** Earlier installs of this package ship a v2 whose
   verification lived in metadata instead.
-- **Amended in 0.2.12**: `dialect` corrected to `huggingface`. The 0.2.3
+- **Amended in 0.2.10**: `dialect` corrected to `huggingface`. The 0.2.3
   amendment below declared `openai`, but this template posts to the Hugging
   Face inference API (`/models/<model>`) -- so the example was offered to
   every OpenAI-dialect service, whose endpoint does not serve that path.

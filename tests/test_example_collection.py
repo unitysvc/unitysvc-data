@@ -597,7 +597,7 @@ CAPABILITY_CONTRACT = {
 #: default. ``image-edit`` and ``video-generate`` are served only by the Hugging
 #: Face inference API (``/models/<model>``); they used to declare the OpenAI
 #: dialect while posting to that path, so they were offered to OpenAI-dialect
-#: services whose endpoint does not serve it (corrected in 0.2.12). Asking for
+#: services whose endpoint does not serve it (corrected in 0.2.10). Asking for
 #: them with ``formats: ["openai"]`` now correctly yields nothing.
 CAPABILITY_DIALECT = {
     "image-edit": "huggingface",
