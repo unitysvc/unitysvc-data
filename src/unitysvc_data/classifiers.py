@@ -124,14 +124,130 @@ FEATURES: dict[str, Classifier] = {
     "vision": Classifier("vision"),
 }
 
-#: Axis name -> its allowed values. The keys are exactly the keys
-#: ``applies_to`` accepts.
-AXES: dict[str, dict[str, Classifier]] = {
-    "capability": CAPABILITIES,
-    "dialect": DIALECTS,
-    "upstream": UPSTREAMS,
-    "feature": FEATURES,
+class Axis(NamedTuple):
+    """One ``applies_to`` key: its allowed values, and how it behaves."""
+
+    values: dict[str, Classifier]
+    #: Whether two examples differing ONLY on this axis can both end up in one
+    #: service's ``documents`` mapping. When they can, their titles MUST differ
+    #: or one silently overwrites the other -- which makes this flag the input
+    #: to the collision check, not documentation.
+    co_occurs: bool
+    note: str = ""
+
+
+#: Axis name -> the axis. The keys are exactly the keys ``applies_to`` accepts.
+AXES: dict[str, Axis] = {
+    "capability": Axis(
+        CAPABILITIES,
+        co_occurs=True,
+        note="A collection fans out over every capability the offering declares, "
+        "and each iteration adds to the SAME documents mapping, so two "
+        "capabilities meet there.",
+    ),
+    "dialect": Axis(
+        DIALECTS,
+        co_occurs=True,
+        note="`input_formats` is a set, so one service can be served examples "
+        "for several dialects at once.",
+    ),
+    "upstream": Axis(
+        UPSTREAMS,
+        co_occurs=False,
+        note="A collection is built with exactly ONE upstream "
+        "(`source['upstream_dialect']`), so two examples declaring different "
+        "upstreams are never selected together and cannot collide however "
+        "they are titled. This is why every upstream label is empty.",
+    ),
+    "feature": Axis(
+        FEATURES,
+        co_occurs=True,
+        note="Matched against a set, so a streaming example and a tools "
+        "example can both apply.",
+    ),
 }
+
+#: ``(axis, value)`` pairs whose empty label is deliberate, on an axis whose
+#: values otherwise MUST be labelled. Each needs a reachability argument,
+#: because two unlabelled values on a co-occurring axis render one title:
+#:
+#: * ``chat`` and ``image-text-to-text`` are both unlabelled, and would collide
+#:   -- except that declaring ``image-text-to-text`` implies the ``vision``
+#:   feature (see ``presets._VISION_CAPABILITIES``), so its examples always
+#:   carry the ``vision`` qualifier and the pair is unreachable.
+#: * ``openai`` is the platform's default dialect; naming it in every title
+#:   would say nothing.
+#:
+#: The corpus check is what proves these arguments still hold. Adding a pair
+#: here without one is how a silent overwrite gets introduced.
+UNLABELLED: frozenset[tuple[str, str]] = frozenset(
+    {
+        ("capability", "chat"),
+        ("capability", "image-text-to-text"),
+        ("dialect", "openai"),
+    }
+)
+
+
+#: Label texts an axis may deliberately reuse, with the reachability argument
+#: that makes the reuse safe. Same contract as ``UNLABELLED``: a sharing that
+#: is not declared here fails the registry check.
+#:
+#: * ``dashscope`` and ``dashscope_multimodal`` both read "DashScope" because
+#:   they name the same provider, and no capability has examples on both of
+#:   them (``dashscope`` is embeddings-only; ``dashscope_multimodal`` carries
+#:   chat, transcription and speech). Their titles therefore always differ by
+#:   the capability qualifier. Adding an embeddings example for
+#:   ``dashscope_multimodal`` would break that, and the corpus check -- not
+#:   this list -- is what would catch it.
+SHARED_LABELS: frozenset[tuple[str, str]] = frozenset(
+    {
+        ("dialect", "DashScope"),
+    }
+)
+
+
+def co_occurs(axis: str) -> bool:
+    """Whether two examples differing only on this axis can meet on one service.
+
+    Unknown axes are treated as co-occurring: the safe default is to require
+    distinct titles.
+    """
+    entry = AXES.get(axis)
+    return entry.co_occurs if entry else True
+
+
+def check_registry() -> list[str]:
+    """Problems with the registry itself, independent of any example.
+
+    Stated over the declared values rather than the ones in use, so a value
+    added with a duplicate or missing label fails before any example adopts it.
+    """
+    problems: list[str] = []
+    for axis_name, axis in sorted(AXES.items()):
+        if not axis.co_occurs:
+            continue  # titles may coincide; nothing to keep distinct
+        by_label: dict[str, list[str]] = {}
+        for value, entry in sorted(axis.values.items()):
+            if not entry.label:
+                if (axis_name, value) not in UNLABELLED:
+                    problems.append(
+                        f"{axis_name} {value!r} has no display label, so two examples "
+                        f"differing only in {axis_name} would render one title and one "
+                        f"would silently overwrite the other. Give it a label, or add it "
+                        f"to UNLABELLED with the reason the clash is unreachable."
+                    )
+                continue
+            by_label.setdefault(entry.label, []).append(value)
+        for label_text, values in sorted(by_label.items()):
+            if len(values) > 1 and (axis_name, label_text) not in SHARED_LABELS:
+                problems.append(
+                    f"{axis_name} values {values} share the display label "
+                    f"{label_text!r}; their titles would be identical. A title is a "
+                    f"document's key, so the loser is overwritten at ingest. If the "
+                    f"clash is unreachable, add it to SHARED_LABELS with the reason."
+                )
+    return problems
 
 
 def classifier(axis: str, value: str) -> Classifier:
@@ -142,7 +258,7 @@ def classifier(axis: str, value: str) -> Classifier:
             here have skipped :func:`validate`, which is the layer meant to
             produce a readable message.
     """
-    return AXES[axis][value]
+    return AXES[axis].values[value]
 
 
 def label(axis: str, value: str | None) -> str:
@@ -154,7 +270,8 @@ def label(axis: str, value: str | None) -> str:
     """
     if value is None:
         return ""
-    entry = AXES.get(axis, {}).get(value)
+    axis_entry = AXES.get(axis)
+    entry = axis_entry.values.get(value) if axis_entry else None
     return entry.label if entry else ""
 
 
@@ -173,8 +290,8 @@ def validate(applies_to: dict[str, object]) -> list[str]:
     """
     problems: list[str] = []
     for axis, value in sorted(applies_to.items()):
-        allowed = AXES.get(axis)
-        if allowed is None:
+        axis_entry = AXES.get(axis)
+        if axis_entry is None:
             hint = difflib.get_close_matches(axis, AXES, n=1)
             suffix = f" Did you mean {hint[0]!r}?" if hint else ""
             problems.append(
@@ -185,8 +302,8 @@ def validate(applies_to: dict[str, object]) -> list[str]:
         if not isinstance(value, str):
             problems.append(f"applies_to.{axis} must be a string, got {type(value).__name__}")
             continue
-        if value not in allowed:
-            hint = difflib.get_close_matches(value, allowed, n=1)
+        if value not in axis_entry.values:
+            hint = difflib.get_close_matches(value, axis_entry.values, n=1)
             suffix = f" Did you mean {hint[0]!r}?" if hint else ""
             problems.append(
                 f"unknown {axis} {value!r}. Register it in "

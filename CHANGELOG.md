@@ -17,6 +17,56 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.11] — the build refuses a title clash
+
+No preset, example or title changes: all 681 rendered titles are byte-identical
+to 0.2.10. This turns the invariant 0.2.10 established into something the build
+enforces.
+
+### Added
+
+- **`tools/build.py` now fails when two examples that can be selected for the
+  SAME service render the same title.** A title is a document's key (the backend
+  upserts on `entity_id + context_type + title`), so a clash does not error — it
+  overwrites, and the losing example is gone with no signal. That is how an omni
+  model once shipped one of its three capabilities' examples and silently
+  dropped the other two.
+
+  Two checks, deliberately split:
+
+  - `classifiers.check_registry()` is stated over the **declared** values, so a
+    value added with a missing or duplicate label fails before any example
+    adopts it.
+  - the corpus pass is stated over the **examples**, because whether a clash is
+    reachable depends on which combinations exist — the registry permits pairs
+    no example realises.
+
+- **`Axis.co_occurs` — whether two examples differing only on this axis can meet
+  on one service.** `capability` (fanned into one `documents` mapping),
+  `dialect` and `feature` (matched against sets) co-occur; `upstream` does not,
+  because a collection is built with exactly one (`source["upstream_dialect"]`).
+  That flag is the input to the collision check, which is why every `upstream`
+  label is empty and why it is not a defect.
+
+- **`UNLABELLED` and `SHARED_LABELS`** — the deliberate exceptions, each
+  requiring a written reachability argument. `chat` and `image-text-to-text` are
+  both unlabelled and would clash, except that declaring the latter implies the
+  `vision` feature; `dashscope` and `dashscope_multimodal` both read "DashScope"
+  but no capability has examples on both. Adding an entry without that argument
+  is how a silent overwrite gets introduced.
+
+- **`unitysvc_data.titles`** — the title builder, lifted out of `presets` so
+  `tools/build.py` can render a title while validating without importing the
+  module that loads the manifest the same script generates.
+  `presets._title` is now an alias; nothing else moved.
+
+### Note
+
+The check is scoped per gateway family. A service's documents come from one
+family — `presets._select` only considers `llm_*`, and the other families are
+referenced by name — so `api_connectivity` and `llm_connectivity` both being
+"Connectivity test" is not a clash: they never meet.
+
 ## [0.2.10] — classifier registry; two DashScope surfaces stop sharing a title
 
 ### Added
