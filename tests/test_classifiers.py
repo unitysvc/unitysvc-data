@@ -14,15 +14,32 @@ that can be selected for the SAME service render the same title.
 
 from __future__ import annotations
 
-import itertools
+import importlib.util
+import sys
+from pathlib import Path
 
 import pytest
 
 from unitysvc_data import classifiers
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+
+
+def _load_build_module():
+    """Import ``tools/build.py`` as a module without adding tools/ to sys.path."""
+    path = REPO_ROOT / "tools" / "build.py"
+    spec = importlib.util.spec_from_file_location("unitysvc_data_build_for_classifiers", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+build = _load_build_module()
 from unitysvc_data.presets import (
     _PRESET_APPLIES_TO,
     MANIFEST,
-    _applies,
     _title,
 )
 
@@ -63,12 +80,12 @@ _SDK_BITS = frozenset({"requests", "openai SDK", "anthropic SDK", "cohere SDK", 
 def _allowed_bits() -> set[str]:
     """Every string a title's parenthesised list may legally contain."""
     allowed = set(_SDK_BITS)
-    for axis, values in classifiers.AXES.items():
-        for entry in values.values():
+    for axis_name, axis in classifiers.AXES.items():
+        for entry in axis.values.values():
             if not entry.label:
                 continue
             allowed.add(entry.label)
-            if axis == "dialect" and entry.caller_dialect:
+            if axis_name == "dialect" and entry.caller_dialect:
                 allowed.add(f"{entry.label} input")
     return allowed
 
@@ -100,54 +117,77 @@ def test_no_raw_value_reaches_a_title():
 # --------------------------------------------------------------------------- #
 # Titles stay distinct for everything one service can be served
 # --------------------------------------------------------------------------- #
-def _co_selectable(spec_a: dict, spec_b: dict) -> bool:
-    """Whether one service's collection can contain both examples.
+def test_the_corpus_has_no_reachable_title_clash():
+    """Drives the real guard in ``tools/build.py`` rather than a copy of it.
 
-    Mirrors how ``llm_example_collection`` queries: ``capability`` is fanned
-    (each iteration adds to the same ``documents`` mapping, so two capabilities
-    DO meet there), ``dialect`` and ``feature`` are matched against SETS, and
-    ``upstream`` is a single value for the whole collection
-    (``source["upstream_dialect"]``) -- which is the one axis that makes two
-    presets mutually exclusive.
+    The co-occurrence rule lives in the registry (``Axis.co_occurs``) and the
+    comparison lives in ``build.check_titles``; duplicating either here would
+    let the test and the build disagree about what a clash is.
     """
-    up_a, up_b = spec_a.get("upstream"), spec_b.get("upstream")
-    if up_a is not None and up_b is not None and up_a != up_b:
-        return False
+    errors = build.BuildErrors()
+    presets, _aliases = build.discover(errors)
+    assert not errors, errors.messages
 
-    context = {
-        "dialects": {spec_a.get("dialect"), spec_b.get("dialect")} - {None},
-        "upstream": up_a or up_b or "openai",
-        "features": {spec_a.get("feature"), spec_b.get("feature")} - {None} or {"streaming"},
-    }
-    return all(
-        _applies(spec, capability=spec.get("capability") or "chat", **context)
-        for spec in (spec_a, spec_b)
+    build.check_titles(presets, errors)
+
+    assert not errors.messages, "reachable title clashes:\n" + "\n".join(errors.messages)
+
+
+def test_the_registry_itself_is_sound():
+    """Stated over the DECLARED values, so it covers ones no example uses yet."""
+    assert classifiers.check_registry() == []
+
+
+def test_an_unlabelled_value_on_a_co_occurring_axis_is_caught(monkeypatch):
+    """Proof the registry check can fail.
+
+    An axis whose values render nothing cannot keep two documents apart.
+    """
+    monkeypatch.setitem(classifiers.DIALECTS, "newsurface", classifiers.Classifier(""))
+
+    problems = classifiers.check_registry()
+
+    assert len(problems) == 1
+    assert "no display label" in problems[0]
+
+
+def test_an_undeclared_shared_label_is_caught(monkeypatch):
+    """Two values rendering one string must be declared in SHARED_LABELS."""
+    monkeypatch.setitem(
+        classifiers.DIALECTS, "newsurface", classifiers.Classifier("Cohere SDK")
     )
 
+    problems = classifiers.check_registry()
 
-def test_co_selectable_examples_have_distinct_titles():
-    """The collision that loses an example, stated over the whole corpus.
+    assert len(problems) == 1
+    assert "share the display label" in problems[0]
 
-    Two presets that differ only on an axis whose label is empty render one
-    title. Adding an axis with no label, or giving two values the same label,
-    fails here.
+
+def test_an_unlabelled_value_on_an_exclusive_axis_is_fine():
+    """``upstream`` values are all unlabelled on purpose.
+
+    One collection is built with one upstream, so two examples declaring
+    different ones never meet and their titles may coincide. The check must not
+    demand labels it would then have to render on ~80% of titles.
     """
-    presets = _llm_presets()
-    specs = {n: _PRESET_APPLIES_TO.get(n) or {} for n in presets}
-    titles = {n: _title(presets[n], specs[n]) for n in presets}
+    assert not classifiers.co_occurs("upstream")
+    assert all(not entry.label for entry in classifiers.UPSTREAMS.values())
+    assert classifiers.check_registry() == []
 
-    collisions = []
-    for a, b in itertools.combinations(sorted(presets), 2):
-        if titles[a] != titles[b] or specs[a] == specs[b]:
-            continue  # distinct, or version siblings sharing a title correctly
-        if _co_selectable(specs[a], specs[b]):
-            differ = sorted(k for k in set(specs[a]) | set(specs[b]) if specs[a].get(k) != specs[b].get(k))
-            collisions.append(f"{titles[a]!r}: {a} vs {b} (differ on {differ})")
 
-    assert not collisions, (
-        "these examples can land on one service and would overwrite each other:\n"
-        + "\n".join(collisions)
+def test_a_merged_dashscope_label_is_caught_by_the_build(monkeypatch):
+    """Proof the corpus guard can fail, against the clash that motivated it."""
+    monkeypatch.setitem(
+        classifiers.DIALECTS,
+        "dashscope_text",
+        classifiers.Classifier("DashScope", caller_dialect=True),
     )
+
+    errors = build.BuildErrors()
+    presets, _aliases = build.discover(errors)
+    build.check_titles(presets, errors)
+
+    assert any("would overwrite the other" in m for m in errors.messages), errors.messages
 
 
 def test_the_dashscope_surfaces_stay_distinguishable():
@@ -182,34 +222,6 @@ def test_a_raw_value_fallback_is_caught(monkeypatch):
 
     with pytest.raises(AssertionError, match="not a declared label"):
         test_no_raw_value_reaches_a_title()
-
-
-def test_a_shared_label_is_caught(monkeypatch):
-    """Proof the collision test above can fail.
-
-    A fitness function that cannot fail is worthless, so merge two labels and
-    assert the corpus check notices.
-    """
-    monkeypatch.setitem(
-        classifiers.DIALECTS,
-        "dashscope_text",
-        classifiers.Classifier("DashScope", caller_dialect=True),
-    )
-
-    with pytest.raises(AssertionError, match="overwrite each other"):
-        test_co_selectable_examples_have_distinct_titles()
-
-
-# --------------------------------------------------------------------------- #
-# validate()
-# --------------------------------------------------------------------------- #
-def test_an_unknown_key_is_rejected_with_a_hint():
-    """A misspelled axis WIDENS the selector, so it must not pass silently."""
-    problems = classifiers.validate({"capabilty": "chat"})
-
-    assert len(problems) == 1
-    assert "not a constraint" in problems[0]
-    assert "'capability'" in problems[0]
 
 
 def test_an_unknown_value_is_rejected_with_a_hint():

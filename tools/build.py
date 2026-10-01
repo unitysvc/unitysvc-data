@@ -82,7 +82,7 @@ from typing import Any
 # and reads no manifest, so importing it introduces no bootstrap cycle.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from unitysvc_data import classifiers
+from unitysvc_data import classifiers, titles
 
 ROOT = Path(__file__).resolve().parent.parent
 EXAMPLES_DIR = ROOT / "src" / "unitysvc_data" / "examples"
@@ -591,6 +591,76 @@ def _parse_parameters(
 # --- Rendering --------------------------------------------------------------
 
 
+def check_titles(presets: list[Preset], errors: BuildErrors) -> None:
+    """No two examples that can meet on one service may render the same title.
+
+    A title is a document's KEY -- the backend upserts on
+    ``(entity_id, context_type, title)`` -- so a clash does not fail, it
+    overwrites, and the losing example is gone with no signal. That is how an
+    omni model once shipped one of its three capabilities' examples and
+    silently dropped the other two.
+
+    Two checks, deliberately split:
+
+    * ``classifiers.check_registry()`` is stated over the DECLARED values, so a
+      value added with a missing or duplicate label fails before any example
+      adopts it.
+    * the loop below is stated over the CORPUS, because whether a clash is
+      reachable depends on which combinations examples actually declare -- the
+      registry permits pairs that no example realises.
+
+    Two examples can meet when they agree on every axis that does NOT co-occur
+    (today just ``upstream``: one collection is built with one upstream, so
+    examples declaring different ones are never selected together). Versions of
+    one preset share a title on purpose and are compared once, by name.
+    """
+    for problem in classifiers.check_registry():
+        errors.add(Path("src/unitysvc_data/classifiers.py"), problem)
+
+    # One entry per preset_name: versions share applies_to and a title, which
+    # is correct -- same document, newer content.
+    by_name: dict[str, Preset] = {}
+    for preset in presets:
+        by_name.setdefault(preset.preset_name, preset)
+
+    # Scoped per gateway family. A service's documents come from ONE family --
+    # `presets._select` only considers `llm_*`, and the other families are
+    # referenced by name -- so `api_connectivity` and `llm_connectivity` both
+    # being "Connectivity test" is not a clash: they never meet.
+    grouped: dict[tuple[str, str], list[str]] = {}
+    for name, preset in by_name.items():
+        rendered = titles.title(preset.to_manifest_entry(), preset.applies_to)
+        grouped.setdefault((preset.gateway, rendered), []).append(name)
+
+    for (_gateway, title_text), names in sorted(grouped.items()):
+        if len(names) < 2:
+            continue
+        ordered = sorted(names)
+        for i, a in enumerate(ordered):
+            for b in ordered[i + 1 :]:
+                spec_a, spec_b = by_name[a].applies_to, by_name[b].applies_to
+                if spec_a == spec_b:
+                    continue  # same selector: one document, not a clash
+                axes = set(spec_a) | set(spec_b)
+                exclusive = any(
+                    not classifiers.co_occurs(axis)
+                    and axis in spec_a
+                    and axis in spec_b
+                    and spec_a[axis] != spec_b[axis]
+                    for axis in axes
+                )
+                if exclusive:
+                    continue
+                differ = sorted(k for k in axes if spec_a.get(k) != spec_b.get(k))
+                errors.add(
+                    Path(EXAMPLES_DIR.name) / by_name[a].source_readme,
+                    f"{a} and {b} both render the title {title_text!r} and can be "
+                    f"selected for the same service, so one would overwrite the "
+                    f"other. They differ on {differ} -- give that axis's values "
+                    f"distinct labels in src/unitysvc_data/classifiers.py.",
+                )
+
+
 def render_manifest_json(presets: list[Preset], aliases: dict[str, str]) -> str:
     data = {
         "version": MANIFEST_VERSION,
@@ -663,6 +733,10 @@ def main(argv: list[str] | None = None) -> int:
 
     errors = BuildErrors()
     presets, aliases = discover(errors)
+    if not errors:
+        # Only meaningful once every preset parsed: a half-discovered corpus
+        # would report clashes that are really parse failures.
+        check_titles(presets, errors)
 
     if errors:
         print(f"{len(errors.messages)} validation error(s):", file=sys.stderr)
