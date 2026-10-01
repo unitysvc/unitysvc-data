@@ -851,3 +851,71 @@ def test_parse_source_accepts_unknown_keys_message_lists_params():
     """Sentinel parsing errors should mention $params is a valid key."""
     with pytest.raises(ValueError, match=r"'\$params'"):
         doc_preset({"$preset": "s3_connectivity_v1", "$nope": {}})
+
+
+# ---------------------------------------------------------------------------
+# applies_to rides along in meta (unitysvc-data#95)
+# ---------------------------------------------------------------------------
+def test_a_document_carries_its_applies_to_in_meta():
+    """The selection predicate survives into the document record.
+
+    It used to be dropped, leaving the title as its only trace -- so a consumer
+    wanting to group examples by capability had to read the axes back out of
+    prose like "Python code example (vision, requests)", where
+    `Anthropic-style (streaming)` collapses two axes into one label and cannot
+    be split apart reliably.
+    """
+    record = doc_preset("llm_code_example_vision_requests")
+
+    assert record["meta"]["applies_to"] == {
+        "capability": "image-text-to-text",
+        "dialect": "openai",
+        "feature": "vision",
+        "upstream": "openai",
+    }
+
+
+def test_it_is_a_dict_not_a_flattened_list():
+    """Consumers group by axis, which wants keyed access.
+
+    A flat ``["Capability :: Vision", …]`` would have to be split back apart to
+    recover which axis each entry belongs to -- rebuilding the dict it threw
+    away. The flat shape suits discovery; this is selection.
+    """
+    applies_to = doc_preset("llm_code_example_vision_requests")["meta"]["applies_to"]
+
+    assert isinstance(applies_to, dict)
+    assert set(applies_to) <= {"capability", "dialect", "upstream", "feature"}
+
+
+def test_the_other_meta_keys_are_untouched():
+    meta = doc_preset("llm_code_example_vision_requests")["meta"]
+
+    assert meta["variant"] == "Vision"
+    assert meta["requirements"] == ["requests"]
+
+
+def test_a_document_that_constrains_nothing_gains_no_empty_dict():
+    """``llm_description`` applies to every service, so it has no predicate.
+
+    An empty ``applies_to`` is omitted rather than shipped as ``{}``, keeping
+    today's payload shape -- the same stance the backend's customer projection
+    takes when nothing survives its allowlist.
+    """
+    meta = doc_preset("llm_description").get("meta") or {}
+
+    assert "applies_to" not in meta
+
+
+def test_a_seller_cannot_override_applies_to():
+    """Platform-owned: the registry validates the PRESET's values at build
+    time, so an override would hand a consumer an unregistered value with
+    nothing having checked it. Every other meta key stays seller-overridable.
+    """
+    record = doc_preset(
+        "llm_code_example_vision_requests",
+        meta={"applies_to": {"capability": "not-a-capability"}, "note": "mine"},
+    )
+
+    assert record["meta"]["applies_to"]["capability"] == "image-text-to-text"
+    assert record["meta"]["note"] == "mine"

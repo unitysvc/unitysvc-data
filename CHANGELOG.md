@@ -17,6 +17,47 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.11] — a document carries its own applies_to
+
+No title, preset or example changes: all 681 rendered titles are byte-identical
+to 0.2.10.
+
+### Added
+
+- **`applies_to` now rides along in a document's `meta`.** It was build-time
+  only — selection metadata that decided which services got an example and was
+  then discarded, leaving the **title** as its only trace. A consumer wanting
+  to group examples by capability had to read the axes back out of prose:
+  `Python code example (vision, requests)` is capability, feature and client
+  flattened into one string, and `Anthropic-style (streaming)` collapses two
+  axes into one label, so it cannot be split apart reliably.
+
+  Shipped as the **dict**, not a flattened `["Capability :: Vision", …]` list.
+  A consumer grouping by axis wants keyed access; a flat list would have to be
+  split back apart to recover which axis each entry belongs to. The flat shape
+  suits discovery, where an index never behaves differently per classifier;
+  this is selection.
+
+  Omitted entirely when empty, so a universal document (`llm_description`
+  constrains nothing) keeps today's payload shape rather than gaining an empty
+  dict.
+
+- **`applies_to` is platform-owned.** Every other `meta` key stays
+  seller-overridable; this one is filtered out of a seller's override. The
+  registry validates the *preset's* values at build time, so an override would
+  hand a consumer an unregistered value with nothing having checked it.
+
+### Consumers need one more change before this is visible
+
+The backend projects document `meta` through an allowlist
+(`CUSTOMER_DOCUMENT_META_KEYS = {"requirements", "variant"}`), so a new key is
+dropped by default and the failure is **silent** — the data lands and nothing
+reads it. The allowlist has to admit `applies_to` before a catalog is
+re-uploaded. Tracked as step 1 of
+[unitysvc#2511](https://github.com/unitysvc/unitysvc/issues/2511), with the
+consumer design in that repo's
+`docs/dev-notes/frontend/code-example-classifiers.md`.
+
 ## [0.2.10] — a classifier registry, and the build refuses a title clash
 
 Developed as 0.2.10, 0.2.11 and 0.2.12; collapsed into one release because

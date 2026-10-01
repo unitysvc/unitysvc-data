@@ -135,13 +135,33 @@ _PRESET_PARAMETERS: dict[str, dict[str, str]] = {}
 _PRESET_APPLIES_TO: dict[str, dict[str, Any]] = {}
 
 for _name, _entry in MANIFEST["presets"].items():
+    # ``applies_to`` rides along inside ``meta`` so it survives into the
+    # document record. It is a SELECTION predicate -- which services get this
+    # example -- and it used to be dropped here, leaving the title as the only
+    # trace of it. A consumer then had to read the axes back out of prose:
+    # "Python code example (vision, requests)" is capability, feature and
+    # client flattened into one string, and `Anthropic-style (streaming)`
+    # collapses two axes into one label, so it cannot be split apart reliably.
+    #
+    # Shipped as the dict, not a flattened list of "Capability :: Chat"
+    # strings: a consumer grouping by axis wants keyed access, and a flat list
+    # would have to be split back apart to recover which axis each entry
+    # belongs to. See unitysvc/unitysvc-data#95 and the consumer design note
+    # at unitysvc/unitysvc docs/dev-notes/frontend/code-example-classifiers.md.
+    #
+    # Omitted entirely when empty, so a universal document (``llm_description``
+    # constrains nothing) keeps today's shape instead of gaining an empty dict.
+    _applies = dict(_entry.get("applies_to", {}))
+    _meta = dict(_entry.get("meta", {}))
+    if _applies:
+        _meta["applies_to"] = _applies
     _PRESET_RECORDS[_name] = {
         "category": _entry["category"],
         "description": _entry["description"],
         "file_path": _resolve_example_path(_entry["example_file"]),
         "is_active": _entry["is_active"],
         "is_public": _entry["is_public"],
-        "meta": dict(_entry.get("meta", {})),
+        "meta": _meta,
         "mime_type": _entry["mime_type"],
     }
     # ``parameters`` was added in manifest schema v1.1 — older
@@ -176,7 +196,13 @@ def _make_factory(record: dict[str, Any]):
         out = deepcopy(record)
         for key, value in overrides.items():
             if key == "meta" and isinstance(value, dict) and isinstance(out.get("meta"), dict):
-                out["meta"] = {**out["meta"], **value}
+                # ``applies_to`` is platform-owned. A seller may add and
+                # override any other meta key, but not this one: the registry
+                # validates the preset's values at build time, and an override
+                # would hand a consumer an unregistered value with nothing
+                # having checked it.
+                seller = {k: v for k, v in value.items() if k != "applies_to"}
+                out["meta"] = {**out["meta"], **seller}
             else:
                 out[key] = value
         return out
