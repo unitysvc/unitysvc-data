@@ -17,6 +17,52 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.10] — classifier registry; two DashScope surfaces stop sharing a title
+
+### Added
+
+- **`unitysvc_data.classifiers` — the declaration of what `applies_to` accepts.**
+  The four axes were documented only in a comment in `tools/build.py` and
+  validated nowhere. Because an ABSENT key means "no constraint", a typo did
+  not narrow a selector, it silently *widened* it: `capabilty = "chat"` made an
+  example apply to every service. One such omission had to be found by hand and
+  fixed in 0.2.3 (`llm/code-example-tts-shell`, which named a capability but no
+  dialect). `tools/build.py` now rejects an unknown key or value with a
+  near-miss hint.
+
+- **The registry owns each value's display label**, so `presets._title` is
+  derived from it rather than from private tables beside the title builder.
+  `_DIALECT_LABEL`, `_CALLER_DIALECTS` and `_CAPABILITY_LABEL` are gone. An
+  empty label — `openai`, `chat`, every `upstream` — is now declared data with
+  a note saying why, not a hardcoded skip.
+
+### Fixed
+
+- **`dashscope_audio_task` had no label, so eight titles showed the raw token**
+  (`cURL code example (speech, dashscope_audio_task)`). It cannot recur: a
+  value has to be registered to be used, and `label()` never returns its input.
+
+- **`dashscope_text` and `dashscope_multimodal` both rendered "DashScope"**, so
+  their chat examples produced identical titles. A title is a document's KEY
+  (the backend upserts on `entity_id + context_type + title`), and a service's
+  `input_formats` is a set, so a service declaring both surfaces would have had
+  one example silently overwrite the other. `dashscope_text` now reads
+  "DashScope text".
+
+### Amended documents
+
+Twelve titles change, which creates new documents and orphans the test results
+of the old ones — see the note at the top of this file on why a patch number
+cannot carry that:
+
+- 8 `dashscope_audio_task` examples and probes: `dashscope_audio_task` →
+  `DashScope audio task` (these were showing a raw token, so the old titles
+  were never right)
+- 4 `dashscope_text` chat examples and the probe: `DashScope input` →
+  `DashScope text input`
+
+Every other title in the corpus — 669 of 681 — is byte-identical.
+
 ## [0.2.9] — the omni TTS probe no longer dies of SIGPIPE
 
 ### Fixed

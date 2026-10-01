@@ -75,6 +75,15 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+# ``classifiers`` is imported from the source tree rather than an installed
+# package on purpose. This script GENERATES the manifest that
+# ``unitysvc_data.presets`` loads at import time, so it must not require the
+# package to be installed to run -- but the classifier registry is pure data
+# and reads no manifest, so importing it introduces no bootstrap cycle.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
+
+from unitysvc_data import classifiers
+
 ROOT = Path(__file__).resolve().parent.parent
 EXAMPLES_DIR = ROOT / "src" / "unitysvc_data" / "examples"
 MANIFEST_JSON = ROOT / "src" / "unitysvc_data" / "_manifest.json"
@@ -94,12 +103,18 @@ OPTIONAL_FIELDS: dict[str, Any] = {
     # ``${VAR}`` references in ``.sh.j2`` example files.
     "parameters": {},
     # ``applies_to`` states WHEN an example applies, so selection is data
-    # rather than pattern-matching on preset names:
+    # rather than pattern-matching on preset names. The axes and every value
+    # each one accepts are declared in ``src/unitysvc_data/classifiers.py``,
+    # which this script validates against — an unknown key or value fails the
+    # build, because an ABSENT key means "no constraint" and so a typo widens
+    # the selector instead of narrowing it. The registry also owns the display
+    # label each value renders as in a document title.
+    #
     #   capability  the platform capability it demonstrates (required for
     #               code examples that a collection should select)
-    #   dialect     the request dialect the CALLER writes (chat only)
-    #   upstream    the dialect the service's upstream speaks (chat only);
-    #               differs from ``dialect`` when the gateway translates
+    #   dialect     the request dialect the CALLER writes
+    #   upstream    the dialect the service's upstream speaks; differs from
+    #               ``dialect`` when the gateway translates
     #   feature     an attribute gate — streaming / tools / vision — that
     #               the service must advertise before the example applies
     # Like ``parameters`` it is build-time metadata and never reaches the
@@ -325,6 +340,19 @@ def _load_family(gateway_dir: Path, family_dir: Path, errors: BuildErrors) -> li
             readme_path,
             f"unknown front-matter field(s): {sorted(unknown)}. Allowed: {sorted(allowed)}",
         )
+        return []
+
+    # ``applies_to`` selects which services get this example, and an ABSENT key
+    # means "no constraint" -- so a misspelled axis or value does not narrow the
+    # selector, it silently widens it. Validate against the registry, which also
+    # owns the display label each value renders as in a title.
+    applies_to = front.get("applies_to") or {}
+    if not isinstance(applies_to, dict):
+        errors.add(readme_path, f"applies_to must be a table, got {type(applies_to).__name__}")
+        return []
+    for problem in classifiers.validate(applies_to):
+        errors.add(readme_path, problem)
+    if classifiers.validate(applies_to):
         return []
 
     preset_name = str(front["preset_name"])

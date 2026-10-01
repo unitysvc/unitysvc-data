@@ -1025,7 +1025,7 @@ def test_a_group_may_override_the_collections_upstream_dialect():
 
     # The DashScope-native example is selected only because the group's own
     # upstream_dialect satisfied the preset's `upstream: dashscope`.
-    native = docs["Python code example (DashScope input, requests)"]
+    native = docs["Python code example (DashScope text input, requests)"]
     assert native["meta"]["channels"] == ["dashscope-managed"]
     assert native["meta"]["interfaces"] == ["dashscope_api"]
 
@@ -1065,7 +1065,7 @@ def test_a_group_may_scope_to_several_channels():
     assert compat["meta"]["channels"] == ["managed", "byok"]
     assert compat["meta"]["interfaces"] == ["canonical"]
 
-    native = docs["Python code example (DashScope input, requests)"]
+    native = docs["Python code example (DashScope text input, requests)"]
     assert native["meta"]["channels"] == ["ds-managed", "ds-byok"]
     assert native["meta"]["interfaces"] == ["dashscope"]
 
