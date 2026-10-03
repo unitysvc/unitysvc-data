@@ -17,6 +17,105 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.12] — a request template per capability, as a list of entries
+
+All 681 titles that existed in 0.2.11 are byte-identical. The one document whose
+content changes on a published service is the chat request template.
+
+### Added
+
+- **Request templates for eight more capabilities**, as
+  `llm_request_template_<capability>` (dashes become underscores). The Test
+  Request playground chooses a request by capability and format
+  ([unitysvc#2514](https://github.com/unitysvc/unitysvc/issues/2514)), and only
+  chat had a template, so every other capability got an explicit empty state. Each
+  new template is a list of `{"format", "body"}` entries with
+  `applies_to = { capability = ... }` and nothing else, so `llm_example_collection`
+  selects it with no new code: a service gets the template for each capability it
+  declares, and for no other.
+
+  | capability           | title                                   | entries                               |
+  |----------------------|-----------------------------------------|---------------------------------------|
+  | `image-text-to-text` | `Default request body (vision)`         | `openai`                              |
+  | `embed`              | `Default request body (embeddings)`     | `openai`, `cohere`, `dashscope`, `huggingface` |
+  | `rerank`             | `Default request body (rerank)`         | `openai`                              |
+  | `moderate`           | `Default request body (moderation)`     | `openai`                              |
+  | `image-generate`     | `Default request body (image)`          | `openai`                              |
+  | `video-generate`     | `Default request body (video)`          | `huggingface`                         |
+  | `speech-to-text`     | `Default request body (transcription)`  | `dashscope`                           |
+  | `text-to-speech`     | `Default request body (speech)`         | `openai`, `dashscope`                 |
+
+  Every body is the request a code example sends, minus the `model` the
+  playground merges in. A test holds each key and string to the example it was
+  derived from, and the two inlined images to the bytes of `llm/test-image.jpg`.
+
+- **`llm_request_template_v3`**, the chat template as a list of entries. The
+  bodies are v2's, key for key and in the same order; only the packaging moved.
+  The family, title and `applies_to` are unchanged, so it is the same document on
+  every published service and re-uploading a catalog replaces the body in place.
+
+- **`tools/build.py` refuses a request-template entry the playground could never
+  reach.** The page takes the first entry naming the selected format, so a
+  repeated format is unreachable, an entry with no usable `format` or no `body` is
+  skipped, and a `format` that is not a registered dialect is one no service can
+  select. An empty list is refused, and the latest version of a template that names
+  a capability must be an entry list, so the legacy dict shape cannot become the
+  alias target again. Keys beyond `format` and `body` are ignored on purpose, so
+  `path_suffix` and `content_type` can arrive without a change here.
+
+- **`Classifier.carried_by`**: what the registry already said in prose about
+  `image-text-to-text` ("carried by the `vision` feature bit"), as data the title
+  builder reads. A request template declares no feature, so the argument that kept
+  `chat` and `image-text-to-text` apart (every image-text-to-text *example*
+  declares `vision`) stopped holding at the first document that was not an example.
+  The title builder now renders the carrying feature itself, whatever the document
+  declares. Two registry checks state the rest over the declared values: a carrier
+  must be a registered, labelled feature, and a co-occurring axis may have at most
+  one bare value.
+
+### Changed
+
+- `llm_request_template` resolves to v3. **v1 and v2 are retired, not removed**:
+  versions are append-only, so `llm_request_template_v1` and `_v2` still resolve
+  for a listing that pins them (none of the `unitysvc-services-*` repos does).
+  `llm_example_collection` only ever resolves the alias, so nothing generated
+  serves them.
+- `presets._VISION_CAPABILITIES` is derived from the registry instead of restated.
+
+### Not templated, on purpose
+
+A template that cannot be sent is worse than none, and an absent one is the
+playground's honest empty state.
+
+- **`image-edit`** has none. All three of its examples send `multipart/form-data`,
+  which a JSON body cannot express until entries carry a `content_type`. The
+  exemption is a table in the tests, and each reason is re-checked against the
+  examples, so the first one that becomes JSON fails the build.
+- **`openai` speech-to-text** has no entry, for the same reason.
+- **DashScope has one `dashscope` format and three surfaces** (`dashscope_text`,
+  `dashscope_multimodal`, `dashscope_audio_task`), and an entry is unique per
+  format, so a document holds one DashScope body per capability. Speech-to-text and
+  text-to-speech carry the dedicated audio-task shape; chat keeps v2's
+  text-generation body. The omni text-to-speech body also needs an
+  `X-DashScope-SSE: enable` header an entry cannot carry.
+- **`cerebras`** is a client library for the `openai` format, and **`bedrock_invoke`**
+  has no one body (its example says to adjust it per model family), so chat keeps
+  v2's five entries.
+
+### Deploy order, and what is reachable today
+
+- **The page ships first.** This needs
+  [unitysvc#2515](https://github.com/unitysvc/unitysvc/pull/2515), which reads both
+  shapes. A page without it renders a list as the raw request body, on every chat
+  service, from the day a catalog is re-uploaded.
+- **An entry is reached only by a service that lists its format** in
+  `input_formats`. Today's catalogs list `openai` and `anthropic` on chat services
+  and nothing on the rest, and the platform accepts only well-known or namespaced
+  tags there, so `dashscope`, `huggingface` and `bedrock_converse` cannot be
+  declared yet. Of the entries added here, the `openai` ones are reachable now (an
+  LLM service that declares no formats is offered `openai`); the others are right
+  for the formats they name and wait for a service that declares one.
+
 ## [0.2.11] — a document carries its own applies_to
 
 No title, preset or example changes: all 681 rendered titles are byte-identical
