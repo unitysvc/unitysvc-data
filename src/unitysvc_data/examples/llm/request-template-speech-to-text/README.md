@@ -24,9 +24,9 @@ template this follows is `../request-template/`.
 
 ## Body (v1)
 
-| `format` | Wire shape | Derived from |
-|----------|------------|--------------|
-| `dashscope` | DashScope native, dedicated speech-recognition model | `llm_code_example_asr_dashscope_requests` |
+| `format` | Wire shape | `path_suffix` | Derived from |
+|----------|------------|---------------|--------------|
+| `dashscope` | DashScope native, dedicated speech-recognition model | none (bare base URL) | `llm_code_example_asr_dashscope_requests` |
 
 Each body is the request its code example sends, reduced to what is needed to send
 it: the example's own values, minus the `model` the playground merges in and minus
@@ -34,6 +34,14 @@ any templated or optional parameter.
 
 One user message whose content is a single `audio` part: a URL to the public JFK
 sample the transcription examples all use.
+
+## Path
+
+**No `path_suffix` on `dashscope`:** its example posts to the service URL itself,
+so there is nothing to append and the key is omitted. The page treats a missing or
+blank `path_suffix` as absent and appends nothing, which is exactly that; writing
+`""` would add nothing, and `"/"` would append a trailing slash, a different
+request.
 
 ## What's intentionally missing
 

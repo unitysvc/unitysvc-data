@@ -1,6 +1,7 @@
 [
   {
     "format": "openai",
+    "path_suffix": "${__version_prefix__}/chat/completions",
     "body": {
       "messages": [
         {

@@ -24,15 +24,26 @@ template this follows is `../request-template/`.
 
 ## Body (v1)
 
-| `format` | Wire shape | Derived from |
-|----------|------------|--------------|
-| `huggingface` | Hugging Face inference API (`/models/<model>`), text to video | `llm_code_example_ttv_requests` |
+| `format` | Wire shape | `path_suffix` | Derived from |
+|----------|------------|---------------|--------------|
+| `huggingface` | Hugging Face inference API (`/models/<model>`), text to video | none (known limitation) | `llm_code_example_ttv_requests` |
 
 Each body is the request its code example sends, reduced to what is needed to send
 it: the example's own values, minus the `model` the playground merges in and minus
 any templated or optional parameter.
 
 A single `inputs` prompt. The response is the video itself, as bytes.
+
+## Path
+
+**Known limitation: no `path_suffix` on `huggingface`.** The path carries the
+service's own model name (`/models/<model>`), so the right value differs by
+service, and a `path_suffix` is one string per capability and format: it cannot
+say "it depends on the service". The page merges `model` into the body and does
+not substitute inside `path_suffix`. That is a gap in the contract
+(unitysvc/unitysvc#2514, noted on #2516), not an oversight and not something a
+template can work around, so no substitution syntax is invented here. The
+playground appends nothing, as it did before the key existed.
 
 ## What's intentionally missing
 

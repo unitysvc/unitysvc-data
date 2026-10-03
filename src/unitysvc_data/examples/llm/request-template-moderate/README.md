@@ -7,6 +7,7 @@ description = "Minimal moderation request body for each request format"
 is_active = true
 is_public = true
 applies_to = { capability = "moderate" }
+parameters = { version_prefix = "/v1" }
 +++
 
 # llm / request-template-moderate — minimal moderation payload, per request format
@@ -24,9 +25,9 @@ template this follows is `../request-template/`.
 
 ## Body (v1)
 
-| `format` | Wire shape | Derived from |
-|----------|------------|--------------|
-| `openai` | OpenAI Chat Completions, sent to a guard model | `llm_code_example_guard_requests` |
+| `format` | Wire shape | `path_suffix` | Derived from |
+|----------|------------|---------------|--------------|
+| `openai` | OpenAI Chat Completions, sent to a guard model | `${__version_prefix__}/chat/completions` | `llm_code_example_guard_requests` |
 
 Each body is the request its code example sends, reduced to what is needed to send
 it: the example's own values, minus the `model` the playground merges in and minus
@@ -36,6 +37,21 @@ The example moderates by chatting: it sends a chat completion to a guard model a
 prints the reply. It does **not** send a `/v1/moderations` request, so neither does
 this. The body is chat-shaped, and its one user message is the text to classify — a
 prompt-injection attempt, the same one the example sends.
+
+## Path
+
+Each `path_suffix` is what that entry's code example posts to, relative to the
+service's base URL. It is read off the example, and all three of its client
+variants (requests, shell, JavaScript) say the same, rather than written from an
+API's documentation, so it is as verified as the body is.
+
+`${__version_prefix__}` is the parameter the OpenAI-shaped examples use for the
+one segment a seller's upstream may move: `/v1` by default, `/compatibility/v1`
+for Cohere's compatibility surface, `/v2` for crofai, nothing for the platform's
+own facades. This family declares it with the example's default, so a listing that
+sets `params.version_prefix` for its examples gets the matching path here, and one
+that sets nothing gets `/v1`. A listing that differs in any other way can replace
+the document by title (a sibling key beside `$llm_example_collection`).
 
 ## What's intentionally missing
 
@@ -51,3 +67,12 @@ prompt-injection attempt, the same one the example sends.
 ### v1 — initial release
 
 - One `openai` entry: a single user message for a guard model to classify.
+
+**Amended in 0.2.13**: entries gained `path_suffix` (see Path above). The
+playground appends nothing for an entry without one, which sends an OpenAI-shaped
+body to the service's base URL and fails; bodies, formats and their order are
+unchanged. The front-matter also gained `parameters = { version_prefix = "/v1" }`.
+Amended in place rather than published as a v2 because, under CONTRIBUTING's "one
+exception", the entries that gained a path could not be sent without it, so there
+is no working behaviour to pin to, and the version-less alias carries all the
+traffic: this family was released hours earlier and nothing pins it.

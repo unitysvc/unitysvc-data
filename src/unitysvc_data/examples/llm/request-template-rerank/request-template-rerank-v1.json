@@ -1,6 +1,7 @@
 [
   {
     "format": "openai",
+    "path_suffix": "${__version_prefix__}/rerank",
     "body": {
       "query": "What is the capital of the United States?",
       "top_n": 3,
