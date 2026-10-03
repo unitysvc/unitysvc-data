@@ -69,6 +69,13 @@ a repeated format, a missing or unregistered ``format``, a missing ``body``.
 Versions that predate the entry list stay as published; the latest version of a
 template that names a capability must be one.
 
+An entry may carry a ``path_suffix``, appended to the service's base URL. It is
+read off the code example the body came from, and may use the same
+``${__version_prefix__}`` placeholder the OpenAI-shaped examples do (declared in
+the family's ``parameters``). The check refuses one that would build a request
+nothing can send: not a string, not a path, or a placeholder nothing substitutes. An
+entry that posts to the bare base URL omits the key rather than writing ``""`` or ``/``.
+
 Outputs
 -------
 
@@ -732,9 +739,11 @@ def check_request_templates(presets: list[Preset], errors: BuildErrors) -> None:
     alias hands every listing, and the page's reader for the old shape is marked
     deletable only once nothing publishes it.
 
-    Keys inside an entry beyond ``format`` and ``body`` are ignored on purpose:
-    the reader ignores them, so ``path_suffix`` and ``content_type`` can ship
-    ahead of any page that reads them.
+    ``path_suffix``, when an entry has one, must be a path the playground can
+    append to a service's base URL (see :func:`_path_suffix_problem`). Other keys
+    inside an entry beyond ``format`` and ``body`` are ignored on purpose: the
+    reader ignores them, so ``content_type`` can ship ahead of any page that
+    reads it.
     """
     latest: dict[str, int] = {}
     for preset in presets:
@@ -751,7 +760,7 @@ def check_request_templates(presets: list[Preset], errors: BuildErrors) -> None:
             continue
         capability = preset.applies_to.get("capability")
         if isinstance(document, list):
-            _check_template_entries(path, document, capability, errors)
+            _check_template_entries(path, document, capability, preset.parameters, errors)
         elif capability and preset.version == latest[preset.preset_name]:
             errors.add(
                 path,
@@ -764,7 +773,11 @@ def check_request_templates(presets: list[Preset], errors: BuildErrors) -> None:
 
 
 def _check_template_entries(
-    path: Path, entries: list[Any], capability: str | None, errors: BuildErrors
+    path: Path,
+    entries: list[Any],
+    capability: str | None,
+    parameters: dict[str, str],
+    errors: BuildErrors,
 ) -> None:
     """The entries of one list-shaped template; see :func:`check_request_templates`."""
     if not entries:
@@ -797,6 +810,8 @@ def _check_template_entries(
                 f"(src/unitysvc_data/classifiers.py). Register it there or fix the spelling -- "
                 f"an entry for a format nobody has declared is one no service can select.{suffix}",
             )
+        if "path_suffix" in entry and (problem := _path_suffix_problem(entry["path_suffix"], parameters)):
+            errors.add(path, f"entry {index} ({fmt!r}): {problem}")
         if fmt in first_seen:
             errors.add(
                 path,
@@ -805,6 +820,56 @@ def _check_template_entries(
             )
         else:
             first_seen[fmt] = index
+
+
+def _path_suffix_problem(value: Any, parameters: dict[str, str]) -> str | None:
+    """Why a ``path_suffix`` would build a request nothing can send, or ``None``.
+
+    The playground appends it to the service's base URL. Every mistake caught here
+    yields a request that looks plausible and fails, which is the failure the key
+    exists to end:
+
+    * not a string;
+    * not a path -- an absolute URL, a host-rooted ``//host``, or anything with
+      whitespace, would be appended to a base URL that already has a host;
+    * a placeholder nothing substitutes. ``${__name__}`` is replaced from the family's
+      ``parameters`` when the document is built, so an undeclared one survives into
+      the request; and a ``{{ ... }}`` expression is never rendered at all, because a
+      template is plain JSON and not a ``.j2``. Both would be sent literally.
+
+    The path is judged AFTER the declared defaults are substituted, so what is checked is
+    the one a service that sets nothing of its own would get. It must then start with ``/``.
+
+    An entry that posts to the bare base URL -- DashScope's native examples post to the
+    service URL itself -- has NO ``path_suffix``; it does not write a value for "nothing".
+    The page treats a missing or blank one as absent and falls back, so a blank value says
+    nothing a missing key does not, and ``/`` is a different request (it appends a trailing
+    slash). Both are refused, with that instruction.
+    """
+    if not isinstance(value, str):
+        return f"path_suffix must be a string, got {type(value).__name__}"
+    rendered = value
+    for name, default in parameters.items():
+        rendered = rendered.replace(f"${{__{name}__}}", default)
+    if "${" in rendered or "{{" in rendered:
+        return (
+            f"path_suffix {value!r} still contains a placeholder once the declared parameters are "
+            f"applied. Declare it in the family's `parameters`; a request template is not rendered, "
+            f"so anything else is sent literally."
+        )
+    if rendered.startswith("//") or "://" in rendered:
+        return f"path_suffix {value!r} must be a path, not a URL: it is appended to the service's base URL"
+    if rendered.strip() in ("", "/"):
+        return (
+            f"path_suffix {value!r} says nothing: omit the key for an entry that posts to the bare "
+            f"base URL. The page treats a blank path_suffix as absent, and '/' would append a "
+            f"trailing slash, which is not the same request."
+        )
+    if any(ch.isspace() for ch in rendered):
+        return f"path_suffix {value!r} contains whitespace, so it cannot be a path"
+    if not rendered.startswith("/"):
+        return f"path_suffix {value!r} must start with '/': it is appended to the service's base URL"
+    return None
 
 
 def render_manifest_json(presets: list[Preset], aliases: dict[str, str]) -> str:

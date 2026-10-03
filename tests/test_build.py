@@ -994,3 +994,104 @@ def test_named_variants_outside_the_selected_gateways_may_share_a_selector(tmp_p
         )
 
     assert _title_clashes() == []
+
+
+# ---------------------------------------------------------------------------
+# `path_suffix`: a path the playground can actually send to
+# ---------------------------------------------------------------------------
+#
+# The playground appends an entry's `path_suffix` to the service's base URL. The
+# mistakes that produce a request which looks plausible and fails -- an absolute URL,
+# no leading slash, a placeholder nothing substitutes, a Jinja expression nothing
+# renders (a template is plain JSON, not a `.j2`) -- are caught here instead of in a
+# customer's 404. So is writing a value for "no suffix": the page treats a missing or
+# blank `path_suffix` as absent, and `/` would append a trailing slash, which is not the
+# same request as posting to the base URL. An entry that posts to the bare base URL omits
+# the key.
+
+
+def _path_tree(tmp_path, monkeypatch, path_suffix_json: str, *, parameters: str = ""):
+    """A one-entry embed template carrying `path_suffix_json` verbatim (already JSON)."""
+    root = _point_build_at(tmp_path, monkeypatch)
+    readme = _template_front_matter().replace("+++\n\n# body", f"{parameters}+++\n\n# body")
+    _family(
+        root,
+        "llm",
+        "request-template-embed",
+        readme=readme,
+        files={
+            "request-template-embed-v1.json": (
+                '[{"format": "openai", "body": {"input": "hi"}, "path_suffix": ' + path_suffix_json + "}]"
+            )
+        },
+    )
+
+
+@pytest.mark.parametrize(
+    "value",
+    ['"/v1/embeddings"', '"/embeddings?api-version=1"'],
+    ids=["a path", "a path with a query"],
+)
+def test_a_path_the_playground_can_send_to_is_accepted(tmp_path, monkeypatch, value):
+    _path_tree(tmp_path, monkeypatch, value)
+
+    assert _template_errors() == []
+
+
+def test_a_placeholder_the_template_declares_is_accepted(tmp_path, monkeypatch):
+    """Substituted with the declared default before the path is judged, so what is
+    checked is the path a service with no override of its own would get."""
+    _path_tree(
+        tmp_path,
+        monkeypatch,
+        '"${__version_prefix__}/embeddings"',
+        parameters='parameters = { version_prefix = "/v1" }\n',
+    )
+
+    assert _template_errors() == []
+
+
+@pytest.mark.parametrize(
+    ("value", "complaint"),
+    [
+        ("7", "must be a string"),
+        ("null", "must be a string"),
+        ('""', "omit the key"),
+        ('"   "', "omit the key"),
+        ('"/"', "omit the key"),
+        ('"v1/embeddings"', "must start with '/'"),
+        ('"https://api.example.com/v1/embeddings"', "path, not a URL"),
+        ('"//host/v1"', "path, not a URL"),
+        ('"/v1/embeddings now"', "whitespace"),
+        ('"${__version_prefix__}/embeddings"', "placeholder"),
+        ('"/v1/models/{{ routing_key.model }}"', "placeholder"),
+    ],
+    ids=[
+        "number",
+        "null",
+        "blank",
+        "whitespace only",
+        "the bare slash",
+        "no leading slash",
+        "absolute url",
+        "host-rooted",
+        "whitespace",
+        "undeclared placeholder",
+        "jinja expression",
+    ],
+)
+def test_a_path_that_would_build_a_broken_request_is_rejected(tmp_path, monkeypatch, value, complaint):
+    _path_tree(tmp_path, monkeypatch, value)
+
+    messages = _template_errors()
+
+    assert len(messages) == 1, messages
+    assert "path_suffix" in messages[0] and complaint in messages[0]
+
+
+def test_an_entry_may_omit_the_path(tmp_path, monkeypatch):
+    """No path is a legitimate answer -- the examples sometimes state none -- and means
+    the playground appends nothing, as it did before the key existed."""
+    _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": GOOD_ENTRIES})
+
+    assert _template_errors() == []
