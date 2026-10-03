@@ -53,6 +53,22 @@ Optional (defaults shown):
 A directory may contain only variant files (no bare ``<stem>-v<N>``
 base file).  The shared README.md is still required in that case.
 
+Request templates
+-----------------
+
+A ``category = "request_template"`` JSON file is what the Test Request
+playground starts a request from. One document covers ONE capability (its
+``applies_to.capability``) and holds one entry per request format::
+
+    [ { "format": "openai",    "body": { ... } },
+      { "format": "anthropic", "body": { ... } } ]
+
+The playground reads the FIRST entry naming the format the customer picked, so
+``check_request_templates`` fails the build when an entry could never be read:
+a repeated format, a missing or unregistered ``format``, a missing ``body``.
+Versions that predate the entry list stay as published; the latest version of a
+template that names a capability must be one.
+
 Outputs
 -------
 
@@ -67,6 +83,7 @@ and fails if either output is stale.
 from __future__ import annotations
 
 import argparse
+import difflib
 import json
 import re
 import sys
@@ -661,6 +678,109 @@ def check_titles(presets: list[Preset], errors: BuildErrors) -> None:
                 )
 
 
+def check_request_templates(presets: list[Preset], errors: BuildErrors) -> None:
+    """Every entry of a request template must be reachable by the format it names.
+
+    The playground (``frontend/lib/requestTemplates.ts``) picks a template by the
+    capability its ``applies_to`` names, then the FIRST entry whose ``format``
+    equals the one the customer selected. A template is therefore a function of
+    ``(capability, format)``, and anything that breaks that fails nowhere else --
+    the customer simply never sees the request the author wrote:
+
+    * a second entry for one ``(capability, format)`` is never read;
+    * an entry with no usable ``format`` can never match, and one with no
+      ``body`` is skipped;
+    * a ``format`` no service can select is the same dead entry with a typo, so
+      it is checked against the registered dialects, with a near-miss hint, the
+      way ``applies_to`` is.
+
+    Within one document the capability is the document's, so the uniqueness key
+    ``(capability, format)`` reduces to ``format``; it is named in the message
+    because that is the pair the reader's contract is stated over.
+
+    Every version is read, not only the latest: ``$doc_preset: x_v1`` still
+    resolves, so a duplicate in a pinned version is served too. Versions that
+    predate the entry list -- a flat body, or a dict keyed by format -- are
+    append-only history and are skipped, EXCEPT that the latest version of a
+    template that names a capability must be an entry list. That is what the
+    alias hands every listing, and the page's reader for the old shape is marked
+    deletable only once nothing publishes it.
+
+    Keys inside an entry beyond ``format`` and ``body`` are ignored on purpose:
+    the reader ignores them, so ``path_suffix`` and ``content_type`` can ship
+    ahead of any page that reads them.
+    """
+    latest: dict[str, int] = {}
+    for preset in presets:
+        latest[preset.preset_name] = max(latest.get(preset.preset_name, 0), preset.version)
+
+    for preset in presets:
+        if preset.category != "request_template" or preset.mime_type != "json":
+            continue
+        path = EXAMPLES_DIR / preset.example_file
+        try:
+            document = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            errors.add(path, f"not valid JSON: {exc}")
+            continue
+        capability = preset.applies_to.get("capability")
+        if isinstance(document, list):
+            _check_template_entries(path, document, capability, errors)
+        elif capability and preset.version == latest[preset.preset_name]:
+            errors.add(
+                path,
+                f"the latest version of a request template for capability {capability!r} "
+                f"must be an entry list ([{{\"format\": ..., \"body\": ...}}, ...]), not "
+                f"{type(document).__name__}: this is what the alias gives every listing, and "
+                f"the dict shape is the legacy one the playground is waiting to drop. "
+                f"Publish it as a new version.",
+            )
+
+
+def _check_template_entries(
+    path: Path, entries: list[Any], capability: str | None, errors: BuildErrors
+) -> None:
+    """The entries of one list-shaped template; see :func:`check_request_templates`."""
+    if not entries:
+        errors.add(path, "has no entries, so it offers no request for any format")
+        return
+    scope = f" for capability {capability!r}" if capability else ""
+    first_seen: dict[str, int] = {}
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            errors.add(path, f"entry {index} is not an object, so the playground skips it")
+            continue
+        raw = entry.get("format")
+        fmt = raw.strip() if isinstance(raw, str) else ""
+        if not fmt:
+            errors.add(
+                path,
+                f"entry {index} has no usable `format` (got {raw!r}), so it can never match "
+                f"the format a customer selects",
+            )
+            continue
+        if entry.get("body") is None:
+            errors.add(path, f"entry {index} ({fmt!r}) has no `body`, so the playground skips it")
+            continue
+        if fmt not in classifiers.DIALECTS:
+            hint = difflib.get_close_matches(fmt, classifiers.DIALECTS, n=1)
+            suffix = f" Did you mean {hint[0]!r}?" if hint else ""
+            errors.add(
+                path,
+                f"entry {index} names format {fmt!r}, which is not in classifiers.DIALECTS "
+                f"(src/unitysvc_data/classifiers.py). Register it there or fix the spelling -- "
+                f"an entry for a format nobody has declared is one no service can select.{suffix}",
+            )
+        if fmt in first_seen:
+            errors.add(
+                path,
+                f"entries {first_seen[fmt]} and {index} both name format {fmt!r}{scope}. The "
+                f"playground reads the first, so entry {index} is unreachable.",
+            )
+        else:
+            first_seen[fmt] = index
+
+
 def render_manifest_json(presets: list[Preset], aliases: dict[str, str]) -> str:
     data = {
         "version": MANIFEST_VERSION,
@@ -737,6 +857,7 @@ def main(argv: list[str] | None = None) -> int:
         # Only meaningful once every preset parsed: a half-discovered corpus
         # would report clashes that are really parse failures.
         check_titles(presets, errors)
+        check_request_templates(presets, errors)
 
     if errors:
         print(f"{len(errors.messages)} validation error(s):", file=sys.stderr)

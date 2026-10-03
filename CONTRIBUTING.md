@@ -507,6 +507,55 @@ python tools/customer_display.py path/to/example.j2  # one file
 
 ---
 
+## Request templates
+
+A `request_template` is what the Test Request playground starts a request from.
+It picks a document by the capability its `applies_to` names, then the first
+entry in that document that names the format the customer chose
+([unitysvc#2514](https://github.com/unitysvc/unitysvc/issues/2514)). That fixes
+the shape:
+
+- **One document per capability.** `applies_to = { capability = "<capability>" }`
+  and nothing else: the document bundles every format, so it has no `dialect`,
+  and the playground matches on capability alone. Selection needs no code --
+  `llm_example_collection` picks it the way it picks every document
+  (`presets._applies`), so a service gets the template for each capability it
+  declares and no other.
+- **A list of entries, each naming its format.**
+
+  ```json
+  [ { "format": "openai",    "body": { "...": "..." } },
+    { "format": "anthropic", "body": { "...": "..." } } ]
+  ```
+
+  The reader takes the first entry that names the format and ignores keys it does
+  not know, which is how `path_suffix` and `content_type` can arrive later.
+  `tools/build.py` fails on what the reader could never reach: a repeated
+  `format`, a missing or unregistered one, a missing `body`, and a latest version
+  that is not a list. Older versions keep the shape they were published in.
+- **`format` is a request format, not a client.** Use the gateway's name for it
+  (`openai`, `anthropic`, `cohere`, `dashscope`, `bedrock_converse`, ...), which
+  must be registered in `classifiers.DIALECTS`. A client library for a format
+  already listed is not a format of its own (`cerebras` is one for `openai`), and the three
+  DashScope tokens (`dashscope_text`, `dashscope_multimodal`,
+  `dashscope_audio_task`) are surfaces of the one `dashscope` format, so a
+  document holds one DashScope body per capability and has to pick.
+- **Derive each body from the code example for that capability and format**,
+  reduced to the request it sends -- no `model` (the playground merges the routing
+  key in) and no templated parameters. Do not write one from memory: the examples
+  are what `run-tests` sends to real upstreams, and nothing else here is. If the
+  request is not a JSON body (`multipart/form-data`, or one that only works with a
+  header the entry cannot carry), there is no honest entry yet. No document is
+  better than a wrong one, and the playground shows an explicit empty state.
+- **Do not choose a title.** It is derived, and it is the document's key: the
+  backend upserts on `(entity_id, context_type, title)`, so two templates for one
+  service with the same title would silently replace each other. Chat's is
+  `Default request body` and must never change; every other capability adds its
+  label (`Default request body (embeddings)`), and image-text-to-text reads
+  `(vision)`, the feature the registry says carries it. Neither is yours to set.
+- **A new shape is a new version.** The alias moves to it and the older versions
+  stay, exactly as for any other preset. Do not amend a published version.
+
 ## Filename and directory conventions, in one place
 
 | Element              | Rule                                                                 |

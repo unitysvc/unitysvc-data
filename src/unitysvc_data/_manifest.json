@@ -99,7 +99,7 @@
     "llm_connectivity_tts": "llm_connectivity_tts_v1",
     "llm_connectivity_tts_dashscope": "llm_connectivity_tts_dashscope_v1",
     "llm_description": "llm_description_v2",
-    "llm_request_template": "llm_request_template_v2",
+    "llm_request_template": "llm_request_template_v3",
     "msg_request_template": "msg_request_template_v1",
     "msg_to_apprise_code_example_py": "msg_to_apprise_code_example_py_v1",
     "msg_to_apprise_code_example_sh": "msg_to_apprise_code_example_sh_v1",
@@ -3795,6 +3795,22 @@
       "preset_name": "llm_request_template",
       "source_readme": "llm/request-template/README.md",
       "version": 2
+    },
+    "llm_request_template_v3": {
+      "applies_to": {
+        "capability": "chat"
+      },
+      "category": "request_template",
+      "description": "Minimal chat request body for each request format",
+      "example_file": "llm/request-template/request-template-v3.json",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "json",
+      "parameters": {},
+      "preset_name": "llm_request_template",
+      "source_readme": "llm/request-template/README.md",
+      "version": 3
     },
     "msg_request_template_v1": {
       "applies_to": {},

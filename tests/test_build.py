@@ -650,3 +650,251 @@ def test_duplicate_variant_version_is_error(tmp_path, monkeypatch):
     errors = build.BuildErrors()
     _presets, _ = build.discover(errors)
     assert not errors.messages, errors.messages  # no collision in this case
+
+
+# ---------------------------------------------------------------------------
+# Request templates: an entry the playground can never reach
+# ---------------------------------------------------------------------------
+#
+# The playground picks a template by capability and then the FIRST entry that
+# names the format the customer chose. So a template is a function of
+# (capability, format), and anything that breaks that makes an entry silently
+# unreachable: a second entry for the same format is never read, and an entry
+# with no usable format or no body is skipped. None of these fail at runtime --
+# the customer just never sees the request the author wrote.
+
+
+def _template_front_matter(
+    preset_name: str = "llm_request_template_embed",
+    file: str = "request-template-embed.json",
+    capability: str | None = "embed",
+) -> str:
+    applies = f'applies_to = {{ capability = "{capability}" }}\n' if capability else ""
+    return (
+        "+++\n"
+        f'preset_name = "{preset_name}"\n'
+        'category = "request_template"\n'
+        'mime_type = "json"\n'
+        f'file = "{file}"\n'
+        'description = "Minimal embeddings request body"\n'
+        f"{applies}"
+        "+++\n\n# body\n"
+    )
+
+
+def _template_tree(tmp_path, monkeypatch, files: dict[str, str], *, capability: str | None = "embed"):
+    """One ``llm/request-template-embed`` family holding ``files``."""
+    root = _point_build_at(tmp_path, monkeypatch)
+    _family(
+        root,
+        "llm",
+        "request-template-embed",
+        readme=_template_front_matter(capability=capability),
+        files=files,
+    )
+    return root
+
+
+def _template_errors(presets_discovered=None) -> list[str]:
+    errors = build.BuildErrors()
+    presets, _aliases = build.discover(errors)
+    assert not errors, errors.messages
+    build.check_request_templates(presets, errors)
+    return errors.messages
+
+
+GOOD_ENTRIES = (
+    '[{"format": "openai", "body": {"input": "hi"}},'
+    ' {"format": "cohere", "body": {"texts": ["hi"]}}]'
+)
+
+
+def test_a_request_template_with_one_entry_per_format_passes(tmp_path, monkeypatch):
+    _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": GOOD_ENTRIES})
+
+    assert _template_errors() == []
+
+
+def test_a_second_entry_for_a_format_is_rejected(tmp_path, monkeypatch):
+    """The reader takes the first match, so the second is unreachable."""
+    dup = (
+        '[{"format": "openai", "body": {"input": "first"}},'
+        ' {"format": "cohere", "body": {"texts": ["hi"]}},'
+        ' {"format": "openai", "body": {"input": "second"}}]'
+    )
+    _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": dup})
+
+    messages = _template_errors()
+
+    assert len(messages) == 1, messages
+    assert "'openai'" in messages[0] and "embed" in messages[0]
+    assert "entries 0 and 2" in messages[0]
+    assert "unreachable" in messages[0]
+
+
+def test_formats_that_differ_only_by_padding_are_the_same_format(tmp_path, monkeypatch):
+    """The reader trims a format before comparing it, so these collide there."""
+    padded = '[{"format": "openai", "body": {"a": 1}}, {"format": "  openai ", "body": {"a": 2}}]'
+    _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": padded})
+
+    messages = _template_errors()
+
+    assert any("entries 0 and 1" in m for m in messages), messages
+
+
+@pytest.mark.parametrize(
+    ("entry", "complaint"),
+    [
+        ('{"body": {"a": 1}}', "no usable `format`"),
+        ('{"format": "", "body": {"a": 1}}', "no usable `format`"),
+        ('{"format": "   ", "body": {"a": 1}}', "no usable `format`"),
+        ('{"format": 7, "body": {"a": 1}}', "no usable `format`"),
+        ('{"format": "openai"}', "no `body`"),
+        ('{"format": "openai", "body": null}', "no `body`"),
+        ('"openai"', "not an object"),
+    ],
+    ids=["no-format", "empty-format", "blank-format", "numeric-format", "no-body", "null-body", "not-an-object"],
+)
+def test_an_entry_the_reader_would_skip_is_rejected(tmp_path, monkeypatch, entry, complaint):
+    _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": f"[{entry}]"})
+
+    messages = _template_errors()
+
+    assert len(messages) == 1, messages
+    assert complaint in messages[0]
+
+
+def test_an_unregistered_format_is_rejected_with_a_hint(tmp_path, monkeypatch):
+    """A mistyped format is an entry no service can ever select -- the same
+    silent failure as a duplicate, from a different slip of the keyboard."""
+    typo = '[{"format": "opena", "body": {"input": "hi"}}]'
+    _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": typo})
+
+    messages = _template_errors()
+
+    assert len(messages) == 1, messages
+    assert "'opena'" in messages[0] and "Did you mean 'openai'" in messages[0]
+
+
+def test_an_empty_entry_list_is_rejected(tmp_path, monkeypatch):
+    _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": "[]"})
+
+    messages = _template_errors()
+
+    assert len(messages) == 1 and "no entries" in messages[0], messages
+
+
+def test_keys_the_reader_does_not_know_are_not_the_guards_business(tmp_path, monkeypatch):
+    """`path_suffix` and `content_type` are coming (unitysvc#2514, step 2), and
+    the reader ignores keys it does not recognise so the data can ship first. A
+    guard that refused them would force the two to land in lockstep."""
+    later = (
+        '[{"format": "openai", "body": {"input": "hi"},'
+        ' "path_suffix": "/v1/embeddings", "content_type": "application/json"}]'
+    )
+    _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": later})
+
+    assert _template_errors() == []
+
+
+def test_older_dict_shaped_versions_are_left_alone(tmp_path, monkeypatch):
+    """Versions are append-only and `v1`/`v2` of the chat template predate the
+    list shape. The guard reads what it understands and skips the rest."""
+    _template_tree(
+        tmp_path,
+        monkeypatch,
+        {
+            "request-template-embed-v1.json": '{"input": "hi"}',
+            "request-template-embed-v2.json": '{"openai": {"input": "hi"}}',
+            "request-template-embed-v3.json": GOOD_ENTRIES,
+        },
+    )
+
+    assert _template_errors() == []
+
+
+def test_a_pinned_older_list_version_is_still_checked(tmp_path, monkeypatch):
+    """`$doc_preset: x_v1` still resolves, so a duplicate in v1 is served."""
+    dup = '[{"format": "openai", "body": {"a": 1}}, {"format": "openai", "body": {"a": 2}}]'
+    _template_tree(
+        tmp_path,
+        monkeypatch,
+        {"request-template-embed-v1.json": dup, "request-template-embed-v2.json": GOOD_ENTRIES},
+    )
+
+    messages = _template_errors()
+
+    assert len(messages) == 1 and "request-template-embed-v1.json" in messages[0], messages
+
+
+def test_the_latest_version_of_a_capability_template_must_be_an_entry_list(tmp_path, monkeypatch):
+    """What the alias resolves to is what every listing gets. Letting it be the
+    dict shape would keep the legacy reader branch alive indefinitely, and the
+    page marks that branch deletable once catalogs have migrated."""
+    _template_tree(
+        tmp_path,
+        monkeypatch,
+        {"request-template-embed-v1.json": '{"openai": {"input": "hi"}}'},
+    )
+
+    messages = _template_errors()
+
+    assert len(messages) == 1, messages
+    assert "latest version" in messages[0] and "entry list" in messages[0]
+
+
+def test_a_template_that_names_no_capability_may_stay_a_plain_body(tmp_path, monkeypatch):
+    """`msg_request_template` declares no `applies_to` and is one flat envelope.
+    The list shape is the contract for capability templates, not for those."""
+    _template_tree(
+        tmp_path,
+        monkeypatch,
+        {"request-template-embed-v1.json": '{"title": "t", "body": "hi"}'},
+        capability=None,
+    )
+
+    assert _template_errors() == []
+
+
+def test_a_template_that_is_not_json_is_rejected(tmp_path, monkeypatch):
+    _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": "[{"})
+
+    messages = _template_errors()
+
+    assert len(messages) == 1 and "not valid JSON" in messages[0], messages
+
+
+def test_other_categories_are_not_read_as_templates(tmp_path, monkeypatch):
+    """Only `request_template` documents have entries to check."""
+    root = _point_build_at(tmp_path, monkeypatch)
+    _family(
+        root,
+        "llm",
+        "hello",
+        readme=_good_front_matter(preset_name="llm_hello", file="hello.sh.j2"),
+        files={"hello-v1.sh.j2": "not json at all"},
+    )
+
+    assert _template_errors() == []
+
+
+def test_the_guard_runs_as_part_of_the_build(tmp_path, monkeypatch, capsys):
+    """Defined is not wired: `main` must fail on a duplicate, before it writes
+    or compares any output."""
+    dup = '[{"format": "openai", "body": {"a": 1}}, {"format": "openai", "body": {"a": 2}}]'
+    _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": dup})
+
+    assert build.main(["--check"]) == 1
+
+    assert "unreachable" in capsys.readouterr().err
+
+
+def test_the_shipped_request_templates_pass_the_guard():
+    """The corpus itself, through the same entry point the build uses."""
+    errors = build.BuildErrors()
+    presets, _aliases = build.discover(errors)
+    assert not errors, errors.messages
+
+    build.check_request_templates(presets, errors)
+
+    assert not errors.messages, "\n".join(errors.messages)
