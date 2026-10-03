@@ -40,6 +40,7 @@ from importlib.resources import files as _files
 from pathlib import Path
 from typing import Any
 
+from . import classifiers
 from ._registry import preset
 from .titles import title as _title
 
@@ -417,7 +418,14 @@ def _materialise_substituted_body(
 #: vs "... (OpenAI-style input)") — without it the two collide on title and one
 #: silently overwrites the other. Declaring the capability implies the feature,
 #: so a listing never has to state both.
-_VISION_CAPABILITIES = frozenset({"image-text-to-text"})
+#:
+#: Read from the registry (``Classifier.carried_by``) rather than restated here:
+#: the title builder needs the same fact, for documents that declare no feature
+#: of their own, and two copies of "this capability implies vision" is how one of
+#: them stops being true.
+_VISION_CAPABILITIES = frozenset(
+    value for value, entry in classifiers.CAPABILITIES.items() if entry.carried_by == "vision"
+)
 
 
 #: The platform capabilities a collection can express — those with at

@@ -63,8 +63,20 @@ def title(entry: dict[str, Any], spec: dict[str, Any]) -> str:
             if classifiers.is_caller_dialect(dialect)
             else dialect_label
         )
-    if feature_label := classifiers.label("feature", spec.get("feature")):
-        bits.append(feature_label)
+    # The feature the document declares, then the one its capability is carried
+    # by. The second is what keeps an unlabelled capability apart from a bare
+    # sibling for a document that declares no feature of its own -- a request
+    # template -- instead of leaving that to the document's author. Each is
+    # rendered once: an image-text-to-text example declares ``vision`` itself and
+    # must not read "(vision, vision)", because a changed title is a different
+    # document.
+    features: list[str] = []
+    for feature in (spec.get("feature"), classifiers.carried_by("capability", spec.get("capability"))):
+        if feature and feature not in features:
+            features.append(feature)
+    for feature in features:
+        if feature_label := classifiers.label("feature", feature):
+            bits.append(feature_label)
     # Disambiguate SDK-vs-raw within one language — unless the dialect
     # label already names the client.
     if category == "code_example" and not ("SDK" in dialect_label or "boto3" in dialect_label):

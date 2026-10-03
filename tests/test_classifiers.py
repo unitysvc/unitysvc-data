@@ -245,3 +245,129 @@ def test_a_non_string_value_is_rejected():
     assert classifiers.validate({"capability": ["chat"]}) == [
         "applies_to.capability must be a string, got list"
     ]
+
+
+# --------------------------------------------------------------------------- #
+# A document that has no feature bit of its own: the request template
+# --------------------------------------------------------------------------- #
+#
+# ``chat`` and ``image-text-to-text`` are both unlabelled. The registry's
+# argument for why that is safe used to be about EXAMPLES: every image-text-to-
+# text example declares ``feature = "vision"``, so its title always carries the
+# qualifier and the pair never renders alike. A request template declares no
+# feature, so that argument does not reach it -- a service with both capabilities
+# would be handed two documents titled "Default request body", and the second
+# would silently replace the first. The title builder now renders the qualifier
+# a capability is *carried by* whether or not the document declares it, so the
+# argument no longer depends on what any one document says.
+def _request_template_title(capability: str) -> str:
+    """The title a request template for ``capability`` renders.
+
+    Built from the capability alone, because that is all a request template
+    declares: it bundles every request format, so it has no dialect, and it has
+    no feature.
+    """
+    return _title({"category": "request_template", "mime_type": "json"}, {"capability": capability})
+
+
+def test_no_two_capabilities_render_one_request_template_title():
+    """Stated over every REGISTERED capability, not the ones that happen to have a
+    template yet, so it holds for a capability added later.
+
+    Every capability can meet every other on one service -- a collection fans out
+    over the whole list the offering declares -- so any two that render the same
+    title would overwrite one another in the ``documents`` mapping.
+    """
+    by_title: dict[str, list[str]] = {}
+    for capability in classifiers.CAPABILITIES:
+        by_title.setdefault(_request_template_title(capability), []).append(capability)
+
+    clashes = {title: caps for title, caps in by_title.items() if len(caps) > 1}
+    assert not clashes, f"request templates for these capabilities share a title: {clashes}"
+
+
+def test_the_chat_request_template_keeps_the_title_it_was_published_under():
+    """A title is a document's key: the backend upserts on
+    ``(entity_id, context_type, title)``. Renaming chat's would orphan the
+    existing document on every published service and mint a new one -- and
+    hand-written listings key their own "Default request body" entry to it.
+    Telling the capabilities apart must therefore happen on the OTHER side.
+    """
+    assert _request_template_title("chat") == "Default request body"
+
+
+def test_image_text_to_text_is_told_apart_by_the_feature_that_carries_it():
+    """Vision is the qualifier the registry has always said names this
+    capability; the template reads it the way the examples do."""
+    assert classifiers.carried_by("capability", "image-text-to-text") == "vision"
+    assert _request_template_title("image-text-to-text") == "Default request body (vision)"
+
+
+def test_a_carried_feature_is_not_repeated_when_the_document_declares_it():
+    """Every image-text-to-text EXAMPLE already declares ``feature = "vision"``.
+    Their titles must come out byte-identical, not "(vision, vision)" -- a title
+    is a key, so a changed one is a different document."""
+    declared = _title(
+        {"category": "code_example", "mime_type": "python", "meta": {"requirements": ["requests"]}},
+        {"capability": "image-text-to-text", "dialect": "openai", "feature": "vision"},
+    )
+    assert declared == "Python code example (vision, requests)"
+
+
+def test_a_capability_carries_no_feature_unless_the_registry_says_so():
+    """Only image-text-to-text is carried; naming a feature on any other capability
+    would add a qualifier to titles that are already published."""
+    carried = {c for c in classifiers.CAPABILITIES if classifiers.carried_by("capability", c)}
+    assert carried == {"image-text-to-text"}
+
+
+def test_a_carrier_that_renders_nothing_is_caught(monkeypatch):
+    """A capability carried by a feature that has no label is still bare."""
+    monkeypatch.setitem(
+        classifiers.CAPABILITIES,
+        "image-text-to-text",
+        classifiers.Classifier("", carried_by="telepathy"),
+    )
+
+    problems = classifiers.check_registry()
+
+    assert any("carried_by" in p and "telepathy" in p for p in problems), problems
+
+
+def test_a_carrier_on_a_labelled_value_is_caught(monkeypatch):
+    """``carried_by`` stands in for a label the value lacks. On one that has a
+    label it would only append a second qualifier to every title."""
+    monkeypatch.setitem(
+        classifiers.CAPABILITIES, "embed", classifiers.Classifier("embeddings", carried_by="vision")
+    )
+
+    problems = classifiers.check_registry()
+
+    assert any("embed" in p and "both the label" in p for p in problems), problems
+
+
+def test_two_bare_capabilities_are_caught(monkeypatch):
+    """Proof the registry check can fail, against the very pair this exists for.
+
+    Without a carrier ``image-text-to-text`` is as bare as ``chat``, and nothing
+    but a document happening to declare ``feature = "vision"`` would keep their
+    titles apart -- which is exactly the reasoning that failed for templates.
+    """
+    monkeypatch.setitem(
+        classifiers.CAPABILITIES, "image-text-to-text", classifiers.Classifier("")
+    )
+
+    problems = classifiers.check_registry()
+
+    assert any("chat" in p and "image-text-to-text" in p and "bare" in p for p in problems), problems
+
+
+def test_the_request_template_pin_fails_without_the_carrier(monkeypatch):
+    """Proof the pin above can fail: it is the test that fails on the title
+    builder as it was before ``carried_by`` existed."""
+    monkeypatch.setitem(
+        classifiers.CAPABILITIES, "image-text-to-text", classifiers.Classifier("")
+    )
+
+    with pytest.raises(AssertionError, match="share a title"):
+        test_no_two_capabilities_render_one_request_template_title()
