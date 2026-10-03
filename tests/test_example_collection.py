@@ -1231,8 +1231,12 @@ def test_omni_audio_examples_are_chat_shaped_and_stream_for_output():
         "formats": [{"formats": ["dashscope_multimodal"], "interface": "dashscope",
                      "upstream_dialect": "dashscope"}],
     })
+    # Executable documents only. The request templates carry the same capability
+    # labels in their titles, but they are JSON that nothing runs, and they hold
+    # no code to check for `messages` or an SSE header.
     audio = {t: d for t, d in docs.items()
-             if "speech" in t or "transcription" in t}
+             if d["category"] in ("code_example", "connectivity_test")
+             and ("speech" in t or "transcription" in t)}
     assert len(audio) == 8, f"expected 4 speech + 4 transcription, got {sorted(audio)}"
 
     for title, doc in audio.items():

@@ -539,7 +539,10 @@ the shape:
   already listed is not a format of its own (`cerebras` is one for `openai`), and the three
   DashScope tokens (`dashscope_text`, `dashscope_multimodal`,
   `dashscope_audio_task`) are surfaces of the one `dashscope` format, so a
-  document holds one DashScope body per capability and has to pick.
+  document holds one DashScope body per capability and has to pick. The
+  playground compares `format` with the formats a service lists in
+  `input_formats`, so an entry is reached only by a service that lists its
+  format; one no catalog declares yet is dead data until one does.
 - **Derive each body from the code example for that capability and format**,
   reduced to the request it sends -- no `model` (the playground merges the routing
   key in) and no templated parameters. Do not write one from memory: the examples

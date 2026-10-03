@@ -1,0 +1,19 @@
+[
+  {
+    "format": "dashscope",
+    "body": {
+      "input": {
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "audio": "https://raw.githubusercontent.com/openai/whisper/main/tests/jfk.flac"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

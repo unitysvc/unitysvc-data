@@ -23,15 +23,27 @@ request format it is written in:
 
 The playground picks the document by the service's capability and then the first
 entry whose `format` is the one the customer chose (unitysvc/unitysvc#2514).
-Entries for formats a service doesn't accept are never read. `format` is the
-gateway's name for a request format: what a service lists in `input_formats`, and
-what the gateway recognises a body as by its shape (apisix-gateways
-`request_meta.classify`). So every chat service ships this one document whatever
+Entries for formats a service doesn't accept are never read. `format` names a
+request format the way the gateway does (apisix-gateways `request_meta`, which
+recognises a body as one by its shape), and the playground compares it with the
+formats the service lists in `input_formats`, so an entry is reached only by a
+service that lists its format. Every chat service ships this one document whatever
 formats it accepts.
 
-The other capabilities have their own families, `request-template-<capability>`,
-each the same shape for one capability. The rules they share are in
+## Other capabilities
+
+Every other capability has a sibling family, `request-template-<capability>`,
+holding the same shape for that one capability: `image-text-to-text`, `embed`,
+`rerank`, `moderate`, `image-generate`, `video-generate`, `speech-to-text` and
+`text-to-speech`. The rules they share are in
 [CONTRIBUTING](../../../../../CONTRIBUTING.md#request-templates).
+
+`image-edit` has no template. Its only code example sends `multipart/form-data`,
+which an entry's JSON body cannot express until entries can carry a
+`content_type` (unitysvc/unitysvc#2514), so there is no honest body to offer and
+a service that declares it sees the playground's empty state. The claim is checked
+against the examples (`tests/test_request_templates.py`), so it will say so when it
+stops being true.
 
 ## Body (v3)
 
