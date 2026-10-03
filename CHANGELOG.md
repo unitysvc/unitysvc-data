@@ -63,6 +63,17 @@ content changes on a published service is the chat request template.
   alias target again. Keys beyond `format` and `body` are ignored on purpose, so
   `path_suffix` and `content_type` can arrive without a change here.
 
+- **`tools/build.py` refuses two presets that share a selector and a title in
+  the `llm` gateway.** `check_titles` skipped any pair with identical
+  `applies_to` as "one document", which is right for versions of a preset and wrong
+  for two presets: `_select` picks both for the same service, they render one title,
+  and the later name silently replaces the earlier. A `<stem>-<variant>-v<N>` file
+  makes it easy to do by accident, because a variant inherits its README's
+  `applies_to` wholesale: filing an embed template as a variant of the chat family
+  built clean and would have replaced chat's template on every chat service. The
+  corpus had no such pair. The other gateways keep their per-channel variants,
+  which a listing picks by name.
+
 - **`Classifier.carried_by`**: what the registry already said in prose about
   `image-text-to-text` ("carried by the `vision` feature bit"), as data the title
   builder reads. A request template declares no feature, so the argument that kept

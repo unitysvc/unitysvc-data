@@ -107,6 +107,12 @@ MANIFEST_JSON = ROOT / "src" / "unitysvc_data" / "_manifest.json"
 MANIFEST_MD = ROOT / "MANIFEST.md"
 MANIFEST_VERSION = "1"
 
+# Gateways whose presets ``unitysvc_data.presets._select`` fans out over, picking
+# every one whose ``applies_to`` admits the service. Every other gateway's presets
+# are referenced by name (``$doc_preset: x``), so two of them sharing a selector are
+# variants a listing chooses between rather than documents competing for a title.
+SELECTED_GATEWAYS = frozenset({"llm"})
+
 REQUIRED_FIELDS: tuple[str, ...] = ("preset_name", "category", "mime_type", "file", "description")
 OPTIONAL_FIELDS: dict[str, Any] = {
     "is_active": True,
@@ -630,6 +636,15 @@ def check_titles(presets: list[Preset], errors: BuildErrors) -> None:
     (today just ``upstream``: one collection is built with one upstream, so
     examples declaring different ones are never selected together). Versions of
     one preset share a title on purpose and are compared once, by name.
+
+    Two PRESETS with identical ``applies_to`` are the extreme case of meeting --
+    nothing separates them, so both are selected for every service that gets
+    either -- and in a gateway ``_select`` fans out over (``SELECTED_GATEWAYS``)
+    they are a clash like any other: the later name replaces the earlier. This used
+    to be skipped as "same selector: one document", which is right for versions and
+    wrong for presets, and a variant file makes it easy to do by accident because it
+    inherits its README's ``applies_to`` wholesale. Elsewhere sharing a selector is
+    how per-channel variants are written, so it stays allowed there.
     """
     for problem in classifiers.check_registry():
         errors.add(Path("src/unitysvc_data/classifiers.py"), problem)
@@ -649,7 +664,7 @@ def check_titles(presets: list[Preset], errors: BuildErrors) -> None:
         rendered = titles.title(preset.to_manifest_entry(), preset.applies_to)
         grouped.setdefault((preset.gateway, rendered), []).append(name)
 
-    for (_gateway, title_text), names in sorted(grouped.items()):
+    for (gateway, title_text), names in sorted(grouped.items()):
         if len(names) < 2:
             continue
         ordered = sorted(names)
@@ -657,7 +672,18 @@ def check_titles(presets: list[Preset], errors: BuildErrors) -> None:
             for b in ordered[i + 1 :]:
                 spec_a, spec_b = by_name[a].applies_to, by_name[b].applies_to
                 if spec_a == spec_b:
-                    continue  # same selector: one document, not a clash
+                    if gateway not in SELECTED_GATEWAYS:
+                        continue  # named variants: the listing picks one by name
+                    errors.add(
+                        Path(EXAMPLES_DIR.name) / by_name[a].source_readme,
+                        f"{a} and {b} both render the title {title_text!r} and declare the "
+                        f"same applies_to ({spec_a or 'none'}), so both are selected for the "
+                        f"same service and the later name silently replaces the earlier. "
+                        f"Give one a different selector, or make them versions of one preset. "
+                        f"(A <stem>-<variant>-v<N> file is its own preset and inherits its "
+                        f"README's applies_to wholesale.)",
+                    )
+                    continue
                 axes = set(spec_a) | set(spec_b)
                 exclusive = any(
                     not classifiers.co_occurs(axis)

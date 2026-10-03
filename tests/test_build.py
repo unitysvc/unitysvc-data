@@ -898,3 +898,99 @@ def test_the_shipped_request_templates_pass_the_guard():
     build.check_request_templates(presets, errors)
 
     assert not errors.messages, "\n".join(errors.messages)
+
+
+# ---------------------------------------------------------------------------
+# Same selector, same title: the clash `check_titles` used to skip
+# ---------------------------------------------------------------------------
+#
+# `check_titles` compares presets that render one title and skips a pair whose
+# `applies_to` is identical -- "same selector: one document, not a clash". That
+# is right for versions of one preset and wrong for two PRESETS: `_select` picks
+# both for the same service, they render one title, and the later name silently
+# replaces the earlier. Variant files make it easy to do by accident, because a
+# variant inherits its README's `applies_to` wholesale.
+
+
+def _chat_template_family(root, slug: str, preset_name: str, files: dict[str, str]):
+    _family(
+        root,
+        "llm",
+        slug,
+        readme=_template_front_matter(
+            preset_name=preset_name, file=f"{slug}.json", capability="chat"
+        ),
+        files=files,
+    )
+
+
+def _title_clashes() -> list[str]:
+    errors = build.BuildErrors()
+    presets, _aliases = build.discover(errors)
+    assert not errors, errors.messages
+    build.check_titles(presets, errors)
+    return errors.messages
+
+
+def test_two_llm_presets_with_one_selector_and_one_title_are_a_clash(tmp_path, monkeypatch):
+    root = _point_build_at(tmp_path, monkeypatch)
+    _chat_template_family(root, "request-template", "llm_request_template", {"request-template-v1.json": GOOD_ENTRIES})
+    _chat_template_family(
+        root, "request-template-chat", "llm_request_template_chat", {"request-template-chat-v1.json": GOOD_ENTRIES}
+    )
+
+    messages = _title_clashes()
+
+    assert len(messages) == 1, messages
+    assert "llm_request_template" in messages[0] and "llm_request_template_chat" in messages[0]
+    assert "Default request body" in messages[0] and "same applies_to" in messages[0]
+
+
+def test_the_variant_shortcut_cannot_hide_a_clash(tmp_path, monkeypatch):
+    """A template for another capability filed as a VARIANT of the chat family
+    inherits `applies_to = chat`, renders chat's title, and -- sorting after it --
+    would replace the chat template on every chat service. Nothing else notices."""
+    root = _point_build_at(tmp_path, monkeypatch)
+    _chat_template_family(
+        root,
+        "request-template",
+        "llm_request_template",
+        {
+            "request-template-v1.json": GOOD_ENTRIES,
+            "request-template-embed-v1.json": GOOD_ENTRIES,
+        },
+    )
+
+    messages = _title_clashes()
+
+    assert len(messages) == 1 and "llm_request_template_embed" in messages[0], messages
+
+
+def test_versions_of_one_preset_still_share_a_title(tmp_path, monkeypatch):
+    """Newer content of the same document, compared once by name."""
+    root = _point_build_at(tmp_path, monkeypatch)
+    _chat_template_family(
+        root,
+        "request-template",
+        "llm_request_template",
+        {"request-template-v1.json": '{"a": 1}', "request-template-v2.json": GOOD_ENTRIES},
+    )
+
+    assert _title_clashes() == []
+
+
+def test_named_variants_outside_the_selected_gateways_may_share_a_selector(tmp_path, monkeypatch):
+    """`msg-to-channel` and `notify-relay` hold one preset per channel, each with
+    no `applies_to` and the same title, and a listing names the one it wants. Only
+    the gateway `presets._select` fans out over can clash on a selector."""
+    root = _point_build_at(tmp_path, monkeypatch)
+    for slug, name in (("connectivity-a", "msg_to_channel_a"), ("connectivity-b", "msg_to_channel_b")):
+        _family(
+            root,
+            "msg-to-channel",
+            slug,
+            readme=_good_front_matter(preset_name=name, file=f"{slug}.sh.j2"),
+            files={f"{slug}-v1.sh.j2": "echo hi"},
+        )
+
+    assert _title_clashes() == []
