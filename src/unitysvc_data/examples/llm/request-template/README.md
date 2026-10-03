@@ -12,35 +12,48 @@ applies_to = { capability = "chat" }
 # llm / request-template — minimal chat payload, per request format
 
 The default request body the Test Request playground offers for a chat
-service. From v2 it carries one body per request format, keyed by the
-gateway's format names (`input_formats` / `request_formats`), so every
-chat service ships the same document whatever formats it accepts. The
-playground uses `template[format]` for the format the customer picked
-(unitysvc/unitysvc#2508); entries for formats a service doesn't accept are
-ignored.
+service. One document covers one capability — this one is `chat`, as its
+`applies_to` says — and from v3 it is a **list of entries**, each naming the
+request format it is written in:
 
-## Body (v2)
+```json
+[ { "format": "openai",    "body": { "max_tokens": 100, "messages": [ … ] } },
+  { "format": "anthropic", "body": { "max_tokens": 100, "system": "…", "messages": [ … ] } } ]
+```
 
-| Key                | Wire shape                                     |
+The playground picks the document by the service's capability and then the first
+entry whose `format` is the one the customer chose (unitysvc/unitysvc#2514).
+Entries for formats a service doesn't accept are never read. `format` names a
+request format the way the gateway does (apisix-gateways `request_meta`, which
+recognises a request as one by its path or body), and the playground compares it with the
+formats the service lists in `input_formats`, so an entry is reached only by a
+service that lists its format. Every chat service ships this one document whatever
+formats it accepts.
+
+## Other capabilities
+
+Every other capability has a sibling family, `request-template-<capability>`,
+holding the same shape for that one capability: `image-text-to-text`, `embed`,
+`rerank`, `moderate`, `image-generate`, `video-generate`, `speech-to-text` and
+`text-to-speech`. The rules they share are in
+[CONTRIBUTING](../../../../../CONTRIBUTING.md#request-templates).
+
+`image-edit` has no template. Its only code example sends `multipart/form-data`,
+which an entry's JSON body cannot express until entries can carry a
+`content_type` (unitysvc/unitysvc#2514), so there is no honest body to offer and
+a service that declares it sees the playground's empty state. The claim is checked
+against the examples (`tests/test_request_templates.py`), so it will say so when it
+stops being true.
+
+## Body (v3)
+
+| `format`           | Wire shape                                     |
 |--------------------|------------------------------------------------|
 | `openai`           | OpenAI Chat Completions                        |
 | `anthropic`        | Anthropic Messages (`system` is top-level)     |
 | `cohere`           | Cohere v2 Chat (native `/v2/chat`)             |
 | `dashscope`        | DashScope native (`input.messages` + `parameters`) |
 | `bedrock_converse` | Bedrock Converse (content blocks, `inferenceConfig`) |
-
-```json
-{
-  "openai":    { "max_tokens": 100, "messages": [ system, user ] },
-  "anthropic": { "max_tokens": 100, "system": "...", "messages": [ user ] },
-  "cohere":    { "max_tokens": 100, "messages": [ system, user ] },
-  "dashscope": { "input": { "messages": [ system, user ] },
-                 "parameters": { "max_tokens": 100, "result_format": "message" } },
-  "bedrock_converse": { "system": [ { "text": "..." } ],
-                        "messages": [ { "role": "user", "content": [ { "text": "..." } ] } ],
-                        "inferenceConfig": { "maxTokens": 100 } }
-}
-```
 
 Every entry says the same thing: system prompt "You are a helpful
 assistant.", user prompt "Say hello in one sentence.", at most 100 tokens.
@@ -54,23 +67,56 @@ assistant.", user prompt "Say hello in one sentence.", at most 100 tokens.
 - **No `stream` field.** Non-streaming responses are simpler to
   validate in tests; streaming variants belong in separate presets.
 - **No `bedrock_invoke` entry.** InvokeModel's body is the model family's own
-  (Anthropic-on-Bedrock, Llama, Titan, …), so there is no one body to offer.
-  The playground falls back to a blank body for it.
+  (Anthropic-on-Bedrock, Llama, Titan, …), so there is no one body to offer. The
+  code example says as much: its body is the Anthropic Messages shape, and its
+  docstring tells the reader to adjust it for their model family. The playground
+  falls back to a blank body.
+- **No `cerebras` entry.** It is a client library, not a request format: the
+  gateway has no `cerebras` format, and `llm_code_example_cerebras` declares an
+  OpenAI upstream and calls `chat.completions.create` with `model` and
+  `messages`, the shape of the `openai` entry.
+- **One `dashscope` body, though DashScope has two chat surfaces.** The
+  gateway has a single `dashscope` format, and an entry is unique per format, so
+  only one body fits. This is the text-generation shape (`content` is a string,
+  `result_format = "message"`), matching `llm_code_example_chat_dashscope_text_*`.
+  The multimodal-generation surface (`llm_code_example_chat_dashscope_*`) takes
+  `content` as a list of `{"text": …}` parts and no `result_format`, so a service
+  on it is offered a body that is not its own and must edit it.
 
 ## Conventions
 
 - `max_tokens` is kept small (≤ 100) so the request completes fast
   against any upstream regardless of per-token latency.
-- A new request format gets a new key here, in a new version.
+- A new request format gets a new entry here, in a new version.
+- Where a body goes beyond what its code example sends, it is carried over
+  exactly as v2 published it: the `cohere` entry's `max_tokens`, the
+  `bedrock_converse` entry's `system`, and the `dashscope` entry's system message
+  are not in any example, so nothing the test runner executes exercises them.
 
 ## Versions
 
-### v2 — one body per request format
+### v3 — an entry list
+
+- A list of `{"format", "body"}` entries instead of a dict keyed by format. The
+  bodies are v2's, key for key and in the same order; only the packaging moved.
+  A dict makes the format the key and leaves nothing to say about a document
+  holding more than one capability; entries name their own format, and the
+  playground's reader (unitysvc/unitysvc#2515) takes the first entry that
+  matches, so a repeated format would be silently unreachable — which
+  `tools/build.py` now refuses.
+- The title, `applies_to` and preset name are unchanged, so this is the same
+  document on every published service: `llm_request_template` resolves to v3 and
+  re-uploading a catalog replaces the body in place.
+- Needs a playground that reads entry lists (unitysvc/unitysvc#2515). That page
+  reads both shapes, so data and page can ship in either order **only because
+  of that** — an older page shows a list as the raw request body.
+
+### v2 — one body per request format (superseded by v3)
 
 - Keyed by format: `openai`, `anthropic`, `cohere`, `dashscope`,
   `bedrock_converse`. The `openai` entry is v1's body.
 - `applies_to` no longer requires an OpenAI upstream, so every chat service gets
-  this template whatever its dialect — which is what makes one keyed body the
+  this template whatever its dialect — which is what makes one document the
   right shape: a service accepting both OpenAI and Anthropic needs ONE default
   body, and the playground indexes it by the format the customer picked.
   `llm_request_template_anthropic` is removed rather than kept alongside; per-format
@@ -78,6 +124,10 @@ assistant.", user prompt "Say hello in one sentence.", at most 100 tokens.
   way to say which is the default.
 - Needs a playground that picks a format's entry (unitysvc/unitysvc#2508).
   An older one shows the whole map as the body.
+- **Retired, not removed.** Versions are append-only, so the file stays and
+  `llm_request_template_v2` still resolves for a listing that pins it; none of
+  the `unitysvc-services-*` repos does. The version-less alias moved to v3, which
+  is all that `llm_example_collection` ever resolves, so nothing generated serves v2.
 
 ### v1 — initial release
 

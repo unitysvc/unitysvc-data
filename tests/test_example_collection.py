@@ -244,10 +244,10 @@ def test_chat_collection_carries_the_description_and_request_template():
     assert presets_in(docs) >= {"llm_description", "llm_request_template"}
 
 
-def test_every_chat_upstream_gets_the_one_format_keyed_request_template():
-    """v2 keys a body per request format, so an Anthropic upstream no longer
-    needs its own template — and must not get both, which would collide on
-    the title "Default request body"."""
+def test_every_chat_upstream_gets_the_one_request_template():
+    """The template holds an entry per request format, so an Anthropic upstream
+    needs none of its own — and must not get both, which would collide on the
+    title "Default request body"."""
     for upstream in ("openai", "anthropic"):
         docs = llm_example_collection(
             {"capabilities": ["chat"], "formats": ["anthropic"], "upstream_dialect": upstream}
@@ -258,10 +258,16 @@ def test_every_chat_upstream_gets_the_one_format_keyed_request_template():
 
 
 def test_the_request_template_carries_a_body_for_each_request_format():
-    body = json.loads(
+    entries = json.loads(
         Path(doc_preset("llm_request_template")["file_path"]).read_text()
     )
-    assert set(body) == {"openai", "anthropic", "cohere", "dashscope", "bedrock_converse"}
+    # A list of entries that name their own format, not a dict keyed by it. Keys
+    # beyond these two are the reader's to ignore (path_suffix, content_type are
+    # coming), so this asserts presence rather than an exact key set.
+    assert isinstance(entries, list)
+    assert all({"format", "body"} <= set(entry) for entry in entries)
+    body = {entry["format"]: entry["body"] for entry in entries}
+    assert list(body) == ["openai", "anthropic", "cohere", "dashscope", "bedrock_converse"]
     # The gateway recognises each body as its own format by shape
     # (apisix-gateways request_meta.classify); keep the markers it keys on.
     assert "system" in body["anthropic"] and "max_tokens" in body["anthropic"]
@@ -280,6 +286,17 @@ def test_the_pinned_v1_template_is_unchanged():
     assert set(v1) == {"max_tokens", "messages"}
 
 
+def test_the_retired_v2_template_is_still_published_unchanged():
+    """Retired, not removed: versions are append-only, so a listing that pins
+    `llm_request_template_v2` keeps resolving to the dict it was written
+    against. The alias is what moved."""
+    v2 = json.loads(
+        Path(doc_preset("llm_request_template_v2")["file_path"]).read_text()
+    )
+    assert isinstance(v2, dict)
+    assert set(v2) == {"openai", "anthropic", "cohere", "dashscope", "bedrock_converse"}
+
+
 def test_exactly_one_request_template_preset_serves_chat():
     """One keyed body, not one preset per format. A service accepting both
     OpenAI and Anthropic needs ONE default request body — the playground indexes
@@ -287,18 +304,23 @@ def test_exactly_one_request_template_preset_serves_chat():
     two `Default request body` documents with no way to say which is the default.
 
     `llm_request_template_anthropic` was removed rather than kept unselected, so
-    this asserts nothing has reintroduced a second one."""
-    from unitysvc_data import PRESETS
+    this asserts nothing has reintroduced a second one.
 
-    llm_templates = sorted(
-        n for n in PRESETS if "request_template" in n and n.startswith("llm_")
+    Stated over FAMILIES, not preset names: the other capabilities have their own
+    request-template families now, and this must not care how many. Versions of
+    the one family are the same document, which is why they never clash."""
+    from unitysvc_data import MANIFEST, applies_to
+
+    families = sorted(
+        {
+            entry["preset_name"]
+            for key, entry in MANIFEST["presets"].items()
+            if key.startswith("llm_")
+            and entry["category"] == "request_template"
+            and applies_to(entry["preset_name"]).get("capability") == "chat"
+        }
     )
-    # The family plus its version aliases, and nothing else.
-    assert llm_templates == [
-        "llm_request_template",
-        "llm_request_template_v1",
-        "llm_request_template_v2",
-    ], llm_templates
+    assert families == ["llm_request_template"], families
 
 
 def test_sleep_is_applied_to_every_executable_document():
@@ -1133,21 +1155,21 @@ def test_every_capability_example_is_pinned_to_a_wire_shape():
     and a DashScope channel differs on both. `llm_description` is the deliberate
     exception — it constrains nothing because it really does apply to everything.
 
-    `llm_request_template` is the other one: from v2 it carries a body for EVERY
-    request format, keyed by format name, and the playground picks the entry for
-    the format the caller writes. It is pinned to a wire shape per entry rather
-    than per document.
+    The request templates are the other one: each carries a body for EVERY request
+    format, one entry per format, and the playground picks the entry for the format
+    the caller writes. They are pinned to a wire shape per entry rather than per
+    document, so they are exempt by category -- not by a list of names that would
+    need a line for every capability.
     """
     from unitysvc_data import MANIFEST
     from unitysvc_data.presets import applies_to
 
-    keyed_by_format = {"llm_request_template"}
-    names = {r.get("preset_name", k) for k, r in MANIFEST["presets"].items()
-             if k.startswith("llm_")}
-    gaps = sorted(n for n in names
-                  if (a := applies_to(n)).get("capability")
-                  and not a.get("dialect") and not a.get("upstream")
-                  and n not in keyed_by_format)
+    category_of = {r.get("preset_name", k): r["category"] for k, r in MANIFEST["presets"].items()
+                   if k.startswith("llm_")}
+    gaps = sorted(n for n, category in category_of.items()
+                  if category != "request_template"
+                  and (a := applies_to(n)).get("capability")
+                  and not a.get("dialect") and not a.get("upstream"))
     assert gaps == [], f"these name a capability but no wire shape: {gaps}"
 
 
@@ -1209,8 +1231,12 @@ def test_omni_audio_examples_are_chat_shaped_and_stream_for_output():
         "formats": [{"formats": ["dashscope_multimodal"], "interface": "dashscope",
                      "upstream_dialect": "dashscope"}],
     })
+    # Executable documents only. The request templates carry the same capability
+    # labels in their titles, but they are JSON that nothing runs, and they hold
+    # no code to check for `messages` or an SSE header.
     audio = {t: d for t, d in docs.items()
-             if "speech" in t or "transcription" in t}
+             if d["category"] in ("code_example", "connectivity_test")
+             and ("speech" in t or "transcription" in t)}
     assert len(audio) == 8, f"expected 4 speech + 4 transcription, got {sorted(audio)}"
 
     for title, doc in audio.items():

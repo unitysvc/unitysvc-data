@@ -1,0 +1,21 @@
+[
+  {
+    "format": "openai",
+    "body": {
+      "input": "I love building and shipping new features for our users!",
+      "voice": "alloy",
+      "response_format": "wav"
+    }
+  },
+  {
+    "format": "dashscope",
+    "body": {
+      "input": {
+        "text": "Hello from UnitySVC"
+      },
+      "parameters": {
+        "voice": "Cherry"
+      }
+    }
+  }
+]

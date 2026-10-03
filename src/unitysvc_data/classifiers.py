@@ -49,6 +49,13 @@ class Classifier(NamedTuple):
     #: Why the label is empty, or anything else a reader needs. Documentation
     #: only; nothing reads it.
     note: str = ""
+    #: The ``feature`` that names this value when its own ``label`` is empty.
+    #: ``titles.title`` renders that feature's label for a document of this value
+    #: whether or not the document declares the feature itself, so the title is
+    #: told apart from a bare sibling by construction rather than by every
+    #: document remembering to say so. Only meaningful on an unlabelled value;
+    #: ``check_registry`` rejects a carrier that renders nothing.
+    carried_by: str = ""
 
 
 # --------------------------------------------------------------------------- #
@@ -60,7 +67,13 @@ class Classifier(NamedTuple):
 # --------------------------------------------------------------------------- #
 CAPABILITIES: dict[str, Classifier] = {
     "chat": Classifier("", note="A bare title already reads as chat; labelling it would churn nearly every published service for no gain."),
-    "image-text-to-text": Classifier("", note="Carried by the `vision` feature bit instead, so it cannot collide with a labelled sibling."),
+    "image-text-to-text": Classifier(
+        "",
+        carried_by="vision",
+        note="Carried by the `vision` feature bit instead, so it cannot collide with a labelled sibling. "
+        "The title builder applies that bit itself (see `carried_by`), because a document with no "
+        "feature of its own -- a request template -- would otherwise render exactly like chat.",
+    ),
     "embed": Classifier("embeddings"),
     "rerank": Classifier("rerank"),
     "moderate": Classifier("moderation"),
@@ -176,9 +189,16 @@ AXES: dict[str, Axis] = {
 #: because two unlabelled values on a co-occurring axis render one title:
 #:
 #: * ``chat`` and ``image-text-to-text`` are both unlabelled, and would collide
-#:   -- except that declaring ``image-text-to-text`` implies the ``vision``
-#:   feature (see ``presets._VISION_CAPABILITIES``), so its examples always
-#:   carry the ``vision`` qualifier and the pair is unreachable.
+#:   -- except that ``image-text-to-text`` is *carried by* the ``vision``
+#:   feature: ``titles.title`` renders that qualifier for every document of the
+#:   capability, whatever category it is and whether or not it declares the
+#:   feature, so the pair is distinct by construction. (This used to rest on
+#:   every image-text-to-text EXAMPLE declaring ``feature = "vision"``, which a
+#:   request template -- declaring no feature at all -- does not. The reasoning
+#:   held for examples and failed for the first document that was not one.)
+#:   What construction does not cover is a CHAT document that itself declares
+#:   ``feature = "vision"``: it would render like an image-text-to-text one, and
+#:   the corpus check in ``tools/build.py`` is what rejects that.
 #: * ``openai`` is the platform's default dialect; naming it in every title
 #:   would say nothing.
 #:
@@ -229,8 +249,41 @@ def check_registry() -> list[str]:
     """
     problems: list[str] = []
     for axis_name, axis in sorted(AXES.items()):
+        for value, entry in sorted(axis.values.items()):
+            if not entry.carried_by:
+                continue
+            carrier = FEATURES.get(entry.carried_by)
+            if entry.label:
+                problems.append(
+                    f"{axis_name} {value!r} has both the label {entry.label!r} and "
+                    f"carried_by {entry.carried_by!r}. carried_by stands in for a label "
+                    f"the value does not have; with one, it only adds a second qualifier."
+                )
+            if carrier is None or not carrier.label:
+                problems.append(
+                    f"{axis_name} {value!r} is carried_by {entry.carried_by!r}, which "
+                    f"{'is not a registered feature' if carrier is None else 'has no label'}, "
+                    f"so it would render nothing and the value would still be bare."
+                )
         if not axis.co_occurs:
             continue  # titles may coincide; nothing to keep distinct
+        # A value is BARE when nothing names it: no label, and no feature carrying
+        # it. Two bare values render the same title, whatever else a document says.
+        # This is stated over the declared values, so it is the part of the
+        # argument that does not depend on what any example declares. Only values
+        # declared in UNLABELLED are counted: one missing from it is reported by
+        # the check below, and naming it twice would make one defect read as two.
+        bare = sorted(
+            v
+            for v, e in axis.values.items()
+            if not e.label and not e.carried_by and (axis_name, v) in UNLABELLED
+        )
+        if len(bare) > 1:
+            problems.append(
+                f"{axis_name} values {bare} are all bare -- no label and no carried_by -- "
+                f"so their titles are identical and one would silently overwrite the other. "
+                f"Label all but one, or name the feature that carries each."
+            )
         by_label: dict[str, list[str]] = {}
         for value, entry in sorted(axis.values.items()):
             if not entry.label:
@@ -277,6 +330,19 @@ def label(axis: str, value: str | None) -> str:
     axis_entry = AXES.get(axis)
     entry = axis_entry.values.get(value) if axis_entry else None
     return entry.label if entry else ""
+
+
+def carried_by(axis: str, value: str | None) -> str:
+    """The feature that names a value its own label does not, or ``""``.
+
+    Like :func:`label`, an unregistered value yields ``""`` rather than raising:
+    validation is what rejects it, this only refuses to invent a qualifier.
+    """
+    if value is None:
+        return ""
+    axis_entry = AXES.get(axis)
+    entry = axis_entry.values.get(value) if axis_entry else None
+    return entry.carried_by if entry else ""
 
 
 def is_caller_dialect(value: str | None) -> bool:
