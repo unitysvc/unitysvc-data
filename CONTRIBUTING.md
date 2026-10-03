@@ -520,7 +520,10 @@ the shape:
   and the playground matches on capability alone. Selection needs no code --
   `llm_example_collection` picks it the way it picks every document
   (`presets._applies`), so a service gets the template for each capability it
-  declares and no other.
+  declares and no other. Give each capability a directory of its own
+  (`request-template-<capability>/`): a `request-template-<capability>-v1.json`
+  filed inside another family is a variant, which inherits that README's
+  `applies_to` -- the wrong capability, and a title that replaces the other's.
 - **A list of entries, each naming its format.**
 
   ```json
@@ -536,8 +539,8 @@ the shape:
 - **`format` is a request format, not a client.** Use the gateway's name for it
   (`openai`, `anthropic`, `cohere`, `dashscope`, `bedrock_converse`, ...), which
   must be registered in `classifiers.DIALECTS`. A client library for a format
-  already listed is not a format of its own (`cerebras` is one for `openai`), and the three
-  DashScope tokens (`dashscope_text`, `dashscope_multimodal`,
+  already listed is not a format of its own (`cerebras` is one for `openai`),
+  and the three DashScope tokens (`dashscope_text`, `dashscope_multimodal`,
   `dashscope_audio_task`) are surfaces of the one `dashscope` format, so a
   document holds one DashScope body per capability and has to pick. The
   playground compares `format` with the formats a service lists in
@@ -555,7 +558,7 @@ the shape:
   service with the same title would silently replace each other. Chat's is
   `Default request body` and must never change; every other capability adds its
   label (`Default request body (embeddings)`), and image-text-to-text reads
-  `(vision)`, the feature the registry says carries it. Neither is yours to set.
+  `(vision)`, the feature the registry says carries it. None of these is yours to set.
 - **A new shape is a new version.** The alias moves to it and the older versions
   stay, exactly as for any other preset. Do not amend a published version.
 

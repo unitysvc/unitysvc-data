@@ -25,7 +25,7 @@ The playground picks the document by the service's capability and then the first
 entry whose `format` is the one the customer chose (unitysvc/unitysvc#2514).
 Entries for formats a service doesn't accept are never read. `format` names a
 request format the way the gateway does (apisix-gateways `request_meta`, which
-recognises a body as one by its shape), and the playground compares it with the
+recognises a request as one by its path or body), and the playground compares it with the
 formats the service lists in `input_formats`, so an entry is reached only by a
 service that lists its format. Every chat service ships this one document whatever
 formats it accepts.
