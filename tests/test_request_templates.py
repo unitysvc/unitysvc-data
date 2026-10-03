@@ -108,7 +108,7 @@ NO_TEMPLATE = {
     "which an entry's JSON body cannot express",
 }
 
-#: What each non-chat title reads, pinned because a title is a document's key.
+#: What each capability's template title reads, pinned because a title is a document's key.
 TITLES = {
     "chat": "Default request body",
     "image-text-to-text": "Default request body (vision)",

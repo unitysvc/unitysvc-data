@@ -695,7 +695,7 @@ def _template_tree(tmp_path, monkeypatch, files: dict[str, str], *, capability: 
     return root
 
 
-def _template_errors(presets_discovered=None) -> list[str]:
+def _template_errors() -> list[str]:
     errors = build.BuildErrors()
     presets, _aliases = build.discover(errors)
     assert not errors, errors.messages
