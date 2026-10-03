@@ -1,6 +1,7 @@
 [
   {
     "format": "openai",
+    "path_suffix": "${__version_prefix__}/images/generations",
     "body": {
       "prompt": "An astronaut riding a horse on Mars",
       "n": 1,

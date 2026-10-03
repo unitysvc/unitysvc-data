@@ -532,10 +532,11 @@ the shape:
   ```
 
   The reader takes the first entry that names the format and ignores keys it does
-  not know, which is how `path_suffix` and `content_type` can arrive later.
-  `tools/build.py` fails on what the reader could never reach: a repeated
-  `format`, a missing or unregistered one, a missing `body`, and a latest version
-  that is not a list. Older versions keep the shape they were published in.
+  not know, which is how `path_suffix` could arrive after the bodies and
+  `content_type` still can. `tools/build.py` fails on what the reader could never
+  reach: a repeated `format`, a missing or unregistered one, a missing `body`, a
+  `path_suffix` that is not a path, and a latest version that is not a list. Older
+  versions keep the shape they were published in.
 - **`format` is a request format, not a client.** Use the gateway's name for it
   (`openai`, `anthropic`, `cohere`, `dashscope`, `bedrock_converse`, ...), which
   must be registered in `classifiers.DIALECTS`. A client library for a format
@@ -553,6 +554,34 @@ the shape:
   request is not a JSON body (`multipart/form-data`, or one that only works with a
   header the entry cannot carry), there is no honest entry yet. No document is
   better than a wrong one, and the playground shows an explicit empty state.
+- **Give each entry the path its example posts to.** The playground appends
+  `path_suffix` to the service's base URL; an entry without one is sent to the base
+  URL itself, which is a 404 for every OpenAI-format capability but chat. Read it off
+  the example, never off an API's documentation (a test re-derives every one, and all
+  three client variants of an example must agree). The OpenAI-shaped examples build
+  theirs from `${__version_prefix__}`: `/v1` unless a listing says otherwise, and
+  Cohere's compatibility surface is `/compatibility/v1`, crofai's API `/v2`, the
+  platform's facades nothing. A template whose example does so declares the same
+  parameter with the same default (`parameters = { version_prefix = "/v1" }`), and
+  `llm_example_collection` broadcasts the listing's value to it exactly as it does to
+  the examples; writing `/v1/...` instead would document those services at a path that
+  404s. So a path is a function of the capability and the format the *customer*
+  speaks, plus that one seller-set segment: `/v1/messages` is `/v1/messages` whatever
+  the upstream is, because the gateway translates. A listing that differs in any
+  other way replaces the document by title, with a sibling key beside the
+  `$llm_example_collection` sentinel. Three kinds of entry omit the key. One whose
+  example posts to the bare service URL (DashScope's native endpoints): the page
+  treats a missing or blank `path_suffix` as absent, so `""` adds nothing and `"/"` is
+  a different request, a trailing slash. One whose example hands the base URL to an
+  SDK that appends the path itself (Cohere), because the page's format registry
+  already carries it. And one whose path carries the service's own model (Hugging
+  Face; Bedrock Converse, whose right value also varies by service): a `path_suffix`
+  is one string per capability and format and cannot say "it depends on the
+  service", and the page does not substitute inside it. That last is a known
+  limitation of the contract (unitysvc#2514, noted on unitysvc#2516), not something
+  to work around: do not invent a substitution syntax in a template. The build
+  refuses a value that is not a path, a blank one, `/`, and one holding a placeholder
+  nothing substitutes.
 - **Do not choose a title.** It is derived, and it is the document's key: the
   backend upserts on `(entity_id, context_type, title)`, so two templates for one
   service with the same title would silently replace each other. Chat's is
@@ -560,7 +589,12 @@ the shape:
   label (`Default request body (embeddings)`), and image-text-to-text reads
   `(vision)`, the feature the registry says carries it. None of these is yours to set.
 - **A new shape is a new version.** The alias moves to it and the older versions
-  stay, exactly as for any other preset. Do not amend a published version.
+  stay, exactly as for any other preset. Do not amend a published version unless
+  both facts of "The one exception" above hold. Adding `path_suffix` is the worked
+  case: an OpenAI-shaped entry for a capability other than chat could not be sent
+  without a path, so the published v1 of those families had no working behaviour to
+  pin to and was amended in place; chat's published v3 worked, since the playground
+  falls back to the format's own default path for chat, so its paths are v4.
 
 ## Filename and directory conventions, in one place
 

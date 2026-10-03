@@ -1,6 +1,7 @@
 [
   {
     "format": "openai",
+    "path_suffix": "${__version_prefix__}/audio/speech",
     "body": {
       "input": "I love building and shipping new features for our users!",
       "voice": "alloy",

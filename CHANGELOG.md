@@ -17,6 +17,155 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.13] — request templates carry the path they are sent to
+
+All 689 titles that existed in 0.2.12 are byte-identical, and no service gains or
+loses a document: the same documents, with more in them. The one thing that changes
+on a published service is what its request templates hold.
+
+0.2.12 gave every capability a request template, but an entry named only a format and
+a body. The playground appends a path to the service's base URL, and with none to
+append it sent the body to the base URL itself: a 404 for every OpenAI-format
+capability but chat (seen on staging with a vision request,
+[unitysvc#2516](https://github.com/unitysvc/unitysvc/pull/2516)). Each entry that can
+say where it is sent now does.
+
+### Added
+
+- **`path_suffix` on nine of the seventeen request-template entries**: those whose code
+  example states a path. Each is read off the example the entry's body came from, never
+  from an API's documentation, and a test re-derives all nine from the examples (every
+  client variant of an example must agree). The playground appends it to the service's base
+  URL. The key is `path_suffix` on both sides; the original text of
+  [#2514](https://github.com/unitysvc/unitysvc/issues/2514) says `path`, from before the
+  rename.
+
+  | capability           | format             | `path_suffix`                              |
+  |----------------------|--------------------|--------------------------------------------|
+  | `chat`               | `openai`           | `${__version_prefix__}/chat/completions`   |
+  | `chat`               | `anthropic`        | `/v1/messages`                             |
+  | `chat`               | `dashscope`        | none (bare base URL)                       |
+  | `chat`               | `cohere`           | none (the SDK owns the path)               |
+  | `chat`               | `bedrock_converse` | none (known limitation)                    |
+  | `image-text-to-text` | `openai`           | `${__version_prefix__}/chat/completions`   |
+  | `embed`              | `openai`           | `${__version_prefix__}/embeddings`         |
+  | `embed`              | `cohere`           | `${__version_prefix__}/embed`              |
+  | `embed`              | `dashscope`        | none (bare base URL)                       |
+  | `embed`              | `huggingface`      | none (known limitation)                    |
+  | `rerank`             | `openai`           | `${__version_prefix__}/rerank`             |
+  | `moderate`           | `openai`           | `${__version_prefix__}/chat/completions`   |
+  | `image-generate`     | `openai`           | `${__version_prefix__}/images/generations` |
+  | `video-generate`     | `huggingface`      | none (known limitation)                    |
+  | `speech-to-text`     | `dashscope`        | none (bare base URL)                       |
+  | `text-to-speech`     | `openai`           | `${__version_prefix__}/audio/speech`       |
+  | `text-to-speech`     | `dashscope`        | none (bare base URL)                       |
+
+  `${__version_prefix__}` is substituted when the document is built, so a page only
+  ever sees a path. Nothing the page receives is a placeholder, and every value starts
+  with `/`.
+
+- **A guard on the value itself.** `tools/build.py` refuses a `path_suffix` that is not a
+  string, is a URL or `//host` rather than a path, contains whitespace, is blank or `/`
+  (see the bare base URL below), or still holds a `${...}` or `{{ ... }}` once the family's
+  declared parameters are applied (a request template is plain JSON, never rendered, so such
+  a value would be sent literally). Every one of those yields a request that looks plausible
+  and fails.
+
+### What a path is a function of
+
+These templates are shared by every LLM service, so a single `path_suffix` per
+(capability, format) asserts one customer-facing path for a capability whatever any
+individual upstream uses. That is the design and it is correct: **the path is a function
+of the capability and the format the customer speaks, not of the seller's upstream.** The
+format name is already a promise about request shape; `path_suffix` makes the path half
+of that promise explicit instead of leaving each page to infer it.
+
+A translated service proves it. The customer sends `/v1/messages` to an
+`anthropic`-format service whose upstream speaks OpenAI, and the gateway translates:
+`llm_code_example_anthropic_to_openai_requests` calls the upstream at its own path only
+under `local_testing`, while the customer's call is the literal `/v1/messages`.
+
+One refinement, which the examples force and the paths above already carry. Where the
+gateway proxies an OpenAI-format request to an OpenAI-compatible upstream without
+translating, the customer's path continues into the seller's own layout (the gateway
+composes `base_url` and the path), and the examples express that as one parameter,
+`version_prefix`: `/v1` unless a listing says otherwise. Cohere's compatibility surface is
+`/compatibility/v1`, crofai's API is `/v2`, and the platform's own facades have none. The
+templates take the same parameter with the same default, so a service gets the shared
+`/v1/...` unless it already says otherwise for its examples, in which case its templates
+agree with them. A static `/v1/...` would have documented those catalogs at a path that
+404s, which is the failure this release exists to end.
+
+**The escape hatch.** A listing that genuinely deviates in any other way is not stuck with
+the shared path: it can replace a document by title with a sibling key beside the
+`$llm_example_collection` sentinel (`expand_presets` merges siblings over the expanded
+mapping).
+
+### Entries without a path, on purpose
+
+The rule is the same as for bodies: a path comes from an example or it is not written.
+Eight entries have none, for three different reasons.
+
+- **The bare base URL: `dashscope`, four entries.** DashScope's native endpoints are the
+  service URL itself, in every client variant of every example, so there is nothing to
+  append and the key is omitted. The page treats a missing or blank `path_suffix` as absent
+  and appends nothing, which is exactly that. `""` would add nothing, and `"/"` would
+  append a trailing slash, a different request; the build refuses both.
+- **The SDK owns the path: `chat` / `cohere`.** Its example hands the base URL to the
+  Cohere SDK, which appends the path itself, and the playground's format registry already
+  carries the native Cohere chat path, so the entry needs no key of its own.
+- **Known limitation, not an oversight: the path depends on the service.** `embed` and
+  `video-generate` for `huggingface`, and `chat` for `bedrock_converse`. Hugging Face puts
+  the model name in the path, and Bedrock Converse's path carries the model id and varies
+  by service inside the one entry. A `path_suffix` is one string per capability and format
+  and cannot say "it depends on the service", and the page merges `model` into the body
+  rather than substituting inside the path. That is a gap in the contract, recorded on
+  [unitysvc#2516](https://github.com/unitysvc/unitysvc/pull/2516) and raised on
+  [#2514](https://github.com/unitysvc/unitysvc/issues/2514), where whether `path_suffix`
+  should support substitution is decided. **No substitution syntax is invented here**: these
+  three entries omit the key and the playground appends nothing, as it did before. Until the
+  contract changes, a service on one of them leaves the path to the customer.
+
+### Amended, and the new version
+
+Adding a key changes what an already-published version does, which CONTRIBUTING calls an
+amendment and allows only when two facts hold together: the behaviour being preserved no
+longer exists, and the version-less alias carries essentially all the traffic. Applied
+family by family, because the facts differ:
+
+- **Amended in place, six families** (`image-text-to-text`, `embed`, `rerank`,
+  `moderate`, `image-generate`, `text-to-speech`; v1 each): their v1, released hours earlier
+  in 0.2.12, could not be sent. An OpenAI-shaped body with no path is posted to the base URL
+  and fails, so there is no working behaviour to pin to, and nothing could pin a version that
+  new: the families did not exist before 0.2.12, no repository names them, and
+  `llm_example_collection` resolves the alias. A v2 would have repointed the alias to the
+  same effect and left six v1 files that fail. The bodies, formats and their order are
+  unchanged (a diff of each file with `path_suffix` removed is empty), and each family's
+  README records it under v1.
+- **`chat` is a new version, v4**, and `llm_request_template` resolves to it. Chat's
+  published v3 works as it stands: the playground falls back to the format's own default
+  path for a chat request, so the first fact fails and the rule is to publish a new
+  version. v3 stays byte-identical for a listing that pins it. v4 is v3 plus the paths, and
+  a test pins that its bodies, formats and order are v3's.
+- **`speech-to-text` and `video-generate` are untouched**: neither has an entry with a
+  path, so their data does not change. Their READMEs now say why.
+- **One shared edit.** The families whose paths use the prefix declare
+  `parameters = { version_prefix = "/v1" }` in their front-matter, which every version of a
+  family shares. For chat that includes v1 to v3, none of which contains a placeholder, so
+  their content is byte-identical; only the record's `file_path` now points at a
+  per-process copy, as for any preset that declares parameters.
+
+### Consumers
+
+- **The page may ship before or after this release.** It ignores keys it does not read, so
+  0.2.13 changes nothing until a page reads `path_suffix`; the page that does falls back to
+  today's behaviour for an entry that has none.
+- **A missing, blank or non-string `path_suffix` is absent to the page**, which is why an
+  entry that posts to the bare base URL omits the key rather than carrying `""` or `"/"`.
+- Not in this release: the vision template still inlines its test image as a data URI.
+  Replacing it with a URL needs the attachment picker to replace an image part rather than
+  append one.
+
 ## [0.2.12] — a request template per capability, as a list of entries
 
 All 681 titles that existed in 0.2.11 are byte-identical. The one document whose

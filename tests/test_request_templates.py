@@ -39,10 +39,10 @@ def _bodies(entries: list[dict]) -> dict[str, dict]:
 # --------------------------------------------------------------------------- #
 # The chat template: migrated in shape, not rewritten
 # --------------------------------------------------------------------------- #
-def test_the_alias_resolves_to_the_entry_list():
+def test_the_alias_resolves_to_the_newest_entry_list():
     """What `llm_example_collection` and every `$doc_preset: llm_request_template`
-    get is the newest version, and that is the one in the new shape."""
-    assert ALIASES["llm_request_template"] == "llm_request_template_v3"
+    get is the newest version, and that is in the entry-list shape."""
+    assert ALIASES["llm_request_template"] == "llm_request_template_v4"
     assert isinstance(_read("llm_request_template"), list)
 
 
@@ -56,6 +56,27 @@ def test_v3_is_v2_repackaged_not_rewritten():
 
     assert _bodies(v3) == v2
     assert [entry["format"] for entry in v3] == list(v2)
+
+
+def test_v4_is_v3_plus_paths_not_rewritten():
+    """v3 was published without a path and still works, so the paths arrive as a new
+    version rather than an edit (CONTRIBUTING, "The one exception": an amendment needs
+    the old behaviour to be gone, and chat's is not). Everything else is v3's, again:
+    the bodies, the formats and their order."""
+    v3 = _read("llm_request_template_v3")
+    v4 = _read("llm_request_template_v4")
+
+    assert _bodies(v4) == _bodies(v3)
+    assert [entry["format"] for entry in v4] == [entry["format"] for entry in v3]
+
+
+def test_the_published_v3_chat_template_is_unchanged():
+    """Retired, not edited: a listing that pins v3 gets the entries it was written
+    against, and none of them has a path."""
+    v3 = _read("llm_request_template_v3")
+
+    assert [entry["format"] for entry in v3] == ["openai", "anthropic", "cohere", "dashscope", "bedrock_converse"]
+    assert all("path_suffix" not in entry for entry in v3)
 
 
 def test_every_chat_entry_is_a_format_the_gateway_names():
@@ -75,7 +96,7 @@ def test_chat_is_served_by_one_family_and_it_names_chat():
     ]
 
     assert {entry["preset_name"] for entry in chat} == {"llm_request_template"}
-    assert [entry["version"] for entry in chat] == [1, 2, 3]
+    assert [entry["version"] for entry in chat] == [1, 2, 3, 4]
 
 
 # --------------------------------------------------------------------------- #
@@ -425,3 +446,328 @@ def test_the_inlined_image_is_the_one_the_examples_fetch(capability, fmt):
     header, payload = uris[0].split(",", 1)
     assert header == "data:image/jpeg;base64"
     assert base64.b64decode(payload) == IMAGE
+
+
+# --------------------------------------------------------------------------- #
+# Paths: `path_suffix`, read off the example rather than remembered
+# --------------------------------------------------------------------------- #
+#
+# The playground appends a template's `path_suffix` to the service's base URL.
+# Without one it sends the body to the base URL itself, which is a 404 for every
+# OpenAI-format capability but chat. Each path here is what the example the body
+# came from posts to -- those are exercised against real upstreams by `run-tests`,
+# so their paths are verified and a path written from knowledge of an API is only
+# plausible. All three client variants of an example (requests, shell, JavaScript)
+# must agree, which is three independent statements of the same URL.
+#
+# An entry falls into exactly one of four classes, and only the first has the key:
+#   * PATH_FROM          its examples state a path;
+#   * BARE               its examples post to the service URL itself, so there is nothing to
+#                        append. The page treats a missing or blank `path_suffix` as absent, so
+#                        the key is omitted rather than written as "" (or "/", which would add a
+#                        trailing slash and so be a different request);
+#   * SDK_OWNED          its example hands the base URL to an SDK that appends the path itself,
+#                        and the playground's own format registry already carries that path;
+#   * SERVICE_DEPENDENT  the path carries the service's own model, so no single string is right
+#                        for every service. A KNOWN LIMITATION OF THE CONTRACT (unitysvc#2514,
+#                        recorded on unitysvc#2516), not an oversight and not something to work
+#                        around in the data.
+
+#: How the OpenAI-shaped examples spell the one segment a seller's upstream may move.
+VERSION_PREFIX = "${__version_prefix__}"
+
+#: (capability, format) -> the raw-HTTP examples whose URL the entry's path is.
+PATH_FROM = {
+    ("chat", "openai"): ["llm_code_example_requests", "llm_code_example_shell", "llm_code_example_javascript"],
+    ("chat", "anthropic"): ["llm_code_example_anthropic_shell", "llm_code_example_anthropic_javascript"],
+    ("image-text-to-text", "openai"): [
+        "llm_code_example_vision_requests",
+        "llm_code_example_vision_shell",
+        "llm_code_example_vision_javascript",
+    ],
+    ("embed", "openai"): [
+        "llm_code_example_embed_requests",
+        "llm_code_example_embed_shell",
+        "llm_code_example_embed_javascript",
+    ],
+    ("embed", "cohere"): [
+        "llm_code_example_embed_image_requests",
+        "llm_code_example_embed_image_shell",
+        "llm_code_example_embed_image_javascript",
+    ],
+    ("rerank", "openai"): [
+        "llm_code_example_rerank_requests",
+        "llm_code_example_rerank_shell",
+        "llm_code_example_rerank_javascript",
+    ],
+    ("moderate", "openai"): [
+        "llm_code_example_guard_requests",
+        "llm_code_example_guard_shell",
+        "llm_code_example_guard_javascript",
+    ],
+    ("image-generate", "openai"): [
+        "llm_code_example_image_requests",
+        "llm_code_example_image_shell",
+        "llm_code_example_image_javascript",
+    ],
+    ("text-to-speech", "openai"): [
+        "llm_code_example_tts_requests",
+        "llm_code_example_tts_shell",
+        "llm_code_example_tts_javascript",
+    ],
+}
+
+#: (capability, format) -> the raw-HTTP examples that post to the bare service URL. DashScope's
+#: native endpoints are the service URL, so nothing is appended and the entry has no key.
+BARE = {
+    ("chat", "dashscope"): [
+        "llm_code_example_chat_dashscope_text_requests",
+        "llm_code_example_chat_dashscope_text_shell",
+        "llm_code_example_chat_dashscope_text_javascript",
+    ],
+    ("embed", "dashscope"): [
+        "llm_code_example_embed_dashscope_requests",
+        "llm_code_example_embed_dashscope_shell",
+        "llm_code_example_embed_dashscope_javascript",
+    ],
+    ("speech-to-text", "dashscope"): [
+        "llm_code_example_asr_dashscope_requests",
+        "llm_code_example_asr_dashscope_shell",
+        "llm_code_example_asr_dashscope_javascript",
+    ],
+    ("text-to-speech", "dashscope"): [
+        "llm_code_example_tts_dashscope_requests",
+        "llm_code_example_tts_dashscope_shell",
+        "llm_code_example_tts_dashscope_javascript",
+    ],
+}
+
+#: (capability, format) -> (example, marker, why). The example hands the base URL to an SDK, which
+#: appends the path itself, so the example states none; and the playground's own format registry
+#: already carries the native Cohere chat path, so the entry needs no key of its own.
+SDK_OWNED = {
+    ("chat", "cohere"): (
+        "llm_code_example_cohere",
+        "cohere.ClientV2(",
+        (
+            "its only example hands the base URL to the Cohere SDK, which appends the path "
+            "itself, and the playground's format registry already carries it"
+        ),
+    ),
+}
+
+#: (capability, format) -> (example, [(scope, marker), ...], why). KNOWN LIMITATION OF THE CONTRACT.
+#:
+#: The path carries the service's own model, and the right value varies by SERVICE inside the one
+#: entry: Hugging Face puts the model name in `/models/<model>`, and Bedrock Converse's depends on
+#: the service URL (an interface that already carries `/model/<modelId>` needs only `/converse`,
+#: while a shared provider path builds `<service URL>-runtime/model/<modelId>/converse`). A
+#: `path_suffix` is one string per (capability, format), so it cannot say "it depends on the
+#: service", and the page merges `model` into the body rather than substituting inside the path.
+#: Whether `path_suffix` should support substitution is a decision for unitysvc#2514; no syntax
+#: is invented here, and these entries omit the key. Each marker is re-checked against the
+#: example so the reason cannot go stale.
+SERVICE_DEPENDENT = {
+    ("chat", "bedrock_converse"): (
+        "llm_code_example_bedrock_converse",
+        [("source", 'if "/model/" in service_url:'), ("source", 'service_url + "-runtime"')],
+        (
+            "boto3 builds the path from a service URL whose shape varies by service: a native-runtime "
+            "interface already carries /model/<modelId>, a shared provider path does not"
+        ),
+    ),
+    ("embed", "huggingface"): (
+        "llm_code_example_sentencetransformers_requests",
+        [("path", "routing_key.model")],
+        "the example's path ends in the service's own model name",
+    ),
+    ("video-generate", "huggingface"): (
+        "llm_code_example_ttv_requests",
+        [("path", "routing_key.model")],
+        "the example's path ends in the service's own model name",
+    ),
+}
+
+_SERVICE_URL = re.compile(r"""["`]\{\{\s*service_base_url\s*\}\}([^"`]*)["`]""")
+
+
+def _bundled(preset: str) -> str:
+    """A preset's file exactly as shipped: placeholders unsubstituted."""
+    target = ALIASES.get(preset, preset)
+    return (EXAMPLES / MANIFEST["presets"][target]["example_file"]).read_text(encoding="utf-8")
+
+
+def _example_path(example: str) -> str:
+    """What a raw-HTTP example appends to the service's base URL, as written."""
+    found = _SERVICE_URL.findall(_bundled(example))
+    assert len(found) == 1, f"{example} has {len(found)} service URLs, expected exactly one: {found}"
+    return found[0]
+
+
+def _entries_as_shipped(capability: str) -> list[dict]:
+    """The template's entries with the version-prefix placeholder still in them."""
+    return json.loads(_bundled(_templates()[capability]))
+
+
+def _entry(capability: str, fmt: str) -> dict:
+    return next(e for e in _entries_as_shipped(capability) if e["format"] == fmt)
+
+
+def test_every_entry_has_a_path_or_a_recorded_reason_it_has_none():
+    pairs = {(c, e["format"]) for c in OFFERED for e in _entries_as_shipped(c)}
+    without = {(c, e["format"]) for c in OFFERED for e in _entries_as_shipped(c) if "path_suffix" not in e}
+
+    classes = [set(PATH_FROM), set(BARE), set(SDK_OWNED), set(SERVICE_DEPENDENT)]
+
+    assert pairs == set().union(*classes), "an entry was added or removed: give it a path or a reason"
+    assert sum(len(c) for c in classes) == len(pairs), "an entry is in more than one class"
+    assert without == set(BARE) | set(SDK_OWNED) | set(SERVICE_DEPENDENT), (
+        "exactly the entries without a path omit the key"
+    )
+
+
+@pytest.mark.parametrize(("capability", "fmt"), sorted(PATH_FROM))
+def test_a_path_is_the_one_its_examples_post_to(capability, fmt):
+    """Not remembered from an API's documentation: read off the examples, all three
+    of which (requests, shell, JavaScript) must say the same thing."""
+    stated = {example: _example_path(example) for example in PATH_FROM[capability, fmt]}
+
+    assert len(set(stated.values())) == 1, f"the examples disagree about the path: {stated}"
+    assert _entry(capability, fmt)["path_suffix"] == next(iter(stated.values()))
+
+
+@pytest.mark.parametrize(("capability", "fmt"), sorted(SDK_OWNED))
+def test_an_sdk_owned_path_is_not_stated_by_its_example(capability, fmt):
+    """The example is an SDK call, so there is no URL in it to read a path off, and the key is
+    omitted rather than filled from the API's documentation."""
+    example, marker, reason = SDK_OWNED[capability, fmt]
+    source = _bundled(example)
+
+    assert marker in source, f"{example} no longer contains {marker!r}, so: {reason}"
+    assert not any(call in source for call in ("requests.post(", "curl ", "fetch("))
+    assert "path_suffix" not in _entry(capability, fmt)
+
+
+@pytest.mark.parametrize(("capability", "fmt"), sorted(SERVICE_DEPENDENT))
+def test_a_service_dependent_path_has_the_reason_it_was_given(capability, fmt):
+    """The known limitation, checked against the examples it is about: the path carries the
+    service's own model, or is built from a service URL whose shape varies."""
+    example, markers, reason = SERVICE_DEPENDENT[capability, fmt]
+    haystacks = {"source": _bundled(example), "path": None}
+    if any(scope == "path" for scope, _marker in markers):
+        haystacks["path"] = _example_path(example)
+
+    for scope, marker in markers:
+        assert marker in haystacks[scope], f"{example} no longer has {marker!r} in its {scope}: {reason}"
+    assert "path_suffix" not in _entry(capability, fmt)
+
+
+@pytest.mark.parametrize(("capability", "fmt"), sorted(BARE))
+def test_an_entry_that_posts_to_the_bare_service_url_omits_the_key(capability, fmt):
+    """DashScope's native endpoints are the service URL itself:
+    `requests.post("{{ service_base_url }}", ...)`, in every client variant, and a raw HTTP call
+    rather than an SDK that appends something. There is no suffix to append. The page treats a
+    missing, blank or non-string `path_suffix` as absent and falls back, so omission is how that is
+    said; writing "" adds nothing and "/" is a different request (a trailing slash)."""
+    for example in BARE[capability, fmt]:
+        source = _bundled(example)
+        assert _example_path(example) == "", f"{example} appends something to the service URL"
+        assert any(call in source for call in ("requests.post(", "curl ", "fetch(")), (
+            f"{example} is not a raw HTTP call, so an empty remainder would mean nothing"
+        )
+    assert "path_suffix" not in _entry(capability, fmt)
+
+
+def test_only_dashscope_posts_to_the_bare_service_url():
+    """The four are every entry that does, by what the examples do and not by name."""
+    assert {fmt for _capability, fmt in BARE} == {"dashscope"}
+    assert not any(_example_path(PATH_FROM[pair][0]) == "" for pair in PATH_FROM)
+
+
+# --- the one segment a seller's upstream may move ------------------------------------
+def _moves(pair) -> bool:
+    return _example_path(PATH_FROM[pair][0]).startswith(VERSION_PREFIX)
+
+
+def test_a_template_declares_the_prefix_parameter_exactly_when_a_path_uses_it():
+    """The OpenAI-shaped examples build their path from `version_prefix` because a seller's
+    upstream may serve that surface elsewhere (Cohere at /compatibility/v1, crofai at /v2, the
+    platform facades at ""). A template that omitted it would document those services at a
+    path that 404s -- the failure this key exists to end -- so it declares the same parameter
+    with the same default the examples declare, and `llm_example_collection` broadcasts the
+    listing's value to it as it does to them."""
+    for capability, family in _templates().items():
+        uses = any(_moves((capability, e["format"])) for e in _entries_as_shipped(capability) if (capability, e["format"]) in PATH_FROM)
+        declared = MANIFEST["presets"][ALIASES[family]]["parameters"]
+
+        if not uses:
+            assert declared == {}, f"{capability} declares a parameter nothing uses"
+            continue
+        example_default = MANIFEST["presets"][ALIASES["llm_code_example_requests"]]["parameters"]["version_prefix"]
+        assert declared == {"version_prefix": example_default}, capability
+
+
+def test_without_a_listing_value_every_path_is_the_shared_one():
+    """The default is what the design asks for: one customer-facing path per capability and
+    format, `/v1/...` for the OpenAI shapes."""
+    for (capability, fmt), examples in PATH_FROM.items():
+        rendered = next(e for e in _read(_templates()[capability]) if e["format"] == fmt)["path_suffix"]
+        written = _example_path(examples[0])
+
+        assert rendered == written.replace(VERSION_PREFIX, "/v1")
+
+
+def _rendered_paths(prefix: str) -> dict[tuple[str, str], str]:
+    docs = llm_example_collection(
+        {
+            "capabilities": ALL_CAPABILITIES,
+            "formats": sorted(ALL_DIALECTS),
+            "params": {"version_prefix": prefix},
+        }
+    )
+    out = {}
+    for doc in docs.values():
+        if doc["category"] != "request_template":
+            continue
+        capability = doc["meta"]["applies_to"]["capability"]
+        for entry in json.loads(Path(doc["file_path"]).read_text(encoding="utf-8")):
+            if "path_suffix" in entry:
+                out[capability, entry["format"]] = entry["path_suffix"]
+    return out
+
+
+@pytest.mark.parametrize("prefix", ["/v1", "/compatibility/v1", "/v2", ""])
+def test_a_listings_prefix_reaches_the_paths_that_move_and_only_those(prefix):
+    """What the code examples already do for these listings, the templates now do too.
+
+    Cohere's compatibility surface is /compatibility/v1, crofai's API is /v2, and the
+    platform's own facades set it to nothing, so a template that said `/v1/...` would send
+    their customers to a path that 404s. Everything the prefix does not belong to -- an
+    Anthropic request is `/v1/messages` and a DashScope one is the service URL, whatever the
+    seller's OpenAI surface is -- stays exactly where it was."""
+    rendered = _rendered_paths(prefix)
+
+    # Only entries that have a path appear: the bare ones (DashScope) never gain a key, whatever the
+    # seller's OpenAI surface is, and an empty prefix does not turn one of them into "/".
+    assert set(rendered) == set(PATH_FROM)
+    assert not any(path in ("", "/") for path in rendered.values())
+    for pair, examples in PATH_FROM.items():
+        written = _example_path(examples[0])
+        expected = prefix + written.removeprefix(VERSION_PREFIX) if written.startswith(VERSION_PREFIX) else written
+        assert rendered[pair] == expected, (pair, prefix)
+
+
+def test_a_translated_format_keeps_its_path_whatever_the_upstream_is():
+    """The design point, as the repo already states it. The Anthropic-to-OpenAI example calls
+    the OpenAI UPSTREAM at `${version_prefix}/chat/completions` only under `local_testing`; a
+    customer calls the gateway at the literal `/v1/messages`, and the gateway translates. So
+    for a translated format the path is a function of the capability and the format the
+    customer speaks, and of nothing the seller's upstream does."""
+    source = _bundled("llm_code_example_anthropic_to_openai_requests")
+    local, gateway = source.split("{% else %}")
+
+    assert f'"{{{{ service_base_url }}}}{VERSION_PREFIX}/chat/completions"' in local
+    assert '"{{ service_base_url }}/v1/messages"' in gateway
+    assert _entry("chat", "anthropic")["path_suffix"] == "/v1/messages"
+    for prefix in ("/compatibility/v1", "/v2", ""):
+        assert _rendered_paths(prefix)["chat", "anthropic"] == "/v1/messages"
