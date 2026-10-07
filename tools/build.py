@@ -76,6 +76,12 @@ the family's ``parameters``). The check refuses one that would build a request
 nothing can send: not a string, not a path, or a placeholder nothing substitutes. An
 entry that posts to the bare base URL omits the key rather than writing ``""`` or ``/``.
 
+An entry may carry a ``content_type`` (unitysvc#2533). Absent, the body is JSON. A
+``multipart/form-data`` entry is a file upload, whose ``body`` holds the form's text
+fields; the playground says it does not send uploads rather than sending them as
+JSON. The check refuses a ``content_type`` that is not a media type, and a multipart
+body that is not an object of text fields.
+
 Outputs
 -------
 
@@ -740,9 +746,11 @@ def check_request_templates(presets: list[Preset], errors: BuildErrors) -> None:
     deletable only once nothing publishes it.
 
     ``path_suffix``, when an entry has one, must be a path the playground can
-    append to a service's base URL (see :func:`_path_suffix_problem`). Other keys
-    inside an entry beyond ``format`` and ``body`` are ignored on purpose: the
-    reader ignores them, so ``content_type`` can ship ahead of any page that
+    append to a service's base URL (see :func:`_path_suffix_problem`).
+    ``content_type``, when an entry has one, must be a media type, and a
+    ``multipart/form-data`` body must be the form's text fields (see
+    :func:`_content_type_problem`). Other keys inside an entry are ignored on
+    purpose: the reader ignores them, so a key can ship ahead of any page that
     reads it.
     """
     latest: dict[str, int] = {}
@@ -812,6 +820,8 @@ def _check_template_entries(
             )
         if "path_suffix" in entry and (problem := _path_suffix_problem(entry["path_suffix"], parameters)):
             errors.add(path, f"entry {index} ({fmt!r}): {problem}")
+        if "content_type" in entry and (problem := _content_type_problem(entry["content_type"], entry["body"])):
+            errors.add(path, f"entry {index} ({fmt!r}): {problem}")
         if fmt in first_seen:
             errors.add(
                 path,
@@ -820,6 +830,36 @@ def _check_template_entries(
             )
         else:
             first_seen[fmt] = index
+
+
+_MEDIA_TYPE = re.compile(r"^[a-z0-9][a-z0-9!#$&^_.+-]*/[a-z0-9][a-z0-9!#$&^_.+-]*$")
+
+MULTIPART = "multipart/form-data"
+
+
+def _content_type_problem(value: Any, body: Any) -> str | None:
+    """Why a ``content_type`` cannot say how an entry is sent, or ``None``.
+
+    The playground reads it as a media type, case and parameters aside: absent is a
+    JSON body, ``multipart/form-data`` is a file upload it says it does not send.
+    Written here exactly, lower case and without parameters, so that what the page
+    compares is what the file says. An upload's ``body`` is the form's text fields,
+    so it is an object of strings: the file part is a file, not a value, and has no
+    place in it.
+    """
+    if not isinstance(value, str):
+        return f"content_type must be a string, got {type(value).__name__}"
+    if not _MEDIA_TYPE.match(value):
+        return (
+            f"content_type {value!r} must be a bare media type in lower case (type/subtype, no "
+            f"parameters), such as {MULTIPART!r}; omit it for a JSON body"
+        )
+    if value == MULTIPART:
+        if not isinstance(body, dict):
+            return f"a {MULTIPART} body is the form's text fields, an object, not {type(body).__name__}"
+        if not all(isinstance(field, str) for field in body.values()):
+            return f"a {MULTIPART} body is the form's text fields, so every value is a string"
+    return None
 
 
 def _path_suffix_problem(value: Any, parameters: dict[str, str]) -> str | None:

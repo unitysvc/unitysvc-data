@@ -532,11 +532,11 @@ the shape:
   ```
 
   The reader takes the first entry that names the format and ignores keys it does
-  not know, which is how `path_suffix` could arrive after the bodies and
-  `content_type` still can. `tools/build.py` fails on what the reader could never
-  reach: a repeated `format`, a missing or unregistered one, a missing `body`, a
-  `path_suffix` that is not a path, and a latest version that is not a list. Older
-  versions keep the shape they were published in.
+  not know, which is how `path_suffix` and `content_type` could arrive after the
+  bodies. `tools/build.py` fails on what the reader could never reach: a repeated
+  `format`, a missing or unregistered one, a missing `body`, a `path_suffix` that is
+  not a path, a `content_type` that is not a bare media type, and a latest version
+  that is not a list. Older versions keep the shape they were published in.
 - **`format` is a request format, not a client.** Use the gateway's name for it
   (`openai`, `anthropic`, `cohere`, `dashscope`, `bedrock_converse`, ...), which
   must be registered in `classifiers.DIALECTS`. A client library for a format
@@ -551,9 +551,19 @@ the shape:
   reduced to the request it sends -- no `model` (the playground merges the routing
   key in) and no templated parameters. Do not write one from memory: the examples
   are what `run-tests` sends to real upstreams, and nothing else here is. If the
-  request is not a JSON body (`multipart/form-data`, or one that only works with a
-  header the entry cannot carry), there is no honest entry yet. No document is
-  better than a wrong one, and the playground shows an explicit empty state.
+  request only works with a header the entry cannot carry, there is no honest entry
+  yet. No document is better than a wrong one, and the playground shows an explicit
+  empty state.
+- **Say a file upload in `content_type`.** An entry is a JSON body unless it says
+  otherwise, so leave the key out for JSON. An example that uploads a file
+  (`files=`, `-F`, `FormData`) is `"content_type": "multipart/form-data"`, and its
+  `body` is the form's text fields: an object of strings, minus `model` and minus
+  templated parameters, never the file part
+  ([unitysvc#2533](https://github.com/unitysvc/unitysvc/issues/2533)). The
+  playground does not send uploads: it offers the format and says the request is a
+  file upload it does not send, which tells the customer more than the empty state.
+  A test checks the claim both ways against the example. Write the value exactly,
+  lower case and without parameters; the build refuses anything else.
 - **Give each entry the path its example posts to.** The playground appends
   `path_suffix` to the service's base URL; an entry without one is sent to the base
   URL itself, which is a 404 for every OpenAI-format capability but chat. Read it off
