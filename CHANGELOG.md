@@ -17,6 +17,40 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.14] — request templates say when the request is a file upload
+
+Every capability now has a request template: `image-edit`, the last without one, gets
+`llm_request_template_image_edit`. What it took is a way for an entry to say that its
+request is not a JSON body, which is what had left `image-edit` without one and the
+OpenAI transcription request out of `speech-to-text`
+([unitysvc#2533](https://github.com/unitysvc/unitysvc/issues/2533)).
+
+**Land the page first.** The playground that reads `content_type`
+(unitysvc/unitysvc#2533) shows a multipart entry as a file upload it does not send. A
+page that predates it ignores the key and would put the form's text fields in its JSON
+editor, so a catalog should not be re-uploaded with this release until that page is
+deployed.
+
+### Added
+
+- **`content_type` on a request-template entry.** Absent is a JSON body, as every
+  entry has been. `multipart/form-data` is a file upload, whose `body` holds the form's
+  text fields (never the file, the model, or a templated parameter). `tools/build.py`
+  refuses a value that is not a bare lower-case media type, and an upload body that is
+  not an object of strings. A test checks every entry against the example it came
+  from, both ways: an entry says multipart exactly when its example uploads a file.
+- **`llm_request_template_image_edit` (v1)**: one `huggingface` entry, the
+  `multipart/form-data` upload `llm_code_example_imagetoimage_requests` sends, with its
+  prompt and strength as the fields. No `path_suffix`: the path carries the service's
+  model, the known limitation the other Hugging Face entries share. Title
+  `Default request body (image edit)`.
+- **`llm_request_template_speech_to_text_v2`**: v1's `dashscope` entry, unchanged, plus
+  an `openai` entry, the `multipart/form-data` upload
+  `llm_code_example_transcription_requests` sends to
+  `${__version_prefix__}/audio/transcriptions`, with an empty body (`language` is a
+  templated parameter). The family gained `parameters = { version_prefix = "/v1" }`.
+  The alias moves to v2; v1 is unchanged.
+
 ## [0.2.13] — request templates carry the path they are sent to
 
 All 689 titles that existed in 0.2.12 are byte-identical, and no service gains or

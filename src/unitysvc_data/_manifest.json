@@ -101,11 +101,12 @@
     "llm_description": "llm_description_v2",
     "llm_request_template": "llm_request_template_v4",
     "llm_request_template_embed": "llm_request_template_embed_v1",
+    "llm_request_template_image_edit": "llm_request_template_image_edit_v1",
     "llm_request_template_image_generate": "llm_request_template_image_generate_v1",
     "llm_request_template_image_text_to_text": "llm_request_template_image_text_to_text_v1",
     "llm_request_template_moderate": "llm_request_template_moderate_v1",
     "llm_request_template_rerank": "llm_request_template_rerank_v1",
-    "llm_request_template_speech_to_text": "llm_request_template_speech_to_text_v1",
+    "llm_request_template_speech_to_text": "llm_request_template_speech_to_text_v2",
     "llm_request_template_text_to_speech": "llm_request_template_text_to_speech_v1",
     "llm_request_template_video_generate": "llm_request_template_video_generate_v1",
     "msg_request_template": "msg_request_template_v1",
@@ -3790,6 +3791,22 @@
       "source_readme": "llm/request-template-embed/README.md",
       "version": 1
     },
+    "llm_request_template_image_edit_v1": {
+      "applies_to": {
+        "capability": "image-edit"
+      },
+      "category": "request_template",
+      "description": "Minimal image edit request for each request format",
+      "example_file": "llm/request-template-image-edit/request-template-image-edit-v1.json",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "json",
+      "parameters": {},
+      "preset_name": "llm_request_template_image_edit",
+      "source_readme": "llm/request-template-image-edit/README.md",
+      "version": 1
+    },
     "llm_request_template_image_generate_v1": {
       "applies_to": {
         "capability": "image-generate"
@@ -3873,10 +3890,30 @@
       "is_public": true,
       "meta": {},
       "mime_type": "json",
-      "parameters": {},
+      "parameters": {
+        "version_prefix": "/v1"
+      },
       "preset_name": "llm_request_template_speech_to_text",
       "source_readme": "llm/request-template-speech-to-text/README.md",
       "version": 1
+    },
+    "llm_request_template_speech_to_text_v2": {
+      "applies_to": {
+        "capability": "speech-to-text"
+      },
+      "category": "request_template",
+      "description": "Minimal transcription request body for each request format",
+      "example_file": "llm/request-template-speech-to-text/request-template-speech-to-text-v2.json",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "json",
+      "parameters": {
+        "version_prefix": "/v1"
+      },
+      "preset_name": "llm_request_template_speech_to_text",
+      "source_readme": "llm/request-template-speech-to-text/README.md",
+      "version": 2
     },
     "llm_request_template_text_to_speech_v1": {
       "applies_to": {

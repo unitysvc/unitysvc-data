@@ -107,7 +107,8 @@ def test_chat_is_served_by_one_family_and_it_names_chat():
 #:
 #: Each entry is the request a code example sends (see ``DERIVED_FROM``), so this
 #: is not a wish list: a (capability, format) pair is here because an example for
-#: it exists AND can be written as a JSON body. The chat row is v2's, unchanged.
+#: it exists. A request that is not a JSON body says so in ``content_type`` (see
+#: ``MULTIPART``). The chat row is v2's, unchanged.
 OFFERED = {
     "chat": ["openai", "anthropic", "cohere", "dashscope", "bedrock_converse"],
     "image-text-to-text": ["openai"],
@@ -116,18 +117,24 @@ OFFERED = {
     "moderate": ["openai"],
     "image-generate": ["openai"],
     "video-generate": ["huggingface"],
-    "speech-to-text": ["dashscope"],
+    "speech-to-text": ["dashscope", "openai"],
     "text-to-speech": ["openai", "dashscope"],
+    "image-edit": ["huggingface"],
 }
 
 #: capability -> why it has no template. An absent template is the playground's
 #: honest empty state; a template that cannot be sent is worse than none. Each
 #: reason is checked against the examples below, so it cannot go stale: the day an
 #: example becomes a JSON body, that test fails and says to write the template.
-NO_TEMPLATE = {
-    "image-edit": "its only code example (dialect huggingface) sends multipart/form-data, "
-    "which an entry's JSON body cannot express",
-}
+#: Empty since unitysvc#2533: image-edit's one example is a file upload, which an entry
+#: now says in `content_type` rather than having no honest way to say.
+NO_TEMPLATE: dict[str, str] = {}
+
+#: (capability, format) -> the request is a file upload (`content_type` is
+#: `multipart/form-data`), and its body is the form's text fields. Checked against the
+#: examples below, in both directions: every entry here is an upload in its example,
+#: and no other entry's example is one.
+MULTIPART = {("speech-to-text", "openai"), ("image-edit", "huggingface")}
 
 #: What each capability's template title reads, pinned because a title is a document's key.
 TITLES = {
@@ -140,6 +147,7 @@ TITLES = {
     "video-generate": "Default request body (video)",
     "speech-to-text": "Default request body (transcription)",
     "text-to-speech": "Default request body (speech)",
+    "image-edit": "Default request body (image edit)",
 }
 
 
@@ -211,11 +219,15 @@ def test_every_format_is_a_registered_dialect():
             assert entry["format"] in classifiers.DIALECTS, f"{capability}: {entry['format']!r}"
 
 
+#: How a code example sends a file upload, in each of its client variants.
+UPLOAD_MARKERS = ("files=", "FormData", " -F ")
+
+
 @pytest.mark.parametrize("capability", sorted(NO_TEMPLATE))
 def test_an_exemption_still_holds_for_every_example_it_names(capability):
     """The reason is a claim about the code examples, so check the claim. If one
     becomes a JSON body there is a template to write, and this says so."""
-    markers = ("files=", "FormData", " -F ")
+    markers = UPLOAD_MARKERS
     examples = [
         entry
         for key, entry in MANIFEST["presets"].items()
@@ -358,6 +370,8 @@ DERIVED_FROM = {
     ("speech-to-text", "dashscope"): "llm_code_example_asr_dashscope_requests",
     ("text-to-speech", "openai"): "llm_code_example_tts_requests",
     ("text-to-speech", "dashscope"): "llm_code_example_tts_dashscope_requests",
+    ("speech-to-text", "openai"): "llm_code_example_transcription_requests",
+    ("image-edit", "huggingface"): "llm_code_example_imagetoimage_requests",
 }
 
 #: The code examples name finer dialects than the gateway has formats: three
@@ -515,6 +529,11 @@ PATH_FROM = {
         "llm_code_example_tts_shell",
         "llm_code_example_tts_javascript",
     ],
+    ("speech-to-text", "openai"): [
+        "llm_code_example_transcription_requests",
+        "llm_code_example_transcription_shell",
+        "llm_code_example_transcription_javascript",
+    ],
 }
 
 #: (capability, format) -> the raw-HTTP examples that post to the bare service URL. DashScope's
@@ -583,6 +602,11 @@ SERVICE_DEPENDENT = {
     ),
     ("video-generate", "huggingface"): (
         "llm_code_example_ttv_requests",
+        [("path", "routing_key.model")],
+        "the example's path ends in the service's own model name",
+    ),
+    ("image-edit", "huggingface"): (
+        "llm_code_example_imagetoimage_requests",
         [("path", "routing_key.model")],
         "the example's path ends in the service's own model name",
     ),
@@ -771,3 +795,54 @@ def test_a_translated_format_keeps_its_path_whatever_the_upstream_is():
     assert _entry("chat", "anthropic")["path_suffix"] == "/v1/messages"
     for prefix in ("/compatibility/v1", "/v2", ""):
         assert _rendered_paths(prefix)["chat", "anthropic"] == "/v1/messages"
+
+
+# --------------------------------------------------------------------------- #
+# File uploads: `content_type` (unitysvc#2533)
+# --------------------------------------------------------------------------- #
+def _all_entries():
+    for capability, preset in _templates().items():
+        for entry in _read(preset):
+            yield capability, entry
+
+
+def test_exactly_the_upload_entries_say_multipart():
+    said = {(c, e["format"]) for c, e in _all_entries() if e.get("content_type") == "multipart/form-data"}
+
+    assert said == MULTIPART
+    # Nothing else says anything: absent is JSON, and no entry spells that out.
+    assert not [(c, e["format"]) for c, e in _all_entries() if "content_type" in e and (c, e["format"]) not in MULTIPART]
+
+
+@pytest.mark.parametrize(("capability", "fmt"), sorted(DERIVED_FROM))
+def test_an_entry_is_an_upload_exactly_when_its_example_sends_one(capability, fmt):
+    """The claim `content_type` makes is about the request, so check it against the
+    example the entry came from, both ways: an upload that said JSON would be sent as
+    JSON to an endpoint that wants a file, and JSON that said upload would be a request
+    the playground refuses to send for no reason."""
+    source = Path(doc_preset(DERIVED_FROM[capability, fmt])["file_path"]).read_text(encoding="utf-8")
+    uploads = any(marker in source for marker in UPLOAD_MARKERS)
+
+    assert uploads == ((capability, fmt) in MULTIPART), (capability, fmt)
+
+
+@pytest.mark.parametrize(("capability", "fmt"), sorted(MULTIPART))
+def test_an_upload_body_is_the_examples_text_fields(capability, fmt):
+    """Not the file, which is not a value, and not the model, which the playground
+    merges in (and which Hugging Face carries in the path)."""
+    entry = next(e for c, e in _all_entries() if c == capability and e["format"] == fmt)
+
+    assert isinstance(entry["body"], dict)
+    assert all(isinstance(value, str) for value in entry["body"].values())
+    assert not {"file", "image", "model"} & set(entry["body"])
+
+
+def test_the_speech_to_text_v1_template_is_unchanged():
+    """Retired, not edited: a listing that pins v1 gets the one DashScope entry it was
+    written against, and v2 is that entry plus OpenAI's upload."""
+    v1 = _read("llm_request_template_speech_to_text_v1")
+    v2 = _read("llm_request_template_speech_to_text_v2")
+
+    assert [entry["format"] for entry in v1] == ["dashscope"]
+    assert v2[0] == v1[0]
+    assert ALIASES["llm_request_template_speech_to_text"] == "llm_request_template_speech_to_text_v2"

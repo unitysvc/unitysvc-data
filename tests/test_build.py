@@ -785,12 +785,12 @@ def test_an_empty_entry_list_is_rejected(tmp_path, monkeypatch):
 
 
 def test_keys_the_reader_does_not_know_are_not_the_guards_business(tmp_path, monkeypatch):
-    """`path_suffix` and `content_type` are coming (unitysvc#2514, step 2), and
-    the reader ignores keys it does not recognise so the data can ship first. A
-    guard that refused them would force the two to land in lockstep."""
+    """The reader ignores keys it does not recognise so the data can ship first; that
+    is how `path_suffix` and `content_type` arrived (unitysvc#2514, #2533). A guard that
+    refused the next one would force the two to land in lockstep."""
     later = (
         '[{"format": "openai", "body": {"input": "hi"},'
-        ' "path_suffix": "/v1/embeddings", "content_type": "application/json"}]'
+        ' "path_suffix": "/v1/embeddings", "content_type": "application/json", "not_yet": {"a": [1]}}]'
     )
     _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": later})
 
@@ -1095,3 +1095,75 @@ def test_an_entry_may_omit_the_path(tmp_path, monkeypatch):
     _template_tree(tmp_path, monkeypatch, {"request-template-embed-v1.json": GOOD_ENTRIES})
 
     assert _template_errors() == []
+
+
+# ---------------------------------------------------------------------------
+# `content_type`: how an entry is sent (unitysvc#2533)
+# ---------------------------------------------------------------------------
+#
+# Absent is a JSON body. `multipart/form-data` is a file upload, whose body holds the
+# form's text fields; the playground says it does not send uploads instead of sending
+# the fields as JSON. The page compares the value as a bare media type, so the file says
+# exactly that, and an upload's body is an object of strings (the file part is a file).
+
+
+def _content_type_tree(tmp_path, monkeypatch, content_type_json: str, body_json: str = '{"prompt": "hi"}'):
+    """A one-entry template carrying `content_type_json` and `body_json` verbatim."""
+    _template_tree(
+        tmp_path,
+        monkeypatch,
+        {
+            "request-template-embed-v1.json": (
+                '[{"format": "huggingface", "content_type": ' + content_type_json + ', "body": ' + body_json + "}]"
+            )
+        },
+    )
+
+
+@pytest.mark.parametrize(
+    ("value", "body"),
+    [
+        ('"multipart/form-data"', '{"prompt": "hi", "strength": "0.6"}'),
+        ('"multipart/form-data"', "{}"),
+        ('"application/json"', '{"input": ["hi", 1]}'),
+    ],
+    ids=["an upload with fields", "an upload with none", "json said out loud"],
+)
+def test_a_content_type_the_playground_can_read_is_accepted(tmp_path, monkeypatch, value, body):
+    _content_type_tree(tmp_path, monkeypatch, value, body)
+
+    assert _template_errors() == []
+
+
+@pytest.mark.parametrize(
+    ("value", "body", "complaint"),
+    [
+        ("7", '{"prompt": "hi"}', "must be a string"),
+        ("null", '{"prompt": "hi"}', "must be a string"),
+        ('""', '{"prompt": "hi"}', "bare media type"),
+        ('"multipart"', '{"prompt": "hi"}', "bare media type"),
+        ('"Multipart/Form-Data"', '{"prompt": "hi"}', "bare media type"),
+        ('"multipart/form-data; boundary=x"', '{"prompt": "hi"}', "bare media type"),
+        ('"multipart/form-data"', '"prompt=hi"', "an object"),
+        ('"multipart/form-data"', '{"strength": 0.6}', "every value is a string"),
+        ('"multipart/form-data"', '{"image": {"url": "x"}}', "every value is a string"),
+    ],
+    ids=[
+        "number",
+        "null",
+        "blank",
+        "no subtype",
+        "not lower case",
+        "with parameters",
+        "an upload body that is not an object",
+        "a number field",
+        "a nested field",
+    ],
+)
+def test_a_content_type_that_says_nothing_readable_is_rejected(tmp_path, monkeypatch, value, body, complaint):
+    _content_type_tree(tmp_path, monkeypatch, value, body)
+
+    messages = _template_errors()
+
+    assert len(messages) == 1, messages
+    assert complaint in messages[0]

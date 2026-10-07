@@ -1,0 +1,10 @@
+[
+  {
+    "format": "huggingface",
+    "content_type": "multipart/form-data",
+    "body": {
+      "prompt": "Turn this into a cinematic cyberpunk scene",
+      "strength": "0.6"
+    }
+  }
+]
