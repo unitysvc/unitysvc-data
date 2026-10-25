@@ -17,6 +17,17 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [Unreleased]
+
+### Added
+
+- `website_reachable` (`web/reachable`): the connectivity test for an
+  **external** channel, a service used at the seller's own website rather
+  than through a UnitySVC gateway (unitysvc/unitysvc#2709). It follows up to 5
+  redirects and passes only on a final 2xx. Unlike `api_connectivity`,
+  401/403 fail, because a public homepage should not demand credentials. No
+  credential is sent.
+
 ## [0.2.13] — request templates carry the path they are sent to
 
 All 689 titles that existed in 0.2.12 are byte-identical, and no service gains or

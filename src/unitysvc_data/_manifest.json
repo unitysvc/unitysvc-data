@@ -688,7 +688,8 @@
     "smtp_connectivity": "smtp_connectivity_v2",
     "uptime_description": "uptime_description_v1",
     "webhook_code_example_shell": "webhook_code_example_shell_v1",
-    "webhook_connectivity": "webhook_connectivity_v1"
+    "webhook_connectivity": "webhook_connectivity_v1",
+    "website_reachable": "website_reachable_v1"
   },
   "presets": {
     "api_code_example_requests_v1": {
@@ -16981,6 +16982,20 @@
       },
       "preset_name": "webhook_connectivity",
       "source_readme": "webhook/connectivity/README.md",
+      "version": 1
+    },
+    "website_reachable_v1": {
+      "applies_to": {},
+      "category": "connectivity_test",
+      "description": "Verify the seller's website is reachable",
+      "example_file": "web/reachable/reachable-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "bash",
+      "parameters": {},
+      "preset_name": "website_reachable",
+      "source_readme": "web/reachable/README.md",
       "version": 1
     }
   },
