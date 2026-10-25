@@ -1,0 +1,26 @@
+#!/bin/bash
+# Website reachability test for an external channel: the service is used at
+# the seller's own site, so the evidence it is alive is that the site answers.
+# Follows redirects; only a final 2xx passes. No credential is sent.
+set -o pipefail
+
+URL="{{ service_base_url }}"
+
+status=$(curl -sS -L --max-redirs 5 --max-time 10 \
+    -o /dev/null -w "%{http_code}" "$URL" 2>/dev/null)
+{%- if not customer_display %}
+
+case "$status" in
+  2??)
+    exit 0
+    ;;
+  000)
+    echo "website unreachable: could not connect to $URL" >&2
+    exit 1
+    ;;
+  *)
+    echo "website unreachable: HTTP $status from $URL" >&2
+    exit 1
+    ;;
+esac
+{%- endif %}
