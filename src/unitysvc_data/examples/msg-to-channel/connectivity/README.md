@@ -66,7 +66,7 @@ baked-in local-mode native body differs. For example `discord`
 Channels with a per-channel variant:
 
 - Chat / team messaging: `slack`, `feishu-msg`, `json`, `ntfy`, `gotify`,
-  `discord`, `telegram`, `matrix`, `msteams`, `wechat-work`, `dingtalk`,
+  `discord`, `googlechat`, `telegram`, `matrix`, `msteams`, `wechat-work`, `dingtalk`,
   `line-msg`, `whatsapp-msg`, `groupme-msg`, `viber`, `zulip`, `flock`, `ryver`,
   `zoom`, `chime`, `mastodon`, `misskey`, `humhub`, `nextcloud`,
   `nextcloudtalk`, `synologychat`, `matrix-note-placeholder`
