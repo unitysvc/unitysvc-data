@@ -17,6 +17,23 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.14] — Google Chat variants of the msg-to-channel presets
+
+All 689 titles that existed in 0.2.13 are byte-identical; no published service gains,
+loses or changes a document. Three preset families are added, so the manifest goes from
+689 families / 718 concrete versions to 692 / 721.
+
+### Added
+
+- **`msg_to_channel_connectivity_googlechat`, `msg_to_channel_code_example_sh_googlechat`,
+  `msg_to_channel_code_example_py_googlechat`** (each `_v1`): the Google Chat variants of
+  the gateway-transformer notification presets, for `labs/msg-to-googlechat`'s native
+  gateway path ([unitysvc-services-notify#66](https://github.com/unitysvc-labs/unitysvc-services-notify/pull/66)).
+  A Google Chat incoming webhook takes a JSON body with a `text` field; the space, key
+  and token ride in the URL. As every variant of the family does, local mode posts that
+  native body to the mock upstream (`local_url`) and gateway mode posts the canonical
+  `msg` envelope with Bearer auth, leaving the transform to the gateway.
+
 ## [0.2.13] — request templates carry the path they are sent to
 
 All 689 titles that existed in 0.2.12 are byte-identical, and no service gains or
