@@ -68,7 +68,7 @@ bodies matching the upstream's native API; `xml-webhook` POSTs raw XML.
 Channels with a per-channel variant:
 
 - Chat / team messaging: `slack`, `feishu-msg`, `json`, `ntfy`, `gotify`,
-  `discord`, `telegram`, `matrix`, `msteams`, `wechat-work`, `dingtalk`,
+  `discord`, `googlechat`, `telegram`, `matrix`, `msteams`, `wechat-work`, `dingtalk`,
   `line-msg`, `whatsapp-msg`, `groupme-msg`, `viber`, `zulip`, `flock`, `ryver`,
   `zoom`, `chime`, `mastodon`, `misskey`, `humhub`, `nextcloud`,
   `nextcloudtalk`, `synologychat`, `matrix-note-placeholder`

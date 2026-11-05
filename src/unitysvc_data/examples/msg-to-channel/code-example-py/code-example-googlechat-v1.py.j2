@@ -1,0 +1,41 @@
+import os
+import sys
+
+import httpx
+
+# Code example for a UnitySVC Notify gateway-transformer channel (googlechat).
+#   local_testing : POST the channel-NATIVE googlechat body (baked in) straight to
+#                   a mock upstream (local_url).  No gateway to transform it, no
+#                   platform auth.
+#   gateway       : POST the canonical envelope to {BASE_URL}; the
+#                   gateway transforms it into the googlechat-native payload.
+# The googlechat-native body is baked into this variant — only the local_url (mock
+# upstream) and channel (transformer selector) parameters are supplied.
+# Google Chat incoming webhooks take a JSON body with a `text` field; the
+# space, key and token live in the URL.
+BASE_URL = "{{ service_base_url }}"
+
+{% if local_testing %}
+response = httpx.post(
+    "${__local_url__}",
+    headers={"Content-Type": "application/json; charset=UTF-8"},
+    json={"text": "t\nhi"},
+)
+if not (200 <= response.status_code < 300):
+    print(f"failed (HTTP {response.status_code})", file=sys.stderr)
+    sys.exit(1)
+{% else %}
+response = httpx.post(
+    BASE_URL,
+    headers={"Authorization": f"Bearer {k}"} if (k := os.environ.get("UNITYSVC_API_KEY")) else {},
+    json={
+        "title": "t",
+        "body": "hi",
+        "type": "info",
+        "format": "text",
+    },
+)
+if response.status_code >= 400:
+    raise RuntimeError(f"HTTP {response.status_code} from {response.url}: {response.text}")
+{% endif %}
+print(f"sent (HTTP {response.status_code})")

@@ -134,6 +134,7 @@
     "msg_to_channel_code_example_py_flock": "msg_to_channel_code_example_py_flock_v1",
     "msg_to_channel_code_example_py_form_webhook": "msg_to_channel_code_example_py_form_webhook_v1",
     "msg_to_channel_code_example_py_freemobile": "msg_to_channel_code_example_py_freemobile_v1",
+    "msg_to_channel_code_example_py_googlechat": "msg_to_channel_code_example_py_googlechat_v1",
     "msg_to_channel_code_example_py_gotify": "msg_to_channel_code_example_py_gotify_v1",
     "msg_to_channel_code_example_py_groupme_msg": "msg_to_channel_code_example_py_groupme_msg_v1",
     "msg_to_channel_code_example_py_homeassistant": "msg_to_channel_code_example_py_homeassistant_v1",
@@ -228,6 +229,7 @@
     "msg_to_channel_code_example_sh_flock": "msg_to_channel_code_example_sh_flock_v1",
     "msg_to_channel_code_example_sh_form_webhook": "msg_to_channel_code_example_sh_form_webhook_v1",
     "msg_to_channel_code_example_sh_freemobile": "msg_to_channel_code_example_sh_freemobile_v1",
+    "msg_to_channel_code_example_sh_googlechat": "msg_to_channel_code_example_sh_googlechat_v1",
     "msg_to_channel_code_example_sh_gotify": "msg_to_channel_code_example_sh_gotify_v1",
     "msg_to_channel_code_example_sh_groupme_msg": "msg_to_channel_code_example_sh_groupme_msg_v1",
     "msg_to_channel_code_example_sh_homeassistant": "msg_to_channel_code_example_sh_homeassistant_v1",
@@ -322,6 +324,7 @@
     "msg_to_channel_connectivity_flock": "msg_to_channel_connectivity_flock_v1",
     "msg_to_channel_connectivity_form_webhook": "msg_to_channel_connectivity_form_webhook_v1",
     "msg_to_channel_connectivity_freemobile": "msg_to_channel_connectivity_freemobile_v1",
+    "msg_to_channel_connectivity_googlechat": "msg_to_channel_connectivity_googlechat_v1",
     "msg_to_channel_connectivity_gotify": "msg_to_channel_connectivity_gotify_v1",
     "msg_to_channel_connectivity_groupme_msg": "msg_to_channel_connectivity_groupme_msg_v1",
     "msg_to_channel_connectivity_homeassistant": "msg_to_channel_connectivity_homeassistant_v1",
@@ -4586,6 +4589,31 @@
       "source_readme": "msg-to-channel/code-example-py/README.md",
       "version": 1
     },
+    "msg_to_channel_code_example_py_googlechat_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "Python (httpx) code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-py/code-example-googlechat-v1.py.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "bytes_out": 1
+        },
+        "requirements": [
+          "httpx"
+        ]
+      },
+      "mime_type": "python",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_py_googlechat",
+      "source_readme": "msg-to-channel/code-example-py/README.md",
+      "version": 1
+    },
     "msg_to_channel_code_example_py_gotify_v1": {
       "applies_to": {},
       "category": "code_example",
@@ -6873,6 +6901,28 @@
       "source_readme": "msg-to-channel/code-example-sh/README.md",
       "version": 1
     },
+    "msg_to_channel_code_example_sh_googlechat_v1": {
+      "applies_to": {},
+      "category": "code_example",
+      "description": "cURL code example for gateway-transformer notification services",
+      "example_file": "msg-to-channel/code-example-sh/code-example-googlechat-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "bytes_out": 1
+        }
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_code_example_sh_googlechat",
+      "source_readme": "msg-to-channel/code-example-sh/README.md",
+      "version": 1
+    },
     "msg_to_channel_code_example_sh_gotify_v1": {
       "applies_to": {},
       "category": "code_example",
@@ -8938,6 +8988,28 @@
         "native_body": "{}"
       },
       "preset_name": "msg_to_channel_connectivity_freemobile",
+      "source_readme": "msg-to-channel/connectivity/README.md",
+      "version": 1
+    },
+    "msg_to_channel_connectivity_googlechat_v1": {
+      "applies_to": {},
+      "category": "connectivity_test",
+      "description": "Connectivity test for gateway-transformer notification services",
+      "example_file": "msg-to-channel/connectivity/connectivity-googlechat-v1.sh.j2",
+      "is_active": true,
+      "is_public": true,
+      "meta": {
+        "min_expected_metrics": {
+          "bytes_out": 1
+        }
+      },
+      "mime_type": "bash",
+      "parameters": {
+        "channel": "gateway",
+        "local_url": "",
+        "native_body": "{}"
+      },
+      "preset_name": "msg_to_channel_connectivity_googlechat",
       "source_readme": "msg-to-channel/connectivity/README.md",
       "version": 1
     },
