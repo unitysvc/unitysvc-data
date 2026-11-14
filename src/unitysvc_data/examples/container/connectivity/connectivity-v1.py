@@ -67,7 +67,7 @@ class DockerTest:
         self.docker("network", "create", "--label", self.label, self.network)
         for service in self.manifest["services"]:
             limits = service["resources"]["limits"]
-            unsupported = set(limits) - {"cpu", "memory", "ephemeral-storage", "nvidia.com/gpu"}
+            unsupported = set(limits) - {"cpu", "memory", "ephemeral-storage"}
             if unsupported:
                 raise RuntimeError(f"local Docker cannot test extended resources {sorted(unsupported)}")
             for replica in range(service.get("replicas", 1)):
@@ -89,8 +89,6 @@ class DockerTest:
                     "--memory",
                     str(int(quantity(limits["memory"]).to_integral_value(rounding=ROUND_CEILING))),
                 ]
-                if "nvidia.com/gpu" in limits:
-                    args += ["--gpus", str(int(quantity(limits["nvidia.com/gpu"])))]
                 for key, value in sorted(service.get("env", {}).items()):
                     args += ["--env", f"{key}={value}"]
                 for port in service.get("ports", []):

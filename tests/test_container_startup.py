@@ -121,6 +121,14 @@ def test_exec_probe_timeout_is_a_failed_health_attempt(fake, monkeypatch):
     assert not runner.probe("id", service, service["health"], {})
 
 
+def test_unsupported_hardware_fails_and_cleans_the_network(fake):
+    runner, calls, _ = fake
+    runner.manifest["services"][0]["resources"]["limits"]["nvidia.com/gpu"] = "1"
+    result = runner.run()
+    assert not result["success"] and "extended resources" in result["error"]
+    assert ("network", "rm", "our-network") in calls
+
+
 def test_http_and_tcp_checks():
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self):

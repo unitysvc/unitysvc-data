@@ -31,6 +31,14 @@ format. A platform executor must supply the same input and Docker capability;
 this preset does not add that backend execution infrastructure. It must run
 where it can reach the Docker daemon's loopback-published ports.
 
+Sellers author the existing `provider.json`, `offering.json` and `listing.json`
+files plus a Compose file registered as an offering `container_spec` Document.
+Each channel references that Document's title and declares its total resource
+budget. Multi-service apps declare explicit per-replica allocations in the
+channel's `resources.services`; core checks the totals including replicas.
+The harness generates the runtime manifest in memory, so sellers do not create
+or upload a separate JSON manifest for each tier.
+
 The test pulls the images, starts every service/replica on a temporary network,
 applies CPU/memory limits and checks HTTP/TCP/exec health. Ports publish only to
 loopback with dynamically assigned host ports. Missing health uses TCP on the
@@ -39,8 +47,8 @@ HEALTHCHECK is disabled, matching Kubernetes behavior. Test resources carry a
 unique label and are removed on success, failure and normal interruption.
 
 Passing verifies this startup/health workflow. It does not certify Kubernetes
-scheduling, gVisor, network policy, rolling updates or disk quotas. NVIDIA GPU
-limits require Docker's GPU support; other extended resources are rejected.
+scheduling, gVisor, network policy, rolling updates or disk quotas. GPU and other
+extended resources are rejected in this initial local runner.
 Startup failures are reported without reproducing Kubernetes' restart loop.
 
 Health defaults match the compute manifest: period 5s, timeout 2s, success 1,
