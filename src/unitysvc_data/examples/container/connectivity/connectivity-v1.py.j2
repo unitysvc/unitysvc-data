@@ -1,0 +1,99 @@
+"""Connectivity test for a container service: start its instance, call every entry, stop it.
+
+A container service has no gateway route (unitysvc/unitysvc#3016). The test drives the
+enrollment's instance through the customer API as the ops customer (UNITYSVC_API_KEY,
+UNITYSVC_API_URL, UNITYSVC_ENROLLMENT_ID), using unitysvc-py.
+
+The exit status is the verdict: 0 the instance came up and every entry answered; 75 the platform failed
+(the cluster is down, busy or unconfigured; retry later); 1 the service failed (it never
+became ready, or an entry does not answer).
+"""
+{% if local_testing %}
+# The seller CLI tests a container service locally with Docker; there is no instance to drive
+# here, so there is nothing to probe: the exit status alone is the verdict.
+print("container service: tested locally with Docker, nothing to probe")
+{% else %}
+import os
+import sys
+import time
+
+import httpx
+from unitysvc import Client
+from unitysvc.exceptions import APIError, UnitysvcSDKError
+
+START_TIMEOUT = 180  # seconds for the cluster to start the instance
+ENTRY_TIMEOUT = 60  # seconds for the route of a fresh instance to settle
+PLATFORM_FAULT = 75
+# Answers a fresh route gives for a little while before it settles: keep trying.
+SETTLING = (0, 404, 502, 503, 504)
+# Answers that show the entry is up although it refused this request: auth or method.
+ALIVE = (401, 403, 405)
+
+
+def fail(message, code=1):
+    print(f"connectivity failed: {message}", file=sys.stderr)
+    return code
+
+
+def platform_down(error):
+    """The control plane did not answer (0) or answered 5xx: the platform's problem, retry later."""
+    return error.status_code == 0 or error.status_code >= 500
+
+
+def probe(url, headers):
+    """HTTP status of GET url (0 when nothing answered), retried while the route settles."""
+    end = time.monotonic() + ENTRY_TIMEOUT
+    while True:
+        try:
+            status = httpx.get(url, headers=headers, timeout=15).status_code
+        except httpx.HTTPError:
+            status = 0
+        if status not in SETTLING or time.monotonic() >= end:
+            return status
+        time.sleep(3)
+
+
+def run(instance):
+    instance.start()
+    state = instance.wait(timeout=START_TIMEOUT)
+    if state.status == "failed":
+        code = PLATFORM_FAULT if state.fault == "platform" else 1
+        return fail(f"the instance failed: {state.reason} (fault: {state.fault})", code)
+    print(f"instance up: {len(state.entries)} entr{'y' if len(state.entries) == 1 else 'ies'}")
+
+    key = None
+    for entry in state.entries:
+        headers = {}
+        if entry.auth == "app":
+            if key is None:
+                key = instance.credentials().key
+            headers = {"Authorization": f"Bearer {key}"}
+        elif entry.auth == "key":
+            headers = {"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"}
+        url = entry.url + "${__probe_path__}"
+        status = probe(url, headers)
+        if not (200 <= status < 400 or status in ALIVE):
+            return fail(f"entry {entry.name!r} at {url} answered HTTP {status}")
+        print(f"{entry.name}: HTTP {status}")
+    print(f"every entry answered ({len(state.entries)} of {len(state.entries)})")
+    return 0
+
+
+instance = Client.from_env().instance(os.environ["UNITYSVC_ENROLLMENT_ID"])
+try:
+    code = run(instance)
+except TimeoutError:
+    code = fail(f"the instance was not ready in {START_TIMEOUT}s", PLATFORM_FAULT)
+except APIError as error:
+    code = fail(f"customer API: {error}", PLATFORM_FAULT if platform_down(error) else 1)
+except httpx.HTTPError as error:
+    code = fail(f"could not reach the customer API: {error}", PLATFORM_FAULT)
+except UnitysvcSDKError as error:
+    code = fail(f"customer API: {error}")
+finally:
+    try:
+        instance.stop()  # the platform also removes it after the run
+    except Exception as error:  # noqa: BLE001 — a failed stop must not mask the verdict
+        print(f"warning: could not stop the instance: {error}", file=sys.stderr)
+sys.exit(code)
+{% endif %}

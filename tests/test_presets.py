@@ -919,3 +919,73 @@ def test_a_seller_cannot_override_applies_to():
 
     assert record["meta"]["applies_to"]["capability"] == "image-text-to-text"
     assert record["meta"]["note"] == "mine"
+
+
+# ---------------------------------------------------------------------------
+# container_connectivity — drives an enrollment's instance through unitysvc-py
+# ---------------------------------------------------------------------------
+
+
+def test_container_connectivity_preset_is_registered():
+    """A container service has no gateway route: the preset is a python
+    connectivity_test that declares ``probe_path`` and carries the runner
+    metadata (whole-run timeout, and no retired ``output_contains``)."""
+    versioned, aliases = list_presets()
+    assert aliases["container_connectivity"] == "container_connectivity_v1"
+    assert "container_connectivity_v1" in versioned
+
+    entry = MANIFEST["presets"]["container_connectivity_v1"]
+    assert entry["mime_type"] == "python"
+    assert entry["category"] == "connectivity_test"
+    assert entry["parameters"] == {"probe_path": ""}
+    assert entry["meta"] == {"timeout": 300}
+
+    record = doc_preset("container_connectivity")
+    assert record["category"] == "connectivity_test"
+    assert record["mime_type"] == "python"
+    assert record["file_path"].endswith(".py.j2")
+    assert "instance.start()" in Path(record["file_path"]).read_text(encoding="utf-8")
+    assert record["meta"]["timeout"] == 300
+
+
+def test_container_connectivity_renders_both_modes_and_probe_path():
+    """Gateway mode starts, waits, probes every entry and always stops the
+    instance with the documented exit codes; local mode only prints a note.
+    ``probe_path`` is appended to each entry's URL."""
+    import ast
+
+    import jinja2
+
+    body = file_preset("container_connectivity")
+    assert "${__probe_path__}" not in body
+    assert 'entry.url + ""' in body
+    assert 'entry.url + "/healthz"' in file_preset("container_connectivity", probe_path="/healthz")
+
+    for marker in (
+        "{% if local_testing %}",
+        "Client.from_env().instance(os.environ[\"UNITYSVC_ENROLLMENT_ID\"])",
+        "instance.start()",
+        "instance.wait(timeout=START_TIMEOUT)",
+        "instance.credentials().key",
+        "instance.stop()",
+        "PLATFORM_FAULT = 75",
+        'state.fault == "platform"',
+        "SETTLING = (0, 404, 502, 503, 504)",
+        "ALIVE = (401, 403, 405)",
+        "sys.exit(code)",
+    ):
+        assert marker in body, marker
+
+    env = jinja2.Environment(undefined=jinja2.ChainableUndefined)
+    executed = env.from_string(body).render(local_testing=False)
+    assert "httpx.get(" in executed
+    assert "every entry answered" in executed
+    ast.parse(executed)
+
+    local = env.from_string(body).render(local_testing=True)
+    assert "instance.start()" not in local
+    assert "tested locally with Docker" in local
+    ast.parse(local)
+
+    # The verdict is the exit status: no retired stdout success token anywhere.
+    assert "connectivity ok" not in body

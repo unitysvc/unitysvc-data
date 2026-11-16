@@ -17,6 +17,28 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.15] — container_connectivity, the connectivity test for a container service
+
+All 692 titles that existed in 0.2.14 are byte-identical; no published service gains,
+loses or changes a document. One preset family is added, under a new `container`
+gateway, so the manifest goes from 692 families / 721 concrete versions to 693 / 722.
+
+### Added
+
+- **`container_connectivity`** (`_v1`): the generic connectivity test for a container
+  service ([unitysvc/unitysvc#3016](https://github.com/unitysvc/unitysvc/issues/3016)).
+  A container service has no gateway route, so the script drives the enrollment's
+  instance through the customer API with unitysvc-py 0.2.7+ as the ops customer: it
+  starts the instance, waits up to 180 s, `GET`s every entry (the instance key as a
+  Bearer token for `auth == "app"`, `UNITYSVC_API_KEY` for `key`, nothing for `login`),
+  retrying for 60 s while a fresh route settles, and always stops the instance again.
+  Exit 0 when every entry answered, 75 when the platform failed (retry later), 1 when
+  the service failed; the exit status alone is the verdict (no `output_contains`,
+  unitysvc/unitysvc#2490). Under `local_testing` it only prints a note and exits 0: the
+  seller CLI tests a container service locally with Docker. A `probe_path` parameter (default
+  empty) is appended to each entry's URL for services whose entries only answer on a
+  sub-path.
+
 ## [0.2.14] — Google Chat variants of the msg-to-channel presets
 
 All 689 titles that existed in 0.2.13 are byte-identical; no published service gains,
