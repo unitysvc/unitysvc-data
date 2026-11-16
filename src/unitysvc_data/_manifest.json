@@ -3,6 +3,7 @@
     "api_code_example_requests": "api_code_example_requests_v1",
     "api_code_example_shell": "api_code_example_shell_v1",
     "api_connectivity": "api_connectivity_v1",
+    "container_connectivity": "container_connectivity_v1",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
     "llm_code_example_anthropic_fc": "llm_code_example_anthropic_fc_v1",
     "llm_code_example_anthropic_javascript": "llm_code_example_anthropic_javascript_v1",
@@ -738,6 +739,24 @@
       "parameters": {},
       "preset_name": "api_connectivity",
       "source_readme": "api/connectivity/README.md",
+      "version": 1
+    },
+    "container_connectivity_v1": {
+      "applies_to": {},
+      "category": "connectivity_test",
+      "description": "Start the container instance, call every entry, then stop it",
+      "example_file": "container/connectivity/connectivity-v1.py.j2",
+      "is_active": true,
+      "is_public": false,
+      "meta": {
+        "timeout": 300
+      },
+      "mime_type": "python",
+      "parameters": {
+        "probe_path": ""
+      },
+      "preset_name": "container_connectivity",
+      "source_readme": "container/connectivity/README.md",
       "version": 1
     },
     "llm_code_example_anthropic_fc_v1": {
