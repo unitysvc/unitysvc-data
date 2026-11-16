@@ -17,7 +17,11 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
-## [Unreleased]
+## [0.2.15] — container_connectivity, the connectivity test for a container service
+
+All 692 titles that existed in 0.2.14 are byte-identical; no published service gains,
+loses or changes a document. One preset family is added, under a new `container`
+gateway, so the manifest goes from 692 families / 721 concrete versions to 693 / 722.
 
 ### Added
 
