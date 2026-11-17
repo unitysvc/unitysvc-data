@@ -17,6 +17,14 @@ happens, the release notes say which versions were amended and each family's
 README records it under the version it changed — because the version number
 alone cannot tell you.
 
+## [0.2.16] — container_connectivity sends no credentials
+
+**Amended in place:** `container_connectivity_v1`. The platform no longer issues a per-instance key
+or serves `GET /enrollments/{id}/instance/credentials` ([unitysvc/unitysvc#3023](https://github.com/unitysvc/unitysvc/issues/3023)),
+so the script no longer calls `credentials()` and sends no credentials to any entry: it only
+checks that each entry is reachable (a 401/403 still counts as up). v1 was published in 0.2.15 and used by one service,
+and its behaviour depended on an endpoint that no longer exists. Every other title is unchanged.
+
 ## [0.2.15] — container_connectivity, the connectivity test for a container service
 
 All 692 titles that existed in 0.2.14 are byte-identical; no published service gains,

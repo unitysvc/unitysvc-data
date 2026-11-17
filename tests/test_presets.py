@@ -961,12 +961,12 @@ def test_container_connectivity_renders_both_modes_and_probe_path():
     assert 'entry.url + ""' in body
     assert 'entry.url + "/healthz"' in file_preset("container_connectivity", probe_path="/healthz")
 
+    assert "credentials()" not in body  # the platform issues no instance key (unitysvc#3023)
     for marker in (
         "{% if local_testing %}",
         "Client.from_env().instance(os.environ[\"UNITYSVC_ENROLLMENT_ID\"])",
         "instance.start()",
         "instance.wait(timeout=START_TIMEOUT)",
-        "instance.credentials().key",
         "instance.stop()",
         "PLATFORM_FAULT = 75",
         'state.fault == "platform"',

@@ -40,12 +40,12 @@ def platform_down(error):
     return error.status_code == 0 or error.status_code >= 500
 
 
-def probe(url, headers):
+def probe(url):
     """HTTP status of GET url (0 when nothing answered), retried while the route settles."""
     end = time.monotonic() + ENTRY_TIMEOUT
     while True:
         try:
-            status = httpx.get(url, headers=headers, timeout=15).status_code
+            status = httpx.get(url, timeout=15).status_code
         except httpx.HTTPError:
             status = 0
         if status not in SETTLING or time.monotonic() >= end:
@@ -61,17 +61,10 @@ def run(instance):
         return fail(f"the instance failed: {state.reason} (fault: {state.fault})", code)
     print(f"instance up: {len(state.entries)} entr{'y' if len(state.entries) == 1 else 'ies'}")
 
-    key = None
     for entry in state.entries:
-        headers = {}
-        if entry.auth == "app":
-            if key is None:
-                key = instance.credentials().key
-            headers = {"Authorization": f"Bearer {key}"}
-        elif entry.auth == "key":
-            headers = {"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"}
+        # Only reachability is tested: no credentials, and a 401/403 means the app is up.
         url = entry.url + "${__probe_path__}"
-        status = probe(url, headers)
+        status = probe(url)
         if not (200 <= status < 400 or status in ALIVE):
             return fail(f"entry {entry.name!r} at {url} answered HTTP {status}")
         print(f"{entry.name}: HTTP {status}")
