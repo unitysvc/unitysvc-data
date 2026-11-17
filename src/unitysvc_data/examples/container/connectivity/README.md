@@ -46,11 +46,9 @@ the answer looks like a route that has not settled yet.
 | 404, 502, 503, 504, no answer | retry, then fail | a fresh route settling; the service failed if it stays that way for 60 s |
 | anything else | fail  | the service is broken |
 
-The request carries the customer's `UNITYSVC_API_KEY` as a Bearer token for an
-entry whose `auth` is `key`, and no credentials for `login` or `app` entries: those
-enforce their own auth, and a 401/403 counts as up. There is no platform-issued
-instance key; a service's own secret is an ordinary enrollment parameter
-(unitysvc/unitysvc#3023).
+The request carries no credentials: the test only checks that the instance starts and each
+entry is reachable, and a 401/403 from an entry that enforces its own auth counts as up.
+There is no platform-issued instance key (unitysvc/unitysvc#3023).
 
 ## Template variables (filled in by the platform when rendering)
 
@@ -59,8 +57,8 @@ instance key; a service's own secret is an ordinary enrollment parameter
 
 ## Environment variables (read at runtime, platform mode only)
 
-- `UNITYSVC_API_KEY` — the ops customer's API key; needs the `api:*` scope.
-  Also sent as `Authorization: Bearer ...` to entries with `auth == "key"`.
+- `UNITYSVC_API_KEY` — the ops customer's API key; needs the `api:*` scope. Used to
+  drive the instance through the customer API, not sent to the entries.
 - `UNITYSVC_API_URL` — the customer API the instance is driven through.
 - `UNITYSVC_ENROLLMENT_ID` — the enrollment whose instance is started.
 
@@ -90,6 +88,6 @@ installed.
 
 ### v1 — amended in place (0.2.16)
 
-- No longer fetches an instance key with `credentials()`: the endpoint was removed
-  (unitysvc/unitysvc#3023), so an `app` entry is probed without credentials, like `login`.
+- No longer fetches an instance key with `credentials()` (the endpoint was removed,
+  unitysvc/unitysvc#3023) and sends no credentials to any entry: only reachability is tested.
   Published only in 0.2.15 and used by one service, so v1 had no working behaviour left to pin to.
