@@ -46,10 +46,11 @@ the answer looks like a route that has not settled yet.
 | 404, 502, 503, 504, no answer | retry, then fail | a fresh route settling; the service failed if it stays that way for 60 s |
 | anything else | fail  | the service is broken |
 
-The request carries the instance's application key as a Bearer token for
-an entry whose `auth` is `app` (fetched once with `credentials()`), the
-customer's `UNITYSVC_API_KEY` for `auth == "key"`, and no credentials for
-`auth == "login"`.
+The request carries the customer's `UNITYSVC_API_KEY` as a Bearer token for an
+entry whose `auth` is `key`, and no credentials for `login` or `app` entries: those
+enforce their own auth, and a 401/403 counts as up. There is no platform-issued
+instance key; a service's own secret is an ordinary enrollment parameter
+(unitysvc/unitysvc#3023).
 
 ## Template variables (filled in by the platform when rendering)
 
@@ -86,3 +87,9 @@ installed.
 - Classifies 2xx/3xx/401/403/405 as pass; 404/502/503/504 and connection
   errors are retried for 60 s, then fail; anything else fails at once.
 - Timeouts: 300 s for the whole run (`meta.timeout`), 15 s per `GET`.
+
+### v1 — amended in place (0.2.16)
+
+- No longer fetches an instance key with `credentials()`: the endpoint was removed
+  (unitysvc/unitysvc#3023), so an `app` entry is probed without credentials, like `login`.
+  Published only in 0.2.15 and used by one service, so v1 had no working behaviour left to pin to.

@@ -61,14 +61,11 @@ def run(instance):
         return fail(f"the instance failed: {state.reason} (fault: {state.fault})", code)
     print(f"instance up: {len(state.entries)} entr{'y' if len(state.entries) == 1 else 'ies'}")
 
-    key = None
     for entry in state.entries:
+        # ``login`` and ``app`` entries enforce their own auth, so they are probed without credentials:
+        # a 401/403 shows the app is up. The service holds its own secret as an enrollment parameter.
         headers = {}
-        if entry.auth == "app":
-            if key is None:
-                key = instance.credentials().key
-            headers = {"Authorization": f"Bearer {key}"}
-        elif entry.auth == "key":
+        if entry.auth == "key":
             headers = {"Authorization": f"Bearer {os.environ['UNITYSVC_API_KEY']}"}
         url = entry.url + "${__probe_path__}"
         status = probe(url, headers)
