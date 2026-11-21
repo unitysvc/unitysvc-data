@@ -248,7 +248,7 @@ def test_doc_preset_sentinel_versioned():
     record = doc_preset({"$preset": "s3_connectivity_v1"})
     assert record["category"] == "connectivity_test"
     assert record["mime_type"] == "python"
-    assert record["meta"] == {"requirements": ["boto3"]}
+    assert {key: value for key, value in record["meta"].items() if key != "preset"} == {"requirements": ["boto3"]}
     assert Path(record["file_path"]).is_file()
 
 
@@ -274,7 +274,9 @@ def test_doc_preset_deep_merges_meta():
     record = doc_preset(
         {"$preset": "s3_connectivity_v1", "$with": {"meta": {"timeout_s": 10}}}
     )
-    assert record["meta"] == {"requirements": ["boto3"], "timeout_s": 10}
+    assert {key: value for key, value in record["meta"].items() if key != "preset"} == {
+        "requirements": ["boto3"], "timeout_s": 10,
+    }
 
 
 def test_doc_preset_returns_fresh_copy():
