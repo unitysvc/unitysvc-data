@@ -928,6 +928,22 @@ def test_a_seller_cannot_override_applies_to():
 # ---------------------------------------------------------------------------
 
 
+def test_container_description_is_public_plain_markdown():
+    """The shared customer guide expands without service-specific rendering."""
+    assert ALIASES["container_description"] == "container_description_v1"
+    record = doc_preset("container_description")
+    assert record["category"] == "getting_started"
+    assert record["mime_type"] == "markdown"
+    assert record["is_active"] is True
+    assert record["is_public"] is True
+    assert record["file_path"].endswith("description-v1.md")
+    body = Path(record["file_path"]).read_text(encoding="utf-8")
+    assert body == file_preset("container_description_v1")
+    assert "{{" not in body
+    assert "{%" not in body
+    assert "${" not in body
+
+
 def test_container_connectivity_preset_is_registered():
     """A container service has no gateway route: the preset is a python
     connectivity_test that declares ``probe_path`` and carries the runner

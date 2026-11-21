@@ -55,6 +55,12 @@ sentinel, substituting the bundled file's absolute path into
 `file_path`, then feeds the result into the existing upload pipeline.
 No custom URL scheme, no extra render pass.
 
+Container listings can include the shared customer guide with
+`"Using container services": {"$doc_preset": "container_description"}`.
+Keep the application's own setup/usage document alongside it. The generic guide
+covers enrollment, parameters, instance access, runtime charges and stopping;
+it does not replace application-specific instructions.
+
 ## Regenerating documents from metadata
 
 Every document returned by `doc_preset`, a `PRESETS` factory, or a bundle
