@@ -4,6 +4,7 @@
     "api_code_example_shell": "api_code_example_shell_v1",
     "api_connectivity": "api_connectivity_v1",
     "container_connectivity": "container_connectivity_v1",
+    "container_description": "container_description_v1",
     "llm_code_example_anthropic": "llm_code_example_anthropic_v1",
     "llm_code_example_anthropic_fc": "llm_code_example_anthropic_fc_v1",
     "llm_code_example_anthropic_javascript": "llm_code_example_anthropic_javascript_v1",
@@ -757,6 +758,20 @@
       },
       "preset_name": "container_connectivity",
       "source_readme": "container/connectivity/README.md",
+      "version": 1
+    },
+    "container_description_v1": {
+      "applies_to": {},
+      "category": "getting_started",
+      "description": "Customer guide to enrolling, starting, accessing and stopping a container service",
+      "example_file": "container/description/description-v1.md",
+      "is_active": true,
+      "is_public": true,
+      "meta": {},
+      "mime_type": "markdown",
+      "parameters": {},
+      "preset_name": "container_description",
+      "source_readme": "container/description/README.md",
       "version": 1
     },
     "llm_code_example_anthropic_fc_v1": {
