@@ -55,6 +55,60 @@ sentinel, substituting the bundled file's absolute path into
 `file_path`, then feeds the result into the existing upload pipeline.
 No custom URL scheme, no extra render pass.
 
+## Regenerating documents from metadata
+
+Every document returned by `doc_preset`, a `PRESETS` factory, or a bundle
+such as `llm_example_collection` carries a regeneration recipe in `meta.preset`:
+
+```json
+{
+  "name": "s3_connectivity_v1",
+  "data_version": "0.2.17",
+  "parameters": {},
+  "overrides": {
+    "description": "Our connectivity check",
+    "is_active": true,
+    "is_public": false,
+    "meta": {"requirements": ["boto3"], "channels": ["managed"]}
+  }
+}
+```
+
+The name is pinned to a concrete preset version even when expansion used an
+alias. `parameters` includes all resolved defaults and supplied values.
+`overrides` records the effective description, visibility, activation, and
+metadata, including scope and test settings added by a bundle. The nested
+`overrides.meta` excludes `preset` so the recipe does not contain itself.
+Each bundle document references its own leaf preset and can be regenerated
+independently, without the bundle input or the other documents.
+
+```python
+import json
+from pathlib import Path
+from unitysvc_data import doc_preset, regenerate_document
+
+original = doc_preset("llm_code_example_openai", version_prefix="/custom/v1")
+stored_meta = json.loads(json.dumps(original["meta"]))
+regenerated = regenerate_document(stored_meta)
+assert Path(regenerated["file_path"]).read_bytes() == Path(original["file_path"]).read_bytes()
+```
+
+Regeneration requires the recorded `unitysvc-data` package version to be
+installed; a version mismatch or malformed recipe raises `ValueError`.
+It reconstructs the preset document fields and parameter-substituted file
+content, with a local `file_path` that can differ between machines. It does
+not reconstruct a containing documents-map title, backend IDs or storage URLs,
+or runtime Jinja rendering that needs a service's context.
+
+`meta.preset` is reserved: supplying it through preset metadata overrides is
+an error. Other metadata overrides continue to work, and `meta.applies_to`
+remains platform-owned. Editing an expanded document afterwards does not
+update its recipe; consumers can regenerate the original to detect changes.
+This recipe is provenance information, not a signature or permission to run
+code. Backends must compare content and execution settings and apply their
+own execution policy. Raw `file_preset` output is a string, so it has no
+document metadata.
+
 ## CLI
 
 Installing the package provides a `usvc_data` command for shell-level

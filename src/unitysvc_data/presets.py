@@ -42,6 +42,7 @@ from typing import Any
 
 from . import classifiers
 from ._registry import preset
+from ._version import __version__
 from .titles import title as _title
 
 # Per-process directory for parameter-substituted preset bodies.  We
@@ -97,6 +98,7 @@ __all__ = [
     "doc_preset",
     "file_preset",
     "list_presets",
+    "regenerate_document",
     "register_jinja_globals",
 ]
 
@@ -186,32 +188,16 @@ for _alias, _target in ALIASES.items():
     _PRESET_APPLIES_TO[_alias] = _PRESET_APPLIES_TO[_target]
 
 
-def _make_factory(record: dict[str, Any]):
+def _make_factory(name: str):
     def _factory(**overrides: Any) -> dict[str, Any]:
-        bad = set(overrides) - OVERRIDABLE
-        if bad:
-            raise ValueError(
-                f"Cannot override {sorted(bad)!r} — these fields are tied to the file content. "
-                f"Allowed overrides: {sorted(OVERRIDABLE)!r}"
-            )
-        out = deepcopy(record)
-        for key, value in overrides.items():
-            if key == "meta" and isinstance(value, dict) and isinstance(out.get("meta"), dict):
-                # ``applies_to`` is platform-owned. A seller may add and
-                # override any other meta key, but not this one: the registry
-                # validates the preset's values at build time, and an override
-                # would hand a consumer an unregistered value with nothing
-                # having checked it.
-                seller = {k: v for k, v in value.items() if k != "applies_to"}
-                out["meta"] = {**out["meta"], **seller}
-            else:
-                out[key] = value
-        return out
+        # Registry and Jinja callers get the same parameter substitution and
+        # regeneration metadata as $doc_preset callers.
+        return doc_preset(name, **overrides)
 
     return _factory
 
 
-PRESETS: dict[str, Any] = {name: _make_factory(record) for name, record in _PRESET_RECORDS.items()}
+PRESETS: dict[str, Any] = {name: _make_factory(name) for name in _PRESET_RECORDS}
 
 
 # --- Source parsing --------------------------------------------------------
@@ -317,6 +303,7 @@ def doc_preset(source: Any, **kwargs: Any) -> dict[str, Any]:
     it freely.
     """
     name, sentinel_overrides, sentinel_params = _parse_source(source)
+    name = ALIASES.get(name, name)
 
     if sentinel_overrides or sentinel_params:
         # Internal middle-layer sentinel form ({"$preset": ..., "$with":
@@ -347,8 +334,28 @@ def doc_preset(source: Any, **kwargs: Any) -> dict[str, Any]:
                 f"(got {type(v).__name__}: {v!r})"
             )
 
-    factory = _lookup(name, PRESETS, "preset")
-    record = factory(**metadata)
+    record = deepcopy(_lookup(name, _PRESET_RECORDS, "preset"))
+    bad = set(metadata) - OVERRIDABLE
+    if bad:
+        raise ValueError(
+            f"Cannot override {sorted(bad)!r} — these fields are tied to the file content. "
+            f"Allowed overrides: {sorted(OVERRIDABLE)!r}"
+        )
+    for key, value in metadata.items():
+        if key == "meta":
+            if value is not None and not isinstance(value, dict):
+                raise ValueError("Preset meta must be an object or null.")
+            if value and "preset" in value:
+                raise ValueError("meta.preset is reserved for generated preset provenance.")
+            # applies_to remains platform-owned; callers cannot replace it.
+            seller = {k: deepcopy(v) for k, v in (value or {}).items() if k != "applies_to"}
+            record["meta"] = {**record["meta"], **seller}
+        else:
+            record[key] = deepcopy(value)
+    declared = _PRESET_PARAMETERS.get(name, {})
+    unknown = set(params) - set(declared)
+    if unknown:
+        raise ValueError(f"Unknown parameter(s) {sorted(unknown)!r} for preset {name!r}.")
     # Substitute whenever the preset *declares* parameters — even if the
     # caller supplied no overrides — so declared defaults get applied
     # too.  Otherwise a preset like ``llm_code_example_openai`` (which
@@ -356,7 +363,7 @@ def doc_preset(source: Any, **kwargs: Any) -> dict[str, Any]:
     # ``${__version_prefix__}`` placeholder when no override is passed.
     # Identical (preset, resolved-params) pairs reuse the same tmp file
     # via a content-addressed name, so this is cheap.
-    if _PRESET_PARAMETERS.get(name):
+    if declared:
         record["file_path"] = _materialise_substituted_body(
             preset_name=name,
             bundled_file_path=record["file_path"],
@@ -364,7 +371,60 @@ def doc_preset(source: Any, **kwargs: Any) -> dict[str, Any]:
         )
         # No ``_params`` on the record — the seller's listing-document
         # schema validator rejects unknown fields.
+    _set_preset_metadata(record, name, {**declared, **params})
     return record
+
+
+def _set_preset_metadata(record: dict[str, Any], name: str, parameters: dict[str, str]) -> None:
+    """Capture the complete expansion recipe without recursive meta.preset data."""
+    meta = {k: deepcopy(v) for k, v in record["meta"].items() if k != "preset"}
+    record["meta"]["preset"] = {
+        "name": name,
+        "data_version": __version__,
+        "parameters": dict(parameters),
+        # Capture effective values, not just caller overrides: collections add
+        # scope after expansion, and family metadata can change between releases.
+        "overrides": {key: deepcopy(record[key]) if key != "meta" else meta for key in sorted(OVERRIDABLE)},
+    }
+
+
+def regenerate_document(meta: dict[str, Any]) -> dict[str, Any]:
+    """Regenerate a preset document from its JSON-serializable ``meta`` alone.
+
+    Requires the same installed unitysvc-data version recorded in meta.preset.
+    Returns the ordinary doc_preset record, including a local file_path with
+    the original parameter-substituted content. Paths can differ across machines;
+    compare file bytes, not path strings. Runtime Jinja rendering and backend
+    storage/identity fields are outside the preset expansion contract.
+
+    This replays a recipe, not an attestation: consumers must compare the actual
+    document with the regenerated one before trusting supplied provenance.
+    """
+    provenance = meta.get("preset") if isinstance(meta, dict) else None
+    fields = {"name", "data_version", "parameters", "overrides"}
+    if not isinstance(provenance, dict) or set(provenance) != fields:
+        raise ValueError(f"meta.preset must be an object with exactly {sorted(fields)!r}.")
+    if provenance["data_version"] != __version__:
+        raise ValueError(
+            f"Regeneration requires unitysvc-data {provenance['data_version']!r}; installed version is {__version__!r}."
+        )
+    name = provenance["name"]
+    if not isinstance(name, str) or name not in MANIFEST["presets"]:
+        raise ValueError("meta.preset.name must identify a known versioned preset, not an alias.")
+    parameters = provenance["parameters"]
+    declared = _PRESET_PARAMETERS[name]
+    if (
+        not isinstance(parameters, dict)
+        or set(parameters) != set(declared)
+        or any(not isinstance(v, str) for v in parameters.values())
+    ):
+        raise ValueError("meta.preset.parameters must contain exactly the resolved string parameters for the preset.")
+    overrides = provenance["overrides"]
+    if not isinstance(overrides, dict) or set(overrides) != OVERRIDABLE:
+        raise ValueError(f"meta.preset.overrides must contain exactly {sorted(OVERRIDABLE)!r}.")
+    if not isinstance(overrides["meta"], dict):
+        raise ValueError("meta.preset.overrides.meta must be an object.")
+    return doc_preset({"$preset": name, "$params": parameters, "$with": overrides})
 
 
 def _materialise_substituted_body(
@@ -705,6 +765,8 @@ def _scoped(preset_name: str, group: dict[str, Any], sleep: Any = None,
         scope["min_expected_metrics"] = {**(min_expected_metrics or {}), **(own_metrics or {})}
     if scope:
         record["meta"] = {**(record.get("meta") or {}), **scope}
+        provenance = record["meta"]["preset"]
+        _set_preset_metadata(record, provenance["name"], provenance["parameters"])
     return record
 
 

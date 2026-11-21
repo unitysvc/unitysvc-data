@@ -12,6 +12,7 @@ Preferred (preset-name) API:
   from a bare name or a ``{"$preset": ..., "$with": {...}}`` sentinel.
 - :func:`file_preset` — return the raw UTF-8 content of a preset's
   bundled example file.
+- :func:`regenerate_document` — reconstruct a document from its ``meta``.
 - :func:`list_presets` — enumerate every registered preset name
   (versioned + aliases).
 - :data:`PRESETS` — mapping of preset name → factory function.
@@ -109,6 +110,7 @@ from .presets import (
     file_preset,
     list_presets,
     llm_example_collection,
+    regenerate_document,
     register_jinja_globals,
 )
 
@@ -135,6 +137,7 @@ __all__ = [
     # discover every preset type without hard-coding function names.
     "preset",
     "read_example",
+    "regenerate_document",
     "register_jinja_globals",
     "resolve_family",
 ]
